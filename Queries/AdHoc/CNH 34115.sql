@@ -1,2 +1,0 @@
-SELECT *
-FROM [CDW].[dbo].[GRXX_RPT_LON_APL]

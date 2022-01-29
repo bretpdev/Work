@@ -1,1 +1,0 @@
-update uls.dbo.BatchLetters set IsDuplex = 1 where LetterId = 'AUTOPAYREQ'

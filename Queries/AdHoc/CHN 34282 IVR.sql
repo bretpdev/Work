@@ -1,1 +1,0 @@
-select month(processeddate), year(processeddate), count(*) from cls..IvrRequestTracking where year(processeddate) >= 2017 and PaymentAmount is not null group by month(processeddate), year(processeddate) order by year(processeddate), month(processeddate)

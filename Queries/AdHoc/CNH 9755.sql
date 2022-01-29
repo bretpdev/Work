@@ -1,9 +1,0 @@
-SELECT * FROM OPENQUERY (LEGEND,'
-	SELECT 
-		* 
-	FROM
-		PKUB.LNXX_FIN_ATY 
-	WHERE 
-		BF_SSN = ''XXXXXXXXX'' 
-		AND LN_SEQ IN (''X'', ''X'')
-');

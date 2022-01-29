@@ -1,3 +1,0 @@
-/*CAST CHAR TO NUM*/
-
-CL_SEQ = INPUT(SEQ, 2.);

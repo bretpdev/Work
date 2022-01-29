@@ -1,1 +1,0 @@
-update CLS.dbo.ArcAddProcessing set ProcessedAt = null where ArcAddProcessingId = 'XXXXXXX'

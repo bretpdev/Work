@@ -1,4 +1,0 @@
-USE BSYS
-GO
-
-DELETE FROM BSYS..QCTR_LST_ReportsToProcess WHERE ReportName LIKE '%ULWG29%'

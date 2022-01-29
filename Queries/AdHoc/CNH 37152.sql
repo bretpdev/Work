@@ -1,7 +1,0 @@
-delete from CDW..PDXX_PRS_NME where DF_PRS_ID = 'XXXXXXXXX'
-delete from CDW..PDXX_PRS_NME_HST where DF_PRS_ID = 'XXXXXXXXX'
-delete from CDW..PDXX_PRS_ADR where DF_PRS_ID = 'XXXXXXXXX'
-delete from CDW..PDXX_PRS_INA where DF_PRS_ID = 'XXXXXXXXX'
-delete from CDW..PDXX_PRS_ADR_EML where DF_PRS_ID = 'XXXXXXXXX'
-delete from CDW..PDXX_PRS_PHN where DF_PRS_ID = 'XXXXXXXXX'
-delete from CDW..PDXX_PHN_HST where DF_PRS_ID = 'XXXXXXXXX'
