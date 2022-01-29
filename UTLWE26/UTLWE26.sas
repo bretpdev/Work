@@ -1,0 +1,342 @@
+/*UTLWE26*/
+/*SCHOOL INFORMATION FOR NELNET OPEN LOANS ON ONELINK*/
+/*PLEASE NOTE: THIS DIRECTORY HAS BEEN CHANGED TO PROGREVW BECAUSE OF THE SIZE OF THE OUTPUT FILE*/
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = /sas/whse/progrevw   ; */
+%LET RPTLIB = T:\SAS   ; 
+FILENAME REPORT2 "&RPTLIB/ULWE26.LWE26R2";
+FILENAME REPORT3 "&RPTLIB/ULWE26.LWE26R3";
+FILENAME REPORTZ "&RPTLIB/ULWE26.LWE26RZ";
+
+options symbolgen;
+
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+%macro sqlcheck ;
+  %if  &sqlxrc ne 0  %then  %do  ;
+    data _null_  ;
+            file reportz notitles  ;
+            put @01 " ********************************************************************* "
+              / @01 " ****  The SQL code above has experienced an error.               **** "
+              / @01 " ****  The SAS should be reviewed.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  The SQL error code is  &sqlxrc  and the SQL error message  **** "
+              / @01 " ****  &sqlxmsg   **** "
+              / @01 " ********************************************************************* "
+            ;
+         run  ;
+  %end  ;
+%mend  ;
+
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DEMO AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	B.DF_PRS_ID_BR					AS SSN
+	,A.AF_APL_ID||A.AF_APL_ID_SFX	AS UNIQUE_ID
+	,A.AD_PRC 						AS GUAR_DATE
+	,C.IF_OPS_SCL_RPT 				AS SCH_CODE
+	,D.IM_IST_FUL 					AS SCH_NAME
+	,D.IC_SCL_TYP 					AS SCH_TYPE
+	,CASE 
+		WHEN IC_SCL_TYP = '00' THEN 'DEGREE,PRIVATE - 4 YEAR'
+		WHEN IC_SCL_TYP = '01' THEN 'STATE - 4 YEAR'
+		WHEN IC_SCL_TYP = '02' THEN 'STATE-RELATED - 4 YEAR'
+		WHEN IC_SCL_TYP = '03' THEN 'JUNIOR - 2 YEAR'
+		WHEN IC_SCL_TYP = '04' THEN 'COMMUNITY (PUBLIC,2-YEAR)'
+		WHEN IC_SCL_TYP = '05' THEN 'NURSING'
+		WHEN IC_SCL_TYP = '06' THEN 'VOCATIONAL/TECHNICAL'
+		WHEN IC_SCL_TYP = '07' THEN 'BUSINESS'
+		WHEN IC_SCL_TYP = '08' THEN 'TRADE'
+		WHEN IC_SCL_TYP = '09' THEN 'SCHOOL OF THEOLOGY OR SEMINARY'
+	 END							AS SCL_TYP_DESC
+	,A.AA_GTE_LON_AMT 				AS GUAR_AMT
+	,COALESCE(A.AA_GTE_LON_AMT,0) -
+		 COALESCE(A.AA_TOT_CAN,0) -
+		 COALESCE(A.AA_TOT_RFD,0) 	AS NET_GUAR
+	,B.AC_APL_TYP					AS LOAN_TYPE
+	,A.AF_CUR_LON_SER_AGY
+	,A.AF_CUR_LON_OPS_LDR
+	,B2.AC_LON_STA_TYP
+	,E.DC_ST_DRV_LIC
+FROM	OLWHRM1.GA10_LON_APP A
+		INNER JOIN OLWHRM1.GA01_APP B ON
+			A.AF_APL_ID = B.AF_APL_ID
+			AND A.AC_PRC_STA = 'A'
+			AND B.AC_APL_TYP = 'C'
+/*			AND A.AF_CUR_LON_SER_AGY = '700121'*/
+		INNER JOIN OLWHRM1.GA14_LON_STA B2 ON
+			A.AF_APL_ID = B2.AF_APL_ID
+			AND A.AF_APL_ID_SFX = B2.AF_APL_ID_SFX
+			AND B2.AC_LON_STA_TYP IN ('DA','DN','FB','IA','ID','IG','IM','RP','UA','UB','UC','UD','UI')
+		INNER JOIN OLWHRM1.SD02_STU_ENR C ON
+			B.DF_PRS_ID_STU = C.DF_PRS_ID_STU
+			AND DAYS(C.LD_STU_ENR_STA) <= DAYS(A.AD_PRC)
+			AND C.LC_STA_SD02 IN ('A','H')
+		INNER JOIN OLWHRM1.SC01_LGS_SCL_INF D ON
+			C.IF_OPS_SCL_RPT = D.IF_IST
+		LEFT OUTER JOIN OLWHRM1.PD01_PDM_INF E
+			ON B.DF_PRS_ID_BR = E.DF_PRS_ID
+WHERE	C.LF_CRT_DTS_SD02 = (SELECT MAX(Z.LF_CRT_DTS_SD02)
+							 FROM	OLWHRM1.SD02_STU_ENR Z
+							 WHERE	B.DF_PRS_ID_STU = Z.DF_PRS_ID_STU
+							 		AND DAYS(Z.LD_STU_ENR_STA) <= DAYS(A.AD_PRC)
+									AND Z.LC_STA_SD02 IN ('A','H'))
+		AND B2.AF_CRT_DTS_GA14 = (SELECT MAX(Y.AF_CRT_DTS_GA14)
+								  FROM 	 OLWHRM1.GA14_LON_STA Y
+								  WHERE  Y.AF_APL_ID = B2.AF_APL_ID
+										 AND Y.AF_APL_ID_SFX = B2.AF_APL_ID_SFX)
+
+);
+/*DISCONNECT FROM DB2;*/
+/*ENDRSUBMIT;*/
+CREATE TABLE DEMO2 AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	B.DF_PRS_ID_BR					AS SSN
+	,A.AF_APL_ID||A.AF_APL_ID_SFX	AS UNIQUE_ID
+	,A.AD_PRC 						AS GUAR_DATE
+	,B.AF_APL_OPS_SCL 				AS SCH_CODE
+	,D.IM_IST_FUL 					AS SCH_NAME
+	,D.IC_SCL_TYP	 				AS SCH_TYPE
+	,CASE 
+		WHEN D.IC_SCL_TYP = '00' THEN 'DEGREE,PRIVATE - 4 YEAR'
+		WHEN D.IC_SCL_TYP = '01' THEN 'STATE - 4 YEAR'
+		WHEN D.IC_SCL_TYP = '02' THEN 'STATE-RELATED - 4 YEAR'
+		WHEN D.IC_SCL_TYP = '03' THEN 'JUNIOR - 2 YEAR'
+		WHEN D.IC_SCL_TYP = '04' THEN 'COMMUNITY (PUBLIC,2-YEAR)'
+		WHEN D.IC_SCL_TYP = '05' THEN 'NURSING'
+		WHEN D.IC_SCL_TYP = '06' THEN 'VOCATIONAL/TECHNICAL'
+		WHEN D.IC_SCL_TYP = '07' THEN 'BUSINESS'
+		WHEN D.IC_SCL_TYP = '08' THEN 'TRADE'
+		WHEN D.IC_SCL_TYP = '09' THEN 'SCHOOL OF THEOLOGY OR SEMINARY'
+	 END							AS SCL_TYP_DESC
+	,A.AA_GTE_LON_AMT 				AS GUAR_AMT
+	,COALESCE(A.AA_GTE_LON_AMT,0) -
+		 COALESCE(A.AA_TOT_CAN,0) -
+		 COALESCE(A.AA_TOT_RFD,0) 	AS NET_GUAR
+	,A.AC_LON_TYP					AS LOAN_TYPE
+	,A.AF_CUR_LON_SER_AGY
+	,A.AF_CUR_LON_OPS_LDR
+	,B2.AC_LON_STA_TYP
+	,E.DC_ST_DRV_LIC
+FROM	OLWHRM1.GA10_LON_APP A
+		INNER JOIN OLWHRM1.GA01_APP B ON
+			A.AF_APL_ID = B.AF_APL_ID
+			AND A.AC_PRC_STA = 'A'
+			AND A.AC_LON_TYP IN ('SF','SU','PL','SL')
+/*			AND A.AF_CUR_LON_SER_AGY = '700121'*/
+		INNER JOIN OLWHRM1.GA14_LON_STA B2 ON
+			A.AF_APL_ID = B2.AF_APL_ID
+			AND A.AF_APL_ID_SFX = B2.AF_APL_ID_SFX
+			AND B2.AC_LON_STA_TYP IN ('DA','DN','FB','IA','ID','IG','IM','RP','UA','UB','UC','UD','UI')
+		INNER JOIN OLWHRM1.SC01_LGS_SCL_INF D ON
+			B.AF_APL_OPS_SCL = D.IF_IST
+		LEFT OUTER JOIN OLWHRM1.PD01_PDM_INF E
+			ON B.DF_PRS_ID_BR = E.DF_PRS_ID
+WHERE B2.AF_CRT_DTS_GA14 = (SELECT MAX(Y.AF_CRT_DTS_GA14)
+								  FROM 	 OLWHRM1.GA14_LON_STA Y
+								  WHERE  Y.AF_APL_ID = B2.AF_APL_ID
+								  AND Y.AF_APL_ID_SFX = B2.AF_APL_ID_SFX)
+);
+DISCONNECT FROM DB2;
+/*%put  sqlxrc= >>> &sqlxrc <<< ||| sqlxmsg= >>> &sqlxmsg >>> ;  ** includes error messages to SAS log  ;*/
+/*%sqlcheck;*/
+/*quit;*/
+DATA DEMO; 
+SET DEMO;
+FORMAT LOANTYPE $2.;
+LOANTYPE = LOAN_TYPE; 
+RUN;
+DATA DEMO2; 
+SET DEMO2; 
+FORMAT LOANTYPE $2.;
+LOANTYPE = LOAN_TYPE;
+RUN;
+
+PROC SORT DATA=DEMO;
+BY SSN UNIQUE_ID;
+RUN;
+PROC SORT DATA=DEMO2;
+BY SSN UNIQUE_ID;
+RUN;
+
+DATA LOANS;
+set DEMO DEMO2;
+RUN;
+
+PROC SORT DATA=LOANS;
+BY SSN;
+RUN;
+
+ENDRSUBMIT;
+
+DATA LOANS;
+SET WORKLOCL.LOANS;
+RUN;
+
+DATA LOANS;
+SET LOANS;
+LENGTH DESC $ 100;
+IF AC_LON_STA_TYP = 'DA' THEN DESC = 'DEFERRED';
+ELSE IF AC_LON_STA_TYP = 'RP' THEN DESC = 'REPAYMENT';
+ELSE IF AC_LON_STA_TYP = 'CP' THEN DESC = 'CLAIM PAID';
+ELSE IF AC_LON_STA_TYP = 'DN' THEN DESC = 'DEFAULTED LOAN';
+ELSE IF AC_LON_STA_TYP = 'UA' THEN DESC = 'TEMP UNINS DEFAULT CLAIM RQST';
+ELSE IF AC_LON_STA_TYP = 'CR' THEN DESC = 'PRECLAIM/CLAIM RECEIVED';
+ELSE IF AC_LON_STA_TYP = 'FB' THEN DESC = 'FORBEARANCE';                             
+ELSE IF AC_LON_STA_TYP = 'UB' THEN DESC = 'TEMP UNINS DFT CLAIM DENIED';
+ELSE IF AC_LON_STA_TYP = 'PC' THEN DESC = 'PAID THROUGH CONSOLIDATION';
+ELSE IF AC_LON_STA_TYP = 'IA' THEN DESC = 'IN SCHOOL';                                  
+ELSE IF AC_LON_STA_TYP = 'UC' THEN DESC = 'PERM UNINS NO DFLT CLAIM REQUESTED';    
+ELSE IF AC_LON_STA_TYP = 'PF' THEN DESC = 'PAID IN FULL';
+ELSE IF AC_LON_STA_TYP = 'ID' THEN DESC = 'IN SCHOOL/IN GRACE';                    
+ELSE IF AC_LON_STA_TYP = 'UD' THEN DESC = 'PERM UNINS DFT CLAIM DENIED';                
+ELSE IF AC_LON_STA_TYP = 'PN' THEN DESC = 'PAID IN FULL BY CONSOLIDATION';
+ELSE IF AC_LON_STA_TYP = 'IG' THEN DESC = 'IN GRACE';                                     
+ELSE IF AC_LON_STA_TYP = 'UI' THEN DESC = 'GUARANTY REVOKED';                                   
+ELSE IF AC_LON_STA_TYP = 'PM' THEN DESC = 'PRESUMED PIF';
+ELSE IF AC_LON_STA_TYP = 'IM' THEN DESC = 'IN MILITARY';                                 
+ELSE IF AC_LON_STA_TYP = 'AL' THEN DESC = 'ABANDONED LOAN';
+ELSE IF AC_LON_STA_TYP = 'RF' THEN DESC = 'REFINANCED';                   
+ELSE IF AC_LON_STA_TYP = 'CA' THEN DESC = 'CANCELLED LOAN';
+ELSE DESC = '';
+RUN;
+
+data _null_;
+set  WORK.loans;
+WHERE AF_CUR_LON_SER_AGY = '700121';
+file REPORT2 delimiter=',' DSD DROPOVER lrecl=32767;
+   format SSN $9. ;
+   format UNIQUE_ID $19. ;
+   format GUAR_DATE MMDDYY10. ;
+   format SCH_CODE $8. ;
+   format SCH_NAME $40. ;
+   format SCH_TYPE $2. ;
+   format SCL_TYP_DESC $30. ;
+   format GUAR_AMT 10.2 ;
+   format LOANTYPE $2. ;
+   format NET_GUAR 10.2 ;
+   format AF_CUR_LON_OPS_LDR $8. ;
+   format DC_ST_DRV_LIC $2.;
+if _n_ = 1 then        /* write column names */
+ do;
+   put
+   'SSN'
+   ','
+   'UNIQUE_ID'
+   ','
+   'GUAR_DATE'
+   ','
+   'SCH_CODE'
+   ','
+   'SCH_NAME'
+   ','
+   'SCH_TYPE'
+   ','
+   'SCL_TYP_DESC'
+   ','
+   'GUAR_AMT'
+   ','
+   'LOANTYPE'
+   ','
+   'NET_GUAR'
+   ',' 
+   'LENDER'
+   ','
+   'AC_LON_STA_TYP'
+   ','
+   'LOAN_STATUS_DESCRIPTION'
+   ','
+   'ST_DRV_LIC'
+   ;
+ end;
+ do;
+   PUT SSN $ @;
+   PUT UNIQUE_ID $ @;
+   PUT GUAR_DATE @;
+   PUT SCH_CODE $ @;
+   PUT SCH_NAME $ @;
+   PUT SCH_TYPE $ @;
+   PUT SCL_TYP_DESC $ @;
+   PUT GUAR_AMT @;
+   PUT LOANTYPE $ @;
+   PUT NET_GUAR @;
+   PUT AF_CUR_LON_OPS_LDR $ @;
+   PUT AC_LON_STA_TYP $ @;
+   PUT DESC $ @;
+   PUT DC_ST_DRV_LIC $ ;
+   ;
+ end;
+run;
+
+data _null_;
+set  WORK.loans;
+file REPORT3 delimiter=',' DSD DROPOVER lrecl=32767;
+   format SSN $9. ;
+   format UNIQUE_ID $19. ;
+   format GUAR_DATE MMDDYY10. ;
+   format SCH_CODE $8. ;
+   format SCH_NAME $40. ;
+   format SCH_TYPE $2. ;
+   format SCL_TYP_DESC $30. ;
+   format GUAR_AMT 10.2 ;
+   format LOANTYPE $2. ;
+   format NET_GUAR 10.2 ;
+   format AF_CUR_LON_OPS_LDR $8. ;
+   FORMAT DC_ST_DRV_LIC $2.;
+if _n_ = 1 then        /* write column names */
+ do;
+   put
+   'SSN'
+   ','
+   'UNIQUE_ID'
+   ','
+   'GUAR_DATE'
+   ','
+   'SCH_CODE'
+   ','
+   'SCH_NAME'
+   ','
+   'SCH_TYPE'
+   ','
+   'SCL_TYP_DESC'
+   ','
+   'GUAR_AMT'
+   ','
+   'LOANTYPE'
+   ','
+   'NET_GUAR'
+   ',' 
+   'LENDER'
+   ','
+   'AC_LON_STA_TYP'
+   ','
+   'DESCRIPTION'
+   ','
+   'ST_DRV_LIC'
+   ;
+ end;
+ do;
+   put SSN $ @;
+   put UNIQUE_ID $ @;
+   put GUAR_DATE @;
+   put SCH_CODE $ @;
+   put SCH_NAME $ @;
+   put SCH_TYPE $ @;
+   put SCL_TYP_DESC $ @;
+   put GUAR_AMT @;
+   put LOANTYPE $ @;
+   put NET_GUAR @;
+   put AF_CUR_LON_OPS_LDR $ @;
+   PUT AC_LON_STA_TYP $ @;
+   PUT DESC $ @;
+   PUT DC_ST_DRV_LIC $;
+ end;
+run;
+
+
+

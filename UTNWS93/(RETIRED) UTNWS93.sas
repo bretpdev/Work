@@ -1,0 +1,216 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/UNWS93.NWS93RZ";
+FILENAME REPORT2 "&RPTLIB/UNWS93.NWS93R2";
+
+LIBNAME  LEGEND  REMOTE  SERVER=LEGEND SLIBREF=work  ;
+RSUBMIT LEGEND;
+/*%let DB = DNFPRQUT;  *This is test;*/
+/*%let DB = DNFPRUUT;  *This is VUK3 test;*/
+%let DB = DNFPUTDL;  *This is live;
+
+LIBNAME PKUB DB2 DATABASE=&DB OWNER=PKUB;
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=&DB);
+
+	CREATE TABLE BORS AS
+		SELECT	
+			*
+		FROM	
+			CONNECTION TO DB2 
+				(
+					SELECT DISTINCT
+						PD10.DF_SPE_ACC_ID,
+						PD10.DF_PRS_ID,
+						PD10.DM_PRS_1,
+						PD10.DM_PRS_LST,
+						PD30.DX_STR_ADR_1,
+						PD30.DX_STR_ADR_2,
+						PD30.DM_CT,
+						PD30.DC_DOM_ST,
+						PD30.DF_ZIP_CDE,
+						PD30.DM_FGN_ST,
+						PD30.DM_FGN_CNY,
+						LN20.LF_EDS
+					FROM
+						PKUB.PD10_PRS_NME PD10
+						INNER JOIN PKUB.LN10_LON LN10
+							ON PD10.DF_PRS_ID = LN10.BF_SSN
+						INNER JOIN PKUB.PD30_PRS_ADR PD30
+							ON PD30.DF_PRS_ID = PD10.DF_PRS_ID
+						INNER JOIN PKUB.LN16_LON_DLQ_HST LN16
+							ON LN16.BF_SSN = LN10.BF_SSN
+							AND LN16.LN_SEQ = LN10.LN_SEQ
+						LEFT JOIN /*EXCLUDES BORROWERS THAT HAVE HAD THE LETTER IN THE LAST 30 DAYS*/
+						(
+							SELECT
+								BF_SSN
+							FROM
+								PKUB.AY10_BR_LON_ATY AY10
+							WHERE 
+								AY10.PF_REQ_ACT = 'DAIDR'
+								AND DAYS(AY10.LD_ATY_REQ_RCV) > (DAYS(CURRENT_DATE) - 30)
+						) HAS_LETTER
+							ON HAS_LETTER.BF_SSN = PD10.DF_PRS_ID
+						LEFT JOIN AES.PH05_CNC_EML PH05
+							ON PH05.DF_SPE_ID = PD10.DF_SPE_ACC_ID
+						LEFT JOIN PKUB.LN20_EDS LN20
+							ON LN10.BF_SSN = LN20.BF_SSN
+							AND LN10.LN_SEQ = LN20.LN_SEQ
+							AND LN20.LC_STA_LON20 = 'A'	
+							AND LN20.LC_EDS_TYP = 'M'
+					WHERE
+						LN10.LA_CUR_PRI > 0
+						AND LN10.LC_STA_LON10 = 'R'
+						AND LN16.LN_DLQ_MAX BETWEEN 271 AND 360
+						AND LN16.LC_STA_LON16 = '1'
+						AND PD30.DC_ADR = 'L'
+						AND HAS_LETTER.BF_SSN IS NULL
+						AND (PD30.DI_VLD_ADR = 'Y' OR PH05.DI_CNC_ELT_OPI = 'Y')
+
+					FOR READ ONLY WITH UR
+				)
+	;
+
+	DISCONNECT FROM DB2;
+
+PROC SQL;
+	CREATE TABLE COBWRS AS 
+		SELECT DISTINCT
+			PD10.DF_PRS_ID,
+			PD10.DF_SPE_ACC_ID,
+			PD10.DM_PRS_1,
+			PD10.DM_PRS_LST,
+			PD30.DX_STR_ADR_1,
+			PD30.DX_STR_ADR_2,
+			PD30.DM_CT,
+			PD30.DC_DOM_ST,
+			PD30.DF_ZIP_CDE,
+			PD30.DM_FGN_CNY,
+			PD30.DM_FGN_ST,
+			BORS.LF_EDS
+		FROM 
+			PKUB.LN20_EDS LN20
+			INNER JOIN BORS 
+				ON BORS.LF_EDS = LN20.LF_EDS
+			INNER JOIN PKUB.PD10_PRS_NME PD10
+				ON PD10.DF_PRS_ID = LN20.LF_EDS
+			INNER JOIN PKUB.PD30_PRS_ADR PD30
+				ON PD30.DF_PRS_ID = PD10.DF_PRS_ID
+				AND PD30.DI_VLD_ADR  = 'Y'
+;
+
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+QUIT;
+
+PROC SORT DATA=BORS NODUP; BY DF_SPE_ACC_ID ; RUN;
+PROC SORT DATA=COBWRS NODUP; BY DF_SPE_ACC_ID ; RUN;
+
+DATA POP;
+	MERGE BORS COBWRS;
+	BY DF_SPE_ACC_ID;
+RUN;
+
+
+ENDRSUBMIT;
+
+DATA POP; SET LEGEND.POP; RUN;
+
+DATA R2 (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+	SET POP;
+	KEYSSN = TRANSLATE(DF_PRS_ID,'MYLAUGHTER','0987654321');
+	MODAY = PUT(DATE(),MMDDYYN4.);
+	KEYLINE = "P"||KEYSSN||MODAY||"L";
+	CHKDIG = 0;
+	LENGTH DIG $2.;
+	DO I = 1 TO LENGTH(KEYLINE);
+		IF I/2 NE ROUND(I/2,1) 
+			THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+		ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+		IF SUBSTR(DIG,1,1) = " " 
+			THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+			ELSE DO;
+				CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+				CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+				IF CHK1 + CHK2 >= 10
+					THEN DO;
+						CHK3 = PUT(CHK1 + CHK2,2.);
+						CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+						CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+					END;
+				CHKDIG = CHKDIG + CHK1 + CHK2;
+			END;
+	END;
+	CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+	IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+	CHECK = PUT(CHKDIGIT,1.);
+	ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+
+DATA _NULL_;
+	SET R2;
+	FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+
+	IF _N_ = 1 THEN
+		DO;
+			PUT
+				'ACCT NO'
+				','
+				'FIRST NAME'
+				','
+				'LAST NAME'
+				','
+				'STREET 1'
+				','
+				'STREET 2'
+				','
+				'CITY'
+				','
+				'STATE'
+				','
+				'ZIP'
+				','
+				'FOREIGN COUNTRY'
+				','
+				'FOREIGN STATE'
+				','
+				'ACS KEYLINE'
+				','
+				'COST CENTER';
+
+		END;
+	DO;
+		PUT DF_SPE_ACC_ID $ @;
+		PUT DM_PRS_1 $ @;
+		PUT DM_PRS_LST $ @;
+		PUT DX_STR_ADR_1 $ @;
+		PUT DX_STR_ADR_2 $ @;
+		PUT DM_CT $ @;
+		PUT DC_DOM_ST $ @;
+		PUT DF_ZIP_CDE $ @;
+		PUT DM_FGN_CNY $ @;
+		PUT DM_FGN_ST $ @;
+		PUT ACSKEY $ @;
+		PUT 'MA4481' ;
+
+	;
+	END;
+RUN;

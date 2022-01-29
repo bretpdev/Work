@@ -1,0 +1,1 @@
+﻿CREATE TABLE bbreininsc._LoanStrikeCount(BF_SSN VARCHAR(9), LN_SEQ INT, LD_LON_1_DSB DATE, CountStrikes INT, FatalStrike INT)

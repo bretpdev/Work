@@ -1,0 +1,26 @@
+﻿
+
+CREATE PROCEDURE [dbo].[spGetAcctNumberFromSSN] 
+	@SSN varchar(10)
+AS
+BEGIN
+	DECLARE @QUERY VARCHAR(MAX), @TSQL VARCHAR(MAX)
+	
+	SELECT @TSQL = 'SELECT * FROM OPENQUERY(LEGEND_TEST_VUK1,'
+	  SELECT  @QUERY = @TSQL + 
+	  '''
+		SELECT 
+			DF_SPE_ACC_ID 
+		FROM 
+			PKUB.PD10_PRS_NME 
+		WHERE 
+			DF_PRS_ID = '''''+@SSN +'''''
+	  '')'
+	  
+	  EXEC(@QUERY)
+	 
+		IF(@@ROWCOUNT = 0)
+			BEGIN
+				RAISERROR('spGetAcctNumberFromSSN RETURNED 0 RECORDS FOR SSN:%s', 16, 1, @SSN) 
+			END
+END

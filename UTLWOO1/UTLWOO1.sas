@@ -1,0 +1,93 @@
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/ULWOO1.LWOO1RZ";
+FILENAME REPORT2 "&RPTLIB/ULWOO1.LWOO1R2";
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DEMO AS
+SELECT *
+FROM CONNECTION TO DB2 (
+	SELECT DISTINCT
+		A.DF_PRS_ID
+	FROM	OLWHRM1.PD42_PRS_PHN A
+		INNER JOIN
+			OLWHRM1.LN10_LON B
+				ON A.DF_PRS_ID = B.BF_SSN
+	WHERE B.LA_CUR_PRI > 0
+		AND B.LC_STA_LON10 = 'R'
+		AND A.DI_PHN_VLD = 'N' 
+		AND A.DC_PHN = 'H'
+INTERSECT
+	SELECT DISTINCT
+		A.DF_PRS_ID
+	FROM	OLWHRM1.PD42_PRS_PHN A
+		INNER JOIN
+			OLWHRM1.LN10_LON B
+				ON A.DF_PRS_ID = B.BF_SSN
+	WHERE B.LA_CUR_PRI > 0
+		AND B.LC_STA_LON10 = 'R'
+		AND A.DN_DOM_PHN_ARA = ' ' 
+		AND A.DN_DOM_PHN_XCH = ' ' 
+		AND A.DN_DOM_PHN_LCL = ' ' 
+		AND A.DI_PHN_VLD = 'Y' 
+		AND A.DC_PHN IN ('A','W','M')
+		AND A.DC_NO_HME_PHN = 'X' 
+
+FOR READ ONLY WITH UR
+);
+DISCONNECT FROM DB2;
+
+/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+/*%SQLCHECK;*/
+/*QUIT;*/
+
+ENDRSUBMIT;
+DATA DEMO;
+	SET WORKLOCL.DEMO;
+RUN;
+DATA _NULL_;
+SET DEMO ;
+LENGTH COMMENTS $600.;
+ARC_NAME = 'VNOPH' ;
+FROM_DATE = ' ' ;
+TO_DATE = ' ' ;
+NEEDED_BY = ' ' ;
+RECIPIENT_ID = ' ' ;
+REGARDS_TO_CODE = ' ' ;
+REGARDS_TO_ID = ' ' ;
+LOAN_SEQ = 'ALL' ;
+COMMENTS = ' ';
+FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+FORMAT COMMENTS $600. ;
+DO;
+   PUT DF_PRS_ID @;
+   PUT ARC_NAME @;
+   PUT FROM_DATE @;
+   PUT TO_DATE @;
+   PUT NEEDED_BY @;
+   PUT RECIPIENT_ID @;
+   PUT REGARDS_TO_CODE @;
+   PUT REGARDS_TO_ID @;
+   PUT LOAN_SEQ @;
+   PUT COMMENTS $ ;
+END;
+RUN;

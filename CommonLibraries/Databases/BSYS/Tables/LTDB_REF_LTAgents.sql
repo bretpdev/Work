@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[LTDB_REF_LTAgents] (
+    [Agent]  NVARCHAR (50) NOT NULL,
+    [Action] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_LTDB_REF_LTAgents] PRIMARY KEY CLUSTERED ([Agent] ASC, [Action] ASC) WITH (FILLFACTOR = 90)
+);
+

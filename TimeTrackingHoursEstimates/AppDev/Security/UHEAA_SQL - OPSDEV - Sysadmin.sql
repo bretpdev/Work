@@ -1,0 +1,2 @@
+﻿CREATE USER [UHEAA\SQL - OPSDEV - Sysadmin] FOR LOGIN [UHEAA\SQL - OPSDEV - Sysadmin];
+

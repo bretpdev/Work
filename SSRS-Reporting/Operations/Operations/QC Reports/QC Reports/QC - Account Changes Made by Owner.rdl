@@ -1,0 +1,882 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="uheaasqldb">
+      <DataSourceReference>uheaasqldb</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>31ad7d3b-2362-439e-8eb4-3e805a8dfa9b</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="DataSource1">
+      <DataSourceReference>opsdev</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>ee13e9fe-9a7e-45a6-96a2-304813bbfd91</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="opsdev">
+      <DataSourceReference>opsdev</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>300bbd8f-9189-4a25-9575-289ab61f6804</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="nochouse">
+      <DataSourceReference>nochouse</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>21970c55-ee59-41c7-a86e-cd72743597a7</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="AccChgMadeBOwnr">
+      <Query>
+        <DataSourceName>uheaasqldb</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@account_user">
+            <Value>=Parameters!account_user.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>--DECLARE @TableName VARCHAR(50)
+--DECLARE @TableIn VARCHAR(50)
+--DECLARE @AttributeId VARCHAR(50)
+--DECLARE @AttributeDate VARCHAR(50)
+
+IF OBJECT_ID('tempdb..#AGGREGATE') IS NOT NULL
+	DROP TABLE #AGGREGATE
+
+IF OBJECT_ID('tempdb..#ACCOUNT_OWNERS') IS NOT NULL
+	DROP TABLE #ACCOUNT_OWNERS
+
+CREATE TABLE #ACCOUNT_OWNERS
+(
+	[ACCOUNT] VARCHAR(10),
+	[OWNER] VARCHAR(7)
+)
+
+
+CREATE TABLE #AGGREGATE
+(
+	[USER_ID] VARCHAR(8),
+	[IN_TBL] VARCHAR(50),
+	[DF_SPE_ACC_ID] VARCHAR(10),
+	[ACTIVITY_DATE] DATETIME
+)
+
+--ONELINK_GA01 AGGREGATE
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'AY01_BR_ATY', 'AY01', 'BF_LST_USR_AY01', 'BF_LST_DTS_AY01'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'DC12_EDS_CMK_ATY', 'DC12', 'LF_LST_USR_DC12', 'LF_LST_DTS_DC12'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'DC14_SUP_INT_CLM', 'DC14', 'LF_LST_USR_CRT_SUP', 'LF_LST_DTS_DC14'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'DC15_LON_ITR', 'DC15', 'LF_LST_USR_DC15', 'LF_LST_DTS_DC15'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'DC19_DOE_RIN', 'DC19', 'LF_LST_USR_DC19', 'LF_LST_DTS_DC19'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'DC20_FEE_TRF', 'DC20', 'LF_LST_USR_DC20', 'LF_LST_DTS_DC20'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'FD01_QUE_TAB', 'FD01', 'LF_LST_USR_FD01', 'LF_LST_DTS_FD01'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'GA03_APL_LON_AUD', 'GA03', 'AF_CRT_USR_GA03', 'AF_CRT_DTS_GA03'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'GA11_LON_DSB_ATY', 'GA11', 'AF_LST_USR_GA11', 'AF_LST_DTS_GA11'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'GA14_LON_STA', 'GA14', 'AF_LST_USR_GA14', 'AF_LST_DTS_GA14'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'GA15_NDS_ID', 'GA15', 'AF_LST_USR_GA15', 'AF_LST_DTS_GA15'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_GA01] 'GA16_ENR_RPT_CRF', 'GA16', 'AF_LST_USR_GA16', 'AD_LST_UPD_GA16'
+
+--Compass_AP03 AGGREGATE
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP17_LO_APL_ERR', 'AP17', 'AF_LST_USR_AP17', 'AF_LST_DTS_AP17'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP33_LO_APL_DTL', 'AP33', 'AF_LST_USR_AP33', 'AF_LST_DTS_AP33'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP34_APL_RSD', 'AP34', 'AF_LST_USR_AP34', 'AF_LST_DTS_AP34'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP35_APL_CRD', 'AP35', 'AF_LST_USR_AP35', 'AF_LST_DTS_AP35'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP37_APL_FIN', 'AP37', 'AF_LST_USR_AP37', 'AF_LST_DTS_AP37'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP17_LO_APL_ERR', 'AP17', 'AF_LST_USR_AP17', 'AF_LST_DTS_AP17'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP33_LO_APL_DTL', 'AP33', 'AF_LST_USR_AP33', 'AF_LST_DTS_AP33'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP34_APL_RSD', 'AP34', 'AF_LST_USR_AP34', 'AF_LST_DTS_AP34'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP35_APL_CRD', 'AP35', 'AF_LST_USR_AP35', 'AF_LST_DTS_AP35'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_AP03] 'AP37_APL_FIN', 'AP37', 'AF_LST_USR_AP37', 'AF_LST_DTS_AP37'
+
+--OneLink_Direct AGGREGATE
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'BR01_BR_CRF', 'BR01', 'BF_LST_USR_BR01', 'BF_LST_DTS_BR01', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'BR02_BR_EMP', 'BR02', 'BF_LST_USR_BR02', 'BF_LST_DTS_BR02', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'BR03_BR_REF', 'BR03', 'BF_LST_USR_BR03', 'BF_LST_DTS_BR03', 'DF_PRS_ID_BR'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'DC01_LON_CLM_INF', 'DC01', 'LF_LST_USR_DC10', 'LF_LST_DTS_DC10', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'LA10_LEG_ACT', 'LA10', 'BF_LST_USR_LA10', 'BF_LST_DTS_LA10', 'DF_PRS_ID_BR'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'LA11_LEG_ACT_ATY', 'LA11', 'BF_LST_USR_LA11', 'BF_LST_DTS_LA11', 'DF_PRS_ID_BR'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'PD01_PDM_INF', 'PD01', 'DF_USR_UPD_ADR', 'DD_LST_UPD_ADR', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'PD01_PDM_INF', 'PD01', 'DF_USR_UPD_PHN', 'DD_LST_UPD_PHN', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'PD03_PRS_ADR_PHN', 'PD03', 'DF_USR_UPD_PHN', 'DD_LST_UPD_PHN', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'PD04_ADR_PHN_HST', 'PD04', 'DF_USR_UPD_ADR_HST', 'DD_LST_UPD_ADR_HST', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'PD05_PRS_NME_HST', 'PD05', 'DF_LST_USR_PD05', 'DD_LST_UPD_PD05', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [ODW].[UTLWU21].[OneLink_Direct] 'SD02_STU_ENR', 'SD02', 'LF_LST_USR_SD02', 'LF_LST_DTS_SD02', 'DF_PRS_ID_STU'
+
+--Compass_Direct AGGREAGATE
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'AY10_BR_LON_ATY', 'AY10', 'LF_PRF_BY', 'LF_LST_DTS_AY10', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'LN15_DSB', 'LN15', 'LF_LST_USR_LN15', 'LF_LST_DTS_LN15', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'LN34_CU_RTT_HST', 'LN34', 'LF_LST_USR_LN34', 'LF_LST_DTS_LN34', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'LN38_CU_STA_HST', 'LN38', 'LF_LST_USR_LN38', 'LF_LST_DTS_LN38', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'LN54_LON_BBS', 'LN54', 'LF_LST_USR_LN54', 'LF_LST_DTS_LN54', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'LN55_LON_BBS_TIR', 'LN55', 'LF_LST_USR_LN55', 'LF_LST_DTS_LN55', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'LN56_LON_CRB_RPT', 'LN56', 'LF_LST_USR_LN56', 'LF_LST_DTS_LN56', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'LN57_LON_BBT_FAT', 'LN57', 'LF_LST_USR_LN57', 'LF_LST_DTS_LN57', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PD10_PRS_NME', 'PD10', 'DF_LST_USR_PD10', 'DF_LST_DTS_PD10', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PD11_PRS_NME_HST', 'PD11', 'DF_LST_USR_PD11', 'DF_LST_DTS_PD11', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PD31_PRS_INA', 'PD31', 'DF_LST_USR_PD31', 'DF_LST_DTS_PD31', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PD32_PRS_ADR_EML', 'PD32', 'DF_LST_USR_PD32', 'DF_LST_DTS_PD32', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PD42_PRS_PHN', 'PD42', 'DF_LST_USR_PD42', 'DF_LST_DTS_PD42', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PH01_SUPER_ID', 'PH01', 'DF_LST_USR_PH01', 'DF_LST_DTS_PH01', 'DF_PRS_ID'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'RS10_BR_RPD', 'RS10', 'LF_USR_RPS_REQ', 'LF_LST_DTS_RS10', 'BF_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'SD10_STU_SPR', 'SD10', 'LF_LST_USR_SD10', 'LF_LST_DTS_SD10', 'LF_STU_SSN'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PD26_PRS_SKP_PRC', 'PD26', 'DF_LST_USR_PD26', 'DF_LST_DTS_PD26', 'DF_PRS_ID_BR'
+
+INSERT INTO #AGGREGATE
+EXEC [UDW].[UTLWU21].[Compass_Direct] 'PD40_SKP_DTL', 'PD40', 'PF_LST_USR_PD40', 'PF_LST_DTS_PD40', 'DF_SKP_TGT_PRS'
+
+SELECT DISTINCT
+	AGG.[USER_ID],
+	AGG.[IN_TBL],
+	AGG.[DF_SPE_ACC_ID],
+	AGG.[ACTIVITY_DATE]
+FROM
+	#AGGREGATE AGG
+WHERE
+	AGG.[USER_ID] IN (@account_user)
+	AND AGG.[DF_SPE_ACC_ID] IN (@account_user)
+ORDER BY
+	AGG.[USER_ID]</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="USER_ID">
+          <DataField>USER_ID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IN_TBL">
+          <DataField>IN_TBL</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DF_SPE_ACC_ID">
+          <DataField>DF_SPE_ACC_ID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ACTIVITY_DATE">
+          <DataField>ACTIVITY_DATE</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Users">
+      <Query>
+        <DataSourceName>nochouse</DataSourceName>
+        <CommandText>DECLARE @Users TABLE (AesAccount VARCHAR(10), AesUserId VARCHAR(10));
+
+
+INSERT INTO @Users
+SELECT
+	RTRIM(LTRIM(ACNT.AesAccount)),
+	RTRIM(LTRIM(USR.AesUserId))
+FROM 
+	CSYS..SYSA_LST_AesAccounts ACNT
+	INNER JOIN CSYS..SYSA_DAT_Users USR
+		ON ACNT.SqlUserId = USR.SqlUserId
+WHERE
+	ACNT.DeletedAt IS NULL -- record not "deleted"
+	AND ACNT.AesAccount IS NOT NULL
+	AND RTRIM(LTRIM(ACNT.AesAccount)) != ''
+	AND USR.AesUserId IS NOT NULL
+	AND RTRIM(LTRIM(USR.AesUserId)) != ''
+	AND USR.[Status] = 'Active'
+
+
+--output is a list of all userIds and account numbers
+--normally you would keep the userId and account number together in the same record so you can tell which account belongs to which user, however
+--in this case the results are being passed as a parameter from the Users datset (this dataset) run on nochouse to the AccChgMadeBOwnr dataset run on uheaasqldb so there can only be one column
+SELECT DISTINCT
+	AesAccount AS account_user
+FROM
+	@Users
+
+UNION
+
+SELECT DISTINCT
+	AesUserId AS account_user
+FROM
+	@Users</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="account_user">
+          <DataField>account_user</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>2.22917in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.625in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.44792in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.73958in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.69792in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>User Id</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#2165af</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Activity Data</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#2165af</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Table Updated</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox2</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#2165af</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Account Number</Value>
+                                  <Style>
+                                    <FontFamily>Calibri</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>#2165af</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="USER_ID">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!USER_ID.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>USER_ID</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ACTIVITY_DATE">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ACTIVITY_DATE.Value</Value>
+                                  <Style>
+                                    <Format>d</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ACTIVITY_DATE</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="IN_TBL">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!IN_TBL.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>IN_TBL</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="DF_SPE_ACC_ID">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!DF_SPE_ACC_ID.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>DF_SPE_ACC_ID</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>AccChgMadeBOwnr</DataSetName>
+            <Top>0.01722in</Top>
+            <Height>0.94792in</Height>
+            <Width>9.04167in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>0.96514in</Height>
+        <Style />
+      </Body>
+      <Width>9.09375in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.79042in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Image Name="UheaaLogo">
+              <Source>Embedded</Source>
+              <Value>colorUheaalogo</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.01389in</Top>
+              <Left>8.09375in</Left>
+              <Height>0.45722in</Height>
+              <Width>0.94792in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox93">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ReportName</Value>
+                      <Style>
+                        <FontFamily>Microsoft Himalaya</FontFamily>
+                        <FontSize>32pt</FontSize>
+                        <FontWeight>ExtraBold</FontWeight>
+                        <Color>#2165af</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox93</rd:DefaultName>
+              <Height>0.47111in</Height>
+              <Width>8.05208in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Color>LightGrey</Color>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Bottom</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=FormatDateTime(DateAdd(DateInterval.Day, -7, Now()), DateFormat.ShortDate) &amp; " - " &amp; FormatDateTime(DateAdd(DateInterval.Day, -1, Now()), DateFormat.ShortDate)</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Microsoft Himalaya</FontFamily>
+                        <FontSize>18pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                        <Color>DimGray</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.48833in</Top>
+              <Height>0.30208in</Height>
+              <Width>9.09375in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.25in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ExecutionTime">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Report Date:  " &amp; Globals!ExecutionTime</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                        <Color>DimGray</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ExecutionTime</rd:DefaultName>
+              <Left>0.125in</Left>
+              <Height>0.25in</Height>
+              <Width>2.74875in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox9">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page " &amp; Globals!OverallPageNumber &amp; " of " &amp; Globals!OverallTotalPages</Value>
+                      <Style>
+                        <FontSize>7pt</FontSize>
+                        <Color>DimGray</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox9</rd:DefaultName>
+              <Left>7.875in</Left>
+              <Height>0.25in</Height>
+              <Width>1.03125in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.5in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="account_user">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Users</DataSetName>
+          <ValueField>account_user</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>account_user</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="colorUheaalogo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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
+BZT9/gpbnfYnAAAAAElFTkSuQmCC</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>739bfb86-43d5-4706-8689-c76be46578ad</rd:ReportID>
+</Report>

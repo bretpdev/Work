@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>DECLARE @Years TABLE ([YearNumber] smallint)
+
+INSERT INTO @Years
+(
+	YearNumber
+)
+SELECT YEAR(GETDATE())
+UNION ALL
+SELECT YEAR(GETDATE()) - 1
+
+
+;WITH Months(MonthNumber) AS
+(
+    SELECT 1
+    UNION ALL
+    SELECT MonthNumber+1 
+    FROM months
+    WHERE MonthNumber &lt; 12
+)
+SELECT 
+	M.MonthNumber,
+	Y.YearNumber,
+	CAST(CAST(Y.YearNumber as CHAR(4)) + '-' + CAST(MonthNumber as VARCHAR(2)) + '-1' as DATE) [CalendarDate],
+	DATEADD(DAY, -1, CAST(CAST(Y.YearNumber as CHAR(4)) + '-' + CAST(MonthNumber as VARCHAR(2)) + '-1' as DATE)) [LastDayPriorMonth],
+	DATENAME(MONTH, CAST(CAST(MonthNumber as VARCHAR(2)) + '-1-2000' as DATE)) [MonthName],
+	DATENAME(MONTH, CAST(CAST(MonthNumber as VARCHAR(2)) + '-1-2000' as DATE)) + ' ' + CAST(Y.YearNumber as CHAR(4)) [MonthName_Year]
+FROM 
+	Months M
+	CROSS JOIN @Years Y
+WHERE
+	CAST(CAST(YearNumber as CHAR(4)) + '-' + CAST(MonthNumber as VARCHAR(2)) + '-1' as DATE) &lt; GETDATE()
+ORDER BY
+	Y.YearNumber DESC,
+	M.MonthNumber DESC</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="YearNumber">
+        <DataField>YearNumber</DataField>
+        <rd:TypeName>System.Int16</rd:TypeName>
+      </Field>
+      <Field Name="MonthNumber">
+        <DataField>MonthNumber</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="CalendarDate">
+        <DataField>CalendarDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="LastDayPriorMonth">
+        <DataField>LastDayPriorMonth</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="MonthName">
+        <DataField>MonthName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="MonthName_Year">
+        <DataField>MonthName_Year</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

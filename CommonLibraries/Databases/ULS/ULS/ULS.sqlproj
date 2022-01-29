@@ -1,0 +1,729 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ULS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{5aaa7bce-543d-479e-b120-1f8423e309ff}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ULS</RootNamespace>
+    <AssemblyName>ULS</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <AnsiNulls>False</AnsiNulls>
+    <QuotedIdentifier>False</QuotedIdentifier>
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>CHECKSUM</PageVerify>
+    <ServiceBrokerOption>DisableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <SupplementalLoggingOn>False</SupplementalLoggingOn>
+    <CompatibilityMode>90</CompatibilityMode>
+    <AnsiNullDefault>False</AnsiNullDefault>
+    <AnsiPadding>False</AnsiPadding>
+    <AnsiWarnings>False</AnsiWarnings>
+    <ArithAbort>False</ArithAbort>
+    <ConcatNullYieldsNull>False</ConcatNullYieldsNull>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DatabaseState>ONLINE</DatabaseState>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>GLOBAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>FULL</Recovery>
+    <EnableFullTextSearch>False</EnableFullTextSearch>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Security\" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
+    <Folder Include="TableTypes" />
+    <Folder Include="User Defined Types" />
+    <Folder Include="Functions" />
+    <Folder Include="Noble\" />
+    <Folder Include="Noble\Tables\" />
+    <Folder Include="Noble\Stored Procedures\" />
+    <Folder Include="scra\" />
+    <Folder Include="scra\Tables\" />
+    <Folder Include="scra\Stored Procedures\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="fp\" />
+    <Folder Include="fp\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="fp\Stored Procedures\" />
+    <Folder Include="Assemblies\" />
+    <Folder Include="emailcampaigns\" />
+    <Folder Include="emailcampaigns\Tables\" />
+    <Folder Include="emailcampaigns\Stored Procedures\" />
+    <Folder Include="complaints\" />
+    <Folder Include="complaints\Tables\" />
+    <Folder Include="complaints\Stored Procedures\" />
+    <Folder Include="complaints\User Defined Types\" />
+    <Folder Include="quecomplet" />
+    <Folder Include="smbalwo" />
+    <Folder Include="smbalwo\Stored Procedures\" />
+    <Folder Include="cpp" />
+    <Folder Include="cpp\Tables" />
+    <Folder Include="cpp\Stored Procedures" />
+    <Folder Include="acurintr\" />
+    <Folder Include="acurintr\Tables\" />
+    <Folder Include="acurintr\Stored Procedures\" />
+    <Folder Include="mssasgndft\" />
+    <Folder Include="mssasgndft\Tables\" />
+    <Folder Include="mssasgndft\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ProcessLogs.dll" />
+    <None Include="Publish Profiles\UHEAASQLDB.publish.xml" />
+    <None Include="Assemblies\ULS.dll" />
+    <None Include="ULS.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\log.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Stored Procedures\NotificationInsert.sql" />
+    <Build Include="Tables\ProcessLogMessages.sql" />
+    <Build Include="Stored Procedures\AddBusinessUnit.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\BusinessUnitsByScript.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\CheckSprocAccess.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\EncryptString.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\EndBusinessUnit.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\EndScriptRun.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ExceptionLogInsert.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ExceptionLogResolve.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\InsertProcessStart.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ProcessNotificationInsert.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spAacDeleteBatch.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spAacDeleteBatchesGetBatches.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spAacDeleteBatchesInsertBatches.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\AddEBillRecord.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spCompassPifDeleteBwrAndLoanData.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spCompassPifGetBwrInfo.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spCompassPifGetLoanInfo.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spCompassPifGetLoanSeqForComments.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spCompassPifInsertBwrInfo.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spCompassPifInsertLoanLevelData.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spDeleteAllBatchesForUserId.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spDTX7LGetDueDilLetters.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spDTX7LGetExpiredLetters.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spGENR_InsertArcAdd.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spGetConsentArcs.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spGetPhoneConsentQueues.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\GetSuccessfulEBillLoanSequences.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spIvrAddRequestProcessingErrors.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spIvrDeleteRequestProcessingErrors.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spIvrGetRequestProcessingErrors.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spIvrGetUnprocessedPayments.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spIvrGetUnprocessedRequests.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spIvrUpdatePaymentProcessedStatus.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spIvrUpdateRequestProcessedStatus.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\MarkEBillUpdateSucceeded.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\AacDeleteBatchesRecovery.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\CompassPifBwrLevel.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\CompassPifLoanLevel.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\DTX7LDueDilLetters.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\DTX7LExpiredLetters.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\EBill.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="BatchesToInsert.sql" />
+    <Build Include="Tables\BatchLetters.sql" />
+    <Build Include="Stored Procedures\GetActiveBatchLetters.sql" />
+    <Build Include="Stored Procedures\GetBatchLetterRecordForRecovery.sql" />
+    <Build Include="Stored Procedures\GetAllBatchLettersRecords.sql" />
+    <Build Include="TableTypes\BatchLettersData.sql" />
+    <Build Include="Stored Procedures\BatchLettersUICommitChanges.sql" />
+    <Build Include="Stored Procedures\ArcAdd_SetRecordAsProcessed.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_GetLoanSequenceRecords.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_GetLoanProgramRecords.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_GetArcTypes.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_GetNextArc.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_AddRecord.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_AddLoanSequenceRecords.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_AddLoanProgramRecords.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="User Defined Types\LoanProgramRecords.sql" />
+    <Build Include="User Defined Types\LoanSequenceRecords.sql" />
+    <Build Include="Security\print.sql" />
+    <Build Include="Stored Procedures\CheckForExistingArc.sql" />
+    <Build Include="Functions\Decryptor.sql" />
+    <Build Include="Functions\SplitString.sql" />
+    <Build Include="Tables\ArcAddProcessing.sql" />
+    <Build Include="Tables\ArcLoanProgramSelection.sql" />
+    <Build Include="Tables\ArcLoanSequenceSelection.sql" />
+    <Build Include="Tables\ArcType.sql" />
+    <Build Include="Stored Procedures\GetArcAddCount.sql" />
+    <Build Include="Stored Procedures\ArcAdd_AddLnProgRecsFromString.sql" />
+    <Build Include="Stored Procedures\ArcAdd_AddLnSeqRecsFromString.sql" />
+    <Build Include="Tables\ArcResponseCodes.sql" />
+    <Build Include="Noble\Tables\OneLinkContactCalls.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Noble\Tables\UheaaContactCalls.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Noble\Stored Procedures\InsertNobleContactCalls.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\Noble_1.sql" />
+    <Build Include="scra\Tables\Borrowers.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="scra\Tables\ActiveDuty.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="scra\Stored Procedures\GetBorrowerId.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="scra\Stored Procedures\GetActiveDutyEndDate.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="scra\Stored Procedures\GetActiveDutyBeginDate.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\scra.sql" />
+    <Build Include="Tables\DTX7LDeletedRecords.sql" />
+    <Build Include="Stored Procedures\DTX7LInsertDeletedRecord.sql" />
+    <Build Include="Stored Procedures\Dtx7lGetDeletedRecords.sql" />
+    <Build Include="Stored Procedures\DTX7LMarkRecordProcessed.sql" />
+    <Build Include="Tables\ArcAddProcessingOnelink.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="Stored Procedures\ArcAdd_AddOnelinkRecord.sql" />
+    <Build Include="Stored Procedures\ArcAdd_GetNextOnelinkRecord.sql" />
+    <Build Include="Stored Procedures\GetOnelinkCount.sql" />
+    <Build Include="Tables\BillingDelinquentComment.sql" />
+    <Build Include="Stored Procedures\GetBillingDelqComment.sql" />
+    <Build Include="dbo\Tables\Packet.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Tables\Disburse.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\GetDocIds.sql" />
+    <Build Include="dbo\Stored Procedures\ArcAdd_GetAllArcs.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\fp.sql" />
+    <Build Include="fp\Stored Procedures\CheckFileProcessed.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\Delete_BulkLoad.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\GetLineDataForAccount.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\GetPendingAccountsForScript.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\LoadData.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\SetProcessedAt.sql" />
+    <Build Include="fp\Tables\_BulkLoad.sql" />
+    <Build Include="fp\Tables\Arcs.sql" />
+    <Build Include="fp\Tables\DocIds.sql" />
+    <Build Include="fp\Tables\FileHeaders.sql" />
+    <Build Include="fp\Tables\FileProcessing.sql" />
+    <Build Include="fp\Tables\Letters.sql" />
+    <Build Include="fp\Tables\LineData.sql" />
+    <Build Include="fp\Tables\ScriptFiles.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="Security\UHEAA_UHEAAUsers.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW_1.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RO_1.sql" />
+    <Build Include="Security\UHEAA_OcheUsers.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="fp\Stored Procedures\GetFileNamesForScript.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\GetBulkLoadCount.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\GetRecordCount.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\GetAndUpdateUnprocessedRecord.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\LenderUpdates.sql" />
+    <Build Include="Stored Procedures\InsertLenderUpdate.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedLenderUpdates.sql" />
+    <Build Include="Stored Procedures\SetLenderUpdateProcessed.sql" />
+    <Build Include="emailcampaigns\Tables\CampaignData.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\UHEAA_BatchScripts.sql" />
+    <Build Include="Security\testLogin.sql" />
+    <Build Include="dbo\Stored Procedures\OPSInsertARCs_1.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="emailcampaigns\Stored Procedures\CampaignDataGetAll.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\emailcampaigns.sql" />
+    <Build Include="Stored Procedures\GetAllEbillRecords.sql" />
+    <Build Include="Stored Procedures\MarkEbillArcAdded.sql" />
+    <Build Include="Stored Procedures\MarkEbillRecordError.sql" />
+    <Build Include="complaints\Tables\ComplaintGroups.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Tables\ComplaintParties.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Tables\Flags.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Tables\ComplaintTypes.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Tables\ComplaintHistory.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Tables\ComplaintFlags.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Tables\Complaints.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\FlagsGetByComplaintId.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintUpdate.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\Search.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintTypesSelectAll.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintTypeInsert.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintTypeDelete.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintPartyInsert.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintPartyDelete.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintPartiesSelectAll.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\FlagsGetByComplaintId.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\FlagsSelectAll.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\FlagInsert.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\FlagUpdate.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\FlagDelete.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintHistoriesGetByComplaintId.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintAddHistory.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintSetFlags.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintInsert.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintGroupsSelectAll.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintGroupInsert.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\Stored Procedures\ComplaintGroupDelete.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="complaints\User Defined Types\IntTable.sql" />
+    <Build Include="Security\complaints.sql" />
+    <Build Include="Tables\SystemLetterExclusionReasons.sql" />
+    <Build Include="Tables\SystemLetterExclusions.sql" />
+    <Build Include="quecomplet\quecomplet.sql" />
+    <Build Include="quecomplet\Queues.sql" />
+    <Build Include="quecomplet\GetNextQueue.sql" />
+    <Build Include="quecomplet\UpdateProcessedAt.sql" />
+    <Build Include="quecomplet\GetRecordsToProcessCount.sql" />
+    <Build Include="quecomplet\CleanUpRecords.sql" />
+    <Build Include="quecomplet\TaskStatuses.sql" />
+    <Build Include="quecomplet\ActionResponses.sql" />
+    <Build Include="smbalwo\smbalwo.sql" />
+    <Build Include="smbalwo\LoanWriteOffs.sql" />
+    <Build Include="smbalwo\GetLoansFromWarehouse.sql" />
+    <Build Include="smbalwo\GetDeliquentAccounts.sql" />
+    <Build Include="smbalwo\MarkRecordAsProcessed.sql" />
+    <Build Include="smbalwo\GetBorrowersForProcessing.sql" />
+    <Build Include="smbalwo\GetLoansForBorrower.sql" />
+    <Build Include="Tables\SpecialLetterRecipients.sql" />
+    <Build Include="smbalwo\Stored Procedures\UpdateActualWriteOffAmounts.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="smbalwo\Stored Procedures\GetLoansTILPFromWarehouse.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\LT_US09BFDLP_FormFields.sql" />
+    <Build Include="cpp\Tables\FileTypes.sql" />
+    <Build Include="cpp\Tables\OverpaymentTransmittal.sql" />
+    <Build Include="cpp\Tables\PaymentSources.sql" />
+    <Build Include="cpp\Tables\PaymentTypes.sql" />
+    <Build Include="cpp\Stored Procedures\DeletePaymentSource.sql" />
+    <Build Include="cpp\Stored Procedures\DeletePaymentType.sql" />
+    <Build Include="cpp\Stored Procedures\GetFileTypeForPaymentSource.sql" />
+    <Build Include="cpp\Stored Procedures\GetFileTypes.sql" />
+    <Build Include="cpp\Stored Procedures\GetPaymentSources.sql" />
+    <Build Include="cpp\Stored Procedures\GetPaymentTypes.sql" />
+    <Build Include="cpp\Stored Procedures\InsertPaymentSource.sql" />
+    <Build Include="cpp\Stored Procedures\InsertPaymentType.sql" />
+    <Build Include="cpp\Stored Procedures\SetOverpaymentTramsmittal.sql" />
+    <Build Include="cpp\Stored Procedures\UpdatePaymentSource.sql" />
+    <Build Include="cpp\Stored Procedures\UpdatePaymentType.sql" />
+    <Build Include="Security\cpp.sql" />
+    <Build Include="acurintr\Tables\CompassQueue.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="acurintr\Stored Procedures\GetAvailable1EQueueData.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="acurintr\Stored Procedures\GetCompassQueues.sql" />
+    <Build Include="acurintr\Stored Procedures\SetQueueProcessed.sql" />
+    <Build Include="Security\acurintr.sql" />
+    <Build Include="acurintr\Stored Procedures\GetAvailableLXQueueData.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\mssasgndft_1.sql" />
+    <Build Include="mssasgndft\Stored Procedures\GetQueueList.sql" />
+    <Build Include="mssasgndft\Stored Procedures\GetUsers.sql" />
+    <Build Include="mssasgndft\Stored Procedures\InsertQueue.sql" />
+    <Build Include="mssasgndft\Stored Procedures\RemoveQueue.sql" />
+    <Build Include="mssasgndft\Stored Procedures\UpdateQueue.sql" />
+    <Build Include="mssasgndft\Stored Procedures\UpdateRange.sql" />
+    <Build Include="mssasgndft\Stored Procedures\UpdateRangeHistory.sql" />
+    <Build Include="mssasgndft\Tables\Queues.sql" />
+    <Build Include="mssasgndft\Tables\RangeAssignment.sql" />
+    <Build Include="mssasgndft\Tables\RangeHistory.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ProcessLogs">
+      <HintPath>Assemblies\ProcessLogs.dll</HintPath>
+      <SqlAssemblyName>ProcessLogs</SqlAssemblyName>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+      <SqlOwnerName>dbo</SqlOwnerName>
+      <SqlPermissionSet>SAFE</SqlPermissionSet>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\IvrCheckByPhone.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\IvrRequestProcessingErrors.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\IvrRequestTracking.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\Phone_Consent_Arcs.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Tables\PhoneConsentUpdate.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SplitAndRemoveQuotes.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,22 @@
+These notes include the places in the solution that need to be changed to set it up to run in production.  If you don't have access to Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\, try making those changes to the XML as you can't update the connection managers and build the solution from Visual Studio if you don't have access to the folder.
+
+* Update the FolderName variable to the production folder (Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\)
+* Update the Excel Connection Manager Excel File Path to Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\InProcess.xlsx
+* Update the Excel Error Report connection manager Excel File Path to Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\InProcess.xlsx
+* Update the InProcess.xlsx connection manager file to Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\InProcess.xlsx
+* Update the foreach loop container collection folder to Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\
+* Update CLS connection manager to point to uheaasqldb.
+* Copy Consolidation Adjustment FED Errors.xlsx from Q:\Support Services\Jay\Projects\SASR 4707\NAtoCSTLC\ to Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\
+* Update Excel InvalidSSN connection manager to point to Q:\Operational Accounting\Federal Servicing\DCRs\Consolidation Loan Adjs\Consolidation Adjustment FED Errors.xlsx
+* Update To: in the e-mail task to (Riley is working on the email address to use).
+* Update expression in constraint between GetEndCount and Send Mail task so the number on the right of ">=" is 9997  (@[User::RecordsAdded] >= 9997)
+* Create dtsx package.
+* Return request to the analyst to set up the job in JAMS
+
+ANALYST:
+1. Set up the job in JAMS
+2. On the notifications tab set up error e-mails to go to the following:
+* bfelt@utahsbr.edu
+* dmoon@utahsbr.edu
+* OperationalAccounting@mycornerstoneloan.org
+* SSHelp@utahsbr.edu

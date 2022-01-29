@@ -1,0 +1,6 @@
+﻿CREATE TABLE [fp].[Arcs]
+(
+	[ArcId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Arc] VARCHAR(5) NOT NULL, 
+    [Comment] VARCHAR(1200) NULL
+)

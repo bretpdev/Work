@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[RS05_IBR_RPS] (
+    [BF_SSN]             VARCHAR (9)     NOT NULL,
+    [BD_CRT_RS05]        DATETIME        NOT NULL,
+    [BN_IBR_SEQ]         SMALLINT        NOT NULL,
+    [BF_CRT_USR_RS05]    VARCHAR (8)     NULL,
+    [BF_CRY_YR]          VARCHAR (4)     NULL,
+    [BC_ST_IBR]          VARCHAR (2)     NULL,
+    [BC_STA_RS05]        CHAR (1)        NULL,
+    [BA_AGI]             DECIMAL (12, 2) NULL,
+    [BN_MEM_HSE_HLD]     DECIMAL (2)     NULL,
+    [BA_PMN_STD_TOT_PAY] DECIMAL (12, 2) NULL,
+    [BC_IBR_INF_SRC_VER] VARCHAR (3)     NULL,
+    [BF_LST_DTS_RS05]    DATETIME        NULL,
+    [BF_SSN_SPO]         VARCHAR (9)     NULL,
+    [BC_IRS_TAX_FIL_STA] CHAR (1)        NULL,
+    [BI_JNT_BR_SPO_RPY]  CHAR (1)        NULL,
+    [BD_ANV_QLF_IBR]     DATETIME        NULL,
+    [BC_DOC_SNT_BR_IDR]  CHAR (1)        NULL,
+    [BC_BR_REQ_PLN_RPYE] CHAR (1)        NULL,
+    [BC_BR_GDE_LVL_RPYE] CHAR (1)        NULL,
+    [BI_REQ_DFR_FOR_CUT] CHAR (1)        NULL,
+    [BC_DFR_FOR_CUT_TYP] CHAR (1)        NULL,
+    CONSTRAINT [PK_RS05_IBR_RPS] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [BD_CRT_RS05] ASC, [BN_IBR_SEQ] ASC)
+);
+

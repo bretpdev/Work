@@ -1,0 +1,21 @@
+﻿CREATE TABLE [rtrnmailol].[BarcodeData] (
+	[BarcodeDataId]	 INT NOT NULL IDENTITY,
+    [AccountIdentifier]    VARCHAR (10) NOT NULL,
+    [LetterId]       VARCHAR (10) NOT NULL,
+    [CreateDate]     DATETIME NOT NULL,
+    [ReceivedDate]   DATETIME NOT NULL,
+    [Address1]       VARCHAR(50) NULL,
+    [Address2]       VARCHAR(50) NULL,
+    [City]           VARCHAR(50) NULL,
+    [State]          VARCHAR(50) NULL,
+    [Zip]            VARCHAR(50) NULL,
+    [Comment]        VARCHAR(360) NULL,
+	[ProcessedAt]	 DATETIME NULL,
+    [ArcAddProcessingId] INT NULL,
+    [AddedAt]        DATETIME NOT NULL DEFAULT GETDATE(),
+    [AddedBy]        VARCHAR(50) NOT NULL DEFAULT SUSER_SNAME(),
+    [DeletedAt]      DATETIME NULL,
+    [DeletedBy]      VARCHAR(50) NULL, 
+    CONSTRAINT [PK_BarcodeData] PRIMARY KEY ([BarcodeDataId]),
+	CONSTRAINT [AK_LetterLoaded] UNIQUE ([AccountIdentifier],[LetterId],[CreateDate],[DeletedAt])
+);

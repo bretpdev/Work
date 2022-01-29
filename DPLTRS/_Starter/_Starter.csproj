@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7286FDEC-D5B4-43B6-B642-47C865F778A4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>_Starter</RootNamespace>
+    <AssemblyName>_Starter</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DocumentProcessing\DocumentProcessing\Uheaa.Common.DocumentProcessing\Uheaa.Common.DocumentProcessing.csproj">
+      <Project>{dde98b0a-849d-4565-b67b-254f03a15cf4}</Project>
+      <Name>Uheaa.Common.DocumentProcessing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.15FormulaAlternate\DPLTRS.15FormulaAlternate.csproj">
+      <Project>{210847a4-7fa7-4f22-98a0-1d401c84df1f}</Project>
+      <Name>DPLTRS.15FormulaAlternate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.15FormulaInformation\DPLTRS.15FormulaInformation.csproj">
+      <Project>{fb217ca3-a7fa-4fb3-8d8b-c5c3ece483ee}</Project>
+      <Name>DPLTRS.15FormulaInformation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.Breakdown\DPLTRS.Breakdown.csproj">
+      <Project>{965267da-ba90-4bd7-86f8-a2f618693d73}</Project>
+      <Name>DPLTRS.Breakdown</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.Current\DPLTRS.Current.csproj">
+      <Project>{10c713df-e9ce-42ec-97e7-67c4e58e68d9}</Project>
+      <Name>DPLTRS.Current</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.MissingRAPInfo\DPLTRS.MissingRAPInfo.csproj">
+      <Project>{4dcdab91-6a97-49ab-afd3-fd5e6f88fddd}</Project>
+      <Name>DPLTRS.MissingRAPInfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.NotificationOfGarnishmentSuspension\DPLTRS.NotificationOfGarnishmentSuspension.csproj">
+      <Project>{e6b145ed-219d-46de-a564-86455a0f345b}</Project>
+      <Name>DPLTRS.NotificationOfGarnishmentSuspension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.NotificationOfSatisfaction\DPLTRS.NotificationOfSatisfaction.csproj">
+      <Project>{978bdee1-fdeb-43be-83c4-56c522678517}</Project>
+      <Name>DPLTRS.NotificationOfSatisfaction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.PaidThroughConsolidation\DPLTRS.PaidThroughConsolidation.csproj">
+      <Project>{eff4feb0-aacb-4e29-bc80-1217dea2f449}</Project>
+      <Name>DPLTRS.PaidThroughConsolidation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.Payoff\DPLTRS.Payoff.csproj">
+      <Project>{51ed641c-7e98-4888-97b2-b08a758391e0}</Project>
+      <Name>DPLTRS.Payoff</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.Rehabilitation\DPLTRS.Rehabilitation.csproj">
+      <Project>{814bcaa9-30af-47eb-9051-c0420219eddb}</Project>
+      <Name>DPLTRS.Rehabilitation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS.RehabPayments\DPLTRS.RehabPayments.csproj">
+      <Project>{27c7b979-ff77-47a5-b072-30d10b4f110b}</Project>
+      <Name>DPLTRS.RehabPayments</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DPLTRS\DPLTRS.csproj">
+      <Project>{0f465cd4-4716-4067-b32e-22f649636cc9}</Project>
+      <Name>DPLTRS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

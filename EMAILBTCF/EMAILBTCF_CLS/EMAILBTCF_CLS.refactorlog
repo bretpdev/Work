@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="ed1c0275-c669-4371-a25f-b9f7c4f1e046" ChangeDateTime="07/20/2017 18:11:18">
+    <Property Name="ElementName" Value="[emailbtcf].[EmailCampaigns].[SASFile]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SasFile" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a6f8a720-2541-4a3b-a009-1e4e94bd49ca" ChangeDateTime="07/20/2017 18:22:27">
+    <Property Name="ElementName" Value="[emailbtcf].[CampaignData].[InactivatedAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[CampaignData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1a2b5c52-f813-41f8-b1e6-3b4c4df0fabd" ChangeDateTime="07/20/2017 18:22:32">
+    <Property Name="ElementName" Value="[emailbtcf].[CampaignData].[P]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[CampaignData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="InactivatedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="58982844-2a82-47dd-bf8d-b27919401716" ChangeDateTime="09/19/2018 17:06:25">
+    <Property Name="ElementName" Value="[dbo].[MergeFields].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MergeFields]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MergeFieldId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0f4f4e6f-d490-4eae-94f3-26ce229183b3" ChangeDateTime="09/19/2018 17:09:58">
+    <Property Name="ElementName" Value="[emailbtcf].[LineData].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[LineData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LineDataId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3b07662e-45a8-41eb-8fa2-83a72e7417a1" ChangeDateTime="09/19/2018 17:13:38">
+    <Property Name="ElementName" Value="[emailbtcf].[LineData].[CreatedAd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[LineData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d0a6c2be-bc59-40bd-a2d7-cdf66cdee4f2" ChangeDateTime="09/19/2018 17:14:06">
+    <Property Name="ElementName" Value="[emailbtcf].[LineData].[CreatedAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[LineData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7f6f4aba-63a9-4bf9-a15c-cac5c9981d13" ChangeDateTime="09/19/2018 17:14:18">
+    <Property Name="ElementName" Value="[emailbtcf].[LineData].[AddedAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[LineData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="40d04eea-47a9-4bf8-ab0b-f44088c76e9d" ChangeDateTime="09/19/2018 17:16:25">
+    <Property Name="ElementName" Value="[emailbtcf].[LineDataMergeFieldMapping].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[LineDataMergeFieldMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LineDataMergeFieldMappingId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="587fed2d-76c7-47b8-a004-916688d957d0" ChangeDateTime="09/19/2018 17:27:41">
+    <Property Name="ElementName" Value="[emailbtcf].[LineData].[ArcProcessedAd]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbtcf].[LineData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArcProcessedAt" />
+  </Operation>
+</Operations>

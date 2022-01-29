@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="2f84aa90-1ba1-4afd-a85c-fa9ee3b053f4" ChangeDateTime="08/05/2021 23:05:50">
+    <Property Name="ElementName" Value="[rcemailpul].[SendGridHistory].[XMessageId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcemailpul].[SendGridHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MsgId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8c148c98-6bc4-4574-8e92-0fa57ebfc79b" ChangeDateTime="08/05/2021 23:06:01">
+    <Property Name="ElementName" Value="[rcemailpul].[SendGridHistory].[ToAddress]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcemailpul].[SendGridHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Subject" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4b8a412a-5468-4a83-8a41-cd8eead9cb47" ChangeDateTime="08/05/2021 23:06:06">
+    <Property Name="ElementName" Value="[rcemailpul].[SendGridHistory].[JsonData]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcemailpul].[SendGridHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ToEmail" />
+  </Operation>
+</Operations>

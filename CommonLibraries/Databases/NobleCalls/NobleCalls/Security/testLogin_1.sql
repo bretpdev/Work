@@ -1,0 +1,7 @@
+﻿CREATE LOGIN [testLogin]
+    WITH PASSWORD = N'.7w3xyqnTeu%|k|W|w&|bfefmsFT7_&#$!~<ajalbkxid{ld', SID = 0x0EB8DB735F48D54B82A1FF3D35CF0BD4, DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
+
+
+GO
+ALTER LOGIN [testLogin] DISABLE;
+

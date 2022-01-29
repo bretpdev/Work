@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>DUPLREFS_OLS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{18ce57ab-d835-4238-844d-363e45c64fcf}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>DUPLREFS_OLS</RootNamespace>
+    <AssemblyName>DUPLREFS_OLS</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="duplrefs" />
+    <Folder Include="duplrefs\Tables" />
+    <Folder Include="duplrefs\Schema" />
+    <Folder Include="duplrefs\Stored Procedures" />
+    <Folder Include="duplrefs\User-Defined Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="duplrefs\Tables\ReferenceQueue.sql" />
+    <Build Include="duplrefs\Tables\BorrowerQueue.sql" />
+    <Build Include="duplrefs\Schema\duplrefs.sql" />
+    <Build Include="duplrefs\Stored Procedures\SetBorrowerProcessedAt.sql" />
+    <Build Include="duplrefs\Stored Procedures\SetReferenceProcessedAt.sql" />
+    <Build Include="duplrefs\Stored Procedures\SetReferenceArcAddId.sql" />
+    <Build Include="duplrefs\Stored Procedures\SetDemosChanged.sql" />
+    <Build Include="duplrefs\Stored Procedures\SetManuallyWorked.sql" />
+    <Build Include="duplrefs\Stored Procedures\GetReferences.sql" />
+    <Build Include="duplrefs\Stored Procedures\InsertBorrowerRecord.sql" />
+    <Build Include="duplrefs\Stored Procedures\UpdateReferenceRecord.sql" />
+    <Build Include="duplrefs\Stored Procedures\GetRecoveryData.sql" />
+    <Build Include="duplrefs\Stored Procedures\GetUnprocessedBorrower.sql" />
+    <Build Include="duplrefs\Stored Procedures\InactivateRecord.sql" />
+    <Build Include="duplrefs\Stored Procedures\InsertReferenceRecords.sql" />
+    <Build Include="duplrefs\Stored Procedures\CleanUp.sql" />
+    <Build Include="duplrefs\User-Defined Types\ReferenceRecord.sql" />
+    <Build Include="duplrefs\Stored Procedures\SetReferenceLp2fProcessedAt.sql" />
+  </ItemGroup>
+</Project>

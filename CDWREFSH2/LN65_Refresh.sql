@@ -1,0 +1,1 @@
+EXEC RefreshTableWithValidation 'LN65_LON_RPS'

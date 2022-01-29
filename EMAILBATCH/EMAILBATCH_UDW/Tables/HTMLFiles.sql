@@ -1,0 +1,5 @@
+﻿CREATE TABLE [emailbatch].[HTMLFiles]
+(
+	[HTMLFileId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [HTMLFile] VARCHAR(300) NOT NULL
+)

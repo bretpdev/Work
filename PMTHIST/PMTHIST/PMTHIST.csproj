@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8B767B92-14EC-418B-B609-9386AC10161A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PMTHIST</RootNamespace>
+    <AssemblyName>PMTHIST</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>X:\PADU\UHEAACodeBase\PMTHIST\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.Reflection">
+      <HintPath>..\..\CommonLibraries\Dependencies\Interop.Reflection.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataObjects\ExcelRow.cs" />
+    <Compile Include="DataObjects\LC05Loan.cs" />
+    <Compile Include="DataObjects\LC10Data.cs" />
+    <Compile Include="DataObjects\LC41Variables.cs" />
+    <Compile Include="DataObjects\TransactionData.cs" />
+    <Compile Include="PaymentHistory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QInterface.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Q\Q.vbproj">
+      <Project>{5db905eb-0bf7-4e95-8a46-0b7e76ee807d}</Project>
+      <Name>Q</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

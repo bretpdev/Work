@@ -1,0 +1,116 @@
+/*****************************************
+ **   UTLWS32 - Contacted Claim Paids   **
+ *****************************************/
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/ULWS32.LWS32RZ";
+FILENAME REPORT2 "&RPTLIB/ULWS32.LWS32R2";
+RSUBMIT;
+%macro sqlcheck ;
+  %if  &sqlxrc ne 0  %then  %do  ;
+    data _null_  ;
+            file reportz notitles  ;
+            put @01 " ********************************************************************* "
+              / @01 " ****  The SQL code above has experienced an error.               **** "
+              / @01 " ****  The SAS should be reviewed.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  The SQL error code is  &sqlxrc  and the SQL error message  **** "
+              / @01 " ****  &sqlxmsg   **** "
+              / @01 " ********************************************************************* "
+            ;
+         run  ;
+  %end  ;
+%mend  ;
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE CCP AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT A.DF_SPE_ACC_ID
+	,F.LD_ATY_RSP
+	,E.LD_FAT_EFF
+	,I.LC_AUX_STA
+	,F.PF_REQ_ACT
+	,H.LX_ATY
+FROM OLWHRM1.PD10_PRS_NME A
+INNER JOIN OLWHRM1.CL10_CLM_PCL C
+	ON A.DF_PRS_ID = C.BF_SSN
+INNER JOIN OLWHRM1.AY10_BR_LON_ATY F
+	ON A.DF_PRS_ID = F.BF_SSN
+INNER JOIN OLWHRM1.AY15_ATY_CMT G
+	ON A.DF_PRS_ID = G.BF_SSN 
+	AND F.LN_ATY_SEQ  = G.LN_ATY_SEQ
+INNER JOIN OLWHRM1.AY20_ATY_TXT H
+	ON A.DF_PRS_ID = H.BF_SSN 
+	AND G.LN_ATY_SEQ  = H.LN_ATY_SEQ
+	AND G.LN_ATY_CMT_SEQ = H.LN_ATY_CMT_SEQ	
+INNER JOIN OLWHRM1.DW01_DW_CLC_CLU B
+	ON A.DF_PRS_ID = B.BF_SSN
+INNER JOIN OLWHRM1.LN90_FIN_ATY E
+	ON B.BF_SSN = E.BF_SSN
+	AND B.LN_SEQ = E.LN_SEQ
+LEFT OUTER JOIN OLWHRM1.DC01_LON_CLM_INF I
+	ON A.DF_PRS_ID = I.BF_SSN
+WHERE B.WC_DW_LON_STA = '12'
+	AND C.LC_REA_CLM_PCL = '06'
+	AND F.PF_RSP_ACT = 'CNTCT'
+	AND DAYS(E.LD_FAT_EFF) >= DAYS(CURRENT DATE) - 30
+	AND E.PC_FAT_TYP = '10'
+	AND E.PC_FAT_SUB_TYP = '30'
+	AND DAYS(F.LD_ATY_RSP) >= DAYS(E.LD_FAT_EFF) - 60
+	AND I.LC_AUX_STA NOT IN ('02','03','07')
+	AND I.LC_STA_DC10 = '03'
+	AND NOT (SUBSTR(F.PF_REQ_ACT,1,1) = 'K') 
+FOR READ ONLY WITH UR
+);
+DISCONNECT FROM DB2;
+/*%put  sqlxrc= >>> &sqlxrc <<< ||| sqlxmsg= >>> &sqlxmsg >>> ;  ** includes error messages to SAS log  ;*/
+/*%sqlcheck;*/
+/*quit;*/
+ENDRSUBMIT;
+DATA CCP; 
+	SET WORKLOCL.CCP; 
+RUN;
+
+PROC SORT DATA=CCP;
+	BY DF_SPE_ACC_ID ;
+RUN;
+
+PROC PRINTTO PRINT=REPORT2 NEW;
+RUN;
+OPTIONS ORIENTATION = LANDSCAPE;
+OPTIONS PS=39 LS=132 PAGENO=1 NODATE NONUMBER ;
+PROC CONTENTS DATA=CCP OUT=EMPTYSET NOPRINT;
+TITLE	'CONTACTED CLAIM PAIDS';
+FOOTNOTE1  	"THIS DOCUMENT MAY CONTAIN BORROWERS' SENSITIVE INFORMATION THAT UHEAA HAS PLEDGED TO PROTECT.";
+FOOTNOTE2	"PLEASE TAKE APPROPRIATE PRECAUTIONS TO SAFEGUARD THIS INFORMATION.";
+FOOTNOTE3	;
+FOOTNOTE4 	'JOB = UTLWS32     REPORT = ULWS32.LWS32R2';
+DATA _NULL_;
+SET EMPTYSET;
+FILE PRINT;
+IF  NOBS=0 AND _N_ =1 THEN DO;
+	PUT // 132*'-';
+	PUT      //////
+		@51 '**** NO OBSERVATIONS FOUND ****';
+	PUT //////
+		@57 '-- END OF REPORT --';
+	PUT //////////////
+		@46 "JOB = UTLWS32  	 REPORT = ULWS32.LWS32R2";
+	END;
+RETURN;
+RUN;
+PROC REPORT DATA=CCP NOWD CENTER SPLIT='/' HEADSKIP;
+	COLUMN DF_SPE_ACC_ID LD_ATY_RSP LD_FAT_EFF LC_AUX_STA PF_REQ_ACT LX_ATY;
+	DEFINE DF_SPE_ACC_ID / DISPLAY 'ACCOUNT NUMBER';
+	DEFINE LD_ATY_RSP / DISPLAY 'DATE CONTACTED' FORMAT=MMDDYY10.;
+	DEFINE LD_FAT_EFF / DISPLAY 'CLAIM PAID DATE' FORMAT=MMDDYY10.;
+	DEFINE LC_AUX_STA / DISPLAY 'AUXILIARY STATUS' width = 15;
+	DEFINE PF_REQ_ACT / DISPLAY 'ARC';
+	DEFINE LX_ATY / DISPLAY 'COMMENTS' FLOW WIDTH=70;
+RUN;
+RUN;
+PROC PRINTTO;
+RUN;

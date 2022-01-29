@@ -1,0 +1,7 @@
+﻿CREATE LOGIN [testLogin]
+    WITH PASSWORD = N':OPz$rtba{Vhzf{koinx|osvmsFT7_&#$!~<.vgv&Bdbqqsc', SID = 0x0EB8DB735F48D54B82A1FF3D35CF0BD4, DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
+
+
+GO
+ALTER LOGIN [testLogin] DISABLE;
+

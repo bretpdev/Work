@@ -1,0 +1,1 @@
+EXEC CDW..RefreshTableWithValidation 'LN85_LON_ATY', 'LF_LST_DTS_LN85'

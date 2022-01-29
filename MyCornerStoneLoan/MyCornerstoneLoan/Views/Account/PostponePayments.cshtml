@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "Postpone Payments";
+}
+
+@section Meta {
+    <meta name="description" content="If you're having trouble repaying your loans, one option to alleviate some of the pressure is to postpone payments through deferment or forbearance." />
+}
+
+<h1>Postponing Payments</h1>
+
+<h2>Trouble Making Payments</h2>
+<p>
+    If you're having trouble making payments or if you anticipate that you may have
+    trouble making payments, contact CornerStone immediately. We will help you find
+    your best option, including but not limited to:
+</p>
+<ul>
+    <li>Changing <a href="@Url.Content("~/Payments/RepaymentPlans")" title="Repayment Plans">Repayment Plans</a></li>
+    <li><a href="#defer">Deferment</a></li>
+    <li><a href="#forbear">Forbearance</a></li>
+</ul>
+
+<h2>Postponing Payments</h2>
+<p>
+    The two methods of postponing your student loan payments are deferment or forbearance.
+    You can find out if you qualify for a deferment or forbearance by taking the eligibility
+    quiz in <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" target="_blank" title="Account Access">Account Access</a>.
+</p>
+
+<div id="defer" tabindex="-1">
+    <h2>
+        Deferment
+    </h2>
+    <h3>
+        What is deferment?
+    </h3>
+    <p>
+        Deferment is a period of time in which your payments are temporarily postponed.
+        You have to meet specific criteria to qualify for deferment. To be eligible for
+        a deferment your loans must be in repayment and you must provide CornerStone with
+        appropriate documentation.
+    </p>
+    <h3>
+        What deferments may be available?
+    </h3>
+    <p>
+        Eligibility requirements differ for each deferment type. Detailed eligibility requirements
+        are available on each deferment request form. Deferment may be available to you
+        in the following situations:
+    </p>
+    <ul>
+        <li>
+            While you're enrolled at least half time in college or in a career school.
+        </li>
+        <li>
+            While you're enrolled in an approved rehabilitation training program.
+        </li>
+        <li>
+            While you're enrolled in an approved graduate fellowship program.
+        </li>
+        <li>
+            For up to 3 years while you're in a period of economic hardship.
+        </li>
+        <li>
+            While you're on active military duty during a war, military operation, or national
+            emergency.
+        </li>
+        <li>
+            For up to 3 years while you're unemployed or unable to find full-time employment.
+        </li>
+        <li>
+            During the 13 months after active duty military service or until you're enrolled
+            at least half-time, whichever is earlier, if you are a member of the National Guard
+            or reserve of the U.S. armed forces and you were called or ordered to active duty
+            while enrolled at least half-time or within 6 months of having been enrolled at
+            least half-time.
+        </li>
+        <li>
+            You're disabled or caring for someone who is disabled.
+        </li>
+        <li>
+            While you're on leave from work because you are pregnant, caring for your newborn
+            child, or caring for your newly adopted child.
+        </li>
+        <li>
+            You're a working mother who entered the workforce within one year of your deferment
+            request, working full time earning less than $1 more than the federal minimum wage,
+            and are the mother of a preschool-age child who has not yet entered elementary
+            school.
+        </li>
+        <li>
+            You're in public service including the Peace Corps, Action Programs, or a tax-exempt
+            organization.
+        </li>
+    </ul>
+    <p>
+        If you have a Direct loan that was disbursed <strong>before July 1, 1993</strong>,
+        you may be eligible for additional deferments. Contact CornerStone for more information
+        about these additional deferments.
+    </p>
+    <h3>
+        Does interest accrue during deferment?
+    </h3>
+    <p>
+        During deferment, any accrued interest on your subsidized loans will be
+        paid by the U.S. Department of Education. You are responsible for any accrued interest
+        on your unsubsidized or PLUS loan(s). If you do not pay the interest during
+        the deferment period, it will be added to your principal (capitalized) at the end
+        of the deferment period. Because interest is added to your principal when it is
+        capitalized, you will pay more over the life of your loan.
+    </p>
+    <p>
+        <a href="@Url.Content("~/Home/Forms")#deferforms" title="Deferment Request Forms">Deferment Request Forms</a>
+    </p>
+    <p>
+        You can use this <a href="http://www.calcxml.com/do/cus20?skn=397" rel="external" target="_blank">calculator</a> to see what the cost of deferment would be on your loans.
+    </p>
+</div>
+<div id="forbear" tabindex="-1">
+    <h2>Forbearance</h2>
+    <h3>What is forbearance?</h3>
+    <p>
+        Forbearance is another tool you may be able to use to if you are having trouble
+        making payments. If you are willing but financially unable to make your scheduled
+        payments and do not qualify for a deferment, CornerStone may allow you to temporarily
+        reduce the payment amount or temporarily postpone your payments. During forbearance
+        you are responsible for the interest that accrues on both subsidized and unsubsidized
+        loans. There is no fee to receive forbearance.
+    </p>
+    <h3>What types of forbearance may be available?</h3>
+    <p>
+        There are two main types of forbearance: discretionary and mandatory. If a forbearance
+        is discretionary, CornerStone decides whether or not to grant forbearance. You can
+        request a discretionary forbearance if you are experiencing financial hardship or
+        illness. If a forbearance is mandatory, CornerStone will grant it as long as you
+        meet all eligibility criteria. You can request a mandatory forbearance if:
+    </p>
+    <ul>
+        <li>
+            You are enrolled in a medical or dental internship or residency program.
+        </li>
+        @*
+            <li>
+                you received a national service award while serving in a national service position.
+            </li>
+        *@
+        <li>
+            You qualify for the Department of Defense Student Loan Repayment Program.
+        </li>
+        <li>
+            You were activated by a governor while serving in the National Guard and you are not eligible for military deferment.
+        </li>
+        <li>
+            You're teaching to qualify for Teacher Loan Forgiveness.
+        </li>
+        <li>
+            Your monthly payment for all your student loans is at least 20% of your monthly gross income.
+        </li>
+    </ul>
+
+    <h3>Does interest accrue during forbearance?</h3>
+    <p>
+        You are responsible for paying interest that accrues during forbearance. Any interest
+        you don't pay during the forbearance period will be added to your principal balance
+        (capitalized) at the end of the forbearance period. Because interest is added to
+        your principal when it is capitalized, you will pay more over the life of your loan.
+    </p>
+    <p>
+        <a href="@Url.Content("~/Home/Forms")#ForbearanceForms" title="Forbearance Request Forms">Forbearance Request Forms</a>
+    </p>
+    <p>
+        You can use this <a href="http://www.calcxml.com/do/cus20?skn=397" rel="external" target="_blank">calculator</a> to see what the cost of forbearance would be on your loans.
+    </p>
+</div>

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>EcorrUheaa</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{e015f32c-e3c5-4eaa-a0bf-4b83d70486fd}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>EcorrUheaa</RootNamespace>
+    <AssemblyName>EcorrUheaa</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security\" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
+    <Folder Include="User Defined Types" />
+    <Folder Include="cntrprnt\" />
+    <Folder Include="cntrprnt\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\Staff.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS_1.sql" />
+    <Build Include="Security\UHEAAKenticoDev.sql" />
+    <Build Include="Security\testLogin.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW_1.sql" />
+    <Build Include="Security\UHEAA_BatchScripts.sql" />
+    <Build Include="Security\UHEAA_BatchScripts_1.sql" />
+    <Build Include="Security\!UHEAASSRS.sql" />
+    <Build Include="Security\!UHEAASSRS_1.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers_1.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_Developers_1.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RO.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RO_1.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - Developers DBOwner Access.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - Developers DBOwner Access_1.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\Staff_1.sql" />
+    <Build Include="Stored Procedures\CheckIfLetterExists.sql" />
+    <Build Include="Stored Procedures\GetAllDocumentDetailData.sql" />
+    <Build Include="Stored Procedures\GetAllFedLetters.sql" />
+    <Build Include="Stored Procedures\GetAllLetterData.sql" />
+    <Build Include="Stored Procedures\GetAllLetterTypeData.sql" />
+    <Build Include="Stored Procedures\GetAllMappingValues.sql" />
+    <Build Include="Stored Procedures\GetAttributesAndValues.sql" />
+    <Build Include="Stored Procedures\GetAttributeValues.sql" />
+    <Build Include="Stored Procedures\GetDocDetailIdFromLetter.sql" />
+    <Build Include="Stored Procedures\GetLetterIdFromLetter.sql" />
+    <Build Include="Stored Procedures\GetNextUnprocessedRecord.sql" />
+    <Build Include="Stored Procedures\GetNextUnprocessedRecordBills.sql" />
+    <Build Include="Stored Procedures\GetSentLettersForBorrower.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedRecords.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedRecordsCount.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedRecordsCountBills.sql" />
+    <Build Include="Stored Procedures\InactiveDocumentDetailRecord.sql" />
+    <Build Include="Stored Procedures\InactiveLetterRecord.sql" />
+    <Build Include="Stored Procedures\InsertAttribute.sql" />
+    <Build Include="Stored Procedures\InsertDocumentDetails.sql" />
+    <Build Include="Stored Procedures\InsertEcorrRecord.sql" />
+    <Build Include="Stored Procedures\InsertFutureAltFormatLetter.sql" />
+    <Build Include="Stored Procedures\InsertLetter.sql" />
+    <Build Include="Stored Procedures\InsertLetterType.sql" />
+    <Build Include="Stored Procedures\UpdateAttributes.sql" />
+    <Build Include="Stored Procedures\UpdateDocumentDetails.sql" />
+    <Build Include="Stored Procedures\UpdateLetter.sql" />
+    <Build Include="Stored Procedures\UpdateLetterTypes.sql" />
+    <Build Include="Stored Procedures\UpdatePrintedDate.sql" />
+    <Build Include="Stored Procedures\UpdateZipFIleName.sql" />
+    <Build Include="Tables\DocumentDetails.sql" />
+    <Build Include="Tables\Letters.sql" />
+    <Build Include="Tables\LetterTypes.sql" />
+    <Build Include="Tables\TagAttributeValueMapping.sql" />
+    <Build Include="Tables\TagAttributeValues.sql" />
+    <Build Include="Tables\Tags.sql" />
+    <Build Include="User Defined Types\Ids.sql" />
+    <Build Include="Security\UHEAA_UHEAAUsers.sql" />
+    <Build Include="cntrprnt\Stored Procedures\GetEcorrLetterId.sql" />
+    <Build Include="Security\cntrprnt.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Stored Procedures\GetEmailNotificationData.sql" />
+    <Build Include="Stored Procedures\UpdateEmailedAt.sql" />
+    <Build Include="Stored Procedures\GetPathsForExtractor.sql" />
+    <Build Include="Stored Procedures\NullPrinted.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="EcorrUheaaOPSDEV.publish.xml" />
+  </ItemGroup>
+</Project>

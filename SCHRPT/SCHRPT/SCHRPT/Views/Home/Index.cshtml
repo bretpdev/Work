@@ -1,0 +1,15 @@
+﻿@model DashboardModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+<ul id="main-options">
+    <li>
+        <a href="/Schools">Manage Schools (@Model.SchoolCount)</a>
+    </li>
+    <li>
+        <a href="/Recipients">Manage Recipients (@Model.RecipientCount)</a>
+    </li>
+    <li>
+        <a href="/Reports">Generate and Download Reports</a>
+    </li>
+</ul>

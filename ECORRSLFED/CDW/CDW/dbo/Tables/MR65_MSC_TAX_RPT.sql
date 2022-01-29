@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[MR65_MSC_TAX_RPT] (
+    [BF_SSN]             CHAR (9)       NOT NULL,
+    [LN_SEQ]             SMALLINT       NOT NULL,
+    [WF_CRT_DTS_MR65]    DATETIME2 (7)  NOT NULL,
+    [LF_TAX_YR]          CHAR (4)       NOT NULL,
+    [WC_STA_MR65]        CHAR (1)       NOT NULL,
+    [WD_STA_MR65]        DATE           NULL,
+    [WA_PRI_INC_CRD]     NUMERIC (9, 2) NULL,
+    [WD_INC_CRD_RPT_BR]  DATE           NULL,
+    [WD_INC_CRD_RPT_IRS] DATE           NULL,
+    [WF_LST_DTS_MR65]    DATETIME2 (7)  NOT NULL,
+    [WA_INT_INC_CRD]     NUMERIC (9, 2) NULL,
+    [IF_OWN_EIN]         CHAR (9)       NOT NULL,
+    [WD_RPI_1099C]       DATE           NULL,
+    [WI_RPI_1099C]       CHAR (1)       NOT NULL,
+    [WM_OWN_SER_1099]    CHAR (30)      NOT NULL,
+    [WC_TAX_RPT_CR_RGN]  CHAR (1)       NOT NULL,
+    [WD_MSC_TAX_RPT_PRT] DATE           NULL,
+    [LC_BR_TAX_DTH_ETA]  CHAR (1)       NOT NULL,
+    [BF_BR_ETA_EIN]      CHAR (9)       NOT NULL,
+    [LF_EDS]             CHAR (9)       NOT NULL,
+    [LD_LON_DCH]         DATE           NULL,
+    [WI_SPC_TRX_DIF_ADR] CHAR (1)       NOT NULL,
+    [LC_ID_EVT_1099C]    CHAR (1)       NOT NULL,
+    [WM_SCL_BR_DFS_WOF]  CHAR (40)      NOT NULL,
+    CONSTRAINT [PK_MR65_MSC_TAX_RPT] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_SEQ] ASC, [WF_CRT_DTS_MR65] ASC) WITH (FILLFACTOR = 95)
+);
+

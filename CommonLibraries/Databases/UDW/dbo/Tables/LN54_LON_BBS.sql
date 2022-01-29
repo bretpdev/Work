@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[LN54_LON_BBS] (
+    [BF_SSN]             CHAR (9)      NOT NULL,
+    [LN_SEQ]             SMALLINT      NOT NULL,
+    [PM_BBS_PGM]         VARCHAR (3)   NOT NULL,
+    [PN_BBS_PGM_SEQ]     SMALLINT      NOT NULL,
+    [LN_LON_BBS_PGM_SEQ] SMALLINT      NOT NULL,
+    [LD_EFF_BEG_LN54]    DATE          NULL,
+    [LI_BBS_ITD_LTR_SNT] CHAR (1)      NOT NULL,
+    [LN_BBS_STS_PCV_PAY] NUMERIC (3)   NULL,
+    [LC_BBS_REB_MTD]     CHAR (1)      NOT NULL,
+    [LC_STA_LN54]        CHAR (1)      NOT NULL,
+    [LD_STA_LN54]        DATE          NULL,
+    [LC_BBT_TYS_ASS]     CHAR (1)      NOT NULL,
+    [LC_BBS_DSQ_REA]     VARCHAR (2)   NOT NULL,
+    [LD_BBS_DSQ]         DATE          NULL,
+    [LC_BBS_ELG]         CHAR (1)      NOT NULL,
+    [LC_BBT_PRC_RBD]     CHAR (1)      NOT NULL,
+    [LD_BBS_RPD_WDO_END] DATE          NULL,
+    [LC_BBS_BCH_PRC]     CHAR (1)      NOT NULL,
+    [LF_LST_USR_LN54]    VARCHAR (8)   NOT NULL,
+    [LF_LST_DTS_LN54]    DATETIME2 (7) NOT NULL,
+    [LN_BBS_PCV_PAY_MOT] SMALLINT      NULL,
+    [LD_BBS_ICV_REQ]     DATE          NULL,
+    [LD_BBS_DSQ_APL]     DATE          NULL,
+    [LI_BBS_PCV_LTE_PAY] CHAR (1)      NOT NULL,
+    CONSTRAINT [PK_LN54_LON_BBS] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_SEQ] ASC, [PM_BBS_PGM] ASC, [PN_BBS_PGM_SEQ] ASC, [LN_LON_BBS_PGM_SEQ] ASC) WITH (FILLFACTOR = 95)
+);
+

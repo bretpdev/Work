@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [UHEAA\Imaging Users]
+    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
+

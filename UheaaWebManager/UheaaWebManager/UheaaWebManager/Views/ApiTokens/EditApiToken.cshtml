@@ -1,0 +1,63 @@
+﻿@model ApiTokenDetailedModel
+@{
+    string header = null;
+    string title = null;
+    string submit = null;
+    string action = null;
+    if (!Model.ApiTokenId.HasValue)
+    {
+        header = "Add New Contractor Token";
+        title = "New Contractor Token";
+        submit = "Add New Contractor Token";
+        action = "SaveApiToken";
+    }
+    else
+    {
+        header = "Manage Contractor Token";
+        title = "Manage Contractor Token";
+        submit = "Save Changes";
+        action = "SaveApiToken";
+    }
+    ViewBag.Title = title;
+}
+@section Scripts {
+    <script type="text/javascript">
+        function regenToken() {
+            $.ajax({
+                url: '/ApiTokens/AjaxGenerateGuid',
+                method: 'POST',
+                success: function (data) {
+                    document.querySelector("input[name='GeneratedToken']").value = data;
+                }
+            });
+        }
+    </script>    
+}
+@if (Model.ApiTokenId.HasValue)
+{
+    @Html.ActionLink("Retire this Contractor Token", "Retire", new { id = Model.ApiTokenId }, new { id = "top-right-button" })
+}
+<h2>@header</h2>
+@using (Html.BeginForm(action, "ApiTokens"))
+{
+    @Html.HiddenFor(o => o.ApiTokenId)
+
+    @Html.LabelFor(o => o.GeneratedToken)
+    @Html.TextBoxFor(o => o.GeneratedToken, new { style = "width: 300px;" })
+    <button onclick="regenToken()" type="button">Regenerate</button>
+
+    <br />
+    @Html.LabelFor(o => o.StartDate)
+    @Html.EditorFor(o => o.StartDate, new { required = "" })
+    <br />
+    @Html.LabelFor(o => o.EndDate)
+    @Html.EditorFor(o => o.EndDate, new { })
+    <br />
+    @Html.LabelFor(o => o.Notes)
+    @Html.TextAreaFor(o => o.Notes, new { required = "", cols = 60, rows = 8 })
+    <br />
+    <br />
+    @Html.Partial("_ControllerAccessEditor", Model.ControllerAccess)
+    <br />
+    <input type="submit" value="@submit" />
+}

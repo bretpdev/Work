@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE [monitor].[StartRunHistory]
+AS
+	INSERT INTO
+		monitor.RunHistory (StartedAt) VALUES (GETDATE())
+
+	SELECT CAST(SCOPE_IDENTITY() AS INT)
+
+RETURN 0

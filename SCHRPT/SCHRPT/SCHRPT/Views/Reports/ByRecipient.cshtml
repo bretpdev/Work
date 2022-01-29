@@ -1,0 +1,39 @@
+﻿@model ReportGeneratorByRecipient
+@{
+    ViewBag.Title = "Generate Report";
+}
+@section Styles {
+    <style>
+        form label {
+            width: inherit;
+        }
+
+        button {
+            margin-right: 5px;
+        }
+    </style>
+}
+<h2>Generate and Download Reports</h2>
+<form action="/Reports/ByRecipient" method="POST">
+    <label for="reportTypeId">Choose a Report</label>
+    <br />
+    <select name="reportTypeId">
+        @foreach (var report in Model.Reports)
+        {
+            <option value="@report.ReportTypeId">@report.StoredProcedureName</option>
+        }
+    </select>
+    <br />
+    <label for="recipientId">Add Schools</label><br />
+    <select name="recipientId" id="school-selector">
+        <option>Select a Recipient</option>
+        @foreach (var recipient in Model.Recipients)
+        {
+            string company = string.IsNullOrWhiteSpace(recipient.CompanyName) ? "" : "- " + recipient.CompanyName;
+            string selected = recipient.RecipientId == Model.SelectedRecipientId ? "selected" : "";
+            <option value="@recipient.RecipientId" @selected>@recipient.Name - @recipient.Email @company</option>
+        }
+    </select>
+    <br /><br />
+    <input type="submit" value="Generate Report" />
+</form>

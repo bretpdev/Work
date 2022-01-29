@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[SYSA_CON_INTABLE] (
+    [col1] VARCHAR (100) NOT NULL,
+    [col2] VARCHAR (100) NOT NULL
+);
+

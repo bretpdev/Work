@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="6280c3ce-a704-4890-9897-71222366f369" ChangeDateTime="02/10/2016 18:34:43">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[PHone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Phone" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c2ca7c4c-87d0-497e-8646-70df0dbf9e10" ChangeDateTime="02/10/2016 19:07:21">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[MiddleInitial]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Middle_Initial" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="658b46e4-b5e5-42ae-a15c-71bdcf679229" ChangeDateTime="02/10/2016 19:07:24">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[MiddleName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="middle_name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="36538915-964b-418c-9e48-89d910887161" ChangeDateTime="02/10/2016 19:07:29">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[LastName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="last_name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="780da19a-ccea-4d2f-aaa8-9f0ec25ff5dd" ChangeDateTime="02/10/2016 19:11:20">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[FullName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Full_Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7898b9c0-df72-4103-989f-734c9c766066" ChangeDateTime="02/10/2016 19:11:22">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[PreferredName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Preferred_Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fc30155b-18db-4eb2-b051-f4cb6ad7b246" ChangeDateTime="02/10/2016 19:11:33">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[SecondaryPhone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Secondary_Phone" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8746cc51-1323-4f75-bada-d4eac0c986ba" ChangeDateTime="02/10/2016 19:12:04">
+    <Property Name="ElementName" Value="[dbo].[EmployeeHistory].[DisabilityStatus]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmployeeHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Disability_Status" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="57a3d4e9-7aab-4dca-a901-05ea2ab23b96" ChangeDateTime="02/10/2016 23:21:34">
+    <Property Name="ElementName" Value="[dbo].[CategoryHistory].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CategoryHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CategoryHistoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="55634976-3c79-4295-8df3-e9eeb34bfba5" ChangeDateTime="02/10/2016 23:23:03">
+    <Property Name="ElementName" Value="[dbo].[CategoryHistory].[EmployeeHistoryID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CategoryHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EmployeeHistoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c2be0491-09cf-493e-afd0-73164d6f933d" ChangeDateTime="02/10/2016 23:23:55">
+    <Property Name="ElementName" Value="[dbo].[TeamHistory].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TeamHistoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="027f41dd-b41d-41fe-97dd-696768754d5e" ChangeDateTime="02/16/2016 22:56:58">
+    <Property Name="ElementName" Value="[dbo].[TeamHistory].[TeamName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TeamHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Value" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="27930f0e-4d09-4dc4-81f5-ac36b4bdee00" ChangeDateTime="04/18/2017 21:04:51">
+    <Property Name="ElementName" Value="[dbo].[UpdateType].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UpdateType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UpdateTypeId" />
+  </Operation>
+</Operations>

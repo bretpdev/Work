@@ -1,0 +1,26 @@
+﻿CREATE TABLE [emailbatch].[EmailCampaigns]
+(
+	[EmailCampaignId] INT NOT NULL PRIMARY KEY IDENTITY,
+	[SourceFile] varchar(300) null, 
+    [HTMLFileId] INT NOT NULL, 
+    [FromAddressId] INT NOT NULL, 
+    [SubjectLineId] INT NOT NULL, 
+    [ProcessAllFiles] BIT NOT NULL DEFAULT 0, 
+	[OKIfMissing] BIT NOT NULL DEFAULT 0,
+	[OKIfEmpty] BIT NOT NULL DEFAULT 0,
+	[ArcId] INT NULL,
+	[CommentId] INT NULL,
+	[ActivityTypeId] INT NULL,
+	[ActivityContactId] INT NULL,
+    [AddedBy] VARCHAR(250) NOT NULL, 
+    [AddedAt] DATETIME NOT NULL DEFAULT Getdate(), 
+    [DeletedBy] VARCHAR(250) NULL, 
+    [DeletedAt] DATETIME NULL, 
+    CONSTRAINT [FK_EmailCampaigns_ToHTMLFiles] FOREIGN KEY (HTMLFileId) REFERENCES emailbatch.HTMLFiles(HTMLFileId), 
+    CONSTRAINT [FK_EmailCampaigns_ToSubjectLines] FOREIGN KEY (SubjectLineId) REFERENCES emailbatch.SubjectLines(SubjectLineId), 
+    CONSTRAINT [FK_EmailCampaigns_ToFromAddresses] FOREIGN KEY (FromAddressId) REFERENCES emailbatch.FromAddresses(FromAddressId), 
+    CONSTRAINT [FK_EmailCampaigns_ToArcs] FOREIGN KEY (ArcId) REFERENCES emailbatch.Arcs(ArcId), 
+    CONSTRAINT [FK_EmailCampaigns_ToComments] FOREIGN KEY (CommentId) REFERENCES emailbatch.Comments(CommentId), 
+    CONSTRAINT [FK_EmailCampaigns_ToActivityTypes] FOREIGN KEY (ActivityTypeId) REFERENCES emailbatch.ActivityTypes(ActivityTypeId), 
+    CONSTRAINT [FK_EmailCampaigns_ToActivityContacts] FOREIGN KEY (ActivityContactId) REFERENCES emailbatch.ActivityContacts(ActivityContactId)
+)

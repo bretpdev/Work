@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[ZDEL_GU10_GTR] (
+    [IF_GTR] VARCHAR (6) NOT NULL
+);
+

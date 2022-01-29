@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[noble_events] (
+    [id]           INT                IDENTITY (1, 1) NOT NULL,
+    [schoolCode]   NVARCHAR (255)     NULL,
+    [Status]       NVARCHAR (255)     NULL,
+    [Telephone]    NVARCHAR (255)     NULL,
+    [CallType]     NVARCHAR (255)     NULL,
+    [CallTime]     NVARCHAR (255)     NULL,
+    [CallDate]     DATETIMEOFFSET (7) NULL,
+    [Filler1]      INT                NULL,
+    [Filler2]      NVARCHAR (255)     NULL,
+    [Filler3]      NVARCHAR (255)     NULL,
+    [Filler4]      INT                NULL,
+    [Campaign]     NVARCHAR (255)     NULL,
+    [TimeACW]      NVARCHAR (255)     NULL,
+    [TimeConnect]  NVARCHAR (255)     NULL,
+    [TimeHold]     NVARCHAR (255)     NULL,
+    [ListID]       NVARCHAR (255)     NULL,
+    [OBCallerANI]  NVARCHAR (255)     NULL,
+    [OBCallerName] NVARCHAR (255)     NULL,
+    [AddiStatus]   NVARCHAR (255)     NULL,
+    [AgentCode]    NVARCHAR (255)     NULL,
+    [AgentName]    NVARCHAR (255)     NULL,
+    [created_on]   DATETIMEOFFSET (7) DEFAULT (getdate()) NOT NULL,
+    [modified_on]  DATETIMEOFFSET (7) DEFAULT (getdate()) NOT NULL,
+    PRIMARY KEY CLUSTERED ([id] ASC)
+);
+

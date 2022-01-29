@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[ResponseTypes](
+	[ResponseTypeId] [int] IDENTITY(1,1) NOT NULL,
+	[ResponseCode] [char](1) NOT NULL,
+	[ResponseDescription] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ResponseTypeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 95) ON [PRIMARY]
+) ON [PRIMARY]

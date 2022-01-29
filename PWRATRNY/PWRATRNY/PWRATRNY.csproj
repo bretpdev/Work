@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9098DCF9-6734-48FE-90E7-750171C8BEA5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PWRATRNY</RootNamespace>
+    <AssemblyName>PWRATRNY</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>X:\PADU\UHEAACodeBase\PWRATRNY\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CustomFormControls\NonRequiredMaskedDateTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\AddAndModifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddAndModifyForm.Designer.cs">
+      <DependentUpon>AddAndModifyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Processors\CompassProcessor.cs" />
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\StateCode.cs" />
+    <Compile Include="Forms\EntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EntryForm.Designer.cs">
+      <DependentUpon>EntryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Processors\OneLINKProcessor.cs" />
+    <Compile Include="DataAccess\PowerOfAttorneyData.cs" />
+    <Compile Include="Processors\Processor.cs" />
+    <Compile Include="PowerOfAttorney.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataAccess\ReferenceData.cs" />
+    <Compile Include="DataAccess\Relationship.cs" />
+    <Compile Include="DataAccess\UserPOAEntry.cs" />
+    <EmbeddedResource Include="Forms\AddAndModifyForm.resx">
+      <DependentUpon>AddAndModifyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EntryForm.resx">
+      <DependentUpon>EntryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DocumentProcessing\DocumentProcessing\Uheaa.Common.DocumentProcessing\Uheaa.Common.DocumentProcessing.csproj">
+      <Project>{dde98b0a-849d-4565-b67b-254f03a15cf4}</Project>
+      <Name>Uheaa.Common.DocumentProcessing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

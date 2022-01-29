@@ -1,0 +1,9 @@
+﻿CREATE TABLE [batchesp].[NonSelectionReasons]
+(
+	[NonSelectionReasonId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Reason] VARCHAR(100) NOT NULL, 
+    [Course] CHAR NOT NULL, 
+	CreatedAt DATETIME DEFAULT GETDATE() NOT NULL,
+	CreatedBy VARCHAR(50) DEFAULT USER_NAME() NOT NULL,
+	DeletedAt DATETIME NULL
+)

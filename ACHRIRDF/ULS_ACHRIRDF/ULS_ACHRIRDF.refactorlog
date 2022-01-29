@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="794786c6-ff77-43fe-a25f-a85177aa82f0" ChangeDateTime="06/01/2016 16:31:07">
+    <Property Name="ElementName" Value="[dbo].[ProcessQueue].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProcessQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessQueueId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="94712b2a-c472-4967-a4f5-8564515b3512" ChangeDateTime="06/01/2016 16:31:43">
+    <Property Name="ElementName" Value="[dbo].[ProcessQueue].[SSN]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProcessQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Ssn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="66f1ae02-6622-40f9-9391-3154b8a0132c" ChangeDateTime="06/01/2016 16:33:33">
+    <Property Name="ElementName" Value="[dbo].[ProcessQueue].[ProcessedJSON]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProcessQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessedJson" />
+  </Operation>
+</Operations>

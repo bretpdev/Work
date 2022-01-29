@@ -1,0 +1,1 @@
+UPDATE uls.[print].PrintProcessing set DeletedAt = GETDATE(), DeletedBy = 'UNH 62094' WHERE AccountNumber = '5624480109' AND ScriptDataId = 183 AND CAST(addedAt AS DATE) = cast(getdate() as date) and PrintProcessingId = '3910457'

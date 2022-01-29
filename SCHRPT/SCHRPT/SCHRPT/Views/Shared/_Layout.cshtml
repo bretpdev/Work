@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCHRPT - @ViewBag.Title</title>
+    @FileVersioner.GenerateStylesheetLink("~/Content/Site.css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/template-polyfill.js")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <header>
+        <a href="/" title="Home">
+            <h1>School Borrower Reporting (SCHRPT)</h1>
+        </a>
+    </header>
+    @if (ViewBag.Breadcrumbs.Any())
+    {
+        <nav>
+            <ul id="breadcrumbs">
+                @foreach (var crumb in ViewBag.Breadcrumbs)
+                {
+                    <li><a href="@crumb.Url" title="@crumb.Text">@crumb.Text</a> \</li>
+                }
+            </ul>
+        </nav>
+    }
+    @if (Session.PendingMessages.Any() || Session.PendingErrorMessages.Any())
+    {
+        <article id="messages">
+            @foreach (var message in Session.PendingMessages)
+            {
+                <section class="message-informational">@message</section>
+            }
+            @foreach (var message in Session.PendingErrorMessages)
+            {
+                <section class="message-error">@message</section>
+            }
+        </article>
+        Session.PendingMessages.Clear();
+        Session.PendingErrorMessages.Clear();
+    }
+    @RenderBody()
+</body>
+</html>

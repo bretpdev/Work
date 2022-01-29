@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93D278C1-2A9A-4B34-84D0-83BACCE39B19}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SERF_File_Generator</RootNamespace>
+    <AssemblyName>SERF_File_Generator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Q:\Support Services\Evan\DistributionCode\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\DefaultValueAttribute.cs" />
+    <Compile Include="Attributes\FormatCodeAttribute.cs" />
+    <Compile Include="Attributes\Ignore.cs" />
+    <Compile Include="Attributes\LinePosAttribute.cs" />
+    <Compile Include="Attributes\OccursAttribute.cs" />
+    <Compile Include="Attributes\Required.cs" />
+    <Compile Include="Attributes\LengthAttribute.cs" />
+    <Compile Include="Distributed Jobs\DistributedClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Distributed Jobs\DistributedClient.Designer.cs">
+      <DependentUpon>DistributedClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\BorrowerData.cs">
+      <DependentUpon>BorrowerData.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataClasses\DefermentData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefermentData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\DisbData1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DisbData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\EndorserSpouse.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EndorserSpouse.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\FinancialData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinancialData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\ForbearanceData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ForbearanceData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\ReferenceData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReferenceData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\RepaymentData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RepaymentData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataClasses\StudentData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StudentData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Distributed Jobs\DistributedJobInfo.cs" />
+    <Compile Include="Distributed Jobs\DistributedJobSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Distributed Jobs\DistributedJobSetup.Designer.cs">
+      <DependentUpon>DistributedJobSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Distributed Jobs\DistributedServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Distributed Jobs\DistributedServer.Designer.cs">
+      <DependentUpon>DistributedServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Distributed Jobs\WorkspaceInfo.cs" />
+    <Compile Include="Helpers\ClassFileWriter.cs" />
+    <Compile Include="Distributed Jobs\DistributedJobHelper.cs" />
+    <Compile Include="Helpers\LoanHelper.cs" />
+    <Compile Include="Helpers\RecordCompiler.cs" />
+    <Compile Include="Helpers\RecordGenerator.cs" />
+    <Compile Include="RecordPopulator.cs" />
+    <Compile Include="SerfFileBase.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="DataClasses\BorrowerData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BorrowerData.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\DisbData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DisbData1.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\FinancialData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FinancialData.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\ForbearanceData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ForbearanceData.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\DefermentData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DefermentData.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\EndorserSpouse.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EndorserSpouse.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\RepaymentData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RepaymentData.cs</LastGenOutput>
+    </None>
+    <None Include="DataMap\SERF Data Map.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DataClasses\ReferenceData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ReferenceData.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\StudentData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StudentData.cs</LastGenOutput>
+    </None>
+    <None Include="DataClasses\SerfClassGenerator.tt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataMapParser\DataMapParser.csproj">
+      <Project>{86c41545-0209-4576-bdbc-aafc43a74a2d}</Project>
+      <Name>DataMapParser</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Distributed Jobs\DistributedClient.resx">
+      <DependentUpon>DistributedClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Distributed Jobs\DistributedJobSetup.resx">
+      <DependentUpon>DistributedJobSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Distributed Jobs\DistributedServer.resx">
+      <DependentUpon>DistributedServer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

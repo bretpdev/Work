@@ -1,0 +1,89 @@
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/ULWM44.LWM44RZ";
+FILENAME REPORT2 "&RPTLIB/ULWM44.LWM44R2";
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+
+RSUBMIT;
+LIBNAME SASTAB '/sas/whse/progrevw';
+
+/*TO UPDATE XREF TABLE RUN ON DEMAND: DEFAULT COLLECTIONS USER XREF.SAS*/
+
+data lm(keep=userid pf_act);
+set SASTAB.XREF;
+array act{4} $ ('LGVWA','LRBDP','DD136','DPNCK');
+DO I = 1 TO 4;
+	PF_ACT = ACT{I};
+	OUTPUT;
+END;
+RUN;
+
+DATA _NULL_;
+CALL SYMPUT('LST_MTH_BEG',"'"|| PUT(INTNX('MONTH',TODAY(),-1,'B'),MMDDYY10.)|| "'");
+CALL SYMPUT('LST_MTH_END',"'"|| PUT(INTNX('MONTH',TODAY(),-1,'E'),MMDDYY10.)|| "'");
+RUN;
+
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DEMO AS
+SELECT B.USERID
+	,B.PF_ACT
+	,COALESCE(A.TOT,0) + COALESCE(c.TOT,0)AS TOTAL
+FROM LM B
+left outer join CONNECTION TO DB2 (
+		select bf_lst_usr_ay01
+			,pf_act
+			,count(*) as tot
+		from OLWHRM1.AY01_BR_ATY 
+		where pf_act in ('LGVWA','LRBDP','DD136','DPNCK')
+					AND BD_ATY_PRF >= &LST_MTH_BEG
+					AND BD_ATY_PRF <= &LST_MTH_END
+		group by bf_lst_usr_ay01,pf_act
+) a
+	on a.bf_lst_usr_ay01 = b.userid
+	and a.pf_act = b.pf_act
+left outer join CONNECTION TO DB2 (
+		select IF_LST_USR_AY05
+			,pf_act
+			,count(*) as tot
+		from OLWHRM1.AY05_IST_ATY
+		where pf_act in ('LGVWA','LRBDP','DD136','DPNCK')
+					AND ID_ATY_PRF >= &LST_MTH_BEG
+					AND ID_ATY_PRF <= &LST_MTH_END
+		group by IF_LST_USR_AY05,pf_act
+) c
+	on c.IF_LST_USR_AY05 = b.userid
+	and c.pf_act = b.pf_act;
+DISCONNECT FROM DB2;
+QUIT;
+
+ENDRSUBMIT;
+DATA DEMO;
+	SET WORKLOCL.DEMO;
+RUN;
+proc format;
+	picture mthyr
+		low-high = '%B %Y         ' (datatype=date);
+QUIT;
+DATA _NULL_;
+CALL SYMPUT ('MONYRWORD',PUT(INTNX('MONTH',TODAY(),-1),MTHYR.));
+RUN;
+%PUT &MONYRWORD;
+PROC PRINTTO PRINT=REPORT2 NEW;
+RUN;
+
+/*FOR PORTRAIT REPORTS;*/
+OPTIONS ORIENTATION = PORTRAIT;
+OPTIONS PS=52 LS=96 pageno=1;
+TITLE "Action Code Summary for the month of %UPCASE(&MONYRWORD)";
+footnote;
+
+PROC REPORT DATA=DEMO NOWD SPACING=5; 
+COLUMN USERID PF_ACT TOTAL;
+DEFINE USERID / ORDER  ;
+BREAK AFTER USERID / SKIP;
+RUN;
+
+PROC PRINTTO;
+RUN;

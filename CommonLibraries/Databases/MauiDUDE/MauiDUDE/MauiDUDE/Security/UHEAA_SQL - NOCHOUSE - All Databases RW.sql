@@ -1,0 +1,2 @@
+﻿CREATE USER [UHEAA\SQL - NOCHOUSE - All Databases RW] FOR LOGIN [UHEAA\SQL - NOCHOUSE - All Databases RW];
+

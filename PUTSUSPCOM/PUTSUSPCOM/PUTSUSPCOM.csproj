@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{116C863D-B541-4526-83A5-59EF45CF4299}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PUTSUSPCOM</RootNamespace>
+    <AssemblyName>PUTSUSPCOM</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\Program Files\UHEAA\UHEAACodeBase\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\..\..\Program Files\UHEAA\UHEAACodeBase\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataClasses\Deal.cs" />
+    <Compile Include="DataClasses\DealListViewItem.cs" />
+    <Compile Include="OptionProcessing\DeleteAndReapplyOptionProcessor.cs" />
+    <Compile Include="UserControls\DeleteAndReapplyControls\DeleteAndReapplyRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DeleteAndReapplyControls\DeleteAndReapplyRow.Designer.cs">
+      <DependentUpon>DeleteAndReapplyRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OptionProcessing\DeleteAndReapply\DeleteAndReapplyRowData.cs" />
+    <Compile Include="OptionProcessing\DeleteSuspenseOptionProcessor.cs" />
+    <Compile Include="OptionProcessing\TargetPaymentOptionProcessor.cs" />
+    <Compile Include="UserControls\IUserInputValidator.cs" />
+    <Compile Include="OptionProcessing\OptionProcessorBase.cs" />
+    <Compile Include="UserControls\OptionUIBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OptionUIBase.Designer.cs">
+      <DependentUpon>OptionUIBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DeleteAndReapplyPayment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DeleteAndReapplyPayment.Designer.cs">
+      <DependentUpon>DeleteAndReapplyPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TargetPayment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\TargetPayment.Designer.cs">
+      <DependentUpon>TargetPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\DeleteSuspensePayment.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DeleteSuspensePayment.Designer.cs">
+      <DependentUpon>DeleteSuspensePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Entry.Designer.cs">
+      <DependentUpon>Entry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PUTSUSPCOMNT.cs" />
+    <Compile Include="DataClasses\Suspense.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Borg\Trunk\Borg\Borg\Q\Q.vbproj">
+      <Project>{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}</Project>
+      <Name>Q</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserControls\DeleteAndReapplyControls\DeleteAndReapplyRow.resx">
+      <DependentUpon>DeleteAndReapplyRow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OptionUIBase.resx">
+      <DependentUpon>OptionUIBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DeleteAndReapplyPayment.resx">
+      <DependentUpon>DeleteAndReapplyPayment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\TargetPayment.resx">
+      <DependentUpon>TargetPayment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DeleteSuspensePayment.resx">
+      <DependentUpon>DeleteSuspensePayment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Entry.resx">
+      <DependentUpon>Entry.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\DeleteAndReapplyRowData.datasource" />
+    <None Include="Properties\DataSources\OptionProcessorBase.datasource" />
+    <None Include="Properties\DataSources\Q.BorrowerDemographics.datasource" />
+    <None Include="Properties\DataSources\SuspenseData.datasource" />
+    <None Include="Properties\DataSources\TargetPaymentOptionProcessor.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

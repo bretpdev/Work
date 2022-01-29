@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="SessionTester.ScriptList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <StackPanel>
+        <Label Height="30" Name="HeaderLabel" FontWeight="Bold" FontSize="15" Background="Black" Foreground="White" HorizontalContentAlignment="Center" />
+        <ItemsControl Name="Items" Width="400" AlternationCount="2">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid VerticalAlignment="Stretch" Name="BackgroundPanel">
+                        <Button Margin="5" IsEnabled="{Binding Path=IsValid}" ToolTipService.ShowOnDisabled="True" Content="{Binding Path=DisplayName}" Click="Button_Click" Tag="{Binding}" FontFamily="Consolas" FontSize="14" DockPanel.Dock="Left" Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock>
+                                        <ContentPresenter />
+                                    </TextBlock>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="false">
+                                            <Setter Property="ToolTip" Value="Script cannot be loaded.  Please ensure dependencies are current and within the same working directory as the dll." />
+                                            <Setter Property="Foreground" Value="Gray" />
+                                        </Trigger>
+                                        <Trigger Property="IsEnabled" Value="True">
+                                            <Setter Property="ToolTip" Value="{Binding Path}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button 
+                            Click="Delete_Click" 
+                            Tag="{Binding}" 
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Visibility="{Binding DeleteVisible}"
+                            Margin="7,0"
+                            Width="20" Height="20" 
+                            Foreground="Red" FontWeight="Bold">X</Button>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                            <Setter Property="Background" Value="LightGray" TargetName="BackgroundPanel" />
+                        </Trigger>
+                        <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                            <Setter Property="Background" Value="White" TargetName="BackgroundPanel" />
+                        </Trigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

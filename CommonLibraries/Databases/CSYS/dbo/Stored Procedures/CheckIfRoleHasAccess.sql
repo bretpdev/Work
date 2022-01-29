@@ -1,0 +1,29 @@
+﻿CREATE PROCEDURE [dbo].[CheckIfRoleHasAccess]
+	@UserKey VARCHAR(100), 
+	@RoleName VARCHAR(64),
+	@Application VARCHAR(100)
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	DECLARE @Result bit = 0
+	
+	SELECT
+		@Result = 1
+	FROM 
+		SYSA_DAT_RoleKeyAssignment a
+			JOIN SYSA_LST_UserKeys b
+				ON a.UserKeyID = b.ID
+			JOIN SYSA_LST_Role c
+				ON a.RoleID = c.RoleID
+	WHERE 
+		c.RoleName = @RoleName
+		AND b.Application = @Application
+		AND b.UserKey = @UserKey
+		AND a.EndDate IS NULL
+		
+	SELECT @Result
+END
+
+GRANT EXECUTE ON [CheckIfRoleHasAccess] TO db_executor

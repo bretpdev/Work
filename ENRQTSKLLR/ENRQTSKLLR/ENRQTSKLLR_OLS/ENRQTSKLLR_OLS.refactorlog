@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="9f7209c3-de13-4d23-bef2-e476e6eb5106" ChangeDateTime="06/03/2021 19:09:45">
+    <Property Name="ElementName" Value="[enrqtskllr].[SetArcAddProcessingId]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[enrqtskllr]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SetArcAdded]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9d9b5f59-899a-4361-9d4b-b7c328d2f666" ChangeDateTime="06/03/2021 19:10:06">
+    <Property Name="ElementName" Value="[enrqtskllr].[SetArcAdded]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[enrqtskllr]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SetArcAddedAt]" />
+  </Operation>
+</Operations>

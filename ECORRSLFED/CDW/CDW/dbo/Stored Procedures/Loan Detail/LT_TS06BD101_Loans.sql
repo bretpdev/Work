@@ -1,0 +1,241 @@
+﻿CREATE PROCEDURE [dbo].[LT_TS06BD101_Loans]
+	@AccountNumber CHAR(10),
+	@IsCoborrower BIT = 0
+AS
+BEGIN
+
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+DECLARE	@LetterId VARCHAR(10) = 'TS06BD101'
+DECLARE @PF_REQ_ACT VARCHAR(5) = (SELECT AC11.PF_REQ_ACT FROM AC11_ACT_REQ_LTR AC11 WHERE PF_LTR = @LetterId)
+
+IF @IsCoborrower = 0
+	BEGIN
+		SELECT 
+			CASE WHEN Defer.LC_DFR_STA = 'A' AND Defer.LD_CRT_REQ_DFR = CAST(Defer.LF_LST_DTS_DF10 AS DATE) THEN 'Approved' --same create/last updated date
+				 WHEN Defer.LC_DFR_STA = 'A' AND Defer.LD_CRT_REQ_DFR != CAST(Defer.LF_LST_DTS_DF10 AS DATE) THEN 'Adjusted' --Changed as last updated was not create date
+				 ELSE 'Denied'
+			END AS [Action],
+			COALESCE(FTT.Label, Defer.LC_DFR_TYP) AS [Type],
+			CONVERT(VARCHAR(10), Defer.LD_DFR_BEG, 101) AS [Begin Date],
+			CONVERT(VARCHAR(10), Defer.LD_DFR_END, 101) AS [End Date],
+			LN10.LN_SEQ AS [Loan Sequence],
+			COALESCE(FTL.Label, LN10.IC_LON_PGM) AS [Loan Program]
+		FROM 
+			PD10_PRS_NME PD10
+			INNER JOIN LN10_LON LN10 
+				ON LN10.BF_SSN = PD10.DF_PRS_ID
+			INNER JOIN
+			(
+				SELECT DISTINCT
+					LN85.BF_SSN,
+					LN85.LN_SEQ
+				FROM
+					LN85_LON_ATY LN85
+					INNER JOIN --GETS THE ARCS ON THE SAME DAY AS THE MOST RECENT ARC
+					(
+						SELECT DISTINCT
+							AY10.BF_SSN,
+							AY10.LN_ATY_SEQ
+						FROM 
+							AY10_BR_LON_ATY AY10
+							INNER JOIN PD10_PRS_NME PD10
+								ON PD10.DF_PRS_ID = AY10.BF_SSN
+							INNER JOIN
+							(
+								SELECT
+									BF_SSN,
+									MAX(CAST(AY10.LD_ATY_REQ_RCV AS DATE)) AS LD_ATY_REQ_RCV
+								FROM
+									AY10_BR_LON_ATY AY10
+									INNER JOIN PD10_PRS_NME PD10
+										ON PD10.DF_PRS_ID = AY10.BF_SSN
+								WHERE
+									AY10.PF_REQ_ACT = @PF_REQ_ACT
+									AND PD10.DF_SPE_ACC_ID = @AccountNumber
+								GROUP BY
+									AY10.BF_SSN
+							) MAX_AY10
+								ON AY10.BF_SSN = MAX_AY10.BF_SSN
+								AND CAST(AY10.LD_ATY_REQ_RCV AS DATE) = CAST(MAX_AY10.LD_ATY_REQ_RCV AS DATE)
+						WHERE
+							AY10.PF_REQ_ACT = @PF_REQ_ACT
+							AND PD10.DF_SPE_ACC_ID = @AccountNumber
+					)AY10
+						ON AY10.BF_SSN = LN85.BF_SSN
+						AND AY10.LN_ATY_SEQ = LN85.LN_ATY_SEQ
+			)LN85
+				ON LN85.BF_SSN = LN10.BF_SSN
+				AND LN85.LN_SEQ = LN10.LN_SEQ
+			INNER JOIN
+			(
+				SELECT 
+					DF10.LC_DFR_TYP,
+					LN50.LD_DFR_BEG,
+					LN50.LD_DFR_END,
+					DF10.LD_CRT_REQ_DFR,
+					DF10.LF_LST_DTS_DF10,
+					DF10.LC_DFR_STA,
+					LN50.BF_SSN,
+					LN50.LN_SEQ
+				FROM
+					LN50_BR_DFR_APV LN50
+					INNER JOIN DF10_BR_DFR_REQ DF10
+						ON DF10.BF_SSN = LN50.BF_SSN
+						AND DF10.LF_DFR_CTL_NUM = LN50.LF_DFR_CTL_NUM
+					INNER JOIN 
+					(
+						SELECT
+							MAX(LN50.LD_STA_LON50) AS MaxLN50,
+							LN50.BF_SSN,
+							LN50.LN_SEQ
+						FROM
+							LN50_BR_DFR_APV LN50
+						WHERE
+							LN50.LC_STA_LON50 = 'A'
+						GROUP BY
+							LN50.BF_SSN,
+							LN50.LN_SEQ
+					) LN50Max
+						ON LN50.BF_SSN = LN50Max.BF_SSN
+						AND LN50.LN_SEQ = LN50Max.LN_SEQ
+						AND LN50Max.MaxLN50 = LN50.LD_STA_LON50
+				WHERE
+					LN50.LC_STA_LON50 = 'A'
+					AND DF10.LC_STA_DFR10 = 'A'
+					--AND DF10.LC_DFR_STA = 'A' --Denied requests are valid
+			) Defer
+				ON Defer.BF_SSN = LN10.BF_SSN
+				AND Defer.LN_SEQ = LN10.LN_SEQ
+			LEFT JOIN FormatTranslation FTT
+				ON FTT.Start = Defer.LC_DFR_TYP
+				AND FTT.FmtName = '$DEFSTA'
+			LEFT JOIN FormatTranslation FTL
+				ON FTL.Start = LN10.IC_LON_PGM
+				AND FTL.FmtName = '$LNPROG'
+		WHERE
+			PD10.DF_SPE_ACC_ID = @AccountNumber 
+	END
+ELSE
+	BEGIN
+		SELECT 
+			CASE WHEN Defer.LC_DFR_STA = 'A' AND Defer.LD_CRT_REQ_DFR = CAST(Defer.LF_LST_DTS_DF10 AS DATE) THEN 'Approved' --same create/last updated date
+				 WHEN Defer.LC_DFR_STA = 'A' AND Defer.LD_CRT_REQ_DFR != CAST(Defer.LF_LST_DTS_DF10 AS DATE) THEN 'Adjusted' --Changed as last updated was not create date
+				 ELSE 'Denied'
+			END AS [Action],
+			COALESCE(FTT.Label, Defer.LC_DFR_TYP) AS [Type],
+			CONVERT(VARCHAR(10), Defer.LD_DFR_BEG, 101) AS [Begin Date],
+			CONVERT(VARCHAR(10), Defer.LD_DFR_END, 101) AS [End Date],
+			LN10.LN_SEQ AS [Loan Sequence],
+			COALESCE(FTL.Label, LN10.IC_LON_PGM) AS [Loan Program]
+		FROM 
+			PD10_PRS_NME PD10
+			INNER JOIN LN20_EDS LN20
+				ON LN20.LF_EDS = PD10.DF_PRS_ID
+				AND LN20.LC_STA_LON20 = 'A'
+				AND LN20.LC_EDS_TYP = 'M' --Coborrower
+			INNER JOIN LN10_LON LN10 
+				ON LN10.BF_SSN = LN20.BF_SSN
+				AND LN10.LN_SEQ = LN20.LN_SEQ
+			INNER JOIN
+			(
+				SELECT DISTINCT
+					LN85.BF_SSN,
+					LN85.LN_SEQ
+				FROM
+					LN85_LON_ATY LN85
+					INNER JOIN --GETS THE ARCS ON THE SAME DAY AS THE MOST RECENT ARC
+					(
+						SELECT DISTINCT
+							AY10.BF_SSN,
+							AY10.LN_ATY_SEQ
+						FROM 
+							AY10_BR_LON_ATY AY10
+							INNER JOIN PD10_PRS_NME PD10
+								ON PD10.DF_PRS_ID = AY10.BF_SSN
+							INNER JOIN LN20_EDS LN20
+								ON LN20.BF_SSN = AY10.BF_SSN
+								AND LN20.LC_EDS_TYP = 'M'
+								AND LN20.LC_STA_LON20 = 'A'
+							INNER JOIN PD10_PRS_NME PD10_COBOR
+								ON PD10_COBOR.DF_PRS_ID = LN20.LF_EDS
+							INNER JOIN
+							(
+								SELECT
+									AY10.BF_SSN,
+									MAX(CAST(AY10.LD_ATY_REQ_RCV AS DATE)) AS LD_ATY_REQ_RCV
+								FROM
+									AY10_BR_LON_ATY AY10
+									INNER JOIN LN20_EDS LN20
+										ON LN20.BF_SSN = AY10.BF_SSN
+										AND LN20.LC_EDS_TYP = 'M'
+										AND LN20.LC_STA_LON20 = 'A'
+									INNER JOIN PD10_PRS_NME PD10
+										ON PD10.DF_PRS_ID = LN20.LF_EDS
+								WHERE
+									AY10.PF_REQ_ACT = @PF_REQ_ACT
+									AND PD10.DF_SPE_ACC_ID = @AccountNumber
+								GROUP BY
+									AY10.BF_SSN
+							) MAX_AY10
+								ON AY10.BF_SSN = MAX_AY10.BF_SSN
+								AND CAST(AY10.LD_ATY_REQ_RCV AS DATE) = CAST(MAX_AY10.LD_ATY_REQ_RCV AS DATE)
+						WHERE
+							AY10.PF_REQ_ACT = @PF_REQ_ACT
+							AND PD10_COBOR.DF_SPE_ACC_ID = @AccountNumber
+					)AY10
+						ON AY10.BF_SSN = LN85.BF_SSN
+						AND AY10.LN_ATY_SEQ = LN85.LN_ATY_SEQ
+			)LN85
+				ON LN85.BF_SSN = LN10.BF_SSN
+				AND LN85.LN_SEQ = LN10.LN_SEQ
+			INNER JOIN
+			(
+				SELECT 
+					DF10.LC_DFR_TYP,
+					LN50.LD_DFR_BEG,
+					LN50.LD_DFR_END,
+					DF10.LD_CRT_REQ_DFR,
+					DF10.LF_LST_DTS_DF10,
+					DF10.LC_DFR_STA,
+					LN50.BF_SSN,
+					LN50.LN_SEQ
+				FROM
+					LN50_BR_DFR_APV LN50
+					INNER JOIN DF10_BR_DFR_REQ DF10
+						ON DF10.BF_SSN = LN50.BF_SSN
+						AND DF10.LF_DFR_CTL_NUM = LN50.LF_DFR_CTL_NUM
+					INNER JOIN 
+					(
+						SELECT
+							MAX(LN50.LD_STA_LON50) AS MaxLN50,
+							LN50.BF_SSN,
+							LN50.LN_SEQ
+						FROM
+							LN50_BR_DFR_APV LN50
+						WHERE
+							LN50.LC_STA_LON50 = 'A'
+						GROUP BY
+							LN50.BF_SSN,
+							LN50.LN_SEQ
+					) LN50Max
+						ON LN50.BF_SSN = LN50Max.BF_SSN
+						AND LN50.LN_SEQ = LN50Max.LN_SEQ
+						AND LN50Max.MaxLN50 = LN50.LD_STA_LON50
+				WHERE
+					LN50.LC_STA_LON50 = 'A'
+					AND DF10.LC_STA_DFR10 = 'A'
+					--AND DF10.LC_DFR_STA = 'A' --Denied requests are valid
+			) Defer
+				ON Defer.BF_SSN = LN10.BF_SSN
+				AND Defer.LN_SEQ = LN10.LN_SEQ
+			LEFT JOIN FormatTranslation FTT
+				ON FTT.Start = Defer.LC_DFR_TYP
+				AND FTT.FmtName = '$DEFSTA'
+			LEFT JOIN FormatTranslation FTL
+				ON FTL.Start = LN10.IC_LON_PGM
+				AND FTL.FmtName = '$LNPROG'
+		WHERE
+			PD10.DF_SPE_ACC_ID = @AccountNumber 
+	END
+END

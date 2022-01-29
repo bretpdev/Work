@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <div class="jumbotron jumbotron-background font-color-white">
+        <div class="col-md-12 pull-right">
+            <h3 class="jumbotron-text">
+                Find out which seniors at your high<br />
+                school have completed the Free<br />
+                Application for Federal Student Aid<br />
+                (FAFSA) so you can provide targeted<br />
+                and personalized FAFSA assistance.
+            </h3>
+        </div>
+        @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+    </div>
+
+<div class="row" style="padding-top: 20px; padding-bottom:20px;">
+    <div class="centered">
+        <div class="image-size center-block">
+            <a href="@Url.Action("Login", "Account")" id="static-body-anchor" title="Log in to review secure student-level FAFSA data" class="links">
+                <img class="image-size img-circle" src="~/Images/Login_Image.png" />
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 centered">
+        <a href="@Url.Action("Login", "Account")" id="static-body-anchor" title="Log in to review secure student-level FAFSA data" class="links">
+            <h2 class="font-color-light-blue"><b>Log in</b></h2>
+        </a>
+        <p class="font-color-black">
+            <b style="font-size: 18px;">
+                to review secure student-<br />
+                level FAFSA data
+            </b>
+        </p>
+    </div>
+</div>
+<div>
+    @{
+        Html.RenderPartial("~/Views/Shared/_EducatorAccountInfo.cshtml");
+    }
+</div>
+<div>
+    <p class="font-color-black centered" style="font-size:20px;">
+        <strong>Looking for FAFSA completion data from previous years? Visit the </strong>
+        <a href="https://studentaid.gov/data-center/student/application-volume/fafsa-completion-high-school" class="font-color-light-blue-link">Federal Student Aid archive</a>
+    </p>
+</div>

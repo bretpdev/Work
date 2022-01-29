@@ -1,0 +1,146 @@
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+/*%LET TBLLIB = /sas/whse/progrevw;*/
+%LET RPTLIB = T:/SAS;
+%LET TBLLIB = Q:/Process Automation/TabSAS;
+FILENAME REPORTZ "&RPTLIB/ULWR07.LWR07RZ";
+FILENAME REPORT2 "&RPTLIB/ULWR07.LWR07R2";
+LIBNAME  WORKLOCL  REMOTE  SERVER=DUSTER  SLIBREF=WORK;
+
+/*INPUT LOAN TYPES FOR PRIVATE AND FFEL LOANS*/
+DATA LOAN_TYPES;
+	FORMAT LN_TYP LN_PGM $50.;
+	INFILE "&TBLLIB/GENR_REF_LoanTypes.txt" DLM=',' MISSOVER DSD;
+	INFORMAT LN_TYP LN_PGM $50.;
+	INPUT LN_TYP LN_PGM ;
+	LN_PGM = UPCASE(LN_PGM);
+RUN;
+/*CREATE MACRO VARIALBE LISTS OF LOAN PROGRAMS(FFEL AND PRIVATE LOANS)*/
+PROC SQL NOPRINT;
+	SELECT "'"||TRIM(LN_TYP)||"'" 
+		INTO :FFELP_LIST SEPARATED BY "," /*FFEL LOAN LIST*/
+	FROM LOAN_TYPES
+	WHERE LN_PGM = 'FFEL';
+
+	SELECT "'"||TRIM(LN_TYP)||"'" 
+		INTO :PRIVATE_LIST SEPARATED BY "," /*PRIVATE LOAN LIST*/
+	FROM LOAN_TYPES
+	WHERE LN_PGM ^= 'FFEL';
+QUIT;
+
+%SYSLPUT FFELP_LIST = &FFELP_LIST;
+%SYSLPUT PRIVATE_LIST = &PRIVATE_LIST;
+
+RSUBMIT;
+
+%macro sqlcheck ;
+  %if  &sqlxrc ne 0  %then  %do  ;
+    data _null_  ;
+            file reportz notitles  ;
+            put @01 " ********************************************************************* "
+              / @01 " ****  The SQL code above has experienced an error.               **** "
+              / @01 " ****  The SAS should be reviewed.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  The SQL error code is  &sqlxrc  and the SQL error message  **** "
+              / @01 " ****  &sqlxmsg   **** "
+              / @01 " ********************************************************************* "
+            ;
+         run  ;
+  %end  ;
+%mend  ;
+
+
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DEMO AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT	DISTINCT
+		E.DF_SPE_ACC_ID
+		,A.LN_SEQ
+		,E.DM_PRS_LST 
+		,A.LD_FAT_EFF 
+		,A.LA_FAT_CUR_PRI 
+		,D.LD_DSB
+		,D.LC_STA_LON15
+		,D.LC_DSB_TYP
+		,G.LF_RMT_BCH_USR_INI
+FROM 	OLWHRM1.LN90_FIN_ATY A
+		INNER JOIN OLWHRM1.LN94_LON_PAY_FAT B
+      		ON A.BF_SSN = B.BF_SSN
+      		AND A.LN_SEQ = B.LN_SEQ
+      		AND A.LN_FAT_SEQ = B.LN_FAT_SEQ
+		INNER JOIN OLWHRM1.RM40_RMT_LON_TGT C
+			ON B.LD_RMT_BCH_INI = C.LD_RMT_BCH_INI   
+			AND B.LC_RMT_BCH_SRC_IPT = C.LC_RMT_BCH_SRC_IPT
+			AND B.LN_RMT_BCH_SEQ = C.LN_RMT_BCH_SEQ
+			AND B.LN_RMT_SEQ = C.LN_RMT_SEQ
+			AND B.LN_RMT_ITM = C.LN_RMT_ITM
+			AND B.LN_RMT_ITM_SEQ = C.LN_RMT_ITM_SEQ
+			AND B.BF_SSN = C.BF_SSN
+			AND B.LN_SEQ = C.LN_SEQ
+		INNER JOIN OLWHRM1.LN15_DSB D
+			ON C.BF_SSN = D.BF_SSN
+			AND C.LN_BR_DSB_SEQ = D.LN_BR_DSB_SEQ
+		INNER JOIN OLWHRM1.PD10_PRS_NME E
+			ON A.BF_SSN = E.DF_PRS_ID
+		INNER JOIN OLWHRM1.LN10_LON F
+			ON B.BF_SSN = F.BF_SSN
+			AND B.LN_SEQ = F.LN_SEQ
+		INNER JOIN OLWHRM1.RM10_RMT_BCH G
+			ON C.LD_RMT_BCH_INI = G.LD_RMT_BCH_INI
+			AND C.LC_RMT_BCH_SRC_IPT = G.LC_RMT_BCH_SRC_IPT
+			AND C.LN_RMT_BCH_SEQ = G.LN_RMT_BCH_SEQ
+where	A.PC_FAT_TYP = '10'
+		AND A.PC_FAT_SUB_TYP = '41'
+		AND F.LC_STA_LON10 = 'R'
+		AND A.LC_STA_LON90 = 'A'
+		AND A.LC_FAT_REV_REA = ''
+		AND D.LC_STA_LON15 IN ('1','3')
+		AND D.LC_DSB_TYP = '2'
+		AND F.LC_STA_LON10 <> 'D'
+		AND ((DAYS(A.LD_FAT_EFF) > DAYS(D.LD_DSB) + 120 AND F.IC_LON_PGM IN (&FFELP_LIST))
+		OR DAYS(A.LD_FAT_EFF) > DAYS(D.LD_DSB) + 30 AND F.IC_LON_PGM IN (&PRIVATE_LIST))
+
+FOR READ ONLY WITH UR
+)
+;
+DISCONNECT FROM DB2;
+
+/*%put  sqlxrc= >>> &sqlxrc <<< ||| sqlxmsg= >>> &sqlxmsg >>> ;  ** includes error messages to SAS log  ;*/
+/*%sqlcheck;*/
+/*quit;*/
+
+ENDRSUBMIT;
+
+DATA DEMO; SET WORKLOCL.DEMO;
+RUN;
+PROC SORT DATA=DEMO;
+BY DF_SPE_ACC_ID;
+RUN;
+
+DATA _NULL_;
+SET DEMO ;
+LENGTH DESCRIPTION $600.;
+USER = LF_RMT_BCH_USR_INI;
+ACT_DT = LD_FAT_EFF;
+DESCRIPTION = CATX(',',
+	DF_SPE_ACC_ID,
+	LN_SEQ,
+	DM_PRS_LST,
+	LA_FAT_CUR_PRI,
+	PUT(LD_DSB,MMDDYY10.)
+);
+FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+FORMAT USER $10. ;
+FORMAT ACT_DT MMDDYY10. ;
+FORMAT DESCRIPTION $600. ;
+IF _N_ = 1 THEN DO;
+	PUT "USER,ACT_DT,DESCRIPTION";
+END;
+DO;
+   PUT USER $ @;
+   PUT ACT_DT @;
+   PUT DESCRIPTION $ ;
+END;
+RUN;

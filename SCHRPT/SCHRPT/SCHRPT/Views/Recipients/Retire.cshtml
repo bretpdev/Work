@@ -1,0 +1,23 @@
+﻿@model Recipient
+@{
+    ViewBag.Title = "Retire Recipient";
+}
+
+<h2>Really Retire this Recipient?</h2>
+<p>
+    Recipient retirement can only be reverted by DCR.
+</p>
+<p>
+    Recipient Name: @Model.Name
+    <br />
+    Recipient Email: @Model.Email
+    <br />
+    Company Name: @Model.CompanyName
+</p>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(o => o.RecipientId)
+    @Html.HiddenFor(o => o.Name)
+    <input type="submit" value="Retire this School" />
+}
+

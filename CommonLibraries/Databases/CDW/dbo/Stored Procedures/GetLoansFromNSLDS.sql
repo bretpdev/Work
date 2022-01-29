@@ -1,0 +1,22 @@
+﻿CREATE PROCEDURE [dbo].[GetLoansFromNSLDS]
+	@SSN CHAR(9),
+	@TESTMODE BIT,
+	@SpouseIndicator bit
+AS
+	DECLARE @QUERY VARCHAR(MAX), @TSQL VARCHAR(MAX)
+	IF @TESTMODE = 1
+	SELECT @TSQL = 'SELECT @SpouseIndicator, P.* FROM OPENQUERY(LEGEND_TEST_VUK3,'
+	ELSE
+		SELECT @TSQL = 'SELECT * FROM OPENQUERY(LEGEND,'
+	  SELECT  @QUERY = @TSQL + 
+	  '''
+		SELECT
+			GRSP.IC_LON_PGM AS LoanType,
+			GRSP.LF_CUR_SER AS OwnerLender,
+			(GRSP.LA_CUR_PRI + GRSP.WA_TOT_BRI_OTS) AS OutstandingBalance,
+			GRSP.LR_ITR AS InterestRate
+		WHERE 
+			GRSP.DF_PRS_ID = ''''' + @SSN + '''''
+	   '') P'
+      EXEC (@QUERY)
+RETURN 0

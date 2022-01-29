@@ -1,0 +1,3 @@
+﻿CREATE USER [UHEAA\psnyder] FOR LOGIN [UHEAA\psnyder]
+    WITH DEFAULT_SCHEMA = [UHEAA\psnyder];
+

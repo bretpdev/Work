@@ -1,0 +1,140 @@
+#chatviewer-queue-container {
+    margin: 10px 10px 40px;
+    width: 100%;
+    text-align: center;
+}
+
+#chatviewer-queue-welcome-message {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#chatviewer-queue-container table {
+    margin: 0 auto;
+}
+
+#chatviewer-queue-selection-picker {
+    margin: 10px;
+    width: 400px;
+}
+
+.chat-queue-card {
+    display: inline-block;
+    width: 250px;
+    height: 95px;
+    margin: 12px;
+    padding: 0 0 5px;
+    text-align: center;
+    font-family: Segoe UI;
+    font-size: 11px;
+    background-color: White;
+    border: 1px solid #999;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px #dddddd;
+}
+
+.chat-queue-card.disabled {
+    box-shadow: none;
+    background-color: #efefef;
+    color: #999;
+}
+
+.chat-queue-card .queue-card-statusbar {
+    margin: 0 auto 2px;
+    width: 100%;
+    height: 4px;
+    background-color: #00EA00;
+}
+
+.chat-queue-card .queue-card-statusbar.open {
+    background-color: #00EA00;
+}
+
+.chat-queue-card .queue-card-statusbar.closed {
+    background-color: #A0957E;
+}
+
+.chat-queue-card .queue-card-statusbar.error {
+    background-color: #ED143D;
+}
+
+#chatviewer-queue-message-row {
+    clear: both;
+    margin: 16px auto;
+    font-size: 18px;
+    color: #ED143D;
+}
+
+.queue-card-icon {
+    float: left;
+    margin: 6px 6px 0;
+    max-width: 64px;
+    min-width: 15px;
+    height: 64px;
+}
+
+.chat-queue-card .row {
+    margin: 0 auto;
+    width: 90%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.chat-queue-card .row-with-icon {
+    padding-left: 9px;
+    padding-right: 5px;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.chat-queue-card .queue-card-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.chat-queue-card .queue-card-status {
+    
+}
+
+.chat-queue-card .queue-card-message {
+    display: block;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+    height: 28px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.chat-queue-card .queue-card-actions {
+    
+}
+
+.chat-queue-card .queue-card-chatbutton {
+/*    display: inline-block;*/
+    float: right;
+    margin-right: 10px;
+    padding: 0 8px;
+    line-height: 22px;
+    border-radius: 5px;
+    background-color: #DDD;
+}
+
+.chat-queue-card .queue-card-chatbutton:hover {
+    background-color: #00EA00;
+    cursor: pointer;
+}
+
+img.chatbutton {
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    margin-right: 6px;
+    width: 16px;
+    height: 16px;
+    content: url("../images/chat.png");
+    background: url("../images/chat.png") center center no-repeat; /* For firefox & IE */
+    background-size: contain;
+}

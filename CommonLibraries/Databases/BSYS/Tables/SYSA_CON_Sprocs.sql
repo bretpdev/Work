@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[SYSA_CON_Sprocs] (
+    [Sproc] VARCHAR (100) NOT NULL,
+    CONSTRAINT [PK_SYSA_CON_Sprocs] PRIMARY KEY CLUSTERED ([Sproc] ASC)
+);
+

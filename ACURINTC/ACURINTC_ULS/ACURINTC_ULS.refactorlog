@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="7334b561-410f-4f18-a722-5ecb8ba60d32" ChangeDateTime="04/20/2017 17:46:10">
+    <Property Name="ElementName" Value="[dbo].[QueueInfo].[Subqueue]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[QueueInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubQueue" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2fe75933-5541-4b9c-8661-179410529a96" ChangeDateTime="04/20/2017 17:47:58">
+    <Property Name="ElementName" Value="[dbo].[Processors].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Processors]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessorId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e39d824d-7397-4425-86fa-bb59e50cacb5" ChangeDateTime="04/21/2017 17:47:27">
+    <Property Name="ElementName" Value="[dbo].[DemographicsSources].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DemographicsSources]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DemographicsSourceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="40d8ddec-2c7f-4a9e-bdd9-66770d3a82ab" ChangeDateTime="04/21/2017 17:49:40">
+    <Property Name="ElementName" Value="[acurintc].[RejectActions].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[acurintc].[RejectActions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RejectActionId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="36215a04-589c-40c3-bfc0-e03fc3a9a295" ChangeDateTime="04/21/2017 17:51:15">
+    <Property Name="ElementName" Value="[acurintc].[RejectActions].[Demographics]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[acurintc].[RejectActions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DemographicsSourceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d2c1736a-88f1-47db-8e8c-2fc3944f5579" ChangeDateTime="04/21/2017 17:54:17">
+    <Property Name="ElementName" Value="[dbo].[RejectReasons].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RejectReasons]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RejectReasonId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f01a4309-4821-4d55-9d27-93166e9e05c0" ChangeDateTime="04/27/2017 19:50:14">
+    <Property Name="ElementName" Value="[acurintc].[SystemSources].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[acurintc].[SystemSources]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SystemSourceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7a1a63ae-9960-4e10-9266-85e3644a8456" ChangeDateTime="06/26/2017 18:17:38">
+    <Property Name="ElementName" Value="[acurintc].[ProcessQueue].[x]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[acurintc].[ProcessQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OriginalHomePhone" />
+  </Operation>
+</Operations>

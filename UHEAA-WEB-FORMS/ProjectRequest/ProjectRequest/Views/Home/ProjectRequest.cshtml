@@ -1,0 +1,75 @@
+﻿@model ProjectRequest.Models.ProjectRequest
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2>
+        Project Request Form
+    </h2>
+    <div class="row">
+        <div class="col-md-9">
+            <h4>Project Name:</h4> @Html.TextBox("ProjectName", null, new { @class = "form-control" })</br>
+            <h4>Submitted By:</h4> @Html.TextBox("SubmittedBy", null, new { @class = "form-control" })</br>
+            <h4>Department:</h4> @Html.TextBox("Department", null, new { @class = "form-control" })</br>
+            <h4>Date:</h4> @Html.TextBox("Date", null, new { @class = "form-control" })</br> 
+        </div>
+        <div class="col-md-3">
+            <img style="width: 200px; height: 120px" src="~/Images/UHEAA.jpg">
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <br/>
+            <h4>Project Summary</h4>
+            <p>
+                Describe the problem this project aims to solve or the opportunity it aims to develop.
+            </p>
+            @Html.TextArea("ProjectSummary", null, new { cols = 150, rows = 8, @class = "large-text-area form-control"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <h4>Business Need</h4>
+            <p>
+                Describe the current situation that is prompting the project to be requested and the impact this request would have on the business.
+            </p>
+            @Html.TextArea("BusinessNeed", null, new { cols = 150, rows = 8, @class = "large-text-area form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <h4>Benefits</h4>
+            <p>
+                List the benefits that this project will bring to the organization, taking into consideration Metrics, Customers, Internal People, Business Strategy and Competitiveness, Compliance, Efficiencies.
+            </p>
+            @Html.TextArea("Benefits", null, new { cols = 150, rows = 8, @class = "large-text-area form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <h4>Implementation Approach (To Be Determined by Support Services)</h4>
+            <p>
+                List the implementation approach and resources needed to fulfill this project request.
+            </p>
+            @Html.TextArea("ProjectSummary", null, new { cols = 150, rows = 8, @class = "large-text-area form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            </br>
+            <a class="btn btn-default" href="@Url.Action("Index", "Home")">Save</a> 
+            <a class="btn btn-default" href="@Url.Action("Index", "Home")">Submit</a>
+            <a class="btn btn-default" href="@Url.Action("Index", "Home")">Close</a>
+        </div>
+    </div>
+</body>
+</html>

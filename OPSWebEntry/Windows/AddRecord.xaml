@@ -1,0 +1,72 @@
+﻿<ops:TitleWindow x:Class="OPSWebEntry.AddRecord"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ops="clr-namespace:OPSWebEntry"
+        Title="Add Payment" SizeToContent="WidthAndHeight">
+    <Grid Margin="5">
+        <Grid.Resources>
+            <Style TargetType="{x:Type ops:ExtendedTextBox}">
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="Width" Value="150" />
+                <Setter Property="Height" Value="24" />
+            </Style>
+            <Style TargetType="{x:Type ComboBox}">
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="Width" Value="150" />
+                <Setter Property="Height" Value="24" />
+            </Style>
+            <Style TargetType="{x:Type ops:ExtendedLabel}">
+                <Setter Property="HorizontalContentAlignment" Value="Right" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <ops:ExtendedLabel GridPos="0,0">SSN</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,0" x:Name="SSNText" />
+        
+        <ops:ExtendedLabel GridPos="0,1">Name</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,1" x:Name="NameText" />
+
+        <ops:ExtendedLabel GridPos="0,2">DOB</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,2" x:Name="DOBText" />
+
+        <ops:ExtendedLabel GridPos="0,3">Bank Routing #</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,3" x:Name="ABAText" />
+
+        <ops:ExtendedLabel GridPos="0,4">Bank Acct #</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,4" x:Name="AccountNumberText" />
+
+        <ops:ExtendedLabel GridPos="0,5">Account Type</ops:ExtendedLabel>
+        <ComboBox x:Name="AccountTypeBox" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5">
+            <ComboBoxItem>Checking</ComboBoxItem>
+            <ComboBoxItem>Savings</ComboBoxItem>
+        </ComboBox>
+
+        <ops:ExtendedLabel GridPos="0,6">Amount</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,6" x:Name="AmountText" />
+
+        <ops:ExtendedLabel GridPos="0,7">Effective Date</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,7" x:Name="EffectiveDateText" />
+
+        <ops:ExtendedLabel GridPos="0,8">Acct Holder Name</ops:ExtendedLabel>
+        <ops:ExtendedTextBox GridPos="1:2,8" x:Name="HolderNameText" />
+
+        <Button x:Name="CancelButton" Grid.Column="0" Grid.Row="9" Click="CancelButton_Click">Cancel</Button>
+        <Button x:Name="AddButton" Grid.Column="2" Grid.Row="9" Click="AddButton_Click">Add Payment</Button>
+    </Grid>
+</ops:TitleWindow>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f7ab9e70-78b5-4093-a9fa-d734b02323a1" ChangeDateTime="02/24/2016 18:08:24">
+    <Property Name="ElementName" Value="[dbo].[ExemptLoanStatuses].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExemptLoanStatuses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExemptLoanStatusId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="60d933d0-4fa7-408a-b6f0-6e67b4cf2ddb" ChangeDateTime="02/24/2016 18:10:06">
+    <Property Name="ElementName" Value="[monitor].[ExemptForbearanceTypes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[monitor].[ExemptForbearanceTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExemptForbearanceTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9d5eaa5a-76b3-4ef4-b77f-fe04fdfacbf7" ChangeDateTime="02/24/2016 18:11:03">
+    <Property Name="ElementName" Value="[dbo].[ExemptScheduleTypes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExemptScheduleTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExemptScheduleTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2f3a1607-9f5f-413c-ae26-be7bb111d489" ChangeDateTime="02/24/2016 18:25:59">
+    <Property Name="ElementName" Value="[dbo].[ExemptScheduleTypes].[Schedule]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExemptScheduleTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ScheduleName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c3e79712-7c02-4edf-8e71-5b3650217179" ChangeDateTime="02/24/2016 18:28:28">
+    <Property Name="ElementName" Value="[dbo].[ExemptSetupArcs].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExemptSetupArcs]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExemptSetupArcId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a84038ad-d5e2-42d8-95e2-be6f6932c6ca" ChangeDateTime="02/24/2016 18:59:09">
+    <Property Name="ElementName" Value="[dbo].[ExemptSetupArcs].[ArcCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ExemptSetupArcs]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Queue" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d149c11a-54c0-40d5-b10c-eb16563980c5" ChangeDateTime="02/24/2016 21:06:03">
+    <Property Name="ElementName" Value="[dbo].[MonitorProc].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MonitorProc]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MonitorProcId" />
+  </Operation>
+</Operations>

@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>LSLETTERSU - @ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery/")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <header>
+        <a href="/" title="Home">
+            <h1>UHEAA Loan Servicing Letters</h1>
+        </a>
+        @if (Request.LogonUserIdentity.Name != "")
+        {
+            <ul style="text-align:right;">
+                <li>
+                    @Html.Label("Hello " + Request.LogonUserIdentity.Name.Replace(@"UHEAA\", "") + "!")
+                </li>
+            </ul>
+        }
+    </header>
+    @RenderBody()
+    <br /><br />
+    <hr />
+    <p>LSLETTERSU - @ViewContext.Controller.GetType().Assembly.GetName().Version</p>
+</body>
+</html>

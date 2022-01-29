@@ -1,0 +1,78 @@
+﻿@model PriorityRequestsModel
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+<script type="text/javascript">
+    initialRequestData = @(Html.Raw(Json.Encode(Model.Requests)));
+    initialCourtData = @(Html.Raw(Json.Encode(Model.CourtRequests ?? new List<PriorityRequest>())));
+    $(function () {
+        HandlebarsIntl.registerWith(Handlebars);
+        template = Handlebars.compile($("#request-template").html());
+        headerTemplate = Handlebars.compile($('#table-header-template').html());
+        updown = new UpDown(true);
+        dragdrop = new DragDrop(true, updown, headerTemplate);
+        scheduler = new SchedulerSync(init);
+        init(initialRequestData);
+    });
+
+    function init(requestData) {
+        var table = $("#request-table");
+        //table.find(":not(.table-header)").remove();
+
+        table.append(headerTemplate());
+        if (requestData.length > 0)
+            requestData.forEach(function (request) {
+                table.append(template(request));
+            });
+        else {
+            table.find('tr:gt(0)').remove();
+            table.find('th').html("No Open Requests Available");
+        }
+
+        updown.init();
+        dragdrop.init();
+        scheduler.init();
+    }
+
+</script>
+<script type="text/template" id="request-template">
+    <tr data-priority-id="{{RequestPriorityId}}">
+        <td class="pty-col">{{Priority}}</td>
+        <td class="type-col">{{RequestType}}</td>
+        <td class="id-col">{{RequestId}}</td>
+        <td class="name-col">{{Name}}</td>
+        <td class="status-col">{{Status}}</td>
+        <td class="time-col">{{DevBeginString}}</td>
+        <td class="time-col">{{DevEndString}}</td>
+        <td class="time-col">{{TestBeginString}}</td>
+        <td class="time-col">{{TestEndString}}</td>
+        <td class="updown">
+            <img alt="Up" class="up" src="/Content/images/up-icon.png" />
+            <img alt="Down" class="down" src="/Content/images/down-icon.png" />
+        </td>
+        <td class="assign-court"><a href="/Scheduler/MoveToMyCourt?requestId={{RequestId}}&requestType={{RequestType}}">Move to my Court</a></td>
+    </tr>
+</script>
+<script type="text/template" id="table-header-template">
+    <tr class="header">
+        <th class="pty-col">Pty.</th>
+        <th class="type-col">Type</th>
+        <th class="id-col">ID</th>
+        <th class="name-col">Name</th>
+        <th class="status-col">Status</th>
+        <th class="time-col">DevBegin</th>
+        <th class="time-col">DevEnd</th>
+        <th class="time-col">TestBegin</th>
+        <th class="time-col">TestEnd</th>
+        <th class="updown"></th>
+        <th class="assign-court"></th>
+    </tr>
+</script>
+<table id="request-table" class="request-table">
+</table>
+<div class="workspace-background">
+</div>
+<div class="workspace">
+    <h2>Workspace</h2>
+    <table class="request-table"></table>
+</div>

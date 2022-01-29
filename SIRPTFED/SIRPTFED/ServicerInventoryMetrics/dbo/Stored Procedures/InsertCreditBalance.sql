@@ -1,0 +1,79 @@
+﻿CREATE PROCEDURE [dbo].[InsertCreditBalance]
+	AS
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+DELETE FROM ServicerInventoryMetrics.dbo.CreditBalance
+
+;WITH Transactions (DF_SPE_ACC_ID, LN_SEQ, LN_FAT_SEQ, LA_FAT_CUR_PRI, LD_FAT_APL)
+AS
+(
+	SELECT
+		PD10.DF_SPE_ACC_ID, 
+		FH.LN_SEQ, 
+		FH.LN_FAT_SEQ, 
+		FH.LA_FAT_CUR_PRI,
+		FH.LD_FAT_APL
+	FROM
+		CDW..PD10_PRS_NME PD10
+		INNER JOIN CDW..LN90_FIN_ATY FH
+			ON FH.BF_SSN = PD10.DF_PRS_ID
+		INNER JOIN 
+		(
+			SELECT DISTINCT
+				LN10.BF_SSN,
+				TOT.LA_CUR_PRI
+			FROM
+				CDW..LN10_LON LN10
+				INNER JOIN 
+				(
+					SELECT
+						LN10.BF_SSN,
+						SUM(LN10.LA_CUR_PRI) AS LA_CUR_PRI
+					FROM 
+						CDW..LN10_LON LN10
+					WHERE
+						LN10.LC_STA_LON10 = 'R'
+					GROUP BY
+						LN10.BF_SSN
+				) TOT
+					ON LN10.BF_SSN = TOT.BF_SSN
+			WHERE
+				TOT.LA_CUR_PRI < -4.99
+				AND LN10.LC_STA_LON10 = 'R'
+		) LN10
+			ON FH.BF_SSN = LN10.BF_SSN
+	WHERE
+		COALESCE(FH.LC_FAT_REV_REA,'') = '' -- not a reversal
+		AND FH.LC_STA_LON90 = 'A'
+)
+INSERT INTO ServicerInventoryMetrics.dbo.CreditBalance
+   (DF_SPE_ACC_ID, 
+	LN_SEQ,
+	RunningTotal,
+	LD_FAT_APL,
+	LN_FAT_SEQ)
+SELECT
+	RT.DF_SPE_ACC_ID, 
+	RT.LN_SEQ,
+	RT.RunningTotal,
+	RT.LD_FAT_APL,
+	MIN(RT.LN_FAT_SEQ) [min_LN_FAT_SEQ]
+FROM
+	( -- Running Total
+		SELECT
+			T.DF_SPE_ACC_ID, 
+			T.LN_SEQ, 
+			T.LN_FAT_SEQ,
+			T.LD_FAT_APL,
+			T.LA_FAT_CUR_PRI,
+			RunningTotal = (SELECT SUM(LA_FAT_CUR_PRI) FROM Transactions WHERE DF_SPE_ACC_ID = T.DF_SPE_ACC_ID AND LN_SEQ = T.LN_SEQ AND LN_FAT_SEQ <= T.LN_FAT_SEQ)
+		FROM
+			Transactions T
+	) AS RT
+GROUP BY
+	RT.DF_SPE_ACC_ID, 
+	RT.LN_SEQ,
+	RT.LD_FAT_APL,
+	RT.RunningTotal
+HAVING
+	RT.RunningTotal < 0.00
+ORDER BY RT.DF_SPE_ACC_ID, RT.LN_SEQ

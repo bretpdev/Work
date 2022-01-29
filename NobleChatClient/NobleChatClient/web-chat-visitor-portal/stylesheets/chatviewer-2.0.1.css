@@ -1,0 +1,518 @@
+/* Loading Section */
+#chatviewer-loadingarea
+{
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+#chatviewer-loadingarea img.loading
+{
+    display: block;
+    margin: 0 auto 10px;
+    position: relative;
+    top: 3px;
+    right: 3px;
+    width: 16px; 
+    height: 16px;
+    content: url("../images/Loading2.gif");
+    background: url("../images/Loading2.gif") center center no-repeat; /* For firefox & IE */
+    background-size: contain;
+}
+
+#chatviewer-loadingarea img.error
+{
+    display: block;
+    margin: 0 auto 10px;
+    width: 24px; 
+    height: 24px;
+    content: url("../images/error24.png");
+    background: url("../images/error24.png") center center no-repeat; /* For firefox & IE */
+    background-size: contain;
+}
+
+#btnCancelLoad
+{
+    margin: 10px;
+}
+
+/* Main Chat Panel Section */
+#chatviewer-serverstatus
+{
+    padding: 10px;
+    text-align: center;
+    color:#fff;
+    background-color:#f00;
+}
+
+#chatviewer-serverstatus img.disconnected
+{
+    display: inline-block;
+    margin: 0 auto -2px;
+    width: 16px; 
+    height: 16px;
+    content: url("../images/Warning.png");
+    background: url("../images/Warning.png") center center no-repeat; /* For firefox & IE */
+    background-size: contain;
+}
+
+#chatviewer-serverstatus span
+{
+    margin-left: 10px;
+}
+
+#chatviewer-chatpanel {
+    width: 100%;
+    height: auto;
+    border: 1px solid #aaa;
+    font-size:14px;
+    word-wrap:break-word;
+}
+
+#chatviewer-toolbar
+{
+    padding:0 0 8px 0;
+    border:0;
+    text-align:center;
+}
+
+.chatviewer-columntitle
+{
+    position:relative;
+    padding:10px;
+    height:40px;
+    font-size:16px;
+    text-align:center;
+    /*border-bottom:1px solid #ccc;*/
+    background-color:#ddd;
+    box-sizing:border-box;
+}
+
+#chatviewer-columntitle-actions /* goes in the right side of Title bar (.chatviewer-columntitle) */
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 7px 11px 0 0;
+}
+
+#chatviewer-usercolumn
+{
+    display: none;
+    float:left;
+    width:35%;
+    padding:10px 10px 0;
+    box-sizing:border-box;
+}
+
+#chatviewer-userlist span.username
+{
+    padding-left: 4px;
+}
+
+#chatviewer-userlist
+{
+    border:0;
+    height: 400px;
+    overflow: auto;
+}
+
+.chatviewer-messagecolumn, #chatviewer-messagecolumn
+{
+    float:left;
+    width:100%;
+    height: calc(100% - 110px); /* The "110px" in "calc(100% - 110px)" comes from .columntitle's height of 40px, .messagebarcontainer's height of 46px and padding of 12px (x2) */
+    padding:0px;
+    text-align:left;
+    box-sizing:border-box;
+}
+
+#chatviewer-sendemailbutton, #chatviewer-closebutton, #chatviewer-printbutton
+{
+    margin-left:10px;
+    height: 28px;
+    min-width: 60px;
+}
+
+#chatviewer-messagelist
+{
+	position: absolute;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+	width: 100%;
+    height: calc(100% - 110px); /* The "110px" in "calc(100% - 110px)" comes from .columntitle's height of 40px, .messagebarcontainer's height of 46px and padding of 12px (x2) */
+    overflow-y: scroll;
+    border-spacing:0 5px;
+    box-sizing:border-box;
+}
+
+#chatviewer-contentarea
+{
+    min-height: 400px;
+    height: 100%;
+}
+
+.chatviewer-messagecontainer
+{
+    display:table;
+    width: 100%;
+}
+
+.chatviewer-messageheader
+{
+    display:table-cell;
+    padding:5px 9px;
+    width:225px;
+    /*font-weight:bold;*/
+    color:#fff;
+    word-break:break-all;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    box-sizing:border-box;
+}
+
+.chatviewer-messageheader-privatemessage
+{
+    outline:1px dashed #fff;
+    outline-offset:-2px;
+}
+
+.chatviewer-messagefrom, .chatviewer-messagedate
+{    
+    display: inline-block;
+    font-size:11px;
+    color:#fff;    
+    width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatviewer-messagedate
+{
+    font-style:italic;
+}
+
+.chatviewer-message
+{
+    display:table-cell;
+    padding:5px;
+}
+
+.chatviewer-messageheader-special
+{
+    float:right;
+    font-weight:bold;
+    font-style:italic;
+    color:#fff;
+}
+
+#chatviewer-messagebarcontainer
+{
+    position: absolute;
+    bottom: 0;
+    padding: 12px 0;
+    width: 100%;
+    height: 46px;
+    text-align: center;
+    background-color: #ddd;
+}
+
+#chatviewer-messagebar
+{
+    margin: 0 10px;
+    width: calc(100% - 200px);
+    height: 2.6em;
+    padding-left:20px;
+}
+
+#chatviewer-messagesubmitbutton
+{
+    height: 40px;
+    padding: 0 14px;
+}
+
+/* USER ICONS */
+.chatviewer-usericon
+{
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    width:32px;
+    height:32px;
+}
+
+.chatviewer-icon-agent
+{
+    background: url("../images/agent.png") center center no-repeat;
+}
+
+.chatviewer-icon-customer
+{
+    background: url("../images/customer.png") center center no-repeat;
+}
+
+.chatviewer-icon-manager
+{
+    background: url("../images/manager.png") center center no-repeat;
+}
+
+.chatviewer-icon-admin
+{
+    background: url("../images/system.png") center center no-repeat;
+}
+
+/* USER TYPE COLORS */
+.chatviewer-color-agent
+{
+    background-color:#5F9EA0;
+}
+
+.chatviewer-color-customer
+{
+    background-color:#6495ED;
+}
+
+.chatviewer-color-manager
+{
+    background-color:#A52A2A;
+}
+
+.chatviewer-color-admin
+{
+    background-color:#00B82E;
+}
+
+.chatviewer-textcolor-agent
+{
+    color:#5F9EA0;
+}
+
+.chatviewer-textcolor-customer
+{
+    color:#6495ED;
+}
+
+.chatviewer-textcolor-manager
+{
+    color:#A52A2A;
+}
+
+.chatviewer-textcolor-admin
+{
+    color:#00B82E;
+}
+
+/* BORDERS */
+.chatviewer-border-privatemessage
+{
+    border-style:dashed !important;
+    border-top:0 !important;
+    word-wrap: break-word;
+}
+
+
+.chatviewer-border-agent
+{
+    border:1px solid #5F9EA0;
+    word-wrap: break-word;
+}
+
+.chatviewer-border-customer
+{
+    border:1px solid #6495ED;
+    word-wrap: break-word;
+}
+
+.chatviewer-border-manager
+{
+    border:1px solid #A52A2A;
+    word-wrap: break-word;
+}
+
+.chatviewer-border-admin
+{
+    border:1px solid #00B82E;
+    word-wrap: break-word;
+}
+
+/* OTHERS/OVERRIDES */
+.chatviewer-message a
+{
+    font-weight:bold;
+    color:crimson;
+}
+
+#chatviewer ul
+{
+    list-style: none;
+}
+
+/* OVERRIDES */
+
+.k-state-active, .k-state-active:hover
+{
+    background-color: #0062AD;
+    color: #ffffff;
+}
+
+.k-sprite
+{
+    font-size:14px;
+    margin-right:3px;
+}
+
+#chatviewer-messagecolumn .k-dropdown.k-header
+{
+    position:relative;
+    top:-29px;
+    margin-left:5px;
+    padding:1px 0 1px 4px;
+    width:65px;
+    color:#fff;
+    font-weight:bold;
+    background-color:#B8C1CA;
+    border-radius:4px;
+    box-sizing:border-box;
+}
+#chatviewer-messagecolumn .k-dropdown-wrap
+{
+    background:none !important;
+    border:0 !important;
+    padding: 0 !important;
+}
+#chatviewer-messagecolumn .k-dropdown-wrap .k-input
+{
+    color:#fff;
+    font-weight:bold;
+}
+#chatviewer-messagecolumn .k-dropdown-wrap .k-icon.k-i-arrow-s
+{
+    position: relative;
+    top: 9px;
+    width: 0px;
+    height: 0px;
+    background: none;
+    border-top: 5px solid white;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
+
+/* TABLE LAYOUT */
+/*#chatviewer-messagecolumn.table
+{
+    height: auto;
+}
+*/
+#chatviewer-messagelist.table
+{
+    display: table-row !important;
+    border: 0;
+    border-spacing: 0;
+}
+
+.chatviewer-messagecontainer.table
+{
+    display: table-row;
+}
+
+.chatviewer-messageheader-table
+{
+    display:table-cell;
+}
+
+.chatviewer-usericon-table
+{
+    display: table-cell;
+    width:16px;
+    height:16px;
+    padding-right:5px;
+}
+
+.chatviewer-userstate {
+    display: table-cell;
+    width: 16px;
+    height: 16px;
+    padding-right: 5px;
+}
+
+.chatviewer-userstate .composing {
+    border-left: 1px solid black;
+}
+
+.chatviewer-messagefrom-table, .chatviewer-messagedate-table
+{    
+    display: table-cell;
+    padding: 0 5px;
+    border-left: 1px solid black;
+}
+
+.chatviewer-messagedate-table
+{
+    font-style:italic;
+    white-space: nowrap;
+}
+
+.chatviewer-message-table
+{
+    display:table-cell;
+    padding: 0 5px;
+    border-left: 1px solid black;
+}
+
+.chatviewer-icon-agent-table
+{
+    background: url("../images/agent-16.png") center center no-repeat;
+}
+
+.chatviewer-icon-customer-table
+{
+    background: url("../images/customer-16.png") center center no-repeat;
+}
+
+.chatviewer-icon-manager-table
+{
+    background: url("../images/manager-16.png") center center no-repeat;
+}
+
+.chatviewer-icon-admin-table
+{
+    background: url("../images/system-16.png") center center no-repeat;
+}
+
+table.gridtable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #333;
+    border-width: 1px;
+    border-color: #666;
+    border-collapse: collapse;
+}
+table.gridtable th {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666;
+    background-color: #dedede;
+}
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666;
+    background-color: #fff;
+}
+
+#chatviewer-recaptcha-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#chatviewer-recaptcha {
+    display: inline-block;
+}

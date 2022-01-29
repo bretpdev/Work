@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE [sscr].[GetAvailableSchools]
+AS
+	SELECT
+		IF_IST [SchoolCode]
+	FROM
+		ODW..SC01_LGS_SCL_INF
+	WHERE
+		IC_SSR_PTC = '' OR IC_SSR_PTC IS NULL

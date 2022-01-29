@@ -1,0 +1,289 @@
+OPTIONS
+        ERROR = 2
+        MISSING = ' '
+        LS=96
+        PS=54
+        ;
+
+
+/*DATA NULLRPT;*/
+/*   set say.sayings;*/
+/*   if monum = day(date());*/
+/*       RUN;*/
+
+DATA _NULL_;
+	EFFDT = TODAY();
+	IF WEEKDAY(DATE()) = 1 THEN DO;
+	EFFDT = TODAY()- 2;
+    CALL SYMPUT('EFFDATE',put(EFFDT,MMDDYY10.));
+	CALL SYMPUT('RUNDATE',"'"||put(EFFDT,MMDDYY10.)||"'");
+	END;
+	ELSE DO;
+	   	EFFDT = TODAY()- 1;
+    	CALL SYMPUT('EFFDATE',put(EFFDT,MMDDYY10.));
+		CALL SYMPUT('RUNDATE',"'"||put(EFFDT,MMDDYY10.)||"'");
+	END;
+	IF WEEKDAY(DATE()) = 2 THEN DO;
+		EFFDT = TODAY()- 3;
+    	CALL SYMPUT('EFFDATE',put(EFFDT,MMDDYY10.));
+		CALL SYMPUT('RUNDATE',"'"||put(EFFDT,MMDDYY10.)||"'");
+	END;
+	CALL SYMPUT('RUNDT',PUT(DATE()-1,MMDDYY10.));
+RUN;
+%SYSLPUT RUNDATE = &RUNDATE;
+%SYSLPUT EFFDATE = &EFFDATE;
+%SYSLPUT RUNDT = &RUNDT;
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+/**/
+/*FILENAME REPORT2 "&RPTLIB/ULWF01.LWF01R2" ;*/
+/*libname say '/sas/whse/finmgmt';*/
+
+/*FILENAME REPORT2 "C:/WINDOWS/TEMP/ULWF01.LWF01R2";*/
+
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+
+
+PROC SQL;
+connect to db2(database=DLGSUTWH);
+CREATE TABLE one AS
+select  *  
+from connection to db2(
+SELECT  A.LC_TRX_TYP
+       ,A.LC_RCI_TYP
+       ,a.lc_rev_ind_typ
+       ,A.LA_TRX
+       ,A.LD_TRX_ADJ
+       ,a.bf_ssn
+       ,a.bd_trx_pst_hst
+       ,a.la_apl_pri
+       ,a.la_apl_int
+       ,a.la_apl_leg_cst
+       ,a.la_apl_col_cst
+       ,a.la_apl_oth_chr
+       ,b.lf_clm_id
+       ,B.LC_CLM_LON_TYP
+       ,B.LA_TOT_ITL_CLM_PD
+       ,B.LA_PRI_COL
+       ,B.LA_INT_COL
+       ,B.LA_LEG_CST_COL
+       ,B.LA_OTH_CHR_COL
+       ,B.LA_COL_Cst_COL
+       ,b.la_col_bfr_doe_bil as iac
+       ,C.LR_DOE_RIN_PER as rin_per_01
+       ,d.lr_doe_rin_per as rin_per_04
+       ,c.la_doe_rei_agy as reinbur1
+       ,d.la_doe_rei_agy as reinbur2
+       ,c.lc_doe_lon_typ
+
+		
+
+FROM OLWHRM1.DC11_LON_FAT A INNER JOIN
+     OLWHRM1.DC01_LON_CLM_INF B ON
+        A.AF_APL_ID  = B.AF_APL_ID AND
+        A.AF_APL_ID_SFX = B.AF_APL_ID_SFX AND
+        A.LF_CRT_DTS_DC10 = B.LF_CRT_DTS_DC10 left outer join
+     OLWHRM1.DC19_DOE_RIN c ON
+        A.AF_APL_ID = c.AF_APL_ID AND
+        A.AF_APL_ID_SFX = c.AF_APL_ID_SFX AND
+        A.LF_CRT_DTS_DC10 = c.LF_CRT_DTS_DC10 and
+        b.AF_APL_ID = c.AF_APL_ID AND
+        B.AF_APL_ID_SFX = c.AF_APL_ID_SFX AND
+        B.LF_CRT_DTS_DC10 = c.LF_CRT_DTS_DC10 and
+        c.lc_rin_typ = '01' left outer join
+     OLWHRM1.DC19_DOE_RIN d ON
+        A.AF_APL_ID = d.AF_APL_ID AND
+        A.AF_APL_ID_SFX = d.AF_APL_ID_SFX AND
+        A.LF_CRT_DTS_DC10 = d.LF_CRT_DTS_DC10 and
+        b.AF_APL_ID = d.AF_APL_ID AND
+        B.AF_APL_ID_SFX = d.AF_APL_ID_SFX AND
+        B.LF_CRT_DTS_DC10 = d.LF_CRT_DTS_DC10 and
+        d.lc_rin_typ = '04' 
+WHERE (A.BD_TRX_PST_HST = &RUNDATE OR
+       A.LD_TRX_ADJ = &RUNDATE) AND
+       A.LC_TRX_TYP IN ('BR','CP','CS','EP','GP','OG','RH','SR',
+                       'TP','OC','DC','RP','OR','OV','LR','CR') and 
+       (a.lc_rci_typ = 'CR' or
+        (a.lc_rci_typ = 'DB' and
+         a.lc_rev_ind_typ in ('BC','PE'))) AND
+       C.LF_CRT_DTS_DC14 IS NULL
+        );
+        disconnect from db2;
+		ENDRSUBMIT;
+QUIT;
+DATA ONE; SET WORKLOCL.ONE; RUN;
+
+DATA DSET; 
+   SET one;
+   if bd_trx_pst_hst = &EFFDATE and
+      ld_trx_adj > bd_trx_pst_hst then do;
+      lc_rci_typ = 'CR';
+      end;
+
+   if bd_trx_pst_hst = &EFFDATE and
+      ld_trx_adj > bd_trx_pst_hst then do;
+      lc_rci_typ = 'CR';
+      end;
+   if rin_per_04 =. then do;
+      lr_doe_rin_per = rin_per_01;
+      end;
+    else do;
+      lr_doe_rin_per = rin_per_04;
+      end;
+   IF LC_TRX_TYP IN ('OR','OV') THEN DO;
+    CHECK = 'B';
+     END;
+   IF LC_TRX_TYP = 'RP' THEN DO;
+    CHECK = 'C';
+     END;
+  IF LC_TRX_TYP IN ('BR','CP','CS','EP','GP','OG','RH','SR','LR','CR',
+                       'TP','OC','DC') THEN DO;
+    CHECK = 'A';
+     END;
+   IF LC_RCI_TYP = 'DB' THEN DO;
+       LA_TRX = LA_TRX*-1;
+                 END;
+    IF CHECK = 'A' THEN DO;  
+        IF LR_DOE_RIN_PER =. or
+/*           LR_DOE_RIN_PER = ' ' OR*/	/*tp*/
+           lr_doe_rin_per = 0 THEN DO;
+         if lc_doe_lon_typ in ('TA','TU') then
+           LR_DOE_RIN_PER = 100.00;
+         else if lc_doe_lon_typ in ('XA','XU') then
+           lr_doe_rin_per = 98.00;
+         else if lc_doe_lon_typ in ('YA','YU') then
+           lr_doe_rin_per = 95.00;
+         else lr_doe_rin_per = 100.00;
+           END;
+        IF LR_DOE_RIN_PER = 1.000 THEN DO;
+           LR_DOE_RIN_PER=100.00;
+           END;
+
+        RENPER = LR_DOE_RIN_PER/100.00;
+
+        if lc_trx_typ = 'CP' then do;
+           la_trx = sum(la_apl_pri,la_apl_int);
+           FEDS1   = LA_TRX*RENPER;
+           FEDCOMP = LA_TRX - FEDS1; 
+           PHEAA = SUM(LA_apl_LEG_Cst,LA_apl_OTH_CHR,LA_apl_COL_Cst);
+           AMTAPLD =SUM(PHEAA,FEDS1,FEDCOMP);
+          end;
+        else if lc_trx_typ = 'CR' then do;
+           FEDS   = LA_TRX*RENPER;
+           FEDCOMP = LA_TRX-FEDS;  
+           pheaa = 0;
+           feds1 = feds-pheaa;
+           AMTAPLD =SUM(PHEAA,FEDS1,FEDCOMP);
+          end;
+        ELSE IF LC_TRX_TYP = 'DC' THEN DO;
+           FEDS1 = 0;
+           FEDCOMP = 0;
+           PHEAA = LA_TRX;
+           AMTAPLD = LA_TRX;
+          END;
+        else if lc_trx_typ = 'TP' then do;
+           feds = la_trx;
+           fedcomp = 0;
+           pheaa = 0;
+           feds1 = feds-pheaa;
+           AMTAPLD =SUM(PHEAA,FEDS1,FEDCOMP);
+         end;
+       ELSE DO;
+           FEDS   = LA_TRX*RENPER;
+           FEDCOMP = LA_TRX-FEDS;  
+           PHEAA = la_trx*.24;
+           FEDS1  = FEDS-PHEAA;
+           AMTAPLD =SUM(PHEAA,FEDS1,FEDCOMP);
+          END;
+         END;
+   IF CHECK = 'B' THEN DO;
+      PHEAA = LA_TRX;
+      FEDS1 = 0;
+      FEDCOMP = 0;
+      AMTAPLD = PHEAA;
+      END;
+   IF CHECK = 'C' THEN DO;
+     la_doe_rei_agy = sum(reinbur1,reinbur2);
+     collected = sum(lA_INT_COL,LA_PRI_COL,LA_LEG_CST_COL,
+                                LA_OTH_CHR_COL,LA_COL_Cst_COL);
+    if collected = iac then do;
+     fedcollct = 0;
+     feds1 = 0;
+     FEDCOMP = 0;
+     end;
+     else do;
+     fedcollct = collected-sum(la_trx,iac);
+      FEDS1=LA_doe_rei_agy-fedcollct;
+     end;
+      PHEAA=LA_TRX-FEDS1;
+      AMTAPLD=LA_TRX;
+    END;
+RUN;
+
+
+
+proc sort;
+by check bf_ssn lf_clm_id;
+ 
+run;
+proc Format;
+      value $chkfmt
+       'A' = 'Form 2000'
+       'B' = 'Overpayments'
+       'C' = 'Repurchases';
+      data credits;
+      set dset;
+      if lc_rci_typ = 'CR';
+
+      data Debits;
+      set dset;
+      if lc_rci_typ = 'DB';
+RUN;
+/*       PROC PRINTTO PRINT=REPORT2; RUN;*/
+
+OPTIONS PAGENO=1 ORIENTATION=PORTRAIT;
+OPTIONS PS=52 LS=96;
+
+
+        PROC TABULATE DATA = credits FORMAT=DOLLAR16.2;
+        VAR PHEAA FEDCOMP FEDS1 AMTAPLD;
+        class check lc_trx_typ;
+        TABLE (check=' '),(lc_trx_typ='Transaction Type' all='Total'),
+              (PHEAA='RETAINED' FEDCOMP = 'DOE COMPLEMENT' FEDS1='DEPT OF ED' AMTAPLD = 'TOTAL');
+        format check $chkfmt.;
+        KEYLABEL SUM = 'APPLIED';
+        TITLE1 'DEFAULT COLLECTIONS';
+        title2 'Credits';
+        TITLE3 "&RuNDT";
+RUN;
+
+PROC TABULATE DATA = debits FORMAT=DOLLAR16.2;
+        VAR PHEAA FEDCOMP FEDS1 AMTAPLD;
+        class check lc_rev_ind_typ lc_trx_typ;
+        TABLE (check=' '),((lc_rev_ind_typ='Debit Type')*(lc_trx_typ='Tran Type' all='Sub Total') all='Total'),
+              (PHEAA='RETAINED' FEDCOMP = 'DOE COMPLEMENT' FEDS1='DEPT OF ED' AMTAPLD = 'TOTAL');
+        format check $chkfmt.;
+        KEYLABEL SUM = 'APPLIED';
+        TITLE1 'DEFAULT COLLECTIONS';
+        title2 'Debits';
+        TITLE3 "&RuNDT";
+
+RUN;
+proc print noobs split='/' data=dset;
+        where check = 'C';
+        var bf_ssn lf_clm_id bd_trx_pst_hst la_trx la_doe_rei_agy fedcollct;
+        format bd_trx_pst_hst mmddyy10.
+               la_trx la_doe_rei_agy dollar16.2;
+        label bf_ssn = 'SS Number'
+              lf_clm_id = 'Claim ID'
+              bd_trx_pst_hst = 'Date Posted'
+              la_trx = 'Repurchase Posting'
+              fedcollct = 'Amount Collected'
+              la_doe_rei_agy = 'Amount DOE/Reimbursed Agency';
+        Title2 'Repurchase Detail';
+run;
+/*PROC PRINT noobs split='/' DATA=NULLRPT;*/
+/*var string;*/
+/*label string = 'Quote of the Day';*/
+/*RUN;*/
+

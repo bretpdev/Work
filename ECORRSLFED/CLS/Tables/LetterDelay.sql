@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[LetterDelay]
+(
+	[LetterDelayId] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Letter] VARCHAR(10) NOT NULL,
+	[Days] INT NOT NULL
+)

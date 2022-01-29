@@ -1,0 +1,8 @@
+/*To connect to legend - prod:*/
+signoff LEGEND;
+%let LEGEND = LOCALHOST 5555;
+%let region = 1 ;
+filename rlink 'X:\PADU\SAS\TCPUNIX_SSH_LEGEND.SCR'  ;
+OPTIONS REMOTE=LEGEND;
+SIGNON LEGEND;
+LIBNAME  LEGEND  REMOTE  SERVER=LEGEND  SLIBREF=WORK;

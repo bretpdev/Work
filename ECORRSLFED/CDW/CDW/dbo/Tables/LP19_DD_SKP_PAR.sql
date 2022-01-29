@@ -1,0 +1,18 @@
+﻿CREATE TABLE [dbo].[LP19_DD_SKP_PAR] (
+    [PC_STA_LPD19]     CHAR (1)      NOT NULL,
+    [IC_LON_PGM]       CHAR (6)      NOT NULL,
+    [PF_RGL_CAT]       CHAR (7)      NOT NULL,
+    [IF_GTR]           CHAR (6)      NOT NULL,
+    [PC_SKP_PRS]       CHAR (1)      NOT NULL,
+    [PC_TYP_SKP]       CHAR (1)      NOT NULL,
+    [PD_EFF_SR_LPD19]  DATE          NOT NULL,
+    [PD_STA_LPD19]     DATE          NOT NULL,
+    [PC_SKP_INI]       CHAR (2)      NOT NULL,
+    [PF_LST_USR_LP19]  CHAR (8)      NOT NULL,
+    [PD_EFF_END_LPD19] DATE          NULL,
+    [PF_LST_DTS_LP19]  DATETIME2 (7) NOT NULL,
+    [PF_BCH_LPD_CHG]   CHAR (8)      NOT NULL,
+    [PN_BR_DAY_SR_SKP] NUMERIC (3)   NULL,
+    CONSTRAINT [PK_LP19_DD_SKP_PAR] PRIMARY KEY CLUSTERED ([PC_STA_LPD19] ASC, [IC_LON_PGM] ASC, [PF_RGL_CAT] ASC, [IF_GTR] ASC, [PC_SKP_PRS] ASC, [PC_TYP_SKP] ASC, [PD_EFF_SR_LPD19] ASC)
+);
+

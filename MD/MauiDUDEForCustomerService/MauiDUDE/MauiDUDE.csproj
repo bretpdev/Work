@@ -1,0 +1,556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2AF28557-421E-41C9-BB25-40B436903FF0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MauiDUDE</RootNamespace>
+    <AssemblyName>MauiDUDE</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.DMATRIXLib">
+      <HintPath>..\..\..\Q\obj\Debug\Interop.DMATRIXLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.Reflection">
+      <HintPath>..\..\..\CommonLibraries\Dependencies\Interop.Reflection.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.RFCOMAPILib">
+      <HintPath>..\..\..\Q\obj\Debug\Interop.RFCOMAPILib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.VBA">
+      <HintPath>..\..\..\CommonLibraries\Common\Scripts\obj\Debug\Interop.VBA.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClasses\BaseUserSelectedFlow.cs" />
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataClasses\ActivityCommentToBeAdded.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\ACH\ACHInformation.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\ACH\ACHLoanData.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\ActivityHistory.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\Alert.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\Borrower.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\CallForwardingResult.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\DefermentForbearance.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\Demographics\Demographics.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\Demographics\UpdateDemoCompassIndicators.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\Demographics\UpdateDemoSystemIndicators.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\FinancialTransactionComponents\FinancialTransaction.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\FinancialTransactionComponents\FinancialTransactionWithLoanLevelDetail.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\Bill.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\Loans\ServicingLoanDetail.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\PreviousBorrower.cs" />
+    <Compile Include="DataAccess\DataClasses\Borrower\RepaymentDetail.cs" />
+    <Compile Include="DataAccess\DataClasses\CallCategorizationEntry.cs" />
+    <Compile Include="DataAccess\DataClasses\PaymentInfo.cs" />
+    <Compile Include="DataAccess\DataClasses\ReQueueData.cs" />
+    <Compile Include="DataAccess\DataClasses\UheaaBorrower\EmployerDemographics.cs" />
+    <Compile Include="DataAccess\DataClasses\UheaaBorrower\UheaaBorrower.cs" />
+    <Compile Include="Exceptions\BorrowerCanNotBeProcessedException.cs" />
+    <Compile Include="Exceptions\BorrowerNotFoundInWarehouseException.cs" />
+    <Compile Include="Exceptions\RegionNotValidException.cs" />
+    <Compile Include="Exceptions\WipeOutCancelledException.cs" />
+    <Compile Include="MdLink\FaqLinker.cs" />
+    <Compile Include="MdLink\FeedbackLinker.cs" />
+    <Compile Include="Processing\CallForwardingCalculator.cs" />
+    <Compile Include="Processing\MainMenuFlowCoordinator.cs" />
+    <Compile Include="Processing\SessionInteraction\ActivityCommentGatherer.cs" />
+    <Compile Include="Processing\SessionInteraction\AlertCoordinator.cs" />
+    <Compile Include="Processing\SessionInteraction\BrwInfo411Processor.cs" />
+    <Compile Include="Processing\SessionInteraction\Demographics\COMPASSDemographicsProcessor.cs" />
+    <Compile Include="Processing\SessionInteraction\Demographics\OneLINKDemographicsProcessor.cs" />
+    <Compile Include="Processing\SessionInteraction\Demographics\ParentSystemDemographics.cs" />
+    <Compile Include="Processing\SessionInteraction\HomePageSessionInteractionCoordinator.cs" />
+    <Compile Include="Processing\SessionInteraction\ReQueueProcessor.cs" />
+    <Compile Include="Processing\SessionInteraction\Scripts\BaseScriptRequestProcessor.cs" />
+    <Compile Include="Processing\SessionInteraction\Scripts\DeprecatedDemographics.cs" />
+    <Compile Include="Processing\SessionInteraction\Scripts\DotNetScriptProcessor.cs" />
+    <Compile Include="Processing\SessionInteraction\Scripts\ScriptProcessingConversionHelper.cs" />
+    <Compile Include="Processing\SessionInteraction\Scripts\SessionScriptProcessor.cs" />
+    <Compile Include="Processing\SessionInteraction\SessionInteractionComponents.cs" />
+    <Compile Include="Processing\SessionInteraction\UnexpectedResultsAndBrightIdeaCoordinator.cs" />
+    <Compile Include="Processing\UserFlowOptions\CloseDUDEFlow.cs" />
+    <Compile Include="Processing\UserFlowOptions\HomePageAndDemographicsOnlyFlow.cs" />
+    <Compile Include="Processing\UserFlowOptions\NoUHEAAConnectionFlow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\BrightIdeasAndUnexpectedResults\UnexpectedResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\BrightIdeasAndUnexpectedResults\UnexpectedResults.Designer.cs">
+      <DependentUpon>UnexpectedResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\BrightIdeasAndUnexpectedResults\BrightIdea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\BrightIdeasAndUnexpectedResults\BrightIdea.Designer.cs">
+      <DependentUpon>BrightIdea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\CallCategorization\CallCategorizationCommentOnly.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\CallCategorization\CallCategorizationCommentOnly.Designer.cs">
+      <DependentUpon>CallCategorizationCommentOnly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\CallCategorization\GenericCallCategorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\CallCategorization\GenericCallCategorization.Designer.cs">
+      <DependentUpon>GenericCallCategorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\DemographicsUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\DemographicsUI.Designer.cs">
+      <DependentUpon>DemographicsUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\OneLINKDemosAndCallForwarding.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\OneLINKDemosAndCallForwarding.Designer.cs">
+      <DependentUpon>OneLINKDemosAndCallForwarding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\Phone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\Phone.Designer.cs">
+      <DependentUpon>Phone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\PhoneIndicator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Demographics\PhoneIndicator.Designer.cs">
+      <DependentUpon>PhoneIndicator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePageMdi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePageMdi.Designer.cs">
+      <DependentUpon>HomePageMdi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\BorrowerBenefitsDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\BorrowerBenefitsDisplay.Designer.cs">
+      <DependentUpon>BorrowerBenefitsDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\CSExtendedHomePageDemographics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\CSExtendedHomePageDemographics.Designer.cs">
+      <DependentUpon>CSExtendedHomePageDemographics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\DefermentAndForbearanceDispaly.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\DefermentAndForbearanceDispaly.Designer.cs">
+      <DependentUpon>DefermentAndForbearanceDispaly.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\ActivityComments.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\ActivityComments.Designer.cs">
+      <DependentUpon>ActivityComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\ActivityHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\ActivityHistory.Designer.cs">
+      <DependentUpon>ActivityHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\GenericScriptAndServicesEnabled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\GenericScriptAndServicesEnabled.Designer.cs">
+      <DependentUpon>GenericScriptAndServicesEnabled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\HomePageDemographics.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\HomePageDemographics.Designer.cs">
+      <DependentUpon>HomePageDemographics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\GenericComponents\ScriptAndServiceMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\IHomePage.cs" />
+    <Compile Include="UserInterface\HomePage\LegalOtherTab\BankruptcyACPQuestionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\LegalOtherTab\BankruptcyACPQuestionsControl.Designer.cs">
+      <DependentUpon>BankruptcyACPQuestionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\LegalOtherTab\DeceasedACPQuestionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\LegalOtherTab\DeceasedACPQuestionsControl.Designer.cs">
+      <DependentUpon>DeceasedACPQuestionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\LegalOtherTab\ILegalOtherControlValidator.cs" />
+    <Compile Include="UserInterface\HomePage\PaymentHistoryComponents\PaymentHistoryDetailDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentHistoryComponents\PaymentHistoryDetailDisplay.Designer.cs">
+      <DependentUpon>PaymentHistoryDetailDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentHistoryComponents\PaymentHistoryDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentHistoryComponents\PaymentHistoryDisplay.Designer.cs">
+      <DependentUpon>PaymentHistoryDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\DueDateChangeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\DueDateChangeControl.Designer.cs">
+      <DependentUpon>DueDateChangeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\IBRCalculatorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\IBRCalculatorControl.Designer.cs">
+      <DependentUpon>IBRCalculatorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\RepaymentOptionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\RepaymentOptionsControl.Designer.cs">
+      <DependentUpon>RepaymentOptionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\RepaymentOptionsDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\RepaymentOptionsDisplay.Designer.cs">
+      <DependentUpon>RepaymentOptionsDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\ReferenceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\ReferenceControl.Designer.cs">
+      <DependentUpon>ReferenceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\ServicingLoanDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\ServicingLoanDisplay.Designer.cs">
+      <DependentUpon>ServicingLoanDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\UheaaHomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HomePage\UheaaHomePage.Designer.cs">
+      <DependentUpon>UheaaHomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\MainMenu\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\MainMenu\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\MainMenu\PreviousBorrowerDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\MainMenu\PreviousBorrowerDisplay.Designer.cs">
+      <DependentUpon>PreviousBorrowerDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\MessageBoxes\EmployerDemoDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\MessageBoxes\EmployerDemoDisplay.Designer.cs">
+      <DependentUpon>EmployerDemoDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\MessageBoxes\KnarlyDUDE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\MessageBoxes\KnarlyDUDE.Designer.cs">
+      <DependentUpon>KnarlyDUDE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\MessageBoxes\WhoaDUDE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\MessageBoxes\WhoaDUDE.Designer.cs">
+      <DependentUpon>WhoaDUDE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Misc\BrwInfo411.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Misc\BrwInfo411.Designer.cs">
+      <DependentUpon>BrwInfo411.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Misc\Hygiene.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Misc\Hygiene.Designer.cs">
+      <DependentUpon>Hygiene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Misc\ReQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Misc\ReQueue.Designer.cs">
+      <DependentUpon>ReQueue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Processing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Processing.Designer.cs">
+      <DependentUpon>Processing.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\ACHInformation.datasource" />
+    <None Include="Properties\DataSources\Borrower.datasource" />
+    <None Include="Properties\DataSources\CallCategorizationCommentOnly.datasource" />
+    <None Include="Properties\DataSources\CallCategorizationEntry.datasource" />
+    <None Include="Properties\DataSources\DefermentForbearance.datasource" />
+    <None Include="Properties\DataSources\Demographics.datasource" />
+    <None Include="Properties\DataSources\EmployerDemographics.datasource" />
+    <None Include="Properties\DataSources\FinancialTransaction.datasource" />
+    <None Include="Properties\DataSources\FinancialTransactionWithLoanLevelDetail.datasource" />
+    <None Include="Properties\DataSources\MDIntermediary.Reference.datasource" />
+    <None Include="Properties\DataSources\PreviousBorrower.datasource" />
+    <None Include="Properties\DataSources\PrivateLoanDetail.datasource" />
+    <None Include="Properties\DataSources\ServicingLoanDetail.datasource" />
+    <None Include="Resources\bomb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brokenlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\DemoGPalmChristmas.gif" />
+    <Content Include="Resources\DemoGPalmFireWorks.gif" />
+    <Content Include="Resources\DemoGPalmHalloween.gif" />
+    <Content Include="Resources\DemoGPalmReg.gif" />
+    <Content Include="Resources\DemoGPalmValentines.gif" />
+    <Content Include="Resources\DopyForDemo.png" />
+    <Content Include="Resources\DopyGoingLeft.png" />
+    <Content Include="Resources\DopyGoinRight.png" />
+    <Content Include="Resources\HangLoose.png" />
+    <None Include="Resources\List.bmp" />
+    <Content Include="Resources\PolarBear.png" />
+    <Content Include="Resources\RunningBSHP.png" />
+    <Content Include="Resources\SantaBSHP.png" />
+    <Content Include="Resources\SantaForDemo.png" />
+    <Content Include="Resources\SantaGoinLeft.png" />
+    <Content Include="Resources\SantaGoinRight.png" />
+    <Content Include="Resources\ShaggyBSHP.png" />
+    <Content Include="Resources\ShaggyGoingLeft.png" />
+    <Content Include="Resources\ShaggyGoingRight.png" />
+    <Content Include="Resources\waiting.gif" />
+    <None Include="Resources\wrongx_icon.png" />
+    <None Include="Resources\WipeOut2.wmf" />
+    <None Include="Resources\WhoaDude1.wmf" />
+    <None Include="Resources\waveicon.ico" />
+    <None Include="Resources\Surfin1.wmf" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\question.bmp" />
+    <None Include="Resources\PreviousArrow.png" />
+    <None Include="Resources\phone.bmp" />
+    <None Include="Resources\NextArrow.png" />
+    <None Include="Resources\mask.bmp" />
+    <None Include="Resources\light.bmp" />
+    <None Include="Resources\icon-checkmark-128.png" />
+    <None Include="Resources\handcuffs.gif" />
+    <None Include="Resources\Gear.png" />
+    <None Include="Resources\DudeLike4.wmf" />
+    <None Include="Resources\dudeicon.ico" />
+    <None Include="Resources\dollarsign.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\BrightIdeasAndUnexpectedResults\UnexpectedResults.resx">
+      <DependentUpon>UnexpectedResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\BrightIdeasAndUnexpectedResults\BrightIdea.resx">
+      <DependentUpon>BrightIdea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\CallCategorization\CallCategorizationCommentOnly.resx">
+      <DependentUpon>CallCategorizationCommentOnly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\CallCategorization\GenericCallCategorization.resx">
+      <DependentUpon>GenericCallCategorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Demographics\DemographicsUI.resx">
+      <DependentUpon>DemographicsUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Demographics\OneLINKDemosAndCallForwarding.resx">
+      <DependentUpon>OneLINKDemosAndCallForwarding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Demographics\Phone.resx">
+      <DependentUpon>Phone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Demographics\PhoneIndicator.resx">
+      <DependentUpon>PhoneIndicator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePageMdi.resx">
+      <DependentUpon>HomePageMdi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\BorrowerBenefitsDisplay.resx">
+      <DependentUpon>BorrowerBenefitsDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\CSExtendedHomePageDemographics.resx">
+      <DependentUpon>CSExtendedHomePageDemographics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\DefermentAndForbearanceDispaly.resx">
+      <DependentUpon>DefermentAndForbearanceDispaly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\GenericComponents\ActivityComments.resx">
+      <DependentUpon>ActivityComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\GenericComponents\ActivityHistory.resx">
+      <DependentUpon>ActivityHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\GenericComponents\GenericScriptAndServicesEnabled.resx">
+      <DependentUpon>GenericScriptAndServicesEnabled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\GenericComponents\HomePageDemographics.resx">
+      <DependentUpon>HomePageDemographics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\LegalOtherTab\BankruptcyACPQuestionsControl.resx">
+      <DependentUpon>BankruptcyACPQuestionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\LegalOtherTab\DeceasedACPQuestionsControl.resx">
+      <DependentUpon>DeceasedACPQuestionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\PaymentHistoryComponents\PaymentHistoryDetailDisplay.resx">
+      <DependentUpon>PaymentHistoryDetailDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\PaymentHistoryComponents\PaymentHistoryDisplay.resx">
+      <DependentUpon>PaymentHistoryDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\DueDateChangeControl.resx">
+      <DependentUpon>DueDateChangeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\IBRCalculatorControl.resx">
+      <DependentUpon>IBRCalculatorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\RepaymentOptionsControl.resx">
+      <DependentUpon>RepaymentOptionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\PaymentSchedulesAndDelinquenciesTab\RepaymentOptionsDisplay.resx">
+      <DependentUpon>RepaymentOptionsDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\ReferenceControl.resx">
+      <DependentUpon>ReferenceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\ServicingLoanDisplay.resx">
+      <DependentUpon>ServicingLoanDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HomePage\UheaaHomePage.resx">
+      <DependentUpon>UheaaHomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\MainMenu\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\MainMenu\PreviousBorrowerDisplay.resx">
+      <DependentUpon>PreviousBorrowerDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\MessageBoxes\EmployerDemoDisplay.resx">
+      <DependentUpon>EmployerDemoDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\MessageBoxes\KnarlyDUDE.resx">
+      <DependentUpon>KnarlyDUDE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\MessageBoxes\WhoaDUDE.resx">
+      <DependentUpon>WhoaDUDE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Misc\BrwInfo411.resx">
+      <DependentUpon>BrwInfo411.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Misc\Hygiene.resx">
+      <DependentUpon>Hygiene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Misc\ReQueue.resx">
+      <DependentUpon>ReQueue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\Processing.resx">
+      <DependentUpon>Processing.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MDLetters\MDLetters.csproj">
+      <Project>{5CEF4ACF-5ED8-4FE5-9810-43EEE4505B7C}</Project>
+      <Name>MDLetters</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Q\Q.vbproj">
+      <Project>{5db905eb-0bf7-4e95-8a46-0b7e76ee807d}</Project>
+      <Name>Q</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\VERFORBUH\VERFORBUH\VERFORBUH.csproj">
+      <Project>{41584cde-957e-4264-a4de-53afee359243}</Project>
+      <Name>VERFORBUH</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDIntermediary\MDIntermediary.csproj">
+      <Project>{7211abc4-e643-4762-ab90-53ab53bd745d}</Project>
+      <Name>MDIntermediary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

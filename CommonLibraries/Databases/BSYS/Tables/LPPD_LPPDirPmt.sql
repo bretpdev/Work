@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[LPPD_LPPDirPmt] (
+    [SSN]       NCHAR (9)  NOT NULL,
+    [SEQUENCE]  NCHAR (3)  NOT NULL,
+    [AMOUNT]    NCHAR (10) NOT NULL,
+    [PROCESSED] TINYINT    NOT NULL
+);
+

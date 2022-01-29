@@ -1,0 +1,5 @@
+﻿CREATE TABLE [fp].[Letters]
+(
+	[LetterId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Letter] VARCHAR(10) NULL
+)

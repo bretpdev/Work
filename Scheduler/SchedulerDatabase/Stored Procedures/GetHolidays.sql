@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE GetHolidays
+(
+	@StartDate DATETIME,
+	@Days DECIMAL(6,2)
+)
+AS
+
+SELECT COUNT(*)
+FROM Holidays
+WHERE [Date] BETWEEN DATEADD(SECOND, 0, DATEADD(DAY, DATEDIFF(DAY, 0, @StartDate), 0)) AND DATEADD(DAY, @Days, @StartDate)

@@ -1,0 +1,12 @@
+﻿CREATE PROCEDURE clschllnfd.GetLoanSequence
+	@AwardId VARCHAR(21),
+	@BF_SSN CHAR(9)
+AS
+	
+	SELECT
+		FS10.LN_SEQ
+	FROM
+		[CDW].[dbo].[FS10_DL_LON] FS10
+	WHERE
+		LF_FED_AWD + RIGHT('000' + CONVERT(VARCHAR, LN_FED_AWD_SEQ,101),3) = @AwardId
+		AND BF_SSN = @BF_SSN

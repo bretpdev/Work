@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d35d39d5-aaf2-4260-951f-8ccace4d8658" ChangeDateTime="05/04/2021 20:32:56">
+    <Property Name="ElementName" Value="[dbo].[DialerFiles].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DialerFiles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DialerFilesId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="db1d950d-2778-434c-91f1-1317e6185c20" ChangeDateTime="05/04/2021 20:35:03">
+    <Property Name="ElementName" Value="[dbo].[DialerFiles].[File]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DialerFiles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FileName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ad6da35a-0973-4927-8520-2f565e4cce2a" ChangeDateTime="05/04/2021 20:35:12">
+    <Property Name="ElementName" Value="[dbo].[DialerFiles].[FileName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DialerFiles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FileLocation" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="af8a8de4-96bc-4d33-a06c-47bc5dd7e248" ChangeDateTime="05/04/2021 20:40:58">
+    <Property Name="ElementName" Value="[dbo].[DialerFiles].[FileLocation]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DialerFiles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FileName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="30369e02-a7b4-4457-be10-7eca22461e7d" ChangeDateTime="05/05/2021 14:25:43">
+    <Property Name="ElementName" Value="[dbo].[CallHistory].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CallHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CallHistoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5495618d-132f-40e2-b3b0-44183147b5e2" ChangeDateTime="05/05/2021 14:42:34">
+    <Property Name="ElementName" Value="[dbo].[CallHistory].[TargetsHonePhone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CallHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TargetsHomePhone" />
+  </Operation>
+</Operations>

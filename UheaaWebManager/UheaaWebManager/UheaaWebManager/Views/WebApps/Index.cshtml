@@ -1,0 +1,24 @@
+﻿@*@model List<WebAppSimpleModel>
+@{
+    ViewBag.Title = "Manage Web Apps";
+}
+
+<a href="/WebApps/Add" title="New Web App" id="top-right-button">New Web App</a>
+<h2>@ViewBag.Title</h2>
+<table class="list-table">
+    <tr>
+        <th>Name</th>
+        <th style="width:99%;">Notes</th>
+        <th>Users</th>
+        <th>Controllers</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr data-href="/WebApps/@item.WebAppId">
+            <td class="nowrap">@item.AppName</td>
+            <td>@item.Url</td>
+            <td class="number-cell">@item.WebAppUserCount</td>
+        </tr>
+    }
+</table>*@
+

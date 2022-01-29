@@ -1,0 +1,83 @@
+﻿CREATE ROLE [Staff]
+    AUTHORIZATION [dbo];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\BatchScripts];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [!UHEAASSRS];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - OPSDEV - All Databases RO];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - OPSDEV - Developers DBOwner Access];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - OPSDEV - All Databases RW];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [testLogin];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\!UHEAASSRS];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\kferre];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [SSRS];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [DevKofaxFedSQL];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\UHEAAUsers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\OcheUsers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\CornerStoneUsers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SystemAnalysts];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\Developers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\elynes];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\Imaging Users];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\jdavis];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\dbeattie];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\bpehrson];
+

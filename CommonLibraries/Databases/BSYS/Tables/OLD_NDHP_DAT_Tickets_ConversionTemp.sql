@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[OLD_NDHP_DAT_Tickets_ConversionTemp] (
+    [Ticket]         BIGINT        NOT NULL,
+    [TicketCode]     CHAR (3)      NOT NULL,
+    [Subject]        VARCHAR (50)  NOT NULL,
+    [Requester]      VARCHAR (50)  NOT NULL,
+    [Requested]      DATETIME      NOT NULL,
+    [Unit]           VARCHAR (50)  NOT NULL,
+    [Area]           VARCHAR (100) NOT NULL,
+    [Required]       DATETIME      NOT NULL,
+    [Priority]       DECIMAL (18)  NOT NULL,
+    [Issue]          TEXT          NOT NULL,
+    [Resolution]     TEXT          NOT NULL,
+    [Status]         VARCHAR (50)  NOT NULL,
+    [StatusDate]     DATETIME      NOT NULL,
+    [Court]          VARCHAR (50)  NOT NULL,
+    [CourtDate]      DATETIME      NOT NULL,
+    [IssueUpdate]    TEXT          NOT NULL,
+    [History]        TEXT          NOT NULL,
+    [PreviousStatus] VARCHAR (50)  NOT NULL,
+    [PreviousCourt]  VARCHAR (50)  NOT NULL,
+    [eMail1]         VARCHAR (50)  NOT NULL,
+    [eMail2]         VARCHAR (50)  NOT NULL,
+    [eMail3]         VARCHAR (50)  NOT NULL,
+    [eMail4]         VARCHAR (50)  NOT NULL,
+    [eMail5]         VARCHAR (50)  NOT NULL
+);
+

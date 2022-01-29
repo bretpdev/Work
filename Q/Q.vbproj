@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Q</RootNamespace>
+    <AssemblyName>Q</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Q.xml</DocumentationFile>
+    <DefineConstants>_MYFORMS=True</DefineConstants>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Q.xml</DocumentationFile>
+    <DefineConstants>_MYFORMS=True</DefineConstants>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|AnyCPU' ">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\..\..\..\..\Enterprise Program Files\Nexus\Test\</OutputPath>
+    <DefineConstants>_MYFORMS=True</DefineConstants>
+    <DocumentationFile>Q.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'QA|AnyCPU' ">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>_MYFORMS=True</DefineConstants>
+    <DocumentationFile>Q.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.Reflection">
+      <HintPath>..\..\Projects\CommonLibraries\Dependencies\Interop.Reflection.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClassesAndForms\BatchScriptBase.vb" />
+    <Compile Include="BaseClassesAndForms\DataAccessBase.vb" />
+    <Compile Include="BaseClassesAndForms\FedBatchScriptBase.vb" />
+    <Compile Include="BaseClassesAndForms\FedScriptBase.vb" />
+    <Compile Include="BatchScriptReports\Count.vb" />
+    <Compile Include="BatchScriptReports\EndOfJobReport.vb" />
+    <Compile Include="BatchScriptReports\ErrorReport.vb" />
+    <Compile Include="CommonException.vb" />
+    <Compile Include="Common\ExcelGenerator.vb" />
+    <Compile Include="Common\UserProvidedComment.vb" />
+    <Compile Include="BaseClassesAndForms\FormBase.Designer.vb">
+      <DependentUpon>FormBase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BaseClassesAndForms\FormBase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseClassesAndForms\ScriptSessionBase.vb" />
+    <Compile Include="BusinessUnit.vb" />
+    <Compile Include="Common\ManualComments.Designer.vb">
+      <DependentUpon>ManualComments.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ManualComments.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\OpenLoanFinder.vb" />
+    <Compile Include="Common\StupRegionSpecifiedException.vb" />
+    <Compile Include="Common\TD22.vb" />
+    <Compile Include="CustomControls\CheckBoxExtended.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ComboBoxExtended.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CommonGarn\CommonGarnishment.vb" />
+    <Compile Include="CommonGarn\GarnishmentEligibilityCheck.vb" />
+    <Compile Include="CustomControls\ComboBoxWithAutoCompleteExtended.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CustomControlUtilities.vb" />
+    <Compile Include="Demographics\Demographics.vb" />
+    <Compile Include="Common\EmailException.vb" />
+    <Compile Include="Demographics\DemographicUpdateException.vb" />
+    <Compile Include="Demographics\EmployerDemographics.vb" />
+    <Compile Include="Common\EndDLLException.vb" />
+    <Compile Include="Common\FileEmptyException.vb" />
+    <Compile Include="Common\MauiDUDEDetailInfo.vb" />
+    <Compile Include="Demographics\PersonDemographics.vb" />
+    <Compile Include="Demographics\Phone.vb" />
+    <Compile Include="Demographics\SchoolDemographics.vb" />
+    <Compile Include="Demographics\SystemBorrowerDemographics.vb" />
+    <Compile Include="DocumentHandling\EntireFileImagedException.vb" />
+    <Compile Include="DocumentHandling\ImageDocumentProcessor.vb" />
+    <Compile Include="DocumentHandling\LetterInformation.vb" />
+    <Compile Include="DocumentHandling\WordFacade.vb" />
+    <Compile Include="Encryption\NORADLoginInfo.vb" />
+    <Compile Include="Encryption\StringEncryption.vb" />
+    <Compile Include="CustomControls\IIsDirtyExtender.vb" />
+    <Compile Include="CustomControls\GroupBoxExtended.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EnterpriseFileSystem.vb" />
+    <Compile Include="Ldap.vb" />
+    <Compile Include="LoginFormComponents\LoginForm.Designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoginFormComponents\LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MauiDUDE\MDScriptInfoSpecificToAuxiliaryServices.vb" />
+    <Compile Include="MauiDUDE\MDScriptInfoSpecificToCustomerService.vb" />
+    <Compile Include="ObjectsSentForParams.vb" />
+    <Compile Include="ReflectionInterfaces\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReflectionInterfaces\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReflectionInterfaces\ReflectionInterfaceFromOpenSession.vb" />
+    <Compile Include="SprocCommandBuilder.vb" />
+    <Compile Include="DocumentHandling\CentralizedPrintingException.vb" />
+    <Compile Include="Common\Common.vb" />
+    <Compile Include="Demographics\BorrowerDemographics.vb" />
+    <Compile Include="Demographics\DemographicRetrievalException.vb" />
+    <Compile Include="Common\LG02LoanInfo.vb" />
+    <Compile Include="Coordinate.vb" />
+    <Compile Include="DataAccess.vb" />
+    <Compile Include="DocumentHandling\Barcode2DQueryResults.vb" />
+    <Compile Include="DocumentHandling\BarcodeException.vb" />
+    <Compile Include="DocumentHandling\CentralizedPrintingAnd2DBarcodeInfo.vb" />
+    <Compile Include="DocumentHandling\DocumentFileNameOrPathException.vb" />
+    <Compile Include="DocumentHandling\DocumentHandling.vb" />
+    <Compile Include="DocumentHandling\DocumentPathAndName.vb" />
+    <Compile Include="DocumentHandling\LetterDeliveryMethod.Designer.vb">
+      <DependentUpon>LetterDeliveryMethod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentHandling\LetterDeliveryMethod.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentHandling\LetterRecordCreationResults.vb" />
+    <Compile Include="DocumentHandling\PleaseWait.designer.vb">
+      <DependentUpon>PleaseWait.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentHandling\PleaseWait.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocumentHandling\UserBarcodeAdditionResults.vb" />
+    <Compile Include="ExtensionMethods.vb" />
+    <Compile Include="InternetAutomation\GenericBrowser.Designer.vb">
+      <DependentUpon>GenericBrowser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InternetAutomation\GenericBrowser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InternetAutomation\InternetAutomationException.vb" />
+    <Compile Include="InternetAutomation\InternetExplorerAutomator.vb">
+    </Compile>
+    <Compile Include="InputBoxComponents\InputBox.Designer.vb">
+      <DependentUpon>InputBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="InputBoxComponents\InputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBoxComponents\InputBoxResults.vb" />
+    <Compile Include="CustomControls\TextBoxExtended.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MauiDUDE\MDScriptInfoSpecificToAcctResolution.vb" />
+    <Compile Include="MauiDUDE\MDActivityComments.vb" />
+    <Compile Include="MauiDUDE\MDBorrower.vb" />
+    <Compile Include="MauiDUDE\MDBorrowerLite.vb" />
+    <Compile Include="MauiDUDE\MDClassACHInfo.vb" />
+    <Compile Include="MauiDUDE\MDBorrowerDemographics.vb" />
+    <Compile Include="MauiDUDE\MDScriptInfoSpecificToBusinessUnitBase.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="RecoveryLog.vb" />
+    <Compile Include="ReflectionInterfaces\ReflectionInterface.vb">
+    </Compile>
+    <Compile Include="Common\TestModeResults.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="ReflectionInterfaces\ReflectionInterfaceWithGenericSessionCreationAndLogin.vb" />
+    <Compile Include="BaseClassesAndForms\ScriptBase.vb" />
+    <Compile Include="BaseClassesAndForms\ScriptCommonBase.vb" />
+    <Compile Include="SessionMainIWin32Window.vb" />
+    <Compile Include="UserClasses\BusinessUnitAgent.vb" />
+    <Compile Include="UserClasses\SqlUser.vb" />
+    <Compile Include="UserClasses\User.vb" />
+    <Compile Include="UserClasses\UserLogonInfo.vb" />
+    <Compile Include="UserClasses\UserWithBusinessUnit.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BaseClassesAndForms\FormBase.resx">
+      <DependentUpon>FormBase.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\ManualComments.resx">
+      <DependentUpon>ManualComments.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\CheckBoxExtended.resx">
+      <DependentUpon>CheckBoxExtended.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\ComboBoxExtended.resx">
+      <DependentUpon>ComboBoxExtended.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentHandling\LetterDeliveryMethod.resx">
+      <DependentUpon>LetterDeliveryMethod.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocumentHandling\PleaseWait.resx">
+      <DependentUpon>PleaseWait.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InternetAutomation\GenericBrowser.resx">
+      <DependentUpon>GenericBrowser.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBoxComponents\InputBox.resx">
+      <DependentUpon>InputBox.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginFormComponents\LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReflectionInterfaces\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="DMATRIXLib">
+      <Guid>{FD636854-5179-4159-8371-0C1B1036D989}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>605</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="OSSMTP">
+      <Guid>{AA987BF8-E849-4996-9335-413DF4A8158A}</Guid>
+      <VersionMajor>18</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="RFCOMAPILib">
+      <Guid>{FD0FBD6B-7484-4E50-B95A-AC5E3A5AFFAE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBA">
+      <Guid>{000204EF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>9</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\DataSources\Credentials.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Projects\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{D39CCBC4-F262-4225-AE0C-925553DEA372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

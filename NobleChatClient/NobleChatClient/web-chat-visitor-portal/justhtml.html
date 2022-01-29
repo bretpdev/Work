@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CornerStone Web Chat</title>
+
+    <!-- Third-Party Resources -->
+    <script src="./javascripts/ThirdParty/jquery.v3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="./javascripts/ThirdParty/i18next.v8.4.3/i18next.min.js"></script>
+    <script src="./javascripts/ThirdParty/i18next.v8.4.3/i18nextXHRBackend.js" type="text/javascript"></script>
+    <script src="./javascripts/ThirdParty/i18next.v8.4.3/i18nextBrowserLanguageDetector.min.js" type="text/javascript"></script>
+    <script src="./javascripts/ThirdParty/socket.io.v1.7.3/socket.io.js"></script>
+    <script src="./javascripts/ThirdParty/moment.v2.18.1/moment-min-2-18-1.js"></script>
+    <script src="./javascripts/ThirdParty/lodash.v4.17.4/lodash.min.js"></script>
+
+    <!-- Web Chat Visitor Portal Stylesheets -->
+    <link rel="stylesheet" href="./stylesheets/site-1.0.0.css">
+    <link rel="stylesheet" href="./stylesheets/chatviewer-2.0.1.css">
+    <link rel="stylesheet" href="./stylesheets/chatviewer-queue-1.0.0.css">
+    <link rel="stylesheet" href="./stylesheets/chatviewer-form-1.0.0.css">
+    <link rel="stylesheet" href="./stylesheets/mobile.css">
+
+    <!-- For recaptcha, only include if enabled -->
+    <!--<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit"
+        async defer>
+    </script>      -->
+    <!-- Web Chat Visitor Portal Entry Script -->
+    <script src="./main.js"></script>
+</head>
+<body>
+    <div id="header">
+        <img src="images/cs logo.png" alt="CornerStone Logo">
+        <span>CornerStone Web Chat</span>
+    </div>
+    <div id="main">
+        <!-- Web Chat Visitor Portal Container Div -->
+        <div id="chat-panel" class="" style="position: relative; width: 100%; height: 100%; min-height: 400px;">
+            <div id="chatviewer-contentarea">
+                <div id="chatviewer-loadingarea" style="display: none;"><img src="" alt="" class=""><span id="text"></span><br><button type="text" id="btnCancelLoad" class="k-input" style="display: none;">Cancel</button><br><br><br></div><div id="chatviewer-confroom-container" style="display: none;"><div id="chatqueue-picker"><div id="chatviewer-queue-container"><div id="chatviewer-queue-welcome-message" style="margin-bottom:16px">How can we help you:</div><div class="chat-queue-card" title="" +=""><div class="queue-card-statusbar open"></div><div class="queue-card-icon"></div><div class="row-with-icon queue-card-name">Cornerstone Chat</div><div class="row-with-icon queue-card-status">Online</div><div class="row-with-icon queue-card-message" style="visibility: hidden;">Sorry. We are closed. Please contact us during regular business hours</div><div class="row-with-icon queue-card-actions"><div class="queue-card-chatbutton" id="7z3bYTEV0bAg8p7ej1Mzqg=="><img class="chatbutton">Chat Now</div></div></div></div></div><div id="chatqueue-form" style=""><form id="chatviewer-form-container"><table id="chatviewer-form-userinfo" class="chatviewer-form"><tbody><tr><td><label for="firstname">First Name:</label></td><td><input id="inputFirstName" name="inputFirstName" type="text" required="" class="validation-enabled"></td></tr><tr><td><label for="lastName">Last Name:</label></td><td><input id="inputLastName" name="inputLastName" type="text" required="" class="validation-enabled"></td></tr><tr><td><label for="chatData1">Date of Birth:</label></td><td><input id="inputChatData1" name="inputChatData1" type="text" maxlength="20" required="" class="validation-enabled"><div id="inputChatData1Validation" class="validation"></div></td></tr><tr><td><label for="emailAddress">Email Address:</label></td><td><input id="inputEmail" name="inputEmail" type="email" class="validation-enabled"></td></tr></tbody></table><table id="chatviewer-form-chatdatainfo" class="chatviewer-form"><tbody><tr><td><label for="phoneNumber">Phone Number:</label></td><td><input id="inputPhone" name="inputPhone" type="text" class="validation-enabled"></td></tr><tr><td><label for="chatData2">Address:</label></td><td><input id="inputChatData2" name="inputChatData2" type="text" maxlength="50" class="validation-enabled"><div id="inputChatData2Validation" class="validation"></div></td></tr></tbody></table><a id="chatviewer-form-submit" style="width:75px; color: black;border-radius: 5px;   padding: 10px; cursor: pointer" "type=" submit" value="Chat Now">Chat Now</a></form></div></div><div id="chatviewer-chatpanel" style="">
+                    <div id="chatviewer-serverstatus" style="display: none;"><img src="" alt=""><span></span></div><div id="chatviewer-usercolumn"><div class="chatviewer-columntitle"><b>Users</b></div><div id="chatviewer-userlist"><div id="SystemAdmin"><b class="chatviewer-textcolor-admin">[admin]</b><span class="username"> [SystemAdmin]</span></div><div id="PleaseIgnore346UITestUITest"><b class="chatviewer-textcolor-customer">[customer]</b><span class="username">PleaseIgnore346UITest [UITest]</span></div><div id="T1RGavriella"><b class="chatviewer-textcolor-agent">[agent]</b><span class="username">^T1R [Gavriella]</span></div></div></div><div id="chatviewer-messagecolumn" class="table">
+                        <div></div><div class="chatviewer-columntitle"><b>Messages</b><div id="chatviewer-columntitle-actions"><button id="chatviewer-printbutton">Print</button><button id="chatviewer-closebutton">Close</button></div></div><div id="chatviewer-messagelist" class="table">
+                            <div id="20190409T231338911Z" class="chatviewer-messagecontainer table">
+                                <div class="chatviewer-icon-admin-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">SystemAdmin</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:38</label><div class="chatviewer-message-table">
+                                    Thank you for holding. A Support Representative will be right with you.
+                                </div>
+                            </div><div id="20190409T231345693Z" class="chatviewer-messagecontainer table">
+                                <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:45</label><div class="chatviewer-message-table">
+                                    1
+                                </div>
+                            </div><div id="20190409T231348208Z" class="chatviewer-messagecontainer table">
+                                <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:48</label><div class="chatviewer-message-table">
+                                    2
+                                </div>
+                            </div><div id="20190409T231350740Z" class="chatviewer-messagecontainer table">
+                                <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:50</label><div class="chatviewer-message-table">
+                                    3
+                                </div>
+                            </div><div id="20190409T231352708Z" class="chatviewer-messagecontainer table">
+                                <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:52</label><div class="chatviewer-message-table">
+                                    4
+                                </div>
+                            </div>
+                                                                                                                                                                                                                                                   <div id="20190409T231345693Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:45</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           1
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div><div id="20190409T231348208Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:48</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           2
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div><div id="20190409T231350740Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:50</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           3
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div><div id="20190409T231352708Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:52</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           4
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div>
+                                                                                                                                                                                                                                                   <div id="20190409T231345693Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:45</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           1
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div><div id="20190409T231348208Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:48</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           2
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div><div id="20190409T231350740Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:50</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           3
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div><div id="20190409T231352708Z" class="chatviewer-messagecontainer table">
+                                                                                                                                                                                                                                                       <div class="chatviewer-icon-customer-table chatviewer-usericon-table"></div><label class="chatviewer-messagefrom-table">UITest</label><label class="chatviewer-messagedate-table">04/09/2019 17:13:52</label><div class="chatviewer-message-table">
+                                                                                                                                                                                                                                                           4
+                                                                                                                                                                                                                                                       </div>
+                                                                                                                                                                                                                                                   </div>
+                        </div>
+                    </div><div id="chatviewer-messagebarcontainer" style=""><input id="chatviewer-messagebar" type="text" maxlength="255" name="message" placeholder="Enter message..." class="validation-enabled"><button id="chatviewer-messagesubmitbutton">Send</button></div>
+                </div>
+            </div>
+        </div>
+        <div id="chatviewer-recaptcha-container" style="display:none">
+            <div id="chatviewer-recaptcha"></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="floatleft">© 2019 CornerStone Education Loan Services</div>
+        <div class="floatright">Version 2.0.3</div>
+    </div>
+
+
+</body>
+</html>

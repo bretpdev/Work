@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title Project Request</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body style="padding-top: 95px">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="more-padding" href="@Url.Action("Index", "Home")">
+                    <img class="top-bottom-padding" src="@Url.Content("~/Images/header_logo.png")" />
+                </a>
+            </div>
+            <!--<div class="navbar-header centered-nav-header more-padding">
+                @Html.ActionLink("Project Request", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>-->
+            <div class="navbar-collapse collapse centered-nav">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(" Home ", "Index", "Home")</li>
+                    <li>@Html.ActionLink(" View Projects ", "ProductPrioritization", "Home")</li>
+                    <li>@Html.ActionLink(" Request A New Project ", "ProjectRequest", "Home")</li>                   
+                    @if(new ActiveDirectoryHelper().CurrentUserAuthorization.Admin)
+                    {
+                        <li>@Html.ActionLink(" Admin Tools ", "AdminTools", "Home")</li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>@DateTime.Now.Year - Project Request</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

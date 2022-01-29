@@ -1,0 +1,8 @@
+USE OLS
+GO
+
+CREATE SCHEMA [utlwm30] AUTHORIZATION [dbo]
+GO
+
+GRANT EXECUTE ON SCHEMA ::[utlwm30] TO [db_executor]
+GO

@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [UHEAA\SQL - OPSDEV - Developers DBOwner Access]
+    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
+

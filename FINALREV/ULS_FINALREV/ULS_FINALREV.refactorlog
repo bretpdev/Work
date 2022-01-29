@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="5f5bb218-91a2-4ddf-ab45-2b53d818e4ad" ChangeDateTime="06/10/2020 15:48:13">
+    <Property Name="ElementName" Value="[dbo].[RecoveryValues].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RecoveryValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RecoveryValuesID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d103ea58-e552-4a0e-a63b-39b657f85049" ChangeDateTime="06/10/2020 15:49:16">
+    <Property Name="ElementName" Value="[dbo].[RecoveryValues].[R]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RecoveryValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TaskCount" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3d3da3fb-80a0-4283-b9a0-5effa7d7fb1d" ChangeDateTime="06/10/2020 16:14:31">
+    <Property Name="ElementName" Value="[finalrev].[Taskount].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[finalrev].[Taskount]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TaskCountId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="31c95e38-00eb-48db-84be-fa80c5d5a2b3" ChangeDateTime="06/10/2020 17:16:37">
+    <Property Name="ElementName" Value="[finalrev].[RecoveryValues].[RecoverySsn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[finalrev].[RecoveryValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Ssn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="05973608-6c1f-4367-bc96-e37e0b80c653" ChangeDateTime="06/10/2020 17:16:41">
+    <Property Name="ElementName" Value="[finalrev].[RecoveryValues].[RecoveryStep]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[finalrev].[RecoveryValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Step" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="615e334b-bbd1-4875-b23d-d9120209bdd4" ChangeDateTime="07/08/2021 19:56:47">
+    <Property Name="ElementName" Value="[finalrev].[BorrowerRecord].[DeleteBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[finalrev].[BorrowerRecord]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeletedBy" />
+  </Operation>
+</Operations>

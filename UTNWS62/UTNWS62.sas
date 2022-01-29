@@ -1,0 +1,305 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+/*LIBNAME PROGREVW V8 '/sas/whse/progrevw';*/
+LIBNAME PROGREVW 'Y:\Development\SAS Test Files\progrevw';
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/UNWS62.NWS62RZ";
+FILENAME REPORT2 "&RPTLIB/UNWS62.NWS62R2";
+FILENAME REPORT3 "&RPTLIB/UNWS62.NWS62R3";
+
+DATA _NULL_; 
+	SET PROGREVW.LASTRUN_JOBS;
+	/*If the job must be run manually set this macro to the last day it successfully ran(last business day).*/
+	LAST_RUN = TODAY() - 7;	
+	IF JOB = 'UTNWS62' THEN DO;
+		CALL SYMPUT('LAST_RUN',"'"||TRIM(LEFT(PUT(LAST_RUN,DATE10.)))|| "'D");
+		CALL SYMPUT('LAST_RUNPASS',"'"|| PUT(LAST_RUN,MMDDYY10.) || "'");
+	END;
+RUN;
+%PUT &LAST_RUN &LAST_RUNPASS;
+
+%SYSLPUT LAST_RUNPASS = &LAST_RUNPASS;
+
+LIBNAME LEGEND REMOTE SERVER=LEGEND SLIBREF=WORK;
+RSUBMIT LEGEND;
+/*%let DB = DNFPRQUT;  *This is test;*/
+%LET DB = DNFPUTDL;  *This is live;
+LIBNAME PKUB DB2 DATABASE=&DB OWNER=PKUB;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=&DB);
+		CREATE TABLE INITIAL_POP AS
+			SELECT	
+				*
+			FROM	
+				CONNECTION TO DB2 
+				(
+					SELECT DISTINCT
+						 PD10.DF_SPE_ACC_ID
+						,PD10.DM_PRS_1
+						,PD10.DM_PRS_LST
+						,PD30.DX_STR_ADR_1
+						,PD30.DX_STR_ADR_2
+						,PD30.DM_CT
+						,PD30.DC_DOM_ST
+						,PD30.DF_ZIP_CDE
+						,PD30.DM_FGN_CNY
+						,AY10.LN_ATY_SEQ
+						,PD10.DF_PRS_ID
+						,PD30.DI_VLD_ADR
+						,PH05.DI_CNC_ELT_OPI
+						,PH05.DI_VLD_CNC_EML_ADR
+					FROM
+						PKUB.PD10_PRS_NME PD10
+						INNER JOIN PKUB.AY10_BR_LON_ATY AY10
+							ON PD10.DF_PRS_ID = AY10.BF_SSN
+						LEFT JOIN PKUB.PD30_PRS_ADR PD30
+							ON PD10.DF_PRS_ID = PD30.DF_PRS_ID
+							AND PD30.DC_ADR = 'L' /*valid legal address*/
+						LEFT JOIN AES.PH05_CNC_EML PH05
+							ON PD10.DF_SPE_ACC_ID = PH05.DF_SPE_ID
+					WHERE
+						AY10.PF_REQ_ACT = 'DCSLD'
+						AND DAYS(AY10.LD_ATY_REQ_RCV) >= DAYS(&LAST_RUNPASS)
+
+					FOR READ ONLY WITH UR
+				)
+		;
+	DISCONNECT FROM DB2;
+QUIT;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=&DB);
+		CREATE TABLE INITIAL_POP_LOANS AS
+			SELECT DISTINCT
+				 IP.DF_PRS_ID
+				,IP.DF_SPE_ACC_ID
+				,IP.DM_PRS_1
+				,IP.DM_PRS_LST
+				,IP.DX_STR_ADR_1
+				,IP.DX_STR_ADR_2
+				,IP.DM_CT
+				,IP.DC_DOM_ST
+				,IP.DF_ZIP_CDE
+				,IP.DM_FGN_CNY
+				,LN85.LN_SEQ
+				,IP.DI_VLD_ADR
+				,IP.DI_CNC_ELT_OPI
+				,IP.DI_VLD_CNC_EML_ADR
+			FROM	
+				INITIAL_POP IP
+				INNER JOIN CONNECTION TO DB2 
+				(
+					SELECT	
+						DISTINCT
+						 BF_SSN
+						,LN_SEQ
+						,LN_ATY_SEQ
+					FROM
+						PKUB.LN85_LON_ATY
+
+					FOR READ ONLY WITH UR
+				) LN85
+					ON IP.DF_PRS_ID = LN85.BF_SSN
+					AND IP.LN_ATY_SEQ  = LN85.LN_ATY_SEQ 
+		;
+	/*invalid legal & email address and not on ecorr*/
+	CREATE TABLE R2 AS
+		SELECT DISTINCT
+			*
+		FROM
+			INITIAL_POP_LOANS
+		WHERE
+			COALESCE(DI_VLD_ADR,'N') = 'N' /*invalid legal address*/
+			AND (/*not on ecorr*/
+					COALESCE(DI_CNC_ELT_OPI,'N') = 'N'
+					OR COALESCE(DI_VLD_CNC_EML_ADR,'N') = 'N'
+				)
+		ORDER BY
+			DC_DOM_ST
+	;
+	/*valid legal address or on ecorr*/
+	CREATE TABLE R3 AS
+		SELECT DISTINCT
+			*
+		FROM
+			INITIAL_POP_LOANS
+		WHERE
+			DI_VLD_ADR = 'Y' /*valid legal address*/
+			OR (/*on ecorr*/
+					DI_CNC_ELT_OPI = 'Y'
+					AND DI_VLD_CNC_EML_ADR = 'Y'
+				)
+		ORDER BY
+			DC_DOM_ST
+	;
+	
+	DISCONNECT FROM DB2;
+QUIT;
+
+/*DATA PROGREVW.LASTRUN_JOBS;*/
+/*	SET PROGREVW.LASTRUN_JOBS;*/
+/*	IF JOB = 'UTNWS62' THEN LAST_RUN = TODAY();*/
+/*RUN;*/
+
+ENDRSUBMIT;
+
+/*data initial_pop_loans; set legend.initial_pop_loans; run; *test;*/
+
+DATA R2; 
+	SET LEGEND.R2; 
+RUN;
+DATA R3; 
+	SET LEGEND.R3; 
+RUN;
+
+DATA R2 (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+	SET R2;
+	KEYSSN = TRANSLATE(DF_PRS_ID,'MYLAUGHTER','0987654321');
+	MODAY = PUT(DATE(),MMDDYYN4.);
+	KEYLINE = "P"||KEYSSN||MODAY||"L";
+	CHKDIG = 0;
+	LENGTH DIG $2.;
+	DO I = 1 TO LENGTH(KEYLINE);
+		IF I/2 NE ROUND(I/2,1) 
+			THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+		ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+		IF SUBSTR(DIG,1,1) = " " 
+			THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+			ELSE DO;
+				CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+				CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+				IF CHK1 + CHK2 >= 10
+					THEN DO;
+						CHK3 = PUT(CHK1 + CHK2,2.);
+						CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+						CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+					END;
+				CHKDIG = CHKDIG + CHK1 + CHK2;
+			END;
+	END;
+	CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+	IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+	CHECK = PUT(CHKDIGIT,1.);
+	ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+
+DATA _NULL_;
+	SET R2;
+	FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+
+	IF _N_ = 1 THEN
+		DO;
+			PUT	
+				'DF_SPE_ACC_ID'
+				','
+				'KEYLINE'
+				','
+				'DM_PRS_1'
+				','
+				'DM_PRS_LST'
+				','
+				'DX_STR_ADR_1'
+				','
+				'DX_STR_ADR_2'
+				','
+				'DM_CT'
+				','
+				'DC_DOM_ST'
+				','
+				'DF_ZIP_CDE'
+				','
+				'DM_FGN_CNY'
+				','
+				'LN_SEQ'
+			;
+		END;
+	DO;
+		PUT DF_SPE_ACC_ID $ @;
+		PUT ACSKEY $ @;
+		PUT DM_PRS_1 $ @;
+		PUT DM_PRS_LST $ @;
+		PUT DX_STR_ADR_1 $ @;
+		PUT DX_STR_ADR_2 $ @;
+		PUT DM_CT $ @;
+		PUT DC_DOM_ST $ @;
+		PUT DF_ZIP_CDE $ @;
+		PUT DM_FGN_CNY $ @;
+		PUT LN_SEQ $ ;
+	END;
+RUN;
+
+DATA R3 (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+	SET R3;
+	KEYSSN = TRANSLATE(DF_PRS_ID,'MYLAUGHTER','0987654321');
+	MODAY = PUT(DATE(),MMDDYYN4.);
+	KEYLINE = "P"||KEYSSN||MODAY||"L";
+	CHKDIG = 0;
+	LENGTH DIG $2.;
+	DO I = 1 TO LENGTH(KEYLINE);
+		IF I/2 NE ROUND(I/2,1) 
+			THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+		ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+		IF SUBSTR(DIG,1,1) = " " 
+			THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+			ELSE DO;
+				CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+				CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+				IF CHK1 + CHK2 >= 10
+					THEN DO;
+						CHK3 = PUT(CHK1 + CHK2,2.);
+						CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+						CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+					END;
+				CHKDIG = CHKDIG + CHK1 + CHK2;
+			END;
+	END;
+	CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+	IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+	CHECK = PUT(CHKDIGIT,1.);
+	ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+
+DATA _NULL_;
+	SET R3;
+	FILE REPORT3 DELIMITER=',' DSD DROPOVER LRECL=32767;
+
+	IF _N_ = 1 THEN
+		DO;
+			PUT	
+				'DF_SPE_ACC_ID'
+				','
+				'KEYLINE'
+				','
+				'DM_PRS_1'
+				','
+				'DM_PRS_LST'
+				','
+				'DX_STR_ADR_1'
+				','
+				'DX_STR_ADR_2'
+				','
+				'DM_CT'
+				','
+				'DC_DOM_ST'
+				','
+				'DF_ZIP_CDE'
+				','
+				'DM_FGN_CNY'
+				','
+				'LN_SEQ'
+			;
+		END;
+	DO;
+		PUT DF_SPE_ACC_ID $ @;
+		PUT ACSKEY $ @;
+		PUT DM_PRS_1 $ @;
+		PUT DM_PRS_LST $ @;
+		PUT DX_STR_ADR_1 $ @;
+		PUT DX_STR_ADR_2 $ @;
+		PUT DM_CT $ @;
+		PUT DC_DOM_ST $ @;
+		PUT DF_ZIP_CDE $ @;
+		PUT DM_FGN_CNY $ @;
+		PUT LN_SEQ $ ;
+	END;
+RUN;

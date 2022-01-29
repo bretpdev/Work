@@ -1,0 +1,388 @@
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+/*%LET TABLIB = /sas/whse/progrevw;*/
+
+%LET RPTLIB = T:\SAS;
+%LET TABLIB = Q:\Process Automation\TabSAS;
+
+FILENAME REPORT2 "&RPTLIB/ULWK17.LWK17R2";
+FILENAME REPORT3 "&RPTLIB/ULWK17.LWK17R3";
+FILENAME REPORTZ "&RPTLIB/ULWK17.LWK17RZ";
+
+/************************************************************************
+* INPUT LOAN TYPES FOR FFEL AND NON FFEL LOANS
+*************************************************************************/
+DATA LOAN_TYPES;
+	FORMAT LN_TYP LN_PGM $50.;
+	INFILE "&TABLIB/GENR_REF_LoanTypes.txt" DLM=',' MISSOVER DSD;
+	INFORMAT LN_TYP LN_PGM $50.;
+	INPUT LN_TYP LN_PGM ;
+	LN_PGM = UPCASE(LN_PGM);
+RUN;
+/************************************************************************
+* CREATE MACRO VARIABLE LISTS OF LOAN PROGRAMS(FFEL AND PRIVATE LOANS)
+*************************************************************************/
+PROC SQL NOPRINT;
+	SELECT "'"||TRIM(LN_TYP)||"'" 
+		INTO :PRIVATE_LIST SEPARATED BY "," /*Private LOAN LIST*/
+	FROM LOAN_TYPES
+	WHERE LN_PGM = 'PRIVATE';
+QUIT;
+
+%PUT &PRIVATE_LIST
+
+
+OPTIONS SYMBOLGEN;
+DATA _NULL_;		
+	EFFDT = TODAY() - 30; 
+	CALL SYMPUT('RUNDATE',"'"||put(EFFDT,MMDDYY10.)||"'"); 
+	CALL SYMPUT('RUNDATE2',EFFDT); 
+RUN;
+
+%SYSLPUT RUNDATE = &RUNDATE;
+%SYSLPUT RUNDATE = &RUNDATE;
+%SYSLPUT PRIVATE_LIST = &PRIVATE_LIST;
+LIBNAME  WORKLOCL  REMOTE  SERVER=DUSTER  SLIBREF=WORK;
+RSUBMIT;
+LIBNAME SAS_TAB V8 '/sas/whse/progrevw';
+
+PROC SQL NOPRINT;
+	SELECT "'"||TRIM(LENDER_ID)||"'"
+		INTO :UHEAA_LIST SEPARATED BY ","
+	FROM SAS_TAB.LDR_AFF
+	WHERE AFFILIATION = 'UHEAA';
+QUIT;
+%macro sqlcheck ;
+  %if  &sqlxrc ne 0  %then  %do  ;
+    data _null_  ;
+            file reportz notitles  ;
+            put @01 " ********************************************************************* "
+              / @01 " ****  The SQL code above has experienced an error.               **** "
+              / @01 " ****  The SAS should be reviewed.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  The SQL error code is  &sqlxrc  and the SQL error message  **** "
+              / @01 " ****  &sqlxmsg   **** "
+              / @01 " ********************************************************************* "
+            ;
+         run  ;
+  %end  ;
+%mend  ;
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH); 
+CREATE TABLE SKIP AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT A.BF_SSN AS SSN
+	,C.DI_PHN_VLD 
+	,B.DI_VLD_ADR 
+	,CASE 
+		WHEN B.DI_VLD_ADR = 'N' AND C.DI_PHN_VLD = 'Y'
+			THEN 'BRWRCALS'
+		WHEN B.DI_VLD_ADR = 'N' AND C.DI_PHN_VLD = 'N'
+			THEN 'ACURINT2'
+	END AS SKIPTASK
+	,B.DD_VER_ADR
+	,C.DD_PHN_VER
+FROM OLWHRM1.LN10_LON A
+INNER JOIN OLWHRM1.PD30_PRS_ADR B
+	ON A.BF_SSN = B.DF_PRS_ID
+	AND A.LC_STA_LON10 = 'R'
+	AND B.DC_ADR = 'L'
+INNER JOIN OLWHRM1.PD42_PRS_PHN C
+	ON A.BF_SSN = C.DF_PRS_ID 
+	AND C.DC_PHN = 'H'
+LEFT OUTER JOIN (
+	SELECT BF_SSN
+		,MAX(LD_ATY_REQ_RCV) AS LD_ATY_REQ_RCV
+	FROM OLWHRM1.AY10_BR_LON_ATY 
+	WHERE PF_REQ_ACT = 'SKPME'
+	GROUP BY BF_SSN
+	) D
+	ON A.BF_SSN = D.BF_SSN
+
+WHERE A.LA_CUR_PRI > 0
+AND (C.DI_PHN_VLD = 'N' OR B.DI_VLD_ADR = 'N')
+AND A.BF_SSN NOT IN (SELECT DISTINCT ZZ.BF_SSN 
+				FROM OLWHRM1.AY10_BR_LON_ATY ZZ
+				INNER JOIN OLWHRM1.AC10_ACT_REQ YY
+					ON YY.PF_REQ_ACT = ZZ.PF_REQ_ACT
+					AND YY.PC_CCI_CLM_COL_ATY IN ('SD', 'SO', 'SS', 'YY')
+				WHERE DAYS(ZZ.LD_ATY_RSP) >= DAYS(&RUNDATE) )
+AND A.BF_SSN NOT IN (SELECT XX.DF_PRS_ID_BR FROM OLWHRM1.CT30_CALL_QUE XX
+					WHERE XX.IF_WRK_GRP IN ('BRWRCALS','ACURINT2'))
+AND (
+	DAYS(D.LD_ATY_REQ_RCV) < DAYS(&RUNDATE) OR
+	D.LD_ATY_REQ_RCV IS NULL
+	)
+AND A.IC_LON_PGM != 'TILP'
+AND A.IC_LON_PGM NOT IN (&PRIVATE_LIST)
+FOR READ ONLY WITH UR
+);
+
+CREATE TABLE SKIP2 AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT 
+E.DM_PRS_1
+,E.DM_PRS_LST
+,B.DX_STR_ADR_1
+,B.DX_STR_ADR_2
+,B.DM_CT
+,CASE
+	WHEN DM_FGN_CNY <> ''
+	THEN DM_FGN_ST
+	ELSE B.DC_DOM_ST
+END AS STATE
+,B.DF_ZIP_CDE
+,B.DM_FGN_CNY
+,E.DF_SPE_ACC_ID
+,C.DN_DOM_PHN_ARA || C.DN_DOM_PHN_XCH || C.DN_DOM_PHN_LCL AS PHONE
+,A.BF_SSN
+,B.DC_DOM_ST
+,CASE
+	WHEN A.LF_LON_CUR_OWN IN (&UHEAA_LIST)
+		THEN  'MA2324'
+	ELSE 'MA2327'
+END AS CCC
+,B.DD_VER_ADR
+,C.DD_PHN_VER
+
+FROM OLWHRM1.LN10_LON A
+INNER JOIN OLWHRM1.PD30_PRS_ADR B
+	ON A.BF_SSN = B.DF_PRS_ID
+	AND B.DC_ADR = 'L'
+INNER JOIN OLWHRM1.PD42_PRS_PHN C
+	ON A.BF_SSN = C.DF_PRS_ID 
+	AND C.DC_PHN = 'H'
+LEFT OUTER JOIN (
+	SELECT BF_SSN
+		,MAX(LD_ATY_REQ_RCV) AS LD_ATY_REQ_RCV
+	FROM OLWHRM1.AY10_BR_LON_ATY 
+	WHERE PF_REQ_ACT = 'SKPME'
+	GROUP BY BF_SSN
+	) D
+	ON A.BF_SSN = D.BF_SSN
+INNER JOIN OLWHRM1.PD10_PRS_NME E 
+ON A.BF_SSN = E.DF_PRS_ID
+
+
+WHERE A.LA_CUR_PRI > 0
+AND B.DI_VLD_ADR = 'Y' AND C.DI_PHN_VLD = 'N'
+AND A.BF_SSN NOT IN (SELECT DISTINCT ZZ.BF_SSN 
+				FROM OLWHRM1.AY10_BR_LON_ATY ZZ
+				INNER JOIN OLWHRM1.AC10_ACT_REQ YY
+					ON YY.PF_REQ_ACT = ZZ.PF_REQ_ACT
+					AND YY.PC_CCI_CLM_COL_ATY IN ('SD', 'SO', 'SS', 'YY')
+				WHERE DAYS(ZZ.LD_ATY_RSP) >= DAYS(&RUNDATE))
+AND A.BF_SSN NOT IN (SELECT XX.DF_PRS_ID_BR FROM OLWHRM1.CT30_CALL_QUE XX
+					WHERE XX.IF_WRK_GRP IN ('BRWRCALS','ACURINT2'))
+AND (
+	DAYS(D.LD_ATY_REQ_RCV) < DAYS(&RUNDATE) OR
+	D.LD_ATY_REQ_RCV IS NULL
+	)
+AND A.IC_LON_PGM != 'TILP'
+AND A.IC_LON_PGM NOT IN (&PRIVATE_LIST)
+FOR READ ONLY WITH UR
+);
+DISCONNECT FROM DB2;
+%put  sqlxrc= >>> &sqlxrc <<< ||| sqlxmsg= >>> &sqlxmsg >>> ;  ** includes error messages to SAS log  ;
+%sqlcheck;
+quit;
+ENDRSUBMIT;
+DATA SKIP; SET WORKLOCL.SKIP; RUN;
+DATA SKIP2; SET WORKLOCL.SKIP2; RUN;
+
+DATA SKIP;
+SET SKIP;
+FORMAT TEMP_DATE MMDDYY10.;
+IF DI_VLD_ADR = 'N' AND DI_PHN_VLD = 'N' THEN do;
+	IF DD_VER_ADR > DD_PHN_VER THEN TEMP_DATE = DD_VER_ADR;
+	ELSE TEMP_DATE = DD_PHN_VER;
+	end;
+ELSE DO;
+	IF DI_VLD_ADR = 'N' THEN TEMP_DATE = DD_VER_ADR;
+	ELSE TEMP_DATE = DD_PHN_VER;
+	end;
+
+IF TEMP_DATE > &RUNDATE2 THEN DELETE;
+RUN;
+
+DATA SKIP;
+SET SKIP; 
+IF DI_VLD_ADR = 'Y' AND DI_PHN_VLD = 'N' THEN DELETE;
+RUN;
+
+DATA SKIP (DROP=DI_PHN_VLD DI_VLD_ADR DD_VER_ADR DD_PHN_VER TEMP_DATE); SET SKIP; RUN;
+
+PROC SORT DATA=SKIP;
+BY SSN;
+RUN;
+
+data _null_;
+set  Skip;
+
+file REPORT2 delimiter=',' DSD DROPOVER lrecl=32767;
+   format SSN $9. ;
+   format SKIPTASK $8. ;
+if _n_ = 1 then        /* write column names */
+ do;
+   put
+   'SSN'
+   ','
+   'SKIPTASK'
+   ;
+ end;
+ do;
+   put SSN $ @;
+   put SKIPTASK $;
+   ;
+ end;
+run;
+
+DATA SKIP2;
+SET SKIP2;
+FORMAT TEMP_DATE DATE9.;
+IF DI_VLD_ADR = 'N' AND DI_PHN_VLD = 'N' THEN do;
+	IF DD_VER_ADR > DD_PHN_VER THEN TEMP_DATE = DD_VER_ADR;
+	ELSE TEMP_DATE = DD_PHN_VER;
+	end;
+ELSE DO;
+	IF DI_VLD_ADR = 'N' THEN TEMP_DATE = DD_VER_ADR;
+	ELSE TEMP_DATE = DD_PHN_VER;
+	end;
+
+IF TEMP_DATE > &RUNDATE2 THEN DELETE;
+RUN;
+
+DATA SKIP2 (DROP=DD_VER_ADR DD_PHN_VER TEMP_DATE); SET SKIP2; RUN;
+
+DATA SKIP2;
+SET SKIP2;
+IF DC_DOM_ST = 'FC' THEN DC_DOM_ST = '';
+RUN;
+
+*CALCULATE KEYLINE;
+DATA SKIP2 (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I 
+	CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+SET SKIP2;
+KEYSSN = TRANSLATE(BF_SSN,'MYLAUGHTER','0987654321');
+MODAY = PUT(DATE(),MMDDYYN4.);
+KEYLINE = "P"||KEYSSN||MODAY||'L';
+CHKDIG = 0;
+LENGTH DIG $2.;
+DO I = 1 TO LENGTH(KEYLINE);
+	IF I/2 NE ROUND(I/2,1) 
+		THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+	ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+	IF SUBSTR(DIG,1,1) = " " 
+		THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+		ELSE DO;
+			CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+			CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+			IF CHK1 + CHK2 >= 10
+				THEN DO;
+					CHK3 = PUT(CHK1 + CHK2,2.);
+					CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+					CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+				END;
+			CHKDIG = CHKDIG + CHK1 + CHK2;
+		END;
+END;
+CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+CHECK = PUT(CHKDIGIT,1.);
+ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+
+PROC SQL;
+CREATE TABLE SKIP2A AS
+SELECT DISTINCT *
+FROM SKIP2
+WHERE CCC = 'MA2324'
+;
+QUIT;
+
+PROC SQL;
+CREATE TABLE SKIP2B AS
+SELECT DISTINCT *
+FROM SKIP2
+WHERE BF_SSN NOT IN (SELECT Z.BF_SSN FROM SKIP2A Z)
+;
+QUIT;
+
+DATA SKIP2;
+SET SKIP2A SKIP2B;
+RUN;
+
+PROC SORT DATA=SKIP2;
+BY CCC DC_DOM_ST;
+RUN;
+
+data _null_;
+set  WORK.Skip2;
+file REPORT3 delimiter=',' DSD DROPOVER lrecl=32767;
+   format BF_SSN $9. ;
+   format DF_SPE_ACC_ID $10. ;
+   format ACSKEY $18. ;
+   format DM_PRS_1 $13. ;
+   format DM_PRS_LST $23. ;
+   format DX_STR_ADR_1 $30. ;
+   format DX_STR_ADR_2 $30. ;
+   format DM_CT $20. ;
+   format STATE $15. ;
+   format DF_ZIP_CDE $17. ;
+   format DM_FGN_CNY $25. ;
+   format PHONE $10. ;
+   format DC_DOM_ST $2. ;
+   format CCC $6. ;
+ 
+if _n_ = 1 then        /* write column names */
+ do;
+   put
+   'BF_SSN'
+   ','
+   'DF_SPE_ACC_ID'
+   ','
+   'ACSKEY'
+   ','
+   'DM_PRS_1'
+   ','
+   'DM_PRS_LST'
+   ','
+   'DX_STR_ADR_1'
+   ','
+   'DX_STR_ADR_2'
+   ','
+   'DM_CT'
+   ','
+   'STATE'
+   ','
+   'DF_ZIP_CDE'
+   ','
+   'DM_FGN_CNY'
+   ','
+   'PHONE'
+   ','
+   'DC_DOM_ST'
+   ','
+   'COST_CENTER_CODE'
+   ;
+ end;
+ do;
+   put BF_SSN $ @;
+   put DF_SPE_ACC_ID $ @;
+   put ACSKEY $ @;
+   put DM_PRS_1 $ @;
+   put DM_PRS_LST $ @;
+   put DX_STR_ADR_1 $ @;
+   put DX_STR_ADR_2 $ @;
+   put DM_CT $ @;
+   put STATE $ @;
+   put DF_ZIP_CDE $ @;
+   put DM_FGN_CNY $ @;
+   put PHONE $ @;
+   put DC_DOM_ST $ @;
+   put CCC $ ;
+   ;
+ end;
+run;

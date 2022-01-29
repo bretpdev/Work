@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[DW01_DW_CLC_CLU] (
+    [BF_SSN]             CHAR (9)        NOT NULL,
+    [LN_SEQ]             SMALLINT        NOT NULL,
+    [WD_CLC_THU]         DATETIME        NOT NULL,
+    [LA_NSI_OTS]         NUMERIC (12, 2) NULL,
+    [LA_NSI_ACR]         NUMERIC (12, 2) NULL,
+    [WA_TOT_BRI_OTS]     NUMERIC (12, 2) NULL,
+    [WC_DW_LON_STA]      CHAR (2)        NOT NULL,
+    [WD_LON_RPD_SR]      DATETIME        NULL,
+    [WD_XPC_POF_TS26]    DATETIME        NULL,
+    [WX_OVR_DW_LON_STA]  CHAR (20)       NULL,
+    [WA_STD_STD_ISL]     NUMERIC (12, 2) NULL,
+    [WC_LON_STA_GRC]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_SCL]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_RPY]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_DFR]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_FOR]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_CUR]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_CLM]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_PCL]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_DTH]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_DSA]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_BKR]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_PIF]     CHAR (2)        NOT NULL,
+    [WC_LON_STA_FUL_ORG] CHAR (2)        NOT NULL,
+    [WC_LON_DFR_FOR_TYP] CHAR (2)        NOT NULL
+);
+

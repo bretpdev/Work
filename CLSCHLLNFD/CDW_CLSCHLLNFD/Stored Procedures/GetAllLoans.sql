@@ -1,0 +1,11 @@
+﻿CREATE PROCEDURE [clschllnfd].[GetAllLoans]
+	@BF_SSN CHAR(9)
+AS
+	SELECT 
+		CAST(LN_SEQ AS INT)
+	FROM
+		CDW.dbo.LN10_LON
+	WHERE
+		BF_SSN = @BF_SSN
+		AND LC_STA_LON10 = 'R'
+RETURN 0

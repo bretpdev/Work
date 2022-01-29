@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ProjectRequest.Models.ProductPrioritization>
+
+@{
+    ViewBag.Title = "Product Prioritization";
+}
+
+<h2>Product Prioritization</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-bordered table-responsive table-hover">
+    
+    <tr>
+        <th colspan="2">
+            Enter scores in the chart below based on your project needs. Use whole numbers zero through five (0–5) to calculate the Product Prioritization Score.
+        </th>
+        <th>
+        </th>
+        <th colspan="4" class="light-highlight">
+            Criteria Weight: Total weight values should be equal to 100.
+        </th>
+        <th class="dark-highlight">
+            Total Weight</br>
+            (100)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+            25
+        </td>
+        <td>
+            25
+        </td>
+        <td>
+            25
+        </td>
+        <td>
+            25
+        </td>
+        <th>
+            100
+        </th>
+        <td></td>
+    </tr>
+
+    <tr>
+        <th class="dark-blue-highlight">
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th class="dark-blue-highlight">
+            @Html.DisplayNameFor(model => model.BusinessUnit)
+        </th>
+        <th class="dark-blue-highlight">
+            @Html.DisplayNameFor(model => model.Details)
+        </th>
+        <th class="light-blue-highlight">
+            @Html.DisplayNameFor(model => model.FinanceScore)
+        </th>
+        <th class="light-blue-highlight">
+            @Html.DisplayNameFor(model => model.RequestorScore)
+        </th>
+        <th class="light-blue-highlight">
+            @Html.DisplayNameFor(model => model.UrgencyScore)
+        </th>
+        <th class="light-blue-highlight">
+            @Html.DisplayNameFor(model => model.ResourcesScore)
+        </th>
+        <th class="dark-blue-highlight">
+            @Html.DisplayNameFor(model => model.TotalScore)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BusinessUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinanceScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestorScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrgencyScore)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResourcesScore)
+        </td>
+        <td class="light-blue-background">
+            @Html.DisplayFor(modelItem => item.TotalScore)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Scoring", "ProjectScoring", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

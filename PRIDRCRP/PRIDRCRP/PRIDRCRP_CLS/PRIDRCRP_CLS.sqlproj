@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>PRIDRCRP_CLS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{61709f57-d86f-4292-ba9c-49e36650f0d3}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>PREIDRCR_CLS_ULS</RootNamespace>
+    <AssemblyName>PREIDRCR_CLS_ULS</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Schemas" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="User Defined Table Types" />
+    <Folder Include="Table Data Scripts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas\PRIDRCRP.sql" />
+    <Build Include="Tables\BorrowerInformation.sql" />
+    <Build Include="Tables\Disbursements.sql" />
+    <Build Include="Tables\PaymentHistory.sql" />
+    <Build Include="Tables\BorrowerActivityHistory.sql" />
+    <Build Include="Tables\MonetaryHistory.sql" />
+    <Build Include="Stored Procedures\InsertToBorrowerInformation.sql" />
+    <Build Include="Stored Procedures\InsertToDisbursements.sql" />
+    <Build Include="User Defined Table Types\DisbursementRecord.sql" />
+    <Build Include="User Defined Table Types\BorrowerActivityRecord.sql" />
+    <Build Include="User Defined Table Types\MonetaryHistoryRecord.sql" />
+    <Build Include="User Defined Table Types\PaymentHistoryRecord.sql" />
+    <Build Include="Stored Procedures\InsertToMonetaryHistory.sql" />
+    <Build Include="Stored Procedures\InsertToPaymentHistory.sql" />
+    <Build Include="Stored Procedures\InsertToBorrowerActivityHistory.sql" />
+    <Build Include="Tables\RepaymentPlanChanges.sql" />
+    <Build Include="Stored Procedures\InsertToRepaymentPlanChanges.sql" />
+    <Build Include="Tables\RepaymentPlanTypes.sql" />
+    <Build Include="Stored Procedures\GetRepaymentPlanTypes.sql" />
+    <Build Include="Tables\ReviewQueue.sql" />
+    <Build Include="Stored Procedures\InsertToReviewQueue.sql" />
+    <Build Include="Stored Procedures\GetAccountNumberFromSsn.sql" />
+    <Build Include="Tables\OutstandingPrincipalChanges.sql" />
+    <Build Include="Tables\InterestRateChanges.sql" />
+    <Build Include="Tables\PaymentAmountChanges.sql" />
+    <Build Include="Stored Procedures\InsertToInterestRateChanges.sql" />
+    <Build Include="Stored Procedures\InsertToPaymentAmountChanges.sql" />
+    <Build Include="Stored Procedures\InsertToOutstandingPrincipalChanges.sql" />
+    <Build Include="Stored Procedures\GetBorrowerInformation.sql" />
+    <Build Include="User Defined Table Types\LoanSequenceMappingRecord.sql" />
+    <Build Include="Stored Procedures\CalculateLoanSequence.sql" />
+    <Build Include="Stored Procedures\CheckExistingArc.sql" />
+    <Build Include="Tables\MonetaryHistoryToBorrowerInformation.sql" />
+    <Build Include="Stored Procedures\InsertToMonetaryHistoryToBorrowerInformation.sql" />
+    <Build Include="Stored Procedures\GetLoanAddDate.sql" />
+    <Build Include="Tables\MonthsInRepayment.sql" />
+    <None Include="Table Data Scripts\PopulateRepaymentPlanTypes.sql" />
+    <Build Include="Stored Procedures\GetDateInDefFor.sql" />
+    <Build Include="User Defined Table Types\DueDatePeriods.sql" />
+    <Build Include="Stored Procedures\AddMonthsInRepayment.sql" />
+    <Build Include="Stored Procedures\CheckLoansHaveBalance.sql" />
+    <Build Include="Stored Procedures\InactivateDuplicateLoanBorrowerInformation.sql" />
+    <Build Include="Stored Procedures\CheckBorrowerInformationIdHasLoan.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="PRIDRCRP_CLS.refactorlog" />
+  </ItemGroup>
+</Project>

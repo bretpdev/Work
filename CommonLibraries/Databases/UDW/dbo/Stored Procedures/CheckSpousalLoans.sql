@@ -1,0 +1,16 @@
+﻿
+
+CREATE PROCEDURE [dbo].[CheckSpousalLoans]
+	@SSN VARCHAR(10)
+AS
+	SELECT 
+		COUNT(*)
+	FROM
+		LN10_LON
+	WHERE
+		LC_STA_LON10 = 'R'
+		AND LA_CUR_PRI > 0
+		AND IC_LON_PGM IN ('SUBSPC','UNSPC')
+		and BF_SSN = @SSN
+	
+RETURN 0

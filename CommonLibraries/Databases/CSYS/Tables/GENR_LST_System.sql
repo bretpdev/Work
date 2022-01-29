@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[GENR_LST_System] (
+    [System] VARCHAR (30) NOT NULL,
+    CONSTRAINT [PK_GENR_LST_System] PRIMARY KEY CLUSTERED ([System] ASC)
+);
+

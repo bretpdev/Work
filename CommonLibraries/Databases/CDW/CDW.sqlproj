@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CDW</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{b53501f7-6e80-4d4b-8389-cc77b69dc7ff}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CDW</RootNamespace>
+    <AssemblyName>CDW</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security\" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Views" />
+    <Folder Include="Stored Procedures\DFACDFED" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="pendingnocalls\" />
+    <Folder Include="pendingnocalls\Tables\" />
+    <Folder Include="monitor\" />
+    <Folder Include="monitor\Tables\" />
+    <Folder Include="altaddress\" />
+    <Folder Include="altaddress\Tables\" />
+    <Folder Include="DataImage\" />
+    <Folder Include="DataImage\Views\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="pendingnocalls\Stored Procedures\" />
+    <Folder Include="nsldslisfr\" />
+    <Folder Include="nsldslisfr\Stored Procedures\" />
+    <Folder Include="monitor\Stored Procedures\" />
+    <Folder Include="altaddress\Stored Procedures\" />
+    <Folder Include="FsaInvMet\" />
+    <Folder Include="FsaInvMet\Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_BatchScripts.sql" />
+    <Build Include="Security\UHEAA_BatchScripts_1.sql" />
+    <Build Include="Security\UHEAA_bpehrson.sql" />
+    <Build Include="Security\Imaging Users.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_Developers_1.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts_1.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers_1.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS_1.sql" />
+    <Build Include="Security\UHEAA_kferre.sql" />
+    <Build Include="Security\UHEAA_kferre_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Tables\Application_Loans.sql" />
+    <Build Include="Tables\Application_Source.sql" />
+    <Build Include="Tables\AY10_20DayLetter.sql" />
+    <Build Include="Tables\AY10_ArcIndicators.sql" />
+    <Build Include="Tables\AY10_History.sql" />
+    <Build Include="Tables\AY10_K0ADD.sql" />
+    <Build Include="Tables\AY10_K0PHN.sql" />
+    <Build Include="Tables\AY10_M1411.sql" />
+    <Build Include="Tables\AY10_ReferenceHistory.sql" />
+    <Build Include="Tables\AY10_WaiveFee.sql" />
+    <Build Include="Tables\AY20_COMMENTS.sql" />
+    <Build Include="Tables\BL10_Bill.sql" />
+    <Build Include="Tables\BORR_AmountDue.sql" />
+    <Build Include="Tables\BORR_Delinquency.sql" />
+    <Build Include="Tables\BR03_Reference.sql" />
+    <Build Include="Tables\BR30_Autopay.sql" />
+    <Build Include="Tables\DF10_Deferment.sql" />
+    <Build Include="Tables\DW01_Loan.sql" />
+    <Build Include="Tables\FB10_Forbearance.sql" />
+    <Build Include="Tables\Filing_Statuses.sql" />
+    <Build Include="Tables\FormatTranslation.sql" />
+    <Build Include="Tables\LN09_Rehabilitation.sql" />
+    <Build Include="Tables\LN10_Loan.sql" />
+    <Build Include="Tables\LN10_LON.sql" />
+    <Build Include="Tables\LN15_Disbursement.sql" />
+    <Build Include="Tables\LN16_Delinquency.sql" />
+    <Build Include="Tables\LN20_Endorser.sql" />
+    <Build Include="Tables\LN55_Benefit.sql" />
+    <Build Include="Tables\LN56_CreditReport.sql" />
+    <Build Include="Tables\LN65_RepaymentSched.sql" />
+    <Build Include="Tables\LN72_InterestRate.sql" />
+    <Build Include="Tables\LN83_EFTStatus.sql" />
+    <Build Include="Tables\LN83_EFT_TO_LON.sql" />
+    <Build Include="Tables\LN90_FinancialTran.sql" />
+    <Build Include="Tables\LN94_LON_PAY_FAT.sql" />
+    <Build Include="Tables\LN99_LON_SLE_FAT.sql" />
+    <Build Include="Tables\Loans.sql" />
+    <Build Include="Tables\LST_Deferment.sql" />
+    <Build Include="Tables\OW30_LON_SLE_CTL.sql" />
+    <Build Include="Tables\PD10_Borrower.sql" />
+    <Build Include="Tables\PD30_Address.sql" />
+    <Build Include="Tables\PD32_Email.sql" />
+    <Build Include="Tables\PD42_Phone.sql" />
+    <Build Include="Tables\PH05_ContactEmail.sql" />
+    <Build Include="Tables\Repayment_Plan.sql" />
+    <Build Include="Tables\RM30_BR_RMT.sql" />
+    <Build Include="Tables\RM31_Suspense.sql" />
+    <Build Include="Tables\SD10_School.sql" />
+    <Build Include="Tables\WK1J_LON_SLE_PLR.sql" />
+    <Build Include="Tables\ZDEL_AY10_20DAYLETTER.sql" />
+    <Build Include="Tables\ZDEL_AY10_ARCINDICATORS.sql" />
+    <Build Include="Tables\ZDEL_AY10_HISTORY.sql" />
+    <Build Include="Tables\ZDEL_AY10_K0ADD.sql" />
+    <Build Include="Tables\ZDEL_AY10_K0PHN.sql" />
+    <Build Include="Tables\ZDEL_AY10_M1411.sql" />
+    <Build Include="Tables\ZDEL_AY10_REFERENCEHISTORY.sql" />
+    <Build Include="Tables\ZDEL_AY10_WAIVEFEE.sql" />
+    <Build Include="Tables\ZDEL_AY20_COMMENTS.sql" />
+    <Build Include="Tables\ZDEL_BL10_BILL.sql" />
+    <Build Include="Tables\ZDEL_BORR_AMOUNTDUE.sql" />
+    <Build Include="Tables\ZDEL_BORR_DELINQUENCY.sql" />
+    <Build Include="Tables\ZDEL_BR02_EMPLOYER.sql" />
+    <Build Include="Tables\ZDEL_BR03_REFERENCE.sql" />
+    <Build Include="Tables\ZDEL_BR30_AUTOPAY.sql" />
+    <Build Include="Tables\ZDEL_DF10_DEFERMENT.sql" />
+    <Build Include="Tables\ZDEL_DW01_LOAN.sql" />
+    <Build Include="Tables\ZDEL_FB10_FORBEARANCE.sql" />
+    <Build Include="Tables\ZDEL_GA10_CALLFORWARDING.sql" />
+    <Build Include="Tables\ZDEL_LN09_REHABILITATION.sql" />
+    <Build Include="Tables\ZDEL_LN10_LOAN.sql" />
+    <Build Include="Tables\ZDEL_LN10_LON.sql" />
+    <Build Include="Tables\ZDEL_LN15_DISBURSEMENT.sql" />
+    <Build Include="Tables\ZDEL_LN16_DELINQUENCY.sql" />
+    <Build Include="Tables\ZDEL_LN20_ENDORSER.sql" />
+    <Build Include="Tables\ZDEL_LN55_BENEFIT.sql" />
+    <Build Include="Tables\ZDEL_LN56_CREDITREPORT.sql" />
+    <Build Include="Tables\ZDEL_LN65_REPAYMENTSCHED.sql" />
+    <Build Include="Tables\ZDEL_LN72_INTERESTRATE.sql" />
+    <Build Include="Tables\ZDEL_LN83_EFTSTATUS.sql" />
+    <Build Include="Tables\ZDEL_LN83_EFT_TO_LON.sql" />
+    <Build Include="Tables\ZDEL_LN90_FINANCIALTRAN.sql" />
+    <Build Include="Tables\ZDEL_LN94_LON_PAY_FAT.sql" />
+    <Build Include="Tables\ZDEL_LN99_LON_SLE_FAT.sql" />
+    <Build Include="Tables\ZDEL_OW30_LON_SLE_CTL.sql" />
+    <Build Include="Tables\ZDEL_PD10_BORROWER.sql" />
+    <Build Include="Tables\ZDEL_PD30_ADDRESS.sql" />
+    <Build Include="Tables\ZDEL_PD32_EMAIL.sql" />
+    <Build Include="Tables\ZDEL_PD42_PHONE.sql" />
+    <Build Include="Tables\ZDEL_PH05_ContactEmail.sql" />
+    <Build Include="Tables\ZDEL_RM30_BR_RMT.sql" />
+    <Build Include="Tables\ZDEL_RM31_SUSPENSE.sql" />
+    <Build Include="Tables\ZDEL_SD10_SCHOOL.sql" />
+    <Build Include="Tables\ZDEL_WK1J_LON_SLE_PLR.sql" />
+    <Build Include="Stored Procedures\GetEcorrInformation.sql" />
+    <Build Include="Stored Procedures\CheckSprocAccess.sql" />
+    <Build Include="Stored Procedures\GetRepaymentSchedule.sql" />
+    <Build Include="Stored Procedures\REDISRPS_MonitorBorrowerIsOutdated.sql" />
+    <Build Include="Stored Procedures\spGetAccountNumberFromSsn.sql" />
+    <Build Include="Stored Procedures\spGetBorrowersLastName.sql" />
+    <Build Include="Stored Procedures\spGetSSNFromAcctNumber.sql" />
+    <Build Include="Stored Procedures\spOpsCbp_GetDaysDelinquent.sql" />
+    <Build Include="Views\AY10_20DayLetterSummary.sql" />
+    <Build Include="Views\AY10_SpecialHandling.sql" />
+    <Build Include="Views\BORR_BILL.sql" />
+    <Build Include="Views\BORR_Delinquency_V.sql" />
+    <Build Include="Views\BORR_Endorser.sql" />
+    <Build Include="Views\BORR_Hardship.sql" />
+    <Build Include="Views\BORR_LastPayment.sql" />
+    <Build Include="Views\BORR_PendingDisb.sql" />
+    <Build Include="Views\BORR_Rehabilitation.sql" />
+    <Build Include="Views\BORR_Repayment.sql" />
+    <Build Include="Views\BORR_Summaries.sql" />
+    <Build Include="Views\DFR_Remaining.sql" />
+    <Build Include="Views\Holiday.sql" />
+    <Build Include="Views\LastBusinessDay.sql" />
+    <Build Include="Views\LOAN_Bill.sql" />
+    <Build Include="Views\test.sql" />
+    <Build Include="Views\View_RIR.sql" />
+    <Build Include="Stored Procedures\GetContactEmailAddress.sql" />
+    <Build Include="Stored Procedures\LT_Header.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD601_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD6018_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BRSMRY_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BPIFG_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTPDSS_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS08BDSBA7_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BCAP_Loans.sql" />
+    <Build Include="Tables\LN90_FinancialHistory.sql" />
+    <Build Include="Tables\ZDEL_LN90_FinancialHistory.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD6016_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD6015_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD501_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BBAPP_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BF601_Forbearance.sql" />
+    <Build Include="Stored Procedures\LT_TS06BF601_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BF201_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BF201_Forbearance.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD201_DefermentType.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD201_Deferment.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD201_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS09B60P_Borrower.sql" />
+    <Build Include="Stored Procedures\LT_TS09B60P_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTSA_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTSA_Transactions.sql" />
+    <Build Include="Stored Procedures\LT_TS06BRATE_Loans.sql" />
+    <Build Include="Tables\LT20_LetterRequests.sql" />
+    <Build Include="Tables\ZDEL_LT20_LetterRequests.sql" />
+    <Build Include="Stored Procedures\LT_TS06BSCRAE_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BSCRAE_ExpirationDate.sql" />
+    <Build Include="Stored Procedures\LT_TS06BSCRAA_Loans.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedLT20Letters.sql" />
+    <Build Include="Stored Procedures\Lt20MarkLetterPrinted.sql" />
+    <Build Include="Stored Procedures\LT_TS11BISF_Reversed_Transaction.sql" />
+    <Build Include="Stored Procedures\LT_TS06BBCANC_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS09B60CP_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS04BDLDSQ_Loans.sql" />
+    <Build Include="Tables\LN54_BenefitProgram.sql" />
+    <Build Include="Tables\ZDEL_LN54_BENEFITPROGRAM.sql" />
+    <Build Include="Tables\RP02_BenefitProgramTiers.sql" />
+    <Build Include="Tables\ZDEL_RP02_BENEFITPROGRAMTIERS.sql" />
+    <Build Include="Stored Procedures\GetRepaymentInformationForBorrower.sql" />
+    <Build Include="Tables\AD20_FinActAdjustment.sql" />
+    <Build Include="Tables\ZDEL_AD20_FinActAdjustment.sql" />
+    <Build Include="Stored Procedures\LT_TS09BFDLP_Loans.sql" />
+    <Build Include="Stored Procedures\GetFinalBillRecords.sql" />
+    <Build Include="Stored Procedures\GetFinalBillLoanInformation.sql" />
+    <Build Include="Stored Procedures\GetAddress.sql" />
+    <Build Include="Stored Procedures\GetSoaRecords.sql" />
+    <Build Include="Stored Procedures\GetSoaLoanInfo.sql" />
+    <Build Include="Stored Procedures\GetSoaFinancialTrans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BR003_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BLS150_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BF101_Forbearances.sql" />
+    <Build Include="Stored Procedures\LT_TS06BF101C_Forbearances.sql" />
+    <Build Include="Stored Procedures\LT_TS06BD101_Deferments.sql" />
+    <Build Include="Stored Procedures\LT_TS06BF101J_Forbearances.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTM2C_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTM2C_ConsolidationPayment.sql" />
+    <Build Include="Stored Procedures\InactivateSystemLetter.sql" />
+    <Build Include="Stored Procedures\InactivateSuppressedLetters.sql" />
+    <Build Include="Stored Procedures\InactivateManualPrintLetters.sql" />
+    <Build Include="Tables\FS12_NegAm.sql" />
+    <Build Include="Tables\ZDEL_FS12_NegAm.sql" />
+    <Build Include="Tables\DF10_DefermentLetter.sql" />
+    <Build Include="Tables\ZDEL_DF10_DefermentLetter.sql" />
+    <Build Include="Tables\FB10_ForbearanceLetter.sql" />
+    <Build Include="Tables\ZDEL_FB10_ForbearanceLetter.sql" />
+    <Build Include="Tables\RS10_RepaymentSummaryLetter.sql" />
+    <Build Include="Tables\ZDEL_RS10_RepaymentSummaryLetter.sql" />
+    <Build Include="Stored Procedures\DFACDFED\GetUnprocessedLettersByLetterId.sql" />
+    <Build Include="Stored Procedures\DFACDFED\GetLetterData_TS06BD101.sql" />
+    <Build Include="Stored Procedures\DFACDFED\GetLetterData_TS06BF101.sql" />
+    <Build Include="Stored Procedures\DFACDFED\GetLetterData_TS06BF101C.sql" />
+    <Build Include="Stored Procedures\DFACDFED\GetLetterData_TS06BF101J.sql" />
+    <Build Include="Tables\RS05_IDR_Repayment.sql" />
+    <Build Include="Tables\ZDEL_RS05_IDR_Repayment.sql" />
+    <Build Include="Stored Procedures\GetBorrowersLoanSeqForArcAdd.sql" />
+    <Build Include="Stored Procedures\GetBorrowersLoanPgmForArcAdd.sql" />
+    <Build Include="Stored Procedures\GetBorrowersLoanPgmForArcAdd.sql" />
+    <Build Include="Stored Procedures\LT_TS06BIBR45_IDR.sql" />
+    <Build Include="Stored Procedures\LT_TS06BIBRXP_IDR.sql" />
+    <Build Include="Stored Procedures\LT_TS06BICR45_IDR.sql" />
+    <Build Include="Stored Procedures\LT_TS06BICRE1_IDR.sql" />
+    <Build Include="Stored Procedures\LT_TS06BPYE45_IDR.sql" />
+    <Build Include="Stored Procedures\LT_TS06BPYEXP_IDR.sql" />
+    <Build Include="Tables\SC10_SchoolDemos.sql" />
+    <Build Include="Tables\FS14_LoanSubsidy.sql" />
+    <Build Include="Tables\WQ20_QueueTasks.sql" />
+    <Build Include="Tables\LocalLoadData.sql" />
+    <Build Include="Stored Procedures\GetLocalLoadFiles.sql" />
+    <Build Include="Tables\LocalLoadFiles.sql" />
+    <Build Include="Tables\ZDEL_SC10_SchoolDemos.sql" />
+    <Build Include="Tables\ZDEL_FS14_LoanSubsidy.sql" />
+    <Build Include="Tables\ZDEL_WQ20_QueueTasks.sql" />
+    <Build Include="Stored Procedures\GetLastWarehouseRefreshTime.sql" />
+    <Build Include="Tables\IDRRepaymentSchedules.sql" />
+    <Build Include="Stored Procedures\GetIdrRepaymentSchedules.sql" />
+    <Build Include="Stored Procedures\GetDataForDialerFile.sql" />
+    <Build Include="Stored Procedures\GetDaysPastDue.sql" />
+    <Build Include="Stored Procedures\LT_TS06RPYE00_IDR.sql" />
+    <Build Include="Stored Procedures\LT_TS06BNEGAM_InterestAmount.sql" />
+    <Build Include="Stored Procedures\LT_TS06BNEGAM_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BPIFG.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTM2LM.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTM2LM_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTPDSS.sql" />
+    <Build Include="Stored Procedures\LT_TS06BTRT4_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS06RPYE45_Deadline.sql" />
+    <Build Include="Stored Procedures\LT_TS08BDSBA7.sql" />
+    <Build Include="Stored Procedures\LT_TS09BDFDCP_Loans.sql" />
+    <Build Include="Stored Procedures\LT_TS09BFDCP_Loans.sql" />
+    <Build Include="Tables\LN65_LON_RPS.sql" />
+    <Build Include="Tables\LN66_LON_RPS_SPF.sql" />
+    <Build Include="Tables\RS05_IBR_RPS.sql" />
+    <Build Include="Tables\ZDEL_LN65_LON_RPS.sql" />
+    <Build Include="Tables\ZDEL_LN66_LON_RPS_SPF.sql" />
+    <Build Include="Tables\ZDEL_RS05_IBR_RPS.sql" />
+    <Build Include="Tables\LN54_LON_BBS.sql" />
+    <Build Include="Tables\ZDEL_LN54_LON_BBS.sql" />
+    <Build Include="Tables\LN55_LON_BBS_TIR.sql" />
+    <Build Include="Tables\ZDEL_LN55_LON_BBS_TIR.sql" />
+    <Build Include="Tables\RP30_EFT_RIR_PAR.sql" />
+    <Build Include="Tables\ZDEL_RP30_EFT_RIR_PAR.sql" />
+    <Build Include="Stored Procedures\LT_TS06BIDRF_LOANS.sql" />
+    <Build Include="Stored Procedures\LT_TS06BAPIDR_TERMS.sql" />
+    <Build Include="Stored Procedures\LT_TS06BIDRF_LOANS.sql" />
+    <Build Include="Stored Procedures\LT_TS06BIDRF_Program.sql" />
+    <Build Include="dbo\Tables\WQ20_TSK_QUE.sql" />
+    <Build Include="dbo\Tables\RS10_BR_RPD_1.sql" />
+    <Build Include="dbo\Tables\RF10_RFR.sql" />
+    <Build Include="dbo\Tables\PreTransferServicer_1.sql" />
+    <Build Include="dbo\Tables\PH05_CNC_EML_1.sql" />
+    <Build Include="dbo\Tables\PD40_PRS_PHN.sql" />
+    <Build Include="dbo\Tables\PD32_PRS_ADR_EML_1.sql" />
+    <Build Include="dbo\Tables\PD30_PRS_ADR_1.sql" />
+    <Build Include="dbo\Tables\PD10_PRS_NME_1.sql" />
+    <Build Include="dbo\Tables\LT20_LTR_REQ_PRC_1.sql" />
+    <Build Include="dbo\Tables\LN90_FIN_ATY.sql" />
+    <Build Include="dbo\Tables\LN85_LON_ATY.sql" />
+    <Build Include="dbo\Tables\LN80_LON_BIL_CRF_1.sql" />
+    <Build Include="dbo\Tables\LN72_INT_RTE_HST.sql" />
+    <Build Include="dbo\Tables\LN65_LON_RPS_DEV.sql" />
+    <Build Include="dbo\Tables\LN60_BR_FOR_APV.sql" />
+    <Build Include="dbo\Tables\LN50_BR_DFR_APV.sql" />
+    <Build Include="dbo\Tables\LN20_EDS_1.sql" />
+    <Build Include="dbo\Tables\LN16_LON_DLQ_HST_1.sql" />
+    <Build Include="dbo\Tables\LN15_DSB.sql" />
+    <Build Include="dbo\Tables\GRSP_NDS_LON_RSP_1.sql" />
+    <Build Include="dbo\Tables\FS10_DL_LON.sql" />
+    <Build Include="dbo\Tables\FB10_BR_FOR_REQ.sql" />
+    <Build Include="dbo\Tables\ExemptSetupArcs_1.sql" />
+    <Build Include="dbo\Tables\DW01_DW_CLC_CLU_1.sql" />
+    <Build Include="dbo\Tables\DF10_BR_DFR_REQ.sql" />
+    <Build Include="dbo\Tables\CNH 9760_1.sql" />
+    <Build Include="dbo\Tables\BR30_BR_EFT.sql" />
+    <Build Include="dbo\Tables\BL10_BR_BIL_1.sql" />
+    <Build Include="dbo\Tables\AY20_ATY_TXT.sql" />
+    <Build Include="dbo\Tables\AY10_BR_LON_ATY_1.sql" />
+    <Build Include="dbo\Tables\AC11_ACT_REQ_LTR.sql" />
+    <Build Include="pendingnocalls\Tables\BorrowerCallSuspensions_1.sql" />
+    <Build Include="monitor\Tables\ExemptSetupArcs_1.sql" />
+    <Build Include="monitor\Tables\MonitorSettings_1.sql" />
+    <Build Include="monitor\Tables\ExemptScheduleTypes_1.sql" />
+    <Build Include="monitor\Tables\ExemptLoanStatuses_1.sql" />
+    <Build Include="monitor\Tables\ExemptForbearanceTypes_1.sql" />
+    <Build Include="altaddress\Tables\AlternateAddresses_1.sql" />
+    <Build Include="DataImage\Views\BorrowerDemographics_1.sql" />
+    <Build Include="Security\Staff_1.sql" />
+    <Build Include="dbo\Functions\GetLoanRirType_1.sql" />
+    <Build Include="dbo\Functions\GetLoanRirInt_1.sql" />
+    <Build Include="dbo\Functions\GetLoanRirCount_1.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateIdrEligibility.sql" />
+    <Build Include="dbo\Stored Procedures\_test.sql" />
+    <Build Include="pendingnocalls\Stored Procedures\GetNextEligibleCallSuspensionDate_1.sql" />
+    <Build Include="pendingnocalls\Stored Procedures\BorrowerCallSuspensionInsert_1.sql" />
+    <Build Include="nsldslisfr\Stored Procedures\BorrowerHasNoOpenIdrQueueTasks_1.sql" />
+    <Build Include="nsldslisfr\Stored Procedures\GetBorrowersWithNoOpenIdrQueueTasks_1.sql" />
+    <Build Include="monitor\Stored Procedures\GetRedisclosureExemptions_1.sql" />
+    <Build Include="monitor\Stored Procedures\GetMonitorSettings_1.sql" />
+    <Build Include="altaddress\Stored Procedures\GetAltAddresses_1.sql" />
+    <Build Include="altaddress\Stored Procedures\UpdateAltAddress_1.sql" />
+    <Build Include="altaddress\Stored Procedures\DeleteAltAddress_1.sql" />
+    <Build Include="altaddress\Stored Procedures\AddAltAddress_1.sql" />
+    <Build Include="Security\UHEAA_Img-UHEAA_CS_Doc_Svc_Mgr_1.sql" />
+    <Build Include="Security\UHEAA_Img-UHEAA_CS_Doc_Svc_1.sql" />
+    <Build Include="Security\Staff_2.sql" />
+    <Build Include="Security\pendingnocalls_1.sql" />
+    <Build Include="Security\nsldslisfr_1.sql" />
+    <Build Include="Security\nsldlslisfr_1.sql" />
+    <Build Include="Security\monitor_1.sql" />
+    <Build Include="Security\DataImage_1.sql" />
+    <Build Include="Security\altaddress_1.sql" />
+    <Build Include="Security\Staff_3.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - Developers DBOwner Access.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RO.sql" />
+    <Build Include="Security\UHEAA_Img-UHEAA_CS_Doc_Svc_Mgr_2.sql" />
+    <Build Include="Security\UHEAA_Img-UHEAA_CS_Doc_Svc_2.sql" />
+    <Build Include="Security\UHEAA_imaging.sql" />
+    <Build Include="Security\testLogin.sql" />
+    <Build Include="Security\NSCSQL.sql" />
+    <Build Include="Security\DevKofaxFedSQL.sql" />
+    <Build Include="Security\!UHEAASSRS.sql" />
+    <Build Include="dbo\Stored Procedures\Verify120Forb_1.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateDatawarehouseRun_1.sql" />
+    <Build Include="dbo\Stored Procedures\testpdftable_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_HasAP03Record_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_HasAnticipatedDisbursement_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetRPSTypeData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetRelationshipBeginDate_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetReferenceData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetReferenceActivityHistory_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetOneLINKBorrowerLevelData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetFinancialTransactions_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetDemographicData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetDefermentAndForbearenceData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetCompassLoanData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetCompassBorrowerLevelData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetCallForwardingData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetBillingTypeData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetBillingData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetACHLoanLevelData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetACHData_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_Get411_DeleteThisOne_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_Get20DayLetterDates_1.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_BorrowerHasEndorsers_1.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAcctNumberFromSSN_1.sql" />
+    <Build Include="dbo\Stored Procedures\SetLetterPrinted_1.sql" />
+    <Build Include="dbo\Stored Procedures\SetLetterInvalid_1.sql" />
+    <Build Include="dbo\Stored Procedures\RefreshTableWithValidation.sql" />
+    <Build Include="dbo\Stored Procedures\PYOF_GetLoanInformation_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06ISCIGR_Loans_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BTRT4_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BRPYXP_IDR.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BQRTLY_Loans_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BIDRPS_Loans_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BIDRPS_Fields_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BIDRFP_Loans_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BIDRFP_ForgivenessProgram_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BDPLUS_Fields_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BDD80_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BDD40_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BDD20_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BDD140_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BDD10_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BD80DC_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BD6018_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BD6016_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BD6015_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BD601_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BD10DC_Name_1.sql" />
+    <Build Include="dbo\Stored Procedures\LT_TS06BAPIDR_Loans_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetPreTransferData_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetPaymentAmountRPF.sql" />
+    <Build Include="dbo\Stored Procedures\GetNSLDSInfo.sql" />
+    <Build Include="dbo\Stored Procedures\GetManualBorrowerAlerts_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetLoansFromNSLDS_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetLastRequestDateForNSLDS.sql" />
+    <Build Include="dbo\Stored Procedures\GetIDRDemosForSSN_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetBorrowersLoansForArcAdd_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetBorrowersAltFormat_1.sql" />
+    <Build Include="dbo\Stored Procedures\CheckEcorrLetter_1.sql" />
+    <Build Include="dbo\Stored Procedures\CheckBorrowerOnEcorr_1.sql" />
+    <Build Include="dbo\Stored Procedures\cast_SAS_timestamp_to_datetime2_1.sql" />
+    <Build Include="dbo\Stored Procedures\BorrowersSearch_1.sql" />
+    <Build Include="dbo\Stored Procedures\BorrowerSelectByAccountIdentifier_1.sql" />
+    <Build Include="dbo\Stored Procedures\BorrowerSelect_Info_1.sql" />
+    <Build Include="dbo\Stored Procedures\BorrowerSelect_Demographics_1.sql" />
+    <Build Include="Security\UHEAA_Img-UHEAA_CS_Doc_Svc_Mgr_3.sql" />
+    <Build Include="Security\UHEAA_Img-UHEAA_CS_Doc_Svc_3.sql" />
+    <Build Include="Security\Staff_4.sql" />
+    <Build Include="FsaInvMet\Views\Daily_LoanLevel.sql" />
+    <Build Include="FsaInvMet\Views\Monthly_BorrowerLevel.sql" />
+    <Build Include="FsaInvMet\Views\Monthly_LoanLevel.sql" />
+    <Build Include="FsaInvMet\Views\Monthly_PerformanceCategory.sql" />
+    <Build Include="FsaInvMet\Views\Monthly_Military.sql" />
+    <Build Include="FsaInvMet\Views\Monthly_BasePopulation.sql" />
+    <Build Include="FsaInvMet\Views\Daily_BorrowerLevel.sql" />
+    <Build Include="FsaInvMet\Views\Daily_PerformanceCategory.sql" />
+    <Build Include="FsaInvMet\Views\Daily_Military.sql" />
+    <Build Include="FsaInvMet\Views\Daily_BasePopulation.sql" />
+    <Build Include="Security\FsaInvMet.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CDW.publish.xml" />
+  </ItemGroup>
+</Project>

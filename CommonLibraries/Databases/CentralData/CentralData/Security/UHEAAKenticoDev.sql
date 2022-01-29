@@ -1,0 +1,2 @@
+﻿CREATE USER [UHEAAKenticoDev] FOR LOGIN [UHEAAKenticoDev];
+

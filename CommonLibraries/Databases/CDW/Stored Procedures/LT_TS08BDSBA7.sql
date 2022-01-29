@@ -1,0 +1,32 @@
+﻿CREATE PROCEDURE [dbo].[LT_TS08BDSBA7]
+	@AccountNumber			CHAR(10)
+AS
+BEGIN
+	SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	SELECT
+		LN10.IC_LON_PGM,
+		LN10.LD_LON_1_DSB,
+		LN10.LA_CUR_PRI,
+		LN72.LR_ITR
+	FROM
+		dbo.LN10_Loan LN10
+		JOIN LN72_InterestRate LN72
+			ON LN10.DF_SPE_ACC_ID = LN72.DF_SPE_ACC_ID
+	WHERE 
+		LN10.DF_SPE_ACC_ID = @AccountNumber
+		AND GETDATE() BETWEEN LN72.LD_ITR_EFF_BEG AND LN72.LD_ITR_EFF_END
+END
+
+IF @@ROWCOUNT = 0 
+	BEGIN
+		RAISERROR('No data returned. ([dbo].[LT_TS08BDSBA7])',11,2)
+	END
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[LT_TS08BDSBA7] TO [db_executor]
+    AS [dbo];
+

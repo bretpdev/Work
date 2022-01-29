@@ -1,0 +1,80 @@
+#chatviewer-form-container {
+    width: 100%;
+    text-align: center;
+}
+
+.chatviewer-form-legend {
+    display: block;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.chatviewer-form {
+    display: inline-block;
+    margin: 0 10px;
+    vertical-align: top;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.chatviewer-form tr {
+    vertical-align: top;
+}
+
+.chatviewer-form td {
+    padding: 0 5px;
+    vertical-align: middle;
+}
+
+.validation {
+    display: none;
+    color: #f00;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+#chatviewer-form-submit {
+    clear: both;
+    display: block;
+    margin: 16px auto;
+    padding: 5px 9px;
+    text-align: center;
+    background-color: #DDD;
+}
+
+#chatviewer-form-container input[type='text'],
+#chatviewer-form-container input[type='number'],
+#chatviewer-form-container input[type='email'],
+#chatviewer-form-container input[type='password'],
+#chatviewer-form-container input[type='search'],
+#chatviewer-form-container input[type='tel'],
+#chatviewer-form-container input[type='url'], 
+#chatviewer-form-container input[type='date'],
+#chatviewer-form-container input[type='time'],
+#chatviewer-form-container input[type='month'],
+#chatviewer-form-container input[type='week'],
+#chatviewer-form-container input[type='datetime'],
+#chatviewer-form-container input[type='datetime-local'],
+#chatviewer-form-container input[type='color'],
+#chatviewer-form-container input[type='select'],
+#chatviewer-form-container textarea,
+#chatviewer-queue-selection-picker {
+    display: inline-block;
+    padding: .5em .6em;
+    min-width: 180px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 3px #ddd;
+    border-radius: 4px;
+}
+
+#chatviewer-form-container input:invalid.validation-enabled {
+    border-right: 2px solid #F00;
+}
+
+#chatviewer-form-container input:valid {
+    
+}
+
+#chatviewer-form-container input:required {
+    
+}

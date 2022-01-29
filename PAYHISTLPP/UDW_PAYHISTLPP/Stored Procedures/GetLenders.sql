@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [payhistlpp].[GetLenders]
+AS
+	SELECT DISTINCT
+        LEFT(LN10.LF_LON_CUR_OWN, 6)
+    FROM
+        UDW..LN10_LON LN10
+    WHERE
+        LN10.LA_CUR_PRI > 0.00
+        AND LN10.LC_STA_LON10 = 'R'
+        AND LN10.LF_LON_CUR_OWN IS NOT NULL

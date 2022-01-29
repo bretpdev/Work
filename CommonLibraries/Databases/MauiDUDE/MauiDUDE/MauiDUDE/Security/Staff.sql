@@ -1,0 +1,50 @@
+﻿CREATE ROLE [Staff]
+    AUTHORIZATION [dbo];
+
+
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\!UHEAASSRS];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [Imaging Users];
+
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\bpehrson];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\dbarton];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\developers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [!UHEAASSRS];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - NOCHOUSE - MauiDude RO];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\CornerStoneUsers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - NOCHOUSE - All Databases RW];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - NOCHOUSE - Developers Mixed (R W dbexecutor)];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - NOCHOUSE - All Databases RO];
+

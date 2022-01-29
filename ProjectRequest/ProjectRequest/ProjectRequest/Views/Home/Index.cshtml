@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Uheaa Project Request</h1>
+    <p class="lead">Uheaa's web based service for the creation and prioritization of Application Development projects.</p>
+    <p><input type="button" class="btn btn-primary btn-lg" value="View Projects &raquo;" onclick="location.href='@Url.Action("ProductPrioritization")'" />
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Edit/Score Projects</h2>
+        <p>
+            View prioritization and edit/score projects. Projects will default a score to zero so make sure to submit your scores!
+        </p>
+        <p><input type="button" class="btn btn-default" value="Edit/Score &raquo;" onclick="location.href='@Url.Action("ProductPrioritization")'" /></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Create New Project</h2>
+        <p>Create a new project to be prioritized. Please have all applicable information including Business Unit and Project Summary. More details will help the project be prioritized correctly.</p>
+        <p><input type="button" class="btn btn-default" value="Create &raquo;" onclick="location.href='@Url.Action("ProjectRequest")'" /></p>
+    </div>
+</div>
+
+<!--<div class="row">
+    <ul class="cb-slideshow">
+        <li>
+            <span>Image 01</span>
+            <div>
+                <h3>Title 01</h3>
+            </div>
+        </li>
+        <li>
+            <span>Image 02</span>
+            <div>
+                <h3>Title 02</h3>
+            </div>
+        </li>
+    </ul>
+</div>-->

@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{454D3CCA-A5A2-4472-8742-62486F824322}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MANMAIL</RootNamespace>
+    <AssemblyName>MANMAIL</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>X:\PADU\UHEAACodeBase\MANMAIL\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\AssociatedAccounts.cs" />
+    <Compile Include="DataAccess\AddressData.cs" />
+    <Compile Include="DataAccess\BorrowerEmailData.cs" />
+    <Compile Include="UIs\AssociatedBorAccounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIs\AssociatedBorAccounts.Designer.cs">
+      <DependentUpon>AssociatedBorAccounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\AssociatedDemos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UIs\AssociatedDemos.Designer.cs">
+      <DependentUpon>AssociatedDemos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\ScannerInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIs\ScannerInput.Designer.cs">
+      <DependentUpon>ScannerInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIs\TheRules.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIs\TheRules.Designer.cs">
+      <DependentUpon>TheRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="UIs\Demos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIs\Demos.Designer.cs">
+      <DependentUpon>Demos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManualReturnMail.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIs\ReturnMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIs\ReturnMail.Designer.cs">
+      <DependentUpon>ReturnMail.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UIs\AssociatedBorAccounts.resx">
+      <DependentUpon>AssociatedBorAccounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIs\AssociatedDemos.resx">
+      <DependentUpon>AssociatedDemos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIs\ScannerInput.resx">
+      <DependentUpon>ScannerInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIs\TheRules.resx">
+      <DependentUpon>TheRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIs\Demos.resx">
+      <DependentUpon>Demos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UIs\ReturnMail.resx">
+      <DependentUpon>ReturnMail.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WHOAMI\WHOAMI\WHOAMI\WHOAMI.csproj">
+      <Project>{fa534f2a-cd21-4ba9-9f81-88cfcb9f6b2e}</Project>
+      <Name>WHOAMI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

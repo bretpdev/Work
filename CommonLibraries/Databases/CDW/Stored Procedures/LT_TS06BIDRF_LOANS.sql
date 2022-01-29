@@ -1,0 +1,55 @@
+CREATE PROCEDURE [dbo].[LT_TS06BIDRF_LOANS]
+	@AccountNumber CHAR(10) 
+AS
+	DECLARE @LETTERID VARCHAR(10) = 'TS06BIDRFG'
+DECLARE @ARC_QUERY VARCHAR(MAX)
+SELECT @ARC_QUERY = 'SELECT * FROM OPENQUERY(LEGEND_TEST_VUK3,''
+			SELECT
+				LN10.IC_LON_PGM AS "LoanProgram",
+				VARCHAR_FORMAT(LN10.LD_LON_1_DSB, ''''MM/DD/YYYY'''') AS "DisbursementDate",
+				LN10.LA_CUR_PRI AS "Current Principal Balance",
+				(LN10.LA_CUR_PRI + DW01.WA_TOT_BRI_OTS)  AS "AmountForgiven"
+
+			FROM
+				PKUB.LN10_LON LN10
+				INNER JOIN
+				(
+					SELECT
+						LN85.BF_SSN,
+						LN85.LN_SEQ
+					FROM
+						PKUB.LN85_LON_ATY LN85
+						INNER JOIN
+						(
+							SELECT
+								AY10.BF_SSN,
+								MAX(AY10.LN_ATY_SEQ) AS LN_ATY_SEQ
+							FROM
+								PKUB.AY10_BR_LON_ATY AY10
+								INNER JOIN
+								(
+									SELECT 
+										PF_REQ_ACT
+									FROM 
+										PKUB.AC11_ACT_REQ_LTR
+									WHERE 
+										 PF_LTR = ''''' + @LETTERID + '''''
+								) ARC
+									ON ARC.PF_REQ_ACT = AY10.PF_REQ_ACT
+							GROUP BY
+								AY10.BF_SSN
+						)AY10
+							ON AY10.BF_SSN = LN85.BF_SSN
+							AND AY10.LN_ATY_SEQ = LN85.LN_ATY_SEQ
+				)LN85
+					ON LN85.BF_SSN = LN10.BF_SSN
+					AND LN85.LN_SEQ = LN10.LN_SEQ
+				INNER JOIN PKUB.PD10_PRS_NME PD10
+					ON PD10.DF_PRS_ID = LN10.BF_SSN
+				INNER JOIN PKUB.DW01_DW_CLC_CLU DW01
+					ON DW01.BF_SSN = LN10.BF_SSN
+					AND DW01.LN_SEQ = LN10.LN_SEQ
+			WHERE
+				PD10.DF_SPE_ACC_ID = ''''' + @AccountNumber + '''''
+	   '')'
+EXEC (@ARC_QUERY)

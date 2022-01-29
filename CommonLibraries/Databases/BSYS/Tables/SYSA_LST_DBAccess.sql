@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[SYSA_LST_DBAccess] (
+    [EmailAddress] NVARCHAR (50) NOT NULL,
+    [AccessType]   NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_SYSA_LST_DBAccess] PRIMARY KEY CLUSTERED ([EmailAddress] ASC, [AccessType] ASC),
+    CONSTRAINT [FK_SYSA_LST_DBAccess_SYSA_LST_Users] FOREIGN KEY ([EmailAddress]) REFERENCES [dbo].[SYSA_LST_Users] ([WindowsUserName]) ON DELETE CASCADE ON UPDATE CASCADE
+);
+

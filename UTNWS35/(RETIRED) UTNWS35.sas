@@ -1,0 +1,304 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/UNWS35.NWS35RZ";
+FILENAME REPORT2 "&RPTLIB/UNWS35.NWS35R2";
+FILENAME REPORT3 "&RPTLIB/UNWS35.NWS35R3";
+FILENAME REPORT4 "&RPTLIB/UNWS35.NWS35R4";
+FILENAME REPORT5 "&RPTLIB/UNWS35.NWS35R5";
+
+LIBNAME  LEGEND  REMOTE  SERVER=LEGEND SLIBREF=work  ;
+RSUBMIT LEGEND;
+/*%let DB = DNFPRQUT;  *This is test;*/
+/*%let DB = DNFPRUUT;  *This is VUK3 test;*/
+%let DB = DNFPUTDL;  *This is live;
+
+LIBNAME PKUB DB2 DATABASE=&DB OWNER=PKUB;
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=&DB);
+
+	CREATE TABLE LOANS AS
+		SELECT	
+			*
+		FROM	
+			CONNECTION TO DB2 
+				(
+					SELECT DISTINCT
+						LN10.BF_SSN,
+						LN80.LD_BIL_CRT
+					FROM
+						PKUB.LN10_LON LN10
+						JOIN PKUB.DW01_DW_CLC_CLU DW01
+							ON LN10.BF_SSN = DW01.BF_SSN
+							AND LN10.LN_SEQ = DW01.LN_SEQ
+						JOIN PKUB.LN80_LON_BIL_CRF LN80
+							ON LN10.BF_SSN = LN80.BF_SSN
+							AND LN10.LN_SEQ = LN80.LN_SEQ
+							AND LN80.LC_STA_LON80 = 'A'
+							AND LN80.LI_FNL_BIL_LON = 'Y'
+							AND DAYS(LN80.LD_BIL_DU_LON) <= DAYS(CURRENT_DATE) + 30
+					WHERE
+						LN10.LA_CUR_PRI > 0
+						AND LN10.LC_STA_LON10 = 'R'
+						AND DW01.WC_DW_LON_STA IN ('03', '13', '14')
+
+					FOR READ ONLY WITH UR
+				)
+	;
+
+	DISCONNECT FROM DB2;
+
+	CREATE TABLE BALS AS
+		SELECT DISTINCT
+			LN10.BF_SSN,
+			SUM(LN10.LA_CUR_PRI) AS LA_CUR_PRI
+		FROM
+			LOANS
+			JOIN PKUB.LN10_LON LN10
+				ON LOANS.BF_SSN = LN10.BF_SSN
+		WHERE
+			LN10.LC_STA_LON10 = 'R'
+		GROUP BY 
+			LN10.BF_SSN
+	;
+
+	CREATE TABLE R2 AS
+		SELECT DISTINCT
+			PD10.DF_SPE_ACC_ID
+		FROM
+			LOANS LNS
+			JOIN BALS
+				ON LNS.BF_SSN = BALS.BF_SSN
+				AND BALS.LA_CUR_PRI >= 25
+			JOIN PKUB.PD10_PRS_NME PD10
+				ON LNS.BF_SSN = PD10.DF_PRS_ID
+			JOIN PKUB.PD40_PRS_PHN PD40
+				ON LNS.BF_SSN = PD40.DF_PRS_ID
+		WHERE
+			PD40.DI_PHN_VLD = 'Y'
+	;
+
+	CREATE TABLE R3 AS
+		SELECT DISTINCT 
+			PD10.DF_PRS_ID,
+			PD10.DF_SPE_ACC_ID,
+			PD10.DM_PRS_1,
+			PD10.DM_PRS_LST,
+			PD30.DX_STR_ADR_1,
+			PD30.DX_STR_ADR_2,
+			PD30.DM_CT,
+			PD30.DC_DOM_ST,
+			PD30.DF_ZIP_CDE,
+			PD30.DM_FGN_CNY,
+			PD30.DM_FGN_ST,
+			LNS.LD_BIL_CRT,
+			'MA4481' AS COST_CENTER
+		FROM
+			LOANS LNS
+			JOIN BALS
+				ON LNS.BF_SSN = BALS.BF_SSN
+				AND BALS.LA_CUR_PRI >= 25
+			JOIN PKUB.PD10_PRS_NME PD10
+				ON LNS.BF_SSN = PD10.DF_PRS_ID
+			JOIN PKUB.PD30_PRS_ADR PD30
+				ON LNS.BF_SSN = PD30.DF_PRS_ID
+				AND PD30.DI_VLD_ADR = 'Y'
+			LEFT JOIN PKUB.PD32_PRS_ADR_EML PD32
+				ON LNS.BF_SSN = PD32.DF_PRS_ID
+				AND PD32.DC_STA_PD32 = 'A' 
+				AND PD32.DI_VLD_ADR_EML = 'Y'
+			JOIN
+				(
+					SELECT
+						BF_SSN,
+						MAX(LD_BIL_CRT) AS LD_BIL_CRT
+					FROM
+						LOANS
+					GROUP BY
+						BF_SSN
+				) BIL
+				ON LNS.BF_SSN = BIL.BF_SSN
+				AND LNS.LD_BIL_CRT = BIL.LD_BIL_CRT
+		WHERE
+			PD32.DF_PRS_ID IS NULL	
+		ORDER BY 
+			DC_DOM_ST
+	;
+
+	CREATE TABLE R4 AS
+		SELECT DISTINCT
+			PD10.DF_SPE_ACC_ID,
+			PD10.DM_PRS_1,
+			PD10.DM_PRS_LST,
+			PD32.DX_ADR_EML
+		FROM
+			LOANS LNS
+			JOIN BALS
+				ON LNS.BF_SSN = BALS.BF_SSN
+				AND BALS.LA_CUR_PRI >= 25
+			JOIN PKUB.PD10_PRS_NME PD10
+				ON LNS.BF_SSN = PD10.DF_PRS_ID
+			JOIN PKUB.PD32_PRS_ADR_EML PD32
+				ON LNS.BF_SSN = PD32.DF_PRS_ID
+				AND PD32.DC_STA_PD32 = 'A' 
+				AND PD32.DI_VLD_ADR_EML = 'Y'
+	;
+
+	CREATE TABLE R5 AS
+		SELECT DISTINCT
+			PD10.DF_SPE_ACC_ID,
+			LN10.LN_SEQ
+		FROM
+			BALS
+			JOIN PKUB.LN10_LON LN10
+				ON BALS.BF_SSN = LN10.BF_SSN
+				AND LN10.LC_STA_LON10 = 'R'
+			JOIN PKUB.PD10_PRS_NME PD10
+				ON BALS.BF_SSN = PD10.DF_PRS_ID
+		WHERE
+			BALS.LA_CUR_PRI < 25
+		ORDER BY 
+			DF_SPE_ACC_ID
+	;
+
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+QUIT;
+
+DATA R3 (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+	SET R3;
+	KEYSSN = TRANSLATE(DF_PRS_ID,'MYLAUGHTER','0987654321');
+	MODAY = PUT(DATE(),MMDDYYN4.);
+	KEYLINE = "P"||KEYSSN||MODAY||"L";
+	CHKDIG = 0;
+	LENGTH DIG $2.;
+
+	DO I = 1 TO LENGTH(KEYLINE);
+		IF I/2 NE ROUND(I/2,1) 
+			THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+		ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+		IF SUBSTR(DIG,1,1) = " " 
+			THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+			ELSE DO;
+				CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+				CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+				IF CHK1 + CHK2 >= 10
+					THEN DO;
+						CHK3 = PUT(CHK1 + CHK2,2.);
+						CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+						CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+					END;
+				CHKDIG = CHKDIG + CHK1 + CHK2;
+			END;
+	END;
+
+	CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+	IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+	CHECK = PUT(CHKDIGIT,1.);
+	ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+
+ENDRSUBMIT;
+
+DATA R2; SET LEGEND.R2; RUN;
+DATA R3; SET LEGEND.R3; RUN;
+DATA R4; SET LEGEND.R4; RUN;
+DATA R5; SET LEGEND.R5; RUN;
+
+/*export to queue builder (fed) file*/
+DATA _NULL_;
+	SET R2 ;
+	FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+	PUT DF_SPE_ACC_ID 'FBFUR,,,,,,,ALL,Final Bill has been sent Please review Account' ;
+RUN;
+
+/*write to comma delimited file for the Batch Letters - FED script*/
+DATA _NULL_;
+	SET		WORK.R3;
+	FILE	REPORT3 delimiter=',' DSD DROPOVER lrecl=32767;
+	FORMAT	LD_BIL_CRT MMDDYY10.;
+
+	/* write column names, remove this to create a file without a header row */
+	IF _N_ = 1 THEN
+		DO;
+			PUT	'AccountNumber,FirstName,LastName,Street1,Street2,City,State,Zip,ForeignCountry,ForeignState,FinalBillDate,ACSKeyline,Costcenter';
+		END;
+
+	/*write data*/	
+	DO;
+		PUT DF_SPE_ACC_ID $ @;
+		PUT DM_PRS_1 $ @;
+		PUT DM_PRS_LST $ @;
+		PUT DX_STR_ADR_1 $ @;
+		PUT DX_STR_ADR_2 $ @;
+		PUT DM_CT $ @;
+		PUT DC_DOM_ST $ @;
+		PUT DF_ZIP_CDE $ @;
+		PUT DM_FGN_CNY $ @;
+		PUT DM_FGN_ST $ @;
+		PUT LD_BIL_CRT $ @;
+		PUT ACSKEY $ @;
+		PUT COST_CENTER  $ ;
+	END;
+RUN;
+
+/*write to comma delimited file for the Email Batch Script - FED script*/
+DATA _NULL_;
+	SET		WORK.R4;
+	FILE	REPORT4 delimiter=',' DSD DROPOVER lrecl=32767;
+
+	/* write column names, remove this to create a file without a header row */
+	IF _N_ = 1 THEN
+		DO;
+			PUT	
+				'DF_SPE_ACC_ID'
+				','
+				'DM_PRS_1'
+				','
+				'DM_PRS_LST'
+				','
+				'DX_ADR_EML'
+			;
+		END;
+
+	/* write data*/	
+	DO;
+		PUT DF_SPE_ACC_ID $ @;
+		PUT DM_PRS_1 $ @;
+		PUT DM_PRS_LST $ @;
+		PUT DX_ADR_EML $;
+		;
+	END;
+RUN;
+
+DATA _NULL_;
+	SET		WORK.R5;
+	FILE	REPORT5;
+	BY DF_SPE_ACC_ID;
+
+	IF _N_ = 1 THEN	PUT	'DF_SPE_ACC_ID,LN_SEQS';
+
+/*	write account number followed by a comma followed by loan number separated by spaces*/
+	IF FIRST.DF_SPE_ACC_ID THEN DO;
+		ANC = DF_SPE_ACC_ID || ',';
+		PUT ANC $ +(-1) @;
+	END;
+	IF LAST.DF_SPE_ACC_ID THEN PUT LN_SEQ ; /*go to next line*/
+	ELSE PUT LN_SEQ @; /*stay on the line*/
+RUN;

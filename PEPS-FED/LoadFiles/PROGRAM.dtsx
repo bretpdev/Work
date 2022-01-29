@@ -1,0 +1,2548 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/6/2017 11:35:30 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LPP-2541"
+  DTS:CreatorName="UHEAA\jryan"
+  DTS:Description="DTS Wizard-generated package"
+  DTS:DTSID="{E718812B-670F-4920-AE89-3CB6F3465D7A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.94"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="PROGRAM"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{EB026E6E-B080-4A62-92E4-6E8D7AC5A641}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1982346B-F361-4365-98B2-868E5BE583FE}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=OPSDEV;Initial Catalog=CLS;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{DF99445D-FAFB-4E6C-BC01-EB3E5D7E8268}"
+      DTS:ObjectName="SourceConnectionFlatFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="FixedWidth"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="T:\PROGRAM.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="RecordType"
+              DTS:DTSID="{C4773B95-FC07-4737-9FDA-A727FDFFDDF1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="OpeId"
+              DTS:DTSID="{DE4C8BBD-E667-4727-917F-5D625C547156}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="ChangeIndicator"
+              DTS:DTSID="{B168FBF3-97B1-42B8-A14F-B4A219869BA9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FpellStartDt"
+              DTS:DTSID="{E0057880-0733-4796-9685-2CF9ADB14A7F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FpellEndDt"
+              DTS:DTSID="{C3C3759A-3FFF-4066-875C-27CF49D7F63C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FpellApprovInd"
+              DTS:DTSID="{52DF1CA1-E23C-4A88-8780-9476049C10FF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelStafStartDt"
+              DTS:DTSID="{49E65450-A75D-4FE3-ACEC-5B2D41C64FF3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelStafEndDt"
+              DTS:DTSID="{AF96BC2B-0328-43D3-89A5-DF6528920ABE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelStafApprovInd"
+              DTS:DTSID="{B10556B3-BDD2-4DB6-8B2B-DC4B33928E99}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelStafUnsubStartDt"
+              DTS:DTSID="{EFDD58BA-EA69-4B47-B87C-5C8A8781537A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelStafUnsubEndDt"
+              DTS:DTSID="{FB13ACEE-C087-41CE-814B-4103D36D5DEE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelStafUnsubApprovInd"
+              DTS:DTSID="{DE1BF705-5847-4ACE-8655-388A2B79401D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelPlusStartDt"
+              DTS:DTSID="{2ED2EB54-58BF-4E21-9B29-0AF0CC69B009}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelPlusEndDt"
+              DTS:DTSID="{8EC3378B-7842-4FE4-B8A5-E9AF2C5995A8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelPlusApprovInd"
+              DTS:DTSID="{8BA72FF2-236D-41AB-81F6-12B02EB9D9B5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelSlsStartDt"
+              DTS:DTSID="{83D0A270-4D69-45CB-B242-FC9DB17BF6AF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelSlsEndDt"
+              DTS:DTSID="{459401A7-D51A-4DC9-94A7-5001AB8FDE20}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelSlsApprovInd"
+              DTS:DTSID="{14AB284F-BE12-4C32-BF9C-A56937CEBF11}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpStafStartDt"
+              DTS:DTSID="{C76EEC1B-F96D-4D89-B522-576E38F1E91B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpStafEndDt"
+              DTS:DTSID="{455B6338-F21C-4022-B0EA-74448805EB92}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpStafApprovInd"
+              DTS:DTSID="{17F14C3A-B86F-4254-993E-9B9F8A757DAF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpStafUnsubStartDt"
+              DTS:DTSID="{4262AA09-AB6C-4C5B-BB28-CB18F0D41FF7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpStafUnsubEndDt"
+              DTS:DTSID="{84D6423A-E911-45AD-88FE-0E067D139385}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpStafUnsubApprovInd"
+              DTS:DTSID="{C912605E-BF3E-4897-8E34-69FB09D46225}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpPlusStartDt"
+              DTS:DTSID="{4B0DBC81-B5F5-4730-9007-48113B7691A2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpPlusEndDt"
+              DTS:DTSID="{DBB57867-E6EA-43FA-9C4C-A7C88C45D7F6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpPlusApprovInd"
+              DTS:DTSID="{B98170A4-F9D4-4396-9575-EA8EA64B8DC2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FperkinsStartDt"
+              DTS:DTSID="{C0C385F8-BAB9-4BD0-A954-DBD3D85A8E4C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FperkinsEndDt"
+              DTS:DTSID="{ED78FC1C-A8DC-4EA0-BD67-1990AB1DBFD4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FperkinsApprovInd"
+              DTS:DTSID="{72B453B3-9CE5-4C0F-BB67-0198FCFA1F50}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FseogStartDt"
+              DTS:DTSID="{D10C8BF2-2D00-4396-8AE7-5C110D2B8BCA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FseogEndDt "
+              DTS:DTSID="{D1E515B1-460C-458E-BA33-280665AFE415}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FseogApprovInd"
+              DTS:DTSID="{274EDF6B-48EB-4C8B-8090-B7BE368CA9FE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsPrivSecEmplStartDt"
+              DTS:DTSID="{4068E29D-2C0F-4CCB-AC7A-5AC1B4E35812}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsPrivSecEmpEndDt"
+              DTS:DTSID="{F755CDB5-6760-4B7C-AA73-3FE7D3C4A094}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsPrivSecEmplApprovInd"
+              DTS:DTSID="{AFC81960-3787-4242-AA30-0D7C07570C8B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsJobLocDevStartDt"
+              DTS:DTSID="{917E9521-DB88-4EEA-B056-398C1E268B57}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsJobLocDevEndDt"
+              DTS:DTSID="{029CDD67-6014-49E6-82A4-208229325C08}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsJobLocDevApprovInd"
+              DTS:DTSID="{D613E89F-A01D-417A-9B90-CBE0E8F5E1D6}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsComServStartDt"
+              DTS:DTSID="{6C565D2B-3F86-4775-87D1-6FBE18723168}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsComServEndDt"
+              DTS:DTSID="{778174EF-27BC-4B5C-9CEA-52BB11A6DFDD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="FwsComServApprovInd"
+              DTS:DTSID="{B08EAB1D-A040-4322-B7B9-A56134B3DF16}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="256"
+              DTS:MaximumWidth="256"
+              DTS:DataType="129"
+              DTS:ObjectName="Filler"
+              DTS:DTSID="{373AE546-FAF6-4858-8A0E-B1041F2D8A08}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{0362F94A-2FC3-4943-B732-76969FD74C15}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Destination - PROGRAM"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - PROGRAM"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[peps].[PROGRAM]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - PROGRAM.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[RecordType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="RecordType"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[RecordType]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[RecordType]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[OpeId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="OpeId"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[OpeId]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[OpeId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[ChangeIndicator]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ChangeIndicator"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[ChangeIndicator]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FpellStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FpellStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FpellStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FpellEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FpellEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FpellEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FpellApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FpellApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FpellApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelStafStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelStafStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelStafEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelStafEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelStafApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FfelStafApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelStafUnsubStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelStafUnsubStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafUnsubStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelStafUnsubEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelStafUnsubEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafUnsubEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelStafUnsubApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FfelStafUnsubApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafUnsubApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelPlusStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelPlusStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelPlusStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelPlusEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelPlusEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelPlusEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelPlusApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FfelPlusApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelPlusApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelSlsStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelSlsStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelSlsStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelSlsEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FfelSlsEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelSlsEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FfelSlsApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FfelSlsApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelSlsApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpStafStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FdslpStafStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpStafEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FdslpStafEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpStafApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FdslpStafApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpStafUnsubStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FdslpStafUnsubStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafUnsubStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpStafUnsubEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FdslpStafUnsubEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafUnsubEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpStafUnsubApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FdslpStafUnsubApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafUnsubApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpPlusStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FdslpPlusStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpPlusStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpPlusEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FdslpPlusEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpPlusEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FdslpPlusApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FdslpPlusApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpPlusApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FperkinsStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FperkinsStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FperkinsStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FperkinsEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FperkinsEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FperkinsEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FperkinsApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FperkinsApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FperkinsApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FseogStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FseogStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FseogStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FseogApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FseogApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FseogApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsPrivSecEmplStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FwsPrivSecEmplStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsPrivSecEmplStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmplStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsPrivSecEmpEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FwsPrivSecEmpEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsPrivSecEmpEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmpEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsPrivSecEmplApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FwsPrivSecEmplApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsPrivSecEmplApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmplApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsJobLocDevStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FwsJobLocDevStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsJobLocDevStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsJobLocDevEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FwsJobLocDevEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsJobLocDevEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsJobLocDevApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FwsJobLocDevApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsJobLocDevApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsComServStartDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FwsComServStartDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsComServStartDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServStartDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsComServEndDt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FwsComServEndDt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsComServEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServEndDt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FwsComServApprovInd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="FwsComServApprovInd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsComServApprovInd]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServApprovInd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[Filler]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="256"
+                      cachedName="Filler"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[Filler]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[Filler]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].Columns[FseogEndDt ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="FseogEndDt "
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FseogEndDt]"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogEndDt ]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="OpeId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ChangeIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FpellStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FpellStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FpellEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FpellEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FpellApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FpellApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelStafApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafUnsubStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafUnsubStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafUnsubEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafUnsubEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelStafUnsubApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelStafUnsubApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelPlusStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelPlusStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelPlusEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelPlusEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelPlusApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelPlusApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelSlsStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelSlsStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelSlsEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelSlsEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FfelSlsApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelSlsApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FdslpStafApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafUnsubStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafUnsubStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafUnsubEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafUnsubEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpStafUnsubApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FdslpStafUnsubApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpPlusStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpPlusStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpPlusEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpPlusEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FdslpPlusApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FdslpPlusApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FperkinsStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FperkinsStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FperkinsEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FperkinsEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FperkinsApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FperkinsApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FseogStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FseogStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FseogApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FseogApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsPrivSecEmplStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsPrivSecEmplStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsPrivSecEmpEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsPrivSecEmpEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsPrivSecEmplApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FwsPrivSecEmplApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsJobLocDevStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsJobLocDevStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsJobLocDevEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsJobLocDevEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsJobLocDevApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FwsJobLocDevApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsComServStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsComServStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsComServEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsComServEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FwsComServApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FwsComServApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="Filler" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[PROGRAM_ID]"
+                      dataType="i8"
+                      name="PROGRAM_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[FseogEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FseogEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[ProcessedAt]"
+                      dataType="dbTimeStamp"
+                      name="ProcessedAt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input].ExternalColumns[DeletedAt]"
+                      dataType="dbTimeStamp"
+                      name="DeletedAt" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - PROGRAM.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - PROGRAM.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - PROGRAM.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - PROGRAM.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - PROGRAM_txt"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Source - PROGRAM_txt"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[RecordType]"
+                      length="2"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[RecordType]"
+                      name="RecordType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[OpeId]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[OpeId]"
+                      name="OpeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[ChangeIndicator]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]"
+                      name="ChangeIndicator"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FpellStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellStartDt]"
+                      name="FpellStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FpellEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellEndDt]"
+                      name="FpellEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FpellApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FpellApprovInd]"
+                      name="FpellApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafStartDt]"
+                      name="FfelStafStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafEndDt]"
+                      name="FfelStafEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafApprovInd]"
+                      name="FfelStafApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafUnsubStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubStartDt]"
+                      name="FfelStafUnsubStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafUnsubEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubEndDt]"
+                      name="FfelStafUnsubEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafUnsubApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelStafUnsubApprovInd]"
+                      name="FfelStafUnsubApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelPlusStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusStartDt]"
+                      name="FfelPlusStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelPlusEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusEndDt]"
+                      name="FfelPlusEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelPlusApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelPlusApprovInd]"
+                      name="FfelPlusApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelSlsStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsStartDt]"
+                      name="FfelSlsStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelSlsEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsEndDt]"
+                      name="FfelSlsEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelSlsApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FfelSlsApprovInd]"
+                      name="FfelSlsApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafStartDt]"
+                      name="FdslpStafStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafEndDt]"
+                      name="FdslpStafEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafApprovInd]"
+                      name="FdslpStafApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafUnsubStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubStartDt]"
+                      name="FdslpStafUnsubStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafUnsubEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubEndDt]"
+                      name="FdslpStafUnsubEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafUnsubApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpStafUnsubApprovInd]"
+                      name="FdslpStafUnsubApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpPlusStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusStartDt]"
+                      name="FdslpPlusStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpPlusEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusEndDt]"
+                      name="FdslpPlusEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpPlusApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FdslpPlusApprovInd]"
+                      name="FdslpPlusApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FperkinsStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsStartDt]"
+                      name="FperkinsStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FperkinsEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsEndDt]"
+                      name="FperkinsEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FperkinsApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FperkinsApprovInd]"
+                      name="FperkinsApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FseogStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogStartDt]"
+                      name="FseogStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogEndDt ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FseogEndDt ]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogEndDt ]"
+                      name="FseogEndDt "
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FseogApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FseogApprovInd]"
+                      name="FseogApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmplStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsPrivSecEmplStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmplStartDt]"
+                      name="FwsPrivSecEmplStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmpEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsPrivSecEmpEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmpEndDt]"
+                      name="FwsPrivSecEmpEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmplApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsPrivSecEmplApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsPrivSecEmplApprovInd]"
+                      name="FwsPrivSecEmplApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsJobLocDevStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevStartDt]"
+                      name="FwsJobLocDevStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsJobLocDevEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevEndDt]"
+                      name="FwsJobLocDevEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsJobLocDevApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsJobLocDevApprovInd]"
+                      name="FwsJobLocDevApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsComServStartDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServStartDt]"
+                      name="FwsComServStartDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsComServEndDt]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServEndDt]"
+                      name="FwsComServEndDt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsComServApprovInd]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[FwsComServApprovInd]"
+                      name="FwsComServApprovInd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[Filler]"
+                      length="256"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].Columns[Filler]"
+                      name="Filler"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="OpeId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ChangeIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FpellStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FpellStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FpellEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FpellEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FpellApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FpellApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelStafApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafUnsubStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafUnsubStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafUnsubEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelStafUnsubEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelStafUnsubApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelStafUnsubApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelPlusStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelPlusStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelPlusEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelPlusEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelPlusApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelPlusApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelSlsStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelSlsStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelSlsEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FfelSlsEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FfelSlsApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FfelSlsApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FdslpStafApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafUnsubStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafUnsubStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafUnsubEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpStafUnsubEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpStafUnsubApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FdslpStafUnsubApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpPlusStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpPlusStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpPlusEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FdslpPlusEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpPlusApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FdslpPlusApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FperkinsStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FperkinsStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FperkinsEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FperkinsEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FperkinsApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FperkinsApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FseogStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FseogStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FseogEndDt ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FseogEndDt " />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FseogApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FseogApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsPrivSecEmplStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsPrivSecEmplStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsPrivSecEmpEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsPrivSecEmpEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsPrivSecEmplApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FwsPrivSecEmplApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsJobLocDevStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsJobLocDevStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsJobLocDevEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsJobLocDevEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsJobLocDevApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FwsJobLocDevApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsComServStartDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsComServStartDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsComServEndDt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="FwsComServEndDt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[FwsComServApprovInd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="FwsComServApprovInd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output].ExternalColumns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      length="256"
+                      name="Filler" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+              endId="Package\Data Flow Task 1\Destination - PROGRAM.Inputs[Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task 1\Source - PROGRAM_txt.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F244C721-D6AD-4D92-ACBA-FB45F377557E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{1982346B-F361-4365-98B2-868E5BE583FE}"
+          SQLTask:SqlStatementSource="DELETE FROM &#xA;&#x9;[CLS].[peps].[PROGRAM]&#xA;WHERE&#xA;&#x9;ChangeIndicator = 'N'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{814FF663-301F-465E-ACB3-E08C6648858B}"
+      DTS:From="Package\Data Flow Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Data Flow Task 1"
+          TopLeft="20.5,107.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="36.5,204.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="101.5,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.5,55"
+              Start="0,0"
+              End="17.5,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="4,27.5" />
+                  <mssgle:LineSegment
+                    End="13.5,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5,27.5"
+                    Point2="17.5,27.5"
+                    Point3="17.5,31.5" />
+                  <mssgle:LineSegment
+                    End="17.5,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="190,42"
+          Id="Package\Data Flow Task 1\Source - PROGRAM_txt"
+          TopLeft="7.00000000000001,5.5" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Data Flow Task 1\Destination - PROGRAM"
+          TopLeft="5.50000000000001,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+          TopLeft="102,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task 1\Destination - PROGRAM">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

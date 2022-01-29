@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[enrollments] (
+    [borrower_id]            INT                NOT NULL,
+    [last_name]              NVARCHAR (50)      NOT NULL,
+    [first_name]             NVARCHAR (50)      NOT NULL,
+    [middle_name]            NVARCHAR (50)      NULL,
+    [school_id]              NVARCHAR (8)       NULL,
+    [cip_code]               NVARCHAR (20)      NULL,
+    [cip_year]               DATETIMEOFFSET (7) DEFAULT (getdate()) NULL,
+    [cred_level]             NVARCHAR (10)      NULL,
+    [program_length]         NVARCHAR (10)      NULL,
+    [program_begin_date]     NVARCHAR (20)      NULL,
+    [weeks_in_academic_year] NVARCHAR (20)      NULL,
+    [special_prog_flag]      CHAR (4)           NULL,
+    [reporting_source_type]  NVARCHAR (20)      NULL,
+    [enrollment_flag]        CHAR (4)           NULL,
+    [enrol_effective_date]   NVARCHAR (20)      NULL,
+    [cert_method]            NVARCHAR (20)      NULL,
+    [cert_date]              NVARCHAR (20)      NULL,
+    [cert_applied_date]      NVARCHAR (20)      NULL,
+    [earliest_cert_date]     NVARCHAR (20)      NULL,
+    [days_certed]            NVARCHAR (10)      NULL,
+    [created_on]             DATETIMEOFFSET (7) DEFAULT (getdate()) NOT NULL,
+    [modified_on]            DATETIMEOFFSET (7) DEFAULT (getdate()) NOT NULL
+);
+

@@ -1,0 +1,327 @@
+﻿@model ProjectRequest.Models.ProjectRequest
+
+<div class="row">
+    <div class="col-md-9">
+        <h2>Project Request Form</h2>
+    </div>
+    <!--<div class="col-md-3">
+        <img style="width: 200px; height: 120px;" src="~/Images/UHEAA.jpg">
+    </div>-->
+</div>
+
+@using (Html.BeginForm("ProjectRequest", "Home", FormMethod.Post, htmlAttributes: new { @style = ""}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal" style="padding-left: 15px">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.ProjectRequestId)
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>@Html.LabelFor(model => model.ProjectName, htmlAttributes: new { @class = "", @style = "" }):</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.ProjectName, ViewBag.Readonly ? (object)new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } } : new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>@Html.LabelFor(model => model.SubmittedBy, htmlAttributes: new { @class = "" }):</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.SubmittedBy, ViewBag.Readonly ? (object)new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } } : new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SubmittedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>@Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "" }):</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 rounded-dropdown">
+                    @Html.DropDownListFor(model => model.Status, new SelectList(ProjectRequest.Models.ProjectRequest.GetStates()), ViewBag.Readonly || ViewBag.EditMode == "Create" ? (object)new { @disabled = "disabled", htmlAttributes = new { @class = "rounded-dropdown form-control" } } : new { htmlAttributes = new { @class = "rounded-dropdown form-control" } })
+                    <!--Html.DropdownFor(model => model.Status, new SelectList(ProjectRequest.Models.ProjectRequest.GetStates()))-->
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>@Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "" }):</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 rounded-dropdown">
+                    @Html.DropDownListFor(model => model.Department, new SelectList(ProjectRequest.Models.ProjectRequest.GetDepartments()), ViewBag.Readonly ? (object)new { @disabled = "disabled", htmlAttributes = new { @class = "rounded-dropdown form-control" } } : new { htmlAttributes = new { @class = "rounded-dropdown form-control" } })
+                    <!--Html.EditorFor(model => model.Department, ViewBag.Readonly ? (object)new { htmlAttributes = new { readonly = "readonly", class = "form-control" } } : new { htmlAttributes = new { class = "form-control" } })-->
+                    @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>@Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "" }):</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Date, ViewBag.Readonly ? (object)new { htmlAttributes = new { @readonly = "readonly", @class = "form-control" } } : new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>@Html.LabelFor(model => model.ProjectSummary, htmlAttributes: new { @class = "" })</h4>
+                    <p>Describe the problem this project aims to solve or the opportunity it aims to develop.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.ProjectSummary, ViewBag.Readonly ? (object)new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150", @readonly = ViewBag.Readonly } } : new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150" } })
+                    @Html.ValidationMessageFor(model => model.ProjectSummary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>@Html.LabelFor(model => model.BusinessNeed, htmlAttributes: new { @class = "" })</h4>
+                    <p>Describe the current situation that is prompting the project to be requested and the impact this request would have on the business.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.BusinessNeed, ViewBag.Readonly ? (object)new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150", @readonly = ViewBag.Readonly } } : new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150" } })
+                    @Html.ValidationMessageFor(model => model.BusinessNeed, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>@Html.LabelFor(model => model.Benefits, htmlAttributes: new { @class = "" })</h4>
+                    <p>List the benefits that this project will bring to the organization, taking into consideration Metrics, Customers, Internal People, Business Strategy and Competitiveness, Compliance, Efficiencies.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.Benefits, ViewBag.Readonly ? (object)new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150", @readonly = ViewBag.Readonly } } : new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150" } })
+                    @Html.ValidationMessageFor(model => model.Benefits, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4>@Html.LabelFor(model => model.ImplementationApproach, htmlAttributes: new { @class = "" })</h4>
+                    <p>List the implementation approach and resources needed to fulfill this project request.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.ImplementationApproach, ViewBag.Readonly || ViewBag.EditMode == "Create" ? (object)new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150", @readonly = ViewBag.Readonly } } : new { htmlAttributes = new { @class = "large-text-area form-control", rows = "8", cols = "150" } })
+                    @Html.ValidationMessageFor(model => model.ImplementationApproach, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><!--Html.LabelFor(model => model.RequestorScore, htmlAttributes: new { class = "" })-->Business Value Score:</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 rounded-dropdown">
+                    @Html.DropDownListFor(model => model.RequestorScore, new SelectList(new List<int?> { null, 1, 2, 3, 4, 5}), ViewBag.Readonly ? (object)new { @disabled = "disabled", htmlAttributes = new { @class = "rounded-dropdown form-control" } } : new { htmlAttributes = new { @class = "rounded-dropdown form-control" } })
+                    <!--Html.EditorFor(model => model.RequestorScore, ViewBag.Readonly ? (object)new { htmlAttributes = new { readonly = "readonly", class = "form-control" } } : new { htmlAttributes = new { class = "form-control" } })-->
+                    @Html.ValidationMessageFor(model => model.RequestorScore, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                   <table class="table table-bordered">
+                       <tr>
+                           <th class="dark-highlight">Business Value:<br /> Requestor</th>
+                           <th class="dark-highlight">Definition</th>
+                           <th class="dark-highlight">Ranking</th>
+                       </tr>
+                       <tr>
+                           <td>Significant</td>
+                           <td>Project provides significant benefit to multiple business units, customers, employees, metrics, and business strategy.</td>
+                           <td>5</td>
+                       </tr>
+                       <tr>
+                           <td>Large</td>
+                           <td>Project provides a large amount of benefit to a business unit, customers, employees, metrics, and business strategy.</td>
+                           <td>4</td>
+                       </tr>
+                       <tr>
+                           <td>Medium</td>
+                           <td>Project provides some benefits to a business unit, customers, employees, metrics, and business strategy.</td>
+                           <td>3</td>
+                       </tr>
+                       <tr>
+                           <td>Small</td>
+                           <td>Project provides a small benefit to one area of the business.</td>
+                           <td>2</td>
+                       </tr>
+                       <tr>
+                           <td>Minimal</td>
+                           <td>Project provides minimal benefit to the BU. It is nice to have.</td>
+                           <td>1</td>
+                       </tr>
+                   </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>@Html.LabelFor(model => model.UrgencyScore, htmlAttributes: new { @class = "" }):</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 rounded-dropdown">
+                    <!--Html.EditorFor(model => model.UrgencyScore, ViewBag.Readonly ? (object)new { htmlAttributes = new { readonly = "readonly", class = "form-control" } } : new { htmlAttributes = new { class = "form-control" } })-->
+                    @Html.DropDownListFor(model => model.UrgencyScore, new SelectList(new List<int?> { null, 1, 2, 3, 4, 5 }), ViewBag.Readonly ? (object)new { @disabled = "disabled", htmlAttributes = new { @class = "rounded-dropdown form-control" } } : new { htmlAttributes = new { @class = "rounded-dropdown form-control" } })
+                    @Html.ValidationMessageFor(model => model.UrgencyScore, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th class="dark-highlight">Business Value:<br /> Urgency</th>
+                            <th class="dark-highlight">Definition</th>
+                            <th class="dark-highlight">Ranking</th>
+                        </tr>
+                        <tr>
+                            <td>Immediate Urgency</td>
+                            <td>Project must be implemented as soon as possible for regulatory, contractual, or compliance-related issues. Project is critical for business continuity.</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Urgent - Important</td>
+                            <td>Project is urgent to meet regulatory, contractual, or compliance-related issues, but there is a reasonable deadline that can be met.</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Not Urgent - Important</td>
+                            <td>Project is important for the success of the business, but it can be managed through a standard priority.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Not Important - Urgent</td>
+                            <td>Project should be implemented to provide business unit benefits. However, there is a workaround for the current process.</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Not Urgent - Not Important</td>
+                            <td>Project provides minimal benefit to the BU. It is nice to have but provides little benefit.</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>@Html.LabelFor(model => model.RiskScore, htmlAttributes: new { @class = "" }):</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--Html.EditorFor(model => model.RiskScore, ViewBag.Readonly ? (object)new { htmlAttributes = new { readonly = "readonly", class = "form-control" } } : new { htmlAttributes = new { class = "form-control" } })-->
+                    @Html.DropDownListFor(model => model.RiskScore, new SelectList(new List<int?> { null, 1, 2, 3, 4, 5 }), ViewBag.Readonly ? (object)new { @disabled = "disabled", htmlAttributes = new { @class = "rounded-dropdown form-control" } } : new { htmlAttributes = new { @class = "rounded-dropdown form-control" } })
+                    @Html.ValidationMessageFor(model => model.RiskScore, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th class="dark-highlight">Business Value:<br /> Risk</th>
+                            <th class="dark-highlight">Definition</th>
+                            <th class="dark-highlight">Ranking</th>
+                        </tr>
+                        <tr>
+                            <td>Catastrophic</td>
+                            <td>Not implementing this project would be catastrophic to operations, finance, systems, or the reputation of the organization.</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Major</td>
+                            <td>Not implementing this project would have major impact to operations, finance, systems, or the reputation of the organization.</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>Moderate</td>
+                            <td>Not implementing this project would have moderate impact to operations, finance, systems, or the reputation of the organization.</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Minor</td>
+                            <td>Not implementing this project would have short-term impact to operations, finance, systems, or the reputation of the organization.</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>Insignificant</td>
+                            <td>Not implementing this project would be low risk for the business and can be mitigated by normal day-to-day processes.</td>
+                            <td>1</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @if (ViewBag.Readonly.Equals(false))
+        {
+            <div class="form-group">
+                <div class="col-md-12" style="padding-left: 0px">
+                    <input type="submit" value=@(ViewBag.EditMode == "Create" ? "Submit" : "Save") class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ProductPrioritization")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

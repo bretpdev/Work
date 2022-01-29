@@ -1,0 +1,17 @@
+﻿CREATE TABLE [dbo].[FS14_SUB_LOS_RNS] (
+    [BF_SSN]             CHAR (9)       NOT NULL,
+    [LN_SEQ]             SMALLINT       NOT NULL,
+    [LN_INC_SUB_EVT_SEQ] SMALLINT       NOT NULL,
+    [LD_INC_SUB_EFF_BEG] DATE           NULL,
+    [LD_INC_SUB_EFF_END] DATE           NULL,
+    [LC_INC_SUB_STA]     CHAR (1)       NOT NULL,
+    [LR_SUB_RMN]         NUMERIC (5, 2) NOT NULL,
+    [LF_LST_USR_FS14]    VARCHAR (50)   NOT NULL,
+    [LF_LST_DTS_FS14]    DATETIME2 (7)  NOT NULL,
+    [LF_CRT_USR_FS14]    VARCHAR (50)   NOT NULL,
+    [LD_CRT_FS14]        DATE           NOT NULL,
+    [LC_STA_FS14]        CHAR (1)       NOT NULL,
+    [LD_STA_FS14]        DATE           NOT NULL,
+    CONSTRAINT [PK_FS14_SUB_LOS_RNS] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_SEQ] ASC, [LN_INC_SUB_EVT_SEQ] ASC) WITH (FILLFACTOR = 95)
+);
+

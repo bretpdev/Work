@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0522817a3ab84ae4a7aa5f39b639d6f6" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="CentralTrackingModel.C__RefactorLog" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.AttributeAllowedValue" Width="2.25" PointX="5.25" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.AttributeAllowedValuesHistory" Width="2.25" PointX="8.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.AttributeDataType" Width="3.375" PointX="3.375" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.Attribute" Width="1.5" PointX="7.5" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.AttributeSelectionType" Width="3.875" PointX="5.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.EntityAttributeValue" Width="1.5" PointX="10.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.EntityAttributeValuesHistory" Width="1.5" PointX="13.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.EntityTypeAttribute" Width="2.625" PointX="9.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.EntityType" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.HistoryStatusType" Width="1.5" PointX="11.5" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.PermissionType" Width="1.5" PointX="5.25" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.RoleAttributePermission" Width="1.5" PointX="12.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentralTrackingModel.Value" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValues_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValues_Values" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Values" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_Attributes_AttributeDataTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_Attributes_AttributeSelectionTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValues_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityTypeAttributes_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_RoleAttributePermissions_Attributes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValues_Values" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_HistoryStatusTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Values" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityTypeAttributes_EntityTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="CentralTrackingModel.FK_RoleAttributePermissions_PermissionTypes" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CentralTrackingModel.EntityTypeAttributeAllowedValue" Width="3.125" PointX="11.625" PointY="27.125" />
+        <EntityTypeShape EntityType="CentralTrackingModel.EntityTypeAttributeAllowedValuesHistory" Width="3" PointX="7.625" PointY="26" />
+        <EntityTypeShape EntityType="CentralTrackingModel.Entity" Width="3" PointX="15.25" PointY="27.125" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValues_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValues_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_Attributes_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_Attributes_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeSelectionTypes_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_AttributeSelectionTypes_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_Entities_Entities_InactivatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_Entities_EntityTypes" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValues_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValues_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityTypeAttributes_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityTypeAttributes_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityTypes_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_EntityTypes_Entities_InactivatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_PermissionTypes_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_PermissionTypes_Entities_CreatedBy" />
+        <AssociationConnector Association="CentralTrackingModel.FK_RoleAttributePermissions_Entities" />
+        <AssociationConnector Association="CentralTrackingModel.FK_RoleAttributePermissions_Entities_CreatedBy" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

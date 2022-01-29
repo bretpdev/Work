@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="5e37d80a-c4b3-42b1-b5e5-969e1d21375f" ChangeDateTime="03/23/2015 15:41:34">
+    <Property Name="ElementName" Value="[dbo].[DocumentTypes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DocumentTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocumentTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="054ec2e8-e588-4542-8f2c-f31e5055e443" ChangeDateTime="03/23/2015 15:42:42">
+    <Property Name="ElementName" Value="[dbo].[DocIds].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DocIds]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocIdId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="06b2fb25-0e4b-4866-8395-ee0833d2f33e" ChangeDateTime="03/23/2015 15:44:12">
+    <Property Name="ElementName" Value="[dbo].[DocIdTypeMappings].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DocIdTypeMappings]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocIdTypeMappingId" />
+  </Operation>
+</Operations>

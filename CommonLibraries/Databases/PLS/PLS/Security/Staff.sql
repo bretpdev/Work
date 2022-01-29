@@ -1,0 +1,23 @@
+﻿CREATE ROLE [Staff]
+    AUTHORIZATION [dbo];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\!UHEAASSRS];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAAKenticoDev];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [testLogin];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - OPSDEV - All Databases RW];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\BatchScripts];
+

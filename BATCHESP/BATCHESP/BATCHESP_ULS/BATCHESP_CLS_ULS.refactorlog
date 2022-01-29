@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f4ca4f25-c910-4e83-9877-5ff8d172935e" ChangeDateTime="11/02/2016 16:49:10">
+    <Property Name="ElementName" Value="[dbo].[Ts01Enrollments].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Ts01Enrollments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Ts01EnrollmentId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6911d86f-3067-4a2f-ba29-e89dea5cbee3" ChangeDateTime="04/16/2019 13:46:59">
+    <Property Name="ElementName" Value="[dbo].[TsayScrapedLoanInformation].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[TsayScrapedLoanInformation]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TsayScrapedLoanInformation" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="529759b1-ae09-4b28-aa25-97f9728b8562" ChangeDateTime="04/17/2019 17:15:21">
+    <Property Name="ElementName" Value="[batchesp].[TsayScrapedLoanInformation].[TsayScrapedLoanInformation]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[batchesp].[TsayScrapedLoanInformation]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="TsayScrapedLoanInformationId" />
+  </Operation>
+</Operations>

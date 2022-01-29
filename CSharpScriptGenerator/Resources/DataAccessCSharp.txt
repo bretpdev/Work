@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Linq;
+using System.Linq;
+using Uheaa.Common.DataAccess;
+
+namespace <<NAMESPACE>>
+{
+    class DataAccess : DataAccessBase
+    {
+		private readonly bool _testMode;
+		
+		public DataAccess(bool testMode)
+			:base(testMode)
+		{
+			_testMode = testMode;
+		}
+    }
+}

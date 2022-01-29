@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="3bdf1389-917f-4e8c-9aef-6b601fac3098" ChangeDateTime="05/29/2020 19:14:47">
+    <Property Name="ElementName" Value="[dbo].[ProcessingQueue].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProcessingQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessingQueueId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="631847c0-4a8d-4f3e-a284-3abf2c492c65" ChangeDateTime="05/29/2020 19:44:41">
+    <Property Name="ElementName" Value="[dbo].[ProcessingQueue].[ProcessedBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProcessingQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ebb890e2-c8c0-4a0a-9b70-bd00613bbee9" ChangeDateTime="05/29/2020 19:45:13">
+    <Property Name="ElementName" Value="[dbo].[ProcessingQueue].[CreatedAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProcessingQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArcAddProcessingId" />
+  </Operation>
+</Operations>

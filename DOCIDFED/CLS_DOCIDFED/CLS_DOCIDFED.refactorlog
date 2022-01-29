@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="703062e3-928a-45d8-aded-18c613a0032c" ChangeDateTime="12/21/2017 21:25:01">
+    <Property Name="ElementName" Value="[dbo].[Document].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Document]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocumentId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="234ee905-3fa8-43cb-913c-e76983e9ddce" ChangeDateTime="12/21/2017 21:25:45">
+    <Property Name="ElementName" Value="[dbo].[DocumentType].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DocumentType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocumentTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="89b84a4c-d28d-4cd1-811f-4f0a33c5eafc" ChangeDateTime="12/21/2017 21:27:05">
+    <Property Name="ElementName" Value="[dbo].[DocIdMapping].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DocIdMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocIdMappingId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="64fa2caa-17cb-462b-ad43-ecf7d28a1971" ChangeDateTime="12/22/2017 18:53:44">
+    <Property Name="ElementName" Value="[dbo].[Arcs].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Arcs]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArcId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d9ca13e6-0303-4202-990e-59da3f9d878c" ChangeDateTime="12/22/2017 18:54:48">
+    <Property Name="ElementName" Value="[docid].[FK_DocIdMapping_DocumentId]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[docid].[DocIdMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_DocIdMapping_Documents]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="22472e30-bbe7-40fa-8fd3-d2278fd80ca2" ChangeDateTime="12/22/2017 18:54:52">
+    <Property Name="ElementName" Value="[docid].[FK_DocIdMapping_DocumentTypeId]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[docid].[DocIdMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_DocIdMapping_DocumentTypes]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="56252991-d5a9-456b-873e-60e41e4eda4c" ChangeDateTime="12/22/2017 20:07:26">
+    <Property Name="ElementName" Value="[docid].[DocumentTypes].[DocumentTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[docid].[DocumentTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocumentTypesId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="053b0eee-220e-471c-a269-61a7293745c5" ChangeDateTime="12/22/2017 20:07:33">
+    <Property Name="ElementName" Value="[docid].[Documents].[DocumentId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[docid].[Documents]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocumentsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="591292dd-c078-40be-b018-4f8fc0570ed4" ChangeDateTime="12/28/2017 18:12:08">
+    <Property Name="ElementName" Value="[dbo].[DocumentsProcessed].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DocumentsProcessed]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocumentProcessedId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fea81807-0bed-407a-9ef8-b0cd6409f7e5" ChangeDateTime="12/28/2017 18:15:04">
+    <Property Name="ElementName" Value="[docid].[DocumentsProcessed].[DocId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[docid].[DocumentsProcessed]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DocumentsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="471bba86-9c33-464a-af02-77fb7a70b1b5" ChangeDateTime="01/31/2018 21:52:27">
+    <Property Name="ElementName" Value="[dbo].[Sources].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Sources]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SourceId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3f74b326-c1ea-47fd-8d42-cc9bc9058664" ChangeDateTime="01/23/2020 19:17:58">
+    <Property Name="ElementName" Value="[docid].[BusinessUnits].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[docid].[BusinessUnits]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BusinessUnitId" />
+  </Operation>
+</Operations>

@@ -1,0 +1,24 @@
+﻿@model List<RoleSimpleModel>
+@{
+    ViewBag.Title = "Manage User Roles";
+
+}
+
+<a href="/Roles/Add" title="New Role" id="top-right-button">New Role</a>
+<h2>Manage User Roles</h2>
+<table class="list-table">
+    <tr>
+        <th>Name</th>
+        <th style="width:99%;">Notes</th>
+        <th>Controllers</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr data-href="/Roles/@item.RoleId">
+            <td class="nowrap">@item.ActiveDirectoryRoleName</td>
+            <td>@item.Notes</td>
+            <td class="number-cell">@item.RoleControllerCount</td>
+        </tr>
+    }
+</table>
+

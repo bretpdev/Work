@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="4ae78385-1934-45c7-b6ee-fb754a01af7f" ChangeDateTime="06/02/2017 16:22:03">
+    <Property Name="ElementName" Value="[dbo].[EmailCampaigns].[HtmlFile]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HtmlFileId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f8a96108-5c61-49a4-b855-3d5b43855d49" ChangeDateTime="06/02/2017 16:25:34">
+    <Property Name="ElementName" Value="[dbo].[EmailCampaigns].[HtmlFileId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HTMLFileId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="906c0dd4-2e98-4330-bc0d-3417eaaeaa64" ChangeDateTime="06/02/2017 17:43:44">
+    <Property Name="ElementName" Value="[emailbatch].[EmailCampaigns].[EmailSubjectLine]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SubjectLineId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="834d5b18-b501-4690-bdb9-2d03cef024e5" ChangeDateTime="06/02/2017 17:45:26">
+    <Property Name="ElementName" Value="[emailbatch].[EmailCampaigns].[FromAddress]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FromAddressId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2c28c90c-d33c-4b5e-880e-d6d020c8596d" ChangeDateTime="06/02/2017 17:52:45">
+    <Property Name="ElementName" Value="[emailbatch].[EmailProcessing].[SourceFile]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailProcessing]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ActualFile" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="07fdcc10-3d5b-432d-990b-4df8ab8a347c" ChangeDateTime="06/02/2017 17:52:55">
+    <Property Name="ElementName" Value="[emailbatch].[EmailProcessing].[EmailData`]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailProcessing]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EmailData" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e65906ac-e7d5-4731-8b57-ddd25967474f" ChangeDateTime="06/06/2017 21:00:20">
+    <Property Name="ElementName" Value="[dbo].[_BulkLoad].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[_BulkLoad]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LineData" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a28ddec7-df5f-47ae-85bc-7e7cc6505696" ChangeDateTime="06/06/2017 21:06:40">
+    <Property Name="ElementName" Value="[emailbatch].[Comments].[COmment]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[Comments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Comment" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="57776400-6df3-4f91-9e5a-448cfc504f4e" ChangeDateTime="06/06/2017 21:07:20">
+    <Property Name="ElementName" Value="[emailbatch].[ActivityTypes].[ActivityTypeq]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[ActivityTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ActivityType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="457dc687-e403-4056-bded-a041232baf7b" ChangeDateTime="06/06/2017 21:08:53">
+    <Property Name="ElementName" Value="[emailbatch].[EmailCampaigns].[ARC]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArcId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7321b350-06f9-46ba-897c-4775ac3315a9" ChangeDateTime="06/06/2017 21:08:58">
+    <Property Name="ElementName" Value="[emailbatch].[EmailCampaigns].[Comment]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CommentId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="76aff274-f07a-4344-8dc2-21c8b2690814" ChangeDateTime="06/06/2017 21:09:03">
+    <Property Name="ElementName" Value="[emailbatch].[EmailCampaigns].[ActivityType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ActivityTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3b092691-1993-493d-b923-6e7b9094151a" ChangeDateTime="06/06/2017 21:09:10">
+    <Property Name="ElementName" Value="[emailbatch].[EmailCampaigns].[ActivityContact]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailCampaigns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ActivityContactId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f30427b2-be23-47d3-85ad-4ba507354fe7" ChangeDateTime="06/06/2017 21:13:44">
+    <Property Name="ElementName" Value="[emailbatch].[EmailProcessing].[ProcessNotoficationId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailProcessing]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessNotificationId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e0e77ceb-0010-4ee4-bc19-ead1f412f53b" ChangeDateTime="06/06/2017 21:17:06">
+    <Property Name="ElementName" Value="[emailbatch].[EmailProcessing].[ActivityCommentAddedAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailProcessing]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArcAddProcessingId`" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="72e7bd31-093d-4025-a141-5ae78d56c7f4" ChangeDateTime="06/06/2017 21:17:11">
+    <Property Name="ElementName" Value="[emailbatch].[EmailProcessing].[ArcAddProcessingId`]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[emailbatch].[EmailProcessing]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArcAddProcessingId" />
+  </Operation>
+</Operations>

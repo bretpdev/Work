@@ -1,0 +1,159 @@
+﻿@{
+	ViewBag.Title = "Bills";
+}
+
+@section Meta {
+	<meta name="description" content="CornerStone bills are easy to read by design. All your payment information and loan information is clear and consistent." />
+    <style type="text/css">
+        h4 {
+            color: black !important;
+        }
+        embed {
+            border: solid 3px white !important;
+            border-radius: 3px !important;
+        }
+        embed:focus {
+            border-color: lightblue !important;
+        }
+    </style>
+}
+
+<p style="text-align: center;">
+	<strong style="font-size: 18px;">
+		Based on feedback from borrowers like you, we have updated your monthly statement!
+	</strong>
+</p>
+<br /><br />
+<div class="row">
+    <div class="col-md-6">
+        <h4>
+            Account Number
+        </h4>
+        <p>
+            The primary identifier for ownership of an account at the borrower level. It is a reference for all the loans associated with that customer.
+        </p>
+        <h4>
+            Amount Applied to Fees
+        </h4>
+        <p>
+            The amount applied to fees since your last statement. 
+        </p>
+        <h4>
+            Amount Applied to Interest
+        </h4>
+        <p>
+            The amount applied to accrued interest since your last statement. 
+        </p>
+        <h4>
+            Amount Applied to Principal
+        </h4>
+        <p>
+            The amount of principal that was satisfied since your last statement. 
+        </p>
+        <h4>
+            Amount Paid
+        </h4>
+        <p>
+            The total amount paid on your loan(s) since your last statement. 
+        </p>
+        <h4>
+            Amount Past Due
+        </h4>
+        <p>
+            The remainder of monthly payment amounts from previous Billing Cycles that have not been satisfied by the customer (this does not include fees).
+        </p>
+        <h4>
+            Bill Type
+        </h4>
+        <p>
+            The type of bill that you will receive each month. 
+        </p>
+        <h4>
+            Current Balance
+        </h4>
+        <p>
+            The amount of debt still owed on an account, not including accrued interest. 
+        </p>
+        <h4>
+            Date Received
+        </h4>
+        <p>
+            The date we received your most recent payment. 
+        </p>
+        <h4>
+            Due Date
+        </h4>
+        <p>
+            The date when your next payment is due.
+        </p>
+        <h4>
+            Effective Date
+        </h4>
+        <p>
+            The date the most recent payment was credited to the account within the last billing period.
+        </p>
+        <h4>
+            First Disbursed
+        </h4>
+        <p>
+            The date when the Approved Loan Amount was paid to the borrower or school.
+        </p>
+        <h4>
+            Interest Rate
+        </h4>
+        <p>
+            The percentage of your principal balance charged per day. 
+        </p>
+        <h4>
+            Monthly Installment Amount
+        </h4>
+        <p>
+            The amount required each month to repay the loan according to the repayment schedule.
+        </p>
+        <h4>
+            Original Principal
+        </h4>
+        <p>
+            The original approved loan amount.
+        </p>
+        <h4>
+            Total Amount Due
+        </h4>
+        <p>
+            The Monthly Payment Amount or the remainder of the Monthly Payment Amount if an overpayment was received in a previous Billing Cycle.
+        </p>
+        <h4>
+            Total Amount Paid
+        </h4>
+        <p>
+            The total amount paid on your loan(s) since your last statement. 
+        </p>
+        <h4>
+            Total Interest Paid
+        </h4>
+        <p>
+            The amount of accrued interest that was satisfied since your last statement. 
+        </p>
+        <h4>
+            Total Principal Balance
+        </h4>
+        <p>
+            The amount of debt still owed on an account, not including accrued interest. 
+        </p>
+        <h4>
+            Total Principal Paid
+        </h4>
+        <p>
+            The amount of principal that was satisfied since your last statement. 
+        </p>
+        <h4>
+            Total Un-Capitalized Interest Accrued
+        </h4>
+        <p>
+            Overall interest that has accrued that has not yet been satisfied by the customer. This interest has not been capitalized. 
+        </p>
+    </div>
+    <div class="col-md-6 embed-responsive embed-responsive-16by9">
+	    <embed src="@Url.Content("~/forms/CS%20Bill.pdf#toolbar=0&navpanes=0")" title="CornerStone Billing Statement" alt="CornerStone Bill" class="embed-responsive-item" />
+    </div>
+</row>

@@ -1,0 +1,148 @@
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
+using Uheaa.Common;
+using Uheaa.Common.DataAccess;
+using Uheaa.Common.ProcessLogger;
+
+namespace BATCHESP
+{
+    class Program
+    {
+        public const string ScriptId = "BATCHESP";
+        const int SUCCESS = 0;
+        const int ERROR = 1;
+        const string SkipWorkCode = "skipworkadd";
+        const string SkipTaskClose = "skiptaskclose";
+
+        public static int Main(string[] args)
+        {
+            int returnCode = ERROR;
+            var argResults = KvpArgValidator.ValidateArguments<Args>(args);
+            if (!argResults.IsValid)
+            {
+                Console.WriteLine(argResults.ValidationMesssage);
+#if DEBUG
+                Console.ReadKey();
+#endif
+            }
+            else
+            {
+                var parsedArgs = new Args(args);
+                DataAccessHelper.CurrentMode = parsedArgs.Mode;
+                if (!DatabaseAccessHelper.StandardSprocAccessCheck(Assembly.GetExecutingAssembly()))
+                    return returnCode;
+                if (parsedArgs.AccountIdentifiers == null && parsedArgs.AccountNumber != null)
+                    parsedArgs.AccountIdentifiers = parsedArgs.AccountNumber;
+                ReaderWriterLockSlim taskLock = new ReaderWriterLockSlim();
+                if (parsedArgs.Region == Args.SelectionRegion.Uheaa || parsedArgs.Region == Args.SelectionRegion.Both)
+                {
+<<<<<<< HEAD
+                    returnCode += ProcessUheaa(parsedArgs, taskLock);
+                }
+                if (parsedArgs.Region == Args.SelectionRegion.Cornerstone || parsedArgs.Region == Args.SelectionRegion.Both)
+                {
+                    returnCode += ProcessCornerStone(parsedArgs, taskLock);
+=======
+                    //UNDONE: Why do you call cornerstone in here but then uheaa inside the cornerstone method?
+                    returnCode += ProcessCornerStone(parsedArgs, taskLock);
+                }
+                if (parsedArgs.Region == Args.SelectionRegion.Cornerstone || parsedArgs.Region == Args.SelectionRegion.Both)
+                {
+                    //UNDONE: Why do you call uheaa in here but then cornerstone inside the uheaa method?
+                    returnCode += ProcessUheaa(parsedArgs, taskLock);
+>>>>>>> de029f69e853bf8ee69af73ea4dd116caad8bd1a
+                }
+            }
+            DataAccessHelper.CloseAllManagedConnections();
+            return returnCode;
+        }
+
+        /// <summary>
+        /// Intializes tasks by loading them into the ULS/CLS ESP tables, then implements multithreading to process tasks.
+        /// </summary>
+        private static int ProcessRegion(Args parsedArgs, ReaderWriterLockSlim taskLock, DataAccessHelper.Region region, string batchLoginType)
+        {
+            int returnCode = ERROR;
+            var plr = new ProcessLogRun(Program.ScriptId, AppDomain.CurrentDomain, Assembly.GetExecutingAssembly(), region, DataAccessHelper.CurrentMode, true, false);
+            var taskLoader = new BATCHESP(region, batchLoginType, parsedArgs, plr, 1);
+            LoadResults loadResults = taskLoader.LoadTasks(); 
+            List<EspEnrollment> tasksToWork = loadResults.TasksToWork;
+            ConcurrentQueue<EspEnrollment> work = new ConcurrentQueue<EspEnrollment>(tasksToWork);
+            int numberOfThreads = loadResults.NumberOfThreads;
+            int errorCount = 0;
+            if (loadResults.LoadedSuccessfully)
+            {
+                Console.WriteLine("Spinning up threads to process tasks.");
+                int threadId = 1;
+                Parallel.ForEach(work, new ParallelOptions { MaxDegreeOfParallelism = numberOfThreads }, process =>
+                {
+                    taskLock.EnterWriteLock();
+<<<<<<< HEAD
+                    Console.WriteLine($"Logging into Session with thread: {threadId}.");
+                    var processor = new BATCHESP(region, batchLoginType, parsedArgs, plr, threadId++);
+                    processor.Login();
+=======
+                    //UNDONE: You already have a BATCHESP object
+                    //var processor = new BATCHESP(region, batchLoginType, parsedArgs.SkipWorkAdd, parsedArgs.SkipTaskClose, parsedArgs.AccountIdentifiers, parsedArgs.SubQueues, parsedArgs.UseVUK3, parsedArgs.SkipTaskAssign, parsedArgs.NumberOfThreads, plr);
+                    taskLoader.Login(plr);
+>>>>>>> de029f69e853bf8ee69af73ea4dd116caad8bd1a
+                    taskLock.ExitWriteLock();
+
+                    EspEnrollment espTask;
+
+                    while (work.TryDequeue(out espTask))
+                    {
+                        //UNDONE: Using existing BATCHESP object
+                        if (!taskLoader.ProcessTasks(espTask))
+                        {
+                            taskLock.EnterWriteLock();
+                            errorCount++;
+                            taskLock.ExitWriteLock();
+                        }
+                    }
+<<<<<<< HEAD
+                    processor.EndLoginHelper(processor.threadId);
+=======
+                    //UNDONE: Using existing BATCHESP object
+                    taskLoader.EndLoginHelper(Task.CurrentId);
+>>>>>>> de029f69e853bf8ee69af73ea4dd116caad8bd1a
+                });
+            }
+            Console.WriteLine("The script run has finished. Logging the end of the script run.");
+            plr.LogEnd();
+
+            if (errorCount == 0)
+                returnCode = SUCCESS;
+            return returnCode;
+        }
+
+        /// <summary>
+        /// Processes the respective region.
+        /// </summary>
+        private static int ProcessCornerStone(Args parsedArgs, ReaderWriterLockSlim taskLock)
+        {
+            //UNDONE:  It's not necessary to create local variables when they can be passed in
+            //var region = DataAccessHelper.Region.CornerStone;
+            //var batchLoginType = "BatchCornerStone";
+            //return ProcessRegion(parsedArgs, taskLock, region, batchLoginType);
+            return ProcessRegion(parsedArgs, taskLock, DataAccessHelper.Region.Uheaa, "BatchUheaa");
+        }
+
+        /// <summary>
+        /// Processes the respective region.
+        /// </summary>
+        private static int ProcessUheaa(Args parsedArgs, ReaderWriterLockSlim taskLock)
+        {
+            //UNDONE:  It's not necessary to create local variables when they can be passed in
+            //var region = DataAccessHelper.Region.Uheaa;
+            //var batchLoginType = "BatchUheaa";
+            //return ProcessRegion(parsedArgs, taskLock, region, batchLoginType);
+            return ProcessRegion(parsedArgs, taskLock, DataAccessHelper.Region.CornerStone, "BatchCornerStone");
+        }
+    }
+}
+

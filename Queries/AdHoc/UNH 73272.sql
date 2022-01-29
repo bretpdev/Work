@@ -1,0 +1,1 @@
+UPDATE UDW..LT20_LTR_REQ_PRC SET OnEcorr = 1 WHERE RM_DSC_LTR_PRC = 'US09B110CP' AND InactivatedAt IS NULL AND ((EcorrDocumentCreatedAt IS NULL AND OnEcorr = 1) OR (PrintedAt IS NULL AND OnEcorr = 0))

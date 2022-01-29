@@ -1,0 +1,37 @@
+﻿@{
+	ViewBag.Title = "Calculators";
+}
+
+@section Meta {
+	<meta name="description" content="CornerStone's student loan calculators will help you find the information you need to make informed decisions about your loans and your finances." />
+}
+
+<h1>Calculators</h1>
+
+<p>
+	These calculators can help you estimate some costs and payments associated with college and student loans. They are just estimates and do not represent the actual cost. They should be used for informational purposes only.
+</p>
+
+<div class="row">
+	<div class="col-md-6">
+		<ul>
+			@*
+			<li><a href="schoolawardcomparison.aspx" id="SchoolAwardComparison" onfocus="{this.style.color = '#FF6600'; this.style.textDecoration = 'underline';}" onblur="{this.style.textDecoration = 'none';}" onkeypress="if(window.event.keyCode == 27 {(TINY.box.hide)}" target="_blank">School Award Comparison Calculator</a></li>
+			<li><a href="collegecosts.aspx" target="_blank" id="CollegeCostCalculator">College Cost Calculator</a></li>
+			*@
+			<li><a rel="external" target="_blank" href="http://www.calcxml.com/calculators/saving-for-college?skn=397">How much should I save for College?</a></li>
+			<li><a rel="external" target="_blank" href="http://www.calcxml.com/do/col02?teaser">Will I Be Able To Repay My Loans?</a></li>
+			<li><a rel="external" target="_blank" href="http://www.calcxml.com/calculators/value-of-college-education?skn=397">What Is The Value Of A College Education?</a></li>
+			<li><a rel="external" target="_blank" href="http://www.calcxml.com/calculators/pay-off-loan?skn=397">How Long Until My Loan Is Paid Off?</a></li>
+			<li><a rel="external" target="_blank" href="http://www.calcxml.com/do/cus21?skn=397">What Will My Monthly Payment Be?</a></li>
+			<li><a rel="external" target="_blank" href="http://www.calcxml.com/do/cus20?skn=397">Cost of Deferment/Forbearance</a></li>
+			@*
+			<li><a href="ibrcalculator.aspx" target="_blank" id="IBRPayment">Do I qualify for Income Based Repayment?</a></li>
+			<li><a href="icrcalculator.aspx" target="_blank" id="ICRPayment">Will my payment be lower under Income Contingent Repayment or Standard Repayment?</a></li>
+			*@
+		</ul>
+	</div>
+	<div class="col-md-6">
+		<img src="@Url.Content("~/images/calculator.png")" alt="calculator picture" title="Loan Calculators" class="img-responsive" />
+	</div>
+</div>

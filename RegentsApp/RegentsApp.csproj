@@ -1,0 +1,376 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{458EE804-2772-4D24-98B4-0300AE8D1062}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RegentsApp</RootNamespace>
+    <AssemblyName>RegentsApp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=1.5.0.0, Culture=neutral, PublicKeyToken=5906d2bb3d8a12c4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\Program Files\Microsoft Corporation\Anti-Cross Site Scripting Library V1.5\Library\.NET 2.0\AntiXssLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Web, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\CrystalDecisions.Web\10.5.3700.0__692fbea5521e1304\CrystalDecisions.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="MailBee.NET, Version=2.0.0.6, Culture=neutral, PublicKeyToken=cd85b70fb26f9fc1">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data Access\DataAccessLayer.cs" />
+    <Compile Include="Data Access\ProjectionClasses.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.aspx.cs">
+      <DependentUpon>frmLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLogin.aspx.designer.cs">
+      <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetup.aspx.cs">
+      <DependentUpon>frmSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSetup.aspx.designer.cs">
+      <DependentUpon>frmSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogout.aspx.cs">
+      <DependentUpon>frmLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLogout.aspx.designer.cs">
+      <DependentUpon>frmLogout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMathCredit.aspx.cs">
+      <DependentUpon>frmMathCredit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMathCredit.aspx.designer.cs">
+      <DependentUpon>frmMathCredit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSocSciCredit.aspx.cs">
+      <DependentUpon>frmSocSciCredit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSocSciCredit.aspx.designer.cs">
+      <DependentUpon>frmSocSciCredit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmScienceCredit.aspx.cs">
+      <DependentUpon>frmScienceCredit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmScienceCredit.aspx.designer.cs">
+      <DependentUpon>frmScienceCredit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLanguageCredit.aspx.cs">
+      <DependentUpon>frmLanguageCredit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLanguageCredit.aspx.designer.cs">
+      <DependentUpon>frmLanguageCredit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAppSubmit.aspx.cs">
+      <DependentUpon>frmAppSubmit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAppSubmit.aspx.designer.cs">
+      <DependentUpon>frmAppSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPostSubmit.aspx.cs">
+      <DependentUpon>frmPostSubmit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPostSubmit.aspx.designer.cs">
+      <DependentUpon>frmPostSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Regents.Master.cs">
+      <DependentUpon>Regents.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Regents.Master.designer.cs">
+      <DependentUpon>Regents.Master</DependentUpon>
+    </Compile>
+    <Compile Include="frmPersonalInfo.aspx.cs">
+      <DependentUpon>frmPersonalInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPersonalInfo.aspx.designer.cs">
+      <DependentUpon>frmPersonalInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmHighSchoolInfo.aspx.cs">
+      <DependentUpon>frmHighSchoolInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmHighSchoolInfo.aspx.designer.cs">
+      <DependentUpon>frmHighSchoolInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmEnglishCredit.aspx.cs">
+      <DependentUpon>frmEnglishCredit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmEnglishCredit.aspx.designer.cs">
+      <DependentUpon>frmEnglishCredit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmForgotPassword.aspx.cs">
+      <DependentUpon>frmForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmForgotPassword.aspx.designer.cs">
+      <DependentUpon>frmForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreditInstructions.aspx.cs">
+      <DependentUpon>frmCreditInstructions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmCreditInstructions.aspx.designer.cs">
+      <DependentUpon>frmCreditInstructions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\CompletedApplication.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompletedApplication.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frmTimeout.aspx.cs">
+      <DependentUpon>frmTimeout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmTimeout.aspx.designer.cs">
+      <DependentUpon>frmTimeout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StringEncryption.cs" />
+    <Compile Include="frmAppClosed.aspx.cs">
+      <DependentUpon>frmAppClosed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAppClosed.aspx.designer.cs">
+      <DependentUpon>frmAppClosed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAppInfo.aspx.cs">
+      <DependentUpon>frmAppInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAppInfo.aspx.designer.cs">
+      <DependentUpon>frmAppInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAppReview.aspx.cs">
+      <DependentUpon>frmAppReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAppReview.aspx.designer.cs">
+      <DependentUpon>frmAppReview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transcript.aspx.cs">
+      <DependentUpon>Transcript.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transcript.aspx.designer.cs">
+      <DependentUpon>Transcript.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAppInfo2.aspx.cs">
+      <DependentUpon>frmAppInfo2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAppInfo2.aspx.designer.cs">
+      <DependentUpon>frmAppInfo2.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Index.htm" />
+    <Content Include="nifty.js" />
+    <Content Include="frmLogin.aspx" />
+    <Content Include="Default.aspx" />
+    <None Include="2011_Course_Form.pdf" />
+    <None Include="768x432_USHE Regent Web Video 2011.flv" />
+    <None Include="College_Trans_Sample.pdf" />
+    <None Include="Regents Email.html" />
+    <Content Include="Regents.swf" />
+    <Content Include="RegentsStyle.css" />
+    <Content Include="frmSetup.aspx" />
+    <Content Include="frmLogout.aspx" />
+    <Content Include="frmPersonalInfo.aspx" />
+    <Content Include="frmHighSchoolInfo.aspx" />
+    <Content Include="frmEnglishCredit.aspx" />
+    <Content Include="frmMathCredit.aspx" />
+    <Content Include="frmSocSciCredit.aspx" />
+    <Content Include="frmScienceCredit.aspx" />
+    <Content Include="frmLanguageCredit.aspx" />
+    <Content Include="frmAppSubmit.aspx" />
+    <Content Include="frmPostSubmit.aspx" />
+    <None Include="favicon.ico" />
+    <Content Include="Regents.Master" />
+    <Content Include="frmForgotPassword.aspx" />
+    <Content Include="frmCreditInstructions.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="frmTimeout.aspx" />
+    <Content Include="Report.aspx" />
+    <Content Include="frmAppClosed.aspx" />
+    <Content Include="frmAppInfo.aspx" />
+    <Content Include="frmAppReview.aspx" />
+    <None Include="Resources\2012-Header-No-Back.jpg" />
+    <Content Include="SkinOverPlayFullscreen.swf" />
+    <Content Include="swfobject.js" />
+    <Content Include="Transcript.aspx" />
+    <Content Include="frmAppInfo2.aspx" />
+    <None Include="2012_Course_Form.pdf" />
+    <None Include="Resources\USHE-transparent.gif" />
+    <None Include="Resources\USHE-Logo-RGB.tif" />
+    <None Include="Resources\USHE-Logo-RGB.jpg" />
+    <None Include="Resources\USHE-Logo-RGB.bmp" />
+    <None Include="Resources\USHE-transparent.png" />
+    <None Include="Resources\Header_No_Back.jpg" />
+    <None Include="Resources\USHE-Logo-CMYK.jpg" />
+    <None Include="Resources\get_adobe_reader.jpg" />
+    <None Include="Resources\Header.jpg" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\USHE.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\CompletedApplication.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CompletedApplication.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBA">
+      <Guid>{000204EF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>9</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2648</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/RegentsApp</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[ZDEL_LN90_FIN_ATY] (
+    [BF_SSN]     VARCHAR (9) NOT NULL,
+    [LN_SEQ]     SMALLINT    NOT NULL,
+    [LN_FAT_SEQ] SMALLINT    NOT NULL
+);
+

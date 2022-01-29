@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utah FAFSA Completion Database</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script>
+        $(document).ajaxError(function (xhr, props) {
+        if (props.status === 401) {
+           window.location.href = '@Url.Action("Login", "Account")';
+          }
+        });
+    </script>
+
+</head>
+<body class="body">
+    @*OLD STYLE NAVBAR*@
+    <div class="layout-height navbar navbar-inverse navbar-static-top navbar-background navbar-top">
+        <div class="layout-height">
+            <div class="layout-height layout-font-large font-color-light-blue navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div>
+                    <h1 class="font-color-white homepage-navbar-left"><b>Utah FAFSA Data Site</b></h1>
+                </div>
+            </div>
+            <div class="layout-height layout-font navbar-collapse collapse homepage-navbar-right">
+                <ul class="nav navbar-nav navbar-right homepage-navbar-right nav-pad">
+                    <li style="padding-left: 0px;">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, htmlAttributes: new { @class = "navbar-font", id = "navbar-anchor", @style = ViewBag.NavHighlight == "Home" ? "padding-left: 5px; color: black;" : "padding-left: 5px;" })</li>
+                    <content class="pull-left">@Html.Partial("_LoginPartial")</content>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @*<div class="layout-height navbar navbar-inverse navbar-fixed-top navbar-background">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="layout-font-large font-color-light-blue navbar-header" style="margin: 0 auto; display: block; text-align: center; float:none">
+
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="" href="@Url.Action("Index", "Home")">
+                                <img class="logo-image" src="@Url.Content("~/Images/FAFSA_Data_Site_Logo.png")" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="layout-font navbar-collapse collapse">
+                            @Html.Partial("_LoginPartial")
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, htmlAttributes: new { id = "navbar-anchor", @class = ViewBag.NavHighlight == "Home" ? "font-color-light-blue" : "" })</li>
+                                <li>@Html.ActionLink("For K-12 educators", "Request", "Home", new { area = "" }, htmlAttributes: new { id = "navbar-anchor", @class = "" })</li>
+                                <li>@Html.ActionLink("For students & families", "Index", "Home", new { area = "" }, htmlAttributes: new { id = "navbar-anchor", @class = "" })</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <div id="page-container">
+        <div id="content-wrapper" class="body-content">
+            @RenderBody()
+        </div>
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-6">
+                    <img class="logo-image" src="@Url.Content("~/Images/USHE_Logo.png")" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="font-color-white footer-copyright pull-right">(c) 2021 USHE</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

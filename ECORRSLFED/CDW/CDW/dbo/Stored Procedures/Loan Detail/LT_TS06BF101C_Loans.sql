@@ -1,0 +1,207 @@
+﻿CREATE PROCEDURE [dbo].[LT_TS06BF101C_Loans]
+	@AccountNumber CHAR(10),
+	@IsCoborrower BIT = 0
+AS
+BEGIN
+
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+DECLARE	@LetterId VARCHAR(10) = 'TS06BF101C'
+DECLARE @PF_REQ_ACT VARCHAR(5) = (SELECT AC11.PF_REQ_ACT FROM AC11_ACT_REQ_LTR AC11 WHERE PF_LTR = @LetterId)
+
+IF @IsCoborrower = 0
+	BEGIN
+		SELECT
+			CASE WHEN Forb.LC_FOR_STA = 'A' AND Forb.LD_CRT_REQ_FOR = CAST(Forb.LF_LST_DTS_FB10 AS DATE) THEN 'Approved' --same create/last updated date
+				 WHEN Forb.LC_FOR_STA = 'A' AND Forb.LD_CRT_REQ_FOR != CAST(Forb.LF_LST_DTS_FB10 AS DATE) THEN 'Adjusted' --Changed as last updated was not create date
+				 ELSE 'Denied'
+			END AS [Action],
+			COALESCE(FTT.Label, Forb.LC_FOR_TYP) AS [Type],
+			CONVERT(VARCHAR(10), Forb.LD_FOR_BEG,101) AS [Begin Date],
+			CONVERT(VARCHAR(10), Forb.LD_FOR_END,101) AS [End Date],
+			LN10.LN_SEQ AS [Loan Sequence],
+			COALESCE(FTL.Label, LN10.IC_LON_PGM) AS [Loan Program]
+		FROM 
+			PD10_PRS_NME PD10
+			INNER JOIN LN10_LON LN10 
+				ON LN10.BF_SSN = PD10.DF_PRS_ID
+			INNER JOIN
+			(
+				SELECT
+					LN85.BF_SSN,
+					LN85.LN_SEQ
+				FROM
+					LN85_LON_ATY LN85
+					INNER JOIN --GETS THE MOST RECENT ARC LEFT ON THE BORROWERS ACCOUNT TO GET THE LOAN SEQ'S THE LETTER APPLIES TO
+					(
+						SELECT
+							AY10.BF_SSN,
+							MAX(AY10.LN_ATY_SEQ) AS LN_ATY_SEQ,
+							MAX(AY10.LD_ATY_REQ_RCV) AS LD_ATY_REQ_RCV
+						FROM 
+							AY10_BR_LON_ATY AY10
+							INNER JOIN PD10_PRS_NME PD10
+								ON PD10.DF_PRS_ID = AY10.BF_SSN
+						WHERE
+							AY10.PF_REQ_ACT = @PF_REQ_ACT
+							AND PD10.DF_SPE_ACC_ID = @AccountNumber
+						GROUP BY
+							AY10.BF_SSN
+					)AY10
+						ON AY10.BF_SSN = LN85.BF_SSN
+						AND AY10.LN_ATY_SEQ = LN85.LN_ATY_SEQ
+			)LN85
+				ON LN85.BF_SSN = LN10.BF_SSN
+				AND LN85.LN_SEQ = LN10.LN_SEQ
+			INNER JOIN
+			(
+				SELECT 
+					FB10.LC_FOR_TYP,
+					LN60.LD_FOR_BEG,
+					LN60.LD_FOR_END,
+					FB10.LD_CRT_REQ_FOR,
+					FB10.LF_LST_DTS_FB10,
+					FB10.LC_FOR_STA,
+					LN60.BF_SSN,
+					LN60.LN_SEQ
+				FROM
+					FB10_BR_FOR_REQ FB10
+					INNER JOIN LN60_BR_FOR_APV LN60
+						ON LN60.BF_SSN = FB10.BF_SSN
+						AND LN60.LF_FOR_CTL_NUM = FB10.LF_FOR_CTL_NUM
+					INNER JOIN 
+					(
+						SELECT
+							MAX(LN60.LD_STA_LON60) AS MaxLN60,
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+						FROM
+							LN60_BR_FOR_APV LN60
+						WHERE
+							LN60.LC_STA_LON60 = 'A'
+						GROUP BY
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+					) LN60Max
+						ON LN60.BF_SSN = LN60Max.BF_SSN
+						AND LN60.LN_SEQ = LN60Max.LN_SEQ
+						AND LN60Max.MaxLN60 = LN60.LD_STA_LON60
+				WHERE
+					LN60.LC_STA_LON60 = 'A'
+					AND FB10.LC_STA_FOR10 = 'A'
+					--AND FB10.LC_FOR_STA = 'A' --denied records cant have this active
+			) Forb
+				ON Forb.BF_SSN = LN10.BF_SSN
+				AND Forb.LN_SEQ = LN10.LN_SEQ
+			LEFT JOIN FormatTranslation FTT
+				ON FTT.Start = Forb.LC_FOR_TYP
+				AND FTT.FmtName = '$FORSTA'
+			LEFT JOIN FormatTranslation FTL
+				ON FTL.Start = LN10.IC_LON_PGM
+				AND FTL.FmtName = '$LNPROG'
+		WHERE
+			PD10.DF_SPE_ACC_ID = @AccountNumber
+	END
+ELSE
+	BEGIN
+		SELECT
+			CASE WHEN Forb.LC_FOR_STA = 'A' AND Forb.LD_CRT_REQ_FOR = CAST(Forb.LF_LST_DTS_FB10 AS DATE) THEN 'Approved' --same create/last updated date
+				 WHEN Forb.LC_FOR_STA = 'A' AND Forb.LD_CRT_REQ_FOR != CAST(Forb.LF_LST_DTS_FB10 AS DATE) THEN 'Adjusted' --Changed as last updated was not create date
+				 ELSE 'Denied'
+			END AS [Action],
+			COALESCE(FTT.Label, Forb.LC_FOR_TYP) AS [Type],
+			CONVERT(VARCHAR(10), Forb.LD_FOR_BEG,101) AS [Begin Date],
+			CONVERT(VARCHAR(10), Forb.LD_FOR_END,101) AS [End Date],
+			LN10.LN_SEQ AS [Loan Sequence],
+			COALESCE(FTL.Label, LN10.IC_LON_PGM) AS [Loan Program]
+		FROM 
+			PD10_PRS_NME PD10
+			INNER JOIN LN20_EDS LN20
+				ON LN20.LF_EDS = PD10.DF_PRS_ID
+				AND LN20.LC_STA_LON20 = 'A'
+				AND LN20.LC_EDS_TYP = 'M' --Coborrower
+			INNER JOIN LN10_LON LN10 
+				ON LN10.BF_SSN = LN20.BF_SSN
+				AND LN10.LN_SEQ = LN20.LN_SEQ
+			INNER JOIN
+			(
+				SELECT
+					LN85.BF_SSN,
+					LN85.LN_SEQ
+				FROM
+					LN85_LON_ATY LN85
+					INNER JOIN --GETS THE MOST RECENT ARC LEFT ON THE BORROWERS ACCOUNT TO GET THE LOAN SEQ'S THE LETTER APPLIES TO
+					(
+						SELECT
+							AY10.BF_SSN,
+							MAX(AY10.LN_ATY_SEQ) AS LN_ATY_SEQ,
+							MAX(AY10.LD_ATY_REQ_RCV) AS LD_ATY_REQ_RCV
+						FROM 
+							AY10_BR_LON_ATY AY10
+							INNER JOIN LN20_EDS LN20
+								ON LN20.BF_SSN = AY10.BF_SSN
+								AND LN20.LC_EDS_TYP = 'M'
+								AND LN20.LC_STA_LON20 = 'A'
+							INNER JOIN PD10_PRS_NME PD10
+								ON PD10.DF_PRS_ID = LN20.LF_EDS
+						WHERE
+							AY10.PF_REQ_ACT = @PF_REQ_ACT
+							AND PD10.DF_SPE_ACC_ID = @AccountNumber
+						GROUP BY
+							AY10.BF_SSN
+					)AY10
+						ON AY10.BF_SSN = LN85.BF_SSN
+						AND AY10.LN_ATY_SEQ = LN85.LN_ATY_SEQ
+			)LN85
+				ON LN85.BF_SSN = LN10.BF_SSN
+				AND LN85.LN_SEQ = LN10.LN_SEQ
+			INNER JOIN
+			(
+				SELECT 
+					FB10.LC_FOR_TYP,
+					LN60.LD_FOR_BEG,
+					LN60.LD_FOR_END,
+					FB10.LD_CRT_REQ_FOR,
+					FB10.LF_LST_DTS_FB10,
+					FB10.LC_FOR_STA,
+					LN60.BF_SSN,
+					LN60.LN_SEQ
+				FROM
+					FB10_BR_FOR_REQ FB10
+					INNER JOIN LN60_BR_FOR_APV LN60
+						ON LN60.BF_SSN = FB10.BF_SSN
+						AND LN60.LF_FOR_CTL_NUM = FB10.LF_FOR_CTL_NUM
+					INNER JOIN 
+					(
+						SELECT
+							MAX(LN60.LD_STA_LON60) AS MaxLN60,
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+						FROM
+							LN60_BR_FOR_APV LN60
+						WHERE
+							LN60.LC_STA_LON60 = 'A'
+						GROUP BY
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+					) LN60Max
+						ON LN60.BF_SSN = LN60Max.BF_SSN
+						AND LN60.LN_SEQ = LN60Max.LN_SEQ
+						AND LN60Max.MaxLN60 = LN60.LD_STA_LON60
+				WHERE
+					LN60.LC_STA_LON60 = 'A'
+					AND FB10.LC_STA_FOR10 = 'A'
+					--AND FB10.LC_FOR_STA = 'A' --denied records cant have this active
+			) Forb
+				ON Forb.BF_SSN = LN10.BF_SSN
+				AND Forb.LN_SEQ = LN10.LN_SEQ
+			LEFT JOIN FormatTranslation FTT
+				ON FTT.Start = Forb.LC_FOR_TYP
+				AND FTT.FmtName = '$FORSTA'
+			LEFT JOIN FormatTranslation FTL
+				ON FTL.Start = LN10.IC_LON_PGM
+				AND FTL.FmtName = '$LNPROG'
+		WHERE
+			PD10.DF_SPE_ACC_ID = @AccountNumber
+	END
+END

@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "My Cornerstone Loan";
+}
+
+@section Meta {
+    <meta name="description" content="My Cornerstone Loan Home Page." />
+}
+
+<h1 style="height:0;width:0;overflow:hidden;">CornerStone</h1>
+
+<div class="row home-buttons">
+    <a href="@Url.Content("~/Payments/AutoPay")" class="col-md-3 button">
+        <h2><img src="../../Images/home-buttons/autopay.png" alt="Autopay" />AutoPay</h2>
+    </a>
+    <div class="col-md-3">
+        <ul>
+            <li>
+                Automatic payments save you money.
+                Interest rate reduction of <strong>0.25%</strong>
+            </li>
+            <li>Automatic payments are the most convenient way to make payments on your student loans.</li>
+            <li>Your monthly payment will be made on the same day each month.</li>
+        </ul>
+    </div>
+    <a href="@Url.Content("~/ServiceMembers/Benefits")" class="col-md-3 button">
+        <h2><img src="../../Images/home-buttons/troops.png" alt="Armed Forces Members" />Armed Forces<br /> Members</h2>
+    </a>
+    <div class="col-md-3">
+        <ul>
+            <li>Find Links to Armed Forces Member Resources</li>
+            <li>Armed Forces Members Hotline: (844) 255-8326</li>
+            <li style="font-size: 13px;"><a href="mailto:Servicemembers@mycornerstoneloan.org">servicemembers@mycornerstoneloan.org</a></li>
+        </ul>
+    </div>
+</div>
+<br />
+<div class="row home-buttons">
+    <a href="@Url.Content("~/Account/IDRInfo")" class="col-md-3 button">
+        <h2><img src="../../Images/home-buttons/lower.png" alt="Lower Your Payment" />Lower Your<br /> Payment</h2>
+    </a>
+    <div class="col-md-3" style="padding-left: 0px;">
+        <span class="blueheading" style="color: #026599;">You Spoke, We Listened!</span>
+        <p>
+            <strong>Forgiveness has become easier with a new repayment plan (REPAYE) available December 16th 2015.</strong><br />
+            <a href="/Repaye/">Follow link to take you to a list of FAQ’s about REPAYE.</a> CornerStone is committed to getting you the payment plan you need!
+        </p>
+    </div>
+    <a href="@Url.Content("~/Home/Forms")" class="col-md-3 button">
+        <h2><img src="../../Images/home-buttons/forms.png" alt="Forms" />Forms</h2>
+    </a>
+    <div class="col-md-3">
+        <ul>
+            <li>Payment &amp; ACH</li>
+            <li>Third Party Authorization</li>
+            <li>Deferment &amp; Forbearance</li>
+            <li>Forgiveness &amp; Discharge</li>
+        </ul>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            <strong>Public Service Loan Forgiveness: </strong>
+            If you are employed by a government or not-for-profit organization, you may be eligible to receive loan forgiveness under the Public Service Loan Forgiveness Program.
+            <br /><br />
+            The Public Service Loan Forgiveness (PSLF) Program forgives the remaining balance on your Direct Loans after you have made 120 (10 years) qualifying monthly payments under a qualifying repayment plan while working full-time for a qualifying employer.
+            <br /> <br />
+            <a href="https://studentloans.gov/pslf" title="StudentLoans.gov PSLF Page" target="_blank">Learn more to see whether you might qualify.</a>
+            <br /><br />
+            Please be advised that the PSLF Program is managed by 
+            <a href="https://myfedloan.org" title="FedLoan Servicing Website" target="_blank">FedLoan Servicing.</a> 
+            If it has been determined that you qualify for PSLF, your loans will be transferred to FedLoan for servicing.
+        </p>
+    </div>
+    <div class="col-md-6">
+        <p>
+            <strong>Teacher Loan Forgiveness: </strong>
+            If you teach full-time for five complete and consecutive academic years in a low-income elementary school, secondary school, or educational service agency, you may be eligible for forgiveness of up to $17,500 on your Direct Loan or FFEL program loans. See StudentAid.gov/teach-forgive for more information and a form you can fill out when you have completed your teaching service.
+        </p>
+        <p>
+            In order to qualify for Teacher Loan Forgiveness, you will need to complete five consecutive years of teaching at a Title I school. However, if you lived and/or taught in Puerto Rico or the U.S. Virgin Islands between September 2017 and September 2018, and were impacted by Hurricane Maria or Hurricane Irma, you may still be eligible for forgiveness. The requirement for consecutive years of teaching may be waived, provided you still have taught at a Title I school for five years.
+        </p>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="contactBox">
+            <h2>Contact CornerStone</h2>
+            <div class="phone">Phone | <a href="tel:800-663-1662" title="Call Us">800.663.1662</a></div>
+            <div class="email">E-Mail | <a href="mailto:customerservice@mycornerstoneloan.org" title="customerservice@mycornerstoneloan.org">Click here</a></div>
+            <div class="hours">
+                Hours | <strong>Mon - Thu 6 AM - 7 PM MST <br /></strong>
+                <strong style="margin-left:45px">Fri 6 AM - 5 PM MST</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 home-buttons">
+        <a href="@Url.Content("~/FAQ")#scamQuestions" title="Beware of Student Loan Assistance Scams" class="button" style="width:100%;">
+            <span style="font-size: 18px;">
+                Beware of Student Loan Assistance Scams
+            </span>
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <div class="socialBox">
+            <h2>Connect with Us</h2>
+            <a href="http://twitter.com/cornerstoneloan">
+                <img src="images/Twitter-BadgeSmall.png" alt="Follow CornerStone on Twitter!" title="Link to CornerStone's Twitter account." height="32" width="32">
+            </a>
+            <a href="http://www.facebook.com/MyCornerStoneLoan">
+                <img src="images/Facebook-BadgeSmall.png" alt="Find CornerStone on Facebook!" title="Link to CornerStone on Facebook." height="32" width="32">
+            </a>
+            <a href="http://www.linkedin.com/company/cornerstone-education-loan-services">
+                <img src="images/Linked-In-BadgeSmall.png" alt="Look for us on LinkedIn!" title="Link to CornerStone LinkedIn pages." height="32" width="32">
+            </a>
+            <a href="mailto:customerservice@mycornerstoneloan.org">
+                <img src="images/Email-BadgeSmall.png" alt="Send an email to Customer Service" title="Send an email to CornerStone Customer Service" height="32" width="32">
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+
+<script>
+    $(function () {
+        $('.carousel').carousel();
+    });
+</script>

@@ -1,0 +1,20 @@
+﻿@model InputData
+
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Success", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div style="padding:20px">
+        <h2>Letter Generated Successfully for: @Model.Demos.FirstName  @Model.Demos.LastName</h2>
+        @if (Model.ErrorMessage != null && Model.ErrorMessage.Length > 0)
+        {
+            <h2>@Model.ErrorMessage</h2>
+        }
+        <br /><br />
+        <input type="submit" value="New Letter" />
+    </div>
+}

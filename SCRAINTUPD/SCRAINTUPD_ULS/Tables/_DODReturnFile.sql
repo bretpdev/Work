@@ -1,0 +1,27 @@
+﻿CREATE TABLE [scra].[_DODReturnFile] (
+    [DODReturnFileId]                                INT           IDENTITY (1, 1) NOT NULL,
+    [SourceFile]                                     VARCHAR (100) NULL,
+    [SSN]                                            CHAR (9)      NOT NULL,
+    [DateOfBirth]                                    NUMERIC (8)   NULL,
+    [LastName]                                       VARCHAR (26)  NULL,
+    [FirstName]                                      VARCHAR (20)  NULL,
+    [CustomerRecordID]                               VARCHAR (28)  NULL,
+    [ActiveDutyStatusDate]                           NUMERIC (8)   NULL,
+    [Blank]                                          VARCHAR (1)   NULL,
+    [ActiveDutyOnActiveDutyStatusDt]                 VARCHAR (1)   NULL,
+    [LeftActiveDutyLE367DaysFromActiveDutyStatusDt]  VARCHAR (1)   NULL,
+    [NotifiedOfActiveDutyRecallOnActiveDutyStatusDt] VARCHAR (1)   NULL,
+    [ActiveDutyEndDate]                              NUMERIC (8)   NULL,
+    [MatchResultCode]                                NUMERIC (1)   NULL,
+    [Error]                                          NUMERIC (1)   NULL,
+    [DateOfMatch]                                    NUMERIC (8)   NULL,
+    [ActiveDutyBeginDate]                            NUMERIC (8)   NULL,
+    [EIDBeginDate]                                   NUMERIC (8)   NULL,
+    [EIDEndDate]                                     NUMERIC (8)   NULL,
+    [ServiceComponent]                               VARCHAR (2)   NULL,
+    [EIDServiceComponent]                            VARCHAR (2)   NULL,
+    [MiddleName]                                     VARCHAR (20)  NULL,
+    [CertificateID]                                  VARCHAR (15)  NULL,
+    PRIMARY KEY CLUSTERED ([DODReturnFileId] ASC) WITH (FILLFACTOR = 95)
+);
+

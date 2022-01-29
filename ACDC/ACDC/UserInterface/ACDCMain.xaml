@@ -1,0 +1,104 @@
+﻿<Window x:Class="ACDC.ACDCMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ACDC"
+    Title="ACDC" Height="363" Width="352" Opacity="1" Background="Transparent" AllowsTransparency="True" WindowStyle="None" MouseDown="Window_MouseDown" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" SizeToContent="WidthAndHeight" ResizeMode="CanResize" Name="acdcMain" Icon="..\Resources\ACDCfavicon.ico">
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFade">
+                    <DoubleAnimation  Name="FormFadeAnimation"
+                                            Storyboard.TargetName="acdcMain"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            From="0.0" To="1.0" Duration="0:0:1"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    
+    <Grid Margin="10">
+        <Grid.BitmapEffect>
+            <DropShadowBitmapEffect />
+        </Grid.BitmapEffect>
+        <Border CornerRadius="7" BorderBrush="Gray" BorderThickness="10" Margin="0">
+            <Border.BitmapEffect>
+                <BevelBitmapEffect />
+            </Border.BitmapEffect>
+            <Rectangle Name="rectangle1"  Opacity="0.4" Fill="DarkBlue" FlowDirection="RightToLeft" />
+        </Border>
+        <Button Height="19" Name="btnClose" Width="18" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Opacity="1" Visibility="Hidden" Click="btnClose_Click">x</Button>
+        <WrapPanel Margin="35" Name="MainPanel" Background="Transparent" Opacity="1" HorizontalAlignment="Stretch">
+            <!--<Button Background="Transparent" Foreground="White" Height="50" Name="btnLSDUDE" Width="50" Margin="5"  ToolTip="Maui DUDE">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\Maui-DUDE-Icon.gif"/>
+            </Button>
+            <Button Height="50" Name="btnAccess" Width="50" Background="Transparent" Foreground="White" Margin="5" Click="btnAccess_Click" Visibility="Collapsed" ToolTip="ACDC Access">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\SystemAccess.gif" Visibility="Visible" />
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnNeedHelp" Width="50" Margin="5" Click="btnNeedHelp_Click" Visibility="Collapsed" ToolTip="Need Help?">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\NeedHelp.gif" />
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnLearningCenter" Width="50" Margin="5" Click="btnLearningCenter_Click"  Visibility="Collapsed" ToolTip="Learning Center">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\Learning-Center-Icon.gif"/>
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnUheaaUniversity" Width="50" Margin="5" Click="btnUheaaUniversity_Click" Visibility="Collapsed" ToolTip="UHEAA University">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\UHEAAUniversityIcon.gif" />
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnSacker" Width="50" Margin="5" Click="btnSacker_Click" Visibility="Collapsed" ToolTip="Sacker">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\Sacker.gif"/>
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnLetterTracking" Width="50" Margin="5" Click="btnLetterTracking_Click" Visibility="Collapsed" ToolTip="Letter Tracking">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\LetterTracking.gif"/>
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnFlows" Width="50" Margin="5" Click="btnFlows_Click" Visibility="Collapsed" ToolTip="ACDC Flows">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\FlowControl.gif"/>
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnQC" Width="50" Margin="5" Click="btnQC_Click"  Visibility="Collapsed" ToolTip="Quality Control (QC)">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\QC-Icon.gif"/>
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnADGroups" Width="50" Margin="5" Click="btnADGroups_Click"  Visibility="Collapsed" ToolTip="Active Directory Groups">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\adg.gif"/>
+            </Button>
+            <Button Background="Transparent" Foreground="White" Height="50" Name="btnTimeTracking" Width="50" Margin="5" Click="btnTimeTracking_Click"  Visibility="Collapsed" ToolTip="Update Time Tracking">
+                <Button.BitmapEffect>
+                    <DropShadowBitmapEffect />
+                </Button.BitmapEffect>
+                <Image Source="..\Resources\TimeTracking.gif"/>
+            </Button>-->
+            <!--<local:ACDCLogin x:Name="acdcLoginCntrl">
+            </local:ACDCLogin>-->
+        </WrapPanel>
+    </Grid>
+</Window>

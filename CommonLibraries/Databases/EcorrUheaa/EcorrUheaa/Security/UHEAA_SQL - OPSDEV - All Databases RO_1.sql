@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [UHEAA\SQL - OPSDEV - All Databases RO]
+    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
+

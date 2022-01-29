@@ -1,0 +1,3 @@
+﻿CREATE USER [UHEAA\dbarton]
+    WITH DEFAULT_SCHEMA = [UHEAA\dbarton];
+

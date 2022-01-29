@@ -1,0 +1,39 @@
+﻿@model RoleDetailedModel
+@{
+    bool alreadyRetired = Model.InactivatedAt.HasValue; //viewing an already retired role
+    if (alreadyRetired)
+    {
+        ViewBag.Title = "View Retired Role";
+    }
+    else
+    {
+        ViewBag.Title = "Retire Role";
+    }
+}
+
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(o => o.RoleId)
+
+    <h3>Active Directory Role</h3>
+    @Model.ActiveDirectoryRoleName
+
+    <h3>Notes</h3>
+    if (string.IsNullOrWhiteSpace(Model.Notes))
+    {
+        <span>(None)</span>
+    }
+    else
+    {
+        <span>@Model.Notes</span>
+    }
+
+    @Html.Partial("_ControllerAccessViewer", Model.ControllerAccess)
+    <br /><br />
+    if (!alreadyRetired)
+    {
+        <input type="submit" value="Retire Role (cannot be undone)" />
+    }
+
+}

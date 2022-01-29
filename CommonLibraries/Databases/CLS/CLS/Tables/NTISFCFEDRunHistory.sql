@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[NTISFCFEDRunHistory]
+(
+	[NTISFCFEDRunHistoryId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [RunDateTime] DATETIME NOT NULL
+	
+)

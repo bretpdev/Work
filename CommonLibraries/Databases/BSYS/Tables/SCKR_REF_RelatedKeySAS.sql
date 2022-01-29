@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[SCKR_REF_RelatedKeySAS] (
+    [Job]        NVARCHAR (50) NOT NULL,
+    [RelProgKey] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_refRelatedKeySAS] PRIMARY KEY CLUSTERED ([Job] ASC, [RelProgKey] ASC) WITH (FILLFACTOR = 90)
+);
+

@@ -1,0 +1,243 @@
+﻿@model IEnumerable<ProjectRequest.Models.ScoreType>
+
+@{
+    ViewBag.Title = "Score Overview";
+}
+
+<h2>Score Overview</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreOutOf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScoreWeight)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreOutOf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScoreWeight)
+        </td>
+        <td>
+            @if ((item.ScoreDescription == "Finance Score" && ViewBag.ScoreFinaceLink != "") || (item.ScoreDescription == "Requestor Score" && ViewBag.ScoreRequestorLink != "") || (item.ScoreDescription == "Urgency Score" && ViewBag.ScoreUrgencyLink != "") || (item.ScoreDescription == "Resources Score" && ViewBag.ScoreResourcesLink != "") || (item.ScoreDescription == "Risk Score" && ViewBag.ScoreFinaceLink != ""))
+            {
+                @Html.ActionLink("Score", "ProjectScoring", new { projectId = item.ProjectId, scoreTypeId = item.ScoreTypeId, scoreId = item.ScoreId })
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+                <th class="dark-highlight">Business Value:<br /> Requestor</th>
+                <th class="dark-highlight">Definition</th>
+                <th class="dark-highlight">Ranking</th>
+            </tr>
+            <tr>
+                <td>Significant</td>
+                <td>Project provides significant benefit to multiple business units, customers, employees, metrics, and business strategy.</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Large</td>
+                <td>Project provides a large amount of benefit to a business unit, customers, employees, metrics, and business strategy.</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Medium</td>
+                <td>Project provides some benefits to a business unit, customers, employees, metrics, and business strategy.</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Small</td>
+                <td>Project provides a small benefit to one area of the business.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Minimal</td>
+                <td>Project provides minimal benefit to the BU. It is nice to have.</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+                <th class="dark-highlight">Business Value:<br /> Finance</th>
+                <th class="dark-highlight">Definition</th>
+                <th class="dark-highlight">Ranking</th>
+            </tr>
+            <tr>
+                <td>Required</td>
+                <td>Project provides sustainabililty for meeting regulatory guidelines</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Significant</td>
+                <td>Project provides financial sustainability for the organization (Financial Impact &gt;$5000)</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Moderate</td>
+                <td>Project provides moderate financial impact for the organization (Financial Impact &gt;$2000)</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Minor</td>
+                <td>Project provides minimal financial impact for the organization with the minimum resource effort (Financial Impact &gt;$1000)</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Low</td>
+                <td>Project provides only cosmetic or administrative changes with minimal financial impact for the organization (Financial Impact &lt;$1000)</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+                <th class="dark-highlight">Business Value:<br /> Urgency</th>
+                <th class="dark-highlight">Definition</th>
+                <th class="dark-highlight">Ranking</th>
+            </tr>
+            <tr>
+                <td>Immediate Urgency</td>
+                <td>Project must be implemented as soon as possible for regulatory, contractual, or compliance-related issues. Project is critical for business continuity.</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Urgent - Important</td>
+                <td>Project is urgent to meet regulatory, contractual, or compliance-related issues, but there is a reasonable deadline that can be met.</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Not Urgent - Important</td>
+                <td>Project is important for the success of the business, but it can be managed through a standard priority.</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Not Important - Urgent</td>
+                <td>Project should be implemented to provide business unit benefits. However, there is a workaround for the current process.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Not Urgent - Not Important</td>
+                <td>Project provides minimal benefit to the BU. It is nice to have but provides little benefit.</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+                <th class="dark-highlight">Business Value:<br /> Resources Score</th>
+                <th class="dark-highlight">Definition</th>
+                <th class="dark-highlight">Ranking</th>
+            </tr>
+            <tr>
+                <td>Significant</td>
+                <td>Enterprise-level project or changes requiring significant technology investment or rewrite of code. Project will take >1000 hours in resources</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Large</td>
+                <td>Project can be completed within 301-1000 hours of work</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Medium</td>
+                <td>Project can be completed within 101-300 hours of work</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Small</td>
+                <td>Project can be completed within 41-100 hours of work</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Minimal</td>
+                <td>Project can be completed within 20-40 hours of work</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <tr>
+                <th class="dark-highlight">Business Value:<br /> Risk</th>
+                <th class="dark-highlight">Definition</th>
+                <th class="dark-highlight">Ranking</th>
+            </tr>
+            <tr>
+                <td>Catastrophic</td>
+                <td>Not implementing this project would be catastrophic to operations, finance, systems, or the reputation of the organization.</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Major</td>
+                <td>Not implementing this project would have major impact to operations, finance, systems, or the reputation of the organization.</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Moderate</td>
+                <td>Not implementing this project would have moderate impact to operations, finance, systems, or the reputation of the organization.</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>Minor</td>
+                <td>Not implementing this project would have short-term impact to operations, finance, systems, or the reputation of the organization.</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>Insignificant</td>
+                <td>Not implementing this project would be low risk for the business and can be mitigated by normal day-to-day processes.</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br />
+
+<div>
+    @Html.ActionLink("Back to List", "ProductPrioritization")
+</div>

@@ -1,0 +1,26 @@
+﻿CREATE TABLE [dbo].[LN33_LON_CU_INF] (
+    [BF_SSN]           CHAR (9)       NOT NULL,
+    [LN_SEQ]           SMALLINT       NOT NULL,
+    [LN_CU_SEQ]        SMALLINT       NOT NULL,
+    [LD_CU_ENT]        DATE           NOT NULL,
+    [LD_CU_END]        DATE           NULL,
+    [LC_CU_REA_END]    CHAR (1)       NOT NULL,
+    [LC_CU_LIA]        CHAR (1)       NOT NULL,
+    [LC_CU_REA]        VARCHAR (2)    NOT NULL,
+    [LC_CU_CND]        CHAR (1)       NOT NULL,
+    [LC_CU_TYP]        CHAR (1)       NOT NULL,
+    [LC_CU_SCH]        CHAR (1)       NOT NULL,
+    [LD_CU_SR_ORG]     DATE           NOT NULL,
+    [LD_DLQ_1_CU_BEG]  DATE           NULL,
+    [LD_R99_END_RPT]   DATE           NULL,
+    [LD_R99_BEG_RPT]   DATE           NULL,
+    [LN_R99_SEQ]       SMALLINT       NULL,
+    [LF_LST_DTS_LN33]  DATETIME2 (7)  NOT NULL,
+    [LA_R99_REJ_PRI]   NUMERIC (8, 2) NULL,
+    [LD_VIO_LON_CU]    DATE           NULL,
+    [LD_CU_3_YR_RUL]   DATE           NULL,
+    [LI_CU_PUR_ALW]    CHAR (1)       NOT NULL,
+    [LC_NSLDS_STA_RPT] VARCHAR (2)    NOT NULL,
+    CONSTRAINT [PK_LN33_LON_CU_INF] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_SEQ] ASC, [LN_CU_SEQ] ASC)
+);
+

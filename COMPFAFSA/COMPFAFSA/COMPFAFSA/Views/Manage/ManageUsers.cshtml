@@ -1,0 +1,60 @@
+﻿@model IEnumerable<COMPFAFSA.Models.ManageUser>
+@using COMPFAFSA.Models
+
+@{
+    ViewBag.Title = "ManageUsers";
+}
+
+<body>
+    <div class="body-content-margins">
+        <h2>Manage Users</h2><br />
+
+        <p class="text-success">@ViewBag.StatusMessage</p>
+        <p>
+            @Html.ActionLink("Create New", "Create")<br />
+            @*@Html.ActionLink("Assign Schools", "Create")*@
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Admin)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LockedOut)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @Html.HiddenFor(modelItem => item.UserId)
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Admin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LockedOut)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Schools", "ManageUserSchools", new { id = item.UserId }) |
+                        @Html.ActionLink("Unlock", "UnlockUser", new { id = item.UserId, emailAddress = item.EmailAddress, fullName = item.FullName }) |
+                        @Html.ActionLink("Reset Password", "ResetPassword", new { id = item.UserId }) |
+                        @Html.ActionLink("Delete", "DeleteUser", new { id = item.UserId, emailAddress = item.EmailAddress, fullName = item.FullName })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>

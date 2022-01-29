@@ -1,0 +1,48 @@
+﻿@model School
+@{
+    string header = null;
+    string title = null;
+    string submit = null;
+    string action = null;
+    if (!Model.SchoolId.HasValue)
+    {
+        header = "Add New School Information";
+        title = "New School";
+        submit = "Add New School";
+        action = "Add";
+    }
+    else
+    {
+        header = "Edit School Information";
+        title = "Edit School";
+        submit = "Save Changes";
+        action = "Edit";
+    }
+    ViewBag.Title = title;
+}
+@if (Model.SchoolId.HasValue)
+{
+@Html.ActionLink("[Retire this School]", "Retire", new { id = Model.SchoolId }, new { id = "top-right-button" })
+}
+<h2>@header</h2>
+@using (Html.BeginForm(action, "Schools"))
+{
+    @Html.HiddenFor(o => o.SchoolId)
+
+    @Html.LabelFor(o => o.Name)
+    @Html.TextBoxFor(o => o.Name, new { required = "", maxlength = "50", @class="long-box upper-box" })
+    <br />
+    @Html.LabelFor(o => o.SchoolCode)
+    @Html.TextBoxFor(o => o.SchoolCode, new { required = "", pattern = @"\d{6}", maxlength = "6", title = "6 Character School Code (numeric only)" })
+    <br />
+    @Html.LabelFor(o => o.BranchCode)
+    @Html.TextBoxFor(o => o.BranchCode, new { required = "", pattern = @"\d{2}", maxlength = "2", title = "2 Character Branch Code (numeric only)" })
+    <br />
+    <br />
+    <input type="submit" value="@submit" />
+    if (Model.SchoolId.HasValue)
+    {
+    <a href="/Schools/Recipients/@Model.SchoolId" class="button-link">Manage School Recipients (@Model.RecipientCount)</a>
+    <a href="/Reports/BySchool?schoolIds=@Model.SchoolId" class="button-link">Generate Report</a>
+    }
+}

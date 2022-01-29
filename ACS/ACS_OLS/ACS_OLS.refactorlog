@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="384e2bdf-1173-4a42-9f87-e6b6b58b1a7b" ChangeDateTime="02/26/2021 20:45:07">
+    <Property Name="ElementName" Value="[acs].[MarkRecordProcessed_OL]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[acs]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[MarkRecordProcessed]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="864e3abf-ebcf-4937-b50f-691167a23b67" ChangeDateTime="02/26/2021 20:46:18">
+    <Property Name="ElementName" Value="[acs].[GetUnprocessedRecords_OL]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[acs]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[GetUnprocessedRecords]" />
+  </Operation>
+</Operations>

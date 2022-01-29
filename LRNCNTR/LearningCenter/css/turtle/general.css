@@ -1,0 +1,69 @@
+body
+{
+	border: 0;
+}
+
+#background
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+#background>img
+{
+	width: 100%;
+	height: 768px;
+	margin-left: 302px;
+}
+
+#nav>img
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+#nav form
+{
+	position: fixed;
+	left: 1em;
+	bottom: 2em;
+}
+
+#nav input
+{
+	display: inline;
+}
+
+.selectTheme:link, .selectTheme:visited, .selectTheme:hover, .selectTheme:active
+{
+	font-weight: bold;
+	color: #34E;
+	background: #EC5;
+}
+
+#content
+{
+	position: absolute;
+	top: 0;
+	left: 302px;
+	padding: 1em;
+	padding-left: 0;
+}
+
+/* Navigation buttons */
+#nav .buttonMain				{border: 0; position: fixed; top: 120px; left: 100px;}
+#nav .buttonGlossary		{border: 0; position: fixed; top: 170px; left: 75px;}
+#nav .buttonLetters			{border: 0; position: fixed; top: 220px; left: 55px;}
+#nav .buttonTraining		{border: 0; position: fixed; top: 270px; left: 40px;}
+#nav .buttonNarratives	{border: 0; position: fixed; top: 320px; left: 30px;}
+#nav .buttonProcedures	{border: 0; position: fixed; top: 370px; left: 25px;}
+#nav .buttonPolicy			{border: 0; position: fixed; top: 420px; left: 30px;}
+#nav .buttonStaff				{border: 0; position: fixed; top: 470px; left: 40px;}
+#nav .buttonFlowChart		{border: 0; position: fixed; top: 520px; left: 55px;}
+#nav .buttonRisks				{border: 0; position: fixed; top: 570px; left: 75px;}
+#nav .endcap						{visibility: hidden;}
+#nav .selectTheme				{position: fixed; bottom: 0; left: 1.2em;}
+#nav .selectAdmin				{position: fixed;	bottom: 0; left: 10em;}

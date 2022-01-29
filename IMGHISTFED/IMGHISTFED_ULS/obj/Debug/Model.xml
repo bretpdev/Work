@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSchemaModel FileFormatVersion="1.2" SchemaVersion="2.9" DspName="Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider" CollationLcid="1033" CollationCaseSensitive="False" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+	<Header>
+		<CustomData Category="AnsiNulls">
+			<Metadata Name="AnsiNulls" Value="True" />
+		</CustomData>
+		<CustomData Category="QuotedIdentifier">
+			<Metadata Name="QuotedIdentifier" Value="True" />
+		</CustomData>
+		<CustomData Category="CompatibilityMode">
+			<Metadata Name="CompatibilityMode" Value="130" />
+		</CustomData>
+		<CustomData Category="Reference" Type="Assembly">
+			<Metadata Name="LogicalName" Value="IMGHISTFED_ULS.dll" />
+			<Metadata Name="FileName" Value="\\FSUHEAADOCS\DOMAINUSERSDATA\JKRAMER\DESKTOP\PROJECTS\IMGHISTFED\IMGHISTFED_ULS\OBJ\DEBUG\IMGHISTFED_ULS.DLL" />
+			<Metadata Name="AssemblyName" Value="IMGHISTFED_ULS" />
+			<Metadata Name="PermissionSet" Value="SAFE" />
+			<Metadata Name="Owner" Value="" />
+			<Metadata Name="GenerateSqlClrDdl" Value="True" />
+			<Metadata Name="IsVisible" Value="True" />
+			<Metadata Name="IsModelAware" Value="True" />
+			<Metadata Name="SkipCreationIfEmpty" Value="True" />
+			<Metadata Name="AssemblySymbolsName" Value="\\FSUHEAADOCS\DomainUsersData\jkramer\Desktop\Projects\IMGHISTFED\IMGHISTFED_ULS\obj\Debug\IMGHISTFED_ULS.pdb" />
+		</CustomData>
+		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
+	</Header>
+	<Model>
+		<Element Type="SqlDatabaseOptions">
+			<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
+			<Property Name="IsAnsiNullDefaultOn" Value="True" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="IsAnsiWarningsOn" Value="True" />
+			<Property Name="IsArithAbortOn" Value="True" />
+			<Property Name="IsConcatNullYieldsNullOn" Value="True" />
+			<Property Name="IsTornPageProtectionOn" Value="False" />
+			<Property Name="IsFullTextEnabled" Value="True" />
+			<Property Name="PageVerifyMode" Value="3" />
+			<Property Name="DefaultLanguage" Value="" />
+			<Property Name="DefaultFullTextLanguage" Value="" />
+			<Property Name="QueryStoreStaleQueryThreshold" Value="367" />
+			<Relationship Name="DefaultFilegroup">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[PRIMARY]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetBorrowerIndexRecord]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+
+SELECT DISTINCT
+    LN10.BF_SSN AS Ssn,
+    CentralData.dbo.TRIM(PD10.DM_PRS_LST) AS LastName,
+    CentralData.dbo.TRIM(PD10.DM_PRS_1) AS FirstName,
+    'SRVH' AS DocType,
+    FS10.LF_FED_AWD + RIGHT('000' + CAST(FS10.LN_FED_AWD_SEQ AS VARCHAR(3)),3) AS LoanId,
+    CONVERT(VARCHAR(10), GETDATE(), 101) as DocDate,
+    'DIRL' AS LoanProgramType,
+    LN10.LD_LON_GTR AS GuarantyDate,
+    '11/09/2020' AS SaleDate,
+    MAX(CASE WHEN LN10.LC_FED_PGM_YR = 'DLO' THEN 'PSAOG' ELSE 'PSAOH' END) OVER(PARTITION BY LN10.BF_SSN) AS DealId
+FROM
+    CDW..PD10_PRS_NME PD10
+    INNER JOIN CDW..LN10_LON LN10
+        ON LN10.BF_SSN = PD10.DF_PRS_ID
+    INNER JOIN CDW..FS10_DL_LON FS10
+        ON FS10.BF_SSN = LN10.BF_SSN
+        AND FS10.LN_SEQ = LN10.LN_SEQ
+WHERE
+    LN10.BF_SSN = @SSN]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[GetBorrowerIndexRecord].[@Ssn]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetBorrowerIndexRecord].[@Ssn]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="9" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="865" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetBorrowerIndexRecord]&#xD;&#xA;&#x9;@Ssn CHAR(9)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetEndorserIndexRecord]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+SELECT DISTINCT
+    LN20.LF_EDS AS Ssn, --WERE USING THE ENDORSER SSN WITH THE BORROWER INFORMATION FOR NOW
+    CentralData.dbo.TRIM(PD10.DM_PRS_LST) AS LastName,
+    CentralData.dbo.TRIM(PD10.DM_PRS_1) AS FirstName,
+    'SRVH' AS DocType,
+    FS10.LF_FED_AWD + RIGHT('000' + CAST(FS10.LN_FED_AWD_SEQ AS VARCHAR(3)),3) AS LoanId,
+    CONVERT(VARCHAR(10), GETDATE(), 101) as DocDate,
+    'DIRL' AS LoanProgramType,
+    LN10.LD_LON_GTR AS GuarantyDate,
+    '11/09/2020' AS SaleDate,
+    MAX(CASE WHEN LN10.LC_FED_PGM_YR = 'DLO' THEN 'PSAOG' ELSE 'PSAOH' END) OVER(PARTITION BY LN10.BF_SSN) AS DealId
+FROM
+    CDW..PD10_PRS_NME PD10
+    INNER JOIN CDW..LN10_LON LN10
+        ON LN10.BF_SSN = PD10.DF_PRS_ID
+    INNER JOIN CDW..LN20_EDS LN20
+        ON LN10.BF_SSN = LN20.BF_SSN
+        AND LN10.LN_SEQ = LN20.LN_SEQ
+    INNER JOIN CDW..FS10_DL_LON FS10
+        ON FS10.BF_SSN = LN10.BF_SSN
+        AND FS10.LN_SEQ = LN10.LN_SEQ
+WHERE
+    LN10.BF_SSN = @Ssn
+    AND LN20.LF_EDS = @EndorserSsn]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[varchar]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[GetEndorserIndexRecord].[@Ssn]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[GetEndorserIndexRecord].[@EndorserSsn]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetEndorserIndexRecord].[@Ssn]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="9" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetEndorserIndexRecord].[@EndorserSsn]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="9" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="1103" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetEndorserIndexRecord]&#xD;&#xA;&#x9;@Ssn CHAR(9),&#xD;&#xA;&#x9;@EndorserSsn CHAR(9)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlSchema" Name="[imghistfed]">
+			<Relationship Name="Authorizer">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlTable" Name="[imghistfed].[DealIds]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[imghistfed].[DealIds].[DealId]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[imghistfed].[DealIds].[SaleDate]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[imghistfed]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlProcedure" Name="[imghistfed].[GetDealIds]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT
+		DealId,
+		SaleDate
+	FROM
+		imghistfed.DealIds]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[imghistfed].[DealIds]" />
+				</Entry>
+				<Entry>
+					<References Name="[imghistfed].[DealIds].[DealId]" />
+				</Entry>
+				<Entry>
+					<References Name="[imghistfed].[DealIds].[SaleDate]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References Name="[imghistfed]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="107" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [imghistfed].[GetDealIds]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+	</Model>
+</DataSchemaModel>

@@ -1,0 +1,28 @@
+﻿using System;
+using System.Windows.Forms;
+using Uheaa.Common.DataAccess;
+using Uheaa.Common.Scripts;
+
+
+namespace <<NAMESPACE>>
+{
+    public class <<STARTING_CLASS>> : ScriptBase
+    {
+		private readonly DataAccess _dataAccess;
+		
+        public <<STARTING_CLASS>>(ReflectionInterface ri)
+            : base(ri,DataAccessBase.Region.Uheaa, "<<SCRIPT_ID>>")
+        {
+			_dataAccess = new DataAccess(ri.TestMode);
+        }
+
+        public override void Main()
+        {
+			//TODO: Modify the startup message to describe the script's purpose.
+			string startupMessage = "This script does something magical and revolutionary. Click OK to continue, or Cancel to quit.";
+			if (MessageBox.Show(startupMessage, ScriptId, MessageBoxButtons.OKCancel, MessageBoxIcon.Information) != DialogResult.OK) { EndDllScript(); }
+			
+			//TODO: Fill in the script logic.
+        }
+    }
+}

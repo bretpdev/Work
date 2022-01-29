@@ -1,0 +1,2806 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:eps="http://Eprise" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" name="com.SilkroadTech.EpsClient" targetNamespace="http://Eprise" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://Eprise">
+      <s:element name="ApproveEditPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pEditPage" type="eps:EpsEditPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApproveEditPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="ApproveEditPageResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strParentFolder" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strStylePathOrID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="CreatePageResult" type="eps:EpsEditPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Eval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEvaluate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EvalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="EvalResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetBinaryContentResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryContentEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tAdditionalArgs" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryContentExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetBinaryContentExResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPage" type="eps:EpsPage" />
+            <s:element minOccurs="1" maxOccurs="1" name="strInstanceId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="iProdState" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetBlockResult" type="eps:EpsBlock" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlockTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPage" type="eps:EpsPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBlockTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetBlockTableResult" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetContentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tAdditionalArgs" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetContentExResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentReturnTables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespace" type="eps:ArrayOfArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespaceItemsToReturn" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContentReturnTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetContentReturnTablesResult" type="eps:ArrayOfEpsTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGuid">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strObjectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGuidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetGuidResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEditPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEditPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetEditPageResult" type="eps:EpsEditPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEditPageEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLockContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEditPageExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetEditPageExResult" type="eps:EpsEditPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bIncludeFolderContents" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetFolderResult" type="eps:EpsFolder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetObjectId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPath" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetObjectIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetObjectIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPageObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPageObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetPageObjectResult" type="eps:EpsPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strRoleName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HasRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="HasRoleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KillSession">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SessionIdentifier" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="KillSessionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="KillSessionResult" type="eps:ReturnStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Log">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLogLevel" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="strMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="LogResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strLoginId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPassword" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strRemoteIP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="LogInResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="LogOutResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPage" type="eps:EpsPage" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLabel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="PublishPageResult" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishEditPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPage" type="eps:EpsEditPage" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLabel" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishEditPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="PublishEditPageResult" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishEditPageEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPage" type="eps:EpsEditPage" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLabel" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strCheckForLockedItems" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishEditPageExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="PublishEditPageExResult" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Resolve">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strMergeString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResolveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="ResolveResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespace" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="RunEventResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEventReturnTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespace" type="eps:ArrayOfArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="strTableName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEventReturnTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="RunEventReturnTableResult" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEventReturnTables">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespace" type="eps:ArrayOfArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespaceItemsToReturn" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEventReturnTablesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="RunEventReturnTablesResult" type="eps:ArrayOfEpsTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEventReturnNameSpace">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespace" type="eps:ArrayOfArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="tNamespaceVarsToReturn" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunEventReturnNameSpaceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="RunEventReturnNameSpaceResult" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveEditPage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pEditPage" type="eps:EpsEditPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveEditPageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SaveEditPageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveEditPageEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pEditPage" type="eps:EpsEditPage" />
+            <s:element minOccurs="1" maxOccurs="1" name="strCheckForLockedItems" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveEditPageExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SaveEditPageExResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFolder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pFolder" type="eps:EpsFolder" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveFolderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SaveFolderResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SavePage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPage" type="eps:EpsPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SavePageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SavePageResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitForApproval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pEditPage" type="eps:EpsEditPage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitForApprovalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SubmitForApprovalResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitForApprovalEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pEditPage" type="eps:EpsEditPage" />
+            <s:element minOccurs="1" maxOccurs="1" name="strCheckForLockedItems" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strNote" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SubmitForApprovalExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="SubmitForApprovalExResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Upload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strParentID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DataBytesBase64" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="UploadResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFromStyle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strParentID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strStylePathOrID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DataBytesBase64" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadFromStyleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="UploadFromStyleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strForWhomUser" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strTaskDefinitionStringId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strSendEmails" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="AddTaskResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strForWhomUser" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strTaskDefinitionStringId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strSendEmails" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strAddAsDependentTaskEvenIfCanBeIndependent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="AddTaskExResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskEx2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskEx2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="AddTaskEx2Result" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskNote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strTaskID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strNoteText" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strSendEmails" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskNoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="AddTaskNoteResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskNoteEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTaskNoteExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="AddTaskNoteExResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BulkUserUpload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strUsersXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BulkUserUploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="BulkUserUploadResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CategoryUpload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="categoryXml" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="uploadFileName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CategoryUploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="CategoryUploadResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompleteTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strTaskID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strNoteText" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strSendEmails" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompleteTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="CompleteTaskResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompleteTaskEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompleteTaskExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="CompleteTaskExResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteForm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFormResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="DeleteFormResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strForWhomUser" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strTaskDefinitionStringId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strSendEmails" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strDontDeleteIfFormExists" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="DeleteTaskResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUploadedDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUploadedDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="DeleteUploadedDocumentResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FieldValueUpload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FieldValueUploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="FieldValueUploadResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeRetired" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetCategoryValuesResult" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedForms">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strStartingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrEndingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLoginID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strDelivered" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedFormsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetCompletedFormsResult" type="eps:EpsTableEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedFormsEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strStartingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrEndingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLoginID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFKUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strDelivered" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="arrCategoryFilter" type="eps:ArrayOfArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedFormsExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetCompletedFormsExResult" type="eps:EpsTableEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedFormsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompletedFormsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetCompletedFormsListResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="arrCategoryFilter" type="eps:ArrayOfArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="strStartingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrEndingDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetEventReportResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventReportEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEventReportExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetEventReportExResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetFormPDFResult" type="eps:EpsBinaryEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormsIDs">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strStartingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrEndingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLoginID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFKUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strDelivered" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strVerified" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormsIDsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetFormsIDsResult" type="eps:EpsTableEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormsIDsEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strStartingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrEndingDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLoginID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFKUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strDelivered" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strVerified" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEventName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="arrCategoryFilter" type="eps:ArrayOfArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="strAlternateUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormsIDsExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetFormsIDsExResult" type="eps:EpsTableEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFormXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetFormXMLResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTasksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetTasksResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUploadedDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strPageId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUploadedDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetUploadedDocumentResult" type="eps:EpsBinaryEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUploadedDocumentList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUploadedDocumentListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetUploadedDocumentListResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserIDList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserIDListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetUserIDListResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLoginID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFKUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEmail" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strAlternateUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetUserProfileResult" type="eps:EpsTableEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserProfileEx">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strLoginID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFKUserID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strEmail" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strAlternateUserID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserProfileExResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetUserProfileExResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserProfileEx2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserProfileEx2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetUserProfileEx2Result" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXSD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="StrXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetXSDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetXSDResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LaunchEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="launchEventXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LaunchEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="LaunchEventResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkFormDelivered">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strFormID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strDelivered" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkFormDeliveredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="MarkFormDeliveredResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEvent">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="updateEventXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateEventResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="UpdateEventResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="XmlUserEdit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="strSecurityToken" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="strUsersXML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="XmlUserEditResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="XmlUserEditResult" type="eps:EpsStringEx" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EpsTableEx">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorNum" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" nillable="true" type="eps:ArrayOfArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EpsStringEx">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorNum" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EpsBinaryEx">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorString" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorNum" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" nillable="true" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EpsSession">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Identifier" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TimeoutSeconds" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnMessage" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EpsStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Name" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" nillable="true" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnMessage" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Property">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Property" nillable="true" type="eps:Property" />
+      <s:complexType name="ReturnStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Property" nillable="true" type="eps:Property" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfProperty" nillable="true" type="eps:ArrayOfProperty" />
+      <s:complexType name="ArrayOfEpsEditBlock">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EpsEditBlock" nillable="true" type="eps:EpsEditBlock" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfString" nillable="true" type="eps:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ArrayOfArrayOfString" nillable="true" type="eps:ArrayOfArrayOfString" />
+      <s:complexType name="EpsPage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Catalogpath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReadPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagePerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkflowId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteView" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteModify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagModify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagManage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsPage" nillable="true" type="eps:EpsPage" />
+      <s:complexType name="EpsBlock">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Dynamic" type="eps:ArrayOfArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="ElementId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ElementMemo" type="eps:ArrayOfArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Instructions" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ElementObjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ElementType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagePerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyUser" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Order" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductionState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkflowId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsBlock" nillable="true" type="eps:EpsBlock" />
+      <s:complexType name="EpsEditBlock">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InstanceID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prompt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Action" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectionList" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsEditBlock" nillable="true" type="eps:EpsEditBlock" />
+      <s:complexType name="EpsObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Catalogpath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReadPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagePerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsObject" nillable="true" type="eps:EpsObject" />
+      <s:complexType name="EpsFolder">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Catalogpath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReadPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagePerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkflowId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteView" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteModify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagModify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagManage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaxFileSize" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaxFolderSize" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FolderContents" type="eps:ArrayOfArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsFolder" nillable="true" type="eps:EpsFolder" />
+      <s:complexType name="EpsElement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Catalogpath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReadPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagePerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsElement" nillable="true" type="eps:EpsElement" />
+      <s:complexType name="EpsWorkflow">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Catalogpath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReadPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagePerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsWorkflow" nillable="true" type="eps:EpsWorkflow" />
+      <s:complexType name="EpsEditPage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ObjectId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Catalogpath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReadPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyPerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManagePerm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModifyDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Guid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="WorkflowId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteView" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoteModify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagModify" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TagManage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EditBlocks" type="eps:ArrayOfEpsEditBlock" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="EpsEditPage" nillable="true" type="eps:EpsEditPage" />
+      <s:complexType name="ArrayOfEpsTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EpsTable" nillable="true" type="eps:EpsTable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EpsTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rows" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cols" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="eps:ArrayOfArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </types>
+  <message name="ApproveEditPageSoapIn">
+    <part name="parameters" element="eps:ApproveEditPage" />
+  </message>
+  <message name="ApproveEditPageSoapOut">
+    <part name="parameters" element="eps:ApproveEditPageResponse" />
+  </message>
+  <message name="CreatePageSoapIn">
+    <part name="parameters" element="eps:CreatePage" />
+  </message>
+  <message name="CreatePageSoapOut">
+    <part name="parameters" element="eps:CreatePageResponse" />
+  </message>
+  <message name="EvalSoapIn">
+    <part name="parameters" element="eps:Eval" />
+  </message>
+  <message name="EvalSoapOut">
+    <part name="parameters" element="eps:EvalResponse" />
+  </message>
+  <message name="GetBinaryContentSoapIn">
+    <part name="parameters" element="eps:GetBinaryContent" />
+  </message>
+  <message name="GetBinaryContentSoapOut">
+    <part name="parameters" element="eps:GetBinaryContentResponse" />
+  </message>
+  <message name="GetBinaryContentExSoapIn">
+    <part name="parameters" element="eps:GetBinaryContentEx" />
+  </message>
+  <message name="GetBinaryContentExSoapOut">
+    <part name="parameters" element="eps:GetBinaryContentExResponse" />
+  </message>
+  <message name="GetBlockSoapIn">
+    <part name="parameters" element="eps:GetBlock" />
+  </message>
+  <message name="GetBlockSoapOut">
+    <part name="parameters" element="eps:GetBlockResponse" />
+  </message>
+  <message name="GetBlockTableSoapIn">
+    <part name="parameters" element="eps:GetBlockTable" />
+  </message>
+  <message name="GetBlockTableSoapOut">
+    <part name="parameters" element="eps:GetBlockTableResponse" />
+  </message>
+  <message name="GetContentSoapIn">
+    <part name="parameters" element="eps:GetContent" />
+  </message>
+  <message name="GetContentSoapOut">
+    <part name="parameters" element="eps:GetContentResponse" />
+  </message>
+  <message name="GetContentExSoapIn">
+    <part name="parameters" element="eps:GetContentEx" />
+  </message>
+  <message name="GetContentExSoapOut">
+    <part name="parameters" element="eps:GetContentExResponse" />
+  </message>
+  <message name="GetContentReturnTablesSoapIn">
+    <part name="parameters" element="eps:GetContentReturnTables" />
+  </message>
+  <message name="GetContentReturnTablesSoapOut">
+    <part name="parameters" element="eps:GetContentReturnTablesResponse" />
+  </message>
+  <message name="GetGuidSoapIn">
+    <part name="parameters" element="eps:GetGuid" />
+  </message>
+  <message name="GetGuidSoapOut">
+    <part name="parameters" element="eps:GetGuidResponse" />
+  </message>
+  <message name="GetEditPageSoapIn">
+    <part name="parameters" element="eps:GetEditPage" />
+  </message>
+  <message name="GetEditPageSoapOut">
+    <part name="parameters" element="eps:GetEditPageResponse" />
+  </message>
+  <message name="GetEditPageExSoapIn">
+    <part name="parameters" element="eps:GetEditPageEx" />
+  </message>
+  <message name="GetEditPageExSoapOut">
+    <part name="parameters" element="eps:GetEditPageExResponse" />
+  </message>
+  <message name="GetFolderSoapIn">
+    <part name="parameters" element="eps:GetFolder" />
+  </message>
+  <message name="GetFolderSoapOut">
+    <part name="parameters" element="eps:GetFolderResponse" />
+  </message>
+  <message name="GetObjectIdSoapIn">
+    <part name="parameters" element="eps:GetObjectId" />
+  </message>
+  <message name="GetObjectIdSoapOut">
+    <part name="parameters" element="eps:GetObjectIdResponse" />
+  </message>
+  <message name="GetPageObjectSoapIn">
+    <part name="parameters" element="eps:GetPageObject" />
+  </message>
+  <message name="GetPageObjectSoapOut">
+    <part name="parameters" element="eps:GetPageObjectResponse" />
+  </message>
+  <message name="HasRoleSoapIn">
+    <part name="parameters" element="eps:HasRole" />
+  </message>
+  <message name="HasRoleSoapOut">
+    <part name="parameters" element="eps:HasRoleResponse" />
+  </message>
+  <message name="KillSessionSoapIn">
+    <part name="parameters" element="eps:KillSession" />
+  </message>
+  <message name="KillSessionSoapOut">
+    <part name="parameters" element="eps:KillSessionResponse" />
+  </message>
+  <message name="LogSoapIn">
+    <part name="parameters" element="eps:Log" />
+  </message>
+  <message name="LogSoapOut">
+    <part name="parameters" element="eps:LogResponse" />
+  </message>
+  <message name="LogInSoapIn">
+    <part name="parameters" element="eps:LogIn" />
+  </message>
+  <message name="LogInSoapOut">
+    <part name="parameters" element="eps:LogInResponse" />
+  </message>
+  <message name="LogOutSoapIn">
+    <part name="parameters" element="eps:LogOut" />
+  </message>
+  <message name="LogOutSoapOut">
+    <part name="parameters" element="eps:LogOutResponse" />
+  </message>
+  <message name="PublishPageSoapIn">
+    <part name="parameters" element="eps:PublishPage" />
+  </message>
+  <message name="PublishPageSoapOut">
+    <part name="parameters" element="eps:PublishPageResponse" />
+  </message>
+  <message name="PublishEditPageSoapIn">
+    <part name="parameters" element="eps:PublishEditPage" />
+  </message>
+  <message name="PublishEditPageSoapOut">
+    <part name="parameters" element="eps:PublishEditPageResponse" />
+  </message>
+  <message name="PublishEditPageExSoapIn">
+    <part name="parameters" element="eps:PublishEditPageEx" />
+  </message>
+  <message name="PublishEditPageExSoapOut">
+    <part name="parameters" element="eps:PublishEditPageExResponse" />
+  </message>
+  <message name="ResolveSoapIn">
+    <part name="parameters" element="eps:Resolve" />
+  </message>
+  <message name="ResolveSoapOut">
+    <part name="parameters" element="eps:ResolveResponse" />
+  </message>
+  <message name="RunEventSoapIn">
+    <part name="parameters" element="eps:RunEvent" />
+  </message>
+  <message name="RunEventSoapOut">
+    <part name="parameters" element="eps:RunEventResponse" />
+  </message>
+  <message name="RunEventReturnTableSoapIn">
+    <part name="parameters" element="eps:RunEventReturnTable" />
+  </message>
+  <message name="RunEventReturnTableSoapOut">
+    <part name="parameters" element="eps:RunEventReturnTableResponse" />
+  </message>
+  <message name="RunEventReturnTablesSoapIn">
+    <part name="parameters" element="eps:RunEventReturnTables" />
+  </message>
+  <message name="RunEventReturnTablesSoapOut">
+    <part name="parameters" element="eps:RunEventReturnTablesResponse" />
+  </message>
+  <message name="RunEventReturnNameSpaceSoapIn">
+    <part name="parameters" element="eps:RunEventReturnNameSpace" />
+  </message>
+  <message name="RunEventReturnNameSpaceSoapOut">
+    <part name="parameters" element="eps:RunEventReturnNameSpaceResponse" />
+  </message>
+  <message name="SaveEditPageSoapIn">
+    <part name="parameters" element="eps:SaveEditPage" />
+  </message>
+  <message name="SaveEditPageSoapOut">
+    <part name="parameters" element="eps:SaveEditPageResponse" />
+  </message>
+  <message name="SaveEditPageExSoapIn">
+    <part name="parameters" element="eps:SaveEditPageEx" />
+  </message>
+  <message name="SaveEditPageExSoapOut">
+    <part name="parameters" element="eps:SaveEditPageExResponse" />
+  </message>
+  <message name="SaveFolderSoapIn">
+    <part name="parameters" element="eps:SaveFolder" />
+  </message>
+  <message name="SaveFolderSoapOut">
+    <part name="parameters" element="eps:SaveFolderResponse" />
+  </message>
+  <message name="SavePageSoapIn">
+    <part name="parameters" element="eps:SavePage" />
+  </message>
+  <message name="SavePageSoapOut">
+    <part name="parameters" element="eps:SavePageResponse" />
+  </message>
+  <message name="SubmitForApprovalSoapIn">
+    <part name="parameters" element="eps:SubmitForApproval" />
+  </message>
+  <message name="SubmitForApprovalSoapOut">
+    <part name="parameters" element="eps:SubmitForApprovalResponse" />
+  </message>
+  <message name="SubmitForApprovalExSoapIn">
+    <part name="parameters" element="eps:SubmitForApprovalEx" />
+  </message>
+  <message name="SubmitForApprovalExSoapOut">
+    <part name="parameters" element="eps:SubmitForApprovalExResponse" />
+  </message>
+  <message name="UploadSoapIn">
+    <part name="parameters" element="eps:Upload" />
+  </message>
+  <message name="UploadSoapOut">
+    <part name="parameters" element="eps:UploadResponse" />
+  </message>
+  <message name="UploadFromStyleSoapIn">
+    <part name="parameters" element="eps:UploadFromStyle" />
+  </message>
+  <message name="UploadFromStyleSoapOut">
+    <part name="parameters" element="eps:UploadFromStyleResponse" />
+  </message>
+  <message name="AddTaskSoapIn">
+    <part name="parameters" element="eps:AddTask" />
+  </message>
+  <message name="AddTaskSoapOut">
+    <part name="parameters" element="eps:AddTaskResponse" />
+  </message>
+  <message name="AddTaskExSoapIn">
+    <part name="parameters" element="eps:AddTaskEx" />
+  </message>
+  <message name="AddTaskExSoapOut">
+    <part name="parameters" element="eps:AddTaskExResponse" />
+  </message>
+  <message name="AddTaskEx2SoapIn">
+    <part name="parameters" element="eps:AddTaskEx2" />
+  </message>
+  <message name="AddTaskEx2SoapOut">
+    <part name="parameters" element="eps:AddTaskEx2Response" />
+  </message>
+  <message name="AddTaskNoteSoapIn">
+    <part name="parameters" element="eps:AddTaskNote" />
+  </message>
+  <message name="AddTaskNoteSoapOut">
+    <part name="parameters" element="eps:AddTaskNoteResponse" />
+  </message>
+  <message name="AddTaskNoteExSoapIn">
+    <part name="parameters" element="eps:AddTaskNoteEx" />
+  </message>
+  <message name="AddTaskNoteExSoapOut">
+    <part name="parameters" element="eps:AddTaskNoteExResponse" />
+  </message>
+  <message name="BulkUserUploadSoapIn">
+    <part name="parameters" element="eps:BulkUserUpload" />
+  </message>
+  <message name="BulkUserUploadSoapOut">
+    <part name="parameters" element="eps:BulkUserUploadResponse" />
+  </message>
+  <message name="CategoryUploadSoapIn">
+    <part name="parameters" element="eps:CategoryUpload" />
+  </message>
+  <message name="CategoryUploadSoapOut">
+    <part name="parameters" element="eps:CategoryUploadResponse" />
+  </message>
+  <message name="CompleteTaskSoapIn">
+    <part name="parameters" element="eps:CompleteTask" />
+  </message>
+  <message name="CompleteTaskSoapOut">
+    <part name="parameters" element="eps:CompleteTaskResponse" />
+  </message>
+  <message name="CompleteTaskExSoapIn">
+    <part name="parameters" element="eps:CompleteTaskEx" />
+  </message>
+  <message name="CompleteTaskExSoapOut">
+    <part name="parameters" element="eps:CompleteTaskExResponse" />
+  </message>
+  <message name="DeleteFormSoapIn">
+    <part name="parameters" element="eps:DeleteForm" />
+  </message>
+  <message name="DeleteFormSoapOut">
+    <part name="parameters" element="eps:DeleteFormResponse" />
+  </message>
+  <message name="DeleteTaskSoapIn">
+    <part name="parameters" element="eps:DeleteTask" />
+  </message>
+  <message name="DeleteTaskSoapOut">
+    <part name="parameters" element="eps:DeleteTaskResponse" />
+  </message>
+  <message name="DeleteUploadedDocumentSoapIn">
+    <part name="parameters" element="eps:DeleteUploadedDocument" />
+  </message>
+  <message name="DeleteUploadedDocumentSoapOut">
+    <part name="parameters" element="eps:DeleteUploadedDocumentResponse" />
+  </message>
+  <message name="FieldValueUploadSoapIn">
+    <part name="parameters" element="eps:FieldValueUpload" />
+  </message>
+  <message name="FieldValueUploadSoapOut">
+    <part name="parameters" element="eps:FieldValueUploadResponse" />
+  </message>
+  <message name="GetCategoryValuesSoapIn">
+    <part name="parameters" element="eps:GetCategoryValues" />
+  </message>
+  <message name="GetCategoryValuesSoapOut">
+    <part name="parameters" element="eps:GetCategoryValuesResponse" />
+  </message>
+  <message name="GetCompletedFormsSoapIn">
+    <part name="parameters" element="eps:GetCompletedForms" />
+  </message>
+  <message name="GetCompletedFormsSoapOut">
+    <part name="parameters" element="eps:GetCompletedFormsResponse" />
+  </message>
+  <message name="GetCompletedFormsExSoapIn">
+    <part name="parameters" element="eps:GetCompletedFormsEx" />
+  </message>
+  <message name="GetCompletedFormsExSoapOut">
+    <part name="parameters" element="eps:GetCompletedFormsExResponse" />
+  </message>
+  <message name="GetCompletedFormsListSoapIn">
+    <part name="parameters" element="eps:GetCompletedFormsList" />
+  </message>
+  <message name="GetCompletedFormsListSoapOut">
+    <part name="parameters" element="eps:GetCompletedFormsListResponse" />
+  </message>
+  <message name="GetEventReportSoapIn">
+    <part name="parameters" element="eps:GetEventReport" />
+  </message>
+  <message name="GetEventReportSoapOut">
+    <part name="parameters" element="eps:GetEventReportResponse" />
+  </message>
+  <message name="GetEventReportExSoapIn">
+    <part name="parameters" element="eps:GetEventReportEx" />
+  </message>
+  <message name="GetEventReportExSoapOut">
+    <part name="parameters" element="eps:GetEventReportExResponse" />
+  </message>
+  <message name="GetFormPDFSoapIn">
+    <part name="parameters" element="eps:GetFormPDF" />
+  </message>
+  <message name="GetFormPDFSoapOut">
+    <part name="parameters" element="eps:GetFormPDFResponse" />
+  </message>
+  <message name="GetFormsIDsSoapIn">
+    <part name="parameters" element="eps:GetFormsIDs" />
+  </message>
+  <message name="GetFormsIDsSoapOut">
+    <part name="parameters" element="eps:GetFormsIDsResponse" />
+  </message>
+  <message name="GetFormsIDsExSoapIn">
+    <part name="parameters" element="eps:GetFormsIDsEx" />
+  </message>
+  <message name="GetFormsIDsExSoapOut">
+    <part name="parameters" element="eps:GetFormsIDsExResponse" />
+  </message>
+  <message name="GetFormXMLSoapIn">
+    <part name="parameters" element="eps:GetFormXML" />
+  </message>
+  <message name="GetFormXMLSoapOut">
+    <part name="parameters" element="eps:GetFormXMLResponse" />
+  </message>
+  <message name="GetTasksSoapIn">
+    <part name="parameters" element="eps:GetTasks" />
+  </message>
+  <message name="GetTasksSoapOut">
+    <part name="parameters" element="eps:GetTasksResponse" />
+  </message>
+  <message name="GetUploadedDocumentSoapIn">
+    <part name="parameters" element="eps:GetUploadedDocument" />
+  </message>
+  <message name="GetUploadedDocumentSoapOut">
+    <part name="parameters" element="eps:GetUploadedDocumentResponse" />
+  </message>
+  <message name="GetUploadedDocumentListSoapIn">
+    <part name="parameters" element="eps:GetUploadedDocumentList" />
+  </message>
+  <message name="GetUploadedDocumentListSoapOut">
+    <part name="parameters" element="eps:GetUploadedDocumentListResponse" />
+  </message>
+  <message name="GetUserIDListSoapIn">
+    <part name="parameters" element="eps:GetUserIDList" />
+  </message>
+  <message name="GetUserIDListSoapOut">
+    <part name="parameters" element="eps:GetUserIDListResponse" />
+  </message>
+  <message name="GetUserProfileSoapIn">
+    <part name="parameters" element="eps:GetUserProfile" />
+  </message>
+  <message name="GetUserProfileSoapOut">
+    <part name="parameters" element="eps:GetUserProfileResponse" />
+  </message>
+  <message name="GetUserProfileExSoapIn">
+    <part name="parameters" element="eps:GetUserProfileEx" />
+  </message>
+  <message name="GetUserProfileExSoapOut">
+    <part name="parameters" element="eps:GetUserProfileExResponse" />
+  </message>
+  <message name="GetUserProfileEx2SoapIn">
+    <part name="parameters" element="eps:GetUserProfileEx2" />
+  </message>
+  <message name="GetUserProfileEx2SoapOut">
+    <part name="parameters" element="eps:GetUserProfileEx2Response" />
+  </message>
+  <message name="GetXSDSoapIn">
+    <part name="parameters" element="eps:GetXSD" />
+  </message>
+  <message name="GetXSDSoapOut">
+    <part name="parameters" element="eps:GetXSDResponse" />
+  </message>
+  <message name="LaunchEventSoapIn">
+    <part name="parameters" element="eps:LaunchEvent" />
+  </message>
+  <message name="LaunchEventSoapOut">
+    <part name="parameters" element="eps:LaunchEventResponse" />
+  </message>
+  <message name="MarkFormDeliveredSoapIn">
+    <part name="parameters" element="eps:MarkFormDelivered" />
+  </message>
+  <message name="MarkFormDeliveredSoapOut">
+    <part name="parameters" element="eps:MarkFormDeliveredResponse" />
+  </message>
+  <message name="UpdateEventSoapIn">
+    <part name="parameters" element="eps:UpdateEvent" />
+  </message>
+  <message name="UpdateEventSoapOut">
+    <part name="parameters" element="eps:UpdateEventResponse" />
+  </message>
+  <message name="XmlUserEditSoapIn">
+    <part name="parameters" element="eps:XmlUserEdit" />
+  </message>
+  <message name="XmlUserEditSoapOut">
+    <part name="parameters" element="eps:XmlUserEditResponse" />
+  </message>
+  <portType name="PSWebServiceSoap">
+    <operation name="ApproveEditPage">
+      <input message="eps:ApproveEditPageSoapIn" />
+      <output message="eps:ApproveEditPageSoapOut" />
+    </operation>
+    <operation name="CreatePage">
+      <input message="eps:CreatePageSoapIn" />
+      <output message="eps:CreatePageSoapOut" />
+    </operation>
+    <operation name="Eval">
+      <input message="eps:EvalSoapIn" />
+      <output message="eps:EvalSoapOut" />
+    </operation>
+    <operation name="GetBinaryContent">
+      <input message="eps:GetBinaryContentSoapIn" />
+      <output message="eps:GetBinaryContentSoapOut" />
+    </operation>
+    <operation name="GetBinaryContentEx">
+      <input message="eps:GetBinaryContentExSoapIn" />
+      <output message="eps:GetBinaryContentExSoapOut" />
+    </operation>
+    <operation name="GetBlock">
+      <input message="eps:GetBlockSoapIn" />
+      <output message="eps:GetBlockSoapOut" />
+    </operation>
+    <operation name="GetBlockTable">
+      <input message="eps:GetBlockTableSoapIn" />
+      <output message="eps:GetBlockTableSoapOut" />
+    </operation>
+    <operation name="GetContent">
+      <input message="eps:GetContentSoapIn" />
+      <output message="eps:GetContentSoapOut" />
+    </operation>
+    <operation name="GetContentEx">
+      <input message="eps:GetContentExSoapIn" />
+      <output message="eps:GetContentExSoapOut" />
+    </operation>
+    <operation name="GetContentReturnTables">
+      <input message="eps:GetContentReturnTablesSoapIn" />
+      <output message="eps:GetContentReturnTablesSoapOut" />
+    </operation>
+    <operation name="GetGuid">
+      <input message="eps:GetGuidSoapIn" />
+      <output message="eps:GetGuidSoapOut" />
+    </operation>
+    <operation name="GetEditPage">
+      <input message="eps:GetEditPageSoapIn" />
+      <output message="eps:GetEditPageSoapOut" />
+    </operation>
+    <operation name="GetEditPageEx">
+      <input message="eps:GetEditPageExSoapIn" />
+      <output message="eps:GetEditPageExSoapOut" />
+    </operation>
+    <operation name="GetFolder">
+      <input message="eps:GetFolderSoapIn" />
+      <output message="eps:GetFolderSoapOut" />
+    </operation>
+    <operation name="GetObjectId">
+      <input message="eps:GetObjectIdSoapIn" />
+      <output message="eps:GetObjectIdSoapOut" />
+    </operation>
+    <operation name="GetPageObject">
+      <input message="eps:GetPageObjectSoapIn" />
+      <output message="eps:GetPageObjectSoapOut" />
+    </operation>
+    <operation name="HasRole">
+      <input message="eps:HasRoleSoapIn" />
+      <output message="eps:HasRoleSoapOut" />
+    </operation>
+    <operation name="KillSession">
+      <input message="eps:KillSessionSoapIn" />
+      <output message="eps:KillSessionSoapOut" />
+    </operation>
+    <operation name="Log">
+      <input message="eps:LogSoapIn" />
+      <output message="eps:LogSoapOut" />
+    </operation>
+    <operation name="LogIn">
+      <input message="eps:LogInSoapIn" />
+      <output message="eps:LogInSoapOut" />
+    </operation>
+    <operation name="LogOut">
+      <input message="eps:LogOutSoapIn" />
+      <output message="eps:LogOutSoapOut" />
+    </operation>
+    <operation name="PublishPage">
+      <input message="eps:PublishPageSoapIn" />
+      <output message="eps:PublishPageSoapOut" />
+    </operation>
+    <operation name="PublishEditPage">
+      <input message="eps:PublishEditPageSoapIn" />
+      <output message="eps:PublishEditPageSoapOut" />
+    </operation>
+    <operation name="PublishEditPageEx">
+      <input message="eps:PublishEditPageExSoapIn" />
+      <output message="eps:PublishEditPageExSoapOut" />
+    </operation>
+    <operation name="Resolve">
+      <input message="eps:ResolveSoapIn" />
+      <output message="eps:ResolveSoapOut" />
+    </operation>
+    <operation name="RunEvent">
+      <input message="eps:RunEventSoapIn" />
+      <output message="eps:RunEventSoapOut" />
+    </operation>
+    <operation name="RunEventReturnTable">
+      <input message="eps:RunEventReturnTableSoapIn" />
+      <output message="eps:RunEventReturnTableSoapOut" />
+    </operation>
+    <operation name="RunEventReturnTables">
+      <input message="eps:RunEventReturnTablesSoapIn" />
+      <output message="eps:RunEventReturnTablesSoapOut" />
+    </operation>
+    <operation name="RunEventReturnNameSpace">
+      <input message="eps:RunEventReturnNameSpaceSoapIn" />
+      <output message="eps:RunEventReturnNameSpaceSoapOut" />
+    </operation>
+    <operation name="SaveEditPage">
+      <input message="eps:SaveEditPageSoapIn" />
+      <output message="eps:SaveEditPageSoapOut" />
+    </operation>
+    <operation name="SaveEditPageEx">
+      <input message="eps:SaveEditPageExSoapIn" />
+      <output message="eps:SaveEditPageExSoapOut" />
+    </operation>
+    <operation name="SaveFolder">
+      <input message="eps:SaveFolderSoapIn" />
+      <output message="eps:SaveFolderSoapOut" />
+    </operation>
+    <operation name="SavePage">
+      <input message="eps:SavePageSoapIn" />
+      <output message="eps:SavePageSoapOut" />
+    </operation>
+    <operation name="SubmitForApproval">
+      <input message="eps:SubmitForApprovalSoapIn" />
+      <output message="eps:SubmitForApprovalSoapOut" />
+    </operation>
+    <operation name="SubmitForApprovalEx">
+      <input message="eps:SubmitForApprovalExSoapIn" />
+      <output message="eps:SubmitForApprovalExSoapOut" />
+    </operation>
+    <operation name="Upload">
+      <input message="eps:UploadSoapIn" />
+      <output message="eps:UploadSoapOut" />
+    </operation>
+    <operation name="UploadFromStyle">
+      <input message="eps:UploadFromStyleSoapIn" />
+      <output message="eps:UploadFromStyleSoapOut" />
+    </operation>
+    <operation name="AddTask">
+      <documentation>Programmatically add a task on an existing event for an existing employee.</documentation>
+      <input message="eps:AddTaskSoapIn" />
+      <output message="eps:AddTaskSoapOut" />
+    </operation>
+    <operation name="AddTaskEx">
+      <documentation>Programmatically add a task on an existing event for an existing employee.</documentation>
+      <input message="eps:AddTaskExSoapIn" />
+      <output message="eps:AddTaskExSoapOut" />
+    </operation>
+    <operation name="AddTaskEx2">
+      <documentation>Programmatically add a task on an existing event for an existing employee.  </documentation>
+      <input message="eps:AddTaskEx2SoapIn" />
+      <output message="eps:AddTaskEx2SoapOut" />
+    </operation>
+    <operation name="AddTaskNote">
+      <documentation>Add task notes programmatically to existing tasks.</documentation>
+      <input message="eps:AddTaskNoteSoapIn" />
+      <output message="eps:AddTaskNoteSoapOut" />
+    </operation>
+    <operation name="AddTaskNoteEx">
+      <documentation>Most recent and flexible method to add task notes programmatically to existing tasks.</documentation>
+      <input message="eps:AddTaskNoteExSoapIn" />
+      <output message="eps:AddTaskNoteExSoapOut" />
+    </operation>
+    <operation name="BulkUserUpload">
+      <documentation>Used to create one our more new users using an XML formatted file.</documentation>
+      <input message="eps:BulkUserUploadSoapIn" />
+      <output message="eps:BulkUserUploadSoapOut" />
+    </operation>
+    <operation name="CategoryUpload">
+      <documentation>Used to programmatically create or modify the category value hierarchy using an XML.</documentation>
+      <input message="eps:CategoryUploadSoapIn" />
+      <output message="eps:CategoryUploadSoapOut" />
+    </operation>
+    <operation name="CompleteTask">
+      <documentation>Completes a specified active task.</documentation>
+      <input message="eps:CompleteTaskSoapIn" />
+      <output message="eps:CompleteTaskSoapOut" />
+    </operation>
+    <operation name="CompleteTaskEx">
+      <documentation>Completes a specified active task.</documentation>
+      <input message="eps:CompleteTaskExSoapIn" />
+      <output message="eps:CompleteTaskExSoapOut" />
+    </operation>
+    <operation name="DeleteForm">
+      <documentation>Used to delete a form from RedCarpet based on a FormID.</documentation>
+      <input message="eps:DeleteFormSoapIn" />
+      <output message="eps:DeleteFormSoapOut" />
+    </operation>
+    <operation name="DeleteTask">
+      <documentation>Programmatically delete a task from an existing event for an existing employee.</documentation>
+      <input message="eps:DeleteTaskSoapIn" />
+      <output message="eps:DeleteTaskSoapOut" />
+    </operation>
+    <operation name="DeleteUploadedDocument">
+      <documentation>This method deletes uploaded documents on an employee.  It takes as input an id that would be returned from GetUploadedDocumentList()</documentation>
+      <input message="eps:DeleteUploadedDocumentSoapIn" />
+      <output message="eps:DeleteUploadedDocumentSoapOut" />
+    </operation>
+    <operation name="FieldValueUpload">
+      <documentation>Maintain value lists for use by selection fields in forms and EUP.</documentation>
+      <input message="eps:FieldValueUploadSoapIn" />
+      <output message="eps:FieldValueUploadSoapOut" />
+    </operation>
+    <operation name="GetCategoryValues">
+      <input message="eps:GetCategoryValuesSoapIn" />
+      <output message="eps:GetCategoryValuesSoapOut" />
+    </operation>
+    <operation name="GetCompletedForms">
+      <documentation>Retrieves a list of completed form ids that meet the specified criteria.</documentation>
+      <input message="eps:GetCompletedFormsSoapIn" />
+      <output message="eps:GetCompletedFormsSoapOut" />
+    </operation>
+    <operation name="GetCompletedFormsEx">
+      <documentation>Retrieves a list of completed form ids that meet the specified criteria.</documentation>
+      <input message="eps:GetCompletedFormsExSoapIn" />
+      <output message="eps:GetCompletedFormsExSoapOut" />
+    </operation>
+    <operation name="GetCompletedFormsList">
+      <input message="eps:GetCompletedFormsListSoapIn" />
+      <output message="eps:GetCompletedFormsListSoapOut" />
+    </operation>
+    <operation name="GetEventReport">
+      <documentation>This method is deprecated and GetTasks APIs or GetEventReportEx should be used instead.</documentation>
+      <input message="eps:GetEventReportSoapIn" />
+      <output message="eps:GetEventReportSoapOut" />
+    </operation>
+    <operation name="GetEventReportEx">
+      <input message="eps:GetEventReportExSoapIn" />
+      <output message="eps:GetEventReportExSoapOut" />
+    </operation>
+    <operation name="GetFormPDF">
+      <documentation>Used to request form data be returned as a PDF file. The form data is merged with a (pre-configured) PDF file based on the FormID.</documentation>
+      <input message="eps:GetFormPDFSoapIn" />
+      <output message="eps:GetFormPDFSoapOut" />
+    </operation>
+    <operation name="GetFormsIDs">
+      <documentation>Retrieves a list of form ids that meet the specified criteria.</documentation>
+      <input message="eps:GetFormsIDsSoapIn" />
+      <output message="eps:GetFormsIDsSoapOut" />
+    </operation>
+    <operation name="GetFormsIDsEx">
+      <documentation>Retrieves a list of form ids that meet the specified criteria.</documentation>
+      <input message="eps:GetFormsIDsExSoapIn" />
+      <output message="eps:GetFormsIDsExSoapOut" />
+    </operation>
+    <operation name="GetFormXML">
+      <documentation>Retrieves an existing XML form based on the specified FormID.</documentation>
+      <input message="eps:GetFormXMLSoapIn" />
+      <output message="eps:GetFormXMLSoapOut" />
+    </operation>
+    <operation name="GetTasks">
+      <documentation>GetTasks returns task data for all tasks for a specific event name that meet the input criteria by task status.</documentation>
+      <input message="eps:GetTasksSoapIn" />
+      <output message="eps:GetTasksSoapOut" />
+    </operation>
+    <operation name="GetUploadedDocument">
+      <input message="eps:GetUploadedDocumentSoapIn" />
+      <output message="eps:GetUploadedDocumentSoapOut" />
+    </operation>
+    <operation name="GetUploadedDocumentList">
+      <input message="eps:GetUploadedDocumentListSoapIn" />
+      <output message="eps:GetUploadedDocumentListSoapOut" />
+    </operation>
+    <operation name="GetUserIDList">
+      <input message="eps:GetUserIDListSoapIn" />
+      <output message="eps:GetUserIDListSoapOut" />
+    </operation>
+    <operation name="GetUserProfile">
+      <documentation>Retrieve specic user attributes.</documentation>
+      <input message="eps:GetUserProfileSoapIn" />
+      <output message="eps:GetUserProfileSoapOut" />
+    </operation>
+    <operation name="GetUserProfileEx">
+      <documentation>Retrieve specic user attributes.</documentation>
+      <input message="eps:GetUserProfileExSoapIn" />
+      <output message="eps:GetUserProfileExSoapOut" />
+    </operation>
+    <operation name="GetUserProfileEx2">
+      <documentation>all attributes associated with any active RedCarpet user.</documentation>
+      <input message="eps:GetUserProfileEx2SoapIn" />
+      <output message="eps:GetUserProfileEx2SoapOut" />
+    </operation>
+    <operation name="GetXSD">
+      <input message="eps:GetXSDSoapIn" />
+      <output message="eps:GetXSDSoapOut" />
+    </operation>
+    <operation name="LaunchEvent">
+      <documentation>Programmatically launch an event for an existing employee.</documentation>
+      <input message="eps:LaunchEventSoapIn" />
+      <output message="eps:LaunchEventSoapOut" />
+    </operation>
+    <operation name="MarkFormDelivered">
+      <documentation>Mark a form as having been delivered into another system.   This can be used as filter criteria in subsequent calls.</documentation>
+      <input message="eps:MarkFormDeliveredSoapIn" />
+      <output message="eps:MarkFormDeliveredSoapOut" />
+    </operation>
+    <operation name="UpdateEvent">
+      <documentation>Programmatically update one or more attributes of an existing event for an active employee.</documentation>
+      <input message="eps:UpdateEventSoapIn" />
+      <output message="eps:UpdateEventSoapOut" />
+    </operation>
+    <operation name="XmlUserEdit">
+      <input message="eps:XmlUserEditSoapIn" />
+      <output message="eps:XmlUserEditSoapOut" />
+    </operation>
+  </portType>
+  <binding name="PSWebServiceSoap" type="eps:PSWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="ApproveEditPage">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/ApproveEditPage" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CreatePage">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/CreatePage" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Eval">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/Eval" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetBinaryContent">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetBinaryContent" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetBinaryContentEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetBinaryContentEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetBlock">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetBlock" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetBlockTable">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetBlockTable" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetContent">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetContent" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetContentEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetContentEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetContentReturnTables">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetContentReturnTables" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetGuid">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetGuid" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetEditPage">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetEditPage" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetEditPageEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetEditPageEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetFolder">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetFolder" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetObjectId">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetObjectId" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetPageObject">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetPageObject" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="HasRole">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/HasRole" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="KillSession">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/KillSession" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Log">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/Log" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="LogIn">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/LogIn" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="LogOut">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/LogOut" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PublishPage">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/PublishPage" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PublishEditPage">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/PublishEditPage" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PublishEditPageEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/PublishEditPageEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Resolve">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/Resolve" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RunEvent">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/RunEvent" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RunEventReturnTable">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/RunEventReturnTable" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RunEventReturnTables">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/RunEventReturnTables" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="RunEventReturnNameSpace">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/RunEventReturnNameSpace" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SaveEditPage">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/SaveEditPage" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SaveEditPageEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/SaveEditPageEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SaveFolder">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/SaveFolder" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SavePage">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/SavePage" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SubmitForApproval">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/SubmitForApproval" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SubmitForApprovalEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/SubmitForApprovalEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="Upload">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/Upload" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UploadFromStyle">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/UploadFromStyle" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AddTask">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/AddTask" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AddTaskEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/AddTaskEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AddTaskEx2">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/AddTaskEx2" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AddTaskNote">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/AddTaskNote" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AddTaskNoteEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/AddTaskNoteEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="BulkUserUpload">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/BulkUserUpload" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CategoryUpload">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/CategoryUpload" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CompleteTask">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/CompleteTask" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CompleteTaskEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/CompleteTaskEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DeleteForm">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/DeleteForm" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DeleteTask">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/DeleteTask" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DeleteUploadedDocument">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/DeleteUploadedDocument" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="FieldValueUpload">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/FieldValueUpload" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCategoryValues">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetCategoryValues" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCompletedForms">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetCompletedForms" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCompletedFormsEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetCompletedFormsEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCompletedFormsList">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetCompletedFormsList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetEventReport">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetEventReport" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetEventReportEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetEventReportEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetFormPDF">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetFormPDF" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetFormsIDs">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetFormsIDs" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetFormsIDsEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetFormsIDsEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetFormXML">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetFormXML" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTasks">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetTasks" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUploadedDocument">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetUploadedDocument" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUploadedDocumentList">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetUploadedDocumentList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUserIDList">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetUserIDList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUserProfile">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetUserProfile" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUserProfileEx">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetUserProfileEx" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetUserProfileEx2">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetUserProfileEx2" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetXSD">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/GetXSD" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="LaunchEvent">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/LaunchEvent" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="MarkFormDelivered">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/MarkFormDelivered" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateEvent">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/UpdateEvent" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="XmlUserEdit">
+      <soap:operation soapAction="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices/1717/XmlUserEdit" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="PSWebService">
+    <port name="PSWebServiceSoap" binding="eps:PSWebServiceSoap">
+      <soap:address location="https://higheredutah-redcarpet.silkroad.com:443/eprise/WebServices" />
+    </port>
+  </service>
+</definitions>

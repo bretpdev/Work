@@ -1,0 +1,83 @@
+﻿@model ReportGeneratorBySchool
+@{
+    ViewBag.Title = "Generate Report";
+}
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var schoolSelector = document.querySelector('#school-selector');
+            var schoolBox = document.querySelector('#selected-schools');
+            var itemTemplate = document.querySelector('template');
+
+            schoolSelector.onchange = function () {
+                if (this.selectedIndex <= 0)
+                    return;
+                selectSchool(this.selectedIndex);
+                this.selectedIndex = 0;
+            };
+
+            @foreach (var schoolId in Model.SelectedSchoolIds)
+            {
+                var school = Model.Schools.SingleOrDefault(o => o.SchoolId == schoolId);
+                var index = Model.Schools.IndexOf(school) + 1;
+                <text>selectSchool(@index);</text>
+            }
+
+            function selectSchool(index) {
+                var selectedSchool = schoolSelector.options[index];
+                var index = schoolBox.childElementCount;
+                var li = itemTemplate.content.cloneNode(true);
+                li.querySelector('input').value = selectedSchool.value;
+                li.querySelector('span').innerHTML = selectedSchool.text;
+                li.querySelector('button').onclick = function () {
+                    schoolBox.removeChild(li);
+                    selectedSchool.disabled = false;
+                };
+                schoolBox.appendChild(li);
+                li = schoolBox.lastElementChild; //gets a proper reference to the element in the dom
+                selectedSchool.disabled = true;
+            }
+        });
+
+
+    </script>
+}
+@section Styles {
+    <style>
+        form label {
+            width: inherit;
+        }
+
+        button {
+            margin-right: 5px;
+        }
+    </style>
+}
+<h2>Generate and Download Reports</h2>
+<form action="/Reports/BySchool" method="POST">
+    <label for="reportTypeId">Choose a Report</label>
+    <br />
+    <select name="reportTypeId">
+        @foreach (var report in Model.Reports)
+        {
+            <option value="@report.ReportTypeId">@report.StoredProcedureName</option>
+        }
+    </select>
+    <br />
+    <label for="school-selector">Add Schools</label><br />
+    <select name="school-selector" id="school-selector">
+        <option>Select a School</option>
+        @foreach (var school in Model.Schools)
+        {
+            <option value="@school.SchoolId">@school.Name - @school.SchoolCode - @school.BranchCode</option>
+        }
+    </select>
+    <ul id="selected-schools"></ul>
+    <input type="submit" value="Generate Report" />
+</form>
+<template>
+    <li>
+        <input type="hidden" name="schoolIds" value="" />
+        <button type="button">X</button><span></span>
+    </li>
+</template>

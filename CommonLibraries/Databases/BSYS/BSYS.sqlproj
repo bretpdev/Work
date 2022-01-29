@@ -1,0 +1,536 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>BSYS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{a24a3484-9d13-4dd3-9c99-a63fdddb6b40}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>BSYS</RootNamespace>
+    <AssemblyName>BSYS</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Roles" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Scripts" />
+    <Folder Include="UserDefinedTableTypes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Roles\db_executor.sql" />
+    <Build Include="Tables\AAAA_LST_TempTable.sql" />
+    <Build Include="Tables\BKNO_DAT_ChangeOfAddress.sql" />
+    <Build Include="Tables\BKNO_DAT_ProofOfClaim.sql" />
+    <Build Include="Tables\BKNO_DAT_RefundRequest.sql" />
+    <Build Include="Tables\BORG_DAT_EmailBatchScript.sql" />
+    <Build Include="Tables\BORG_DAT_OneLINKCheckByPhoneData.sql" />
+    <Build Include="Tables\BORG_LST_AutopayGracePeriods.sql" />
+    <Build Include="Tables\BORG_LST_AutopayOwner.sql" />
+    <Build Include="Tables\BORG_LST_DTX7LManualLetterData.sql" />
+    <Build Include="Tables\BORG_LST_NSFReasons.sql" />
+    <Build Include="Tables\BORG_LST_PUTSuspCmtDeals.sql" />
+    <Build Include="Tables\CRPS_LST_Layouts.sql" />
+    <Build Include="Tables\DDRR_DAT_LenderAndSchoolData.sql" />
+    <Build Include="Tables\DDRR_DAT_LenderData.sql" />
+    <Build Include="Tables\DDRR_DAT_LenderDataByLoanCategory.sql" />
+    <Build Include="Tables\DDRR_DAT_SchoolData.sql" />
+    <Build Include="Tables\DDRR_LST_InstitutionNotificationInfo.sql" />
+    <Build Include="Tables\DDRR_LST_Institutions.sql" />
+    <Build Include="Tables\DEMS_DAT_Queues.sql" />
+    <Build Include="Tables\DEMS_DAT_Recovery.sql" />
+    <Build Include="Tables\DEMS_DAT_RejectActions.sql" />
+    <Build Include="Tables\DEMS_DAT_SystemCodes.sql" />
+    <Build Include="Tables\DGBH_DAT_Tasks.sql" />
+    <Build Include="Tables\DGBH_LST_Users.sql" />
+    <Build Include="Tables\DLLS_DAT_CSharpScript.sql" />
+    <Build Include="Tables\dtproperties.sql" />
+    <Build Include="Tables\EMCP_DAT_EmailCampaigns.sql" />
+    <Build Include="Tables\EMCP_DAT_SPEMLIDs.sql" />
+    <Build Include="Tables\FCST_DAT_CompassQueues.sql" />
+    <Build Include="Tables\FCST_DAT_OnelinkQueues.sql" />
+    <Build Include="Tables\FWDF_DAT_Lenders.sql" />
+    <Build Include="Tables\FWDF_DAT_LndrDailyDisbursement.sql" />
+    <Build Include="Tables\GENR_DAT_DeleteLetters.sql" />
+    <Build Include="Tables\GENR_DAT_LetterConditionalText.sql" />
+    <Build Include="Tables\GENR_DAT_MiscEmailNotifXtrnl.sql" />
+    <Build Include="Tables\GENR_DAT_WebUserAllowableOptions.sql" />
+    <Build Include="Tables\GENR_DAT_WebUserLoginInfo.sql" />
+    <Build Include="Tables\GENR_LST_ApplicationKeys.sql" />
+    <Build Include="Tables\GENR_LST_BillPayPayee.sql" />
+    <Build Include="Tables\GENR_LST_BondAccountConversion.sql" />
+    <Build Include="Tables\GENR_LST_BusFunctionRoles.sql" />
+    <Build Include="Tables\GENR_LST_BusFunctions.sql" />
+    <Build Include="Tables\GENR_LST_BusinessUnitEmailAddrs.sql" />
+    <Build Include="Tables\GENR_LST_BusinessUnits.sql" />
+    <Build Include="Tables\GENR_LST_BusTopics.sql" />
+    <Build Include="Tables\GENR_LST_ComputerRoles.sql" />
+    <Build Include="Tables\GENR_LST_Errors.sql" />
+    <Build Include="Tables\GENR_LST_HoldReason.sql" />
+    <Build Include="Tables\GENR_LST_LenderList.sql" />
+    <Build Include="Tables\GENR_LST_Lenders.sql" />
+    <Build Include="Tables\GENR_LST_LocalCallZipCodes.sql" />
+    <Build Include="Tables\GENR_LST_LocateQueues.sql" />
+    <Build Include="Tables\GENR_LST_LocateTypes.sql" />
+    <Build Include="Tables\GENR_LST_OpsReviewComment.sql" />
+    <Build Include="Tables\GENR_LST_Priorities.sql" />
+    <Build Include="Tables\GENR_LST_PriorityCatgrys.sql" />
+    <Build Include="Tables\GENR_LST_PriorityUrgencies.sql" />
+    <Build Include="Tables\GENR_LST_RequestTypes.sql" />
+    <Build Include="Tables\GENR_LST_Roles.sql" />
+    <Build Include="Tables\GENR_LST_Scopes.sql" />
+    <Build Include="Tables\GENR_LST_StandardAddressAbbreviations.sql" />
+    <Build Include="Tables\GENR_LST_States.sql" />
+    <Build Include="Tables\GENR_LST_UHEAACostCenters.sql" />
+    <Build Include="Tables\GENR_LST_UTSchools.sql" />
+    <Build Include="Tables\GENR_REF_Amounts.sql" />
+    <Build Include="Tables\GENR_REF_AuthAccess.sql" />
+    <Build Include="Tables\GENR_REF_BU_Agent_Xref.sql" />
+    <Build Include="Tables\GENR_REF_BU_Branch.sql" />
+    <Build Include="Tables\GENR_REF_BUsAndAppKey.sql" />
+    <Build Include="Tables\GENR_REF_LenderAffiliation.sql" />
+    <Build Include="Tables\GENR_REF_LenderAffiliationForLoanSale.sql" />
+    <Build Include="Tables\GENR_REF_LoanRejectCodes.sql" />
+    <Build Include="Tables\GENR_REF_LoanSaleList.sql" />
+    <Build Include="Tables\GENR_REF_LoanTypes.sql" />
+    <Build Include="Tables\GENR_REF_MiscEmailNotif.sql" />
+    <Build Include="Tables\GENR_REF_PriorityCatgryOps.sql" />
+    <Build Include="Tables\GENR_REF_PriorityCatgryOpsAndAppKey.sql" />
+    <Build Include="Tables\GENR_REF_PriorityUrgencyOps.sql" />
+    <Build Include="Tables\GENR_REF_PriorityUrgencyOpsAndAppKey.sql" />
+    <Build Include="Tables\GENR_REF_ScopeandAppKey.sql" />
+    <Build Include="Tables\GENR_REF_SpecialRefBondID.sql" />
+    <Build Include="Tables\GENR_REF_SupportAssign.sql" />
+    <Build Include="Tables\INCA_LST_ContactSources.sql" />
+    <Build Include="Tables\LCTR_DAT_Docs.sql" />
+    <Build Include="Tables\LCTR_DAT_FlowChart.sql" />
+    <Build Include="Tables\LCTR_DAT_Glossary.sql" />
+    <Build Include="Tables\LCTR_DAT_LinkedTopics.sql" />
+    <Build Include="Tables\LCTR_DAT_Policy.sql" />
+    <Build Include="Tables\LCTR_DAT_Procedures.sql" />
+    <Build Include="Tables\LCTR_DAT_Risk.sql" />
+    <Build Include="Tables\LCTR_DAT_Topic.sql" />
+    <Build Include="Tables\LCTR_DAT_TopicProcedure.sql" />
+    <Build Include="Tables\LCTR_LST_DocType.sql" />
+    <Build Include="Tables\LCTR_LST_Type.sql" />
+    <Build Include="Tables\LCTR_REF_Responsible.sql" />
+    <Build Include="Tables\LPPD_LPPDirPmt.sql" />
+    <Build Include="Tables\LTDB_DAT_CentralPrintingDocData.sql" />
+    <Build Include="Tables\LTDB_DAT_DocDetail.sql" />
+    <Build Include="Tables\LTDB_DAT_QualifiedPIRs.sql" />
+    <Build Include="Tables\LTDB_DAT_Requests.sql" />
+    <Build Include="Tables\LTDB_LST_Addressees.sql" />
+    <Build Include="Tables\LTDB_LST_AutoRecips.sql" />
+    <Build Include="Tables\LTDB_LST_Days2Long.sql" />
+    <Build Include="Tables\LTDB_LST_Letterhead.sql" />
+    <Build Include="Tables\LTDB_LST_LPDs.sql" />
+    <Build Include="Tables\LTDB_LST_PriorityUpdated.sql" />
+    <Build Include="Tables\LTDB_LST_Statuses.sql" />
+    <Build Include="Tables\LTDB_REF_BusinessFunction.sql" />
+    <Build Include="Tables\LTDB_REF_EMail.sql" />
+    <Build Include="Tables\LTDB_REF_InUse.sql" />
+    <Build Include="Tables\LTDB_REF_KeyWords.sql" />
+    <Build Include="Tables\LTDB_REF_LTAgents.sql" />
+    <Build Include="Tables\LTDB_REF_Related.sql" />
+    <Build Include="Tables\LTDB_REF_Scripts.sql" />
+    <Build Include="Tables\LTDB_REF_Sign.sql" />
+    <Build Include="Tables\LTDB_REF_Status.sql" />
+    <Build Include="Tables\LTDB_REF_Unit.sql" />
+    <Build Include="Tables\MABC_LST_AuxQueue.sql" />
+    <Build Include="Tables\MABC_LST_CollQueue.sql" />
+    <Build Include="Tables\MABC_SSN_User_XRef.sql" />
+    <Build Include="Tables\OLBL_REF_SasDetail.sql" />
+    <Build Include="Tables\OLD_NDHP_DAT_Tickets.sql" />
+    <Build Include="Tables\OLD_NDHP_DAT_Tickets_ConversionTemp.sql" />
+    <Build Include="Tables\OLD_NDHP_DAT_UpdateTicketUserIDs.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_Actions.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_FacilitiesPriorities.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_FacilitiesPriorityCatgrys.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_FacilitiesPriorityUrgencies.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_InUse.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_PreDefAssignToStaff.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_PriorityUpdated.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_Reports.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_ResolutionCauses.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_Statuses.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_Systems.sql" />
+    <Build Include="Tables\OLD_NDHP_LST_TicketTypes.sql" />
+    <Build Include="Tables\OLD_NDHP_REF_Actions.sql" />
+    <Build Include="Tables\OLD_NDHP_REF_AuthAccess.sql" />
+    <Build Include="Tables\OLD_NDHP_REF_DirectorEmailCopying.sql" />
+    <Build Include="Tables\OLD_NDHP_REF_EMailRecipients.sql" />
+    <Build Include="Tables\OLD_NDHP_REF_Statuses.sql" />
+    <Build Include="Tables\OLD_NDHP_REF_StatusesConversionTemp.sql" />
+    <Build Include="Tables\OLD_NDHP_REF_Systems.sql" />
+    <Build Include="Tables\PRNT_DAT_Fax.sql" />
+    <Build Include="Tables\PRNT_DAT_FaxingErrors.sql" />
+    <Build Include="Tables\PRNT_DAT_Print.sql" />
+    <Build Include="Tables\PRNT_DAT_PrintingCompletion.sql" />
+    <Build Include="Tables\PRNT_DAT_PrintingErrors.sql" />
+    <Build Include="Tables\PRNT_REF_BUsXArcsAndQueues.sql" />
+    <Build Include="Tables\QBLR_LST_QueueBuilderLists.sql" />
+    <Build Include="Tables\QCTR_DAT_Approved.sql" />
+    <Build Include="Tables\QCTR_DAT_BU.sql" />
+    <Build Include="Tables\QCTR_DAT_Court.sql" />
+    <Build Include="Tables\QCTR_DAT_Email.sql" />
+    <Build Include="Tables\QCTR_DAT_EmailSentForManagementReporting.sql" />
+    <Build Include="Tables\QCTR_DAT_Issue.sql" />
+    <Build Include="Tables\QCTR_DAT_OLD_MonthlyReport_OLD.sql" />
+    <Build Include="Tables\QCTR_DAT_Report.sql" />
+    <Build Include="Tables\QCTR_DAT_Responsible.sql" />
+    <Build Include="Tables\QCTR_DAT_Status.sql" />
+    <Build Include="Tables\QCTR_DAT_UserIntervention.sql" />
+    <Build Include="Tables\QCTR_LST_InUse.sql" />
+    <Build Include="Tables\QCTR_LST_ReportsToProcess.sql" />
+    <Build Include="Tables\QCTR_OLD_LST_Report.sql" />
+    <Build Include="Tables\QKIL_LST_QueueKiller.sql" />
+    <Build Include="Tables\QSTA_DAT_AgentTime.sql" />
+    <Build Include="Tables\QSTA_DAT_JobTime.sql" />
+    <Build Include="Tables\QSTA_DAT_PerformanceSummary.sql" />
+    <Build Include="Tables\QSTA_DAT_QueueData.sql" />
+    <Build Include="Tables\QSTA_DAT_UserData.sql" />
+    <Build Include="Tables\QSTA_DAT_UTDDL1.sql" />
+    <Build Include="Tables\QSTA_DAT_UTDDL2.sql" />
+    <Build Include="Tables\QSTA_DAT_UTDDL3.sql" />
+    <Build Include="Tables\QSTA_DAT_UTDDL4.sql" />
+    <Build Include="Tables\QSTA_DAT_UTDDL93.sql" />
+    <Build Include="Tables\QSTA_LST_ActivityInfo4ResultCode_Camp.sql" />
+    <Build Include="Tables\QSTA_LST_ActivityInfo4ResultCode_CompassAutoDialer.sql" />
+    <Build Include="Tables\QSTA_LST_OneLINKQueueBuilder.sql" />
+    <Build Include="Tables\QSTA_LST_QueueDetail.sql" />
+    <Build Include="Tables\QSTA_LST_RefreshQueue.sql" />
+    <Build Include="Tables\QSTA_REF_Manager_ADialerCamp1stChar.sql" />
+    <Build Include="Tables\QSTA_REF_ResCode_Descrip.sql" />
+    <Build Include="Tables\R301_LST_Users.sql" />
+    <Build Include="Tables\R302_LST_Users.sql" />
+    <Build Include="Tables\RSClassReport.sql" />
+    <Build Include="Tables\RTAC_REF_ContactResult.sql" />
+    <Build Include="Tables\RTAC_REF_RefContact.sql" />
+    <Build Include="Tables\RTML_DAT_BarcodeData.sql" />
+    <Build Include="Tables\RTML_LST_ReturnReasons.sql" />
+    <Build Include="Tables\SCKR_DAT_PIR.sql" />
+    <Build Include="Tables\SCKR_DAT_Promotes.sql" />
+    <Build Include="Tables\SCKR_DAT_SAS.sql" />
+    <Build Include="Tables\SCKR_DAT_SASRequests.sql" />
+    <Build Include="Tables\SCKR_DAT_SASSchedule.sql" />
+    <Build Include="Tables\SCKR_DAT_ScriptRequests.sql" />
+    <Build Include="Tables\SCKR_DAT_Scripts.sql" />
+    <Build Include="Tables\SCKR_DAT_ScriptSchedule.sql" />
+    <Build Include="Tables\SCKR_DAT_Testing.sql" />
+    <Build Include="Tables\SCKR_DAT_Training.sql" />
+    <Build Include="Tables\SCKR_LST_Actions.sql" />
+    <Build Include="Tables\SCKR_LST_AutoRecips.sql" />
+    <Build Include="Tables\SCKR_LST_Output.sql" />
+    <Build Include="Tables\SCKR_LST_Predecessors.sql" />
+    <Build Include="Tables\SCKR_LST_PriorityUpdated.sql" />
+    <Build Include="Tables\SCKR_LST_RequestTypes.sql" />
+    <Build Include="Tables\SCKR_LST_ReturnReasons.sql" />
+    <Build Include="Tables\SCKR_LST_Screens.sql" />
+    <Build Include="Tables\SCKR_LST_Sessions.sql" />
+    <Build Include="Tables\SCKR_LST_Statuses.sql" />
+    <Build Include="Tables\SCKR_LST_StdTests.sql" />
+    <Build Include="Tables\SCKR_LST_Systems.sql" />
+    <Build Include="Tables\SCKR_REF_BSPASign.sql" />
+    <Build Include="Tables\SCKR_REF_BusinessFunction.sql" />
+    <Build Include="Tables\SCKR_REF_BusinessFunctionSAS.sql" />
+    <Build Include="Tables\SCKR_REF_EMail.sql" />
+    <Build Include="Tables\SCKR_REF_InUse.sql" />
+    <Build Include="Tables\SCKR_REF_Output.sql" />
+    <Build Include="Tables\SCKR_REF_PageCenter.sql" />
+    <Build Include="Tables\SCKR_REF_PIRInitials.sql" />
+    <Build Include="Tables\SCKR_REF_Programmer.sql" />
+    <Build Include="Tables\SCKR_REF_RelatedKey.sql" />
+    <Build Include="Tables\SCKR_REF_RelatedKeySAS.sql" />
+    <Build Include="Tables\SCKR_REF_RelRequests.sql" />
+    <Build Include="Tables\SCKR_REF_SackerAgents.sql" />
+    <Build Include="Tables\SCKR_REF_SASScript.sql" />
+    <Build Include="Tables\SCKR_REF_Screen.sql" />
+    <Build Include="Tables\SCKR_REF_Session.sql" />
+    <Build Include="Tables\SCKR_REF_Status.sql" />
+    <Build Include="Tables\SCKR_REF_StatusPIR.sql" />
+    <Build Include="Tables\SCKR_REF_System.sql" />
+    <Build Include="Tables\SCKR_REF_SystemSAS.sql" />
+    <Build Include="Tables\SCKR_REF_TestCases.sql" />
+    <Build Include="Tables\SCKR_REF_Tester.sql" />
+    <Build Include="Tables\SCKR_REF_TestIssues.sql" />
+    <Build Include="Tables\SCKR_REF_TestStatus.sql" />
+    <Build Include="Tables\SCKR_REF_TestUnits.sql" />
+    <Build Include="Tables\SCKR_REF_Trainees.sql" />
+    <Build Include="Tables\SCKR_REF_Unit.sql" />
+    <Build Include="Tables\SCKR_REF_UnitSAS.sql" />
+    <Build Include="Tables\SCKR_REF_UnitSign.sql" />
+    <Build Include="Tables\SODT_LST_Test.sql" />
+    <Build Include="Tables\SYSA_CON_ApplicationMethods.sql" />
+    <Build Include="Tables\SYSA_CON_Applications.sql" />
+    <Build Include="Tables\SYSA_CON_ApplicationSprocs.sql" />
+    <Build Include="Tables\SYSA_CON_ApplicationTables.sql" />
+    <Build Include="Tables\SYSA_CON_INTABLE.sql" />
+    <Build Include="Tables\SYSA_CON_Methods.sql" />
+    <Build Include="Tables\SYSA_CON_MethodTables.sql" />
+    <Build Include="Tables\SYSA_CON_Sprocs.sql" />
+    <Build Include="Tables\SYSA_CON_SprocTables.sql" />
+    <Build Include="Tables\SYSA_CON_Tables.sql" />
+    <Build Include="Tables\SYSA_DAT_AppAndTrainCoordErrors.sql" />
+    <Build Include="Tables\SYSA_DAT_AppOrModDirStruct.sql" />
+    <Build Include="Tables\SYSA_DAT_AppOrModFilesDelete.sql" />
+    <Build Include="Tables\SYSA_LST_AccessLevel.sql" />
+    <Build Include="Tables\SYSA_LST_AppAndModuleStatus.sql" />
+    <Build Include="Tables\SYSA_LST_AppAndModuleTypes.sql" />
+    <Build Include="Tables\SYSA_LST_ApplicationsAndModules.sql" />
+    <Build Include="Tables\SYSA_LST_DBAccess.sql" />
+    <Build Include="Tables\SYSA_LST_Departments.sql" />
+    <Build Include="Tables\SYSA_LST_Groups.sql" />
+    <Build Include="Tables\SYSA_LST_Institutions.sql" />
+    <Build Include="Tables\SYSA_LST_OneLINKQueueGroups.sql" />
+    <Build Include="Tables\SYSA_LST_PageCenterMailboxes.sql" />
+    <Build Include="Tables\SYSA_LST_Screens.sql" />
+    <Build Include="Tables\SYSA_LST_Systems.sql" />
+    <Build Include="Tables\SYSA_LST_UserIDInfo.sql" />
+    <Build Include="Tables\SYSA_LST_UserLogonInfo.sql" />
+    <Build Include="Tables\SYSA_LST_Users.sql" />
+    <Build Include="Tables\SYSA_REF_Groups.sql" />
+    <Build Include="Tables\SYSA_REF_Screen_Access.sql" />
+    <Build Include="Tables\SYSA_REF_User_AppAndMod.sql" />
+    <Build Include="Tables\SYSA_REF_User_Systems.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_COMPASSARCs.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_COMPASSQueue.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_COMPASSSpecInfo.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_Groups.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_OneLINKQueueGroups.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_OneLINKTierLevels.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_PagecenterMailBoxes.sql" />
+    <Build Include="Tables\SYSA_REF_UserID_Systems.sql" />
+    <Build Include="Tables\TRAN_DAT_TrainingHistory.sql" />
+    <Build Include="Tables\TRAN_LST_AppAndModVersions.sql" />
+    <Build Include="Tables\TRAN_LST_Trainers.sql" />
+    <Build Include="Tables\TSKB_DAT_ReportsSent4.sql" />
+    <Build Include="Tables\TSKB_DAT_TaskData.sql" />
+    <Build Include="Tables\TSKB_LST_LoggedInUsers.sql" />
+    <Build Include="Tables\TSKB_LST_TaskOptions.sql" />
+    <Build Include="Tables\UsersTable.sql" />
+    <Build Include="Stored Procedures\BusinessUnitsByScript.sql" />
+    <Build Include="Stored Procedures\CheckSprocAccess.sql" />
+    <Build Include="Stored Procedures\ContactSourcesGetAll.sql" />
+    <Build Include="Stored Procedures\getExtension.sql" />
+    <Build Include="Stored Procedures\getLastName.sql" />
+    <Build Include="Stored Procedures\GetLenderCodes.sql" />
+    <Build Include="Stored Procedures\GetLetterText.sql" />
+    <Build Include="Stored Procedures\GetManagerOfBusinessUnit.sql" />
+    <Build Include="Stored Procedures\LoanTypesGetByKey.sql" />
+    <Build Include="Stored Procedures\spBORG_AddRecordToOneLINKCheckByPhoneData.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingCreateLetterRec.sql" />
+    <Build Include="Stored Procedures\spDSPT_BusiFuncSupprt.sql" />
+    <Build Include="Stored Procedures\spDSPT_CurrentEmployees.sql" />
+    <Build Include="Stored Procedures\spDSPT_FormerEmployees.sql" />
+    <Build Include="Stored Procedures\spDSPT_LenderUserIDs.sql" />
+    <Build Include="Stored Procedures\spDSPT_OpsSuprtAssign.sql" />
+    <Build Include="Stored Procedures\spDSPT_QCAssign.sql" />
+    <Build Include="Stored Procedures\spDSPT_QueueStatsGenProcDat.sql" />
+    <Build Include="Stored Procedures\spDSPT_QueueStatsGenProcDat4BU.sql" />
+    <Build Include="Stored Procedures\spDSPT_SchoolUserIDs.sql" />
+    <Build Include="Stored Procedures\spDSPT_UserAccess.sql" />
+    <Build Include="Stored Procedures\spDSPT_UserAndAppAccess.sql" />
+    <Build Include="Stored Procedures\spDSPT_UserBUAffiliations.sql" />
+    <Build Include="Stored Procedures\spDSPT_UserIdsAndAssocUserName.sql" />
+    <Build Include="Stored Procedures\spDSPT_UserIdsAndAssocUserNameUHEAAOnly.sql" />
+    <Build Include="Stored Procedures\spDSPT_UTIdsSysAccRemoved.sql" />
+    <Build Include="Stored Procedures\spDSPT_UTUserAccess.sql" />
+    <Build Include="Stored Procedures\spEMCP_CreateEmailID.sql" />
+    <Build Include="Stored Procedures\spGENR_GetDomesticIndicator.sql" />
+    <Build Include="Stored Procedures\spGENRBusinessUnitOrder.sql" />
+    <Build Include="Stored Procedures\spGENRGetLenderAffiliation.sql" />
+    <Build Include="Stored Procedures\spGENRHierarchyEmailCopying.sql" />
+    <Build Include="Stored Procedures\spGENROperationsStaffingReport.sql" />
+    <Build Include="Stored Procedures\spGENRRecipientString.sql" />
+    <Build Include="Stored Procedures\spGENRWhoIsInChargeOfWho.sql" />
+    <Build Include="Stored Procedures\spGetAllScriptsForGivenRegion.sql" />
+    <Build Include="Stored Procedures\spGetCostCenterInstructions.sql" />
+    <Build Include="Stored Procedures\spGetLetterName.sql" />
+    <Build Include="Stored Procedures\spGetLoanServicingManagerId.sql" />
+    <Build Include="Stored Procedures\spGetScriptIDAndNamespace.sql" />
+    <Build Include="Stored Procedures\spGetScriptName.sql" />
+    <Build Include="Stored Procedures\spGetUserInfoForCentralizedPrint.sql" />
+    <Build Include="Stored Procedures\spLCTR_GetDocs.sql" />
+    <Build Include="Stored Procedures\spLCTR_GetGlossaryTerm.sql" />
+    <Build Include="Stored Procedures\spLCTR_GetProcedure.sql" />
+    <Build Include="Stored Procedures\spLCTR_GetRisk.sql" />
+    <Build Include="Stored Procedures\spLCTR_GetRiskPolicy.sql" />
+    <Build Include="Stored Procedures\spLCTR_GetTopic.sql" />
+    <Build Include="Stored Procedures\spLCTRUsersBusinessUnit.sql" />
+    <Build Include="Stored Procedures\spLTDB_GetLetterInfo.sql" />
+    <Build Include="Stored Procedures\spLTDB_GetLikeLetterIds.sql" />
+    <Build Include="Stored Procedures\spLTDBGetPageCount.sql" />
+    <Build Include="Stored Procedures\spLTDBGetPathAndName.sql" />
+    <Build Include="Stored Procedures\spNDHP_CheckForDirectorLvlEmailCopy.sql" />
+    <Build Include="Stored Procedures\spNDHP_FacilitiesPriority.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetAuthAccess.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetEmailData.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetTicket.sql" />
+    <Build Include="Stored Procedures\spNDHP_LockAndUnlock.sql" />
+    <Build Include="Stored Procedures\spNDHP_NewTicket.sql" />
+    <Build Include="Stored Procedures\spNDHP_OnecADayEmailAlert.sql" />
+    <Build Include="Stored Procedures\spNDHP_RptComplByAnalyst.sql" />
+    <Build Include="Stored Procedures\spNDHP_RptFunctionalArea.sql" />
+    <Build Include="Stored Procedures\spNDHP_RptGeneral.sql" />
+    <Build Include="Stored Procedures\spNDHP_SaveTicket.sql" />
+    <Build Include="Stored Procedures\spNDHP_SaveTicketUpdate.sql" />
+    <Build Include="Stored Procedures\spNDHP_StatusUpdate.sql" />
+    <Build Include="Stored Procedures\spNDHP_SystemConversion.sql" />
+    <Build Include="Stored Procedures\spPRNT_CreateFaxRec.sql" />
+    <Build Include="Stored Procedures\spPRNT_CreateLetterRec.sql" />
+    <Build Include="Stored Procedures\spPRNT_EOJ_DocumentsErroredToday.sql" />
+    <Build Include="Stored Procedures\spPRNT_EOJ_DocumentsPrintedToday.sql" />
+    <Build Include="Stored Procedures\spPRNT_EOJ_DocumentsToBePrinted.sql" />
+    <Build Include="Stored Procedures\spPRNT_EOJ_FaxesConfirmedToday.sql" />
+    <Build Include="Stored Procedures\spPRNT_EOJ_FaxesErroredToday.sql" />
+    <Build Include="Stored Procedures\spPRNT_EOJ_FaxesSentToday.sql" />
+    <Build Include="Stored Procedures\spPRNT_EOJ_FaxesToBeSent.sql" />
+    <Build Include="Stored Procedures\spPRNT_FinalUpdateFaxRec.sql" />
+    <Build Include="Stored Procedures\spPRNT_GetCostCenterCvrShtDat.sql" />
+    <Build Include="Stored Procedures\spPRNT_GetFaxRecs.sql" />
+    <Build Include="Stored Procedures\spPRNT_GetFaxRecsToConfirm.sql" />
+    <Build Include="Stored Procedures\spPRNT_GetNonSpecialHandlingRecs.sql" />
+    <Build Include="Stored Procedures\spPRNT_GetQCErrorConditions.sql" />
+    <Build Include="Stored Procedures\spPRNT_GetSpecialHandlingRecs.sql" />
+    <Build Include="Stored Procedures\spPRNT_UpdateFaxRec.sql" />
+    <Build Include="Stored Procedures\spQCTR_CriteriaResults.sql" />
+    <Build Include="Stored Procedures\spQCTR_DailyRpt.sql" />
+    <Build Include="Stored Procedures\spQCTR_GetAuthAccess.sql" />
+    <Build Include="Stored Procedures\spQCTR_GetEmailData.sql" />
+    <Build Include="Stored Procedures\spQCTR_GetIssue.sql" />
+    <Build Include="Stored Procedures\spQCTR_LockAndUnlock.sql" />
+    <Build Include="Stored Procedures\spQCTR_ManagementReporting.sql" />
+    <Build Include="Stored Procedures\spQCTR_MonthlyRpt.sql" />
+    <Build Include="Stored Procedures\spQCTR_NewIssue.sql" />
+    <Build Include="Stored Procedures\spQCTR_QCDBBAT_AddUserIntervention.sql" />
+    <Build Include="Stored Procedures\spQCTR_QCDBBAT_CreateIssue.sql" />
+    <Build Include="Stored Procedures\spQCTR_QCDBUser_CreateIssue.sql" />
+    <Build Include="Stored Procedures\spQCTR_QuarterlyRpt.sql" />
+    <Build Include="Stored Procedures\spQCTR_SaveIssue.sql" />
+    <Build Include="Stored Procedures\spQCTR_User12MonthRpt.sql" />
+    <Build Include="Stored Procedures\spQCTR_UserAccess.sql" />
+    <Build Include="Stored Procedures\spQCTR_UserDetailRpt.sql" />
+    <Build Include="Stored Procedures\spQCTR_WeeklyRpt.sql" />
+    <Build Include="Stored Procedures\spQSTA_GetReportData.sql" />
+    <Build Include="Stored Procedures\spQSTA_ReportIterationList.sql" />
+    <Build Include="Stored Procedures\spRSgetXMLClassReport.sql" />
+    <Build Include="Stored Procedures\spSYSA_AddAppAndTrainCoordError.sql" />
+    <Build Include="Stored Procedures\spSYSAPriority.sql" />
+    <Build Include="Stored Procedures\spSYSASystemAccess.sql" />
+    <Build Include="Stored Procedures\spSYSAUserAccessToSystems.sql" />
+    <Build Include="Stored Procedures\StateCodesGetDomestic.sql" />
+    <Build Include="Stored Procedures\RTML_MarkBarcodeRecordCompleted.sql" />
+    <Build Include="Stored Procedures\RTML_GetBarcodeInfoToInvalidate.sql" />
+    <Build Include="Stored Procedures\RTML_SaveScannedInfo.sql" />
+    <Build Include="Stored Procedures\QBLR_GetQueueBuilderList.sql" />
+    <Build Include="Tables\LTDB_LST_HeaderTypes.sql" />
+    <Build Include="Tables\LTDB_File_Headers.sql" />
+    <Build Include="Tables\LTDB_Letter_Header_Mapping.sql" />
+    <None Include="Scripts\InsertData.sql" />
+    <Build Include="Stored Procedures\LTDB_GetHeader.sql" />
+    <Build Include="Tables\LTDB_SystemLettersStoredProcedures.sql" />
+    <Build Include="Stored Procedures\LTDBGetSprocsForGivenLetter.sql" />
+    <Build Include="Tables\LTDB_SYstemLettersReturnType.sql" />
+    <Build Include="Stored Procedures\LTDB_SearchLetter.sql" />
+    <Build Include="Stored Procedures\GetAllSystemLetterReturnTypes.sql" />
+    <Build Include="Stored Procedures\GetSprocsForGivenLetter.sql" />
+    <Build Include="Stored Procedures\AddSprocToAGivenLetter.sql" />
+    <Build Include="Stored Procedures\LTDB_GetAllMultiLineFieldsForLetter.sql" />
+    <Build Include="Stored Procedures\LTDB_GetMultiLineDataFileHeaders.sql" />
+    <Build Include="Stored Procedures\DeleteSystemSproc.sql" />
+    <Build Include="Stored Procedures\LTDB_UpdateSystemSproc.sql" />
+    <Build Include="Stored Procedures\GetScriptLetterData.sql" />
+    <Build Include="Stored Procedures\LTDB_GetAllActiveHeaders.sql" />
+    <Build Include="Stored Procedures\LTDB_GetAllActiveHeaderTypes.sql" />
+    <Build Include="Stored Procedures\LTDB_InsertNewHeader.sql" />
+    <Build Include="Stored Procedures\LTDB_InsertNewHeaderType.sql" />
+    <Build Include="Stored Procedures\LTDB_InsertLetterMappingTable.sql" />
+    <Build Include="Stored Procedures\LTDB_UpdateLetterMapping.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetPrintCount.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetFaxCount.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingSetRightFaxHandle.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingCheckCompleted.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingSetCompleted.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingSetPrintTime.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingSetErrorTime.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetManagerEmail.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetBUEmailGroup.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingArcOrQueue.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetPrintErrors.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingInsertPrintError.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetFaxErrors.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingInsertFaxError.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetUnhandledPrintErrors.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetUnhandledFaxErrors.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingPrintErrorSetHandled.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingFaxErrorSetHandled.sql" />
+    <Build Include="Stored Procedures\GetAllScriptIds.sql" />
+    <Build Include="Stored Procedures\spGENRIsUheaaLender.sql" />
+    <Build Include="Stored Procedures\LTDB_GetClosingParagraph.sql" />
+    <Build Include="UserDefinedTableTypes\ScriptLetterData.sql" />
+    <Build Include="Stored Procedures\PromoteScriptLetter.sql" />
+    <Build Include="UserDefinedTableTypes\SystemLetterData.sql" />
+    <Build Include="Stored Procedures\PromoteSystemLetter.sql" />
+    <Build Include="Stored Procedures\spGetCostCenterBU.sql" />
+    <Build Include="Stored Procedures\GetLocateTypes.sql" />
+    <Build Include="Stored Procedures\GetLocateQueues.sql" />
+    <Build Include="Stored Procedures\GetLetterDescriptionFromLetterId.sql" />
+    <Build Include="Stored Procedures\GetLetterIdFromArc.sql" />
+    <Build Include="Stored Procedures\GetQKillerQueues.sql" />
+    <Build Include="Stored Procedures\GetNonForbearanceLoanTypes.sql" />
+    <Build Include="Stored Procedures\GetUTIds.sql" />
+    <Build Include="Stored Procedures\GetUserId.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\opsdev.publish.xml" />
+    <None Include="Publish Profiles\nochouse.publish.xml" />
+    <None Include="Publish Profiles\NOCHOUSETEST_BSYS.publish.xml" />
+  </ItemGroup>
+</Project>

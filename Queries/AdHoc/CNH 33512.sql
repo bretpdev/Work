@@ -1,0 +1,35 @@
+use cdw
+go
+
+SELECT
+	LNXX.BF_SSN SSN,
+	LNXX.LN_SEQ [Loan Sequence],
+	PDXX.DM_PRS_X [First Name], 
+	PDXX.DM_PRS_LST [Last Name],
+	PDXX.DX_STR_ADR_X [Address Line X],
+	PDXX.DX_STR_ADR_X [Address Line X],
+	PDXX.DX_STR_ADR_X [Address Line X],
+	PDXX.DM_CT City,
+	PDXX.DC_DOM_ST [State],
+	PDXX.DF_ZIP_CDE [Zip Code],
+	LNXX.LD_LON_EFF_ADD [Loan Add Date],
+	LNXX.LA_CUR_PRI [Loan Balance],
+	RS.LA_RPS_ISL [Monthly Loan Installment Amount]
+FROM
+	CDW..LNXX_LON LNXX
+	INNER JOIN CDW..PDXX_PRS_NME PDXX
+		ON PDXX.DF_PRS_ID = LNXX.BF_SSN
+	LEFT JOIN PDXX_PRS_ADR PDXX
+		ON PDXX.DF_PRS_ID = LNXX.BF_SSN
+	LEFT JOIN CDW.calc.RepaymentSchedules RS
+		ON RS.BF_SSN = LNXX.BF_SSN
+		AND RS.LN_SEQ = LNXX.LN_SEQ
+		AND RS.CurrentGradation = X
+WHERE
+	LNXX.LD_LON_EFF_ADD >= 'XX/XX/XXXX'
+	AND
+	LNXX.IC_LON_PGM IN ('DLPCNS', 'DLCNSL', 'DLSCNS', 'DLSPCN', 'DLSSPL', 'DLUCNS', 'DLUSPL')
+
+ORDER BY
+	LNXX.BF_SSN,
+	LNXX.LN_SEQ

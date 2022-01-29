@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="52bd12c8-9d09-4e38-af3e-426dbf806c0d" ChangeDateTime="09/18/2018 17:24:01">
+    <Property Name="ElementName" Value="[webapi].[ApiTokenControllerAccess].[CreatedAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[webapi].[ApiTokenControllerAccess]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="45686f9e-25ec-4f4b-80d7-785bd0371c0b" ChangeDateTime="09/18/2018 17:24:12">
+    <Property Name="ElementName" Value="[webapi].[ApiTokenControllerAccess].[CreatedBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[webapi].[ApiTokenControllerAccess]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="09463b96-ba40-44dd-a156-0f18087cfe10" ChangeDateTime="09/28/2018 19:16:45">
+    <Property Name="ElementName" Value="[webapi].[RoleControllerAccess].[CreatedAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[webapi].[RoleControllerAccess]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c41be43f-5eaa-4c45-a2ba-41a4781450f3" ChangeDateTime="09/28/2018 19:16:50">
+    <Property Name="ElementName" Value="[webapi].[RoleControllerAccess].[CreatedBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[webapi].[RoleControllerAccess]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ce4de7bb-937f-4841-8861-45f0d82fb902" ChangeDateTime="10/02/2018 22:03:49">
+    <Property Name="ElementName" Value="[webapi].[UserTokens].[AssociatedWindowsUserName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[webapi].[UserTokens]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AssociatedWindowsUsername" />
+  </Operation>
+</Operations>

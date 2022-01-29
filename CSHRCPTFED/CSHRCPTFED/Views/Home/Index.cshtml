@@ -1,0 +1,157 @@
+﻿@model CSHRCPTFED.ViewModels.CashReceiptModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            var lookup = $("#borrower-lookup");
+            var accountBox = $("#@(Html.IdFor(o => o.AccountIdentifier))");
+            var nameBox = $("#@(Html.IdFor(o => o.BorrowerName))");
+            var datebox = $("#@(Html.IdFor(o => o.CheckDate))");
+            var amountBox = $("#@(Html.IdFor(o => o.Amount))");
+            var checkBox = $("#@(Html.IdFor(o => o.CheckId))");
+
+            amountBox.blur(function () {
+                var newVal = Number(amountBox.val());
+                newVal = newVal.toFixed(2);
+                amountBox.val(newVal);
+            }).keypress(function (event) {
+                var val = amountBox.val();
+                var hasTwoDigitsAfterDecimal = val.charAt(val.length - 3) == '.';
+                var cursorIsAtEnd = event.target.selectionStart >= val.length - 2;
+                if (hasTwoDigitsAfterDecimal && cursorIsAtEnd)
+                    return false;
+            })
+
+            accountBox.blur(function () {
+                var id = $(this).val();
+                if (id.length >= 9 && !/^0*$/.test(id)) //all zeros
+                    startLookup();
+                if (id.length == 0)
+                    accountBox.val('0000000000');
+
+                $('form').validate().element('#' + accountBox.attr('id'));
+            }).focus();
+
+            checkBox.blur(function () {
+                checkBox.val(checkBox.val().trim());
+                $('form').validate().element('#' + checkBox.attr('id'));
+            }).keypress(function (event) {
+                if (event.keyCode == 32) //space
+                    return false
+            });
+
+            function startLookup() {
+                if (lookup.data('in-progress'))
+                    return;
+                lookup.show();
+                accountBox.prop('disabled', true);
+                lookup.data('in-progress', true);
+                lookup.html("Searching for Borrower...");
+                $.ajax({
+                    url: '/Home/AjaxLookupBorrowerName/' + accountBox.val(),
+                    method: 'POST',
+                    success: function (data) {
+                        if (data) {
+                            nameBox.val(data).prop('placeholder', ' '); //removeProp sets test to undefined for some reason
+                        }
+                        else {
+                            accountBox.val('0000000000');
+                            nameBox.val('').prop('placeholder', 'Borrower Not Found');
+                        }
+                        endLookup();
+                    },
+                    error: function (request, status, error) {
+                        alert(error);
+                        endLookup();
+                    }
+                });
+            }
+            function endLookup() {
+                lookup.data('in-progress', false);
+                lookup.html("Borrower Lookup");
+                accountBox.prop('disabled', false);
+                lookup.hide();
+            }
+
+            $("#reset-button").click(function () {
+                $("form input[type=text]").val('').prop('placeholder', '');
+                $("form input[type=radio]").prop('checked', false);
+                datebox.val(new Date().toLocaleDateString('en-CA')); //set to today's date
+                lookup.hide();
+                $("#messages").hide();
+
+                $('.validation-summary-errors li').remove();
+                $('.input-validation-error').addClass('input-validation-valid');
+                $('.input-validation-error').removeClass('input-validation-error').empty();
+                //Removes validation message after input-fields
+                $('.field-validation-error').addClass('field-validation-valid');
+                $('.field-validation-error').removeClass('field-validation-error').empty();
+                //Removes validation summary 
+                $('.validation-summary-errors').addClass('validation-summary-valid');
+                $('.validation-summary-errors').removeClass('validation-summary-errors').empty();
+            });
+        })
+    </script>
+}
+
+
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <h2>Enter Check Information</h2>
+
+    @Html.LabelFor(m => m.AccountIdentifier)
+    @Html.TextBoxFor(m => m.AccountIdentifier, new { maxlength=10 })
+    @Html.ValidationMessageFor(m => m.AccountIdentifier)
+    <br />
+
+    <div id="borrower-lookup">Searching for Borrower...</div>
+    @Html.LabelFor(m => m.BorrowerName)
+    @Html.TextBoxFor(m => m.BorrowerName, new { maxlength=48 })
+    @Html.ValidationMessageFor(m => m.BorrowerName)
+    <br />
+
+    @Html.LabelFor(m => m.Amount)
+    @Html.TextBoxFor(m => m.Amount)
+    @Html.ValidationMessageFor(m => m.Amount)
+    <br />
+
+    @Html.LabelFor(m => m.CheckId)
+    @Html.TextBoxFor(m => m.CheckId, new { maxlength = 15 })
+    @Html.ValidationMessageFor(m => m.CheckId)
+    <br />
+
+    @Html.LabelFor(m => m.CheckDate)
+    @Html.EditorFor(m => m.CheckDate, new { htmlAttributes = new { tabindex = -1 } })//skip over this field when tabbing
+    @Html.ValidationMessageFor(m => m.CheckDate)
+    <br />
+
+    <h2>Select Payee:</h2>
+
+
+    <label>Borrower</label>
+    @Html.RadioButtonFor(m => m.Payee, Payee.Borrower)
+    <br />
+    <label>Trustee</label>
+    @Html.RadioButtonFor(m => m.Payee, Payee.Trustee)
+    <br />
+    <label>Treasury</label>
+    @Html.RadioButtonFor(m => m.Payee, Payee.Treasury)
+    <br />
+    <label>Third Party</label>
+    @Html.RadioButtonFor(m => m.Payee, Payee.ThirdParty)
+    
+    @Html.ValidationMessageFor(m => m.Payee)
+    <br />
+
+    <button type="submit" id="process-button">Process</button>
+    <br />
+    <span id="reset-button">Reset Fields</span>
+}

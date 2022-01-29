@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[LTDB_LST_Addressees] (
+    [Addressee] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_LTDB_LST_Addressees] PRIMARY KEY CLUSTERED ([Addressee] ASC) WITH (FILLFACTOR = 90)
+);
+

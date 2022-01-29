@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [dashcache].[DTX7L_UHEAA]
+AS
+
+	SELECT
+		COUNT(*)
+	FROM
+		ULS..[DTX7LDeletedRecords] DDR
+	WHERE
+		DDR.AddedAt < DATEADD(WEEK, -2, GETDATE())
+		AND
+		DDR.ProcessedAt IS NULL
+
+RETURN 0

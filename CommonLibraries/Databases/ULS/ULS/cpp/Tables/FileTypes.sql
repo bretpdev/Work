@@ -1,0 +1,5 @@
+﻿CREATE TABLE [cpp].[FileTypes]
+(
+	[FileTypeId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [FileType] VARCHAR(6) NOT NULL
+)

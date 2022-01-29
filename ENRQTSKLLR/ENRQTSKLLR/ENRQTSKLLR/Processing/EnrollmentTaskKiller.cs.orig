@@ -1,0 +1,316 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Uheaa.Common;
+using Uheaa.Common.DataAccess;
+using Uheaa.Common.ProcessLogger;
+using Uheaa.Common.Scripts;
+
+namespace ENRQTSKLLR
+{
+    public class EnrollmentTaskKiller : ScriptBase
+    {
+        public ProcessLogRun LogRun { get; set; }
+        public DataAccess DA { get; set; }
+        private readonly List<string> EnrollmentQueues = new List<string>() { "NEWSTNME", "NEWMILST", "NMDNMTCH", "NMMISINV" };
+
+        public EnrollmentTaskKiller(ReflectionInterface ri) : base(ri, "ENRQTSKLLR", DataAccessHelper.Region.Uheaa)
+        {
+<<<<<<< HEAD
+            LogRun = RI.LogRun ?? new ProcessLogRun(ProcessLogData.ProcessLogId, ScriptId, AppDomain.CurrentDomain, Assembly.GetExecutingAssembly(), DataAccessHelper.CurrentRegion, DataAccessHelper.CurrentMode, true, false, true);
+=======
+            //UNDONE:LogRun = RI.LogRun ?? new ProcessLogRun(ProcessLogData.ProcessLogId, ScriptId, AppDomain.CurrentDomain, Assembly.GetExecutingAssembly(), DataAccessHelper.CurrentRegion, DataAccessHelper.CurrentMode, true, false, true);
+            LogRun = RI.LogRun ?? new ProcessLogRun(ScriptId, AppDomain.CurrentDomain, Assembly.GetExecutingAssembly(), DataAccessHelper.CurrentRegion, DataAccessHelper.CurrentMode, false, true);
+>>>>>>> 1222dc9f2d19d0d74b9b397e8b68e11ac356f5ae
+            DA = new DataAccess(LogRun);
+        }
+
+        /// <summary>
+        /// Notifies user of script's purpose and kicks off enrollment queue
+        /// processing.
+        /// </summary>
+        public override void Main()
+        {
+            bool processRecords = Dialog.Info.YesNo("This script completes tasks in the SCR queues. Do you wish to process those records?", "Process Records?");
+            if (processRecords)
+            {
+                ProcessEnrollmentQueues();
+                LogOpenCritTasks();
+            }
+            EndScriptRun();
+        }
+
+        /// <summary>
+        /// Entry point for queue processing. Utilizes child
+        /// methods to add tasks to the processing table,
+        /// pull those down from the dB, and then process them.
+        /// </summary>
+        private void ProcessEnrollmentQueues()
+        {
+            if (!AddNewWork())
+            {
+                Dialog.Error.Ok("The script encountered an error trying to add records to the database. Please contact System Support to have this issue resolved.", "Database Error");
+                return;
+            }
+            List<EnrollmentTask> enrollmentTasks = DA.GetUnprocessedRecords();
+            LogRun.AddNotification($"{enrollmentTasks?.Count ?? 0} unprocessed tasks found", NotificationType.Other, NotificationSeverityType.Informational);
+
+            if (TasksFound(enrollmentTasks))
+                ProcessQueues(enrollmentTasks);
+        }
+
+        /// <summary>
+        /// Calls a stored procedure to add enrollment tasks in the CT30 table to
+        /// this script's processing table.
+        /// </summary>
+        private bool AddNewWork()
+        {
+            int? recordsInserted = DA.InsertProcessingQueueRecords();
+            LogRun.AddNotification($"Added {recordsInserted ?? 0} records to the enrqtskllr.ProcessingQueue table", NotificationType.Other, NotificationSeverityType.Informational);
+            return recordsInserted.HasValue;
+        }
+
+        /// <summary>
+        /// Indicates whether there are any tasks for the script to work.
+        /// </summary>
+        private bool TasksFound(List<EnrollmentTask> enrollmentTasks)
+        {
+            if (enrollmentTasks != null && enrollmentTasks.Count > 0)
+                return true;
+
+            Dialog.Info.Ok("The script found no tasks to work. Processing complete.", "Processing Complete");
+            return false;
+        }
+
+        /// <summary>
+        /// Iterates through tasks, ordered by their queue, and utilizes
+        /// helper methods to assign each task before processing it.
+        /// </summary>
+        private void ProcessQueues(List<EnrollmentTask> enrollmentTasks)
+        {
+            if (UserAssignedTaskAlready()) // User can't run script if they already are assigned a task
+                return;
+
+            foreach (EnrollmentTask task in enrollmentTasks.OrderBy(p => p.QueueName).ToList())
+            {
+                if (!AssignTask(task.Ssn, task.QueueName))
+                    continue;
+                ProcessTask(task);
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the user is already assigned an enrollment task.
+        /// If so, returns true. Else, logs the error, notifies the user, and then
+        /// returns false.
+        /// </summary>
+        private bool UserAssignedTaskAlready()
+        {
+            RI.FastPath($"LP8YI");
+            RI.PutText(6, 37, "SCR");
+            RI.PutText(10, 37, UserId, ReflectionInterface.Key.Enter);
+
+            if (RI.AltMessageCode == "47004")
+            {
+                string queues = EnrollmentQueues.Select(p => p + ", ").ToString();
+                LogRun.AddNotification($"User {RI.UserId} assigned a related queue task. Cannot run the script without reassigning the task. User notified.", NotificationType.ErrorReport, NotificationSeverityType.Warning);
+                Dialog.Error.Ok($"You cannot run this script because you are already assigned another related queue task. Please make sure you are not assigned one of the following before re-running the script: {queues.Substring(0, queues.Length - 2)}", "User Assigned a Task");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Driver method that results in the task being opened, checked, and
+        /// closed in the session. If successfully opened, an ARC will be dropped 
+        /// on the account. If successfully closed, the ProcessedAt field will be
+        /// set in the DB.
+        /// </summary>
+        private void ProcessTask(EnrollmentTask enrollmentTask)
+        {
+            while (!RI.CheckForText(22, 3, "47420", "47423", "47450", "46004"))
+            {
+                RI.FastPath($"LP9AC{enrollmentTask.QueueName}");
+                if (!IsMatchingTask(enrollmentTask))
+                    return;
+
+                AddArc(enrollmentTask);
+                RI.Hit(ReflectionInterface.Key.F6);
+                if (RI.AltMessageCode == "49000") // 49000 = "DATA SUCCESSFULLY UPDATED"
+                {
+                    DA.SetRecordProcessed(enrollmentTask.ProcessingQueueId);
+                }
+                else
+                {
+                    LogRun.AddNotification($"Unable to close task for borrower {enrollmentTask.Ssn} and queue {enrollmentTask.QueueName}. Was expecting successed code 49000 but got {RI.AltMessageCode}", NotificationType.ErrorReport, NotificationSeverityType.Critical);
+                    Dialog.Error.Ok($"The script encountered an error trying to complete the queue task {enrollmentTask.QueueName} for borrower {enrollmentTask.Ssn}. Please close the task manually and then hit INSERT when you are ready for the script to continue.", "Session Navigation Error");
+                    RI.PauseForInsert();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns true if the task matches the expected one
+        /// (aka has the right borrower associated with it).
+        /// </summary>
+        private bool IsMatchingTask(EnrollmentTask enrollmentTask)
+        {
+            string ssn = RI.GetText(17, 70, 9);
+            if (ssn != enrollmentTask.Ssn)
+            {
+                LogRun.AddNotification($"Session navigation error encountered. Expected borrower {enrollmentTask.Ssn} but got borrower {ssn}", NotificationType.ErrorReport, NotificationSeverityType.Warning);
+                Dialog.Error.Ok($"The script encountered an error trying to process the queue task {enrollmentTask.QueueName} for borrower {enrollmentTask.Ssn}. Please work the task manually before re-running the script.", "Session Navigation Error");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Assigns the task to the user. This allows for the task to pull
+        /// up on LP9AC as the first result. If assignment fails, error
+        /// is logged and user is notified.
+        /// </summary>
+        private bool AssignTask(string ssn, string queueName)
+        {
+            RI.FastPath($"LP8YC");
+            if (!IsOnQueueSelectionScreen(ssn, queueName))
+                return false;
+
+            RI.PutText(6, 37, "SCR");
+            RI.PutText(8, 38, queueName);
+            RI.PutText(12, 37, ssn, ReflectionInterface.Key.Enter);
+            if (!IsOnQueueTaskScreen(ssn, queueName))
+                return false;
+
+            RI.PutText(7, 33, "A"); // TODO: Ask BA if we should only grab task if it is not assigned to user, or if we should grab it even then. Emailed Tawny, she emailed BU--we are awaiting reply.
+            RI.PutText(7, 38, UserId, ReflectionInterface.Key.Enter);
+            RI.Hit(ReflectionInterface.Key.F6); // Post update to assign task
+            bool result = RI.AltMessageCode == "49000"; // 49000 = "DATA SUCCESSFULLY UPDATED"
+            if (!result)
+            {
+                LogRun.AddNotification($"Error assigning task for borrower {ssn} for the queue {queueName}. Expected message code 49000 but instead got {RI.AltMessageCode}.", NotificationType.ErrorReport, NotificationSeverityType.Critical);
+                Dialog.Error.Ok($"There was an error trying to access the queue task {queueName} for borrower {ssn}. Please work the task manually before re-running the script.", "Error Accessing Task in Session");
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Adds an ARC and relevant comment to the account
+        /// that the enrollment task is on.
+        /// </summary>
+        private void AddArc(EnrollmentTask enrollmentTask)
+        {
+            if (enrollmentTask.ArcAddProcessingId.HasValue)
+                return;
+
+            string comment = $"{enrollmentTask.QueueName} task closed.  The enrollment process is not an acceptable mechanism for reporting name changes.";
+            ArcData arcData = ConstructArc(enrollmentTask, comment);
+            ArcAddResults result = arcData.AddArc();
+            if (result == null || !result.ArcAdded)
+                LogArcGenerationError(arcData, enrollmentTask, comment);
+            else
+            {
+                if (!DA.SetArcAddProcessingId(enrollmentTask.ProcessingQueueId, result.ArcAddProcessingId))
+                    LogRun.AddNotification($"Unable to set the ArcAddProcessingId field to {result.ArcAddProcessingId} for ProcessingQueueId {enrollmentTask.ProcessingQueueId}", NotificationType.ErrorReport, NotificationSeverityType.Critical);
+            }
+        }
+
+        /// <summary>
+        /// Builds the ArcData object with the pertinent info
+        /// for the enrollment task.
+        /// </summary>
+        private ArcData ConstructArc(EnrollmentTask enrollmentTask, string comment)
+        {
+            return new ArcData(DataAccessHelper.Region.Uheaa)
+            {
+                AccountNumber = enrollmentTask.Ssn,
+                ActivityContact = "99",
+                ActivityType = "MS",
+                Arc = "MXSCR",
+                ArcTypeSelected = ArcData.ArcType.OneLINK,
+                Comment = comment,
+                IsEndorser = false,
+                IsReference = false,
+                ScriptId = ScriptId
+            };
+        }
+
+        /// <summary>
+        /// Adds a Process Log notification that the ARC was not added. 
+        /// Also notifies the user and waits for them to manually drop the
+        /// ARC.
+        /// </summary>
+        private void LogArcGenerationError(ArcData arcData, EnrollmentTask enrollmentTask, string comment)
+        {
+            string message = $"Unable to add OneLINK {arcData?.Arc} for the SSN associated with the account {enrollmentTask.AccountNumber}.";
+            RI.LogRun.AddNotification($"{message} Prompting the user to add the comment manually.", NotificationType.ErrorReport, NotificationSeverityType.Warning);
+            Dialog.Warning.Ok($"{message} Please add the following comment manually and then press INSERT after you have posted the comment: {comment}", "Error Adding Comment");
+            RI.PauseForInsert();
+        }
+
+        /// <summary>
+        /// Indicates if the script is on the correct queue selection
+        /// screen. If not, error is logged and user is notified.
+        /// </summary>
+        private bool IsOnQueueSelectionScreen(string ssn, string queueName)
+        {
+            if (RI.GetText(1, 60, 21) != "QUEUE STATS SELECTION")
+            {
+                LogRun.AddNotification($"Error assigning task for borrower {ssn} for the queue {queueName}. Expected to be on the QUEUE STATS SELECTION screen but was instead on the screen {RI.GetText(1, 60, 21)}.", NotificationType.ErrorReport, NotificationSeverityType.Critical);
+                Dialog.Error.Ok($"There was an error trying to access the queue task {queueName} for borrower {ssn}. Please work the task manually before re-running the script.", "Error Accessing Task in Session");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Indicates if the script is on the correct queue task detail page
+        /// and if the code on the screen indicates that the task is ready for
+        /// updates. If not, error is logged and user is notified.
+        /// </summary>
+        private bool IsOnQueueTaskScreen(string ssn, string queueName)
+        {
+            if (RI.GetText(1, 64, 17) != "QUEUE TASK DETAIL" || RI.AltMessageCode != "46011") // 46011 = "MAKE DESIRED DATA CHANGES AND PRESS ENTER"
+            {
+                LogRun.AddNotification($"Error assigning task for borrower {ssn} for the queue {queueName}. Expected to be on the QUEUE TASK DETAIL screen but was instead on the screen {RI.GetText(1, 64, 17)}.", NotificationType.ErrorReport, NotificationSeverityType.Critical);
+                Dialog.Error.Ok($"There was an error trying to access the queue task {queueName} for borrower {ssn}. Please work the task manually before re-running the script.", "Error Accessing Task in Session");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Logs the instance of there being outstanding tasks for any of the 
+        /// enrollment queues.
+        /// </summary>
+        private void LogOpenCritTasks()
+        {
+            while (RI.AltMessageCode != "46004")
+            {
+                int row = 8;
+                if (row < 20 && EnrollmentQueues.Contains(RI.GetText(row, 11, 8)))
+                {
+                    int? openCritTasks = RI.GetText(row, 47, 5).Trim().ToIntNullable();
+                    if (openCritTasks.HasValue && openCritTasks > 0)
+                        LogRun.AddNotification($"The {RI.GetText(row, 11, 8)} queue has open critical tasks that were not closed by the script.", NotificationType.ErrorReport, NotificationSeverityType.Critical);
+                }
+                row++;
+                if (row == 20)
+                    RI.Hit(ReflectionInterface.Key.F8);
+            }
+        }
+
+        /// <summary>
+        /// Cleans up the end of the script run. Logs the end for Process 
+        /// Logger, closes the session, and closes any managed connections.
+        /// </summary>
+        private void EndScriptRun()
+        {
+            LogRun.LogEnd();
+            DataAccessHelper.CloseAllManagedConnections();
+        }
+    }
+}

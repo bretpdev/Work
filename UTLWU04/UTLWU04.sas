@@ -1,0 +1,101 @@
+*------------------------------------------------------*
+|UTLWU04 LOANS FOR BORROWERS ATTENDING FOREIGN SCHOOLS |
+*------------------------------------------------------*;
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORT2 "&RPTLIB/ULWU04.LWU04R2";
+FILENAME REPORTZ "&RPTLIB/ULWU04.LWU04RZ";
+DATA _NULL_;
+     CALL SYMPUT('BEGIN',"'"||PUT(INTNX('MONTH',TODAY(),-1,'BEGINNING'), MMDDYYD10.)||"'");
+	 CALL SYMPUT('END',"'"||PUT(INTNX('MONTH',TODAY(),-1,'END'), MMDDYYD10.)||"'");
+	 CALL SYMPUT('EFFDATE',TRIM(LEFT(UPCASE(
+		PUT(INTNX('MONTH',TODAY(),-1), MONNAME9.)||' '||
+		PUT(INTNX('MONTH',TODAY(),-1), YEAR4.)))));
+RUN;
+%SYSLPUT BEGIN = &BEGIN;
+%SYSLPUT END = &END;
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DEMO AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT 
+		D.DF_SPE_ACC_ID
+		,D.DM_PRS_1
+		,D.DM_PRS_LST
+		,B.IF_IST
+		,B.IM_IST_FUL
+		,C1.AD_DSB_ADJ
+FROM 	OLWHRM1.GA01_APP A
+		INNER JOIN OLWHRM1.SC01_LGS_SCL_INF B
+			ON A.AF_APL_OPS_SCL = B.IF_IST
+			AND B.IC_SCL_PRI_LOC = 'FC'
+		INNER JOIN OLWHRM1.GA10_LON_APP C
+			ON A.AF_APL_ID = C.AF_APL_ID
+			AND C.AC_PRC_STA = 'A'
+		INNER JOIN OLWHRM1.GA11_LON_DSB_ATY C1
+			ON A.AF_APL_ID = C1.AF_APL_ID
+			AND C1.AD_DSB_ADJ BETWEEN &BEGIN AND &END
+			AND C1.AC_DSB_ADJ = 'A'
+		INNER JOIN OLWHRM1.PD01_PDM_INF D
+			ON A.DF_PRS_ID_BR = D.DF_PRS_ID
+WHERE	(COALESCE(AA_GTE_LON_AMT,0) - COALESCE(AA_TOT_CAN,0) - COALESCE(AA_TOT_RFD,0)) > 0
+		AND C1.AD_DSB_ADJ = (SELECT MIN(Z.AD_DSB_ADJ) AS AD_DSB_ADJ
+							 FROM 	OLWHRM1.GA11_LON_DSB_ATY Z
+							 WHERE	Z.AF_APL_ID = A.AF_APL_ID
+							 		AND Z.AC_DSB_ADJ = 'A')
+FOR READ ONLY WITH UR
+);
+DISCONNECT FROM DB2;
+/*%put  sqlxrc= >>> &sqlxrc <<< ||| sqlxmsg= >>> &sqlxmsg >>> ;  ** includes error messages to SAS log  ;*/
+/*%sqlcheck;*/
+/*quit;*/
+ENDRSUBMIT;
+DATA DEMO; SET WORKLOCL.DEMO; RUN;
+PROC SORT DATA=DEMO;
+BY DF_SPE_ACC_ID;
+RUN;
+DATA _NULL_;
+SET DEMO ;
+LENGTH DESCRIPTION $600.;
+USER = ' ';
+ACT_DT = AD_DSB_ADJ ;
+DESCRIPTION = CATX(',',
+	DF_SPE_ACC_ID 
+	,DM_PRS_1 
+	,DM_PRS_LST 
+	,IF_IST		 
+	,IM_IST_FUL
+	,PUT(AD_DSB_ADJ, MMDDYY10.)
+);
+FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+FORMAT USER $10. ;
+FORMAT ACT_DT MMDDYY10. ;
+FORMAT DESCRIPTION $600. ;
+IF _N_ = 1 THEN DO;
+	PUT "USER,ACT_DT,DESCRIPTION";
+END;
+DO;
+   PUT USER $ @;
+   PUT ACT_DT @;
+   PUT DESCRIPTION $ ;
+END;
+RUN;

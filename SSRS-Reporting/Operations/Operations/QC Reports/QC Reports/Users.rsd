@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>SELECT
+	RTRIM(LTRIM([AesAccountId])) AS account_user
+FROM 
+	CSYS..SYSA_DAT_Users
+WHERE 
+	[Status] = 'Active'
+	AND AesAccountId IS NOT NULL
+	AND LTRIM(AesAccountId) != ''
+
+UNION
+
+SELECT
+	RTRIM(LTRIM([AesUserId])) AS account_user
+FROM 
+	CSYS..SYSA_DAT_Users
+WHERE 
+	[Status] = 'Active'
+	AND AesUserId IS NOT NULL
+	AND LTRIM(AesUserId) != ''</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="account_user">
+        <DataField>account_user</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

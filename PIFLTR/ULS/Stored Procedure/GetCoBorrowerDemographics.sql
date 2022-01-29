@@ -1,0 +1,31 @@
+﻿CREATE PROCEDURE [pifltr].[GetCoBorrowerDemographics]
+	@CoBorrowerSsn VARCHAR(9)
+
+AS
+	SELECT DISTINCT
+		PD10.DF_PRS_ID AS CoBorrowerSsn,
+		PD10.DF_SPE_ACC_ID AS CoBorrowerAccount,
+		RTRIM(PD10.DM_PRS_1) AS CoBorrowerFirstName, 
+		CASE 
+			WHEN (RTRIM(ISNULL(PD10.DM_PRS_LST_SFX, '')) = '') THEN RTRIM(PD10.DM_PRS_LST)
+			ELSE CONCAT(RTRIM(PD10.DM_PRS_LST), ' ', RTRIM(PD10.DM_PRS_LST_SFX))
+		END AS CoBorrowerLastName,
+		RTRIM(DX_STR_ADR_1) AS Address1,
+		RTRIM(DX_STR_ADR_2) AS Address2,
+		RTRIM(DM_CT) AS City,
+		RTRIM(DC_DOM_ST) AS DomesticState,
+		RTRIM(DF_ZIP_CDE) AS ZIPCode,
+		RTRIM(DM_FGN_CNY) AS ForeignCountry,
+		RTRIM(DM_FGN_ST) AS ForeignState,
+		CASE 
+			WHEN DI_VLD_ADR = 'Y' THEN 1 ELSE 0
+		END AS IsValid
+	FROM 
+		UDW..PD10_PRS_NME PD10
+		INNER JOIN UDW..PD30_PRS_ADR PD30
+			ON PD10.DF_PRS_ID = PD30.DF_PRS_ID
+	WHERE
+		PD10.DF_PRS_ID = @CoBorrowerSsn
+		AND DC_ADR = 'L'
+
+RETURN 0

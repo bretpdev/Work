@@ -1,0 +1,97 @@
+﻿namespace INCIDENTRP
+{
+	partial class SecurityIncident
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
+
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
+		#region Windows Form Designer generated code
+
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.pnlNavigation = new System.Windows.Forms.FlowLayoutPanel();
+			this.pnlContentHolder = new System.Windows.Forms.Panel();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.pnlNavigation);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.pnlContentHolder);
+			this.splitContainer1.Size = new System.Drawing.Size(788, 349);
+			this.splitContainer1.SplitterDistance = 321;
+			this.splitContainer1.TabIndex = 0;
+			// 
+			// pnlNavigation
+			// 
+			this.pnlNavigation.BackColor = System.Drawing.Color.White;
+			this.pnlNavigation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnlNavigation.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlNavigation.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.pnlNavigation.Location = new System.Drawing.Point(0, 0);
+			this.pnlNavigation.Name = "pnlNavigation";
+			this.pnlNavigation.Size = new System.Drawing.Size(321, 349);
+			this.pnlNavigation.TabIndex = 0;
+			// 
+			// pnlContentHolder
+			// 
+			this.pnlContentHolder.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+			this.pnlContentHolder.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlContentHolder.Location = new System.Drawing.Point(0, 0);
+			this.pnlContentHolder.Name = "pnlContentHolder";
+			this.pnlContentHolder.Size = new System.Drawing.Size(463, 349);
+			this.pnlContentHolder.TabIndex = 0;
+			// 
+			// SecurityIncident
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(788, 349);
+			this.Controls.Add(this.splitContainer1);
+			this.Name = "SecurityIncident";
+			this.Text = "Security Incident";
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.ResumeLayout(false);
+			this.ResumeLayout(false);
+
+		}
+
+		#endregion
+
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private System.Windows.Forms.FlowLayoutPanel pnlNavigation;
+		private System.Windows.Forms.Panel pnlContentHolder;
+	}
+}

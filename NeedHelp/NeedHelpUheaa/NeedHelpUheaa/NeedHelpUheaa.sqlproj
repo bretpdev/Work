@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>NeedHelpUheaa</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{eb410e21-c9d4-4f7e-ba7e-9d2803102b84}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>NeedHelpUheaa</RootNamespace>
+    <AssemblyName>NeedHelpUheaa</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security\" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\Staff.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_UHEAAUsers.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - Developers DBOwner Access.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RO.sql" />
+    <Build Include="Security\UHEAA_OcheUsers.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_BatchScripts.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Stored Procedures\CheckSprocAccess.sql" />
+    <Build Include="Stored Procedures\spAddCommonExceptionTicket.sql" />
+    <Build Include="Stored Procedures\spAddNewSubjectForDCR.sql" />
+    <Build Include="Stored Procedures\spAddRecipients.sql" />
+    <Build Include="Stored Procedures\spAddSystem.sql" />
+    <Build Include="Stored Procedures\spCheckForLockOnTicket.sql" />
+    <Build Include="Stored Procedures\spCheckForNewSubject.sql" />
+    <Build Include="Stored Procedures\spCheckForSubjectBoolean.sql" />
+    <Build Include="Stored Procedures\spCreateNewTicket.sql" />
+    <Build Include="Stored Procedures\spDeleteAssociationOfUserToTicket.sql" />
+    <Build Include="Stored Procedures\spGetAllDCRSubjectOptions.sql" />
+    <Build Include="Stored Procedures\spGetCommercialSubject.sql" />
+    <Build Include="Stored Procedures\spGetEarliestCreateDate.sql" />
+    <Build Include="Stored Procedures\spGetFacilitiesCategory.sql" />
+    <Build Include="Stored Procedures\spGetFacilitiesCategoryOption.sql" />
+    <Build Include="Stored Procedures\spGetFacilitiesPriority.sql" />
+    <Build Include="Stored Procedures\spGetFacilitiesUrgencies.sql" />
+    <Build Include="Stored Procedures\spGetFacilitiesUrgencyOption.sql" />
+    <Build Include="Stored Procedures\spGetHistoryForCleanUp.sql" />
+    <Build Include="Stored Procedures\spGetListOfSystems.sql" />
+    <Build Include="Stored Procedures\spGetLockedTicketUser.sql" />
+    <Build Include="Stored Procedures\spGetNextCourt.sql" />
+    <Build Include="Stored Procedures\spGetOpenTicketID.sql" />
+    <Build Include="Stored Procedures\spGetResolutionCauses.sql" />
+    <Build Include="Stored Procedures\spGetSubjectList.sql" />
+    <Build Include="Stored Procedures\spGetSystemsForTicket.sql" />
+    <Build Include="Stored Procedures\spGetTicket.sql" />
+    <Build Include="Stored Procedures\spGetUserSelectedEmailRecipientsForTicket.sql" />
+    <Build Include="Stored Procedures\spLockTicket.sql" />
+    <Build Include="Stored Procedures\spNextSystemSupportSpecialistForAssignment.sql" />
+    <Build Include="Stored Procedures\spRemoveAllRecipients.sql" />
+    <Build Include="Stored Procedures\spRemoveAllSystems.sql" />
+    <Build Include="Stored Procedures\spRemoveInactiveUser.sql" />
+    <Build Include="Stored Procedures\spRemoveUsersLocksOnTickets.sql" />
+    <Build Include="Stored Procedures\spSaveAssociatedUserToTicket.sql" />
+    <Build Include="Stored Procedures\spSaveTicket.sql" />
+    <Build Include="Stored Procedures\spSearchForAllTickets.sql" />
+    <Build Include="Stored Procedures\spSearchForOpenTickets.sql" />
+    <Build Include="Stored Procedures\spSearchForTickets.sql" />
+    <Build Include="Stored Procedures\spSetRotationList.sql" />
+    <Build Include="Stored Procedures\spStatusAndOrCourtUpdate.sql" />
+    <Build Include="Stored Procedures\spUpdateHistoryForCleanUp.sql" />
+    <Build Include="Stored Procedures\spUpdateSubjectBoolean.sql" />
+    <Build Include="Tables\DAT_Ticket.sql" />
+    <Build Include="Tables\DAT_TicketsAssociatedUserID.sql" />
+    <Build Include="Tables\LST_AssignToCalculationOption.sql" />
+    <Build Include="Tables\LST_CourtAssignment.sql" />
+    <Build Include="Tables\LST_DCRSubject.sql" />
+    <Build Include="Tables\LST_FacilitiesPriority.sql" />
+    <Build Include="Tables\LST_FacilitiesPriorityCatgry.sql" />
+    <Build Include="Tables\LST_FacilitiesPriorityUrgency.sql" />
+    <Build Include="Tables\LST_InUse.sql" />
+    <Build Include="Tables\LST_PriorityUpdated.sql" />
+    <Build Include="Tables\LST_ResolutionCause.sql" />
+    <Build Include="Tables\LST_System.sql" />
+    <Build Include="Tables\REF_EMailRecipient.sql" />
+    <Build Include="Tables\REF_Status.sql" />
+    <Build Include="Tables\REF_System.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+  </ItemGroup>
+</Project>

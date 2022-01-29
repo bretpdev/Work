@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[LTDB_REF_Scripts] (
+    [DocName] NVARCHAR (100) NOT NULL,
+    [Script]  NVARCHAR (100) NOT NULL,
+    CONSTRAINT [PK_LTDB_REF_Scripts] PRIMARY KEY CLUSTERED ([DocName] ASC, [Script] ASC) WITH (FILLFACTOR = 90)
+);
+

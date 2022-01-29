@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{845F730F-88F6-4252-96C2-1C3875474B89}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MD</RootNamespace>
+    <AssemblyName>MD</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>X:\PADU\UHEAACodeBase\MD\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>waveicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MinCap">
+      <HintPath>..\..\..\CommonLibraries\Dependencies\MinCap.dll</HintPath>
+    </Reference>
+    <Reference Include="ModelEditControl">
+      <HintPath>..\..\..\..\..\Uheaa\Dependencies\ModelEditControl.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RTF">
+      <HintPath>..\..\..\CommonLibraries\Dependencies\RTF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\CommonMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\ReadOnlyCheckbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataAccess\Alerts\ManualAlertHelper.cs" />
+    <Compile Include="DataAccess\Faq\FaqLog.cs" />
+    <Compile Include="DataAccess\Faq\FaqPendingQuestion.cs" />
+    <Compile Include="DataAccess\Faq\FaqPortfolio.cs" />
+    <Compile Include="DataAccess\Faq\FaqQuestion.cs" />
+    <Compile Include="DataAccess\Faq\FaqQuestionGroup.cs" />
+    <Compile Include="DataAccess\feedback\FeedbackRequest.cs" />
+    <Compile Include="DataAccess\warehouse\WarehouseInfo.cs" />
+    <Compile Include="Enums\ContrastModeEnum.cs" />
+    <Compile Include="Helpers\AccessHelper.cs" />
+    <Compile Include="Helpers\UIHelper.cs" />
+    <Compile Include="Helpers\Hlpr.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\LoginHelper.cs" />
+    <Compile Include="Helpers\ModeHelper.cs" />
+    <Compile Include="Helpers\ReflectionHelper.cs" />
+    <Compile Include="Helpers\TempHelper.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="Helpers\UsernameHelper.cs" />
+    <Compile Include="Helpers\VersionHelper.cs" />
+    <Compile Include="Helpers\WinApiHelper.cs" />
+    <Compile Include="UI\Faq\Admin\ExistingQuestionsTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Faq\Admin\ExistingQuestionsTab.Designer.cs">
+      <DependentUpon>ExistingQuestionsTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Faq\Admin\FaqAdminHomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Faq\Admin\FaqAdminHomeForm.Designer.cs">
+      <DependentUpon>FaqAdminHomeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Faq\Admin\SingleValueManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Faq\Admin\SingleValueManager.Designer.cs">
+      <DependentUpon>SingleValueManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Faq\FaqViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Faq\FaqViewerForm.Designer.cs">
+      <DependentUpon>FaqViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Faq\PendingQuestions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Faq\PendingQuestions.Designer.cs">
+      <DependentUpon>PendingQuestions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Faq\QuestionFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Faq\QuestionFilter.Designer.cs">
+      <DependentUpon>QuestionFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Feedback\FeedbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Feedback\FeedbackForm.Designer.cs">
+      <DependentUpon>FeedbackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Feedback\FeedbackViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Feedback\FeedbackViewer.Designer.cs">
+      <DependentUpon>FeedbackViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Feedback\ImageAnnotator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Feedback\ImageAnnotator.Designer.cs">
+      <DependentUpon>ImageAnnotator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Intro\ConsentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Intro\ConsentForm.Designer.cs">
+      <DependentUpon>ConsentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Intro\LandingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Intro\LandingForm.Designer.cs">
+      <DependentUpon>LandingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Intro\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Intro\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Intro\PasswordExpiredForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Intro\PasswordExpiredForm.Designer.cs">
+      <DependentUpon>PasswordExpiredForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Intro\PasswordRevokedForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Intro\PasswordRevokedForm.Designer.cs">
+      <DependentUpon>PasswordRevokedForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Intro\TrainingModulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Intro\TrainingModulesForm.Designer.cs">
+      <DependentUpon>TrainingModulesForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UI\Faq\Admin\ExistingQuestionsTab.resx">
+      <DependentUpon>ExistingQuestionsTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Faq\Admin\FaqAdminHomeForm.resx">
+      <DependentUpon>FaqAdminHomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Faq\Admin\SingleValueManager.resx">
+      <DependentUpon>SingleValueManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Faq\FaqViewerForm.resx">
+      <DependentUpon>FaqViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Faq\PendingQuestions.resx">
+      <DependentUpon>PendingQuestions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Faq\QuestionFilter.resx">
+      <DependentUpon>QuestionFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Feedback\FeedbackForm.resx">
+      <DependentUpon>FeedbackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Feedback\FeedbackViewer.resx">
+      <DependentUpon>FeedbackViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Feedback\ImageAnnotator.resx">
+      <DependentUpon>ImageAnnotator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Intro\ConsentForm.resx">
+      <DependentUpon>ConsentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Intro\LandingForm.resx">
+      <DependentUpon>LandingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Intro\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\Intro\PasswordExpiredForm.resx">
+      <DependentUpon>PasswordExpiredForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Intro\PasswordRevokedForm.resx">
+      <DependentUpon>PasswordRevokedForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Intro\TrainingModulesForm.resx">
+      <DependentUpon>TrainingModulesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="mdautoupdate.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AssemblyPush.exe" />
+    <Content Include="CopyAndStart.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Helpers\_info.txt" />
+    <None Include="r8winkiller.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\search.png" />
+    <None Include="Resources\error.png" />
+    <None Include="Resources\activityhistory.png" />
+    <None Include="Resources\house.png" />
+    <None Include="Resources\underlinedu.png" />
+    <None Include="Resources\waveicon.ico" />
+    <Content Include="waveicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\INCIDENTRP\INCIDENTRP\INCIDENTRP.csproj">
+      <Project>{973a7219-c855-4892-b823-71a4f27e2cba}</Project>
+      <Name>INCIDENTRP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MauiDUDE\MauiDUDE.csproj">
+      <Project>{2af28557-421e-41c9-bb25-40b436903ff0}</Project>
+      <Name>MauiDUDE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDIntermediary\MDIntermediary.csproj">
+      <Project>{7211abc4-e643-4762-ab90-53ab53bd745d}</Project>
+      <Name>MDIntermediary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MdSession\MdSession.csproj">
+      <Project>{624a9737-f457-457e-b51c-eb1f02537a43}</Project>
+      <Name>MdSession</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxR8AXCTRLLib">
+      <Guid>{22E3D33C-657D-4BFA-9F0D-2CEEBA83B9A3}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="R8AXCTRLLib">
+      <Guid>{22E3D33C-657D-4BFA-9F0D-2CEEBA83B9A3}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Reflection">
+      <Guid>{ECF246D9-E871-11D2-8CC2-00C04F72C0ED}</Guid>
+      <VersionMajor>14</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>1033</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>REM if "$(ConfigurationName)" == "Release" "$(ProjectDir)AssemblyPush" $(ProjectDir)
+taskkill /im mdsession.exe 2&gt;NUL
+print 0
+</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

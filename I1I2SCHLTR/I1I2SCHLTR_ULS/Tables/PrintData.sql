@@ -1,0 +1,25 @@
+﻿CREATE TABLE [i1i2schltr].[PrintData]
+(
+	[PrintDataId] INT NOT NULL PRIMARY KEY IDENTITY,
+	[RunDateId] INT NOT NULL,
+	[SSN] VARCHAR(9) NOT NULL,
+	[Queue] VARCHAR(2) NULL,
+	[FirstName] VARCHAR(100) NULL,
+	[MiddleInitial] VARCHAR(1) NULL,
+	[LastName] VARCHAR(100) NULL,
+	[Address1] VARCHAR(50) NULL,
+	[Address2] VARCHAR(50) NULL,
+	[City] VARCHAR(100) NULL,
+	[State] VARCHAR(50) NULL,
+	[Zip] VARCHAR(10) NULL,
+	[Phone] VARCHAR(20) NULL,
+	[School] VARCHAR(100) NULL,
+	[SchoolStatus] VARCHAR(200) NULL,
+	[AlternatePhone] VARCHAR(20) NULL,
+	[Email] VARCHAR(200) NULL,
+	[AddedAt] DATETIME NULL,
+	[ProcessedAt] DATETIME NULL,
+	[DeletedAt] DATETIME NULL,
+	[DeletedBy] VARCHAR(50) NULL,
+	CONSTRAINT FK_PrintData_RunDates FOREIGN KEY(RunDateId) REFERENCES i1i2schltr.RunDates(RunDateId)
+)

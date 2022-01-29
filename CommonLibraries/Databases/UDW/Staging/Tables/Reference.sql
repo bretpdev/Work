@@ -1,0 +1,13 @@
+﻿CREATE TABLE [Staging].[Reference] (
+    [DF_SPE_ACC_ID] VARCHAR (10) NULL,
+    [DF_PRS_ID_RFR] VARCHAR (9)  NULL,
+    [BC_STA_BR03]   VARCHAR (1)  NULL,
+    [BI_ATH_3_PTY]  VARCHAR (1)  NULL,
+    [BC_RFR_REL_BR] VARCHAR (2)  NULL,
+    [BM_RFR_1]      VARCHAR (12) NULL,
+    [BM_RFR_LST]    VARCHAR (35) NULL,
+    [LST_CNC]       VARCHAR (10) NULL,
+    [LST_ATT]       VARCHAR (10) NULL,
+    [RFR_REL_BR]    VARCHAR (13) NULL
+);
+

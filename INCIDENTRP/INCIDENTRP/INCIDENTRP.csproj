@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{973A7219-C855-4892-B823-71A4F27E2CBA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>INCIDENTRP</RootNamespace>
+    <AssemblyName>INCIDENTRP</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>\\cs1\Standards\Desktop Software\ACDC\Dev\Need Help\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>\\cs1\Standards\Desktop Software\ACDC\Dev\Need Help\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|AnyCPU' ">
+    <OutputPath>\\cs1\Standards\Desktop Software\Need Help\Test\Need Help\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessObjects\ActionTaken.cs" />
+    <Compile Include="BusinessObjects\DataInvolved\AgencyDataInvolved.cs" />
+    <Compile Include="BusinessObjects\DataInvolved\AgencyEmployeeHrDataInvolved.cs" />
+    <Compile Include="BusinessObjects\DataInvolved\BorrowerDataInvolved.cs" />
+    <Compile Include="BusinessObjects\IsEmptyBase.cs" />
+    <Compile Include="BusinessObjects\DataInvolved\ThirdPartyDataInvolved.cs" />
+    <Compile Include="BusinessObjects\HistoryRecord.cs" />
+    <Compile Include="BusinessObjects\Incident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\AccessControlIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\DataEntryIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\DisposalOrDestructionIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\ElectronicMailDeliveryIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\FaxIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\IncidentBase.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\OddComputerBehaviorIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\PhysicalDamageLossOrTheftIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\RegularMailDeliveryIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\ScanOrProbeIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\SystemOrNetworkUnavailableIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\TelephoneIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\UnauthorizedPhysicalAccessIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\UnauthorizedSystemAccessIncident.cs" />
+    <Compile Include="BusinessObjects\IncidentTypes\ViolationOfAcceptableUseIncident.cs">
+    </Compile>
+    <Compile Include="BusinessObjects\Notifier.cs" />
+    <Compile Include="BusinessObjects\Reporter.cs" />
+    <Compile Include="BusinessObjects\Threat.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\CallerInfo\BackgroundNoise.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\BombInfo.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\Caller.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\CallerInfo\Dialect.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\CallerInfo\Language.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\CallerInfo\Manner.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\ThreatInfo.cs" />
+    <Compile Include="BusinessObjects\ThreatObjects\CallerInfo\Voice.cs" />
+    <Compile Include="BusinessObjects\Ticket.cs" />
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataAccess.Incident.cs" />
+    <Compile Include="DataAccess\DataAccess.Incident.DataInvolved.cs" />
+    <Compile Include="DataAccess\DataAccess.Incident.IncidentTypes.cs" />
+    <Compile Include="DataAccess\DataAccess.Threat.cs" />
+    <Compile Include="DataAccess\SsnHelper.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Options.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomEventArgs.cs" />
+    <Compile Include="StandAloneApp.cs" />
+    <Compile Include="SubSystem.cs" />
+    <Compile Include="UserInterface\HandleSsn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HandleSsn.designer.cs">
+      <DependentUpon>HandleSsn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\IncidentDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\IncidentDisplay.designer.cs">
+      <DependentUpon>IncidentDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\CauseOptions\BaseCauseOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\CauseOptions\BaseCauseOption.Designer.cs">
+      <DependentUpon>BaseCauseOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\CauseOptions\BorrowersRelativeCauseOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\CauseOptions\BorrowersRelativeCauseOption.Designer.cs">
+      <DependentUpon>BorrowersRelativeCauseOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\AgencyDataInvolvedOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\AgencyDataInvolvedOption.Designer.cs">
+      <DependentUpon>AgencyDataInvolvedOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\AgencyEmployeeHrDataInvolvedOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\AgencyEmployeeHrDataInvolvedOption.Designer.cs">
+      <DependentUpon>AgencyEmployeeHrDataInvolvedOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\BaseDataInvolvedOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\BaseDataInvolvedOption.Designer.cs">
+      <DependentUpon>BaseDataInvolvedOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\BorrowerDataInvolvedOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\BorrowerDataInvolvedOption.Designer.cs">
+      <DependentUpon>BorrowerDataInvolvedOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\ThirdPartyDataInvolvedOption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\DataInvolvedOptions\ThirdPartyDataInvolvedOption.Designer.cs">
+      <DependentUpon>ThirdPartyDataInvolvedOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\AccessControlIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\AccessControlIncidentType.Designer.cs">
+      <DependentUpon>AccessControlIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\BaseIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\BaseIncidentType.Designer.cs">
+      <DependentUpon>BaseIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\DataEntryIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\DataEntryIncidentType.Designer.cs">
+      <DependentUpon>DataEntryIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\DisposalOrDestructionIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\DisposalOrDestructionIncidentType.Designer.cs">
+      <DependentUpon>DisposalOrDestructionIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\ElectronicMailDeliveryIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\ElectronicMailDeliveryIncidentType.designer.cs">
+      <DependentUpon>ElectronicMailDeliveryIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\FaxIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\FaxIncidentType.Designer.cs">
+      <DependentUpon>FaxIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\OddComputerBehaviorIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\OddComputerBehaviorIncidentType.Designer.cs">
+      <DependentUpon>OddComputerBehaviorIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\PhysicalDamageIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\PhysicalDamageIncidentType.Designer.cs">
+      <DependentUpon>PhysicalDamageIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\RegularMailDeliveryIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\RegularMailDeliveryIncidentType.designer.cs">
+      <DependentUpon>RegularMailDeliveryIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\ScansProbesIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\ScansProbesIncidentType.Designer.cs">
+      <DependentUpon>ScansProbesIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\SystemOrNetworkUnavailableIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\SystemOrNetworkUnavailableIncidentType.Designer.cs">
+      <DependentUpon>SystemOrNetworkUnavailableIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\TelephoneIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\TelephoneIncidentType.designer.cs">
+      <DependentUpon>TelephoneIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\UnauthorizedPhysicalAccessIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\UnauthorizedPhysicalAccessIncidentType.Designer.cs">
+      <DependentUpon>UnauthorizedPhysicalAccessIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\UnauthorizedSystemAccessIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\UnauthorizedSystemAccessIncidentType.Designer.cs">
+      <DependentUpon>UnauthorizedSystemAccessIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\ViolationOfAcceptableUseIncidentType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\OptionDetailControls\IncidentTypes\ViolationOfAcceptableUseIncidentType.designer.cs">
+      <DependentUpon>ViolationOfAcceptableUseIncidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\ActionsTakenDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\ActionsTakenDetail.Designer.cs">
+      <DependentUpon>ActionsTakenDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\BaseDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\BaseDetail.Designer.cs">
+      <DependentUpon>BaseDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\CauseDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\CauseDetail.Designer.cs">
+      <DependentUpon>CauseDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\DataInvolvedDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\DataInvolvedDetail.Designer.cs">
+      <DependentUpon>DataInvolvedDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentDetail.Designer.cs">
+      <DependentUpon>IncidentDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentDetailNarrative.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentDetailNarrative.Designer.cs">
+      <DependentUpon>IncidentDetailNarrative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentDetailSummary.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentDetailSummary.Designer.cs">
+      <DependentUpon>IncidentDetailSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentReporterDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentReporterDetail.Designer.cs">
+      <DependentUpon>IncidentReporterDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentTypeDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\IncidentTypeDetail.Designer.cs">
+      <DependentUpon>IncidentTypeDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SectionDetailControls\SummaryItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SecurityIncident.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SecurityIncident.Designer.cs">
+      <DependentUpon>SecurityIncident.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\SecurityIncidentSection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserInterface\SecurityIncidentSection.Designer.cs">
+      <DependentUpon>SecurityIncidentSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\ThreatCall.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ThreatCall.Designer.cs">
+      <DependentUpon>ThreatCall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\ThreatCaller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ThreatCaller.Designer.cs">
+      <DependentUpon>ThreatCaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\ThreatDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ThreatDisplay.designer.cs">
+      <DependentUpon>ThreatDisplay.cs</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NeedHelp\SubSystemShared\SubSystemShared.csproj">
+      <Project>{6C5118EF-79B1-4741-BC91-FF389128D4D2}</Project>
+      <Name>SubSystemShared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\HandleSsn.resx">
+      <DependentUpon>HandleSsn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\IncidentDisplay.resx">
+      <DependentUpon>IncidentDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\CauseOptions\BaseCauseOption.resx">
+      <DependentUpon>BaseCauseOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\CauseOptions\BorrowersRelativeCauseOption.resx">
+      <DependentUpon>BorrowersRelativeCauseOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\DataInvolvedOptions\AgencyDataInvolvedOption.resx">
+      <DependentUpon>AgencyDataInvolvedOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\DataInvolvedOptions\AgencyEmployeeHrDataInvolvedOption.resx">
+      <DependentUpon>AgencyEmployeeHrDataInvolvedOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\DataInvolvedOptions\BaseDataInvolvedOption.resx">
+      <DependentUpon>BaseDataInvolvedOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\DataInvolvedOptions\BorrowerDataInvolvedOption.resx">
+      <DependentUpon>BorrowerDataInvolvedOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\DataInvolvedOptions\ThirdPartyDataInvolvedOption.resx">
+      <DependentUpon>ThirdPartyDataInvolvedOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\AccessControlIncidentType.resx">
+      <DependentUpon>AccessControlIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\BaseIncidentType.resx">
+      <DependentUpon>BaseIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\DataEntryIncidentType.resx">
+      <DependentUpon>DataEntryIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\DisposalOrDestructionIncidentType.resx">
+      <DependentUpon>DisposalOrDestructionIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\ElectronicMailDeliveryIncidentType.resx">
+      <DependentUpon>ElectronicMailDeliveryIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\FaxIncidentType.resx">
+      <DependentUpon>FaxIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\OddComputerBehaviorIncidentType.resx">
+      <DependentUpon>OddComputerBehaviorIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\PhysicalDamageIncidentType.resx">
+      <DependentUpon>PhysicalDamageIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\RegularMailDeliveryIncidentType.resx">
+      <DependentUpon>RegularMailDeliveryIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\ScansProbesIncidentType.resx">
+      <DependentUpon>ScansProbesIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\SystemOrNetworkUnavailableIncidentType.resx">
+      <DependentUpon>SystemOrNetworkUnavailableIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\TelephoneIncidentType.resx">
+      <DependentUpon>TelephoneIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\UnauthorizedPhysicalAccessIncidentType.resx">
+      <DependentUpon>UnauthorizedPhysicalAccessIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\UnauthorizedSystemAccessIncidentType.resx">
+      <DependentUpon>UnauthorizedSystemAccessIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\OptionDetailControls\IncidentTypes\ViolationOfAcceptableUseIncidentType.resx">
+      <DependentUpon>ViolationOfAcceptableUseIncidentType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\ActionsTakenDetail.resx">
+      <DependentUpon>ActionsTakenDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\BaseDetail.resx">
+      <DependentUpon>BaseDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\CauseDetail.resx">
+      <DependentUpon>CauseDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\DataInvolvedDetail.resx">
+      <DependentUpon>DataInvolvedDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\IncidentDetail.resx">
+      <DependentUpon>IncidentDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\IncidentDetailNarrative.resx">
+      <DependentUpon>IncidentDetailNarrative.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\IncidentDetailSummary.resx">
+      <DependentUpon>IncidentDetailSummary.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\IncidentReporterDetail.resx">
+      <DependentUpon>IncidentReporterDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SectionDetailControls\IncidentTypeDetail.resx">
+      <DependentUpon>IncidentTypeDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SecurityIncident.resx">
+      <DependentUpon>SecurityIncident.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\SecurityIncidentSection.resx">
+      <DependentUpon>SecurityIncidentSection.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\ThreatCall.resx">
+      <DependentUpon>ThreatCall.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\ThreatCaller.resx">
+      <DependentUpon>ThreatCaller.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterface\ThreatDisplay.resx">
+      <DependentUpon>ThreatDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Resources\NextArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PreviousArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wrongx_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\ActionTaken.datasource" />
+    <None Include="Properties\DataSources\AgencyDataInvolved.datasource" />
+    <None Include="Properties\DataSources\AgencyEmployeeHrDataInvolved.datasource" />
+    <None Include="Properties\DataSources\BackgroundNoise.datasource" />
+    <None Include="Properties\DataSources\BombInfo.datasource" />
+    <None Include="Properties\DataSources\BorrowerDataInvolved.datasource" />
+    <None Include="Properties\DataSources\Caller.datasource" />
+    <None Include="Properties\DataSources\Dialect.datasource" />
+    <None Include="Properties\DataSources\ElectronicMailDeliveryIncident.datasource" />
+    <None Include="Properties\DataSources\FaxIncident.datasource" />
+    <None Include="Properties\DataSources\Incident.datasource" />
+    <None Include="Properties\DataSources\Language.datasource" />
+    <None Include="Properties\DataSources\Manner.datasource" />
+    <None Include="Properties\DataSources\Notifier.datasource" />
+    <None Include="Properties\DataSources\Q.ActiveDirectoryUser.datasource" />
+    <None Include="Properties\DataSources\Q.BusinessUnit.datasource" />
+    <None Include="Properties\DataSources\RegularMailDeliveryIncident.datasource" />
+    <None Include="Properties\DataSources\Reporter.datasource" />
+    <None Include="Properties\DataSources\ThirdPartyDataInvolved.datasource" />
+    <None Include="Properties\DataSources\ThreatInfo.datasource" />
+    <None Include="Properties\DataSources\Ticket.datasource" />
+    <None Include="Properties\DataSources\Voice.datasource" />
+    <None Include="Resources\icon-checkmark-128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\HistoryRecord.datasource" />
+    <None Include="Resources\UheaaLogo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\TelephoneIncident.datasource" />
+    <None Include="Resources\IncidentIcon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

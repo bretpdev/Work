@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[GetLON32_DAT]
+	@FinancialDataId int
+AS
+	SELECT
+		'' AS [LD_SPA_STP],
+		'' AS [LC_SPA_REA_STP],
+		'' AS [LD_SPA_RTT],
+		'' AS [LC_STA_LON32]
+RETURN 0

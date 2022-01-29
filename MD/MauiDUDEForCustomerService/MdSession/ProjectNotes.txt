@@ -1,0 +1,7 @@
+﻿Reference to AxRibmCtl was added by right-clicking the toolbox -> "Choose Items" -> "COM Controls" -> "Reflection for IBM Session".
+Trying to add the reference through the references section seems to be difficult.
+Because the embedded session doesn't play well with the designer, we keep a placeholder panel on the form and swap in the control at runtime.
+
+The session is established between the two processes via a GUID passed to this application.  The OleServerName is set to the GUID and MD is then able to establish a connection.
+
+The Caption property on the reflection session is used to send messages from MD to the session.

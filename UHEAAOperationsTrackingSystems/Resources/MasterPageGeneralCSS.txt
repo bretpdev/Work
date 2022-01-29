@@ -1,0 +1,50 @@
+﻿<style type="text/css">
+	body
+	{
+		text-align: center;
+	}
+	.MainBodyDiv
+	{
+		border: medium outset #{0}; /* put the system's color in here */
+	}
+	.SystemLinkDiv 
+	{
+		border: medium outset #{0}; 
+		margin-top: 20px;
+	}
+	.AppButton
+	{
+		border: medium outset;
+		margin: 10px;
+		display: inline-block;
+	}
+	.HeaderLogo
+	{
+		background-image: url(  '/Shared/Images/{1}' );
+		width: 100px;
+		height: 100px;
+	}
+	.HeaderTitleText
+	{
+		border: medium outset #{0};
+		color: #{0};
+		font-size: xx-large;
+		font-weight: bold;
+	}
+	img
+	{
+		border: 0px;
+	}
+	.Processing
+	{
+		border-style: outset; 
+		border-color: #FFFFFF; 
+		font-size: xx-large; 
+		font-weight: bold; 
+		position: absolute; 
+		top: 450px; 
+		width: 80%; 
+		left: 10%; 
+		background-color: #{0};
+	}
+</style>

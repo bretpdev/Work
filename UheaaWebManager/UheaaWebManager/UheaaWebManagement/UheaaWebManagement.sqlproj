@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>UheaaWebManagement</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{3cce7382-870f-48a6-becc-51e0f83de667}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>RestDatabaseApiManagement</RootNamespace>
+    <AssemblyName>RestDatabaseApiManagement</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultSchema>webapi</DefaultSchema>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="webapi" />
+    <Folder Include="webapi\Stored Procedures" />
+    <Folder Include="webapi\Tables" />
+    <Folder Include="webmanager" />
+    <Folder Include="webmanager\Stored Procedures" />
+    <Folder Include="webmanager\Types" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="webapps" />
+    <Folder Include="webapps\Tables" />
+    <Folder Include="activedirectorycache" />
+    <Folder Include="activedirectorycache\Tables" />
+    <Folder Include="activedirectorycache\Stored Procedures" />
+    <Folder Include="activedirectorycache\Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="webapi\Stored Procedures\GetApiTokenAccess.sql" />
+    <Build Include="webapi\Tables\ApiTokens.sql" />
+    <Build Include="webapi\Tables\Controllers.sql" />
+    <Build Include="webapi\Tables\AccessLog.sql" />
+    <Build Include="webapi\webapi.sql" />
+    <Build Include="webmanager\Stored Procedures\GetDashboard.sql" />
+    <Build Include="webmanager\webmanager.sql" />
+    <Build Include="webapi\Tables\Roles.sql" />
+    <Build Include="webmanager\Stored Procedures\GetRoles.sql" />
+    <Build Include="webapi\Tables\UserTokens.sql" />
+    <Build Include="webmanager\Stored Procedures\GetApiTokens.sql" />
+    <Build Include="webmanager\Stored Procedures\GetApiTokenById.sql" />
+    <Build Include="webmanager\Stored Procedures\SaveApiToken.sql" />
+    <Build Include="webmanager\Stored Procedures\RetireApiToken.sql" />
+    <Build Include="webmanager\Stored Procedures\GetApiTokenAccessById.sql" />
+    <Build Include="webmanager\Types\ControllerAccessType.sql" />
+    <Build Include="webmanager\Stored Procedures\GetRoleById.sql" />
+    <Build Include="webmanager\Stored Procedures\GetRoleAccessById.sql" />
+    <Build Include="webmanager\Stored Procedures\SaveRole.sql" />
+    <Build Include="webmanager\Stored Procedures\RetireRole.sql" />
+    <Build Include="webmanager\Stored Procedures\GetRetiredRoles.sql" />
+    <Build Include="webmanager\Stored Procedures\GetRetiredApiTokens.sql" />
+    <Build Include="webapi\Stored Procedures\GetUserTokenAccess.sql" />
+    <Build Include="webapi\Stored Procedures\LogAccessAttempt.sql" />
+    <Build Include="webapi\Stored Procedures\ResolveToken.sql" />
+    <Build Include="webapi\Stored Procedures\GetOrGenerateUserToken.sql" />
+    <Build Include="dbo\Stored Procedures\GetCurrentWindowsUserToken.sql" />
+    <Build Include="webapps\webapps.sql" />
+    <Build Include="webapps\Tables\WebApps.sql" />
+    <Build Include="webapps\Tables\Groups.sql" />
+    <Build Include="activedirectorycache\activedirectorycache.sql" />
+    <Build Include="activedirectorycache\Tables\Groups.sql" />
+    <Build Include="activedirectorycache\Tables\UserGroups.sql" />
+    <Build Include="activedirectorycache\Tables\Users.sql" />
+    <Build Include="activedirectorycache\Stored Procedures\SetUserAndGroups.sql" />
+    <Build Include="activedirectorycache\Types\GroupIds.sql" />
+    <Build Include="activedirectorycache\Stored Procedures\RemoveOldUsers.sql" />
+    <Build Include="activedirectorycache\Stored Procedures\GetActiveDirectoryRoles.sql" />
+    <Build Include="activedirectorycache\Stored Procedures\SyncGroups.sql" />
+    <Build Include="activedirectorycache\Stored Procedures\GetServerDate.sql" />
+    <Build Include="webapi\Tables\ControllerActions.sql" />
+    <Build Include="webapi\Tables\ApiTokenControllerActions.sql" />
+    <Build Include="webapi\Tables\RoleControllerActions.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UheaaWebManagement.dbmdl" />
+    <None Include="UheaaWebManagement.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="UheaaWebManagement.refactorlog" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[R301_LST_Users] (
+    [UserID]   NVARCHAR (50) NOT NULL,
+    [AssignID] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_R301_LST_Users] PRIMARY KEY CLUSTERED ([UserID] ASC, [AssignID] ASC)
+);
+

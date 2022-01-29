@@ -1,0 +1,21 @@
+﻿@model List<ApiTokenSimpleModel>
+@{
+    ViewBag.Title = "Retired API Tokens";
+}
+
+<h2>Retired API Tokens</h2>
+<table class="list-table">
+    <tr>
+        <th>Token</th>
+        <th style="width:99%;">Notes</th>
+        <th>Controllers</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr data-href="/ApiTokens/@item.ApiTokenId">
+            <td class="nowrap">****-@item.GeneratedTokenLast12</td>
+            <td>@item.Notes</td>
+            <td class="number-cell">@item.ControllerCount</td>
+        </tr>
+    }
+</table>

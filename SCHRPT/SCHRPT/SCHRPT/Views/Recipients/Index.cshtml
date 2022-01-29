@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Recipient>
+@{
+    ViewBag.Title = "Recipients";
+}
+@helper RecipientLink(Recipient recipient, string text) {
+
+    <td>
+        <a href="/Recipients/@recipient.RecipientId" title="@recipient.Name">
+            @text
+        </a>
+    </td>
+}
+@Html.ActionLink("[Add New Recipient +]", "Add", new { }, new { id = "top-right-button" })
+<h2>Recipients (@Model.Count() total)</h2>
+<table class="list-table">
+    <tr>
+        <th>Recipient</th>
+        <th>Email</th>
+        <th>Company Name</th>
+        <th>Schools</th>
+    </tr>
+@foreach (var recipient in Model)
+{
+    <tr>
+        @RecipientLink(recipient, recipient.Name)
+        @RecipientLink(recipient, recipient.Email)
+        @RecipientLink(recipient, recipient.CompanyName)
+        @RecipientLink(recipient, recipient.SchoolCount.ToString())
+    </tr>
+}
+</table>

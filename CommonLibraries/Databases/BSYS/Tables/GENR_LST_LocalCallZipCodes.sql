@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[GENR_LST_LocalCallZipCodes] (
+    [ZIPCode] CHAR (5) NOT NULL,
+    CONSTRAINT [PK_GENR_LST_LocalCallZipCodes] PRIMARY KEY CLUSTERED ([ZIPCode] ASC)
+);
+

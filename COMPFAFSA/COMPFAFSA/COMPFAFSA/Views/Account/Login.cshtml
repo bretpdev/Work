@@ -1,0 +1,61 @@
+﻿@using COMPFAFSA.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log In";
+}
+
+@*<h2>@ViewBag.Title.</h2>*@
+<div class="row" style="padding-top: 80px">
+    <div class="col-md-8 col-md-offset-2 font-color-white background-color-grey" style="padding-top: 20px">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new {  }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row text-center">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-12 control-label", @style = "text-align: center; font-size: 24px; font-weight: normal;" })
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", style = "margin: 0 auto;", autocomplete = "off" })
+                        <b>@Html.ValidationMessageFor(m => m.Email, "", new { @class = "font-color-white", @style = "text-align: center; margin: 0 auto; display: block" })</b>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-12 control-label", @style = "text-align: center; font-size: 24px; font-weight: normal;" })
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="text-align: center">
+                        <p>
+                            <dfn>
+                                <small>
+                                    @Html.ActionLink("Click here to reset password", "ForgotPassword", new { }, new { id = "body-anchor" })
+                                </small>
+                            </dfn>
+                        </p>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", style = "margin: 0 auto;", autocomplete = "off" })
+                            <b>@Html.ValidationMessageFor(m => m.Password, "", new { @class = "font-color-white", @style = "text-align: center; margin: 0 auto; display: block;" })</b>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Log in" class="btn btn-default" style="margin: 0 auto; display: block" />
+                        </div>
+                    </div>
+                    <h4 class="centered" style="padding-bottom:10px;">Need help logging in? Call 801-321-7245</h4>
+                    }
+</section>
+    </div>
+    </div>
+    <div>
+        @{
+            Html.RenderPartial("~/Views/Shared/_EducatorAccountInfo.cshtml");
+        }
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[GENR_REF_LoanSaleList] (
+    [ID]       NVARCHAR (8)  NOT NULL,
+    [Name]     NVARCHAR (50) NOT NULL,
+    [SaleType] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_GENR_REF_LoanSaleList] PRIMARY KEY CLUSTERED ([ID] ASC)
+);
+

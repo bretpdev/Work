@@ -1,0 +1,48 @@
+﻿@model Recipient
+@{
+    string header = null;
+    string title = null;
+    string submit = null;
+    string action = null;
+    if (!Model.RecipientId.HasValue)
+    {
+        header = "Add New Recipient Information";
+        title = "New Recipient";
+        submit = "Add New Recipient";
+        action = "Add";
+    }
+    else
+    {
+        header = "Edit Recipient Information";
+        title = "Edit Recipient";
+        submit = "Save Changes";
+        action = "Edit";
+    }
+    ViewBag.Title = title;
+}
+@if (Model.RecipientId.HasValue)
+{
+@Html.ActionLink("[Retire this Recipient]", "Retire", new { id = Model.RecipientId }, new { id = "top-right-button" })
+}
+<h2>@header</h2>
+@using (Html.BeginForm(action, "Recipients"))
+{
+    @Html.HiddenFor(o => o.RecipientId)
+
+    @Html.LabelFor(o => o.Name)
+    @Html.TextBoxFor(o => o.Name, new { required = "", maxlength = "50", @class="long-box upper-box" })
+    <br />
+    @Html.LabelFor(o => o.Email)
+    @Html.TextBoxFor(o => o.Email, new { required = "", type="email", @class="long-box" })
+    <br />
+    @Html.LabelFor(o => o.CompanyName)
+    @Html.TextBoxFor(o => o.CompanyName, new { maxlength = "50", @class="long-box upper-box" })
+    <br />
+    <br />
+    <input type="submit" value="@submit" />
+    if (Model.RecipientId.HasValue)
+    {
+        <a href="/Recipients/Schools/@Model.RecipientId" class="button-link">Manage Recipient Subscriptions (@Model.SchoolCount)</a>
+        <a href="/Reports/ByRecipient?recipientId=@Model.RecipientId" class="button-link">Generate Report</a>
+    }
+}

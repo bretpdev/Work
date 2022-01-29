@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DCF1BA7C-6322-4056-9FDC-1FEF2DB597F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHGeneral</RootNamespace>
+    <AssemblyName>NHGeneral</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>\\cs1\Standards\Desktop Software\ACDC\Dev\Need Help\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>\\cs1\Standards\Desktop Software\ACDC\Dev\Need Help\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Test|AnyCPU' ">
+    <OutputPath>\\cs1\Standards\Desktop Software\Need Help\Test\Need Help\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessObjects\AttachedFile.cs" />
+    <Compile Include="BusinessObjects\DataValidators\BaseDataValidator.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DataValidator.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV1.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV2.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV3.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV4.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV5.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV6.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV7.cs" />
+    <Compile Include="BusinessObjects\DataValidators\DV8.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\BaseFlowUserCalculationProcessor.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\DCRFlowUserCalculationProcessor.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\DiffCrtAndAssignedToSSAnalystFlowUserCalculationProc.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\FlowCalculationProcessorCoordinator.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\MoveToAssignedToCourtFlowCalcProc.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\MoveToBUManagerCourtFlowCalcProc.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\MoveToDataStewardApproval.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\MoveToFacilitiesManager.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\MoveToISOManager.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\MoveToOpsAccountingManager.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\MoveToSystemSupportManager.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\SystemsSupportAnalystFlowUserCalculationProcessor.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\SystemSupportFlowUserCalculationProcessor.cs" />
+    <Compile Include="BusinessObjects\FlowUserCalculationProcessors\SystemSupportSpecialistFlowUserCalculationProcessor.cs" />
+    <Compile Include="BusinessObjects\LinkButtonCoordination\TicketDetailLinkButtonCoordinator.cs" />
+    <Compile Include="BusinessObjects\LinkButtonCoordination\TicketDetailLinkButtonData.cs" />
+    <Compile Include="BusinessObjects\SsnHelper.cs" />
+    <Compile Include="BusinessObjects\Ticket.cs" />
+    <Compile Include="DataAccess\DataClasses\CourtRotation.cs" />
+    <Compile Include="DataAccess\DataClasses\DCRSubjectOption.cs" />
+    <Compile Include="DataAccess\DataClasses\NotifyType.cs" />
+    <Compile Include="DataAccess\DataClasses\PriorityEmail.cs" />
+    <Compile Include="DataAccess\DataClasses\TicketAndFlowData.cs" />
+    <Compile Include="DataAccess\DataClasses\TicketData.cs" />
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\DataClasses\TimeTracking.cs" />
+    <Compile Include="Exceptions\DCRSubjectOptionAlreadyExistsInListTableException.cs" />
+    <Compile Include="Exceptions\FlowChangeException.cs" />
+    <Compile Include="Exceptions\InvalidUserInputException.cs" />
+    <Compile Include="HandleSsn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandleSsn.Designer.cs">
+      <DependentUpon>HandleSsn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NeedHelpTickets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NeedHelpTickets.Designer.cs">
+      <DependentUpon>NeedHelpTickets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StatusUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatusUpdate.Designer.cs">
+      <DependentUpon>StatusUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubSystem.cs" />
+    <Compile Include="User Controls\BaseNeedHelpTicketDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\BaseNeedHelpTicketDetail.Designer.cs">
+      <DependentUpon>BaseNeedHelpTicketDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\ChangeRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\ChangeRequest.Designer.cs">
+      <DependentUpon>ChangeRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\DCRRequest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\DCRRequest.Designer.cs">
+      <DependentUpon>DCRRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\Building.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\Building.Designer.cs">
+      <DependentUpon>Building.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\General.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\General.Designer.cs">
+      <DependentUpon>General.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Controls\MiddleClassBetweenBaseAndControls.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Controls\MiddleClassBetweenBaseAndControls.Designer.cs">
+      <DependentUpon>MiddleClassBetweenBaseAndControls.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HandleSsn.resx">
+      <DependentUpon>HandleSsn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NeedHelpTickets.resx">
+      <DependentUpon>NeedHelpTickets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatusUpdate.resx">
+      <DependentUpon>StatusUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\ChangeRequest.resx">
+      <DependentUpon>ChangeRequest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\DCRRequest.resx">
+      <DependentUpon>DCRRequest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\Building.resx">
+      <DependentUpon>Building.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Controls\General.resx">
+      <DependentUpon>General.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\NeedHelpVLogo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\UheaaLogo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{D39CCBC4-F262-4225-AE0C-925553DEA372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SubSystemShared\SubSystemShared.csproj">
+      <Project>{6c5118ef-79b1-4741-bc91-ff389128d4d2}</Project>
+      <Name>SubSystemShared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Need-Help-Logo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question-Mark-2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority5.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority6.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority7.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Priority8.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\TicketData.datasource" />
+    <None Include="Resources\Priority9.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Need-Help-Smaller-Logo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UheaaLogo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RedX.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

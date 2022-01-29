@@ -1,0 +1,103 @@
+﻿CREATE PROCEDURE [curracclat].[GetAvailableProcessData]
+	@TestMode bit
+AS
+DECLARE @Query VARCHAR(Max)
+IF @TestMode = 0
+	SET @Query = 'MERGE [curracclat].[ProcessData] AS T USING (SELECT D.* FROM OPENQUERY(DUSTER,'
+ELSE 
+	SET @Query = 'MERGE [curracclat].[ProcessData] AS T USING (SELECT D.* FROM OPENQUERY(QADBD004,'
+
+SELECT @Query = @Query + 
+		'''
+			SELECT DISTINCT
+				B.BF_SSN				
+			FROM 
+				(
+					SELECT DISTINCT
+						DC11.BF_SSN,
+						DC11.LD_TRX_EFF,
+						DC11.AF_APL_ID,
+						DC11.AF_APL_ID_SFX,
+						DC01.LD_NXT_PAY_DUE,
+						DC01.LD_LST_PAY,
+						DC01.LA_CLM_PRI,
+						DC01.LA_CLM_INT,
+						DC01.LA_PRI_COL,
+						DC01.LA_INT_ACR,
+						DC01.LA_INT_COL,
+						DC01.LA_LEG_CST_ACR,
+						DC01.LA_LEG_CST_COL,
+						DC01.LA_OTH_CHR_ACR,
+						DC01.LA_OTH_CHR_COL,
+						DC01.LA_COL_CST_ACR,
+						DC01.LA_COL_CST_COL,
+						DC01.LD_DFL_LST_CNC,
+						DC01.LD_CLM_ASN_DOE
+ 					FROM
+						OLWHRM1.DC11_LON_FAT DC11
+						INNER JOIN OLWHRM1.DC01_LON_CLM_INF DC01
+							ON DC01.AF_APL_ID = DC11.AF_APL_ID
+							AND DC01.AF_APL_ID_SFX = DC11.AF_APL_ID_SFX 
+					WHERE
+						DC11.LC_TRX_TYP IN (''''BR'''',''''EP'''')
+						AND DC01.LC_AUX_STA = '''' ''''
+						AND DC01.LC_STA_DC10 = ''''03''''
+						AND DC01.LF_DFL_CLR = ''''WG000001''''
+						AND (DAYS(DC01.LD_DFL_LST_CNC) < DAYS(CURRENT DATE) - 30 OR DC01.LD_DFL_LST_CNC IS NULL)
+						AND MONTH(DC01.LD_LST_PAY) <> MONTH(CURRENT DATE)
+ 						AND DC11.LD_TRX_EFF = (
+												SELECT
+													MAX(DC11_1.LD_TRX_EFF)
+												FROM
+													OLWHRM1.DC11_LON_FAT DC11_1
+												WHERE
+													DC11.BF_SSN = DC11_1.BF_SSN
+											  )
+				) B
+			INNER JOIN OLWHRM1.DC02_BAL_INT DC02
+				ON B.AF_APL_ID = DC02.AF_APL_ID
+				AND B.AF_APL_ID_SFX = DC02.AF_APL_ID_SFX
+			WHERE
+				B.LD_CLM_ASN_DOE IS NULL
+				AND NOT EXISTS
+					(
+						SELECT
+							*
+						FROM
+							OLWHRM1.CT30_CALL_QUE CT30
+						WHERE
+							CT30.DF_PRS_ID_BR = B.BF_SSN
+							AND CT30.IF_WRK_GRP = ''''WRK GP01''''
+					)
+			GROUP BY
+				B.BF_SSN,
+				B.LD_NXT_PAY_DUE,
+				B.LD_LST_PAY
+			HAVING
+				(
+					SUM(DC02.LA_CLM_BAL) > 25
+					OR SUM(B.LA_CLM_PRI + B.LA_CLM_INT	- B.LA_PRI_COL + B.LA_INT_ACR + DC02.LA_CLM_INT_ACR - B.LA_INT_COL) > 25
+					OR SUM(B.LA_LEG_CST_ACR - B.LA_LEG_CST_COL + B.LA_OTH_CHR_ACR - B.LA_OTH_CHR_COL +	B.LA_COL_CST_ACR - B.LA_COL_CST_COL + DC02.LA_CLM_PRJ_COL_CST) > 100
+				)
+				AND DATE(RTRIM(CHAR(MONTH(CURRENT DATE)))||''''/''''|| RTRIM(CHAR(DAY(B.LD_NXT_PAY_DUE)))||''''/''''|| CHAR(YEAR(CURRENT DATE))) <= CURRENT DATE - 5 DAYS
+				AND (B.LD_LST_PAY NOT BETWEEN DATE(RTRIM(CHAR(MONTH(CURRENT DATE)))||''''/''''|| RTRIM(CHAR(DAY(B.LD_NXT_PAY_DUE)))||''''/''''|| CHAR(YEAR(CURRENT DATE))) - 15 DAYS
+						AND DATE(RTRIM(CHAR(MONTH(CURRENT DATE)))||''''/''''|| RTRIM(CHAR(DAY(B.LD_NXT_PAY_DUE)))||''''/''''|| CHAR(YEAR(CURRENT DATE))) + 15 DAYS)
+		'') D) AS S
+	ON
+		(
+			S.BF_SSN = T.Ssn
+			AND T.ProcessedAt IS NULL
+			AND T.DeletedAt IS NULL
+		)
+	WHEN NOT MATCHED BY TARGET THEN
+		INSERT (Ssn)
+		VALUES(S.BF_SSN);
+	'
+EXEC (@Query)
+
+GRANT EXECUTE ON [curracclat].[GetAvailableProcessData] TO db_executor
+GO
+GRANT EXECUTE
+    ON OBJECT::[curracclat].[GetAvailableProcessData] TO [db_executor]
+    AS [dbo];
+

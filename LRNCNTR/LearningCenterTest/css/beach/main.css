@@ -1,0 +1,70 @@
+#content h1, #content h3
+{
+	font-family: "Tempus Sans ITC";
+	color: #874;
+}
+
+#content table {cursor: pointer;}
+
+#content td
+{
+	display: block;
+	height: 2.5em;
+	text-align: center;
+	font: bold 120% Arial;
+	background-color: #BA7;
+	border-style: outset;
+	border-width: 1px;
+}
+
+#content a:link, #content a:visited {color: black;}
+#content a:hover, #content a:active {color: #DC9;}
+
+#content td:hover {background-color: #542;}
+#content thead td {
+	color: #000000;
+	background-color: #6699CC;
+	font-size: x-large;
+}
+
+#content thead td:hover {
+	color: #000000;
+	background-color: #6699CC;
+	font-size: x-large;
+}
+
+#nonMenu td {
+	background-color: transparent;
+	font-size: small;
+	border-width: 0px;
+	border-style: none;
+	font: normal 100% Arial;
+}
+#nonMenu td:hover {
+	background-color: transparent;
+}
+#adminMenu td {
+	height: 25px;
+	padding: 0;
+}
+#adminMenu td:hover {
+	height: 25px;
+}
+
+#AMenu1 td{
+	text-align: left;
+	top: 105px;
+	left: 0px;
+}
+#AMenu2 td{
+	text-align: left;
+}
+#AMenu3 td{
+	text-align: left;
+}
+#AMenu4 td{
+	text-align: left;
+}
+#AMenu5 td{
+	text-align: left;
+}

@@ -1,0 +1,91 @@
+﻿html {
+    background: #ededed;
+    height:100%;
+    font-size: 14px;
+    font-family: sans-serif;
+    color: black;
+}
+body {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0 auto;
+    width: 1200px;
+    background: white;
+    min-height:100%;
+    padding-bottom: 15px;
+}
+a {
+    text-decoration: none;
+    color: #555aed;
+}
+a:hover {
+    text-decoration: underline;
+}
+h2 {
+    margin:5px 0;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    padding-bottom:5px;
+}
+
+header {
+    background: #4682B4;
+    color: white;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+header>a, header>a:visited, header>a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+header h1 {
+    margin:0;
+    padding: 10px;
+}
+
+#breadcrumbs {
+    background-color: #CCC;
+    padding-left: 5px;
+    padding-top: 2px;
+    margin:0 -15px;
+}
+
+.tab {
+    margin-left: 20px;
+}
+
+.forb {
+    border:solid;
+    font-size:large;
+    padding-top: 10px;
+}
+
+a.sort-link-colored-invariant {
+    color: #FFFFFF;
+}
+
+a.sort-link-colored-invariant:active {
+    color: #FFFFFF;
+}
+
+a.sort-link-colored-invariant:link {
+    color: #FFFFFF;
+}
+
+a.sort-link-colored-invariant:visited {
+    color: #FFFFFF;
+}
+
+.light-blue-highlight {
+    color: white;
+    background-color: #5056A2;
+}
+
+.padName {
+    padding-right: 10px;
+}

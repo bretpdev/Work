@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab label="UHEAA" id="UHEAATab">
+        <group id="ImagingGroup" label="Imaging Actions">
+          <button id="ImageEmailButton" label="Image Email" screentip="Image this Email" supertip="Image This Email" 
+                  onAction="ImageEmailButton_Clicked" getImage="ImageEmailButton_GetImage" size="large" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
+

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[LTDB_REF_InUse] (
+    [Using]   NVARCHAR (100) NOT NULL,
+    [UseType] NVARCHAR (50)  NOT NULL,
+    [User]    NVARCHAR (50)  NOT NULL,
+    CONSTRAINT [PK_LTDB_REF_InUse] PRIMARY KEY CLUSTERED ([Using] ASC, [UseType] ASC, [User] ASC) WITH (FILLFACTOR = 90)
+);
+

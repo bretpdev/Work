@@ -1,0 +1,24 @@
+﻿
+CREATE PROCEDURE [dbo].[CheckPaidAhead]
+	@AccountNumber char(10)
+	
+AS
+			SELECT
+				COUNT(*)
+			FROM
+				BL10_Bill BL10
+				INNER JOIN LN10_Loan LN10
+					ON LN10.DF_SPE_ACC_ID = BL10.DF_SPE_ACC_ID
+					AND LN10.LN_SEQ = BL10.LN_SEQ
+					AND LN10.LA_CUR_PRI > 0
+			WHERE
+				
+				BL10.PAID_AHEAD = 'Y'
+				AND BL10.LC_STA_LON80 = 'A'
+				AND BL10.LC_STA_BIL10 = 'A'
+				AND BL10.DF_SPE_ACC_ID = @AccountNumber
+				AND DATEDIFF(DAY, GETDATE(), LD_BIL_DU_LON) > 30
+			GROUP BY
+				BL10.DF_SPE_ACC_ID
+
+RETURN 0

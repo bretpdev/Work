@@ -1,0 +1,6 @@
+SELECT COUNT(*) FROM ODW..AY01_BR_ATY
+
+USE ODW;
+GO
+EXEC sp_spaceused N'dbo.AY01_BR_ATY'; 
+GO

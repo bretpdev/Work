@@ -1,0 +1,86 @@
+﻿CREATE PROCEDURE [dbo].[spMD_GetDefermentAndForbearenceData]
+
+	@AccountNumber					VARCHAR(10)  
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED		
+SELECT TypeCode,
+		CONVERT(VARCHAR(10), BeginDateDate, 101) as BeginDate,
+		CONVERT(VARCHAR(10),EndDate,101) AS EndDate,
+		[Type],
+		ISNULL(CONVERT(VARCHAR(10),CertDate, 101),'') AS CertDate,
+		CapInd,
+		cast(MonthsUsed as numeric) as MonthsUsed,
+		CAST(OneOfTheLoanSequenceNumbersAssociatedWithDeferOrForb AS INT) AS OneOfTheLoanSequenceNumbersAssociatedWithDeferOrForb,
+		BeginDateDate
+FROM 
+(
+	SELECT DISTINCT 
+		'D' + LC_DFR_TYP as TypeCode,
+		LD_DFR_BEG as BeginDateDate,
+		LD_DFR_END as EndDate,
+		ISNULL(FTD.Label,DF10.LC_DFR_TYP) as [Type],
+		DF10.LD_DFR_INF_CER as CertDate,
+		LC_LON_LEV_DFR_CAP as CapInd,
+		SUM(DATEDIFF(MONTH, LN50.LD_DFR_BEG, CASE 	WHEN LN50.LD_DFR_END > GETDATE() THEN CAST(GETDATE() AS DATE) ELSE LN50.LD_DFR_END	END)) OVER(PARTITION BY DF10.BF_SSN, DF10.LF_DFR_CTL_NUM) AS MonthsUsed,
+		MAX(LN_SEQ) OVER (PARTITION BY LN50.BF_SSN) as OneOfTheLoanSequenceNumbersAssociatedWithDeferOrForb
+	FROM 
+		DF10_BR_DFR_REQ DF10
+		LEFT JOIN FormatTranslation FTD
+			ON FTD.Start = DF10.LC_DFR_TYP
+			AND FTD.FmtName = '$DEFSTA'
+		INNER JOIN LN50_BR_DFR_APV LN50
+			ON LN50.BF_SSN = DF10.BF_SSN
+			AND LN50.LF_DFR_CTL_NUM = DF10.LF_DFR_CTL_NUM
+		INNER JOIN PD10_PRS_NME	PD10
+			ON PD10.DF_PRS_ID = DF10.BF_SSN
+	WHERE 
+		PD10.DF_SPE_ACC_ID = @AccountNumber
+		AND
+		DF10.LC_DFR_STA = 'A'
+		AND 
+		DF10.LC_STA_DFR10 = 'A'
+		AND
+		LN50.LC_STA_LON50 = 'A'
+		AND 
+		LN50.LC_DFR_RSP != '003' 
+		
+	UNION
+
+	SELECT DISTINCT 
+		'F' + LC_FOR_TYP as TypeCode,
+		LD_FOR_BEG as BeginDateDate,
+		LD_FOR_END as EndDate,
+		ISNULL(FTD.Label,FB10.LC_FOR_TYP) as [Type],
+		FB10.LD_FOR_INF_CER as CertDate,
+		LC_LON_LEV_FOR_CAP as CapInd,
+		SUM(DATEDIFF(MONTH, LN60.LD_FOR_BEG, CASE 	WHEN LN60.LD_FOR_END > GETDATE() THEN CAST(GETDATE() AS DATE) ELSE LN60.LD_FOR_END	END)) OVER(PARTITION BY FB10.BF_SSN, FB10.LF_FOR_CTL_NUM) AS MonthsUsed,
+		MAX(LN60.LN_SEQ) OVER (PARTITION BY LN60.BF_SSN) as OneOfTheLoanSequenceNumbersAssociatedWithDeferOrForb
+	FROM 
+		FB10_BR_FOR_REQ FB10
+		INNER JOIN LN60_BR_FOR_APV LN60
+			ON LN60.BF_SSN = FB10.BF_SSN
+			AND LN60.LF_FOR_CTL_NUM = FB10.LF_FOR_CTL_NUM
+		INNER JOIN PD10_PRS_NME PD10
+			ON PD10.DF_PRS_ID = FB10.BF_SSN
+		LEFT JOIN FormatTranslation FTD
+			ON FTD.Start = FB10.LC_FOR_TYP
+			AND FTD.FmtName = '$FORSTA'
+	WHERE
+		DF_SPE_ACC_ID = @AccountNumber
+		AND FB10.LC_FOR_STA = 'A' 
+		AND FB10.LC_STA_FOR10 = 'A'
+		AND LN60.LC_STA_LON60 = 'A'
+) as CompleteTable
+ORDER BY 
+	BeginDateDate
+
+END
+GO
+GRANT EXECUTE
+    ON OBJECT::[dbo].[spMD_GetDefermentAndForbearenceData] TO [UHEAA\Imaging Users]
+    AS [dbo];
+

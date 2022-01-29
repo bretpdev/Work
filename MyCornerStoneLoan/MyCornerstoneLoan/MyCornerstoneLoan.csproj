@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D5B82789-DF94-4316-B216-36783A18B456}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyCornerstoneLoan</RootNamespace>
+    <AssemblyName>MyCornerstoneLoan</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleMvcSitemap">
+      <HintPath>..\packages\SimpleMvcSitemap.2.3.1\lib\net45\SimpleMvcSitemap.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\site.css" />
+    <Content Include="Content\theme.css" />
+    <Content Include="explanations\mandatory_forbearance_request.htm" />
+    <Content Include="explanations\graduate_fellowship_deferment.htm" />
+    <Content Include="explanations\reaffirmation.htm" />
+    <Content Include="explanations\rehabilitation_training_deferment.htm" />
+    <Content Include="explanations\defermenteconomichardship.htm" />
+    <Content Include="explanations\defermentinschool.htm" />
+    <Content Include="explanations\defermentmilitary.htm" />
+    <Content Include="explanations\defermentplus.htm" />
+    <Content Include="explanations\defermentttd.htm" />
+    <Content Include="explanations\defermentunemployment.htm" />
+    <Content Include="explanations\dischargeatb.htm" />
+    <Content Include="explanations\dischargeds.htm" />
+    <Content Include="explanations\dischargesc.htm" />
+    <Content Include="explanations\dischargetlf.htm" />
+    <Content Include="explanations\dischargetpd.htm" />
+    <Content Include="explanations\dischargeur.htm" />
+    <Content Include="explanations\dischargeusup.htm" />
+    <Content Include="explanations\forbearancegeneral.htm" />
+    <Content Include="explanations\forbearanceloandebt.htm" />
+    <Content Include="explanations\forbearancetlf.htm" />
+    <Content Include="explanations\formthirdparty.htm" />
+    <Content Include="explanations\paymentsautopay.htm" />
+    <Content Include="explanations\paymentsplans.htm" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\aaback.png" />
+    <Content Include="Images\aabackalt.png" />
+    <Content Include="Images\adobereader.png" />
+    <Content Include="Images\animated-menu.css" />
+    <Content Include="Images\animated-menu.html" />
+    <Content Include="Images\animated-menu.js" />
+    <Content Include="Images\autopay.png" />
+    <Content Include="Images\autopaybanner.png" />
+    <Content Include="Images\barback.png" />
+    <Content Include="Images\Blue-Button-Down.png" />
+    <Content Include="Images\Blue-Button-Up.png" />
+    <Content Include="Images\boy-with-backpack.png" />
+    <Content Include="Images\btn_back.png" />
+    <Content Include="Images\btn_next.png" />
+    <Content Include="Images\btn_pause.png" />
+    <Content Include="Images\btn_play.png" />
+    <Content Include="Images\button-link.png" />
+    <Content Include="Images\calculator.png" />
+    <Content Include="Images\call-agent.png" />
+    <Content Include="Images\call-agent_small.png" />
+    <Content Include="Images\carousel\moneybanner.png" />
+    <Content Include="Images\carousel\nslds.png" />
+    <Content Include="Images\carousel\schoolresources.png" />
+    <Content Include="Images\celebrationpayoff.png" />
+    <Content Include="Images\celebrationpayoffsmall.png" />
+    <Content Include="Images\clockbanner.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\collaborativetraining.png" />
+    <Content Include="Images\cornerstone-logo-background.png" />
+    <Content Include="Images\cornerstone-logo-horizontal.png" />
+    <Content Include="Images\CornerstoneEmail.png" />
+    <Content Include="Images\CornerstoneLogo.png" />
+    <Content Include="Images\cornerstone_color_logo.gif" />
+    <Content Include="Images\cornerstone_color_logo.png" />
+    <Content Include="Images\cornerstone_color_logo_outl.png" />
+    <Content Include="Images\cornerstone_color_logo_small.png" />
+    <Content Include="Images\cornerstone_logo_reflected.png" />
+    <Content Include="Images\couch.png" />
+    <Content Include="Images\CS-Poster-Offset-Shadow1.png" />
+    <Content Include="Images\csback.png" />
+    <Content Include="Images\csrback.jpg" />
+    <Content Include="Images\csrback.png" />
+    <Content Include="Images\csrback2.png" />
+    <Content Include="Images\cs_logo_horizontal.png" />
+    <Content Include="Images\Delicious-Badge.png" />
+    <Content Include="Images\Delicious-BadgeSmall.png" />
+    <Content Include="Images\dlrepaymentplans.png" />
+    <Content Include="Images\doeLogo.png" />
+    <Content Include="Images\Download.png" />
+    <Content Include="Images\duedate-small.png" />
+    <Content Include="Images\duedate.png" />
+    <Content Include="Images\duedatechange.png" />
+    <Content Include="Images\duedatesmall.png" />
+    <Content Include="Images\easy.png" />
+    <Content Include="Images\Email-Badge.png" />
+    <Content Include="Images\Email-BadgeSmall.png" />
+    <Content Include="Images\email.png" />
+    <Content Include="Images\emailarrow.png" />
+    <Content Include="Images\emailcallus.png" />
+    <Content Include="Images\emailCSLogo.png" />
+    <Content Include="Images\emailsmall.png" />
+    <Content Include="Images\emails\CornerstoneLogo.png" />
+    <Content Include="Images\emails\Download.png" />
+    <Content Include="Images\emails\FacebookLarge.png" />
+    <Content Include="Images\emails\FacebookSmall.png" />
+    <Content Include="Images\emails\TwitterLarge.png" />
+    <Content Include="Images\emails\TwitterSmall.png" />
+    <Content Include="Images\emailwelcome.png" />
+    <Content Include="Images\emptywallet.png" />
+    <Content Include="Images\externallink.png" />
+    <Content Include="Images\externallinksmall.png" />
+    <Content Include="Images\Facebook Poster.png" />
+    <Content Include="Images\Facebook-Badge.png" />
+    <Content Include="Images\Facebook-BadgeSmall.png" />
+    <Content Include="Images\Facebook-Link.png" />
+    <Content Include="Images\facebook.png" />
+    <Content Include="Images\FacebookLarge.png" />
+    <Content Include="Images\FacebookSmall.png" />
+    <Content Include="Images\faq-blackboard.png" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\financial-future.png" />
+    <Content Include="Images\firstcar.gif" />
+    <Content Include="Images\form.png" />
+    <Content Include="Images\FourSquare-Badge.png" />
+    <Content Include="Images\fourthofjuly.png" />
+    <Content Include="Images\fridge.png" />
+    <Content Include="Images\fridge1.png" />
+    <Content Include="Images\fridgenew.png" />
+    <Content Include="Images\front-page.png" />
+    <Content Include="Images\front-page1.png" />
+    <Content Include="Images\get_adobe_reader.png" />
+    <Content Include="Images\googlebadge-small.png" />
+    <Content Include="Images\googlebadge.png" />
+    <Content Include="Images\GoToCornerstone.png" />
+    <Content Include="Images\happyholidays.png" />
+    <Content Include="Images\home-buttons\autopay.png" />
+    <Content Include="Images\home-buttons\forms.png" />
+    <Content Include="Images\home-buttons\lower.png" />
+    <Content Include="Images\home-buttons\troops.png" />
+    <Content Include="Images\hurricane.png" />
+    <Content Include="Images\ibr.png" />
+    <Content Include="Images\Linked-In-Badge.png" />
+    <Content Include="Images\Linked-In-BadgeSmall.png" />
+    <Content Include="Images\LinkedInLarge.png" />
+    <Content Include="Images\LinkedInSmall.png" />
+    <Content Include="Images\mailbox.png" />
+    <Content Include="Images\memorialday.png" />
+    <Content Include="Images\militarybackground.png" />
+    <Content Include="Images\mobile-phone.png" />
+    <Content Include="Images\money.png" />
+    <Content Include="Images\moneybanner.png" />
+    <Content Include="Images\moneyistight.png" />
+    <Content Include="Images\New CS QR Code.png" />
+    <Content Include="Images\newlsetterback.png" />
+    <Content Include="Images\nslds.png" />
+    <Content Include="Images\nslds_name_fap.gif" />
+    <Content Include="Images\online-education.png" />
+    <Content Include="Images\openlate.png" />
+    <Content Include="Images\opensign.png" />
+    <Content Include="Images\parents.png" />
+    <Content Include="Images\parentssmall.png" />
+    <Content Include="Images\payebanner.png" />
+    <Content Include="Images\paymentdue.png" />
+    <Content Include="Images\paymentduesmall.png" />
+    <Content Include="Images\pdficon_small.gif" />
+    <Content Include="Images\phone.png" />
+    <Content Include="Images\phonesmall.png" />
+    <Content Include="Images\picture2.png" />
+    <Content Include="Images\pioneers.png" />
+    <Content Include="Images\preload.gif" />
+    <Content Include="Images\Purple-Button-Down.png" />
+    <Content Include="Images\Purple-Button-Up.png" />
+    <Content Include="Images\repaymentoptions.png" />
+    <Content Include="Images\repaymentplanbanner.png" />
+    <Content Include="Images\results.png" />
+    <Content Include="Images\rpinfolarge.png" />
+    <Content Include="Images\rpinfoweb.png" />
+    <Content Include="Images\safe.png" />
+    <Content Include="Images\sandyInfo.png" />
+    <Content Include="Images\schoolaccess.png" />
+    <Content Include="Images\schoolaccesstest.png" />
+    <Content Include="Images\schoolaccesstestalt.png" />
+    <Content Include="Images\schoolcomms.png" />
+    <Content Include="Images\schoolcomms1.png" />
+    <Content Include="Images\schoolcommscommunicate.png" />
+    <Content Include="Images\schoolcommsplan.png" />
+    <Content Include="Images\schoolcommstracking.png" />
+    <Content Include="Images\schoolfacebook.png" />
+    <Content Include="Images\schoolresources.png" />
+    <Content Include="Images\segmentation.png" />
+    <Content Include="Images\segmentationlarge.png" />
+    <Content Include="Images\Sign-In-Button-Down.png" />
+    <Content Include="Images\Sign-In-Button.png" />
+    <Content Include="Images\social-media.png" />
+    <Content Include="Images\sold-sign.png" />
+    <Content Include="Images\startarrow.png" />
+    <Content Include="Images\StumbleUpon-Badge.png" />
+    <Content Include="Images\StumbleUpon-BadgeSmall.png" />
+    <Content Include="Images\taxes.png" />
+    <Content Include="Images\tightmoneyback.png" />
+    <Content Include="Images\tightmoneylarge.png" />
+    <Content Include="Images\TransparentImage.gif" />
+    <Content Include="Images\Tree-Picture.png" />
+    <Content Include="Images\Twitter-Badge.png" />
+    <Content Include="Images\Twitter-BadgeSmall.png" />
+    <Content Include="Images\twitter.png" />
+    <Content Include="Images\TwitterLarge.png" />
+    <Content Include="Images\TwitterSmall.png" />
+    <Content Include="Images\woman-dancing.png" />
+    <Content Include="Images\yellow-item-bg.jpg" />
+    <Content Include="Images\YouTube-Badge.png" />
+    <Content Include="Images\YouTube-BadgeSmall.png" />
+    <Content Include="Images\YouTubeLarge.png" />
+    <Content Include="Images\YouTubeSmall.png" />
+    <Content Include="forms\1845-0014_12-31-16_RPR_10-08-14_v2_IAI Submission.pdf" />
+    <Content Include="forms\CS Third Party Auth Form.pdf" />
+    <Content Include="forms\Spanish\fcatb_spanish.pdf" />
+    <Content Include="forms\Spanish\fcdq_spanish.pdf" />
+    <Content Include="forms\Spanish\forb_TLF_ALLLOANS_spanish.pdf" />
+    <Content Include="forms\Spanish\scld_spanish.pdf" />
+    <Content Include="forms\Spanish\tlfa_spanish.pdf" />
+    <Content Include="forms\Spanish\ur_spanish.pdf" />
+    <Content Include="forms\Spanish\usup_spanish.pdf" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="forms\EconomicHardship2018.pdf" />
+    <Content Include="forms\Spanish\EconomicHardship2018ES.pdf" />
+    <Content Include="forms\Automatic Payment Request Form - FED.pdf" />
+    <Content Include="forms\Publications\Military-Student-Loan-Benefits-Brochure.pdf" />
+    <Content Include="forms\1845-0059_TLFApp_ExpDate_20200930v2.pdf" />
+    <Content Include="forms\1845-0059_TLFForb_ExpDate_20200930v2.pdf" />
+    <Content Include="forms\1845-0058_02-07-19_FC-ATB_10-08-14_v1_IAI Submission.pdf" />
+    <Content Include="forms\1845-0058_02-07-19_FC-DS_10-08-14_v1_IAI Submission.pdf" />
+    <Content Include="forms\1845-0058_02-07-19_FC-US-UP_10-08-14_v2_IAI Submission.pdf" />
+    <Content Include="forms\1845-0058_02-07-19_SC_10-08-14_v1_IAI Submission.pdf" />
+    <Content Include="forms\1845-0058_02-07-19_UR_10-08-14_v1_IAI Submission.pdf" />
+    <None Include="Images\Thumbs.db" />
+    <Content Include="Images\Newsletter Background.psd" />
+    <Content Include="forms\1845-0011_GFL_FINAL.PDF" />
+    <Content Include="forms\1845-0011_RHT_FINAL.PDF" />
+    <Content Include="forms\1845-0011_09-30-18_IS-DR_08-02-16.pdf" />
+    <Content Include="forms\Spanish\1845-0011_09-30-18_IS-DR_08-02-16_ES.pdf" />
+    <Content Include="forms\1845-0011_09-30-18_PPB-DR_08-02-16.pdf" />
+    <Content Include="forms\Spanish\1845-0011_09-30-18_PPB-DR_08-02-16_ES.pdf" />
+    <Content Include="forms\1845-0011_09-30-18_TTD-DR_08-02-16.pdf" />
+    <Content Include="forms\Spanish\1845-0011_09-30-18_TTD-DR_08-02-16_ES.pdf" />
+    <Content Include="forms\1845-0011_09-30-18_UE-DR_08-02-16.pdf" />
+    <Content Include="forms\Spanish\1845-0011_09-30-18_UE-DR_08-02-16_ES.pdf" />
+    <Content Include="forms\Spanish\1845-0011_09-30-18_GF-DR_08-02-16_ES.pdf" />
+    <Content Include="forms\Spanish\1845-0011_09-30-18_RT-DR_08-02-16_ES.pdf" />
+    <Content Include="forms\1845-0018_09-30-18_M-FB_08-02-16.pdf" />
+    <Content Include="forms\Spanish\1845-0018_09-30-18_M-FB_08-02-16_ES.pdf" />
+    <Content Include="forms\1845-0031_09-30-18_G-FB_08-02-16.pdf" />
+    <Content Include="forms\1845-0018_09-30-18_SLDB-FB_08-02-16.pdf" />
+    <Content Include="forms\Spanish\1845-0018_09-30-18_SLDB-FB_08-02-16_ES.pdf" />
+    <Content Include="forms\Spanish\1845-0133_06-30-18_SRA_08-02-16_ES.pdf" />
+    <Content Include="forms\1845-0133_REA_FINAL.pdf" />
+    <Content Include="forms\Publications\ExtendPlan_Brochure.pdf" />
+    <Content Include="forms\Publications\GradPlan_Brochure.pdf" />
+    <Content Include="forms\Publications\StandardPlan_Brochure.pdf" />
+    <Content Include="forms\Publications\PRIVACY NOTICE 6_2016.pdf" />
+    <Content Include="forms\Publications\IBRPlan_Brochure.pdf" />
+    <Content Include="forms\Publications\ICRPlan_Brochure.pdf" />
+    <Content Include="forms\Publications\PAYEPlan_Brochure.pdf" />
+    <Content Include="forms\Publications\REPAYEPlan_Brochure.pdf" />
+    <Content Include="forms\School Authorization Form_FED.pdf" />
+    <Content Include="forms\MIL_20170206.pdf" />
+    <Content Include="forms\1845-0011_HRD_FINAL.pdf" />
+    <Content Include="forms\Spanish\1845-0031_GFB_FINAL %28es%29_3998 - 13.pdf" />
+    <Content Include="forms\Spanish\1845-0102_IDR_FINAL COR_WITH 83C CNGS %28es%29 20160919 new 041217 - 14.pdf" />
+    <None Include="Properties\PublishProfiles\cornerstoneloan.pubxml" />
+    <None Include="Properties\PublishProfiles\dev.mycornerstoneloan.org.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\localhost.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.0.0.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <None Include="Scripts\jquery-3.3.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="Controllers\SchoolsController.cs" />
+    <Compile Include="Controllers\ServiceMembersController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BannerHelper.cs" />
+    <Compile Include="Models\Configuration.cs" />
+    <Compile Include="Models\EmailHelper.cs" />
+    <Compile Include="Models\Form.cs" />
+    <Compile Include="Models\FormGroup.cs" />
+    <Compile Include="UrlHelpers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Payments\AutoPay.cshtml" />
+    <Content Include="Views\Payments\Bills.cshtml" />
+    <Content Include="Views\Payments\PayOff.cshtml" />
+    <Content Include="Views\Payments\Index.cshtml" />
+    <Content Include="Views\Payments\RepaymentPlans.cshtml" />
+    <Content Include="Views\Payments\_StandardRepaymentPlan.cshtml" />
+    <Content Include="Views\Payments\_GraduatedRepayment.cshtml" />
+    <Content Include="Views\Payments\_ExtendedrePayment.cshtml" />
+    <Content Include="Views\Payments\_IBR.cshtml" />
+    <Content Include="Views\Payments\_ICR.cshtml" />
+    <Content Include="Views\Payments\_PayAsYouEarn.cshtml" />
+    <Content Include="Views\Account\BorrowerBenefits.cshtml" />
+    <Content Include="Views\Account\Delinquency.cshtml" />
+    <Content Include="Views\Account\DueDate.cshtml" />
+    <Content Include="Views\Account\LoanVerification.cshtml" />
+    <Content Include="Views\Account\Consolidation.cshtml" />
+    <Content Include="Views\Account\PostponePayments.cshtml" />
+    <Content Include="Views\Account\ThirdPartyAuth.cshtml" />
+    <Content Include="Views\ServiceMembers\Benefits.cshtml" />
+    <Content Include="Views\ServiceMembers\Index.cshtml" />
+    <Content Include="Views\ServiceMembers\Deferment.cshtml" />
+    <Content Include="Views\ServiceMembers\PostDeferment.cshtml" />
+    <Content Include="Views\ServiceMembers\Resources.cshtml" />
+    <Content Include="Views\ServiceMembers\SCRA.cshtml" />
+    <Content Include="Views\ServiceMembers\Tips.cshtml" />
+    <Content Include="Views\Payments\PayAsYouEarn.cshtml" />
+    <Content Include="Views\Schools\Index.cshtml" />
+    <Content Include="Views\Schools\DelinquencyManagement.cshtml" />
+    <Content Include="Views\Schools\Plan.cshtml" />
+    <Content Include="Views\Schools\Communicate.cshtml" />
+    <Content Include="Views\Schools\Track.cshtml" />
+    <Content Include="Views\Home\EmailSent.cshtml" />
+    <Content Include="Views\Schools\Publications.cshtml" />
+    <Content Include="Views\Home\Calculators.cshtml" />
+    <Content Include="Views\Home\Forms.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\Jobs.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\Terms.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Account\AlternativeFormat.cshtml" />
+    <Content Include="Views\Account\LoanStatement.cshtml" />
+    <Content Include="Views\Account\IDRInfo.cshtml" />
+    <Content Include="Views\Home\Navigation.cshtml" />
+    <Content Include="Views\Home\Repaye.cshtml" />
+    <Content Include="Views\Payments\HowArePaymentsApplied.cshtml" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>61096</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:61096/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

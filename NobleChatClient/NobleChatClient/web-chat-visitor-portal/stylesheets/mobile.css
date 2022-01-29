@@ -1,0 +1,60 @@
+﻿@media only screen and (pointer: coarse) {
+    .chatviewer-form {
+        width: 100%;
+        border-collapse: collapse;
+        display: table;
+    }
+    .chatviewer-form td {
+        display: block;
+    }
+    .chatviewer-form input {
+        width: 90%;
+    }
+    .chatviewer-usericon-table {
+        display: none;
+    }
+    .chatviewer-messagefrom-table {
+    }
+
+    .chatviewer-messagefrom-table, .chatviewer-messagedate-table, .chatviewer-message-table {
+        display: block;
+        border-left: none;
+    }
+
+    .chatviewer-message-table {
+        border-top: dashed 1px black;
+        margin-bottom: 0px;
+        margin-top: 5px;
+        padding: 10px;
+    }
+    .chatviewer-messagecontainer {
+        display: block !important;
+    }
+
+    .chatviewer-messagecontainer:nth-child(odd) {
+        background-color: #EEE;
+    }
+    .chatviewer-messagecontainer:nth-child(even) {
+        /*background-color: #000;*/
+    }
+    #chatviewer-messagelist.table {
+        padding: 0px;
+        overflow-y: visible;
+        position: relative;
+        display: block !important;
+    }
+    #chat-panel, #chatviewer-contentarea {
+        height: inherit !important;
+        min-height: 0px !important;
+    }
+    #chatviewer-messagecolumn {
+        float: none;
+        position: relative;
+    }
+    #chatviewer-messagebarcontainer {
+        position: relative;
+    }
+    #chatviewer-form-submit {
+        margin-bottom: 50px;
+    }
+}

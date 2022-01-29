@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>BATCHESP_ULS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{6ce54161-7626-4ad3-8ac9-b40c288af35a}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>BATCHESP_ULS</RootNamespace>
+    <AssemblyName>BATCHESP_ULS</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Ts01Enrollments.sql" />
+    <Build Include="batchesp.sql" />
+    <Build Include="Tables\TsayDefermentForbearances.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedDefermentForbearancesByBorrowerSsn.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedLoanInformationByBorrowerSsn.sql" />
+    <Build Include="Stored Procedures\SetTs26LoanInformationAsProcessed.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedEspEnrollments.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedTs01EnrollmentsByBorrowerSsn.sql" />
+    <Build Include="Stored Procedures\SetEspEnrollmentAsProcessed.sql" />
+    <Build Include="Stored Procedures\SetTs01EnrollmentAsProcessed.sql" />
+    <Build Include="Stored Procedures\SetTsayDefermentForbearanceAsProcessed.sql" />
+    <Build Include="Stored Procedures\AddNewWorkToTables.sql" />
+    <Build Include="Tables\EspEnrollments.sql" />
+    <Build Include="Tables\NonSelectionReasons.sql" />
+    <Build Include="Stored Procedures\GetNonSelectionReasons.sql" />
+    <Build Include="Tables\Ts26SqlLoanInformation.sql" />
+    <Build Include="Tables\Ts2hPendingDisbursements.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedTs2hPendingDisbursementsByBorrowerSsn.sql" />
+    <Build Include="Stored Procedures\SetTs2hPendingDisbursementAsProcessed.sql" />
+    <Build Include="Stored Procedures\GetAccessQueues.sql" />
+    <Build Include="Stored Procedures\Test_MarkBorrowerUnprocessed.sql" />
+    <Build Include="Tables\ParentPlusLoanDetails.sql" />
+    <Build Include="Tables\Ts26ScrapedLoanInformation.sql" />
+    <Build Include="Stored Procedures\AddTs26ScrapedLoanInformation.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedParentPlusLoanDetailsByBorrowerSsn.sql" />
+    <Build Include="Stored Procedures\SetParentPlusLoanDetailAsProcessed.sql" />
+    <Build Include="Tables\TsayScrapedLoanInformation.sql" />
+    <Build Include="Stored Procedures\AddTsayScrapedLoanInformation.sql" />
+    <Build Include="Stored Procedures\GetSemesterGaps.sql" />
+    <Build Include="Stored Procedures\SetTsayScrapedLoanInformationAsProcessed.sql" />
+    <Build Include="Stored Procedures\InsertIntoQueueCompleter.sql" />
+    <Build Include="Stored Procedures\SetTaskAsRequiresReview.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="BATCHESP_CLS_ULS.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploymentScript.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BATCHESP_CLS.OPSDEV.publish.xml" />
+  </ItemGroup>
+</Project>

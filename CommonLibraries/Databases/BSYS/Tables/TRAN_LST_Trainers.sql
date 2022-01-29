@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[TRAN_LST_Trainers] (
+    [Trainer] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_TRAN_LST_Trainers] PRIMARY KEY CLUSTERED ([Trainer] ASC),
+    CONSTRAINT [FK_TRAN_LST_Trainers_SYSA_LST_Users] FOREIGN KEY ([Trainer]) REFERENCES [dbo].[SYSA_LST_Users] ([WindowsUserName]) ON DELETE CASCADE ON UPDATE CASCADE
+);
+

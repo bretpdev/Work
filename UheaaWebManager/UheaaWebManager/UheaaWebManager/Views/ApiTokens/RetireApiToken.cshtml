@@ -1,0 +1,49 @@
+﻿@model ApiTokenDetailedModel
+@{
+    bool alreadyRetired = Model.InactivatedAt.HasValue || Model.EndDate < DateTime.Now;
+    if (alreadyRetired)
+    {
+        ViewBag.Title = "View Retired API Token";
+    }
+    else
+    {
+        ViewBag.Title = "Retire API Token";
+    }
+    string dateRange = Model.StartDate.ToShortDateString() + " - ";
+    if (Model.EndDate.HasValue)
+    {
+        dateRange += Model.EndDate.Value.ToShortDateString();
+    }
+    else
+    {
+        dateRange += "[No End Date]";
+    }
+}
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(o => o.ApiTokenId)
+
+    <h3>Token</h3>
+    @Model.GeneratedToken
+
+    <h3>Active</h3>
+    @dateRange
+
+    <h3>Notes</h3>
+    if (string.IsNullOrWhiteSpace(Model.Notes))
+    {
+        <span>(None)</span>
+    }
+    else
+    {
+        <span>@Model.Notes</span>
+    }
+
+    if (!alreadyRetired)
+    {
+        <br />
+        <br />
+        <input type="submit" value="Retire API Token (cannot be undone)" />
+    }
+}

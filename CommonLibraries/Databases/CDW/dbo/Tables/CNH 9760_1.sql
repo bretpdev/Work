@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[CNH 9760] (
+    [BF_SSN] NVARCHAR (255) NULL,
+    [LN_SEQ] NVARCHAR (255) NULL
+);
+

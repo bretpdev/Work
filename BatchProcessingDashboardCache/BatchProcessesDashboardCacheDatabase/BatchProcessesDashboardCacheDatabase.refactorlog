@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="fd905c63-ad8e-4210-b690-8df9bfb9453a" ChangeDateTime="04/24/2017 18:41:21">
+    <Property Name="ElementName" Value="[dashcache].[DashboardItems].[MostRecentQuery]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dashcache].[DashboardItems]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Query" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="43999bfe-3186-4cda-ad1d-7f4a3ea1822a" ChangeDateTime="04/24/2017 18:48:23">
+    <Property Name="ElementName" Value="[dashcache].[DashboardItems].[Query]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dashcache].[DashboardItems]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SprocName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8ff94043-0d98-4a9f-ab9e-a6d24fd5dbe8" ChangeDateTime="04/24/2017 19:11:04">
+    <Property Name="ElementName" Value="[dashcache].[DashboardItems].[SprocName]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dashcache].[DashboardItems]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UheaaSprocName" />
+  </Operation>
+</Operations>

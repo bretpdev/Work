@@ -1,0 +1,121 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/UNWS65.NWS65RZ";
+FILENAME REPORT2 "&RPTLIB/UNWS65.NWS65R2";
+
+LIBNAME  LEGEND  REMOTE  SERVER=LEGEND SLIBREF=work  ;
+RSUBMIT LEGEND;
+/*%let DB = DNFPRQUT;  *This is test;*/
+/*%let DB = DNFPRUUT;  *This is VUK3 test;*/
+%let DB = DNFPUTDL;  *This is live;
+
+LIBNAME PKUB DB2 DATABASE=&DB OWNER=PKUB;
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=&DB);
+
+	CREATE TABLE S65 AS
+		SELECT	
+			*
+		FROM	
+			CONNECTION TO DB2 
+				(
+					SELECT DISTINCT
+						PD10.DF_SPE_ACC_ID
+					FROM
+						PKUB.PD10_PRS_NME PD10
+						JOIN PKUB.LN10_LON LN10
+							ON PD10.DF_PRS_ID = LN10.BF_SSN
+							AND LN10.LC_STA_LON10 = 'R'
+							AND LN10.LA_CUR_PRI > 0
+						JOIN PKUB.LN16_LON_DLQ_HST LN16
+							ON LN10.BF_SSN = LN16.BF_SSN
+							AND LN10.LN_SEQ = LN16.LN_SEQ
+							AND LN16.LC_STA_LON16 = '1'
+							AND LN16.LN_DLQ_MAX > 1
+						JOIN PKUB.DW01_DW_CLC_CLU DW01
+							ON LN10.BF_SSN = DW01.BF_SSN
+							AND LN10.LN_SEQ = DW01.LN_SEQ
+							AND DW01.WC_DW_LON_STA IN ('04','05')
+						LEFT JOIN
+							(
+								SELECT
+									LN50.BF_SSN,
+									LN50.LN_SEQ
+								FROM
+									PKUB.LN50_BR_DFR_APV LN50
+									JOIN PKUB.DF10_BR_DFR_REQ DF10
+										ON LN50.BF_SSN = DF10.BF_SSN
+										AND LN50.LF_DFR_CTL_NUM = DF10.LF_DFR_CTL_NUM
+										AND LN50.LC_STA_LON50 = 'A'
+										AND DAYS(LN50.LD_DFR_END) >= DAYS(CURRENT_DATE) - 5
+										AND DF10.LC_DFR_STA = 'A'
+										AND DF10.LC_STA_DFR10 = 'A'
+							) DEFR
+							ON LN10.BF_SSN = DEFR.BF_SSN
+							AND LN10.LN_SEQ = DEFR.LN_SEQ
+						LEFT JOIN
+							(
+								SELECT
+									LN60.BF_SSN,
+									LN60.LN_SEQ
+								FROM
+									PKUB.LN60_BR_FOR_APV LN60
+									JOIN PKUB.FB10_BR_FOR_REQ FB10
+										ON LN60.BF_SSN = FB10.BF_SSN
+										AND LN60.LF_FOR_CTL_NUM = FB10.LF_FOR_CTL_NUM
+										AND LN60.LC_STA_LON60 = 'A'
+										AND DAYS(LN60.LD_FOR_END) >= DAYS(CURRENT_DATE) - 5
+										AND FB10.LC_FOR_STA = 'A'
+										AND FB10.LC_STA_FOR10 = 'A'
+										AND FB10.LC_FOR_TYP NOT IN ('13', '14', '28')
+							) FORB
+							ON LN10.BF_SSN = FORB.BF_SSN
+							AND LN10.LN_SEQ = FORB.LN_SEQ
+						LEFT JOIN PKUB.AY10_BR_LON_ATY AY10
+							ON LN10.BF_SSN = AY10.BF_SSN
+							AND AY10.PF_REQ_ACT = 'DELQE'
+							AND DAYS(AY10.LD_ATY_REQ_RCV) >= DAYS(CURRENT_DATE) - 30
+					WHERE
+						(DEFR.BF_SSN IS NOT NULL OR FORB.BF_SSN IS NOT NULL)
+						AND AY10.BF_SSN IS NULL
+
+					FOR READ ONLY WITH UR
+				)
+	;
+
+	DISCONNECT FROM DB2;
+
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+QUIT;
+
+ENDRSUBMIT;
+
+DATA S65; SET LEGEND.S65; RUN;
+
+/*export to queue builder (fed) file*/
+DATA _NULL_;
+	SET S65 ;
+	FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+	PUT DF_SPE_ACC_ID 'DELQE,,,,,,,ALL,There is a Forbearance or Deferment on this account but a delinquency still exists on one or more loans.  Please review and correct.' ;
+RUN;
+
+
+

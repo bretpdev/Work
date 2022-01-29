@@ -1,0 +1,1 @@
+delete from cls..SystemLetterExclusions where SystemLetterExclusionId = 97

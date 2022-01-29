@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BA6BCC69-1A22-43BA-9D85-468A445E5133}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>MDLMHome</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>MDLMHome</RootNamespace>
+    <StartupObject>MDLMHome.%28None%29</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/MDLMHome/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>MDLMHome.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>MDLMHome.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.OSSMTP, Version=18.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Interop.VBA, Version=6.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.PowerPoint, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="office, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\Q\Q.vbproj">
+      <Project>{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}</Project>
+      <Name>Q</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ForbReq\ForbReq.vbproj">
+      <Project>{D75A6A2B-F5C2-4314-A1F5-A137BF150B14}</Project>
+      <Name>ForbReq</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDAskDUDE\MDAskDUDE.vbproj">
+      <Name>MDAskDUDE</Name>
+      <Project>{0CBA2942-C8FB-479D-A3BD-F947E0657EB7}</Project>
+      <Package>{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\MDBSHome\MDBSHome.vbproj">
+      <Project>{AA1CC4DE-F9A0-4FA1-9109-203C996F68F4}</Project>
+      <Name>MDBSHome</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SP\SP.vbproj">
+      <Name>SP</Name>
+      <Project>{B8B0AF75-4A08-4332-B386-FF5531B10FB7}</Project>
+      <Package>{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</Package>
+    </ProjectReference>
+    <COMReference Include="Reflection">
+      <Guid>{ECF246D9-E871-11D2-8CC2-00C04F72C0ED}</Guid>
+      <VersionMajor>14</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>1033</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="VBA">
+      <Guid>{000204EF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>9</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityCmts.designer.vb">
+      <DependentUpon>ActivityCmts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ActivityCmts.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BorrowerLM.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="frmActivityHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmContactScript.designer.vb">
+      <DependentUpon>frmContactScript.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmContactScript.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCSQueueTask.Designer.vb">
+      <DependentUpon>frmCSQueueTask.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmCSQueueTask.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGetAttemptInfo.Designer.vb">
+      <DependentUpon>frmGetAttemptInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGetAttemptInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLMBins.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLMDemographics.Designer.vb">
+      <DependentUpon>frmLMDemographics.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLMDemographics.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLMHomePage.Designer.vb">
+      <DependentUpon>frmLMHomePage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLMHomePage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReferenceDetail.Designer.vb">
+      <DependentUpon>frmReferenceDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReferenceDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LMBinFrmBtns.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LMBorContactScript.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoanDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMoreStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOpenOrAll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQueues.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Payment.vb" />
+    <Compile Include="Reference.vb" />
+    <EmbeddedResource Include="ActivityCmts.resx">
+      <DependentUpon>ActivityCmts.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmActivityHistory.resx">
+      <DependentUpon>frmActivityHistory.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmContactScript.resx">
+      <DependentUpon>frmContactScript.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCSQueueTask.resx">
+      <DependentUpon>frmCSQueueTask.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGetAttemptInfo.resx">
+      <DependentUpon>frmGetAttemptInfo.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLMBins.resx">
+      <DependentUpon>frmLMBins.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLMHomePage.resx">
+      <DependentUpon>frmLMHomePage.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReferenceDetail.resx">
+      <DependentUpon>frmReferenceDetail.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LMBinFrmBtns.resx">
+      <DependentUpon>LMBinFrmBtns.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MauiDUDERes.resX">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoanDetail.resx">
+      <DependentUpon>frmLoanDetail.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMoreStatus.resx">
+      <DependentUpon>frmMoreStatus.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOpenOrAll.resx">
+      <DependentUpon>frmOpenOrAll.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQueues.resx">
+      <DependentUpon>frmQueues.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PHONE.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\30.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\90.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\180.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\All.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Book.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DollarSign.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Info.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\light.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\List.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mask.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Phone4ToolBar.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Question.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unorderedlist.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,1 @@
+DELETE FROM CDW..LocalLoadData WHERE SasCodename in('UTNWDW1.Borrower.sas','UTNWDW1.Loan.sas','UTNWDW1.Delinquency.sas','UTNWDW1.Email.sas','UTNWDW1.Address.sas','UTNWDW1.Phone.sas','UTNWDW1.Loan2.sas','UTNWDW1.RPS.sas','UTNWDW1.Forbearance.sas')

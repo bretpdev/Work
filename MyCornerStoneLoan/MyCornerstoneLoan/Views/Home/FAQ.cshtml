@@ -1,0 +1,1256 @@
+﻿@{
+    ViewBag.Title = "FAQ";
+}
+
+@section Meta {
+    <meta name="description" content="We know you have questions. Check out our frequently asked questions to find the information you need. If you can't find an answer here, give us a call." />
+}
+
+<h2>Frequently Asked Questions</h2>
+
+<div id="faqCategories" class="row" tabindex="-1">
+    <div class="col-md-12">
+        <h3>Categories</h3>
+        <h4><a href="#borrowerQuestions">Borrower Questions</a></h4>
+        <h4><a href="#studentQuestions">Student Loans</a></h4>
+        <h4><a href="#loanDischargeQuestions">Loan Discharge</a></h4>
+        <h4><a href="#informationQuestions">Your Information</a></h4>
+        <h4><a href="#enrollQuestions">Enrollment</a></h4>
+        <h4><a href="#pmtQuestions">Payments</a></h4>
+        <h4><a href="#biQuestions">Billing &amp; Interest</a></h4>
+        <h4 style="display:none;"><a href="#scamQuestions">Student Loan Assistance Scams</a></h4>
+        <h4><a href="#miscQuestions">Miscellaneous</a></h4>
+        <h4><a href="#consolidationQuestions">Consolidation FAQs</a></h4>
+    </div>
+</div>
+
+
+<div class="faq">
+    @*
+        <h2>
+            <strong>Ten Frequently Asked Questions</strong>
+        </h2>
+        <ol>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl10");' href="#">When does interest accrue on my student loans?</a>
+                </h3>
+                <div id="ttl10">
+                    <div class="questions">
+                        <h3>
+                            For Subsidized Loans, interest accrues from the day you start repayment until your
+                            last payment. If your loan was disbursed on or after July 1, 2012 and before July
+                            1, 2014, interest will accrue during your grace period. Interest does not accrue
+                            on Subsidized Loans if your loan is on an in-school status, during a deferment period,
+                            or during your grace period, if your loan was disbursed before July 1, 2012.
+                        </h3>
+                        <br />
+                        <h3>
+                            For Unsubsidized Loans, interest accrues from the day your loan is disbursed, even
+                            if you're not in repayment.
+                        </h3>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl1");' href="#">
+                        Does my automatic payment continue now that my loan
+                        has been transferred?
+                    </a>
+                </h3>
+                <div id="ttl1">
+                    <h3 class="questions">
+                        Yes, we received your automatic payment information when your loan was transferred
+                        and your payments should continue.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl2");' href="#">
+                        What happened to the payment I just sent to Direct
+                        Loans?
+                    </a>
+                </h3>
+                <div id="ttl2">
+                    <h3 class="questions">
+                        Your payment will be sent to CornerStone and we will apply it toward your loan payments.
+                        If you would like to follow up on your payments please give us a call at 800-663-1662.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl3");' href="#">I missed a payment, what should I do?</a>
+                </h3>
+                <div id="ttl3">
+                    <h3 class="questions">
+                        There are options available to you and we'd love to help you. Please call us and
+                        we can work out the best way to help you.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl4");' href="#">
+                        Will my account be the same with you now that it
+                        has been transferred?
+                    </a>
+                </h3>
+                <div id="ttl4">
+                    <h3 class="questions">
+                        Yes, all of your information was sent to CornerStone during the transfer and we
+                        will do what we can to make the transition as smooth as possible for you.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl5");' href="#">Did all of my loans transfer to CornerStone?</a>
+                </h3>
+                <div id="ttl5">
+                    <h3 class="questions">
+                        All of your Direct Loans that are in repayment were transferred to CornerStone.
+                        If you are still in school or have loans that are still in their grace period, we
+                        may not have all of your loans.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl6");' href="#">
+                        What is the difference between a subsidized and
+                        unsubsidized loan?
+                    </a>
+                </h3>
+                <div id="ttl6">
+                    <h3 class="questions">
+                        A subsidized loan is a federal student loan in which the interest is paid
+                        by the government while you're in school, in grace or in periods of deferment. Unsubsidized
+                        Loans are similar to Subsidized Loans, however, a borrower is
+                        responsible for paying all interest that accrues from the time the loan is disbursed,
+                        even while the borrower is in school, in grace, or in deferment.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl7");' href="#">Do you take credit cards or debit cards for payments?</a>
+                </h3>
+                <div id="ttl7">
+                    <h3 class="questions">
+                        No, at this time we do not take credit card or debit card payments.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl8");' href="#">Is CornerStone available on Mint?</a>
+                </h3>
+                <div id="ttl8">
+                    <h3 class="questions">
+                        Yes! Just search for CornerStone Education Loan Services.
+                    </h3>
+                </div>
+            </li>
+            <li>
+                <h3>
+                    <a onclick='openQuestions("ttl9");' href="#">
+                        How long before my payment is due does CornerStone
+                        send a bill?
+                    </a>
+                </h3>
+                <div id="ttl9">
+                    <h3 class="questions">
+                        We send bills 21 days before your payment due date.
+                    </h3>
+                </div>
+            </li>
+        </ol>
+        <br />
+    *@
+    <!--Begin About CornerStone-->
+    <h2>Borrower Questions</h2>
+    <div id="borrowerQuestions" tabindex="-1">
+        <h3 class="btn-About">About CornerStone</h3>
+        <div id="aboutCSfaq">
+            <h4 class="questions">What is CornerStone Education Loan Services?</h4>
+            <p class="answers-aboutCS1 answers" id="CS1Answer">
+                CornerStone Education Loan Services was created by UHEAA to bring excellent customer
+                service to students throughout the nation.
+            </p>
+            <h4 class="questions">Why not just go by UHEAA?</h4>
+            <p class="answers-aboutCS2 answers" id="aboutCS2">
+                UHEAA is a subsidiary of the Utah State Board of Regents with the specific mission
+                of assisting students with ties to Utah. CornerStone is a national service that
+                was created to service federal student loans throughout the nation.
+            </p>
+            @*
+                <div class="bar">
+                    <a class="btn-About" title="" href="#">Top</a>
+                </div>
+            *@
+        </div>
+        <!--End About CornerStone-->
+        <!--Begin About Federal Loans-->
+        <h3 class="btn-About">About Federal Loans</h3>
+        <div id="aboutFederalLoansfaq">
+            <h4 class="questions">How do I know what type of federal loan I have?</h4>
+            <div class="answers-aboutFedLoans1 answers">
+                <p>There are a couple ways to find out if you have a FFELP Loan or a Direct Loan:</p>
+                <ul>
+                    <li>
+                        Sign into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" title="Account Access">Account Access</a>. You will see a list of your loans with CornerStone. Account access provides details about each loan, including the loan type, the interest rate, the balance and more.
+                    </li>
+                    <li>
+                        Visit the National Student Loan Data System (NSLDS). Check NSLDS to see a complete
+                        list of your FFELP Loans and Direct Loans, you'll need your federal PIN to access
+                        the information.
+                    </li>
+                </ul>
+            </div>
+            <h4 class="questions">What are my responsibilities as a borrower?</h4>
+            <div class="answers-aboutFedLoans2 answers">
+                <p>Your responsibilities are the same whether you have a FFELP Loan or a Direct Loan:</p>
+                <ul>
+                    <li>
+                        Borrow only what you need.
+                    </li>
+                    <li>
+                        Read your promissory note.
+                    </li>
+                    <li>
+                        Pay on time.
+                    </li>
+                    <li>
+                        Keep in touch with CornerStone.
+                    </li>
+                </ul>
+                <p>You still have to repay your loan even if you don't graduate.</p>
+            </div>
+        </div>
+        <!--End About Federal Loans-->
+        <!--Transferred Loans-->
+        <h3 class="btn-About">Do You Have Transferred Loans?</h3>
+        <div id="aboutTransferfaq">
+            <h4 class="questions">Does the loan transfer affect all of my student loans?</h4>
+            <p class="answers-aboutTransfer1 answers" id="transferAnswer1">
+                Not necessarily. CornerStone will notify you of the loans we service. For additional
+                details create an online account and sign into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" title="Account Access">Account Access</a>.
+            </p>
+            <p>
+                Please continue to make all payments for loans that remain with your previous servicer.
+                If you aren't certain about who services your loans, visit the National Student
+                Loan Data System at nslds.ed.gov for a complete list of your FFELP Loans and Direct
+                Loans and their servicers.
+            </p>
+            <h4 class="questions">I already have an online account with CornerStone, do I need to create a new one?</h4>
+            <p class="answers-aboutTransfer2 answers" id="transferAnswer2">
+                No, your transferred loans roll under the same account number. However, if you don't
+                have an account with CornerStone, you have to create one through: <a href="@MyCornerstoneLoan.UrlHelpers.CreateAccountLink" title="Account Access">Create Account</a>.
+            </p>
+            <h4 class="questions">Will my account number stay the same?</h4>
+            <p class="answers-aboutTransfer3 answers" id="transferAnswer3">
+                If you already <strong>have</strong> an account with us, your transferred loans
+                roll under the same account number. If you <strong>do not have</strong> an account
+                with us, we will assign you an account number. Look for your unique 10-digit number
+                on all correspondence, billing statements, etc.
+            </p>
+            <h4 class="questions">Does the loan transfer affect my grace period? Do I need to begin making payments?</h4>
+            <p class="answers-aboutTransfer4 answers" id="transferAnswer4">
+                No. If you have a Stafford Loan (subsidized or unsubsidized), you get a 6-month
+                grace period that begins the day after you graduate, leave school, or drop below
+                half-time status and ends the day before your repayment period begins.
+            </p>
+            <h4 class="questions">Will my monthly payments change?</h4>
+            <p class="answers-aboutTransfer5 answers" id="transferAnswer5">
+                No, we received your current repayment plan from your previous servicer.
+            </p>
+            <h4 class="questions">Will my due date change?</h4>
+            <p class="answers-aboutTransfer6 answers" id="transferAnswer6">
+                No, we received your due date information from your previous servicer.
+            </p>
+            <h4 class="questions">
+                Can I make online payments, schedule payments in advance and manage my loans like I
+                did before?
+            </h4>
+            <p class="answers-aboutTransfer7 answers" id="transferAnswer7">
+                Yes. <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" title="Account Access">Account Access</a> allows you to make online payments from the bank account of your choice, schedule payments up to 60 days in advance, view details of your loan, and much more. If you haven't signed up for an account yet, <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">sign up today</a>.
+            </p>
+            <h4 class="questions">I signed up for paperless billing with my previous servicer. Do I need to re-apply with CornerStone?</h4>
+            <p class="answers-aboutTransfer8 answers" id="transferAnswer8">
+                Yes. You need to enroll in paperless billing with CornerStone if you haven't yet.
+            </p>
+            <h4 class="questions">I applied for a deferment or forbearance with my previous servicer. Do I need to re-apply with CornerStone?</h4>
+            <div class="answers-aboutTransfer9 answers" id="transferAnswer9">
+                <p>
+                    If your previous servicer <strong>approved</strong> your deferment or forbearance
+                    before your loan was transferred, you do <strong>not</strong> need to re-apply.
+                </p>
+                <p>
+                    If you didn't receive confirmation that your deferment or forbearance was approved
+                    before your loan was transferred, please contact us to find out what you need to
+                    do.
+                </p>
+            </div>
+            <h4 class="questions">What do I do if I just sent a payment to my previous servicer?</h4>
+            <p class="answers-aboutTransfer10 answers" id="transferAnswer10">
+                You don't have to do anything. Your previous servicer will forward it to us.
+            </p>
+            <h4 class="questions">Do I need to do anything if I use a bill pay service to pay my bills?</h4>
+            <p class="answers-aboutTransfer11 answers" id="transferAnswer11">
+                Yes. You need to contact your service and let them know that CornerStone is the recipient of all future payments.
+            </p>
+            <h4 class="questions">Will my CornerStone 1098-E Student Loan Interest Statement include the interest for all the payments I made this year?</h4>
+            <p class="answers-aboutTransfer12 answers" id="transferAnswer12">
+                No. The 1098-E only applies to the time period after your loan was transferred.
+                You'll receive a 1098-E from every servicer where you paid $600 or more in interest.
+            </p>
+            <h4 class="questions">I'm still in school, how does the loan transfer affect me?</h4>
+            <p class="answers-aboutTransfer13 answers" id="transferAnswer13">
+                As long as you're enrolled more than half-time, your loan status is the same.
+            </p>
+            <h4 class="questions">Will my co-maker/endorser still have access to my loans with CornerStone?</h4>
+            <p class="answers-aboutTransfer14 answers" id="transferAnswer14">
+                Yes. They will have their own account number that they can use to sign in.
+            </p>
+        </div>
+        <!--End Transferred Loan Questions-->
+        <!--Begin Direct Loan Questions-->
+        <h3 class="btn-About">Do You Have Direct Loans?</h3>
+        <div id="directLoanfaq">
+            <h4 class="questions">What kind of fees do Direct Loans have?</h4>
+            <div class="answers-directLoan1 answers" id="directLoanAnswer1">
+                <p>Origination fees are charged by the U.S. Department of Education when you borrow a Direct Loan. These fees are deducted when your loan is disbursed.</p>
+                <p>The origination fee is:</p>
+                <ul>
+                    <li>
+                        @*<h5>1% for Direct Subsidized or Unsubsidized Loans.</h5>*@
+                        For loans awarded on or after December 1, 2013, the origination fee for Direct Subsidized or Unsubsidized Loans is 1.072%. If your loan was awarded after July 1, 2013 and before December 1, 2013, the origination fee was 1.051% and for loans awarded before July 1, 2013 the origination fee for Direct Subsidized or Unsubsidized Loans was 1%.
+                    </li>
+                    <li>
+                        @*<h5>4% for Direct PLUS Loans.</h5>*@
+                        For loans awarded on or after December 1, 2013, the origination fee for Direct PLUS loans is 4.288%. For loans awarded on or after July 1, 2013 and before December 1, 2013, the origination fee was 4.204% and for loans awarded before July 1, 2013 the origination fee for Direct PLUS Loans was 4%.
+                    </li>
+                </ul>
+            </div>
+            <h4 class="questions">
+                Do I need to pay interest while I'm still in school?
+            </h4>
+            <div class="answers-directLoan2 answers" id="directLoanAnswer2">
+                <p>Maybe. It depends on the type of loan you have:</p>
+                <ul>
+                    <li>
+                        Subsidized Loans - No. The government pays the interest on your loan while you're
+                        in school.
+                    </li>
+                    <li>
+                        Unsubsidized Loans - No. You don't have to pay interest while you're in school or
+                        while you have an in-school deferment. Although, paying interest early saves you
+                        money in the long run. Any interest you don't pay during this period will be added
+                        to your principal balance (capitalized). Because interest is added to principal
+                        when it is capitalized, you will pay more over the life of your loan.
+                    </li>
+                    <li>
+                        Parent PLUS Loans - Interest accrues from the day of disbursement, if you don't
+                        pay the interest it will be added to your principal balance before your loans enter
+                        repayment.
+                    </li>
+                </ul>
+            </div>
+            <h4 class="questions">
+                Do Direct Loans have different repayment options than FFELP Loans?
+            </h4>
+            <div class="answers-directLoan3 answers" id="directLoanAnswer3">
+                <p>Direct Loans have the same repayment options as FFELP Loans, with two exceptions:</p>
+                <ul>
+                    <li>
+                        The Income Sensitive Repayment Plan is not available for Direct Loans.
+                    </li>
+                    <li>
+                        The Income Contingent Repayment Plan is available for certain Direct Loans. Your
+                        required monthly payment is based on your eligible loan debt and on your and your
+                        spouse's adjusted gross income and family size. The payment amount may be adjusted
+                        annually and the maximum repayment period [under this plan] is 25 years.
+                    </li>
+                </ul>
+            </div>
+            <h4 class="questions">
+                What incentives are offered on Direct Loans?
+            </h4>
+            <div class="answers-directLoan4 answers" id="directLoanAnswer4">
+                <p>You will receive an interest rebate of:</p>
+                <ul>
+                    <li>
+                        0.5% of the principal amount of any Direct Stafford Loan first disbursed on or between
+                        July 1, 2010 and June 30, 2012.
+                    </li>
+                    <li>
+                        1.5% of the principal amount of any Direct PLUS Loan first disbursed on or between
+                        July 1, 2000 and June 30, 2012.
+                    </li>
+                </ul>
+                <p>
+                    You have to make your first 12 monthly payments within 6 days of your due date to
+                    keep this rebate. If you don't, it will be rescinded and added to your principal
+                    balance.
+                </p>
+                <p>You are eligible for an interest discount of 0.25% for using <a href="@Url.Content("~/Payments/AutoPay")" title="AutoPay">automatic payments</a></p>
+            </div>
+            <div class="bar">
+                <a class="btn-About" title="Back to Top" href="#faqCategories">Back to Top</a>
+            </div>
+        </div>
+        <!--End Borrower Questions-->
+    </div>
+    <!--Begin General Student Loan Questions-->
+    <h2>Student Loan Questions</h2>
+    <div id="studentQuestions" tabindex="-1">
+        <h3 class="btn-About">About Student Loans</h3>
+        <div id="aboutStudentLoansFaq">
+            <h4 class="questions">What does Subsidized mean?</h4>
+            <p class="answers-aboutSL1 answers" id="SL1Answer">
+                Subsidized means that the government pays the interest on your loans while you are
+                in school and in periods of deferment. And for loans disbursed before July 2012,
+                the government pays the interest while you're in your grace period.
+            </p>
+            <h4 class="questions">What does Unsubsidized mean?</h4>
+            <p class="answers-aboutSL2 answers" id="SL2Answer">
+                Unsubsidized means that you are responsible for paying the interest on your loans
+                from the moment they are disbursed (even while you're in school or deferment). Your
+                interest can be capitalized (added to your principal) at specific times during the
+                life of your loan.
+            </p>
+        </div>
+        <!--End About Student Loans-->
+        <!--Begin Direct vs. FFEL-->
+        <h3 class="btn-About">Direct vs. FFEL</h3>
+        <div id="aboutDirectFFELPFaq">
+            <h4 class="questions">What is the difference between Direct and FFEL Loans?</h4>
+            <p class="answers-aboutDirect1 answers" id="DirectAnswer1">
+                The main difference between Direct Loans and Family Federal Education Loan Program
+                (FFELP) loans is the source of funding. The funds for FFELP loans came from financial
+                institutions, whereas the funds for Direct Loans come directly from the U.S. Department
+                of Education, from the U.S. Treasury.
+            </p>
+            <h4 class="questions">What repayment plans are available through each loan program?</h4>
+            <p class="answers-aboutDirect2 answers" id="DirectAnswer2">
+                Most repayment plans are the same, including standard repayment, extended repayment
+                and graduated repayment; other repayment plans are specific to the loan program.
+                Income-Contingent Repayment (ICR) is available only to Direct Loan borrowers and
+                Income-Sensitive Repayment (ISR) is available only to FFELP borrowers. Income-Based
+                Repayment (IBR) is a new program available to both loan programs. Pay As You Earn is a repayment program based on your income.For more information about repayment plans visit our <a href="@Url.Content("~/Payments/RepaymentPlans")">Repayment Plans</a> page.
+            </p>
+        </div>
+        <!--End Direct Vs FFELP-->
+        <!--Begin Borrower Benefits-->
+        <h3 class="btn-About">Borrower Benefits</h3>
+        <div id="aboutBorrowerBenefitsFaq">
+            <h4 class="questions">What borrower benefits are currently available?</h4>
+            <p class="answers-aboutBB1 answers" id="BorrowerBenefitsAnswer1">
+                The largest borrower benefit offered by the Direct Loan Program is a 0.25% interest
+                rate reduction on your student loans by signing up for automatic payments. This
+                is the most noticeable borrower benefit, other benefits include a reduction in the
+                loan origination fee for making your first 12 payments on time. If you fail to make
+                a payment on time (within six days of the due date) within the first 12 months,
+                the origination fee will be added back to into the principal of your loan(s). If
+                you have questions about the borrower benefits available to your loans contact CornerStone.
+            </p>
+        </div>
+        <!--End Borrower Benefits-->
+        <div class="bar">
+            <a class="btn-About" title="" href="#faqCategories">Back to Top</a>
+        </div>
+    </div>
+
+    <!--Begin Loan Discharge Questions-->
+    <h2>Loan Discharge</h2>
+    <div id="loanDischargeQuestions" tabindex="-1">
+        <div>
+            <h4 class="questions">What is Loan discharge?</h4>
+            <p>
+                Loan discharge is the process by which student loan debt can be eliminated, releasing the borrower from their obligation to repay their debt, provided they meet certain criteria.
+            </p>
+            <h4 class="questions">How do I qualify for loan discharge?</h4>
+            <p>
+                There are many types of discharge, ranging from partial to full loan discharge. Below is a list of loan discharge types, as well as a short description of their eligibility requirements.
+            </p>
+            <ol>
+                <li>
+                    <strong>Closed School Discharge</strong>
+                    <ul>
+                        <li>
+                            If your school closes while you’re enrolled or soon after you withdraw, you may be eligible for discharge of your federal student loan. 
+                            For complete details on this loan discharge type or to apply, please see the <a href="/forms/1845-0058_08-31-17_SC_10-08-14_v1_IAI%20Submission.pdf" title="Download School Closure Discharge Application" >School Closure Discharge Application</a>, or feel free to reach out to one of our customer service representatives.
+                        </li>
+                        <li>
+                            Please be advised, your discharged amount may be considered taxable income.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Unpaid Refund Discharge</strong>
+                    <ul>
+                        <li>
+                            If you withdraw from school after receiving a loan, your school may be required to return part of your loan money. 
+                            You may be eligible for a partial discharge of your Direct Loan or FFEL Program loan if you withdrew from school, but the school did not return the portion of your loan that it was required to return under applicable laws and regulations. 
+                            Check with the school to see how refund policies apply to federal aid at the school. Only the amount of the unpaid refund will be discharged.
+                            For complete details on this loan discharge type or to apply, please see the <a href="/forms/1845-0058_08-31-17_UR_10-08-14_v1_IAI%20Submission.pdf" title="Download Unpaid Refund Discharge Application">Unpaid Refund Discharge Application</a>, or feel free to reach out to one of our customer service representatives.                        
+                        </li>
+                        <li>
+                            Please be advised, your discharged amount may be considered taxable income.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>False Certification or Unauthorized Payment/Signature Discharge</strong>
+                    You may be eligible for this discharge if you fall into one of these circumstances:
+                    <ul>
+                        <li>
+                            Your school falsely certified your eligibility to receive the loan based on your ability to benefit from its training, and you did not meet the ability-to-benefit student eligibility requirements (for example, you did not have a high school diploma or General Educational Development certificate).
+                        </li>
+                        <li>
+                            The school certified your eligibility, but because of a physical or mental condition, age, criminal record, or other reason, you would not meet state requirements for employment in the occupation in which you were being trained.
+                        </li>
+                        <li>
+                            If you were a victim of Identity Theft, and as a result student loans were obtained in your name, you may be entitled to a discharge of your obligation to repay these loans. 
+                            <strong>For complete details on this loan discharge type, please reach out to one of our customer service representatives.</strong>
+                        </li>
+                        <li>
+                            An individual from a school signed your name on the application or promissory note without your authorization, or an individual from the school endorsed your loan check or signed your authorization for electronic funds transfer without your knowledge, unless the loan money was given to you or applied to charges that you owed to the school.
+                        </li>
+                        <li>
+                            For complete details on this loan discharge type or to apply, please view the 
+                            <a href="/Home/Forms#ForgivenessandDischargeForms" title="View False Certification Loan Discharge Applications">False Certification Loan Discharge Applications</a>, or feel free to reach out to one of our customer service representatives.
+                        </li>
+                        <li>
+                            All funds discharged in this manner may be considered taxable income
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Total and Permanent Disability (TPD) Discharge</strong>
+                    <ul>
+                        <li>
+                            All TPD claims are currently handled by Nelnet.  To learn more, please visit the 
+                            <a href="https://disabilitydischarge.com/" title="Link to TPD Website">TPD Website</a>
+                        </li>
+                        <li>
+                            All funds discharged under TPD on or after January 1, 2018 and on or before December 31, 2025 will be considered non-taxable income.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Death Discharge</strong>
+                    <ul>
+                        <li>
+                            In the event that you or your student passes away, your family is not responsible to pay any portion of the remaining loan balance. Your loans will be discharged.
+                        </li>
+                        <li>
+                            All funds discharged due to death on or after January 1, 2018 and on or before December 31, 2025 will be considered non-taxable income.
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+        <div class="bar">
+            <a class="btn-About" title="" href="#faqCategories">Back to Top</a>
+        </div>
+    </div>
+
+    <!--Begin Personal Information Questions-->
+    <h2>Your Information</h2>
+    <div id="informationQuestions" tabindex="-1">
+        <h3 class="btn-About">Keeping Information Safe</h3>
+        <div id="aboutidtheftfaq">
+            <h4 class="questions">What is identity theft?</h4>
+            <p class="answers-aboutidtheft1 answers" id="theftAnswer1">
+                Identity theft is when someone other than you uses your personally identifying information
+                (PII) without your knowledge to commit fraud and/or other crimes. PII includes your
+                name, Social Security number or credit card number.
+            </p>
+            <h4 class="questions">How do I keep my information safe?</h4>
+            <div class="answers-aboutidtheft2 answers" id="theftAnswer2">
+                <p>
+                    To avoid identity theft, you have to understand the ways your personally identifying
+                    information (PII) can be stolen.
+                </p>
+                <ul>
+                    <li>
+                        Dumpster Diving. Thieves will look for bills and other PII in your trash. To make
+                        it more difficult for thieves to find your information in the trash, shred any documents
+                        that include any PII before throwing it away.
+                    </li>
+                    <li>
+                        Skimming. Thieves can store your credit card or debit card numbers when your card
+                        is being processed. Make sure that you only use your credit/debit cards at reputable
+                        places. If people are acting suspicious or there are strange attachments on the
+                        credit/debit card machine do not use your card.
+                    </li>
+                    <li>
+                        Phishing. Thieves will send you e-mails, text messages or phone calls posing as
+                        a bank or other financial institution to trick you into telling them your PII. Do
+                        not give your information to anyone over the phone especially if you didn't initiate
+                        contact with the other person.
+                    </li>
+                    <li>
+                        Change your Address. Thieves will use change of address forms to get your mail sent
+                        to a different address where they can intercept it. Keep track of the mail you receive
+                        and regularly check the address on file where you do business.
+                    </li>
+                    <li>
+                        Stealing. Thieves still use low-tech ways to get your information, like stealing
+                        your wallet or purse to find your PII. Be aware of your surroundings and take precautions
+                        to protect your belongings.
+                    </li>
+                    <li>
+                        Pretexting. Thieves will contact your financial institution, utility company or
+                        other institution to get your PII. Keep track of the contacts you have where you
+                        do business regularly.
+                    </li>
+                </ul>
+            </div>
+            <h4 class="questions">What should I do if my identity was stolen?</h4>
+            <p class="answers-aboutidtheft3 answers" id="theftAnswer3">
+                The first steps you should take are to file a police report, check your credit reports,
+                notify creditors and dispute any unauthorized transactions. Unfortunately, you might
+                not know anything is wrong until after your information has been used. Follow the
+                steps your financial institutions and other businesses give you to restore your
+                standing.
+            </p>
+        </div>
+        <!--End Your Information Section-->
+        <!--Student Loan Assistance Scams-->
+        <h3 id="scamQuestions" class="btn-About">Student Loan Assistance Scam Basics</h3>
+        <div id="aboutAssistanceScamsfaq">
+            <h4 class="questions">What is a student loan assistance scam?</h4>
+            <p class="answers-aboutCapitalization1 answers" id="aboutScamAnswer1">
+                Many student loan debt relief companies may charge fees to provide services that the U.S. Department of Education and CornerStone can provide for free. Visit the <a href="https://blog.ed.gov/2016/01/dont-be-fooled-you-never-have-to-pay-for-student-loan-help/?utm_content=&utm_medium=email&utm_name=&utm_source=govdelivery&utm_term=" rel="external" title="Department of Education Blog">Department Of Education’s blog</a> for more information.
+            </p>
+            <h4 class="questions">What services do you provide for free?</h4>
+            <p class="answers-about " id="scamAnswer2">
+                We offer a variety of services including but not limited to:
+                <ul>
+                    <li>Lowering or postponing your monthly payment</li>
+                    <li>Offering consolidation, forgiveness, and discharge guidance</li>
+                    <li>Changing your repayment plan</li>
+                    <li>Assisting in the process of filling out forms</li>
+                </ul>
+            </p>
+            <h4 class="questions">I think I am a victim of a student loan assistance scam. What should I do?</h4>
+            <p class="answers-aboutVictim answers" id="victimAnswer1">
+                Report the company and the actions that have occurred to your state Attorney General. To check the status of your account, please contact one of our Customer Service Representatives immediately at 1-800-663-1662.
+            </p>
+        </div>
+        <!--END Student Loan Assistance Scams-->
+        <!--Begin Updating Your Account Section-->
+        <h3 class="btn-About">Updating Your Account</h3>
+        <div id="aboutupdatefaq">
+            <h4 class="questions">How do I update my account information?</h4>
+            <p class="answers-aboutupdate1 answers" id="updateAnswer1">
+                You can update your information in <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" target="_blank">Account Access</a>. Make sure to update information any time
+                your contact information changes so you will get important information from CornerStone.
+            </p>
+            <h4 class="questions">If I change my demographics in Account Access, how long before it updates on your systems?</h4>
+            <p class="answers-aboutupdate2 answers" id="updateAnswer2">
+                If you change your address or telephone through our web site, it will update in
+                our system within two hours. However, if the update was made at the end of a business
+                day, the change will not occur until the following business day.
+            </p>
+            <h4 class="questions">What do I need to do to change my name on CornerStone's records?</h4>
+            <div class="answers-aboutupdate3 answers" id="updateAnswer3">
+                <p>
+                    Because of federal regulation, we are required to document all name changes. To
+                    update your name send one of the following documents:
+                </p>
+                <ul>
+                    <li>
+                        A copy of your Social Security card with your new name;
+                    </li>
+                    <li>
+                        A copy of your driver's license with your new name;
+                    </li>
+                    <li>
+                        A copy of your marriage certificate (if that's why your name changed);
+                    </li>
+                    <li>
+                        A copy of your passport with your new name;
+                    </li>
+                    <li>
+                        A copy of military orders, documents or papers with your new name;
+                    </li>
+                    <li>
+                        A copy of court documents filed for a name change;
+                    </li>
+                    <li>
+                        A copy of a divorce decree (if your name changed because of divorce).
+                    </li>
+                </ul>
+                <p>Once we have one of these documents, we will update our records with your new name.</p>
+            </div>
+            <h4 class="questions">How do I change my Social Security number?</h4>
+            <div class="answers-aboutupdate4 answers" id="updateAnswer4">
+                <p>
+                    If you need to change your Social Security number please send one of the following
+                    pieces of documentation. Make sure that the documentation you send has the same
+                    name that we have on file.
+                </p>
+                <ul>
+                    <li>
+                        Your Social Security card or written verification from the Social Security Administration;
+                    </li>
+                    <li>
+                        One of your W2 forms;
+                    </li>
+                    <li>
+                        Your driver's license with the Social Security number on it;
+                    </li>
+                    <li>
+                        Official military documents, orders or papers with your Social Security number.
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--End Update Information Questions-->
+        <!--Begin Prepayment Questions-->
+        <h3 class="btn-About">Prepayment</h3>
+        <div id="aboutprepaymentfaq">
+            <h4 class="questions">Are there any penalties to prepaying my loan balance?</h4>
+            <div class="answers-aboutPrepay1 answers" id="prepayAnswer1">
+                No. You may prepay all or any part of your principal balance at any time. Any prepayment
+                will satisfy accrued interest first then will be applied to principal
+            </div>
+            <h4 class="questions">How do I pay off my loan?</h4>
+            <div class="answers-aboutPrepay2 answers" id="prepayAnswer2">
+                Log onto <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and navigate to Payments & Billing then to Loan Payoff. You will be directed through a four-step process where you will be able to make a payment to repay the balance of your loans.
+            </div>
+        </div>
+        <!--End Prepayment Questions-->
+        <!--Begin Third Party Questions-->
+        <h3 class="btn-About">Third Parties</h3>
+        <div id="about3partiesfaq">
+            <h4 class="questions">What is a Third Party?</h4>
+            <p class="answers-about3parties1 answers" id="3pAnswer1">
+                Simply put, a third party is anyone other than the loan borrower or endorser.
+            </p>
+            <h4 class="questions">Can my parents receive information about my loan?</h4>
+            <p class="answers-about3parties2 answers" id="3pAnswer2">
+                Unless your parents are endorsers on your student loans, they are considered third
+                parties and cannot receive information about your loan. You can give them access
+                to specific information about your loan(s) by filling out the <a href="@Url.Content("~/forms/CS%20Third%20Party%20Auth%20Form.pdf")">
+                    Third Party Authorization form
+                </a> and returning to to CornerStone. This also applies to anyone else who is not the
+                borrower or an endorser on the loan.
+            </p>
+            <h4 class="questions">What information can someone I authorized as a third party receive?</h4>
+            <p class="answers-about3parties3 answers" id="3pAnswer3">
+                We can provide the same information we provide to a borrower to any authorized third
+                party. However, while a borrower can request any and all changes to his/her account,
+                an authorized third-party can only request changes to a borrower’s address and telephone
+                information.
+            </p>
+            <h4 class="questions">What information can someone I don't authorize as a third party receive?</h4>
+            <p class="answers-about3parties4 answers" id="3pAnswer4">
+                No information about a borrower's account can be given to an unauthorized third-party.
+                Without the permission of the borrower, we cannot even confirm that a borrower has
+                an account with us, or disclose any information specific to the borrower’s account.
+                We can, however, provide general information about student loans.
+            </p>
+            <h4 class="questions">Can an authorized third-party set up or change a payment arrangement?</h4>
+            <p class="answers-about3parties5 answers" id="3pAnswer5">
+                No. Third-party authorization only entitles the authorized party to receive information.
+                For someone other than the account holder to perform any actions on an account they
+                need to have a Power of Attorney.
+            </p>
+        </div>
+        <!--End Third Party Questions-->
+        <!--Begin Loan Information Questions-->
+        <h3 class="btn-About">Loan Information</h3>
+        <div id="aboutLoanInfoFaq">
+            <h4 class="questions">How can I find my loan balances?</h4>
+            <p class="answers-aboutLoanInfo1 answers" id="infoAnswer1">
+                Sign into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and navigate to View Loan Details. Here you can find your current principal balance, unpaid interest and total current balance. You can also find the date the loan was disbursed, the type of loan, and your loan status. If you click on View Details, you can see the current interest rate on all of your loans.
+            </p>
+            <h4 class="questions">Where can I find the interest rates on my loans?</h4>
+            <p class="answers-aboutLoanInfo2 answers" id="infoAnswer2">
+                Log onto <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and navigate to View Loan Details. Here you can find your current principal balance, unpaid interest and total current balance. You can also find the date the loan was disbursed, the type of loan, and your loan status. If you click on View Details, you can see the current interest rate on all of your loans.
+            </p>
+            <h4 class="questions">I thought I was already signed up for automatic payments, how do I check?</h4>
+            <p class="answers-aboutLoanInfo3 answers" id="infoAnswer3">
+                Log onto <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and navigate to Payments & Billing and then automatic payments. If you are signed up for automatic payments your payment information will be displayed. If not, you will see a link to download the automatic payment application.
+            </p>
+            <h4 class="questions">How can I see how much I've already paid?</h4>
+            <p class="answers-aboutLoanInfo4 answers" id="infoAnswer4">
+                Log into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and navigate to Payments & Billing then click on Payment History. You'll be able to see how much has gone to principal, fees, interest, and the total amount paid. You can also view detail about each payment.
+            </p>
+            <h4 class="questions">Don't I get more than one grace period?</h4>
+            <p class="answers-aboutLoanInfo5 answers" id="infoAnswer5">
+                You receive one six-month grace period for the duration of your loans. Once you
+                have used your grace period, you will not receive any additional grace periods.
+            </p>
+            <h4 class="questions">How do I get a lower payment?</h4>
+            <div class="answers-aboutLoanInfo6 answers" id="infoAnswer6">
+                Although we disclose your repayment terms on a standard, 10-year schedule, we also
+                offer alternate payment plans. These include graduated, extended (for qualifying
+                borrowers), Income-Based Repayment, and Income-Contingent Repayment.
+            </div>
+        </div>
+        <div class="bar">
+            <a class="btn-About" title="" href="#faqCategories">Back to Top</a>
+        </div>
+        <!--End Loan Information Questions-->
+        <!--End Your Information Section-->
+    </div>
+
+    <!--Begin Enrollment Section-->
+    <!--Begin Enrollment Status Questions-->
+    <h2>Enrollment Questions</h2>
+    <div id="enrollQuestions" tabindex="-1">
+        <h3 class="btn-About">
+            Your Enrollment Status
+        </h3>
+        <div id="aboutEnrollmentFaq">
+            <h4 class="questions">I am still in school. Why are my loans coming due?</h4>
+            <p class="answers-aboutEnrollmentStatus1 answers" id="enrollmentAnswer1">
+                To qualify for an In School Deferment, you must be enrolled half-time or more at
+                an eligible institution. Please contact your school to verify your current enrollment
+                status.
+            </p>
+            <h4 class="questions">How will CornerStone know that I'm back in school?</h4>
+            <p class="answers-aboutEnrollmentStatus2 answers" id="enrollmentAnswer2">
+                If your school has the capacity to update the National Student Loan Data System (NSLDS), they
+                will automatically notify us of your enrollment status. If your school does not
+                have access to the National Student Loan Data System (NSLDS), you will need to request that
+                they send us an Enrollment Verification Report.
+            </p>
+        </div>
+        <!--End Enrollment Status Questions-->
+        <!--Begin In School Enrollment Questions-->
+        <h3 class="btn-About">In School</h3>
+        <div id="aboutInSchoolFaq">
+            <h4 class="questions">What do I need to do while I'm in school to make sure my loans are in good standing?</h4>
+            <div class="answers-aboutInSchool1 answers" id="inSchoolAnswer1">
+                If you chose to pay the interest on your unsubsidized loans while you're in school,
+                just make sure to keep paying. Also, if you move, get a new phone number, or change
+                your e-mail address be sure to let CornerStone know so we know how to get in touch
+                with you.
+            </div>
+        </div>
+        <!--End In School Enrollment Questions-->
+        <!--Begin After School Enrollment Questions-->
+        <h3 class="btn-About">After School</h3>
+        <div id="aboutAfterSchoolFaq">
+            <h4 class="questions">I just graduated, what should I do now?</h4>
+            <div class="answers-aboutAfterSchool1 answers" id="afterSchoolAnswer1">
+                <p>
+                    First of all, CONGRATULATIONS! Graduating from college is a serious accomplishment.
+                    Here are some other things to keep in mind:
+                </p>
+                <ul>
+                    <li>
+                        Make sure to keep CornerStone up to date if you change your address, phone number
+                        or e-mail address
+                    </li>
+                    <li>
+                        If you have a grace period start planning how you will start paying your student
+                        loans.
+                    </li>
+                    <li>
+                        We will send you information as you get closer to repayment. Please follow any instructions
+                        included in the correspondence we send.
+                    </li>
+                </ul>
+            </div>
+            <h4 class="questions">Why are payments due? I just graduated. Don't I get a grace period?</h4>
+            <p class="answers-aboutAfterSchool2 answers" id="afterSchoolAnswer2">
+                If you have consolidated loans, you no longer have a grace period. If
+                you have not consolidated your loans, you have likely already used your one allotted
+                grace period.
+            </p>
+            <div class="bar">
+                <a class="btn-About" title="" href="#faqCategories">Back to Top</a>
+            </div>
+        </div>
+        <!--End After School Enrollment Questions-->
+        <!--End Enrollment Section-->
+    </div>
+
+    <h2>Payments</h2>
+    <div id="pmtQuestions" tabindex="-1">
+        <h3 class="btn-About">Payment Basics</h3>
+        <div id="aboutOnlinePaymentsFaq">
+            <h4 class="questions">How long until my loan is paid off?/How long will it take to pay off my loans?</h4>
+            <p class="answers-aboutOnlinePayments1 answers" id="pmtBasicsAnswer1">
+                The amount of time it will take for you to pay off your loans depends on the amount
+                you borrowed, your interest rate, and your repayment period. <a href="http://www.calcxml.com/calculators/pay-off-loan?skn=397" target="_blank" rel="external" title="Student Loan Payoff Calculator">Click here</a> to try our student loan payoff calculator to give you
+                an idea about how long it will take before you pay off your loans.
+            </p>
+            <h4 class="questions">Why didn't my whole payment go to principal?</h4>
+            <p class="answers-aboutOnlinePayments2 answers" id="pmtBasicsAnswer2">
+                When we receive a payment we apply the payment to any accrued interest and fees
+                first and then to principal.
+            </p>
+            <h4 class="questions">Do you take credit cards or debit cards?</h4>
+            <p class="answers-aboutOnlinePayments3 answers" id="pmtBasicsAnswer3">
+                We do not take payments by credit cards or debit cards.
+            </p>
+            <h4 class="questions">How can I make a payment?</h4>
+            <div class="answers-aboutOnlinePayments4 answers" id="pmtBasicsAnswer4">
+                <p>
+                    The four main ways to make a payment are autopay, online payments, payments over
+                    the phone and payments through the mail.
+                </p>
+                <p>
+                    The easiest way to make a payment is by using autopay. You can set up your payment
+                    to be withdrawn on time each month without worrying about finding a stamp or remembering
+                    to call us. Plus you can get an interest rate reduction for using autopay.
+                    <a href="@Url.Content("~/Payments/AutoPay")" title="AutoPay">Click here</a> for more information about using autopay.
+                </p>
+            </div>
+            <h4 class="questions">How can a co-borrower make a payment? </h4>
+            <p class="answers">
+                The two ways to make a payment are over the phone and through mail. 
+                If you’d like to make a payment by mail, our mailing address can be found on our <a href="/ContactUs" title="CornerStone Contact Page">Contact Us</a> page. 
+            </p>
+            <p class="answers">
+                If a co-borrower is making a payment over the phone with a representative, they will need be prepared to verify the following information about the primary borrower:
+                <ol>
+                    <li>Full SSN
+                    <li>Full Name
+                    <li>Date of Birth
+                    <li>Bank routing and account number
+                </ol>
+            </p>
+            <h4 class="questions">Do you take cash payments?</h4>
+            <p class="answers-aboutOnlinePayments5 answers" id="pmtBasicsAnswer5">
+                To help us avoid the temptation to track George, we cannot take cash payments for
+                student loans. Please make a payment online, over the phone, or through the mail.
+            </p>
+            <h4 class="questions">How do I make a payment online?</h4>
+            <p class="answers-aboutOnlinePayments6 answers" id="pmtBasicsAnswer6">
+                Log into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and select Payments & Billing then follow the instructions on that page to make a payment.
+            </p>
+            <h4 class="questions">Is it free to make a payment over the phone?</h4>
+            <p class="answers-aboutOnlinePayments7 answers" id="pmtBasicsAnswer7">
+                Yes. You can always make a payment <i>free of charge</i> by calling our customer service department.
+            </p>
+            <h4 class="questions">How can I see how much I've already paid?</h4>
+            <p class="answers-aboutOnlinePayments8 answers" id="pmtBasicsAnswer8">
+                Log into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and navigate to Payments & Billing then click on Payment History. You'll be able to see how much has gone to principal, fees, interest, and the total amount paid. You can also view detail about each payment.
+            </p>
+            <h4 class="questions">What happens when a payment is returned for Non-Sufficient Funds (NSF)? Will it be re-submitted to the bank?</h4>
+            <p class="answers-aboutOnlinePayments10 answers" id="pmtBasicsAnswer10">
+                If the payment was made by the borrower through Check-by-Phone, on our web site, or any other way the you initiated the payment, we will re-submit it to the your bank <i>ONE TIME</i>. That means you could have another NSF charge if it is returned again. If the payment was made through autopay we WILL NOT re-submit it to your bank.
+            </p>
+            <h4 class="questions">If I payoff my loan within 120 days of disbursements, do I cancel my loan?</h4>
+            <p class="answers-aboutOnlinePayments11 answers" id="pmtBasicsAnswer11">
+                Within 120 days of the date your school disbursed your loan money (by crediting the loan money to your account at the school, by paying it directly to you, or both), you may return all or part of your loan to us.  You do not have to pay interest or the loan fee on the part of your loan that you return within 120 days of the date that part of your loan is disbursed. If you received an up-front interest rebate on your loan, the rebate does not apply to the part of your loan that you return. Your loan will be adjusted to eliminate any interest, loan fee, and rebate amount that applies to the amount of the loan that you return.
+            </p>
+        </div>
+        <h3 class="btn-About">Payment Timing</h3>
+        <div id="aboutPaymentTimingFaq">
+            <h4 class="questions">I made a payment but I don't see it on my account.</h4>
+            <p class="answers-aboutPaymentTiming1 answers" id="pmtTimingAnswer1">
+                Your payment may still be in transit. It is currently taking us 30 days to receive
+                payments from your previous servicer. Once we receive the payment, it will be applied
+                to your account.
+            </p>
+        </div>
+        <h3 class="btn-About">Postpone Payments</h3>
+        <div id="postponefaq">
+            <h4 class="questions">I can't make my payments? What should I do?</h4>
+            <p class="answers-postpone1 answers" id="postponeAnswer1">
+                We suggest that you contact us to discuss alternate payment arrangements if you
+                would be able to make a smaller monthly payment. If you are entirely unable to pay,
+                you may require for a deferment or forbearance. Please review the forms online to
+                determine if you qualify.
+            </p>
+            <h4 class="questions">What's the difference between forbearance and deferment?</h4>
+            <p class="answers-postpone2 answers" id="postponeAnswer2">
+                Both a deferment and a forbearance postpone payments on your loans. During a deferment,
+                the government will pay the interest on your subsidized loans. During a forbearance,
+                interest will accrue on all of your loan types. One other difference is that deferment
+                is an entitlement, so if you qualify for deferment you can receive it; forbearance
+                is discretionary and is applied based on business decisions at CornerStone.
+            </p>
+            <h4 class="questions">How long can I use a deferment/forbearance?</h4>
+            <p class="answers-postpone3 answers" id="postponeAnswer3">
+                An unemployment deferment lasts for 6 month at a time. An economic hardship deferments
+                last for 12 months at a time. You have an allotted 36 months of each type of deferment
+                for your entire loan term. Forbearance is discretionary, and may last for up to
+                12 months at a time.
+            </p>
+            <h4 class="questions">How do I postpone payments?</h4>
+            <p class="answers-postpone4 answers" id="posponeAnswer4">
+                You may postpone your payments through deferment or forbearance. You can take the
+                deferment/forbearance eligibility quiz by logging into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a>, where you can apply online for forbearance and deferment.
+                The forms are also available <a href="@Url.Content("~/Home/Forms")" title="Forms">here</a> or you may call us and request that the forms be mailed to you.
+            </p>
+        </div>
+        <h3 class="btn-About">Delinquency</h3>
+        <div id="aboutDelinquencyFaq">
+            <h4 class="questions">When will my account be reported to credit agencies?</h4>
+            <p class="answers-aboutDelinquency1 answers" id="delqAnswer1">
+                We credit report accounts that are 60 or more days delinquent. We send these credit
+                reports to the three bureaus at the end of every month. If you have missed a payment,
+                please make arrangements to bring your account current as soon as possible.
+            </p>
+            <h4 class="questions">Can a negative credit report be removed from my account?</h4>
+            <p class="answers-aboutDelinquency2 answers" id="delqAnswer2">
+                If the negative reporting was valid and verifiable, the credit reporting cannot
+                be removed.
+            </p>
+            <h4 class="questions">Why are you still calling? I already sent the forms.</h4>
+            <div class="answers-aboutDelinquency3 answers" id="delqAnswer3">
+                We will stop calling when we receive and process your forms. Until then, your account
+                will still show up on our system as delinquent, while your account still has delinquency
+                we are required to contact you.
+            </div>
+        </div>
+        <h3 class="btn-About">Paid Ahead Status</h3>
+        <div id="aboutDelinquencyFaq">
+            <h4 class="questions">Why is my account in a paid ahead status?</h4>
+            <p class="answers">
+                If your account is current and you make a payment towards your loan(s) that is greater than your monthly minimum, the remainder of your payment will start to satisfy future bills.
+            </p>
+            <p class="answers">
+                For example: If your monthly payment is $50.00 and you make a $100.00 payment, your current bill, as well as next month’s bill will be satisfied.
+            </p>
+            <h4 class="questions">How does a paid ahead status affect my future bills?</h4>
+            <p class="answers">
+                When you’re in a paid ahead status, your billing statement will reflect as $0.00 due. The bill will also include language at the bottom of the statement informing you of the date and the amount due for your next payment.
+            </p>
+            <p class="answers">
+                You are still welcome to make payments while in a paid ahead status. Be advised that even though you aren’t required to make a payment, interest will still accrue daily. Any payments made in a paid ahead status will be applied to outstanding interest first, followed by your principle balance.
+            </p>
+            <h4 class="questions">What are the benefits of being in a paid ahead status?</h4>
+            <p class="answers">
+                A benefit of being in a paid ahead status is that it can shorten your repayment timeline. Also, if you continue to make payments while in a paid ahead status, more of your payment will go towards the principle balance and in turn, you’ll pay less interest over the life of the loan.             
+            </p>
+            <h4 class="questions">Does being in a paid ahead status make me indelible for anything?</h4>
+            <p class="answers">
+                While in a paid ahead status you aren’t eligible for forbearances or deferments; however, because your loan(s) is paid ahead, you shouldn’t need to request these options. You can skip the bills that are already satisfied without worrying about needing to postpone a payment. As soon as your loan(s) is no longer paid ahead, you will become eligible for postponement options once again. 
+            </p>
+            <p class="answers">
+                You will also not be unable to change your due date while in a paid ahead status. Once the status has been lifted, you can change your due date by simply <a href="/ContactUs" title="CornerStone Contact Page">giving us a call!</a> 
+            </p>
+            <h4 class="questions">Can I be removed from a paid ahead status?</h4>
+            <p class="answers">
+                Absolutely! If you would like to be removed from the paid ahead status, please <a href="/ContactUs" title="CornerStone Contact Page">contact us.</a> 
+            </p>
+            <p class="answers">
+                Be advised, in-order to remove you from a paid ahead status, your loans may be subject to re-disclosure. Your account is re-disclosed in order to recalculate your monthly payment based on your total loan balance and how many remaining terms (months) you have left to repay your loan(s). This may result in a lower monthly payment. If your monthly payment decreases, you are welcome to make a payment higher than your monthly minimum; however, this could cause you to enter a paid ahead status again. 
+            </p>
+            <div class="bar">
+                <a class="btn-About" title="" href="#faqCategories">Back to Top</a>
+            </div>
+        </div>
+    </div>
+    <!--End Payment Questions-->
+    <!--Billing & Interest Questions-->
+    <h2>Billing &amp; Interest Questions</h2>
+    <div id="biQuestions" tabindex="-1">
+        <h3 class="btn-About">Bill Timing</h3>
+        <div id="aboutBillTimingFaq">
+            <h4 class="questions">How long before my payment is due does CornerStone send a bill?</h4>
+            <p class="answers-aboutBillTiming1 answers" id="billTimingAnswer1">
+                All borrowers in repayment are sent a monthly bill. To make it easy to make a payment before your bill is due,
+                we will send bills 21 days before the due date.
+            </p>
+            <h4 class="questions">How long will it take to apply my payment once you receive it?</h4>
+            <p class="answers-aboutBillTiming2 answers" id="billTimingAnswer2">
+                We will post your payment to your account within 24 - 48 hours after we have received it.
+            </p>
+        </div>
+        <h3 class="btn-About">Billing Preferences</h3>
+        <div id="aboutBillPreferencesFaq">
+            <h4 class="questions">I don't want to get bills in the mail, how do I update my billing preferences?</h4>
+            <p class="answers-aboutBillPreferences1 answers" id="billPrefAnswer1">
+                Log into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a> and go to Account Profile then click on Change Paperless Enrollment then select the checkboxes next to the information you'd like to receive electronically; read and click that you agree with the agreement; and click Update Paperless Enrollment. Once you've updated your information, you'll receive a confirmation e-mail.
+                You can also make sure that your e-mail address is correct on the Account Profile
+                page, take a minute to make sure it's correct because if it isn't you won't be able
+                to get our e-mails.
+            </p>
+        </div>
+        <h3 class="btn-About">Understanding Interest</h3>
+        <div id="aboutInterestFaq">
+            <h4 class="questions">What is Interest?</h4>
+            <p class="answers-aboutInterest1 answers" id="interestAnswer1">
+                Interest is the cost of borrowing money. It is usually represented as a percentage
+                of the principal balance (the amount you initially borrowed). For example, if your
+                interest rate is 5% and you borrowed $100, when you pay back the $100 you will pay
+                5 additional dollars ($105 total) for the privilege of borrowing the money.
+            </p>
+            <h4 class="questions">What type of interest will I pay on a student loan?</h4>
+            <p class="answers-aboutInterest2 answers" id="interestAnswer2">
+                Student loans are simple interest which means that you pay interest only on the
+                principal balance. As your principal balance is paid off less interest will accrue
+                on your account.
+            </p>
+            <h4 class="questions">How often does interest accrue on my account?</h4>
+            <p class="answers-aboutInterest3 answers" id="interestAnswer3">
+                Interest accrues daily on your student loans.
+            </p>
+        </div>
+        <h3 class="btn-About">Interest Rates</h3>
+        <div id="aboutInterestChangesFaq">
+            <h4 class="questions">What is an interest rate?</h4>
+            <p class="answers-aboutRates1 answers" id="rateAnswer1">
+                An interest rate is the percentage of money charged for its use. For example, if
+                you borrowed $100 and then had to pay $5 as interest, the interest rate on that
+                $100 is 5%.
+            </p>
+            <h4 class="questions">What is the interest rate on my student loans?</h4>
+            <p class="answers-aboutRates2 answers" id="rateAnswer2">
+                Interest rates for federal student loans are determined by federal law. Please visit <a href="https://nsldsFAP.ed.gov/" rel="external" title="NSLDS">NSLDS</a> or log into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" title="Account Access">Account Access</a> for more information about your interest rates.
+            </p>
+            <h4 class="questions">How can I get my interest rate lowered?</h4>
+            <p class="answers-aboutRates3 answers" id="rateAnswer3">
+                You can reduce your interest rate by choosing to enroll in automatic payments. We
+                reduce your interest rate by 0.25% if you choose to have your payments automatically
+                withdrawn.
+            </p>
+            <div class="bar">
+                <a class="btn-About" title="Back To Top" href="#faqCategories">Back to Top</a>
+            </div>
+        </div>
+    </div>
+
+    <!--End Billing and Interest Questions-->
+    <!--Miscellaneous Questions-->
+    <h2>Miscellaneous Questions</h2>
+    <div id="miscQuestions" tabindex="-1">
+        <h3 class="btn-About">Capitalization</h3>
+        <div id="aboutCapitalizationfaq">
+            <h4 class="questions">What is capitalization?</h4>
+            <p class="answers-aboutCapitalization1 answers" id="capAnswer1">
+                Capitalization is the addition of unpaid interest on a loan to the loan's principal
+                balance. Basically, the unpaid interest becomes part of the principal balance.
+            </p>
+            <h4 class="questions">When does capitalization occur?</h4>
+            <p class="answers-aboutCapitalization2 answers" id="capAnswer2">
+                Capitalization occurs when your loan goes into repayment. For example, if you had
+                a forbearance on your loans and the forbearance ended, any interest that accrued
+                while your loan was in forbearance will be capitalized.
+            </p>
+        </div>
+        <h3 class="btn-About">Endorsers</h3>
+        <div id="aboutEndorserfaq">
+            <h4 class="questions">What is an Endorser?</h4>
+            <p class="answers-aboutEndorser1 answers" id="endorserAnswer1">
+                An endorser (or co-signer) agrees to repay the loan if the borrower does not. When
+                a PLUS loan is denied due to the applicant’s adverse credit, the applicant (borrower)
+                may get a credit-worthy endorser.
+            </p>
+            <h4 class="questions">What is the difference between an endorser and a co-borrower?</h4>
+            <p class="answers-aboutEndorser2 answers" id="endorserAnswer2">
+                Co-borrowers (or co-makers) are jointly responsible for repayment of a loan. Co-borrowers
+                are present only on spousal consolidation loans. Endorsers (or co-signers) are only
+                responsible to pay if the borrower does not. Endorsers are present only on PLUS
+                loans. When a PLUS borrower cannot get a loan because of poor credit, he/she may
+                find a credit-worthy endorser to “co-sign” on the loan.
+            </p>
+        </div>
+        <h3 class="btn-About">Taxes</h3>
+        <div id="aboutTaxesfaq">
+            <h4 class="questions">
+                Can I take a deduction on my taxes for capitalized interest and origination fees paid on my
+                student loans?
+            </h4>
+            <p class="answers-aboutTaxes1 answers" id="taxAnswer1">
+                In 2004, the IRS established new rules permitting tax deductions for capitalized
+                interest paid by student loan borrowers. At the same time, the IRS also established
+                rules permitting student loan borrowers to deduct a portion of any origination fees
+                charged. You can find specific information about how to calculate the amount of
+                capitalized interest and origination fees you may deduct by consulting IRS Publication
+                970 titled "Tax Benefits for Education," available on the IRS website located at
+                www.irs.gov. Your tax advisor can also help you with this issue.
+            </p>
+        </div>
+        <h3 class="btn-About">Mortgage Questions</h3>
+        <div id="aboutMortgagesFaq">
+            <h4 class="questions">Can you send a letter to my mortgage company to show deferment?</h4>
+            <p class="answers-aboutMortgages1 answers" id="mortgageAnswer1">
+                Yes. We can create that letter and send it in one to two business days. We can mail
+                it or fax it to your mortgage lender. You can also print a loan verification letter right now by logging into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" title="Account Access">Account Access</a>.
+            </p>
+        </div>
+        <div class="bar">
+            <a class="btn-About" title="Back to Top" href="#faqCategories">Back to Top</a>
+        </div>
+    </div>
+
+    <!--Consolidation Questions-->
+    <h2>Consolidation FAQs</h2>
+    <div id="consolidationQuestions" tabindex="-1">
+        <div>
+            <h4 class="questions">What is Consolidation?</h4>
+            <p class="answers">
+                Much like a consolidation loan for other types of debt, Federal Direct Loan customers can combine all of their student loans into one new loan that is guaranteed by the Department of Education. This allows customers to have their loans serviced in one place.
+            </p>
+            <h4 class="questions">Should I consolidate?</h4>
+            <p class="answers">
+                There are several pros and cons to consolidation. Please review the following list before making a decision:
+                <br />
+                <br />
+                Pro:
+                <ul>
+                    <li>All loans serviced in one place</li>
+                    <li>Extended terms (months ) to repay, which may result in a lower monthly payment</li>
+                    <li>More repayment options</li>
+                    <li>Expanded loan forgiveness options</li>
+                    <li>No origination fees</li>
+                </ul>
+
+                Cons:
+                <ul>
+                    <li>Extended terms may increase the total amount of interest paid</li>
+                    <li>Loss of borrower-benefits (i.e. Interest discounts provided by your previous Guarantor)</li>
+                    <li>Loss of qualifying payments towards IDR forgiveness</li>
+                    <li>Loss of qualifying payments towards Public Service Loan Forgiveness (PSLF)</li>
+                </ul>
+
+                For additional information regarding consolidation, please visit <a href="https://studentaid.ed.gov/sa/repay-loans/consolidation" title="https://studentaid.ed.gov/sa/repay-loans/consolidation">https://studentaid.ed.gov/sa/repay-loans/consolidation</a>
+            </p>
+            <h4 class="questions">How do I consolidate?</h4>
+            <p class="answers">
+                You can apply online at StudentLoans.gov. If you are interested in consolidating your loans, you may do so online at StudentLoans.Gov. If you have been happy with the service you have received thus far, you have the opportunity to select CornerStone, among others, as your new servicer.
+            </p>
+            <h4 class="questions">Where Will My Consolidation Application Be Processed?</h4>
+            <p class="answers">
+                The Department of Education has assigned Navient to originate and process all new consolidation loans for NFP’s (Not-For-Profits). Once your loan has been created, it will be transferred to the servicer you selected on your application.
+            </p>
+            <h4 class="questions">Where Would I Send a Physical Application?</h4>
+            <p class="answers">
+                You can send all consolidation related paperwork to the following address:<br /><br />
+                <strong>CornerStone</strong><br />
+                c/o Navient LCP – E1140<br />
+                PO Box 8005<br />
+                Fishers IN 46038 – 8005
+            </p>
+            <h4 class="questions">Where Can I get an Update on my Consolidation Process?</h4>
+            <p class="answers">
+                The Department of Education has selected Navient to originate and process any new Consolidation Loans for all NFP’s (Not-For-Profits).  They can be reached by any of the following ways:
+                <ul>
+                    <li>Email: <a href="mailto:ED_Consolidation_Orig@navient.com" title="ED_Consolidation_Orig@navient.com">ED_Consolidation_Orig@navient.com</a></li>
+                    <li>Fax: (866) 233-8899</li>
+                    <li>Phone: (800) 722-1300</li>
+                    <li>Hours: Monday – Thursday 8 am – 9 pm ET and Friday 8 am – 8 pm ET</li>
+                </ul>
+            </p>
+            <h4 class="questions">What is the Interest Rate on a Consolidation Loan?</h4>
+            <p class="answers">
+                The interest rate on a new consolidation loan is a fixed rate calculated from the weighted average of the loans you’re looking to consolidate. This rate is rounded to the next highest 1/8th of a percent, with a cap of 8.25%. The rate is fixed for the life of the loan. 
+            </p>
+            <h4 class="questions">When Will My Consolidated Loan Enter Repayment?</h4>
+            <p class="answers">
+                Consolidation Loans enter repayment once they have been transferred to your servicer. If you have any questions regarding your repayment options, please contact one of our Customer Service Representatives. 
+            </p>
+        </div>
+        <div class="bar">
+            <a class="btn-About" title="Back to Top" href="#faqCategories">Back to Top</a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{200839FB-1404-4BCD-9052-FEF31ED6F33E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EcorrLetterSetup</RootNamespace>
+    <AssemblyName>EcorrLetterSetup</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Y:\Codebase\Applications\EcorrLetterSetup\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddChangeScriptLetter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddChangeScriptLetter.Designer.cs">
+      <DependentUpon>AddChangeScriptLetter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddChangeSystemLetter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddChangeSystemLetter.Designer.cs">
+      <DependentUpon>AddChangeSystemLetter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModeSelector.Designer.cs">
+      <DependentUpon>ModeSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Object Classes\FileHeaders.cs" />
+    <Compile Include="Object Classes\HeaderTypes.cs" />
+    <Compile Include="Letter.cs" />
+    <Compile Include="LetterSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LetterSearch.Designer.cs">
+      <DependentUpon>LetterSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Object Classes\LetterSearchData.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LetterSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LetterSetup.Designer.cs">
+      <DependentUpon>LetterSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptLetter.cs" />
+    <Compile Include="Object Classes\ScriptLetterData.cs" />
+    <Compile Include="SystemLetter.cs" />
+    <Compile Include="Object Classes\SystemLetterData.cs" />
+    <Compile Include="Object Classes\SystemLetterReturnTypes.cs" />
+    <Compile Include="Object Classes\SystemSprocs.cs" />
+    <EmbeddedResource Include="AddChangeScriptLetter.resx">
+      <DependentUpon>AddChangeScriptLetter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddChangeSystemLetter.resx">
+      <DependentUpon>AddChangeSystemLetter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetterSearch.resx">
+      <DependentUpon>LetterSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModeSelector.resx">
+      <DependentUpon>ModeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LetterSetup.resx">
+      <DependentUpon>LetterSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DocumentProcessing\DocumentProcessing\Uheaa.Common.DocumentProcessing\Uheaa.Common.DocumentProcessing.csproj">
+      <Project>{dde98b0a-849d-4565-b67b-254f03a15cf4}</Project>
+      <Name>Uheaa.Common.DocumentProcessing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

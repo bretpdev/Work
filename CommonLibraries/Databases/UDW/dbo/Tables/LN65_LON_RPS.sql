@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[LN65_LON_RPS] (
+    [BF_SSN]             VARCHAR (9)    NOT NULL,
+    [LN_SEQ]             SMALLINT       NOT NULL,
+    [LN_RPS_SEQ]         SMALLINT       NOT NULL,
+    [LA_RPD_INT_DIS]     DECIMAL (8, 2) NULL,
+    [LR_APR_RPD_DIS]     DECIMAL (5, 3) NULL,
+    [LA_TOT_RPD_DIS]     DECIMAL (8, 2) NULL,
+    [LA_CPI_RPD_DIS]     DECIMAL (8, 2) NULL,
+    [LR_INT_RPD_DIS]     DECIMAL (5, 3) NULL,
+    [LA_ANT_CAP]         DECIMAL (7, 2) NULL,
+    [LD_GRC_PRD_END]     DATETIME       NULL,
+    [LD_CRT_LON65]       DATETIME       NULL,
+    [LC_STA_LON65]       CHAR (1)       NULL,
+    [LF_LST_DTS_LN65]    DATETIME       NULL,
+    [LC_TYP_SCH_DIS]     VARCHAR (2)    NULL,
+    [LA_ACR_INT_RPD]     DECIMAL (7, 2) NULL,
+    [LA_ANT_SUP_FEE]     DECIMAL (7, 2) NULL,
+    [LN_RPD_MAX_TRM_REQ] DECIMAL (3)    NULL,
+    [LD_RPD_MAX_TRM_SR]  DATETIME       NULL,
+    [LC_RPD_INA_REA]     CHAR (1)       NULL,
+    [LC_RPD_DIS]         CHAR (1)       NULL,
+    [LR_CLC_INC_SCH]     DECIMAL (5, 3) NULL,
+    [LA_CLC_RPY_SCH]     DECIMAL (8, 2) NULL,
+    [LI_ICR_RPD_NEG_AMR] CHAR (1)       NULL,
+    PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_SEQ] ASC, [LN_RPS_SEQ] ASC) WITH (FILLFACTOR = 95)
+);
+

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[GENR_REF_AuthAccess] (
+    [TypeKey]  VARCHAR (100) NOT NULL,
+    [WinUName] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_GENR_REF_AuthAccess] PRIMARY KEY CLUSTERED ([TypeKey] ASC, [WinUName] ASC),
+    CONSTRAINT [FK_GENR_DAT_Access_SYSA_LST_Users] FOREIGN KEY ([WinUName]) REFERENCES [dbo].[SYSA_LST_Users] ([WindowsUserName]) ON UPDATE CASCADE
+);
+

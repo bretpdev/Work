@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE [idruserpro].[GetCurrentBalance]
+	@AccountIdentifier VARCHAR(10),
+	@LoanSequence INT
+AS
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+	SELECT
+		LN10.LA_CUR_PRI
+	FROM
+		LN10_LON LN10
+		INNER JOIN PD10_PRS_NME PD10 
+			ON PD10.DF_PRS_ID = LN10.BF_SSN
+	WHERE
+		(PD10.DF_PRS_ID = @AccountIdentifier OR PD10.DF_SPE_ACC_ID = @AccountIdentifier)
+		AND LN10.LN_SEQ = @LoanSequence

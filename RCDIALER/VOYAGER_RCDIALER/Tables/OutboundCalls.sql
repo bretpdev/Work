@@ -1,0 +1,28 @@
+﻿CREATE TABLE [rcdialer].[OutboundCalls]
+(
+	[OutboundCallsId] INT NOT NULL PRIMARY KEY IDENTITY,
+    [BorrowerId] INT NULL,
+    [RCID] VARCHAR(20) NULL,
+    [ServicerId] VARCHAR(6) NULL, 
+    [FirstName] VARCHAR(13) NULL, 
+    [LastName] VARCHAR(35) NULL, 
+    [Address1] VARCHAR(50) NULL, 
+    [Address2] VARCHAR(35) NULL, 
+    [City] VARCHAR(25) NULL, 
+    [State] VARCHAR(2) NULL, 
+    [Zip] VARCHAR(14) NULL, 
+    [Email] VARCHAR(254) NULL, 
+    [HomePhone] VARCHAR(10) NULL, 
+    [WorkPhone] VARCHAR(10) NULL, 
+    [CellPhone] VARCHAR(10) NULL, 
+    [MonthlyRepaymentAmount] NUMERIC(8, 2) NULL, 
+    [SchoolCode] VARCHAR(8) NULL, 
+    [SchoolName] VARCHAR(255) NULL, 
+    [DaysDelinquent] INT NULL, 
+    [DelinquentBucket] VARCHAR(50) NULL,
+    [ProcessedAt] DATETIME NULL,
+    [AddedAt] DATETIME NOT NULL DEFAULT GETDATE(), 
+    [AddedBy] VARCHAR(50) NOT NULL DEFAULT SUSER_NAME(), 
+    [DeletedAt] DATETIME NULL, 
+    [DeletedBy] VARCHAR(50) NULL
+)

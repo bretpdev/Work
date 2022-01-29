@@ -1,0 +1,25 @@
+﻿CREATE TYPE [duplrefs].[ReferenceRecord] AS TABLE
+(
+	[ReferenceQueueId] INT NULL,
+    [BorrowerQueueId] INT NULL,
+	[RefId] VARCHAR(9) NOT NULL,
+	[RefName] VARCHAR(50) NOT NULL,
+	[RefStatus] CHAR(1) NULL,
+	[RefAddress1] VARCHAR(35) NULL,
+	[RefAddress2] VARCHAR(35) NULL,
+	[RefCity] VARCHAR(30) NULL,
+	[RefState] VARCHAR(2) NULL,
+	[RefPhone] VARCHAR(21) NULL,
+	[RefZip] VARCHAR(14) NULL,
+	[RefCountry] VARCHAR(25) NULL,
+	[ValidAddress] BIT NULL,
+	[ValidPhone] BIT NULL,
+	[DemosChanged] BIT NULL,
+	[ZipChanged] BIT NULL,
+	[ManuallyWorked] BIT NULL,
+	[Duplicate] BIT NOT NULL,
+	[PossibleDuplicate] BIT NOT NULL,
+	[ArcAddProcessingId] BIGINT NULL,
+	[ProcessedAt] DATETIME NULL,
+	[Lp2fProcessedAt] DATETIME NULL
+)

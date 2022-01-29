@@ -1,0 +1,155 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.large-text-area{
+    max-width: inherit;
+    width: auto; 
+}
+
+.dark-highlight{
+    color: white;
+    background-color: #3E3E3E;
+}
+
+.light-highlight{
+    color: white;
+    background-color: #6D6D6D;
+}
+
+.dark-blue-highlight{
+    color: white;
+    background-color: #1A1E4B;
+}
+
+.light-blue-highlight{
+    color: white;
+    background-color: #5056A2;
+}
+
+.light-blue-background{
+    background-color: #BACFFC;
+}
+
+a.sort-link-colored-invariant{
+    color:#FFFFFF;
+}
+a.sort-link-colored-invariant:active{
+    color:#FFFFFF;
+}
+a.sort-link-colored-invariant:link{
+    color:#FFFFFF;
+}
+a.sort-link-colored-invariant:visited{
+    color:#FFFFFF;
+}
+
+.navbar-item{
+    color:#999999;
+    padding-top:15px;
+    padding-bottom:15px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:14px;
+    font-weight:normal;
+}
+
+.uheaa-homepage-background {
+    background-image: url(../Images/UHEAA-homepage.png);
+    background-size: 100% 100%;
+    height: 400px;
+    max-height: 600px;
+}
+
+.top-bottom-padding{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.more-padding{
+    padding-right: 30px;
+}
+
+@media (min-width: 1650px) {
+
+    .navbar .container{
+        max-width: 1600px;
+    }
+    .more-padding{
+        padding-right: 200px;
+    }
+}
+
+.centered-nav-header{
+    min-height: 85px;
+}
+.centered-nav-header a{
+    vertical-align: middle;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.centered-nav ul{
+    min-height: 85px;
+    text-align: center;
+}
+.centered-nav ul li{
+    min-height: 85px;
+    vertical-align: middle;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.centered-nav ul li a{
+    vertical-align: middle;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.centered-nav ul li label{
+    vertical-align: middle;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.rounded-dropdown select{
+    max-width: 280px;
+    border-radius: 5px;
+    height: 34px;
+}
+
+/* Overriding Bootstrap Defaults */
+.navbar-inverse{
+    background-color: #2482C2;
+    border-color: #2482C2;
+}
+.navbar-inverse .navbar-brand {
+    color: #ffffff
+}
+.navbar-inverse .navbar-nav > li > a{
+    color: #ffffff
+}
+.navbar-item{
+    color: #ffffff
+}
+.jumbotron{
+    background-color: #e9ecef
+}

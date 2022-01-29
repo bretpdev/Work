@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[GENR_LST_BusTopics] (
+    [BusTopic] VARCHAR (100) NOT NULL,
+    CONSTRAINT [PK_GENR_LST_BusTopics] PRIMARY KEY CLUSTERED ([BusTopic] ASC)
+);
+

@@ -1,0 +1,1722 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/6/2017 10:44:02 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LPP-2541"
+  DTS:CreatorName="UHEAA\jryan"
+  DTS:Description="DTS Wizard-generated package"
+  DTS:DTSID="{8301A5BD-6AE4-443C-BEBB-56554DDEDDB7}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.1601.5"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="CONTACT"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{71602BF7-2DF1-49AD-9838-1782E09BD27C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8C969F94-49DE-4CD8-BB78-F1FA68951A2F}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=OPSDEV;Initial Catalog=CLS;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{84754675-0929-413F-B71F-FC90CB578C72}"
+      DTS:ObjectName="SourceConnectionFlatFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="FixedWidth"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="T:\CONTACT.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="RecordType"
+              DTS:DTSID="{D4DDB848-1C31-4603-BA6F-E1D32EC0A2CB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="OpeId"
+              DTS:DTSID="{7F31C4F7-E5C7-4760-8046-CA78799A04DE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="ChangeIndicator"
+              DTS:DTSID="{51C6735F-6C86-4882-AEF8-2226F72DEF5D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="ContType"
+              DTS:DTSID="{DCC6BE9F-C130-4647-930C-D24DBFDE6371}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="35"
+              DTS:MaximumWidth="35"
+              DTS:DataType="129"
+              DTS:ObjectName="ContStreet1"
+              DTS:DTSID="{D38F869A-69B9-4AEE-BDE7-A81A261715F0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="35"
+              DTS:MaximumWidth="35"
+              DTS:DataType="129"
+              DTS:ObjectName="ContStreet2"
+              DTS:DTSID="{93ECC8F7-7E01-4033-83F3-BA0F80380160}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="25"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:ObjectName="ContCity"
+              DTS:DTSID="{AB4A05B2-C6F2-41B9-B8F4-2E9904C092F1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="ContState"
+              DTS:DTSID="{B894DDC1-B2BB-46DD-BF94-F58AF4D0C5CA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="14"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:ObjectName="Zip"
+              DTS:DTSID="{198B0400-AEC8-445B-82AB-AE3352D9E540}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="25"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:ObjectName="ContProvince"
+              DTS:DTSID="{BFF4F43B-1C18-45D8-B463-248F24B6986F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="25"
+              DTS:MaximumWidth="25"
+              DTS:DataType="129"
+              DTS:ObjectName="ContCountry"
+              DTS:DTSID="{A5B18D42-62D6-4661-BFBD-E93D1420D186}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="ContSaluataion"
+              DTS:DTSID="{6FC61CF9-DFDB-48DD-903E-199F08DCF72F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="15"
+              DTS:MaximumWidth="15"
+              DTS:DataType="129"
+              DTS:ObjectName="ContFirstName"
+              DTS:DTSID="{FFA16EEE-317B-43A0-8597-1B3A59E76C26}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="ContMI"
+              DTS:DTSID="{43D0EC94-618D-4016-A220-0308BBEC935B}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="30"
+              DTS:MaximumWidth="30"
+              DTS:DataType="129"
+              DTS:ObjectName="ContLastName"
+              DTS:DTSID="{BF647371-50D0-408B-88B2-774E5C2835C1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:ObjectName="ContSuffix"
+              DTS:DTSID="{38657A50-4E23-4DDE-AFF7-FF4523B14F5E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:ObjectName="ContAreaCode"
+              DTS:DTSID="{8B7224B9-1A84-4B65-9254-BCBAE27D1D11}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="3"
+              DTS:MaximumWidth="3"
+              DTS:DataType="129"
+              DTS:ObjectName="ContExchange"
+              DTS:DTSID="{13152564-A1C7-47D5-945F-BC1687E330BD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="4"
+              DTS:MaximumWidth="4"
+              DTS:DataType="129"
+              DTS:ObjectName="ContExt"
+              DTS:DTSID="{710F5001-8AA9-4D4C-BB6C-8EB4C48872FF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="5"
+              DTS:MaximumWidth="5"
+              DTS:DataType="129"
+              DTS:ObjectName="ContExt2"
+              DTS:DTSID="{ABCB08ED-68B9-4033-929E-537F63FCF010}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="14"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:ObjectName="ContForeignPhone"
+              DTS:DTSID="{5F2F7169-E182-4770-920B-0C7FC7F44E9F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="14"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:ObjectName="ContFax"
+              DTS:DTSID="{0C07B6FA-C056-4365-8AA0-3E0F582D8B8A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="50"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:ObjectName="ContInternetAdd"
+              DTS:DTSID="{548048FC-5DC7-498F-9569-50D411D4F571}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="ContEffectDte"
+              DTS:DTSID="{D6B146F5-2A87-482B-9AE8-BFC75AFC929E}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="ContEndDte"
+              DTS:DTSID="{17388D63-FDA3-4ECC-9233-DF9FAC4E0D3D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="60"
+              DTS:MaximumWidth="60"
+              DTS:DataType="129"
+              DTS:ObjectName="SchoolsJobTitle"
+              DTS:DTSID="{A13E8B0E-1464-42FD-8505-F8A075BC52F1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="ContSysId"
+              DTS:DTSID="{9D516C23-5844-4AD8-9D55-D14A0DAE69F5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="150"
+              DTS:MaximumWidth="150"
+              DTS:DataType="129"
+              DTS:ObjectName="Filler"
+              DTS:DTSID="{11F73482-52FF-4C65-89D2-48B98298E4E5}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{52752F34-E5B3-42D0-A8E1-11949CB4B259}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Destination - CONTACT"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - CONTACT"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[peps].[CONTACT]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - CONTACT.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[RecordType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="RecordType"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[RecordType]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[RecordType]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[OpeId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="OpeId"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[OpeId]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[OpeId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ChangeIndicator]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ChangeIndicator"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ChangeIndicator]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ContType"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContType]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContType]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContStreet1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="35"
+                      cachedName="ContStreet1"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContStreet1]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContStreet1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContStreet2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="35"
+                      cachedName="ContStreet2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContStreet2]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContStreet2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContCity]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="ContCity"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContCity]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContCity]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContState]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ContState"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContState]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContState]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[Zip]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="Zip"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[Zip]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[Zip]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContProvince]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="ContProvince"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContProvince]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContProvince]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContCountry]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="ContCountry"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContCountry]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContCountry]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContSaluataion]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="ContSaluataion"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContSaluataion]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSaluataion]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContFirstName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="15"
+                      cachedName="ContFirstName"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContFirstName]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContFirstName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContMI]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ContMI"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContMI]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContMI]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContLastName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="ContLastName"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContLastName]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContLastName]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContSuffix]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="ContSuffix"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContSuffix]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSuffix]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContAreaCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="ContAreaCode"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContAreaCode]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContAreaCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContExchange]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="ContExchange"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContExchange]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExchange]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContExt]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="ContExt"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContExt]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExt]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContExt2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="ContExt2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContExt2]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExt2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContForeignPhone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="ContForeignPhone"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContForeignPhone]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContForeignPhone]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContFax]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="14"
+                      cachedName="ContFax"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContFax]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContFax]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContInternetAdd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ContInternetAdd"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContInternetAdd]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContInternetAdd]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContEffectDte]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="ContEffectDte"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContEffectDte]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContEffectDte]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContEndDte]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="ContEndDte"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContEndDte]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContEndDte]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[SchoolsJobTitle]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="SchoolsJobTitle"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[SchoolsJobTitle]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[SchoolsJobTitle]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[ContSysId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="ContSysId"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContSysId]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSysId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].Columns[Filler]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="150"
+                      cachedName="Filler"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[Filler]"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[Filler]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="OpeId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ChangeIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ContType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContStreet1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="35"
+                      name="ContStreet1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContStreet2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="35"
+                      name="ContStreet2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ContCity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContState]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ContState" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContProvince]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ContProvince" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContCountry]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ContCountry" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContSaluataion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ContSaluataion" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContFirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="ContFirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContMI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ContMI" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContLastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ContLastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContSuffix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ContSuffix" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContAreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ContAreaCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContExchange]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ContExchange" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContExt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="ContExt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContExt2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="ContExt2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContForeignPhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="ContForeignPhone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContFax]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="ContFax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContInternetAdd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ContInternetAdd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContEffectDte]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ContEffectDte" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContEndDte]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ContEndDte" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[SchoolsJobTitle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="SchoolsJobTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[ContSysId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ContSysId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input].ExternalColumns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Filler" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - CONTACT.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - CONTACT.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - CONTACT_txt"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Source - CONTACT_txt"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - CONTACT_txt.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[RecordType]"
+                      length="2"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[RecordType]"
+                      name="RecordType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[OpeId]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[OpeId]"
+                      name="OpeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ChangeIndicator]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]"
+                      name="ChangeIndicator"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContType]"
+                      length="2"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContType]"
+                      name="ContType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContStreet1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContStreet1]"
+                      length="35"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContStreet1]"
+                      name="ContStreet1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContStreet2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContStreet2]"
+                      length="35"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContStreet2]"
+                      name="ContStreet2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContCity]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContCity]"
+                      length="25"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContCity]"
+                      name="ContCity"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContState]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContState]"
+                      length="2"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContState]"
+                      name="ContState"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[Zip]"
+                      length="14"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[Zip]"
+                      name="Zip"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContProvince]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContProvince]"
+                      length="25"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContProvince]"
+                      name="ContProvince"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContCountry]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContCountry]"
+                      length="25"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContCountry]"
+                      name="ContCountry"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSaluataion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContSaluataion]"
+                      length="2"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSaluataion]"
+                      name="ContSaluataion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContFirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContFirstName]"
+                      length="15"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContFirstName]"
+                      name="ContFirstName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContMI]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContMI]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContMI]"
+                      name="ContMI"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContLastName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContLastName]"
+                      length="30"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContLastName]"
+                      name="ContLastName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSuffix]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContSuffix]"
+                      length="3"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSuffix]"
+                      name="ContSuffix"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContAreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContAreaCode]"
+                      length="3"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContAreaCode]"
+                      name="ContAreaCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExchange]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContExchange]"
+                      length="3"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExchange]"
+                      name="ContExchange"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExt]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContExt]"
+                      length="4"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExt]"
+                      name="ContExt"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExt2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContExt2]"
+                      length="5"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContExt2]"
+                      name="ContExt2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContForeignPhone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContForeignPhone]"
+                      length="14"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContForeignPhone]"
+                      name="ContForeignPhone"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContFax]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContFax]"
+                      length="14"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContFax]"
+                      name="ContFax"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContInternetAdd]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContInternetAdd]"
+                      length="50"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContInternetAdd]"
+                      name="ContInternetAdd"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContEffectDte]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContEffectDte]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContEffectDte]"
+                      name="ContEffectDte"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContEndDte]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContEndDte]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContEndDte]"
+                      name="ContEndDte"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[SchoolsJobTitle]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[SchoolsJobTitle]"
+                      length="60"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[SchoolsJobTitle]"
+                      name="SchoolsJobTitle"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSysId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContSysId]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[ContSysId]"
+                      name="ContSysId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[Filler]"
+                      length="150"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].Columns[Filler]"
+                      name="Filler"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="OpeId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ChangeIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ContType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContStreet1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="35"
+                      name="ContStreet1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContStreet2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="35"
+                      name="ContStreet2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContCity]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ContCity" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContState]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ContState" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[Zip]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="Zip" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContProvince]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ContProvince" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContCountry]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ContCountry" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContSaluataion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="ContSaluataion" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContFirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="15"
+                      name="ContFirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContMI]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ContMI" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContLastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="ContLastName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContSuffix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ContSuffix" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContAreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ContAreaCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContExchange]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="ContExchange" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContExt]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="ContExt" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContExt2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="ContExt2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContForeignPhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="ContForeignPhone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContFax]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="ContFax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContInternetAdd]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ContInternetAdd" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContEffectDte]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ContEffectDte" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContEndDte]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ContEndDte" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[SchoolsJobTitle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="SchoolsJobTitle" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[ContSysId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="ContSysId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output].ExternalColumns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      length="150"
+                      name="Filler" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+              endId="Package\Data Flow Task 1\Destination - CONTACT.Inputs[Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task 1\Source - CONTACT_txt.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{333B9D4E-85D1-47ED-A622-3FA261128A4F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{8C969F94-49DE-4CD8-BB78-F1FA68951A2F}"
+          SQLTask:SqlStatementSource="DELETE FROM &#xA;&#x9;[CLS].[peps].[CONTACT]&#xA;WHERE&#xA;&#x9;ChangeIndicator = 'N'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{27981DCB-C67B-4812-80FB-5519B087B619}"
+      DTS:From="Package\Data Flow Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Data Flow Task 1"
+          TopLeft="20.5,107.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="22.5,210.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="103.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

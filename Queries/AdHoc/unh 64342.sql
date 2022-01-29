@@ -1,0 +1,6 @@
+SELECT
+	*
+FROM
+	UDW..WQ20_TSK_QUE
+WHERE 
+	WF_QUE = 'II'

@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Repayment Plans";
+}
+
+@section Meta {
+    <meta name="description" content="There are several repayment plans available to you to repay your student loans. CornerStone has made it simple to find out which repayment plan is best for you." />
+}
+
+<h1>Repayment Plans</h1>
+
+<ul style="list-style-type:decimal;">
+
+    <li>
+        <h3><a rel="external" href="https://studentaid.ed.gov/sa/repay-loans/understand/plans/standard" >Standard Repayment Plan</a></h3>
+        <div class="modal fade standardrepaymentplan" tabindex="-1" role="dialog" onfocus="$(this).find('button').focus();">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" title="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">Standard Repayment Plan</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <h3><a rel="external" href="https://studentaid.ed.gov/sa/repay-loans/understand/plans/graduated" >Graduated Repayment Plan</a></h3>
+        <div class="modal fade graduatedrepayment" tabindex="-1" role="dialog" onfocus="$(this).find('button').focus();">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" title="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">Graduated Repayment Plan</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <h3><a rel="external" href="https://studentaid.ed.gov/sa/repay-loans/understand/plans/extended"  >Extended Repayment Plan</a></h3>
+        <div class="modal fade extendedrepayment" tabindex="-1" role="dialog" onfocus="$(this).find('button').focus();">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" title="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">Extended Repayment Plan</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li>
+        <h3><a rel="external" href="https://studentaid.ed.gov/sa/repay-loans/understand/plans/income-driven" >Income Driven Repayment Plans</a></h3>
+        <div class="modal fade ibr" tabindex="-1" role="dialog" onfocus="$(this).find('button').focus();">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" title="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">Income Driven Repayment Plans</h2>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ol style="list-style-type: lower-roman;">
+            <li>
+                <h4>Income-Based Repayment (IBR) Plan</h4>
+            </li>
+            <li>
+                <h4> Income-Contingent Repayment (ICR) Plan</h4>
+            </li>
+            <li>
+                <h4>Pay As You Earn (PAYE) Repayment Plan</h4>
+            </li>
+            <li>
+                <h4>Revised Pay As You Earn (REPAYE) Repayment Plan</h4>
+            </li>
+
+        </ol>
+    </li>
+</ul>
+
+<hr />
+
+<p>A few things to think about when looking at Direct Loan repayment plans:</p>
+<ul>
+    <li>
+        You can prepay your loan at any time without penalty. Learn more about this in the
+        <a href="@Url.Content("~/faq")">FAQ page</a> under the "Your Information" section.
+    </li>
+    <li>
+        If your loan has a variable interest rate, your monthly payment amount can change
+        annually.
+    </li>
+    <li>
+        Your repayment period excludes time when your loan is in deferment, except for Economic Hardship Deferments after October 1, 2007, for ICR and IBR.
+    </li>
+</ul>
+
+<h2>Changing Repayment Plans</h2>
+<p>
+    You can change your repayment plan as often as you want as long as the new plan
+    has a longer repayment term than the amount of time you've already spent in repayment.
+</p>
+<p>
+    Your new repayment plan is calculated by subtracting the amount of time you've already
+    spent in repayment from the repayment term allowed under the new plan. To change
+    your plan, complete the <a href="https://mycornerstoneloan.org/Home/Forms#PaymentForms" title="Link to Repayment Forms">Repayment Plan Selection Form</a> and
+    return it to CornerStone, or call us at 800-663-1662.
+</p>
+<ol>
+    <li>
+        If you are required to repay under the Income-Contingent Repayment (ICR) plan, you
+        have to make three consecutive on-time payments of a payment amount based on your
+        income before changing to another plan.
+    </li>
+    <li>
+        If you choose to leave an Income-Driven Repayment plan, your account will
+        be placed on the Standard Repayment Plan.
+    </li>
+    <li>You can change your Income-Driven Repayment plan at any time.</li>
+    <li>
+        Your repayment plan options depend on the type of loans you have. 
+    </li>
+</ol>

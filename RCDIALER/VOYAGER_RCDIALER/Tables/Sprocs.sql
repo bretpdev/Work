@@ -1,0 +1,10 @@
+﻿CREATE TABLE [rcdialer].[Sprocs]
+(
+	[SprocsId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [SprocName] VARCHAR(50) NOT NULL, 
+    [IsAlternateWeek] BIT NOT NULL DEFAULT 1, 
+    [AddedAt] DATETIME NULL DEFAULT GETDATE(), 
+    [AddedBy] VARCHAR(50) NULL DEFAULT SUSER_SNAME(),
+    [DeletedAt] DATETIME NULL, 
+    [DeletedBy] VARCHAR(50) NULL
+)

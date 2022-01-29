@@ -1,0 +1,20 @@
+﻿CREATE PROCEDURE [portcount].[InsertCounts]
+AS
+	INSERT INTO portcount.PortfolioCounts(UheaaBorrowerCount, UheaaLoanCount)
+	SELECT
+		COUNT(DISTINCT LN10.BF_SSN) [UheaaBorrowerCount],
+		COUNT(*) [UheaaLoanCount]
+	FROM
+		UDW..LN10_LON LN10
+		INNER JOIN UDW..DW01_DW_CLC_CLU DW01
+			ON DW01.BF_SSN = LN10.BF_SSN
+			AND LN10.LN_SEQ = DW01.LN_SEQ
+	WHERE
+		LN10.LC_STA_LON10 = 'R'
+		AND
+		ISNULL(LN10.LA_CUR_PRI, 0.00) + ISNULL(LN10.LA_NSI_OTS, 0.00) > 0.00
+		AND
+		DW01.WC_DW_LON_STA NOT IN (06, 17, 19, 21)
+		AND
+		CAST(GETDATE() AS DATE) NOT IN (SELECT MAX(CAST(CreatedAt AS DATE)) FROM portcount.PortfolioCounts)
+RETURN 0

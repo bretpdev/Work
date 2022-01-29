@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="e91a20b9-8076-4f4a-9c5d-7048fcff7f61" ChangeDateTime="04/21/2020 13:59:30">
+    <Property Name="ElementName" Value="[lslettersu].[MergeFields].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[lslettersu].[MergeFields]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MergeFieldsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9a3f7f27-081e-4338-aa81-f2e95f703aff" ChangeDateTime="04/21/2020 14:07:46">
+    <Property Name="ElementName" Value="[lslettersu].[FormFields].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[lslettersu].[FormFields]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FormFieldsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="52c6f603-2c8c-4f93-a4a9-1ecb638ea253" ChangeDateTime="04/21/2020 14:11:33">
+    <Property Name="ElementName" Value="[lslettersu].[MergeFieldMapping].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[lslettersu].[MergeFieldMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MergeFieldMappingId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8454f1ee-7a40-45ad-8a17-16847b01d8ff" ChangeDateTime="04/21/2020 14:12:09">
+    <Property Name="ElementName" Value="[lslettersu].[MergeFieldMapping].[MergeFieldId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[lslettersu].[MergeFieldMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MergeFieldsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f685e1c9-d074-41c2-ae52-fd925fa45e2e" ChangeDateTime="04/21/2020 14:28:44">
+    <Property Name="ElementName" Value="[lslettersu].[MergeFieldMapping].[LetterId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[lslettersu].[MergeFieldMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LoanServicingLettersId" />
+  </Operation>
+</Operations>

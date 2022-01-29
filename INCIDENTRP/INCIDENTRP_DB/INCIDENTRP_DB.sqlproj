@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>INCIDENTRP_DB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{05AF0406-C4A0-457E-AFD4-231ADB76A7AB}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>INCIDENTRP_DB</RootNamespace>
+    <AssemblyName>INCIDENTRP_DB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\LST_Sex.sql" />
+    <Build Include="dbo\Tables\LST_Relationship.sql" />
+    <Build Include="dbo\Tables\LST_RegularMailDeliveryProblem.sql" />
+    <Build Include="dbo\Tables\LST_Region.sql" />
+    <Build Include="dbo\Tables\LST_NotifierType.sql" />
+    <Build Include="dbo\Tables\LST_NotificationMethod.sql" />
+    <Build Include="dbo\Tables\LST_IncidentType.sql" />
+    <Build Include="dbo\Tables\LST_IncidentPriority.sql" />
+    <Build Include="dbo\Tables\LST_IncidentCause.sql" />
+    <Build Include="dbo\Tables\LST_DataInvolved.sql" />
+    <Build Include="dbo\Tables\LST_Action.sql" />
+    <Build Include="dbo\Tables\DAT_ViolationOfAcceptableUse.sql" />
+    <Build Include="dbo\Tables\DAT_UnauthorizedSystemAccess.sql" />
+    <Build Include="dbo\Tables\DAT_UnauthorizedPhysicalAccess.sql" />
+    <Build Include="dbo\Tables\DAT_Ticket.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatVoice.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatManner.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatLanguage.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatInfo.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatDialect.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatCallerInfo.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatBombInfo.sql" />
+    <Build Include="dbo\Tables\DAT_ThreatBackgroundNoise.sql" />
+    <Build Include="dbo\Tables\DAT_ThirdPartyDataInvolved.sql" />
+    <Build Include="dbo\Tables\DAT_Telephone.sql" />
+    <Build Include="dbo\Tables\DAT_SystemOrNetworkUnavailable.sql" />
+    <Build Include="dbo\Tables\DAT_ScansProbes.sql" />
+    <Build Include="dbo\Tables\DAT_Reporter.sql" />
+    <Build Include="dbo\Tables\DAT_RegularMailDelivery.sql" />
+    <Build Include="dbo\Tables\DAT_PhysicalDamageLossTheft.sql" />
+    <Build Include="dbo\Tables\DAT_OddComputerBehavior.sql" />
+    <Build Include="dbo\Tables\DAT_Notifier.sql" />
+    <Build Include="dbo\Tables\DAT_Lock.sql" />
+    <Build Include="dbo\Tables\DAT_Incident.sql" />
+    <Build Include="dbo\Tables\DAT_History.sql" />
+    <Build Include="dbo\Tables\DAT_Fax.sql" />
+    <Build Include="dbo\Tables\DAT_ElectronicMailDelivery.sql" />
+    <Build Include="dbo\Tables\DAT_DisposalDestruction.sql" />
+    <Build Include="dbo\Tables\DAT_DataEntry.sql" />
+    <Build Include="dbo\Tables\DAT_CanceledTickets.sql" />
+    <Build Include="dbo\Tables\DAT_BorrowerDataInvolved.sql" />
+    <Build Include="dbo\Tables\DAT_AgencyEmployeeHrDataInvolved.sql" />
+    <Build Include="dbo\Tables\DAT_AgencyDataInvolved.sql" />
+    <Build Include="dbo\Tables\DAT_ActionTaken.sql" />
+    <Build Include="dbo\Tables\DAT_AccessControl.sql" />
+    <Build Include="dbo\Stored Procedures\spSetViolationOfAcceptableUse.sql" />
+    <Build Include="dbo\Stored Procedures\spSetUnauthorizedSystemAccess.sql" />
+    <Build Include="dbo\Stored Procedures\spSetUnauthorizedPhysicalAccess.sql" />
+    <Build Include="dbo\Stored Procedures\spSetTicket.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatVoice.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatManner.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatLanguage.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatDialect.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatCallerInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatBombInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThreatBackgroundNoise.sql" />
+    <Build Include="dbo\Stored Procedures\spSetThirdPartyDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spSetTelephone.sql" />
+    <Build Include="dbo\Stored Procedures\spSetSystemOrNetworkUnavailable.sql" />
+    <Build Include="dbo\Stored Procedures\spSetScansProbes.sql" />
+    <Build Include="dbo\Stored Procedures\spSetReporter.sql" />
+    <Build Include="dbo\Stored Procedures\spSetRegularMailDelivery.sql" />
+    <Build Include="dbo\Stored Procedures\spSetPhysicalDamageLossTheft.sql" />
+    <Build Include="dbo\Stored Procedures\spSetOddComputerBehavior.sql" />
+    <Build Include="dbo\Stored Procedures\spSetNotifier.sql" />
+    <Build Include="dbo\Stored Procedures\spSetLock.sql" />
+    <Build Include="dbo\Stored Procedures\spSetIncident.sql" />
+    <Build Include="dbo\Stored Procedures\spSetFax.sql" />
+    <Build Include="dbo\Stored Procedures\spSetElectronicMailDelivery.sql" />
+    <Build Include="dbo\Stored Procedures\spSetDisposalOrDestruction.sql" />
+    <Build Include="dbo\Stored Procedures\spSetDataEntry.sql" />
+    <Build Include="dbo\Stored Procedures\spSetBorrowerDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spSetAgencyEmployeeHrDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spSetAgencyDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spSetActionTaken.sql" />
+    <Build Include="dbo\Stored Procedures\spSetAccessControl.sql" />
+    <Build Include="dbo\Stored Procedures\spSearchForTickets.sql" />
+    <Build Include="dbo\Stored Procedures\spSearchForOpenTickets.sql" />
+    <Build Include="dbo\Stored Procedures\spSearchForAllTickets.sql" />
+    <Build Include="dbo\Stored Procedures\spReleaseLock.sql" />
+    <Build Include="dbo\Stored Procedures\spGetViolationOfAcceptableUse.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUnauthorizedSystemAccess.sql" />
+    <Build Include="dbo\Stored Procedures\spGetUnauthorizedPhysicalAccess.sql" />
+    <Build Include="dbo\Stored Procedures\spGetTicketTypes.sql" />
+    <Build Include="dbo\Stored Procedures\spGetTicket.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatVoice.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatManner.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatLanguage.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatDialect.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatCallerInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatBombInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThreatBackgroundNoise.sql" />
+    <Build Include="dbo\Stored Procedures\spGetThirdPartyDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spGetTelephone.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSystemOrNetworkUnavailable.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSubjects.sql" />
+    <Build Include="dbo\Stored Procedures\spGetStatuses.sql" />
+    <Build Include="dbo\Stored Procedures\spGetScansProbes.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRequesters.sql" />
+    <Build Include="dbo\Stored Procedures\spGetReporter.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRelationships.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRegularMailDelivery.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRegions.sql" />
+    <Build Include="dbo\Stored Procedures\spGetPriorities.sql" />
+    <Build Include="dbo\Stored Procedures\spGetPhysicalDamageLossTheft.sql" />
+    <Build Include="dbo\Stored Procedures\spGetOddComputerBehavior.sql" />
+    <Build Include="dbo\Stored Procedures\spGetNotifierTypes.sql" />
+    <Build Include="dbo\Stored Procedures\spGetNotifier.sql" />
+    <Build Include="dbo\Stored Procedures\spGetNotificationMethods.sql" />
+    <Build Include="dbo\Stored Procedures\spGetMembersOfIS.sql" />
+    <Build Include="dbo\Stored Procedures\spGetLockHolder.sql" />
+    <Build Include="dbo\Stored Procedures\spGetIncidentTypes.sql" />
+    <Build Include="dbo\Stored Procedures\spGetIncidentPriority.sql" />
+    <Build Include="dbo\Stored Procedures\spGetIncidentCauses.sql" />
+    <Build Include="dbo\Stored Procedures\spGetIncident.sql" />
+    <Build Include="dbo\Stored Procedures\spGetHistory.sql" />
+    <Build Include="dbo\Stored Procedures\spGetFax.sql" />
+    <Build Include="dbo\Stored Procedures\spGetElectronicMailDelivery.sql" />
+    <Build Include="dbo\Stored Procedures\spGetEarliestCreateDate.sql" />
+    <Build Include="dbo\Stored Procedures\spGetDisposalDestruction.sql" />
+    <Build Include="dbo\Stored Procedures\spGetDataInvolvedOptions.sql" />
+    <Build Include="dbo\Stored Procedures\spGetDataEntry.sql" />
+    <Build Include="dbo\Stored Procedures\spGetCourts.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBusinessUnits.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBorrowerDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAssignees.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAgencyEmployeeHrDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAgencyDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spGetActionTaken.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAccessControl.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteViolationOfAcceptableUse.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteUnauthorizedSystemAccess.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteUnauthorizedPhysicalAccess.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatVoice.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatManner.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatLanguage.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatDialect.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatCallerInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatBombInfo.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThreatBackgroundNoise.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteThirdPartyDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteTelephone.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteSystemOrNetworkUnavailable.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteScansProbes.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteRegularMailDelivery.sql" />
+    <Build Include="dbo\Stored Procedures\spDeletePhysicalDamageLossTheft.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteOddComputerBehavior.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteNotifier.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteFax.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteElectronicMailDelivery.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteDisposalOrDestruction.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteDataEntry.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteBorrowerDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteAgencyEmployeeHrDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteAgencyDataInvolved.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteActionTaken.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteAccessControl.sql" />
+    <Build Include="dbo\Stored Procedures\spCancelTicket.sql" />
+    <Build Include="dbo\Stored Procedures\spAddHistory.sql" />
+  </ItemGroup>
+</Project>

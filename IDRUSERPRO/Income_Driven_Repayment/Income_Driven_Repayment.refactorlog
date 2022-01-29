@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d07cc6e1-e4f1-4164-8698-b510d80dd308" ChangeDateTime="04/19/2018 19:58:12">
+    <Property Name="ElementName" Value="[dbo].[Poverty_Guidelines].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Poverty_Guidelines]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="poverty_guideline_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a7fb7d3b-65ba-4c45-bd42-f2b9b8dd5cf8" ChangeDateTime="04/19/2018 20:08:23">
+    <Property Name="ElementName" Value="[dbo].[Income_Percentage_Factors].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Income_Percentage_Factors]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="income_percentage_factor_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5d1a6260-4378-4208-8c9a-50f42b6d5669" ChangeDateTime="06/15/2018 21:29:21">
+    <Property Name="ElementName" Value="[dbo].[Filing_Statuses].[marital_status_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Filing_Statuses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="status_for_married" />
+  </Operation>
+</Operations>

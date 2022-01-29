@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [NSCSQL]
+    WITH PASSWORD = N'aYeNyhsffk.Sd:rmeownav!ymsFT7_&#$!~<iyuvX|qzaleo', SID = 0x11B872B596A46F418EB3173850EA92EF, DEFAULT_LANGUAGE = [us_english];
+

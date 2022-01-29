@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[BORG_LST_DTX7LManualLetterData] (
+    [LetterID] VARCHAR (20) NOT NULL,
+    [ARC]      VARCHAR (5)  NOT NULL,
+    CONSTRAINT [PK_BORG_LST_DTX7LManualLetterData] PRIMARY KEY CLUSTERED ([LetterID] ASC)
+);
+

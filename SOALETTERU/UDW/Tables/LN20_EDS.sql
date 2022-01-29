@@ -1,0 +1,26 @@
+﻿
+CREATE TABLE [dbo].[LN20_EDS](
+	[BF_SSN] [char](9) NOT NULL,
+	[LN_EDS_SEQ] [smallint] NOT NULL,
+	[LC_STA_LON20] [char](1) NOT NULL,
+	[LC_REL_TO_BR] [varchar](2) NOT NULL,
+	[LC_EDS_TYP] [char](1) NOT NULL,
+	[LF_EDS] [char](9) NOT NULL,
+	[LF_LST_DTS_LN20] [datetime2](7) NOT NULL,
+	[LN_SEQ] [smallint] NULL,
+	[AN_SEQ] [smallint] NULL,
+	[IC_LON_PGM] [varchar](6) NULL,
+	[AN_SEQ_WK79] [smallint] NULL,
+	[LD_EFF_EDS_HST] [date] NULL,
+	[LC_REA_EDS_HST] [char](1) NOT NULL,
+	[LF_LST_USR_HST_EDS] [varchar](8) NOT NULL,
+	[AF_APL_ID] [varchar](9) NULL,
+	[AN_LC_APL_SEQ] [smallint] NULL,
+ CONSTRAINT [PK_LN20_EDS] PRIMARY KEY CLUSTERED 
+(
+	[BF_SSN] ASC,
+	[LN_EDS_SEQ] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 95) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

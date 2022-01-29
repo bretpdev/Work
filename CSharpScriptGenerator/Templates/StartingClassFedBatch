@@ -1,0 +1,39 @@
+﻿using System;
+using Q;
+using Key = Q.ReflectionInterface.Key;
+
+namespace <<NAMESPACE>>
+{
+    public class <<STARTING_CLASS>> : FedBatchScriptBase
+    {
+		//TODO: Modify the following comment to reflect the recovery value(s) being used.
+		//Recovery value is the row index from the SAS DataTable.
+
+		//End-of-job fields are used as both array initializers and dictionary keys, so define them in consts.
+		//TODO: Update the fields to match the spec.
+		private const string EOJ_TOTAL_FROM_SAS = "Total number of records in the SAS file";
+		private const string EOJ_PROCESSED = "Number of records successfully processed";
+		private const string EOJ_ERROR_QUEUE = "Number of records sent to error queue";
+		private const string EOJ_ERROR_REPORT = "Number of records sent to error report";
+		private static readonly string[] EOJ_FIELDS = { EOJ_TOTAL_FROM_SAS, EOJ_PROCESSED, EOJ_ERROR_QUEUE, EOJ_ERROR_REPORT };
+
+		private readonly DataAccess _dataAccess;
+		
+		//TODO: Update the filesystem keys for the error and end-of-job reports.
+        public <<STARTING_CLASS>>(ReflectionInterface ri)
+            : base(ri, "<<SCRIPT_ID>>", "ERR_BU35", "EOJ_BU35", EOJ_FIELDS)
+        {
+			_dataAccess = new DataAccess(ri.TestMode);
+        }
+
+        public override void Main()
+        {
+			//TODO: Modify the startup message to describe the script's purpose.
+			StartupMessage("This script does something magical and revolutionary. Click OK to continue, or Cancel to quit.");
+			
+			//TODO: Fill in the script logic.
+
+			ProcessingComplete();
+        }
+    }
+}

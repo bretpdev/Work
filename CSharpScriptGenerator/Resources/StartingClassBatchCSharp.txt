@@ -1,0 +1,28 @@
+﻿using System;
+using Uheaa.Common.DataAccess;
+using Uheaa.Common.Scripts;
+
+namespace <<NAMESPACE>>
+{
+    public class <<STARTING_CLASS>> : BatchScript
+    {
+		//TODO: Modify the following comment to reflect the recovery value(s) being used.
+		//Recovery value is the row index from the SAS DataTable.
+		
+        public <<STARTING_CLASS>>(ReflectionInterface ri)
+	    : base(ri, DataAccessBase.Region.Uheaa, "<<SCRIPT_ID>>")
+        {
+			
+        }
+
+        public override void Main()
+        {
+			//TODO: Modify the startup message to describe the script's purpose.
+			StartupMessage("This script does something magical and revolutionary. Click OK to continue, or Cancel to quit.");
+			
+			//TODO: Fill in the script logic.
+
+			ProcessingComplete();
+        }
+    }
+}

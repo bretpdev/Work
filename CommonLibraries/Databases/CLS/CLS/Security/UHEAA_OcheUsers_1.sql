@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [UHEAA\OcheUsers]
+    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
+

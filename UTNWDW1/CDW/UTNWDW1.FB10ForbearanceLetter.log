@@ -1,0 +1,405 @@
+1                                                          The SAS System                          09:19 Wednesday, February 8, 2017
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+WARNING: Unable to copy SASUSER registry to WORK registry. Because of this, you will not see registry customizations during this 
+         session.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M1) 
+      Licensed to UNIVERSITY OF UTAH - ADMIN, Site 70162560.
+NOTE: This session is executing on the W32_7PRO  platform.
+
+
+
+NOTE: Updated analytical products:
+      
+      SAS/STAT 13.1
+      SAS/ETS 13.1
+      SAS/OR 13.1
+      SAS/IML 13.1
+      SAS/QC 13.1
+
+NOTE: Additional host information:
+
+ W32_7PRO WIN 6.1.7601 Service Pack 1 Workstation
+
+NOTE: SAS initialization used:
+      real time           1:01.12
+      cpu time            0.13 seconds
+      
+1          /*TEST*/
+2          /*%LET TESTMSG = - THIS IS A TEST;
+3          %LET RPTLIB = T:\SAS;
+4          %LET LOGLIB = Y:\Batch\Logs;
+5          %LET CODELIB = Y:\Codebase\SAS\CDW;
+6          %LET ODBCFILE = BSYS_TEST;
+7          %LET DB = CDW_test;
+8          %LET ODBCFILE_CSYS = CSYSTest;*/
+9          
+10         /*LIVE*/
+11         %LET TESTMSG = - THIS IS LIVE;
+12         %LET RPTLIB = Z:\Batch\FTP;
+13         %LET LOGLIB = Z:\Batch\Logs;
+14         %LET CODELIB = Z:\Codebase\SAS\CDW;
+15         %LET ODBCFILE = BSYS;
+16         %LET DB = CDW;
+17         %LET ODBCFILE_CSYS = CSYS;
+18         
+19         %INCLUDE "&CODELIB\UTNWDW1 CDW DAILY UPDATE.FOLDER AND DATABASE.SAS"  ;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+2                                        The SAS System        09:19 Wednesday, February 8, 2017
+
+      cpu time            0.00 seconds
+      
+
+NOTE: Libref DB was successfully assigned as follows: 
+      Engine:        ODBC 
+      Physical Name: 
+
+NOTE: Table WORK.TEST created, with 4 rows and 2 columns.
+
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+
+
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+NOTE: Format $AACERR has been output.
+NOTE: Format $AUXSTA has been output.
+NOTE: Format $BILMTD has been output.
+NOTE: Format $DEFSTA has been output.
+NOTE: Format $FATRAN has been output.
+NOTE: Format $FORSTA has been output.
+NOTE: Format $LNPROG has been output.
+NOTE: Format $LONSTA has been output.
+NOTE: Format $REVREA has been output.
+NOTE: Format $RFRTYP has been output.
+NOTE: Format $SCHTYP has been output.
+NOTE: Format $SCLTYP has been output.
+NOTE: Format $STACRB has been output.
+NOTE: Format $FMTNAME has been output.
+
+NOTE: PROCEDURE FORMAT used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.01 seconds
+      
+NOTE: There were 1091 observations read from the data set DB.FORMATTRANSLATION.
+
+364        %FILECHECK(40);
+MPRINT(FILECHECK):   FILENAME REPORT40 "Z:\Batch\FTP/UNWDW1.NWDW1R40.*";
+365        
+366        DATA FOR_LTR(drop=trunc);
+367        	INFILE REPORT40 DSD DLM = ',' FIRSTOBS=1 MISSOVER end = eof LRECL = 32767;
+368        	INPUT
+369        		DF_SPE_ACC_ID :$10.
+370        		LN_SEQ :6.
+371        		LF_FOR_CTL_NUM :$3.
+372        		LN_FOR_OCC_SEQ :6.
+373        		LC_FOR_TYP :$2.
+3                                        The SAS System        09:19 Wednesday, February 8, 2017
+
+374        		LD_FOR_INF_CER :DATE9.
+375        		LD_CRT_REQ_FOR :DATE9.
+376        		LC_FOR_STA :$1.
+377        		LC_STA_FOR10 :$1.
+378        		LD_STA_FOR10 :DATE9.
+379        		LF_LST_DTS_FB10 :DATETIME25.3
+380        		LD_FOR_BEG :DATE9.
+381        		LD_FOR_END :DATE9.
+382        		LC_STA_LON60 :$1.
+383        		LC_LON_LEV_FOR_CAP :$1.
+384        		LF_LST_DTS_LN60 :DATETIME25.3
+385        		LD_STA_LON60 :DATE9.
+386        		LD_FOR_APL :DATE9.
+387        	;
+388        	%TRUNCAT(40);
+MPRINT(TRUNCAT):   retain trunc 0;
+MPRINT(TRUNCAT):   if df_spe_acc_id = '-Begin-' then do;
+MPRINT(TRUNCAT):   if trunc = 0 then do;
+MPRINT(TRUNCAT):   trunc = 1;
+MPRINT(TRUNCAT):   delete;
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   else do;
+MPRINT(TRUNCAT):   call symput('ERROR',"40");
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   delete;
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   else if df_spe_acc_id = '-End-' then do;
+MPRINT(TRUNCAT):   if trunc = 1 then trunc = 0;
+MPRINT(TRUNCAT):   else do;
+MPRINT(TRUNCAT):   call symput('ERROR',"40");
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   delete;
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   if eof and df_spe_acc_id ^= '-End-' then do;
+MPRINT(TRUNCAT):   call symput('ERROR',"40");
+MPRINT(TRUNCAT):   end;
+389        RUN;
+
+NOTE: The infile REPORT40 is:
+      Filename=Z:\Batch\FTP\UNWDW1.NWDW1R40,
+      RECFM=V,LRECL=32767
+
+NOTE: 146 records were read from the infile REPORT40.
+      The minimum record length was 5.
+      The maximum record length was 145.
+NOTE: The data set WORK.FOR_LTR has 144 observations and 18 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+390        
+4                                        The SAS System        09:19 Wednesday, February 8, 2017
+
+391        /*convert SAS dates to SQL Server datetime*/
+392        DATA FOR_LTR;
+393        	SET FOR_LTR;
+394        	LD_FOR_INF_CER = LD_FOR_INF_CER*86400;
+395        	LD_CRT_REQ_FOR = LD_CRT_REQ_FOR*86400;
+396        	LD_STA_FOR10 = LD_STA_FOR10*86400;
+397        	LD_FOR_BEG = LD_FOR_BEG*86400;
+398        	LD_FOR_END = LD_FOR_END*86400;
+399        	LD_STA_LON60 = LD_STA_LON60*86400;
+400        	LD_FOR_APL = LD_FOR_APL*86400;
+401        RUN;
+
+NOTE: Missing values were generated as a result of performing an operation on missing values.
+      Each place is given by: (Number of times) at (Line):(Column).
+      72 at 394:33   
+NOTE: There were 144 observations read from the data set WORK.FOR_LTR.
+NOTE: The data set WORK.FOR_LTR has 144 observations and 18 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+402        
+403        %COPYERROR;
+404        
+405        %ENCHILADA
+406        	(
+407        		FOR_LTR,
+408        		FB10_ForbearanceLetter,
+409        		DF_SPE_ACC_ID
+410        		LN_SEQ
+411        		LF_FOR_CTL_NUM
+412        		LN_FOR_OCC_SEQ,
+413        		LC_FOR_TYP
+414        		LD_FOR_INF_CER
+415        		LD_CRT_REQ_FOR
+416        		LC_FOR_STA
+417        		LC_STA_FOR10
+418        		LD_STA_FOR10
+419        		LF_LST_DTS_FB10
+420        		LD_FOR_BEG
+421        		LD_FOR_END
+422        		LC_STA_LON60
+423        		LC_LON_LEV_FOR_CAP
+424        		LF_LST_DTS_LN60
+425        		LD_STA_LON60
+426        		LD_FOR_APL,
+427        /*		no filter*/
+428        	);
+MPRINT(ENCHILADA):   data _null_;
+MPRINT(ENCHILADA):   i = 1;
+MPRINT(ENCHILADA):   do until (pri = '');
+5                                        The SAS System        09:19 Wednesday, February 8, 2017
+
+MPRINT(ENCHILADA):   pri = scan("LC_FOR_TYP   LD_FOR_INF_CER   LD_CRT_REQ_FOR   LC_FOR_STA   
+LC_STA_FOR10   LD_STA_FOR10   LF_LST_DTS_FB10   LD_FOR_BEG   LD_FOR_END   LC_STA_LON60   
+LC_LON_LEV_FOR_CAP   LF_LST_DTS_LN60   LD_STA_LON60   LD_FOR_APL",i);
+MPRINT(ENCHILADA):   if pri = '' then call symput('attr_ct',i-1);
+MPRINT(ENCHILADA):   i + 1;
+MPRINT(ENCHILADA):   end;
+MPRINT(ENCHILADA):   i = 1;
+MPRINT(ENCHILADA):   do until (pri = '');
+MPRINT(ENCHILADA):   pri = scan("DF_SPE_ACC_ID   LN_SEQ   LF_FOR_CTL_NUM   LN_FOR_OCC_SEQ",i);
+MPRINT(ENCHILADA):   if pri = '' then call symput('key_ct',i-1);
+MPRINT(ENCHILADA):   i + 1;
+MPRINT(ENCHILADA):   end;
+MPRINT(ENCHILADA):   run;
+
+NOTE: Numeric values have been converted to character values at the places given by: 
+      (Line):(Column).
+      428:109   428:221   
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+14            4
+MPRINT(ENCHILADA):   PROC SQL;
+MPRINT(ENCHILADA):   CREATE TABLE NO_DELTA AS SELECT DISTINCT A.DF_SPE_ACC_ID ,A.LN_SEQ 
+,A.LF_FOR_CTL_NUM ,A.LN_FOR_OCC_SEQ FROM FOR_LTR A INNER JOIN DB.FB10_ForbearanceLetter B ON 
+A.DF_SPE_ACC_ID = B.DF_SPE_ACC_ID AND A.LN_SEQ = B.LN_SEQ AND A.LF_FOR_CTL_NUM = 
+B.LF_FOR_CTL_NUM AND A.LN_FOR_OCC_SEQ = B.LN_FOR_OCC_SEQ AND A.LC_FOR_TYP = B.LC_FOR_TYP AND 
+A.LD_FOR_INF_CER = B.LD_FOR_INF_CER AND A.LD_CRT_REQ_FOR = B.LD_CRT_REQ_FOR AND A.LC_FOR_STA = 
+B.LC_FOR_STA AND A.LC_STA_FOR10 = B.LC_STA_FOR10 AND A.LD_STA_FOR10 = B.LD_STA_FOR10 AND 
+A.LF_LST_DTS_FB10 = B.LF_LST_DTS_FB10 AND A.LD_FOR_BEG = B.LD_FOR_BEG AND A.LD_FOR_END = 
+B.LD_FOR_END AND A.LC_STA_LON60 = B.LC_STA_LON60 AND A.LC_LON_LEV_FOR_CAP = 
+B.LC_LON_LEV_FOR_CAP AND A.LF_LST_DTS_LN60 = B.LF_LST_DTS_LN60 AND A.LD_STA_LON60 = 
+B.LD_STA_LON60 AND A.LD_FOR_APL = B.LD_FOR_APL ;
+NOTE: Table WORK.NO_DELTA created, with 7 rows and 4 columns.
+
+MPRINT(ENCHILADA):   CREATE TABLE DELTAS AS SELECT DISTINCT A.* FROM FOR_LTR A LEFT JOIN 
+NO_DELTA B ON A.DF_SPE_ACC_ID = B.DF_SPE_ACC_ID AND A.LN_SEQ = B.LN_SEQ AND A.LF_FOR_CTL_NUM = 
+B.LF_FOR_CTL_NUM AND A.LN_FOR_OCC_SEQ = B.LN_FOR_OCC_SEQ WHERE B.DF_SPE_ACC_ID IS NULL;
+NOTE: Table WORK.DELTAS created, with 137 rows and 18 columns.
+
+MPRINT(ENCHILADA):   QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.15 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(ENCHILADA):   PROC SORT DATA=DELTAS NODUPKEY OUT=DELTA_KEY(KEEP=DF_SPE_ACC_ID LN_SEQ 
+LF_FOR_CTL_NUM LN_FOR_OCC_SEQ);
+MPRINT(ENCHILADA):   BY DF_SPE_ACC_ID LN_SEQ LF_FOR_CTL_NUM LN_FOR_OCC_SEQ;
+MPRINT(ENCHILADA):   RUN;
+
+6                                        The SAS System        09:19 Wednesday, February 8, 2017
+
+NOTE: There were 137 observations read from the data set WORK.DELTAS.
+NOTE: 0 observations with duplicate key values were deleted.
+NOTE: The data set WORK.DELTA_KEY has 137 observations and 4 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(ENCHILADA):   PROC SQL;
+MPRINT(ENCHILADA):   CREATE TABLE LOCL_DELTAS AS SELECT A.* FROM DB.FB10_ForbearanceLetter A 
+INNER JOIN DELTAS B ON A.DF_SPE_ACC_ID = B.DF_SPE_ACC_ID AND A.LN_SEQ = B.LN_SEQ AND 
+A.LF_FOR_CTL_NUM = B.LF_FOR_CTL_NUM AND A.LN_FOR_OCC_SEQ = B.LN_FOR_OCC_SEQ ;
+NOTE: Table WORK.LOCL_DELTAS created, with 37 rows and 18 columns.
+
+MPRINT(ENCHILADA):   INSERT INTO DB.ZDEL_FB10_ForbearanceLetter SELECT A.DF_SPE_ACC_ID 
+,A.LN_SEQ ,A.LF_FOR_CTL_NUM ,A.LN_FOR_OCC_SEQ FROM LOCL_DELTAS A;
+NOTE: 37 rows were inserted into DB.ZDEL_FB10_ForbearanceLetter.
+
+MPRINT(ENCHILADA):   QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.10 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(ENCHILADA):   PROC SORT DATA=LOCL_DELTAS;
+MPRINT(ENCHILADA):   BY DF_SPE_ACC_ID LN_SEQ LF_FOR_CTL_NUM LN_FOR_OCC_SEQ;
+MPRINT(ENCHILADA):   RUN;
+
+NOTE: There were 37 observations read from the data set WORK.LOCL_DELTAS.
+NOTE: The data set WORK.LOCL_DELTAS has 37 observations and 18 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(ENCHILADA):   PROC SORT DATA=DELTAS;
+MPRINT(ENCHILADA):   BY DF_SPE_ACC_ID LN_SEQ LF_FOR_CTL_NUM LN_FOR_OCC_SEQ;
+MPRINT(ENCHILADA):   RUN;
+
+NOTE: Input data set is already sorted, no sorting done.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(ENCHILADA):   DATA LOCL_DELTAS;
+MPRINT(ENCHILADA):   MERGE LOCL_DELTAS DELTAS;
+MPRINT(ENCHILADA):   BY DF_SPE_ACC_ID LN_SEQ LF_FOR_CTL_NUM LN_FOR_OCC_SEQ;
+MPRINT(ENCHILADA):   RUN;
+
+NOTE: There were 37 observations read from the data set WORK.LOCL_DELTAS.
+NOTE: There were 137 observations read from the data set WORK.DELTAS.
+7                                        The SAS System        09:19 Wednesday, February 8, 2017
+
+NOTE: The data set WORK.LOCL_DELTAS has 137 observations and 18 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(ENCHILADA):   PROC SQL NOPRINT;
+MPRINT(ENCHILADA):   CONNECT TO ODBC AS MD ("FILEDSN=X:\PADR\ODBC\CDW.dsn; 
+update_lock_typ=nolock; bl_keepnulls=no");
+MPRINT(ENCHILADA):   SELECT COUNT(*) FROM CONNECTION TO MD ( IF EXISTS(SELECT * FROM 
+FB10_ForbearanceLetter A INNER JOIN ZDEL_FB10_ForbearanceLetter B ON A.DF_SPE_ACC_ID = 
+B.DF_SPE_ACC_ID AND A.LN_SEQ = B.LN_SEQ AND A.LF_FOR_CTL_NUM = B.LF_FOR_CTL_NUM AND 
+A.LN_FOR_OCC_SEQ = B.LN_FOR_OCC_SEQ) BEGIN DELETE FB10_ForbearanceLetter FROM 
+FB10_ForbearanceLetter A INNER JOIN ZDEL_FB10_ForbearanceLetter B ON A.DF_SPE_ACC_ID = 
+B.DF_SPE_ACC_ID AND A.LN_SEQ = B.LN_SEQ AND A.LF_FOR_CTL_NUM = B.LF_FOR_CTL_NUM AND 
+A.LN_FOR_OCC_SEQ = B.LN_FOR_OCC_SEQ END );
+MPRINT(ENCHILADA):   DISCONNECT FROM MD;
+MPRINT(ENCHILADA):   QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(ENCHILADA):   PROC SQL ;
+MPRINT(ENCHILADA):   INSERT INTO DB.FB10_ForbearanceLetter (DF_SPE_ACC_ID ,LN_SEQ 
+,LF_FOR_CTL_NUM ,LN_FOR_OCC_SEQ ,LC_FOR_TYP ,LD_FOR_INF_CER ,LD_CRT_REQ_FOR ,LC_FOR_STA 
+,LC_STA_FOR10 ,LD_STA_FOR10 ,LF_LST_DTS_FB10 ,LD_FOR_BEG ,LD_FOR_END ,LC_STA_LON60 
+,LC_LON_LEV_FOR_CAP ,LF_LST_DTS_LN60 ,LD_STA_LON60 ,LD_FOR_APL ) SELECT DF_SPE_ACC_ID ,LN_SEQ 
+,LF_FOR_CTL_NUM ,LN_FOR_OCC_SEQ ,LC_FOR_TYP ,LD_FOR_INF_CER ,LD_CRT_REQ_FOR ,LC_FOR_STA 
+,LC_STA_FOR10 ,LD_STA_FOR10 ,LF_LST_DTS_FB10 ,LD_FOR_BEG ,LD_FOR_END ,LC_STA_LON60 
+,LC_LON_LEV_FOR_CAP ,LF_LST_DTS_LN60 ,LD_STA_LON60 ,LD_FOR_APL FROM LOCL_DELTAS ;
+NOTE: 137 rows were inserted into DB.FB10_ForbearanceLetter.
+
+MPRINT(ENCHILADA):   QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(ENCHILADA):   PROC SQL NOPRINT;
+MPRINT(ENCHILADA):   CONNECT TO ODBC AS MD ("FILEDSN=X:\PADR\ODBC\CDW.dsn; 
+update_lock_typ=nolock; bl_keepnulls=no");
+MPRINT(ENCHILADA):   SELECT COUNT(*) FROM CONNECTION TO MD ( truncate table 
+ZDEL_FB10_ForbearanceLetter );
+MPRINT(ENCHILADA):   QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+
+429        	
+430        %FINISH(SOURCE=FB10ForbearanceLetter);
+8                                        The SAS System        09:19 Wednesday, February 8, 2017
+
+MPRINT(FINISH):   DATA _NULL_;
+MPRINT(FINISH):   finish = put(time(),time9.);
+MPRINT(FINISH):   format total time9.;
+MPRINT(FINISH):   total = time() - "  9:20:08"t;
+MPRINT(FINISH):   PUT "FB10ForbearanceLetter";
+MPRINT(FINISH):   PUT "START =   9:20:08 ";
+MPRINT(FINISH):   PUT "FINISH = " FINISH;
+MPRINT(FINISH):   put "TOTAL = " total;
+MPRINT(FINISH):   RUN;
+
+FB10ForbearanceLetter
+START =   9:20:08 
+FINISH = 9:20:08
+TOTAL = 0:00:00
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           1:01.82
+      cpu time            0.38 seconds
+      

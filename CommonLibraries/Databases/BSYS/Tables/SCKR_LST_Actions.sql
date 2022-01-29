@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[SCKR_LST_Actions] (
+    [Action] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_lstActions] PRIMARY KEY CLUSTERED ([Action] ASC) WITH (FILLFACTOR = 90)
+);
+

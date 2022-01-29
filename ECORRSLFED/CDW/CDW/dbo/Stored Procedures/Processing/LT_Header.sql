@@ -1,0 +1,93 @@
+﻿CREATE PROCEDURE [dbo].[LT_Header]
+	@AccountNumber CHAR(10),
+	@IsCoborrower BIT = 0
+AS
+BEGIN
+
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+IF @IsCoborrower = 0
+	BEGIN
+		SELECT
+			--borrower info
+			REPLACE(LTRIM(RTRIM(BORR.DM_PRS_1)),',','')  + ' ' + REPLACE(LTRIM(RTRIM(BORR.DM_PRS_LST)),',','') + ' ' + REPLACE(LTRIM(RTRIM(BORR.DM_PRS_LST_SFX)),',','')  AS Name,
+			--address info
+			REPLACE(LTRIM(RTRIM(ADDR.DX_STR_ADR_1)),',','')  AS Address1,
+			REPLACE(LTRIM(RTRIM(ADDR.DX_STR_ADR_2)),',','')  AS Address2,
+			CASE WHEN LEN(LTRIM(RTRIM(ADDR.DF_ZIP_CDE))) = 9 
+				THEN REPLACE(LTRIM(RTRIM(ADDR.DM_CT)),',','')  + ' ' + REPLACE(LTRIM(RTRIM(ADDR.DC_DOM_ST)),',','')  + '  ' + LEFT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 5) + '-' + RIGHT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 4)
+				ELSE REPLACE(LTRIM(RTRIM(ADDR.DM_CT)),',','') + ' ' + REPLACE(LTRIM(RTRIM(ADDR.DC_DOM_ST)),',','') + '  ' + REPLACE(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)),',','')
+			END AS CityStateZip,
+			REPLACE(LTRIM(RTRIM(ADDR.DM_FGN_ST)),',','')  AS ForeignState,
+			REPLACE(LTRIM(RTRIM(ADDR.DM_FGN_CNY)),',','') AS Country,
+			BORR.DF_SPE_ACC_ID AS AccountNumber,
+			REPLACE(LTRIM(RTRIM(ADDR.DM_CT)),',','')  AS City,
+			REPLACE(LTRIM(RTRIM(ADDR.DC_DOM_ST)),',','')  AS [State],
+			CASE WHEN LEN(ADDR.DF_ZIP_CDE) = 9 
+				THEN LEFT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 5) + '-' + RIGHT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 4)
+				ELSE LTRIM(RTRIM(ADDR.DF_ZIP_CDE))
+			END AS Zip,
+			CASE WHEN DI_VLD_ADR = 'Y' 
+				THEN 1
+				ELSE 0
+			END AS HasValidAddress
+		FROM
+			PD10_PRS_NME BORR 
+			INNER JOIN PD30_PRS_ADR ADDR 
+				ON BORR.DF_PRS_ID = ADDR.DF_PRS_ID
+		WHERE 
+			BORR.DF_SPE_ACC_ID = @AccountNumber
+			AND ADDR.DC_ADR = 'L'
+	END
+ELSE
+	BEGIN
+		SELECT DISTINCT
+			--endorser info
+			REPLACE(LTRIM(RTRIM(ENDR.DM_PRS_1)),',','')  + ' ' + REPLACE(LTRIM(RTRIM(ENDR.DM_PRS_LST)),',','') + ' ' + REPLACE(LTRIM(RTRIM(ENDR.DM_PRS_LST_SFX)),',','')  AS Name,
+			--address info
+			REPLACE(LTRIM(RTRIM(ADDR.DX_STR_ADR_1)),',','')  AS Address1,
+			REPLACE(LTRIM(RTRIM(ADDR.DX_STR_ADR_2)),',','')  AS Address2,
+			CASE WHEN LEN(LTRIM(RTRIM(ADDR.DF_ZIP_CDE))) = 9 
+				THEN REPLACE(LTRIM(RTRIM(ADDR.DM_CT)),',','')  + ' ' + REPLACE(LTRIM(RTRIM(ADDR.DC_DOM_ST)),',','')  + '  ' + LEFT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 5) + '-' + RIGHT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 4)
+				ELSE REPLACE(LTRIM(RTRIM(ADDR.DM_CT)),',','') + ' ' + REPLACE(LTRIM(RTRIM(ADDR.DC_DOM_ST)),',','') + '  ' + REPLACE(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)),',','')
+			END AS CityStateZip,
+			REPLACE(LTRIM(RTRIM(ADDR.DM_FGN_ST)),',','')  AS ForeignState,
+			REPLACE(LTRIM(RTRIM(ADDR.DM_FGN_CNY)),',','') AS Country,
+			BORR.DF_SPE_ACC_ID AS AccountNumber,
+			REPLACE(LTRIM(RTRIM(ADDR.DM_CT)),',','')  AS City,
+			REPLACE(LTRIM(RTRIM(ADDR.DC_DOM_ST)),',','')  AS [State],
+			CASE WHEN LEN(ADDR.DF_ZIP_CDE) = 9 
+				THEN LEFT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 5) + '-' + RIGHT(LTRIM(RTRIM(ADDR.DF_ZIP_CDE)), 4)
+				ELSE LTRIM(RTRIM(ADDR.DF_ZIP_CDE))
+			END AS Zip,
+			CASE WHEN DI_VLD_ADR = 'Y' 
+				THEN 1
+				ELSE 0
+			END AS HasValidAddress
+		FROM
+			PD10_PRS_NME ENDR 
+			INNER JOIN LN20_EDS LN20
+				ON LN20.LF_EDS = ENDR.DF_PRS_ID
+				AND LN20.LC_EDS_TYP = 'M'
+				AND LN20.LC_STA_LON20 = 'A'
+			INNER JOIN PD30_PRS_ADR ADDR 
+				ON ADDR.DF_PRS_ID = ENDR.DF_PRS_ID
+				AND ADDR.DC_ADR = 'L'
+			INNER JOIN PD10_PRS_NME BORR
+				ON BORR.DF_PRS_ID = LN20.BF_SSN
+			INNER JOIN LT20_LTR_REQ_PRC_Coborrower LT20Pending --coborrowers that coborrower for multiple borrowers handling
+				ON LT20Pending.Borrower_DF_SPE_ACC_ID = BORR.DF_SPE_ACC_ID
+				AND LT20Pending.DF_SPE_ACC_ID = @AccountNumber
+				AND 
+				(
+					(
+						LT20Pending.PrintedAt IS NULL 
+						AND LT20Pending.OnEcorr = 0
+					) 
+					OR LT20Pending.EcorrDocumentCreatedAt IS NULL
+				)
+				AND LT20Pending.InactivatedAt IS NULL
+		WHERE 
+			ENDR.DF_SPE_ACC_ID = @AccountNumber
+	END
+END

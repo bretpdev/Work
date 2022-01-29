@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{98E8FFCD-0608-461B-BC84-8A56EA6951FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IDRUSERPRO</RootNamespace>
+    <AssemblyName>IDRUSERPRO</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>X:\PADU\UHEAACodeBase\IDRUSERPRO\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.Reflection">
+      <HintPath>..\..\..\..\..\..\..\..\..\Enterprise Program Files\Nexus\Interop.Reflection.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calculators\Indicators\IndicatorGatherer.cs" />
+    <Compile Include="Calculators\Indicators\IndicatorsResult.cs" />
+    <Compile Include="Helpers\DigitHelper.cs" />
+    <Compile Include="Helpers\OtherLoanCoordinator.cs" />
+    <Compile Include="Object Classes\BorrowerExistingLoans.cs" />
+    <Compile Include="Object Classes\BorrowerLoanDebtStatus.cs" />
+    <Compile Include="Object Classes\CoBorrowerArcAndComment.cs" />
+    <Compile Include="Object Classes\LetterInfo.cs" />
+    <Compile Include="Object Classes\RepaymentPlanType.cs" />
+    <Compile Include="UI\AnniversaryDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AnniversaryDate.designer.cs">
+      <DependentUpon>AnniversaryDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\HouseholdInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\HouseholdInformation.Designer.cs">
+      <DependentUpon>HouseholdInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PaystubsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PaystubsForm.Designer.cs">
+      <DependentUpon>PaystubsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AccountEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AccountEntry.Designer.cs">
+      <DependentUpon>AccountEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ApplicationEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ApplicationEntry.Designer.cs">
+      <DependentUpon>ApplicationEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\ApplicationInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\ApplicationInformation.Designer.cs">
+      <DependentUpon>ApplicationInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\IncomeInformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\IncomeInformation.Designer.cs">
+      <DependentUpon>IncomeInformation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\PaystubControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\PaystubControl.Designer.cs">
+      <DependentUpon>PaystubControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\RepaymentPlan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ApplicationEntryControls\RepaymentPlan.Designer.cs">
+      <DependentUpon>RepaymentPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Attributes\EnumDescriptionAttribute.cs" />
+    <Compile Include="Calculators\AdoiIncomeInput.cs" />
+    <Compile Include="Calculators\AdoiCalculator.cs" />
+    <Compile Include="Calculators\Enums\IncomeSources.cs" />
+    <Compile Include="Calculators\Enums\NeededAdois.cs" />
+    <Compile Include="Calculators\LpcInput.cs" />
+    <Compile Include="Calculators\LpcResults.cs" />
+    <Compile Include="Calculators\CalculatorSerializer.cs" />
+    <Compile Include="Calculators\Data Access\ExternalLoan.cs" />
+    <Compile Include="Calculators\Data Access\IncomePercentageFactor.cs" />
+    <Compile Include="Calculators\Indicators\LoanSequenceEligibility.cs" />
+    <Compile Include="Calculators\Data Access\OriginalLoan.cs" />
+    <Compile Include="Calculators\Data Access\WarehouseDataAccess.cs" />
+    <Compile Include="Calculators\Enums\FilingStatuses.cs" />
+    <Compile Include="Calculators\Enums\MaritalStatuses.cs" />
+    <Compile Include="Calculators\Enums\RepaymentPlans.cs" />
+    <Compile Include="Calculators\LowestPlanCalculator.cs" />
+    <Compile Include="Helpers\ControlHelper.cs" />
+    <Compile Include="Helpers\EnumParser.cs" />
+    <Compile Include="Object Classes\ApplicationState.cs" />
+    <Compile Include="Attributes\DataGridViewAttribute.cs" />
+    <Compile Include="UI\FutureDatedTasksDays.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FutureDatedTasksDays.Designer.cs">
+      <DependentUpon>FutureDatedTasksDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IdrApplicationHelper.cs" />
+    <Compile Include="IDRProcessing.cs" />
+    <Compile Include="IDRProcessingUheaa.cs" />
+    <Compile Include="Object Classes\BorrowerInfo.cs" />
+    <Compile Include="UI\ConsolidationLoans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ConsolidationLoans.Designer.cs">
+      <DependentUpon>ConsolidationLoans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Object Classes\ApplicationData.cs" />
+    <Compile Include="Object Classes\ApplicationSource.cs" />
+    <Compile Include="Object Classes\BorrowerEligibility.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="Object Classes\CommentLetterData.cs" />
+    <Compile Include="Object Classes\DefForbData.cs" />
+    <Compile Include="Object Classes\DuplicateEappVerification.cs" />
+    <Compile Include="Object Classes\FilingStatus.cs" />
+    <Compile Include="Object Classes\IdentifiedApplication.cs" />
+    <Compile Include="Object Classes\IncomeSource.cs" />
+    <Compile Include="UI\ExternalLoans.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ExternalLoans.Designer.cs">
+      <DependentUpon>ExternalLoans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Object Classes\LoanProgram.cs" />
+    <Compile Include="Object Classes\MaritalStatus.cs" />
+    <Compile Include="Object Classes\PayStubs.cs" />
+    <Compile Include="Object Classes\PlanType.cs" />
+    <Compile Include="Object Classes\OtherLoans.cs" />
+    <Compile Include="Calculators\Data Access\PovertyGuideline.cs" />
+    <Compile Include="Object Classes\RepaymentPlanTypeRequested.cs" />
+    <Compile Include="Object Classes\Ts26Results.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Object Classes\RepaymentPlanReason.cs" />
+    <Compile Include="Object Classes\RepaymentPlanStatus.cs" />
+    <Compile Include="Object Classes\SpouseData.cs" />
+    <Compile Include="Object Classes\SubStatuses.cs" />
+    <Compile Include="Object Classes\Ts26Loans.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\AnniversaryDate.resx">
+      <DependentUpon>AnniversaryDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ApplicationEntryControls\HouseholdInformation.resx">
+      <DependentUpon>HouseholdInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PaystubsForm.resx">
+      <DependentUpon>PaystubsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AccountEntry.resx">
+      <DependentUpon>AccountEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ApplicationEntry.resx">
+      <DependentUpon>ApplicationEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ApplicationEntryControls\ApplicationInformation.resx">
+      <DependentUpon>ApplicationInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ApplicationEntryControls\IncomeInformation.resx">
+      <DependentUpon>IncomeInformation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ApplicationEntryControls\PaystubControl.resx">
+      <DependentUpon>PaystubControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ApplicationEntryControls\RepaymentPlan.resx">
+      <DependentUpon>RepaymentPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ConsolidationLoans.resx">
+      <DependentUpon>ConsolidationLoans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FutureDatedTasksDays.resx">
+      <DependentUpon>FutureDatedTasksDays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExternalLoans.resx">
+      <DependentUpon>ExternalLoans.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ApplicationSource.datasource" />
+    <None Include="Properties\DataSources\BorrowerEligibility.datasource" />
+    <None Include="Properties\DataSources\FilingStatus.datasource" />
+    <None Include="Properties\DataSources\IncomeSource.datasource" />
+    <None Include="Properties\DataSources\PlanType.datasource" />
+    <None Include="Properties\DataSources\RepaymentPlanReason.datasource" />
+    <None Include="Properties\DataSources\RepaymentPlanStatus.datasource" />
+    <None Include="Properties\DataSources\SpouseData.datasource" />
+    <None Include="Properties\DataSources\SubStatuses.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DocumentProcessing\DocumentProcessing\Uheaa.Common.DocumentProcessing\Uheaa.Common.DocumentProcessing.csproj">
+      <Project>{dde98b0a-849d-4565-b67b-254f03a15cf4}</Project>
+      <Name>Uheaa.Common.DocumentProcessing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

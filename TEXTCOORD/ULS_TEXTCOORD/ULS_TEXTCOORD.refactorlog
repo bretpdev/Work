@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="77346034-f3ec-46bd-a8c1-ceaddfeba406" ChangeDateTime="02/19/2021 17:49:30">
+    <Property Name="ElementName" Value="[textcoord].[UHEAAAPP1].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[textcoord].[UHEAAAPP1]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UHEAAAPP1Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ce7aa57c-11ff-4e05-a0c2-fc7168044bd1" ChangeDateTime="02/19/2021 17:53:40">
+    <Property Name="ElementName" Value="[textcoord].[UHEAAAPP1].[AreaCode]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[textcoord].[UHEAAAPP1]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="areacode" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5509407a-086e-4d63-9b58-991ba242ed36" ChangeDateTime="02/19/2021 17:53:43">
+    <Property Name="ElementName" Value="[textcoord].[UHEAAAPP1].[Phone]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[textcoord].[UHEAAAPP1]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="phone" />
+  </Operation>
+</Operations>

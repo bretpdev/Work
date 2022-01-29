@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [lslettersu].[GetCoBorrowers]
+	@BF_SSN VARCHAR(9)
+AS
+	SELECT
+		LF_EDS,
+		LN_SEQ
+	FROM
+		UDW..LN20_EDS
+	WHERE
+		BF_SSN = @BF_SSN
+		AND LC_STA_LON20 = 'A'
+		AND LC_EDS_TYP = 'M'
+RETURN 0

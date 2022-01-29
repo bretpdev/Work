@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE [dbo].[GetLON26_EDS_DAT]
+	@EndorserSpouseId int
+AS
+	SELECT
+		'' AS LN_LON_CRD_SEQ_EDS,
+		'' AS IF_CRB_EDS,
+		'' AS LF_CRD_SRE_EDS
+RETURN 0

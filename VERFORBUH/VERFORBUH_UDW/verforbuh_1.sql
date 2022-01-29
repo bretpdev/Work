@@ -1,0 +1,1 @@
+﻿CREATE SCHEMA [verforbuh] AUTHORIZATION [dbo]

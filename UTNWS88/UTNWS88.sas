@@ -1,0 +1,313 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/UNWS88.NWS88RZ";
+FILENAME REPORT2 "&RPTLIB/UNWS88.NWS88R2";
+FILENAME REPORT3 "&RPTLIB/UNWS88.NWS88R3";
+
+LIBNAME  LEGEND  REMOTE  SERVER=LEGEND SLIBREF=work  ;
+RSUBMIT LEGEND;
+/*%let DB = DNFPRQUT;  *This is test;*/
+/*%let DB = DNFPRUUT;  *This is VUK3 test;*/
+%let DB = DNFPUTDL;  *This is live;
+
+LIBNAME PKUB DB2 DATABASE=&DB OWNER=PKUB;
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ; 
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=&DB);
+
+	CREATE TABLE POP AS
+		SELECT	
+			*
+		FROM	
+			CONNECTION TO DB2 
+				(
+					SELECT DISTINCT
+						PD10.DF_SPE_ACC_ID,
+						PD10.DF_PRS_ID,
+						PD10.DM_PRS_1,
+						PD10.DM_PRS_LST,
+						PD30.DX_STR_ADR_1,
+						PD30.DX_STR_ADR_2,
+						PD30.DX_STR_ADR_3,
+						PD30.DM_CT,
+						PD30.DC_DOM_ST,
+						PD30.DF_ZIP_CDE,
+						PD30.DM_FGN_CNY,
+						PD30.DM_FGN_ST,
+						PD30.DI_VLD_ADR,
+						COALESCE(PAST_DUE.DAYS_DELQ, 0) AS DAYS_DELQ,
+						PD40_HOME.HOME_CONSENT,
+						PD40_HOME.HOME_PHONE,
+						PD40_ALT.ALT_CONSENT,
+						PD40_ALT.ALT_PHONE,
+						PD40_WORK.WORK_CONSENT,
+						PD40_WORK.WORK_PHONE,
+						LN10.LF_LON_CUR_OWN,
+						COALESCE(AMT_DUE.AMOUNT_DUE, 0) AS AMOUNT_DUE,
+						SUM(LN10.LA_CUR_PRI + DW01.LA_NSI_OTS) AS TOTAL_BALANCE
+					FROM
+						PKUB.PD10_PRS_NME PD10
+						INNER JOIN PKUB.LN10_LON LN10
+							ON PD10.DF_PRS_ID = LN10.BF_SSN
+						INNER JOIN PKUB.DW01_DW_CLC_CLU DW01
+							ON DW01.BF_SSN = LN10.BF_SSN
+							AND DW01.LN_SEQ = LN10.LN_SEQ
+							AND DW01.WC_DW_LON_STA  = '03'
+						LEFT JOIN PKUB.BR30_BR_EFT BR30
+							ON PD10.DF_PRS_ID = BR30.BF_SSN
+							AND BR30.BC_EFT_STA IN ('A','P')
+						INNER JOIN PKUB.PD30_PRS_ADR PD30
+							ON PD30.DF_PRS_ID = PD10.DF_PRS_ID
+							AND PD30.DC_ADR = 'L'
+						LEFT JOIN
+						(
+							SELECT
+								PD40.DF_PRS_ID,
+								(PD40.DN_DOM_PHN_ARA || PD40.DN_DOM_PHN_XCH || PD40.DN_DOM_PHN_LCL) AS HOME_PHONE,
+								CASE
+									WHEN PD40.DC_ALW_ADL_PHN IN ('L','Q','P') THEN 'Y'
+									ELSE 'N'
+								END AS HOME_CONSENT
+							FROM 
+								PKUB.PD40_PRS_PHN PD40
+							WHERE
+								PD40.DC_PHN = 'H'
+								AND PD40.DI_PHN_VLD = 'Y'
+
+						)PD40_HOME
+							ON PD40_HOME.DF_PRS_ID = PD10.DF_PRS_ID
+						LEFT JOIN
+						(
+							SELECT
+								PD40.DF_PRS_ID,
+								(PD40.DN_DOM_PHN_ARA || PD40.DN_DOM_PHN_XCH || PD40.DN_DOM_PHN_LCL) AS ALT_PHONE,
+								CASE
+									WHEN PD40.DC_ALW_ADL_PHN IN ('L','Q','P') THEN 'Y'
+									ELSE 'N'
+								END AS ALT_CONSENT
+							FROM 
+								PKUB.PD40_PRS_PHN PD40
+							WHERE
+								PD40.DC_PHN = 'A'
+								AND PD40.DI_PHN_VLD = 'Y'
+
+						)PD40_ALT
+							ON PD40_ALT.DF_PRS_ID = PD10.DF_PRS_ID
+						LEFT JOIN
+						(
+							SELECT
+								PD40.DF_PRS_ID,
+								(PD40.DN_DOM_PHN_ARA || PD40.DN_DOM_PHN_XCH || PD40.DN_DOM_PHN_LCL) AS WORK_PHONE,
+								CASE
+									WHEN PD40.DC_ALW_ADL_PHN IN ('L','Q','P') THEN 'Y'
+									ELSE 'N'
+								END AS WORK_CONSENT
+							FROM 
+								PKUB.PD40_PRS_PHN PD40
+							WHERE
+								PD40.DC_PHN = 'W'
+								AND PD40.DI_PHN_VLD = 'Y'
+
+						)PD40_WORK
+							ON PD40_WORK.DF_PRS_ID = PD10.DF_PRS_ID
+						LEFT JOIN 
+						(
+							SELECT
+								LN16.BF_SSN,
+								(MAX(LN16.LN_DLQ_MAX) + 1) AS DAYS_DELQ
+							FROM
+								PKUB.LN16_LON_DLQ_HST LN16
+							GROUP BY
+								LN16.BF_SSN
+
+						)PAST_DUE
+							ON PAST_DUE.BF_SSN = PD10.DF_PRS_ID
+						LEFT JOIN /*GETS THE BORROWERS CURRENT AMOUNT DUE*/
+						(
+							SELECT
+								LN80.BF_SSN,
+								SUM(LN80.LA_BIL_PAS_DU + LN80.LA_BIL_CUR_DU + LN80.LA_LTE_FEE_OTS_PRT) AS AMOUNT_DUE
+							FROM
+								PKUB.LN80_LON_BIL_CRF LN80
+							WHERE 
+								LN80.LC_BIL_TYP_LON = 'P'
+								AND LN80.LC_STA_LON80 = 'A'
+								AND DAYS(LN80.LD_BIL_CRT) > DAYS(CURRENT_DATE) - 31 
+							GROUP BY
+								LN80.BF_SSN
+						) AMT_DUE
+							ON AMT_DUE.BF_SSN = PD10.DF_PRS_ID
+					WHERE
+						LN10.LA_CUR_PRI > 0
+						AND LN10.LC_STA_LON10 = 'R'
+						AND BR30.BF_SSN IS NULL
+					GROUP BY 
+						PD10.DF_SPE_ACC_ID,
+						PD10.DF_PRS_ID,
+						PD10.DM_PRS_1,
+						PD10.DM_PRS_LST,
+						PD30.DX_STR_ADR_1,
+						PD30.DX_STR_ADR_2,
+						PD30.DX_STR_ADR_3,
+						PD30.DM_CT,
+						PD30.DC_DOM_ST,
+						PD30.DF_ZIP_CDE,
+						PD30.DM_FGN_CNY,
+						PD30.DM_FGN_ST,
+						PD30.DI_VLD_ADR,
+						PAST_DUE.DAYS_DELQ,
+						PD40_HOME.HOME_CONSENT,
+						PD40_HOME.HOME_PHONE,
+						PD40_ALT.ALT_CONSENT,
+						PD40_ALT.ALT_PHONE,
+						PD40_WORK.WORK_CONSENT,
+						PD40_WORK.WORK_PHONE,
+						LN10.LF_LON_CUR_OWN,
+						AMT_DUE.AMOUNT_DUE
+					HAVING SUM(LN10.LA_CUR_PRI + DW01.LA_NSI_OTS) > 200
+					
+					
+					FOR READ ONLY WITH UR
+				)
+	;	
+
+	DISCONNECT FROM DB2;
+
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+QUIT;
+
+ENDRSUBMIT;
+
+DATA POP; SET LEGEND.POP; RUN;
+
+DATA R2 (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+	SET POP;
+	WHERE DI_VLD_ADR = 'Y';
+	KEYSSN = TRANSLATE(DF_PRS_ID,'MYLAUGHTER','0987654321');
+	MODAY = PUT(DATE(),MMDDYYN4.);
+	KEYLINE = "P"||KEYSSN||MODAY||"L";
+	CHKDIG = 0;
+	LENGTH DIG $2.;
+	DO I = 1 TO LENGTH(KEYLINE);
+		IF I/2 NE ROUND(I/2,1) 
+			THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+		ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+		IF SUBSTR(DIG,1,1) = " " 
+			THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+			ELSE DO;
+				CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+				CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+				IF CHK1 + CHK2 >= 10
+					THEN DO;
+						CHK3 = PUT(CHK1 + CHK2,2.);
+						CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+						CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+					END;
+				CHKDIG = CHKDIG + CHK1 + CHK2;
+			END;
+	END;
+	CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+	IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+	CHECK = PUT(CHKDIGIT,1.);
+	ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+
+DATA _NULL_;
+	SET R2;
+	FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+
+	IF _N_ = 1 THEN
+		DO;
+			PUT
+				'DF_SPE_ACC_ID'
+				','
+				'DM_PRS_1'
+				','
+				'DM_PRS_LST'
+				','
+				'DX_STR_ADR_1'
+				','
+				'DX_STR_ADR_2'
+				','
+				'DM_CT'
+				','
+				'DC_DOM_ST'
+				','
+				'DF_ZIP_CDE'
+				','
+				'DM_FGN_CNY'
+				','
+				'DM_FGN_ST'
+				','
+				'KeyLine'
+				','
+				'CostCenter';
+
+		END;
+	DO;
+		PUT DF_SPE_ACC_ID $ @;
+		PUT DM_PRS_1 $ @;
+		PUT DM_PRS_LST $ @;
+		PUT DX_STR_ADR_1 $ @;
+		PUT DX_STR_ADR_2 $ @;
+		PUT DM_CT $ @;
+		PUT DC_DOM_ST $ @;
+		PUT DF_ZIP_CDE $ @;
+		PUT DM_FGN_CNY $ @;
+		PUT DM_FGN_ST $ @;
+		PUT ACSKEY $ @;
+		PUT 'MA4481' ;
+
+	;
+	END;
+RUN;
+
+DATA R3;
+	SET POP;
+	NAME = CATX(' ', DM_PRS_1,DM_PRS_LST);
+	AMOUNT_DUE = TRANWRD(PUT(AMOUNT_DUE, 10.), ".", "");
+	TOTAL_BALANCE = TRANWRD(PUT(TOTAL_BALANCE, 10.), ".", "");
+	WHERE (HOME_PHONE ^= '' OR ALT_PHONE ^= '' OR ALT_PHONE ^= '');
+RUN;
+
+DATA _NULL_;
+SET R3;
+FILE REPORT3 DROPOVER LRECL=32767;
+DO;
+		PUT @1 DF_PRS_ID   			
+		@15 NAME
+		@70 DAYS_DELQ
+		@159 HOME_CONSENT
+		@160 HOME_PHONE
+		@175 ALT_CONSENT
+		@176 ALT_PHONE
+		@191 WORK_CONSENT
+		@192 WORK_PHONE
+		@260 DX_STR_ADR_1
+		@290 DX_STR_ADR_2
+		@320 DX_STR_ADR_3
+		@350 DM_CT
+		@370 DC_DOM_ST
+		@372 DF_ZIP_CDE
+		@414 LF_LON_CUR_OWN
+		@422 AMOUNT_DUE
+		@429 TOTAL_BALANCE;	
+	END;
+RUN;

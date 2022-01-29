@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[ZDEL_FS14_LoanSubsidy]
+(
+	[DF_SPE_ACC_ID] CHAR(10) NOT NULL , 
+    [LN_SEQ] INT NOT NULL, 
+    [LN_INC_SUB_EVT_SEQ] INT NOT NULL,
+)

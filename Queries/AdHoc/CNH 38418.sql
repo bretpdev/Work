@@ -1,0 +1,54 @@
+USE [CDW]
+GO
+
+SELECT DISTINCT
+	PDXX.DF_SPE_ACC_ID AS AccountNumber,
+	PDXX.DM_PRS_X AS FirstName,
+	PDXX.DM_PRS_LST AS LastName,
+	COALESCE(PDXX.DX_CNC_EML_ADR, PDXX.DX_ADR_EML) AS Recipient
+FROM
+	PDXX_PRS_NME PDXX
+	INNER JOIN
+	( -- email address
+		SELECT
+			*,
+			ROW_NUMBER() OVER (PARTITION BY Email.DF_PRS_ID ORDER BY Email.PriorityNumber) [EmailPriority] -- number in order of Email.PriorityNumber
+		FROM
+		(
+			SELECT
+				PDXX.DF_PRS_ID,
+				PDXX.DX_ADR_EML,
+				PHXX.DX_CNC_EML_ADR,
+				CASE
+					WHEN PDXX.DC_ADR_EML = 'H' THEN X -- home
+					WHEN PDXX.DC_ADR_EML = 'A' THEN X -- alternate
+					WHEN PDXX.DC_ADR_EML = 'W' THEN X -- work
+				END [PriorityNumber]
+			FROM
+				PDXX_PRS_NME PDXX
+				LEFT JOIN PDXX_PRS_ADR_EML PDXX
+					ON PDXX.DF_PRS_ID = PDXX.DF_PRS_ID
+					AND PDXX.DI_VLD_ADR_EML = 'Y' -- valid email address
+					AND PDXX.DC_STA_PDXX = 'A' -- active email address record
+				LEFT JOIN PHXX_CNC_EML PHXX
+					ON PDXX.DF_SPE_ACC_ID = PHXX.DF_SPE_ID
+					AND PHXX.DI_VLD_CNC_EML_ADR = 'Y'
+		) Email
+	) PDXX
+		ON PDXX.DF_PRS_ID = PDXX.DF_PRS_ID
+		AND PDXX.EmailPriority = X
+	INNER JOIN LNXX_LON LNXX
+		ON PDXX.DF_PRS_ID = LNXX.BF_SSN
+	INNER JOIN DWXX_DW_CLC_CLU DWXX
+		ON PDXX.DF_PRS_ID = DWXX.BF_SSN
+		AND LNXX.LN_SEQ = DWXX.LN_SEQ
+		AND DWXX.WC_DW_LON_STA NOT IN('XX','XX','XX','XX','XX','XX')
+WHERE
+	LNXX.LC_STA_LONXX = 'R'
+	AND LNXX.LA_CUR_PRI > X.XX
+	AND 
+	(
+		PDXX.DX_CNC_EML_ADR IS NOT NULL
+		OR PDXX.DX_ADR_EML IS NOT NULL
+	)
+ORDER BY AccountNumber

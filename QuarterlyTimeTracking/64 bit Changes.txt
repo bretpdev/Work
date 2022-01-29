@@ -1,0 +1,12 @@
+
+
+
+01 Supporting Data for Review
+ - DBMS = XLSX in PROC EXPORT
+
+
+02 Batch Script Errors, 03 Calculate Batch Script Cost Center Weights, AND 04 Update Batch Script Weights
+ - DBMS = XLSX instead of DBMS - EXCEL in PROC EXPORT (02 and 03 jobs only)
+ - add XLSX class to LIBNAME statement: LIBNAME XL XLSX 'T:\SAS\Batch Script Time Tracking Average.xlsx';
+ - update SET in DATA BatchScriptTimeTracking; data step to remove range reference and only reference tab name: SET XL.SHEET1 (DROP=Time_Tracking_Id);
+

@@ -1,0 +1,16 @@
+SELECT * FROM OPENQUERY
+(
+	LEGEND,
+	'
+		SELECT
+			WF_QUE,
+			WF_SUB_QUE,
+			WN_CTL_TSK,
+			PF_REQ_ACT,
+			BF_SSN
+		FROM
+			PKUB.WQXX_TSK_QUE
+		WHERE
+			WF_QUE = ''ML''
+	'
+)

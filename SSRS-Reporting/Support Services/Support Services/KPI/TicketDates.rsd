@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="TicketDates">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>SELECT
+	M.MonthName + ' ' + CAST(Y.Year as CHAR(4)) [MonthYear],
+	CONVERT(DATE, CAST(M.MonthNumber as VARCHAR(2)) + '/1/' + CAST(Y.Year as CHAR(4)), 101) [CalendarDate]
+FROM
+	(
+		SELECT DISTINCT 
+			DATENAME(MONTH, DT.StatusDate) [MonthName],
+			MONTH(DT.StatusDate) [MonthNumber]
+		FROM
+			[NeedHelpUheaa].dbo.DAT_ticket DT
+	)M
+	CROSS JOIN
+	(
+		SELECT DISTINCT 
+			YEAR(DT.StatusDate) [Year]
+		FROM
+			[NeedHelpUheaa].dbo.DAT_ticket DT
+	)Y
+WHERE
+	CONVERT(DATE, CAST(M.MonthNumber as VARCHAR(2)) + '/1/' + CAST(Y.Year as CHAR(4)), 101) &lt; GETDATE()
+ORDER BY
+	[CalendarDate] DESC</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="MonthYear">
+        <DataField>MonthYear</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CalendarDate">
+        <DataField>CalendarDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

@@ -1,0 +1,1120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="table1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>5.66667in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.28125in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.11458in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.11458in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.16667in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.48958in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox16">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>="IDR Application Monthly Summary Report - [CornerStone - " &amp; MonthName(DatePart(DateInterval.Month,DATEADD(DateInterval.Month, -1, Now))) &amp; " - " &amp; DatePart(DateInterval.Year, DATEADD(DateInterval.Month,-1, Now)) &amp; "]"</Value>
+                              <Style>
+                                <FontSize>16pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox16</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>LightGrey</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>6</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.67833in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Total Count</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Count placed on IDR</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox4</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Count Rejected</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox6">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Count of Not enough information</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox6</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="textbox7">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Count of Other</Value>
+                              <Style>
+                                <FontStyle>Normal</FontStyle>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <TextDecoration>None</TextDecoration>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>textbox7</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>White</BackgroundColor>
+                        <VerticalAlign>Middle</VerticalAlign>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.24125in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ApplicationType">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!ApplicationType.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ApplicationType</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="TotalCount">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!TotalCount.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>TotalCount</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="OnIDRCount">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!OnIDRCount.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>OnIDRCount</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="RejectCount">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!RejectCount.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>RejectCount</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="NotEnoughInfoCount">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!NotEnoughInfoCount.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>NotEnoughInfoCount</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="OtherCount">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!OtherCount.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>OtherCount</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </TablixMember>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="table1_Details_Group">
+                <DataElementName>Detail</DataElementName>
+              </Group>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+              <DataElementName>Detail_Collection</DataElementName>
+              <DataElementOutput>Output</DataElementOutput>
+              <KeepTogether>true</KeepTogether>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>FirstTimeIDRApplications</DataSetName>
+        <Height>1.40916in</Height>
+        <Width>11.34375in</Width>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Tablix>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>11.34375in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.28646in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox8">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Additional information/descriptions:</Value>
+                              <Style>
+                                <FontStyle>Italic</FontStyle>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox8</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.28646in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="information">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!information.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>information</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>AdditionalInformation</DataSetName>
+        <Top>2.03347in</Top>
+        <Height>0.57292in</Height>
+        <Width>11.34375in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>2.60639in</Height>
+    <Style />
+  </Body>
+  <Width>11.34375in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="uheaasqldb">
+      <DataSourceReference>uheaasqldb</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>5172d690-4d6d-4bea-ad84-852764e22ac8</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="FirstTimeIDRApplications">
+      <Query>
+        <DataSourceName>uheaasqldb</DataSourceName>
+        <CommandText>DECLARE @StartDate DATE = DATEADD(m, DATEDIFF(m, 0, GETDATE()) - 1, 0) -- first day of previous month
+DECLARE @EndDate DATE = DATEADD(MONTH, ((YEAR(@StartDate) - 1900) * 12) + MONTH(@StartDate), -1) -- last day of previous month
+
+	
+-- Create table variable to hold R2 data
+DECLARE @R2 TABLE
+(
+	ApplicationType VARCHAR(50),
+	TotalCount INT DEFAULT(0),
+	OnIDRCount INT DEFAULT(0),
+	RejectCount INT DEFAULT(0),
+	NotEnoughInfoCount INT DEFAULT(0),
+	OtherCount INT DEFAULT(0)
+)
+
+
+-- Populate Appliction Types
+INSERT INTO
+	@R2
+(
+	ApplicationType
+)
+VALUES
+	('New IDR Applications from COD'),
+	('New IDR Applications via paper'),
+	('New IDR Applications electronically at Servicer'),
+	('New IDR Applications from Other'),
+	('  TOTAL ALL New IDR Applications')
+	
+
+-- Create a table to hold LN65 and RS10 data
+DECLARE @LEGEND TABLE
+(
+	LegendID INT IDENTITY(1,1),
+	BF_SSN CHAR(9),
+	LD_CRT_LON65 DATETIME,
+	LC_STA_LON65 CHAR(1),
+	LC_STA_RPST10 CHAR(1),
+	HasPriorIDR BIT DEFAULT(0)
+)
+
+
+-- Populate the LN65 data
+INSERT INTO 
+	@LEGEND
+SELECT
+	BF_SSN,
+	LD_CRT_LON65,
+	LC_STA_LON65,
+	LC_STA_RPST10,
+	0 -- default, updated later
+-- SELECT *
+FROM
+	OPENQUERY
+	(  -- borrowers who have ever been on an IDR plan
+		LEGEND,
+		'
+			SELECT DISTINCT
+				LN65.BF_SSN,
+				LN65.LD_CRT_LON65,
+				LN65.LC_STA_LON65,
+				RS10.LC_STA_RPST10
+			FROM
+				PKUB.LN65_LON_RPS LN65
+				LEFT JOIN PKUB.RS10_BR_RPD RS10 ON RS10.BF_SSN = LN65.BF_SSN AND RS10.LN_RPS_SEQ = LN65.LN_RPS_SEQ
+			WHERE
+				LN65.LC_TYP_SCH_DIS IN (''AG'',''CA'',''CP'',''CQ'',''C1'',''C2'',''C3'',''IA'',''IB'',''IL'',''IP'',''I3'',''I5'')
+		'
+	) L
+WHERE
+	L.LD_CRT_LON65 &lt;= @EndDate
+
+	
+-- Mark accounts with prior IDR plans
+UPDATE
+	L
+SET
+	HasPriorIDR = 1
+FROM
+--SELECT *, LB.max_LD_CRT_LON65, CAST(A.created_at AS DATE) FROM
+	@LEGEND L
+	INNER JOIN Income_Driven_Repayment.dbo.Borrowers B ON B.SSN = L.BF_SSN
+	INNER JOIN 
+	(
+		SELECT
+			BF_SSN,
+			MIN(LD_CRT_LON65) [max_LD_CRT_LON65]
+		FROM
+			@LEGEND
+		GROUP BY
+			BF_SSN
+	) LB ON LB.BF_SSN = L.BF_SSN
+	INNER JOIN
+	(
+		SELECT DISTINCT
+			borrower_id,
+			application_id
+		FROM
+			Income_Driven_Repayment.dbo.Loans
+	) Ln ON Ln.borrower_id = B.borrower_id
+	INNER JOIN Income_Driven_Repayment.dbo.Applications A ON A.application_id = Ln.application_id
+WHERE
+	LB.max_LD_CRT_LON65 &lt; CAST(A.created_at AS DATE)
+	AND
+	A.Active = 1
+	AND
+	CAST(A.created_at AS DATE) BETWEEN @StartDate AND @EndDate
+
+
+-- create a table variable to hold the order in which status should be considered
+DECLARE @StatusHierarchy TABLE
+(
+	StatusHierarchyId INT IDENTITY(1,1),
+	repayment_plan_status_id int,
+	StatusHierarchyOrder tinyint
+)
+
+
+-- insert hierarchy information	
+INSERT INTO @StatusHierarchy
+(
+	repayment_plan_status_id,
+	StatusHierarchyOrder
+)
+VALUES
+	(1, 1),
+	(3, 3),
+	(6, 2)
+	
+
+-- create a table to hold SSN for borrowers that are applying for the first time during the reporting period
+DECLARE @FirstBorrowerApplications TABLE
+(
+	SSN CHAR(9),
+	min_CreatedAt DATE
+)
+
+
+-- insert SSN for borrowers that are applying for the first time during the reporting period
+INSERT INTO @FirstBorrowerApplications
+(
+	SSN,
+	min_CreatedAt
+)
+SELECT
+	B.SSN,
+	MIN(A.created_at) min_CreatedAt
+FROM
+	Income_Driven_Repayment.dbo.Borrowers B
+	INNER JOIN
+	(
+		SELECT DISTINCT
+			borrower_id,
+			application_id
+		FROM
+			Income_Driven_Repayment.dbo.Loans
+	) Ln ON Ln.borrower_id = B.borrower_id
+	INNER JOIN Income_Driven_Repayment.dbo.Applications A ON A.application_id = Ln.application_id
+WHERE
+	A.Active = 1
+GROUP BY
+	B.SSN
+	
+	
+-- Update R2 with Total Counts
+UPDATE 
+	R2
+SET
+	R2.TotalCount = TC.TotalCount,
+	R2.OnIDRCount = TC.TotalOnIDRCount,
+	R2.RejectCount = TC.TotalRejectCount,
+	R2.NotEnoughInfoCount = TC.TotalNotEnoughInfoCount,
+	R2.OtherCount = TC.TotalCount - (TC.TotalOnIDRCount + TC.TotalRejectCount + TC.TotalNotEnoughInfoCount)
+FROM
+	@R2 R2
+	INNER JOIN
+	( -- Total Counts
+		SELECT
+			'  TOTAL ALL New IDR Applications' [ApplicationType],
+			COUNT(DISTINCT A.application_id) [TotalCount],
+			SUM(CASE WHEN A.LC_STA_RPST10 = 'A' AND A.LC_STA_LON65 = 'A' THEN 1 ELSE 0 END) [TotalOnIDRCount], -- Remote on IDR plan count
+			COUNT(DISTINCT CASE WHEN A.repayment_plan_status_id = 3 THEN A.application_id ELSE NULL END) [TotalRejectCount],
+			COUNT(DISTINCT CASE WHEN A.repayment_plan_status_id = 6 AND BEDH.substatus_mapping_id in (30, 35) THEN A.application_id ELSE NULL END) [TotalNotEnoughInfoCount]
+		FROM
+			(
+				SELECT
+					FBA.SSN,
+					A.application_id,
+					A.repayment_plan_status_id,
+					A.application_source_id,
+					ROW_NUMBER() OVER (PARTITION BY FBA.SSN ORDER BY SH.StatusHierarchyOrder) [StatusHierarchyOrder],
+					L.LC_STA_RPST10,
+					L.LC_STA_LON65,
+					L.LD_CRT_LON65,
+					L.HasPriorIDR
+				FROM
+					@FirstBorrowerApplications FBA -- limit to borrowesr whose firt application was withing the reporting month
+					INNER JOIN Income_Driven_Repayment.dbo.Borrowers B ON B.SSN = FBA.SSN
+					INNER JOIN
+					(
+						SELECT DISTINCT
+							borrower_id,
+							application_id
+						FROM
+							Income_Driven_Repayment.dbo.Loans
+					) Ln ON Ln.borrower_id = B.borrower_id
+					INNER JOIN Income_Driven_Repayment.dbo.Applications A ON A.application_id = Ln.application_id
+					INNER JOIN @StatusHierarchy SH ON SH.repayment_plan_status_id = A.repayment_plan_status_id
+					LEFT JOIN @LEGEND L ON L.BF_SSN = FBA.SSN
+				WHERE
+					FBA.min_CreatedAt BETWEEN @StartDate AND @EndDate
+					AND
+					( -- exclude those that have been on and IDR plan prior to the reporting start date
+						L.HasPriorIDR = 0
+						OR
+						L.HasPriorIDR IS NULL
+					)
+			) A
+			INNER JOIN Income_Driven_Repayment.dbo.BE_Data_History BEDH ON BEDH.application_id = A.application_id
+		WHERE
+			A.StatusHierarchyOrder = 1 -- only use application with the highest priority
+	) TC on TC.ApplicationType = R2.ApplicationType
+
+
+-- Update R2 with COD Counts
+UPDATE 
+	R2
+SET
+	R2.TotalCount = TC.CODTotalCount,
+	R2.OnIDRCount = TC.CODOnIDRCount,
+	R2.RejectCount = TC.CODRejectCount,
+	R2.NotEnoughInfoCount = TC.CODNotEnoughInfoCount,
+	R2.OtherCount = TC.CODTotalCount - (TC.CODOnIDRCount + TC.CODRejectCount + TC.CODNotEnoughInfoCount)
+FROM
+	@R2 R2
+	INNER JOIN
+	( -- Total Counts
+		SELECT
+			'New IDR Applications from COD' [ApplicationType],
+			COUNT(DISTINCT A.application_id) [CODTotalCount],
+			SUM(CASE WHEN A.LC_STA_RPST10 = 'A' AND A.LC_STA_LON65 = 'A' THEN 1 ELSE 0 END) [CODOnIDRCount], -- Remote on IDR plan count
+			COUNT(DISTINCT CASE WHEN A.repayment_plan_status_id = 3 THEN A.application_id ELSE NULL END) [CODRejectCount],
+			COUNT(DISTINCT CASE WHEN A.repayment_plan_status_id = 6 AND BEDH.substatus_mapping_id in (30, 35) THEN A.application_id ELSE NULL END) [CODNotEnoughInfoCount]
+		FROM
+			(
+				SELECT
+					FBA.SSN,
+					A.application_id,
+					A.repayment_plan_status_id,
+					A.application_source_id,
+					ROW_NUMBER() OVER (PARTITION BY FBA.SSN ORDER BY SH.StatusHierarchyOrder) [StatusHierarchyOrder],
+					L.LC_STA_RPST10,
+					L.LC_STA_LON65,
+					L.LD_CRT_LON65,
+					L.HasPriorIDR
+				FROM
+					@FirstBorrowerApplications FBA -- limit to borrowesr whose firt application was withing the reporting month
+					INNER JOIN Income_Driven_Repayment.dbo.Borrowers B ON B.SSN = FBA.SSN
+					INNER JOIN
+					(
+						SELECT DISTINCT
+							borrower_id,
+							application_id
+						FROM
+							Income_Driven_Repayment.dbo.Loans
+					) Ln ON Ln.borrower_id = B.borrower_id
+					INNER JOIN Income_Driven_Repayment.dbo.Applications A ON A.application_id = Ln.application_id
+					INNER JOIN @StatusHierarchy SH ON SH.repayment_plan_status_id = A.repayment_plan_status_id
+					LEFT JOIN @LEGEND L ON L.BF_SSN = FBA.SSN
+				WHERE
+					FBA.min_CreatedAt BETWEEN @StartDate AND @EndDate
+					AND
+					( -- exclude those that have been on and IDR plan prior to the reporting start date
+						L.HasPriorIDR = 0
+						OR
+						L.HasPriorIDR IS NULL
+					)
+			) A
+			INNER JOIN Income_Driven_Repayment.dbo.BE_Data_History BEDH ON BEDH.application_id = A.application_id
+		WHERE
+			A.StatusHierarchyOrder = 1 -- only use application with the highest priority
+			AND
+			A.application_source_id = 2 -- COD/Electronic
+	) TC on TC.ApplicationType = R2.ApplicationType
+	
+
+-- Update R2 with Paper Counts
+UPDATE 
+	R2
+SET
+	R2.TotalCount = TC.PaperTotalCount,
+	R2.OnIDRCount = TC.PaperOnIDRCount,
+	R2.RejectCount = TC.PaperRejectCount,
+	R2.NotEnoughInfoCount = TC.PaperNotEnoughInfoCount,
+	R2.OtherCount = TC.PaperTotalCount - (TC.PaperOnIDRCount + TC.PaperRejectCount + TC.PaperNotEnoughInfoCount)
+FROM
+	@R2 R2
+	INNER JOIN
+	(
+		SELECT
+			'New IDR Applications via paper' [ApplicationType],
+			COUNT(DISTINCT A.application_id) [PaperTotalCount],
+			SUM(CASE WHEN A.LC_STA_RPST10 = 'A' AND A.LC_STA_LON65 = 'A' THEN 1 ELSE 0 END) [PaperOnIDRCount], -- Remote on IDR plan count
+			COUNT(DISTINCT CASE WHEN A.repayment_plan_status_id = 3 THEN A.application_id ELSE NULL END) [PaperRejectCount],
+			COUNT(DISTINCT CASE WHEN A.repayment_plan_status_id = 6 AND BEDH.substatus_mapping_id in (30, 35) THEN A.application_id ELSE NULL END) [PaperNotEnoughInfoCount]
+		--SELECT	*
+			FROM
+			(
+				SELECT
+					FBA.SSN,
+					A.application_id,
+					A.repayment_plan_status_id,
+					A.application_source_id,
+					ROW_NUMBER() OVER (PARTITION BY FBA.SSN ORDER BY SH.StatusHierarchyOrder) [StatusHierarchyOrder],
+					L.LC_STA_RPST10,
+					L.LC_STA_LON65,
+					L.LD_CRT_LON65,
+					L.HasPriorIDR
+				FROM
+					@FirstBorrowerApplications FBA -- limit to borrowesr whose firt application was withing the reporting month
+					INNER JOIN Income_Driven_Repayment.dbo.Borrowers B ON B.SSN = FBA.SSN
+					INNER JOIN
+					(
+						SELECT DISTINCT
+							borrower_id,
+							application_id
+						FROM
+							Income_Driven_Repayment.dbo.Loans
+					) Ln ON Ln.borrower_id = B.borrower_id
+					INNER JOIN Income_Driven_Repayment.dbo.Applications A ON A.application_id = Ln.application_id
+					INNER JOIN @StatusHierarchy SH ON SH.repayment_plan_status_id = A.repayment_plan_status_id
+					LEFT JOIN @LEGEND L ON L.BF_SSN = FBA.SSN
+				WHERE
+					FBA.min_CreatedAt BETWEEN @StartDate AND @EndDate
+					AND
+					( -- exclude those that have been on and IDR plan prior to the reporting start date
+						L.HasPriorIDR = 0
+						OR
+						L.HasPriorIDR IS NULL
+					)
+			) A
+			INNER JOIN Income_Driven_Repayment.dbo.BE_Data_History BEDH ON BEDH.application_id = A.application_id
+		WHERE
+			A.StatusHierarchyOrder = 1 -- only use application with the highest priority
+			AND
+			A.application_source_id = 1 -- Paper applications
+	) TC on TC.ApplicationType = R2.ApplicationType
+
+	
+-- Final R2 report data
+SELECT
+	*
+FROM
+	@R2</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="ApplicationType">
+          <DataField>ApplicationType</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TotalCount">
+          <DataField>TotalCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OnIDRCount">
+          <DataField>OnIDRCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="RejectCount">
+          <DataField>RejectCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="NotEnoughInfoCount">
+          <DataField>NotEnoughInfoCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OtherCount">
+          <DataField>OtherCount</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="AdditionalInformation">
+      <Query>
+        <DataSourceName>uheaasqldb</DataSourceName>
+        <CommandText>DECLARE @AdditionalInformation TABLE
+(
+	information varchar(MAX)
+)
+
+INSERT INTO
+	@AdditionalInformation
+VALUES
+('All new IDR applications shall be included during the month the initial review of the application is completed.'),
+('  (i.e. If app rec''d on 3/25/16 and first reviewed on 4/2/16 the application should be included in the April monthly summary report)'),
+('Initial Review of application = the first day the application is reviewed for completeness by the servicer.'),
+('New IDR Application = Application to be placed on any IDR plan, from any source, for a borrower who currently has no loans on any IDR Plan.'),
+('Placed on IDR = Borrower was not previously on any IDR plan and information on the application was sufficient to place on IDR plan.'),		
+('Rejected = Borrower is ineligible for the IDR plan requested (additional information will not make the borrower eligible).'),		
+('Not enough information = Borrower submitted new IDR application, but some information was missing/incomplete and could not be placed on IDR Plan.'),
+(''),
+(''),		
+('Submissions of income renewals are NOT new IDR applications.'),
+('Submissions of additional information for a prior IDR application is not a new IDR application.')
+
+SELECT
+	*
+FROM
+	@AdditionalInformation
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="information">
+          <DataField>information</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>02819e6c-8ea7-44ac-bf4c-0840b8788290</rd:ReportID>
+</Report>

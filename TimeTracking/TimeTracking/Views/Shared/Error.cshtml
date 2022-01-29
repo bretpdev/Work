@@ -1,0 +1,19 @@
+﻿@model ErrorMessage
+
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Error", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <h1>Error in Processing</h1>
+    <br />
+    <p>@Model.Message</p>
+    <br />
+
+    <br />
+    <br />
+    <input type="submit" value="Start Over" />
+}

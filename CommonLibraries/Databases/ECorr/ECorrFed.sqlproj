@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ECorrFed</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{7cfc37ae-099e-4e1b-af03-c993e14a5e34}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ECorr</RootNamespace>
+    <AssemblyName>ECorr</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <AnsiNulls>False</AnsiNulls>
+    <QuotedIdentifier>False</QuotedIdentifier>
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>CHECKSUM</PageVerify>
+    <ServiceBrokerOption>DisableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <SupplementalLoggingOn>False</SupplementalLoggingOn>
+    <CompatibilityMode>100</CompatibilityMode>
+    <AnsiNullDefault>False</AnsiNullDefault>
+    <AnsiPadding>False</AnsiPadding>
+    <AnsiWarnings>False</AnsiWarnings>
+    <ArithAbort>False</ArithAbort>
+    <ConcatNullYieldsNull>False</ConcatNullYieldsNull>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DatabaseState>ONLINE</DatabaseState>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>GLOBAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>FULL</Recovery>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Security\" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
+    <Folder Include="Publish" />
+    <Folder Include="Stored Procedures\UI" />
+    <Folder Include="User Defined Table Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_Developers_1.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers_1.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts_1.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Stored Procedures\GetAttributesAndValues.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedRecordsCount.sql" />
+    <Build Include="Stored Procedures\InsertEcorrRecord.sql" />
+    <Build Include="Stored Procedures\UpdatePrintedDate.sql" />
+    <Build Include="Tables\Letters.sql" />
+    <Build Include="Tables\LetterTypes.sql" />
+    <Build Include="Tables\TagAttributeValueMapping.sql" />
+    <Build Include="Tables\TagAttributeValues.sql" />
+    <Build Include="Tables\Tags.sql" />
+    <Build Include="Tables\DocumentDetails.sql" />
+    <Build Include="Stored Procedures\UI\GetAllDocumentDetailData.sql" />
+    <Build Include="Stored Procedures\UI\GetAllLetterData.sql" />
+    <Build Include="Stored Procedures\UI\GetAllLetterTypeData.sql" />
+    <Build Include="Stored Procedures\UI\GetAllMappingValues.sql" />
+    <Build Include="Stored Procedures\UI\GetAttributeValues.sql" />
+    <Build Include="Stored Procedures\UI\UpdateLetter.sql" />
+    <Build Include="Stored Procedures\UI\UpdateDocumentDetails.sql" />
+    <Build Include="Stored Procedures\UI\UpdateLetterTypes.sql" />
+    <Build Include="Stored Procedures\UI\UpdateAttributes.sql" />
+    <Build Include="Stored Procedures\UI\InsertDocumentDetails.sql" />
+    <Build Include="Stored Procedures\UI\InsertLetter.sql" />
+    <Build Include="Stored Procedures\UI\InsertLetterType.sql" />
+    <Build Include="Stored Procedures\UI\InsertAttribute.sql" />
+    <Build Include="Stored Procedures\UI\InactiveDocumentDetailRecord.sql" />
+    <Build Include="Stored Procedures\UI\InactiveLetterRecord.sql" />
+    <Build Include="Stored Procedures\GetEmailNotificationData.sql" />
+    <Build Include="Stored Procedures\UpdateEmailedAt.sql" />
+    <Build Include="Stored Procedures\GetNextUnprocessedRecord.sql" />
+    <Build Include="Stored Procedures\GetUnprocessedRecordsCountBills.sql" />
+    <Build Include="Stored Procedures\GetNextUnprocessedRecordBills.sql" />
+    <Build Include="User Defined Table Types\Ids.sql" />
+    <Build Include="Stored Procedures\UpdateZipFIleName.sql" />
+    <Build Include="Tables\CorrespondenceFormats.sql" />
+    <Build Include="Stored Procedures\GetSentLettersForBorrower.sql" />
+    <Build Include="Stored Procedures\GetCorrespondenceFormats.sql" />
+    <Build Include="Tables\FutureDatedAltFormatRequests.sql" />
+    <Build Include="Stored Procedures\InsertFutureAltFormatLetter.sql" />
+    <Build Include="Stored Procedures\RegeneratePreviousLetterAsAltFormat.sql" />
+    <Build Include="Stored Procedures\GetAlternateFormatRecords.sql" />
+    <Build Include="Tables\BorrowerCorrespondenceFormat.sql" />
+    <Build Include="Stored Procedures\GetBorrowersAltFormat.sql" />
+    <Build Include="Stored Procedures\MarkAltFormatAsProcessed.sql" />
+    <Build Include="Stored Procedures\GetAllFedLetters.sql" />
+    <Build Include="Stored Procedures\GetLetterIdFromLetter.sql" />
+    <Build Include="Stored Procedures\GetFormatNameFromCode.sql" />
+    <Build Include="Stored Procedures\GetDocDetailIdFromLetter.sql" />
+    <Build Include="Stored Procedures\GetPathsForExtractor.sql" />
+    <Build Include="Stored Procedures\NullPrinted.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish\ECorr.publish.xml" />
+    <None Include="ECorrFedUHEAASQLDBTEST.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment1.sql" />
+  </ItemGroup>
+</Project>

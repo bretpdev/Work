@@ -1,0 +1,38 @@
+﻿<Window x:Class="ACDC.ACDCMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ACDC"
+    Title="ACDC" Height="363" Width="352" Opacity="1" Background="Transparent" AllowsTransparency="True" WindowStyle="None" MouseDown="Window_MouseDown" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" SizeToContent="WidthAndHeight" ResizeMode="CanResize" Name="acdcMain" Icon="..\Resources\ACDCfavicon.ico">
+    
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard Name="FormFade">
+                    <DoubleAnimation  Name="FormFadeAnimation"
+                                            Storyboard.TargetName="acdcMain"
+                                            Storyboard.TargetProperty="(Window.Opacity)"
+                                            From="0.0" To="1.0" Duration="0:0:1"
+                                            AutoReverse="False" RepeatBehavior="1x"
+                                         />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    
+    <Grid Margin="10">
+        <Grid.BitmapEffect>
+            <DropShadowBitmapEffect />
+        </Grid.BitmapEffect>
+        <Border CornerRadius="7" BorderBrush="Gray" BorderThickness="10" Margin="0">
+            <Border.BitmapEffect>
+                <BevelBitmapEffect />
+            </Border.BitmapEffect>
+            <Rectangle Name="rectangle1"  Opacity="0.4" Fill="DarkBlue" FlowDirection="RightToLeft" />
+        </Border>
+        <Label Name="Mode" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,10" Background="Transparent" Foreground="White" Visibility="Visible" Opacity="1">Test</Label>
+        <Button Height="19" Name="btnClose" Width="18" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Background="Transparent" Foreground="White" Opacity="1" Visibility="Hidden" Click="btnClose_Click">x</Button>
+        <WrapPanel Margin="35" Name="MainPanel" Background="Transparent" Opacity="1" HorizontalAlignment="Stretch">
+        </WrapPanel>
+        <Label Name="VersionNumber" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10" Background="Transparent" Foreground="White" Visibility="Visible" Opacity="1">Version</Label>
+    </Grid>
+</Window>

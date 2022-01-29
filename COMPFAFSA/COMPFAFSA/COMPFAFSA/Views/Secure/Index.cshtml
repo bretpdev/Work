@@ -1,0 +1,144 @@
+﻿@model IEnumerable<COMPFAFSA.Models.SecureStudentsModel>
+
+@{
+    ViewBag.Title = ViewBag.Message;
+}
+
+@section scripts {
+    <script type="text/javascript">
+        // Set timeout variables.
+        var timoutWarning = 840000; // Display warning in 14 Mins.
+        var timoutNow = 60000; // Warning has been shown, give the user 1 minute to interact
+
+        var warningTimer;
+        var timeoutTimer;
+        var timeoutButton = document.getElementById('timeout-button').onclick = ResetTimeOutTimer;
+        var modal = document.getElementById('timeout');
+        StartWarningTimer();
+
+        // Start warning timer.
+        function StartWarningTimer() {
+            warningTimer = setTimeout(IdleWarning, timoutWarning);
+        }
+
+        // Reset timers.
+        function ResetTimeOutTimer() {
+            clearTimeout(timeoutTimer);
+            StartWarningTimer();
+            modal.style.display = "none";
+        }
+
+        // Show idle timeout warning dialog.
+        function IdleWarning() {
+            clearTimeout(warningTimer);
+            timeoutTimer = setTimeout(IdleTimeout, timoutNow);
+            modal.style.display = "block";
+        }
+
+        // Logout the user.
+        function IdleTimeout() {
+            document.getElementById('logoutForm').submit()
+        }
+    </script>
+
+}
+
+@{ 
+    int year = DateTime.Now.Month >= 8 ? DateTime.Now.AddYears(1).Year : DateTime.Now.Year;
+    int dobEstimate = year - 20;
+    string lastUpdated = Model.Count() > 0 ? Model.Max(p => p.AddedAt).Date.ToString("MM/dd/yy") : "N/A";
+}
+<div id="timeout" class="modal">
+    <div class="modal-content">
+        <h4>Would you like to continue your session?</h4>
+        <button id="timeout-button" class="btn btn-default">Continue</button>
+    </div>
+</div>
+
+
+<h2 class="font-color-light-blue text-center">Secure FAFSA Completion Data - Your Students</h2>
+<h4 class="font-color-light-blue text-center padding-tb"><dfn>Last updated: @lastUpdated</dfn></h4>
+<h3 class="text-center padding-extra-tb"><u><b>How is this list created?</b></u></h3>
+<p class="text-center">
+    USHE receives a weekly report from the Department of Education containing
+    a list of individuals <i><b>of any age</b></i> who <i><b>completed</b></i> the FAFSA and listed
+    a <i><b>Utah high school</b></i> or Utah college on their FAFSA.
+</p>
+<h4 class="text-center padding-extra-tb"><b>USHE must curate your list while navigating the following limitations:</b></h4>
+<ul>
+    <li class="list-with-linebreak">
+        <u><b>AGE:</b></u> The FAFSA doesn't have a question that asks the students's high school graduation year.
+        Therefore, we must make an educated guess about who is a senior based on their date of birth. The age range
+        we use for the Class of @year (for example) is DOB of 12/1/@dobEstimate and younger. This means your list may contain
+        some students who already graduated, or may be missing some students that are exceptionally young for their grade.
+    </li>
+    <li class="list-with-linebreak">
+        <u><b>"SUBMITTED" VS. "COMPLETED":</b></u> The student's FAFSA is not considered "complete" and is not reported
+        to USHE until the Department of Education successfully verifies any name, Social Security number, date of birth,
+        and Alien Registration Number (if applicable) listed on the FAFSA. If a student submitted
+        their FAFSA but failed one of those database checks, they will not appear in this list until the error is corrected.
+        <br />
+    </li>
+    <li class="list-with-linebreak">
+        <u><b>SCHOOL NAME:</b></u> There is always a possibility that a student may report the wrong high school on their FAFSA.
+        For example, a student could manually type their school name instead of choosing it from FAFSA's list and misspell their
+        entry (e.g. "Wset High" instead of "West High"). Another common example happens when a student accidentally chooses the
+        high school directly above or below theirs in FAFSA's list (e.g. accidentally checks "West Desert High"
+        instead of "West High"). We do our best to account for some human error, but it is difficult to account for every potential mistake.
+        <br />
+    </li>
+</ul>
+
+<h4 class="font-color-light-blue text-center">
+    If you believe a student submitted their FAFSA but they do not appear in your list, contact a member of the USHE team for troubleshooting help (801-
+    321-7245). Most likely, the problem stems from one of the limitations outlined above.
+</h4>
+<br />
+<br />
+<p>
+    @Html.ActionLink("Export As CSV", "GetCSV", "Secure")<br />
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.School)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.FirstName)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.LastName)</b>
+        </th>
+        <th>
+            <b>@Html.DisplayNameFor(model => model.DOB)</b>
+        </th>
+        @*<th>
+                <b>@Html.DisplayNameFor(model => model.HasProblem)</b>
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.School)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.HasProblem)
+                </td>*@
+        </tr>
+    }
+</table>
+
+<br />
+<br />

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="194b262f-efab-4b93-a99e-c6934813def3" ChangeDateTime="05/28/2021 18:30:10">
+    <Property Name="ElementName" Value="[rcdialer].[OutboundCalls].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[OutboundCalls]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OutboundCallsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ef8256fc-833a-46ce-a6d6-61c98883308e" ChangeDateTime="06/04/2021 19:40:47">
+    <Property Name="ElementName" Value="[rcdialer].[SprocsToRun].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[SprocsToRun]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SprocsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9a75bcc3-835c-4c7b-877d-ef1ac719e5cc" ChangeDateTime="06/04/2021 19:42:24">
+    <Property Name="ElementName" Value="[rcdialer].[DayOfWeek].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[DayOfWeek]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DayOfWeekId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d230e915-ed47-4d87-9bcc-bb6be05d5a08" ChangeDateTime="06/04/2021 19:43:25">
+    <Property Name="ElementName" Value="[rcdialer].[SprocMapping].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[SprocMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SprocMappingId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e507dcb6-5525-4cf7-9cbf-813c6bb00790" ChangeDateTime="06/04/2021 20:26:22">
+    <Property Name="ElementName" Value="[rcdialer].[DayOfWeek].[DayOfWeekId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[DayOfWeek]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DaysOfWeekId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="84569c78-bfc7-4a47-b4eb-f291bc0daf7f" ChangeDateTime="06/04/2021 20:31:48">
+    <Property Name="ElementName" Value="[rcdialer].[SprocMapping].[DayOfWeekId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[SprocMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DaysOfWeekId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="647286b8-2ee7-4ca5-8ac4-769b812e68ef" ChangeDateTime="08/10/2021 17:38:21">
+    <Property Name="ElementName" Value="[rcdialer].[BucketMapping].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[BucketMapping]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BucketMappingId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c8cef4cd-c8b8-4565-bf79-5e938d54bef5" ChangeDateTime="08/17/2021 15:00:16">
+    <Property Name="ElementName" Value="[rcdialer].[DoNotSend].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[rcdialer].[DoNotSend]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DoNotSendId" />
+  </Operation>
+</Operations>

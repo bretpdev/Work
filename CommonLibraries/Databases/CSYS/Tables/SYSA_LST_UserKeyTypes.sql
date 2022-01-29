@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[SYSA_LST_UserKeyTypes] (
+    [Type] VARCHAR (20) NOT NULL,
+    CONSTRAINT [PK_SYSA_LST_UserKeyTypes] PRIMARY KEY CLUSTERED ([Type] ASC)
+);
+

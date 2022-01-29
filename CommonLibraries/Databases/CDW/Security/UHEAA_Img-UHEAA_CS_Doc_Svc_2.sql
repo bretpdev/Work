@@ -1,0 +1,2 @@
+﻿CREATE USER [UHEAA\Img-UHEAA_CS_Doc_Svc] FOR LOGIN [UHEAA\img-UHEAA_CS_Doc_Svc];
+

@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>IncomeBasedRepaymentUheaa</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{8a5a6984-2d36-4ad0-b60d-9ac9429c0d34}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>IncomeBasedRepaymentUheaa</RootNamespace>
+    <AssemblyName>IncomeBasedRepaymentUheaa</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>NONE</PageVerify>
+    <ServiceBrokerOption>DisableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <SupplementalLoggingOn>False</SupplementalLoggingOn>
+    <CompatibilityMode>100</CompatibilityMode>
+    <AnsiNullDefault>True</AnsiNullDefault>
+    <AnsiNulls>True</AnsiNulls>
+    <AnsiPadding>True</AnsiPadding>
+    <AnsiWarnings>True</AnsiWarnings>
+    <ArithAbort>True</ArithAbort>
+    <ConcatNullYieldsNull>True</ConcatNullYieldsNull>
+    <QuotedIdentifier>True</QuotedIdentifier>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DatabaseState>ONLINE</DatabaseState>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>LOCAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>FULL</Recovery>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Publish" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Applications.sql" />
+    <Build Include="dbo\Tables\Arc_Letter_Data.sql" />
+    <Build Include="dbo\Tables\Arc_Letter_Mapping.sql" />
+    <Build Include="dbo\Tables\BD_Data_History.sql" />
+    <Build Include="dbo\Tables\BE_Data_History.sql" />
+    <Build Include="dbo\Tables\BF_Data_History.sql" />
+    <Build Include="dbo\Tables\Borrower_Eligibility.sql" />
+    <Build Include="dbo\Tables\Borrowers.sql" />
+    <Build Include="dbo\Tables\Filing_Statuses.sql" />
+    <Build Include="dbo\Tables\Income_Source.sql" />
+    <Build Include="dbo\Tables\Loans.sql" />
+    <Build Include="dbo\Tables\Other_Loans.sql" />
+    <Build Include="dbo\Tables\Person_Roles.sql" />
+    <Build Include="dbo\Tables\Repayment_Plan_Reason.sql" />
+    <Build Include="dbo\Tables\Repayment_Plan_Selected.sql" />
+    <Build Include="dbo\Tables\Repayment_Plan_Type.sql" />
+    <Build Include="dbo\Tables\Repayment_Plan_Type_Requested.sql" />
+    <Build Include="dbo\Tables\Repayment_Plan_Type_Status.sql" />
+    <Build Include="dbo\Tables\Repayment_Plan_Type_Status_History.sql" />
+    <Build Include="dbo\Tables\Repayment_Plan_Type_Substatus.sql" />
+    <Build Include="dbo\Tables\Repayment_Type.sql" />
+    <Build Include="dbo\Tables\Repayment_Type_Status.sql" />
+    <Build Include="dbo\Tables\Report_Run_History.sql" />
+    <Build Include="dbo\Tables\Spouses.sql" />
+    <Build Include="dbo\Tables\Application_Source.sql" />
+    <Build Include="dbo\Tables\Application_Status_History.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS_1.sql" />
+    <Build Include="Security\UHEAAKenticoDev.sql" />
+    <Build Include="Security\UHEAAKenticoDev_1.sql" />
+    <Build Include="Security\testLogin.sql" />
+    <Build Include="Security\testLogin_1.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW_1.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers_1.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_Developers_1.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Stored Procedures\spSetRunDate.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateApp.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateAwardId.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateSelectedPlan.sql" />
+    <Build Include="dbo\Stored Procedures\spUpdateSpouseId.sql" />
+    <Build Include="dbo\Stored Procedures\CheckSprocAccess.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteExistingSpouse.sql" />
+    <Build Include="dbo\Stored Procedures\GetBorrowerSelectedLowestPlan.sql" />
+    <Build Include="dbo\Stored Procedures\GetExistingElectronicAppData.sql" />
+    <Build Include="dbo\Stored Procedures\GetIdentifiedAccounts.sql" />
+    <Build Include="dbo\Stored Procedures\GetOldestAwardId.sql" />
+    <Build Include="dbo\Stored Procedures\GetSsnFromAppId.sql" />
+    <Build Include="dbo\Stored Procedures\InsertStatusHistory.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteOtherLoans.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAbRecordData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetApplicationSource.sql" />
+    <Build Include="dbo\Stored Procedures\spGetArcAndComment.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBdRecordData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBeRecordData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBFRecordData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBorrowerData.sql" />
+    <Build Include="dbo\Stored Procedures\spGetBorrowerEligibility.sql" />
+    <Build Include="dbo\Stored Procedures\spGetEligibilityCode.sql" />
+    <Build Include="dbo\Stored Procedures\spGetExistingApplication.sql" />
+    <Build Include="dbo\Stored Procedures\spGetExistingAppStatus.sql" />
+    <Build Include="dbo\Stored Procedures\spGetExistingAppTypeProcessed.sql" />
+    <Build Include="dbo\Stored Procedures\spGetExistingLoans.sql" />
+    <Build Include="dbo\Stored Procedures\spGetExistingSpouse.sql" />
+    <Build Include="dbo\Stored Procedures\spGetFilingStatuses.sql" />
+    <Build Include="dbo\Stored Procedures\spGetIncomeSource.sql" />
+    <Build Include="dbo\Stored Procedures\spGetIncomeSourceDescription.sql" />
+    <Build Include="dbo\Stored Procedures\spGetLastRunDate.sql" />
+    <Build Include="dbo\Stored Procedures\spGetOtherLoans.sql" />
+    <Build Include="dbo\Stored Procedures\spGetPlanStatuses.sql" />
+    <Build Include="dbo\Stored Procedures\spGetPlanTypes.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRepaymentPlanReason.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRepaymentPlanRequested.sql" />
+    <Build Include="dbo\Stored Procedures\spGetRepaymentPlanTypeId.sql" />
+    <Build Include="dbo\Stored Procedures\spGetSubStatuses.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertApplicationData.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertBorrowerData.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertLoanData.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertOrUpdateSpouseData.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertOtherLoans.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertSelectedPlan.sql" />
+    <Build Include="dbo\Stored Procedures\spInsertStatusHistory.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="dbo\Tables\Marital_Status.sql" />
+    <Build Include="dbo\Tables\Current_Def_Forb_Options.sql" />
+    <Build Include="Security\Staff.sql" />
+    <Build Include="Security\UHEAA_UHEAAUsers.sql" />
+    <Build Include="Security\UHEAA_BatchScripts.sql" />
+    <Build Include="dbo\Stored Procedures\GetDefForbOptions.sql" />
+    <Build Include="Security\Staff_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetPreviousAppFamilySize.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="IncomeBasedRepaymentUheaa.publish.xml" />
+  </ItemGroup>
+</Project>

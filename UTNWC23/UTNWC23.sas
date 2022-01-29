@@ -1,0 +1,208 @@
+    /*LIBNAME DNFPUTDL DB2 DATABASE=DNFPUTDL OWNER=pkub;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\WINDOWS\TEMP;
+FILENAME REPORT2 "&RPTLIB/UNWC23.NWC23R2";
+FILENAME REPORTZ "&RPTLIB/UNWC23.NWC23RZ";
+DATA _NULL_;
+     CALL SYMPUTX('RUN_DT',PUT(INTNX('DAY',TODAY(),-1,'beginning'), MMDDYY10.));
+RUN;
+LIBNAME  WORKLOCL  REMOTE  SERVER=LEGEND  SLIBREF=WORK;
+RSUBMIT;
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DNFPUTDL) ;
+CREATE TABLE UNCARP AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT A.LD_RMT_BCH_INI
+	,A.LC_RMT_BCH_SRC_IPT
+	,A.LN_RMT_BCH_SEQ
+	,A.LN_RMT_SEQ_PST
+	,A.LN_RMT_ITM_PST
+	,A.LN_RMT_ITM_SEQ_PST
+	,B.LC_BNK_RCC_RMT_SRC
+	,B.LC_RMT_BCH_SCH_TYP
+	,B.LF_RMT_BCH_USR_INI
+	,A.PC_FAT_TYP||A.PC_FAT_SUB_TYP AS FAT_TYP
+	,A.LD_RMT_SPS_PST 
+	,date(DAYS(A.LD_RMT_SPS_PST) + 59) AS SIXTY_DAYS	
+	,A.LD_RMT_PAY_EFF_PST
+	,CASE 
+		WHEN A.LF_RMT_ACC_ID_PST = '' THEN A.BF_SSN
+		ELSE A.LF_RMT_ACC_ID_PST
+	 END AS LF_RMT_ACC_ID_PST
+	,A.LA_BR_RMT_PST * -1 AS LA_BR_RMT_PST
+	,A.LF_RMT_PST_SCH_NUM
+	,A.LC_RMT_PST_SCH_TYP
+	,A.LD_RMT_PST_SCH_DPS AS LD_RMT_BCH_PAY_EFF
+/*	,D.WD_FMS_SCH */
+	,int(A.LX_SPS_REA_PST) as LX_SPS_REA_PST
+	,A.LC_RMT_REV_REA_PST
+	,B.LF_RMT_BCH_SCH_NUM
+	,A.LX_RMT_PST AS COMMENTS
+FROM PKUB.RM31_BR_RMT_PST A
+INNER JOIN PKUB.RM10_RMT_BCH B
+	ON A.LD_RMT_BCH_INI = B.LD_RMT_BCH_INI
+	AND A.LC_RMT_BCH_SRC_IPT = B.LC_RMT_BCH_SRC_IPT
+	AND A.LN_RMT_BCH_SEQ = B.LN_RMT_BCH_SEQ
+LEFT OUTER JOIN PKUB.FR04_FMS_LON_RMT C
+	ON A.LD_RMT_BCH_INI = C.LD_RMT_BCH_INI
+	AND A.LC_RMT_BCH_SRC_IPT = C.LC_RMT_BCH_SRC_IPT
+	AND A.LN_RMT_BCH_SEQ = C.LN_RMT_BCH_SEQ
+	AND A.LN_RMT_SEQ_PST = C.LN_RMT_SEQ
+	AND A.LN_RMT_ITM_PST = C.LN_RMT_ITM
+	AND A.LN_RMT_ITM_SEQ_PST = C.LN_RMT_ITM_SEQ
+LEFT OUTER JOIN PKUB.FR02_FMS_MST D
+	ON C.WD_FMS_RPT = D.WD_FMS_RPT
+	AND C.WN_FMS_RPT_SEQ = D.WN_FMS_RPT_SEQ
+WHERE A.LC_RMT_STA_PST = 'S'
+FOR READ ONLY WITH UR
+);
+DISCONNECT FROM DB2;
+ENDRSUBMIT;
+DATA UNCARP;
+	SET WORKLOCL.UNCARP;
+RUN;
+DATA UNCARP;
+	SET UNCARP;
+	FORMAT LC_RMT_PAY_SRC $25.;
+/*DETERMINE PAYMENT SOURCE*/	
+	IF LF_RMT_BCH_USR_INI IN 
+	(
+		'LCKBLL','LCKCHK','ECPBLL','ECPCHK','MIDATA','ORCC',
+		'FISERV','IPAY','CKFREE','ECPREV','LCKDCR','LCKINC'
+	) 
+	OR 
+	(
+		LC_BNK_RCC_RMT_SRC IN ('LCK','FRB') AND SUBSTR(LF_RMT_BCH_USR_INI,1,2) = 'UT'
+	) 
+	OR
+	(
+		SUBSTR(LF_RMT_BCH_SCH_NUM,1,6) = 'MEMREF'
+	)
+	THEN LC_RMT_PAY_SRC = 'Lockbox';
+	
+	ELSE IF LF_RMT_BCH_USR_INI IN ('EFT','WEBPAY','TELPAY') THEN 
+		LC_RMT_PAY_SRC = 'Pay.gov';
+
+	ELSE IF LC_RMT_BCH_SCH_TYP IN ('02') 
+		AND UPCASE(SUBSTR(LF_RMT_BCH_SCH_NUM,1,1)) ^= 'Z' THEN 
+		LC_RMT_PAY_SRC = 'IPAC';
+
+	IF LC_RMT_PST_SCH_TYP = '' THEN LC_RMT_PST_SCH_TYP='MI';
+	IF LF_RMT_PST_SCH_NUM = '' THEN LF_RMT_PST_SCH_NUM='MISSING';
+
+	IF LC_RMT_REV_REA_PST = '' THEN LA_BR_RMT_PST = LA_BR_RMT_PST*-1;
+RUN;
+
+PROC FORMAT ;
+	VALUE $PYSRC 'XX'='Schedule Total'
+		'XY'='Total';
+	VALUE SPNSCD
+		1527 = 'Borrower not found on system'
+		3385 = 'A deconverted loan may not be targeted'
+		4667 = 'Invalid reject reason for reversal'
+		4841 = 'Loan has been consolodated'
+		5097 = 'Borrower acct no not found on system'
+		5388 = 'Lns transferred, deconverted or consolidated, generate refund'
+		20315 = 'Pmt cannot be applied unless targeted'
+		2149 = 'Pmt cannot be applied, loans PIF'
+		6264 = 'Missing schedule info'
+		6265 = 'Missing schedule info' 
+		6275 = 'Missing schedule info'
+		6266 = 'Pay.gov repsonse failed'
+		6268 = 'Targeting invalid - Ln transferred to DMCS'
+		6269 = 'Pending remittance found for reversal'
+		6270 = 'Pending remittance found for reversal'
+		6271 = 'Pend/susp remittance found for reversal'
+		6272 = 'Pend/susp remittance found for reversal'
+		6273 = 'No remittance found for reversal'
+		6274 = 'No remittance found for reversal'
+		6276 = 'Institution ID req for schedule type'
+		6397 = 'Bank recon code req for schedule type'
+		6618 = 'Suspended Remittance is pending IPAC, cannot apply or refund'
+		6619 = 'Unable to locate remittance for reversal'
+		30040 = 'Remittance effective date prior to loan start up effective date';
+	VALUE $SCHTYP
+		'01' = 'SF215'
+		'02' = 'SF1081'
+		'03' = 'SF1098'
+		'04' = 'SF1166'
+		'05' = 'SF5515'
+		'95' = 'SF5515' 
+		'MI' = 'MISSING';
+RUN;
+PROC SORT DATA=UNCARP;
+	BY LD_RMT_SPS_PST LF_RMT_PST_SCH_NUM LA_BR_RMT_PST LF_RMT_ACC_ID_PST;
+RUN;
+PROC REPORT DATA=UNCARP NOWD SPLIT='~' out=UNCARPr2(drop=_BREAK_) missing;
+COLUMN LC_RMT_PAY_SRC FAT_TYP LD_RMT_SPS_PST SIXTY_DAYS LD_RMT_PAY_EFF_PST LF_RMT_ACC_ID_PST LA_BR_RMT_PST 
+	LF_RMT_PST_SCH_NUM LC_RMT_PST_SCH_TYP LD_RMT_BCH_PAY_EFF LX_SPS_REA_PST COMMENTS;
+	DEFINE LC_RMT_PAY_SRC / DISPLAY FORMAT=$PYSRC.;
+	DEFINE FAT_TYP / DISPLAY ;
+	DEFINE LD_RMT_SPS_PST / ORDER ORDER=INTERNAL FORMAT=MMDDYY10.;
+	DEFINE SIXTY_DAYS / ORDER ORDER=INTERNAL FORMAT=MMDDYY10.;
+	DEFINE LD_RMT_PAY_EFF_PST / DISPLAY FORMAT=MMDDYY10.;
+	DEFINE LF_RMT_ACC_ID_PST / DISPLAY ;
+	DEFINE LA_BR_RMT_PST / ANALYSIS  ;
+	DEFINE LF_RMT_PST_SCH_NUM / ORDER ORDER=INTERNAL FORMAT=$10.;
+	DEFINE LC_RMT_PST_SCH_TYP / DISPLAY;
+	DEFINE LD_RMT_BCH_PAY_EFF / DISPLAY  FORMAT=MMDDYY10.;
+	DEFINE LX_SPS_REA_PST / DISPLAY  FORMAT=SPNSCD. ;
+	DEFINE COMMENTS / DISPLAY ;
+	BREAK AFTER LF_RMT_PST_SCH_NUM / SUMMARIZE SKIP SUPPRESS;
+	RBREAK AFTER/ SUMMARIZE SKIP ;
+RUN;
+DATA UNCARPr2;
+	SET UNCARPr2 END=LAST;
+	IF FAT_TYP = ' ' THEN DO;
+		LF_RMT_PST_SCH_NUM = ' ';
+		LD_RMT_SPS_PST = .;
+		SIXTY_DAYS = .;
+		LC_RMT_PAY_SRC = 'XX';
+		LF_RMT_PST_SCH_NUM = '';
+	END;
+	IF LAST THEN LC_RMT_PAY_SRC = 'XY';
+RUN;
+OPTIONS MISSING='';
+ODS LISTING CLOSE;
+ODS TAGSETS.EXCELXP STYLE=minimal FILE=REPORT2 options(
+	embedded_titles='yes' 
+	sheet_name='UTNWC23.NWC23R2'
+	width_points='1'
+	width_fudge='1'
+	absolute_column_width='65,35,50,40,50,55,45,45,40,50,240,150'
+	embedded_footnotes='yes'
+	sheet_interval='none'
+	ORIENTATION = 'landscape'
+	Autofit_height='yes'
+	);
+ODS ESCAPECHAR='^';
+Title 'Unapplied Cash Payment Recyle Report';
+Title2 "As of Report Date: &RUN_DT";
+Title3 'Servicer ID: 700502';
+footnote; 
+footnote2; 
+PROC REPORT DATA=UNCARPr2 NOWD SPLIT='~' 
+	style(header)={/*background=lightgray*/ font_size=9pt font=(Calibri) font_weight=bold}
+	style(column)={font_size=8pt font=(Calibri) };
+COLUMN LC_RMT_PAY_SRC FAT_TYP LD_RMT_SPS_PST SIXTY_DAYS LD_RMT_PAY_EFF_PST LF_RMT_ACC_ID_PST LA_BR_RMT_PST 
+	LF_RMT_PST_SCH_NUM LC_RMT_PST_SCH_TYP LD_RMT_BCH_PAY_EFF LX_SPS_REA_PST COMMENTS;
+	DEFINE LC_RMT_PAY_SRC / DISPLAY 'Payment~Source' FORMAT=$PYSRC.;
+	DEFINE FAT_TYP / DISPLAY 'Trans~Type';
+	DEFINE LD_RMT_SPS_PST / DISPLAY 'Unapplied~Date' FORMAT=MMDDYY10.;
+	DEFINE SIXTY_DAYS / DISPLAY '60~Days' FORMAT=MMDDYY10. style(column)={font_size=6pt font=(Calibri) };
+	DEFINE LD_RMT_PAY_EFF_PST / DISPLAY 'Effective~Date' FORMAT=MMDDYY10.;
+	DEFINE LF_RMT_ACC_ID_PST / DISPLAY 'SSN/Account~Number'
+		style(column)={tagattr='Format:@'};
+	DEFINE LA_BR_RMT_PST / DISPLAY 'Unapplied~Amount' 
+		style(column)={tagattr='Format:$#,##0.00_);[Red]($#,##0.00)'};
+	DEFINE LF_RMT_PST_SCH_NUM / DISPLAY 'Schedule~Number' FORMAT=$10.;
+	DEFINE LC_RMT_PST_SCH_TYP / DISPLAY 'Schedule~Type' FORMAT=$SCHTYP.;
+	DEFINE LD_RMT_BCH_PAY_EFF / DISPLAY 'Schedule~Date' FORMAT=MMDDYY10.;
+	DEFINE LX_SPS_REA_PST / DISPLAY  'Unprocessed~Reason Code' FORMAT=SPNSCD. LEFT;
+	DEFINE COMMENTS / DISPLAY 'Comments' FORMAT=$600.;
+RUN;
+ODS TAGSETS.EXCELXP CLOSE;
+ODS LISTING;
+OPTIONS MISSING=.;
+

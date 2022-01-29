@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[MR64_BR_TAX] (
+    [BF_SSN]             CHAR (9)        NOT NULL,
+    [LN_SEQ]             SMALLINT        NOT NULL,
+    [LF_CRT_DTS_MR64]    DATETIME2 (7)   NOT NULL,
+    [LF_TAX_YR]          CHAR (4)        NOT NULL,
+    [LC_SRC_INT_PAY]     CHAR (1)        NOT NULL,
+    [LC_STA_MR64]        CHAR (1)        NOT NULL,
+    [LD_STA_MR64]        DATE            NULL,
+    [LA_BR_INT_PD_YR]    NUMERIC (8, 2)  NULL,
+    [LD_INT_PD_RPT_BR]   DATE            NULL,
+    [LD_INT_PD_RPT_IRS]  DATE            NULL,
+    [LF_LST_DTS_MR64]    DATETIME2 (7)   NOT NULL,
+    [LA_BR_CAP_INT_PD]   NUMERIC (11, 2) NULL,
+    [LA_BR_OID_PD]       NUMERIC (11, 2) NULL,
+    [LA_BR_GTR_INT_PD]   NUMERIC (11, 2) NULL,
+    [LA_BR_GTR_OID_PD]   NUMERIC (11, 2) NULL,
+    [LA_BR_TOT_PD_YR]    NUMERIC (11, 2) NULL,
+    [IF_OWN_EIN]         CHAR (9)        NOT NULL,
+    [LD_RPI_1098E]       DATE            NULL,
+    [LI_RPI_1098E]       CHAR (1)        NOT NULL,
+    [LI_RPT_ICL_FEE_CAP] CHAR (1)        NOT NULL,
+    [LC_BR_TAX_CR_RGN]   CHAR (1)        NOT NULL,
+    [LD_BR_TAX_PRT]      DATE            NULL,
+    [LC_BR_TAX_DTH_ETA]  CHAR (1)        NOT NULL,
+    [WF_TAX_CLN_UP_ID]   CHAR (8)        NOT NULL,
+    CONSTRAINT [PK_MR64_BR_TAX] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_SEQ] ASC, [LF_CRT_DTS_MR64] ASC) WITH (FILLFACTOR = 95)
+);
+

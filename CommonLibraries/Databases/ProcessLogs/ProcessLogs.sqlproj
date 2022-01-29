@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ProcessLogs</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{d6060754-c02b-4bb7-8f2f-0e3b07984eec}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ProcessLogs</RootNamespace>
+    <AssemblyName>ProcessLogs</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Stored Procedures\BSYS" />
+    <Folder Include="Stored Procedures\ULS" />
+    <Folder Include="Stored Procedures\CLS" />
+    <Folder Include="Tables\CLS" />
+    <Folder Include="Tables\ULS" />
+    <Folder Include="Tables\PLS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\ProcessLogs.sql" />
+    <Build Include="Tables\ExceptionLogs.sql" />
+    <Build Include="Stored Procedures\ExceptionLogInsert.sql" />
+    <Build Include="Stored Procedures\ExceptionLogResolve.sql" />
+    <Build Include="Tables\ProcessNotifications.sql" />
+    <Build Include="Tables\NotificationTypes.sql" />
+    <Build Include="Tables\NotificationSeverityTypes.sql" />
+    <Build Include="Stored Procedures\ProcessNotificationInsert.sql" />
+    <Build Include="Tables\ProcessBusinessUnitMapping.sql" />
+    <Build Include="Tables\BusinessUnits.sql" />
+    <Build Include="Stored Procedures\BusinessUnitsByScript.sql" />
+    <Build Include="Stored Procedures\AddBusinessUnit.sql" />
+    <Build Include="Stored Procedures\EndBusinessUnit.sql" />
+    <None Include="Stored Procedures\BSYS\BusinessUnitsByScript.sql" />
+    <None Include="Tables\CLS\ProcessLogMessages.sql" />
+    <None Include="Stored Procedures\CLS\NotificationInsert.sql" />
+    <Build Include="Stored Procedures\InsertProcessStart.sql" />
+    <Build Include="Stored Procedures\EndScriptRun.sql" />
+    <Build Include="Stored Procedures\EncryptString.sql" />
+    <Build Include="Tables\EndOfJobResults.sql" />
+    <Build Include="Stored Procedures\LogEndOfJobResults.sql" />
+    <Build Include="Stored Procedures\AddBusinessUnitByID.sql" />
+    <Build Include="Stored Procedures\BusinessUnitByID.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\opsdev.publish.xml" />
+    <None Include="Publish Profiles\uheaasqldbtest.publish.xml" />
+    <None Include="Tables\ULS\ProcessLogMessages.sql" />
+    <None Include="Stored Procedures\ULS\NotificationInsert.sql" />
+    <None Include="Publish Profiles\OPSDEVRecreate.publish.xml" />
+    <None Include="Tables\PLS\ProcessLogMessages.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Encryption.cs" />
+  </ItemGroup>
+</Project>

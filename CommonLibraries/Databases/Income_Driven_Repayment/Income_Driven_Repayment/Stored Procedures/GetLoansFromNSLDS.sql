@@ -1,0 +1,21 @@
+﻿CREATE PROCEDURE [dbo].[GetLoansFromNSLDS]
+	@SSN CHAR(9),
+	@SpouseIndicator bit
+AS
+	DECLARE @QUERY VARCHAR(MAX), @TSQL VARCHAR(MAX)
+	SELECT @TSQL = 'SELECT * FROM OPENQUERY(LEGEND,'
+	SELECT  @QUERY = @TSQL + 
+	  '''
+		SELECT
+			GRSP.IC_LON_PGM AS LoanType,
+			GRSP.LF_CUR_SER AS OwnerLender,
+			(GRSP.LA_CUR_PRI + GRSP.WA_TOT_BRI_OTS) AS OutstandingBalance,
+			GRSP.LR_ITR AS InterestRate
+		FROM
+			PKUB.GRSP_NDS_LON_RSP GRSP
+		WHERE 
+			GRSP.DF_PRS_ID = ''''' + @SSN + '''''
+			AND (GRSP.LA_CUR_PRI + GRSP.WA_TOT_BRI_OTS)  > 0
+	   '') P'
+      EXEC (@QUERY)
+RETURN 0

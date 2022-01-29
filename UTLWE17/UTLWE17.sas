@@ -1,0 +1,144 @@
+/*LPP SERVICEING DATA FILE FOR FINANCE*/
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+/*FILENAME REPORT2 "&RPTLIB/ULWE17.LWE17R2";*/
+
+FILENAME REPORT2 'T:\SAS\ULWE17.LWE17R2.txt';
+
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DEMO AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	IF_799_RPT
+	,IF_BND_ISS
+	,WC_799_LON_PGM
+	,BF_SSN
+	,LN_SEQ
+	,WC_CAL_YR
+	,WC_CAL_QTR
+	,WC_799_SPA_CAT
+	,LR_ITR
+	,WC_799_SPA_ITR
+	,WC_799_SPA_BIL
+	,WA_799_PRI_END_SPA
+	,WA_799_AVG_BAL_SPA
+	,LD_LON_1_DSB
+	,LD_TRM_BEG
+	,LD_SPA_RTT
+	,LD_SPA_STP
+	,IF_OWN
+FROM	OLWHRM1.MR83_MR_799_SPA 
+
+);
+DISCONNECT FROM DB2;
+ENDRSUBMIT;
+DATA DEMO;SET WORKLOCL.DEMO;RUN;
+PROC SORT DATA=WORK.DEMO;
+BY BF_SSN;
+RUN;
+/*PROC PRINTTO PRINT=REPORT2 NEW;*/
+/*RUN;*/
+OPTIONS PAGENO=1 ORIENTATION=PORTRAIT;
+OPTIONS PS=52 LS=96;
+/*PROC PRINT NOOBS SPLIT='/' DATA=WORKLOCL.DEMO;*/
+/*BY SSN;*/
+/*TITLE	"";*/
+/*FOOTNOTE  'JOB = UTLWE17     REPORT = UTLWE17.LWE17R2';*/
+/*RUN;*/
+
+data _null_;
+set  WORK.DEMO;
+file REPORT2 delimiter=',' DSD DROPOVER lrecl=32767;
+   format IF_799_RPT $9. ;
+   format IF_BND_ISS $9. ;
+   format WC_799_LON_PGM $9. ;
+   format BF_SSN $9. ;
+   format LN_SEQ 9. ;
+   format WC_CAL_YR $9. ;
+   format WC_CAL_QTR $9. ;
+   format WC_799_SPA_CAT $9. ;
+   format LR_ITR 5.3 ;
+   format WC_799_SPA_ITR $9. ;
+   format WC_799_SPA_BIL $9. ;
+   format WA_799_PRI_END_SPA 9.2 ;
+   format WA_799_AVG_BAL_SPA 9.2 ;
+   format LD_LON_1_DSB MMDDYY10. ;
+   format LD_TRM_BEG MMDDYY10. ;
+   format LD_SPA_RTT MMDDYY10. ;
+   format LD_SPA_STP MMDDYY10. ;
+   format IF_OWN $9. ;
+
+if _n_ = 1 then        /* write column names */
+ do;
+   put
+   'IF_799_RPT'
+	','
+	'IF_BND_ISS'
+	','
+	'WC_799_LON_PGM'
+	','
+	'BF_SSN'
+	','
+	'LN_SEQ'
+	','
+	'WC_CAL_YR'
+	','
+	'WC_CAL_QTR'
+	','
+	'WC_799_SPA_CAT'
+	','
+	'LR_ITR'
+	','
+	'WC_799_SPA_ITR'
+	','
+	'WC_799_SPA_BIL'
+	','
+	'WA_799_PRI_END_SPA'
+	','
+	'WA_799_AVG_BAL_SPA'
+	','
+	'LD_LON_1_DSB'
+	','
+	'LD_TRM_BEG'
+	','
+	'LD_SPA_RTT'
+	','
+	'LD_SPA_STP'
+	','
+	'IF_OWN'
+   ;
+ end;
+ do;
+ 	PUT IF_799_RPT $ @;
+	PUT IF_BND_ISS $ @;
+	PUT WC_799_LON_PGM $ @;
+	PUT BF_SSN $ @;
+	PUT LN_SEQ @;
+	PUT WC_CAL_YR $ @;
+	PUT WC_CAL_QTR $ @;
+	PUT WC_799_SPA_CAT $ @;
+	PUT LR_ITR @;
+	PUT WC_799_SPA_ITR $ @;
+	PUT WC_799_SPA_BIL $ @;
+	PUT WA_799_PRI_END_SPA @;
+	PUT WA_799_AVG_BAL_SPA @;
+	PUT LD_LON_1_DSB @;
+	PUT LD_TRM_BEG @;
+	PUT LD_SPA_RTT @;
+	PUT LD_SPA_STP @;
+	PUT IF_OWN $ ;
+   ;
+ end;
+
+run;
+proc printto; run;
+
+/*PROC EXPORT DATA=WORK.DEMO*/
+/*            OUTFILE= "T:\SAS\DEMO.xls" */
+/*            DBMS=EXCEL2000 REPLACE;*/
+/*RUN;*/

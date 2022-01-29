@@ -1,0 +1,23 @@
+﻿@model School
+@{
+    ViewBag.Title = "Retire School";
+}
+
+<h2>Really Retire this School?</h2>
+<p>
+    School retirement can only be reverted by DCR.
+</p>
+<p>
+    School Name: @Model.Name
+    <br />
+    School Code: @Model.SchoolCode
+    <br />
+    Branch Code: @Model.BranchCode
+</p>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(o => o.SchoolId)
+    @Html.HiddenFor(o => o.Name)
+    <input type="submit" value="Retire this School" />
+}
+

@@ -1,0 +1,4 @@
+﻿CREATE USER [UHEAA\SQL - OPSDEV - All Databases RW] FOR LOGIN [UHEAA\SQL - OPSDEV - All Databases RW];
+
+
+

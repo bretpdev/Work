@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[GENR_LST_Roles] (
+    [Role] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_COMN_LST_Roles] PRIMARY KEY CLUSTERED ([Role] ASC)
+);
+

@@ -1,0 +1,57 @@
+﻿@model UpdateTime
+@{
+    ViewBag.Title = "Update Time";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.1/jquery.timepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.1/jquery.timepicker.min.css" type="text/css" />
+
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "mm/dd/yy",
+                changemonth: true,
+                changeyear: true,
+                maxDate: '0'
+            });
+            $(".timepicker").timepicker();
+        });
+    </script>
+}
+
+<h2>Update Record</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+
+    <table class="table table-bordered table-responsive">
+        <tr>
+            <td>Ticket ID: @Html.DisplayFor(m => m.Time.TicketID)</td>
+            <td>Elapsed Time: @Html.DisplayFor(m => m.Time.Elapsed)</td>
+        </tr>
+        <tr>
+            @{
+                string dateValue = Model.Time.StartTime.ToShortDateString();
+                string timeValue = Model.Time.StartTime.TimeOfDay.ToString();
+            }
+            <td>Start Date: @Html.EditorFor(m => dateValue, new { htmlAttributes = new { @class = "datepicker" } })</td>
+            <td>Start Time: @Html.EditorFor(m => timeValue, new { htmlAttributes = new { @class = "timepicker" } })</td>
+        </tr>
+        <tr>
+            @{
+                dateValue = Model.Time.EndTime.HasValue ? Model.Time.EndTime.Value.ToShortDateString() : DateTime.Now.ToShortDateString();
+                timeValue = Model.Time.EndTime.HasValue ? Model.Time.EndTime.Value.TimeOfDay.ToString() : DateTime.Now.TimeOfDay.ToString();
+            }
+            <td>End Date: @Html.EditorFor(m => dateValue, new { htmlAttributes = new { @class = "datepicker" } })</td>
+            <td>End Time: @Html.EditorFor(m => timeValue, new { htmlAttributes = new { @class = "timepicker" } })</td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,85 @@
+﻿<Window x:Class="SessionTester.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:c="clr-namespace:Uheaa.Common.Wpf;assembly=Uheaa.Common.Wpf"
+        xmlns:ss="clr-namespace:SessionTester"
+        Title="Settings" SizeToContent="WidthAndHeight" DataContext="{Binding Source={x:Static Member=ss:SettingsHelper.Instance}}">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <GroupBox Header="Settings" Width="300">
+                <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <CheckBox IsChecked="{Binding Path=AutoStartEnabled}" Name="AutoStartCheck" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" />
+                        <TextBlock TextWrapping="Wrap" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
+                            Automatically start the most recently built script within
+                            <xctk:DecimalUpDown x:Name="AutoStartValue" Maximum="30" Minimum="-1" Height="20" Margin="0,0,0,-5" Value="{Binding Path=AutoStartSeconds}" IsEnabled="{Binding Path=AutoStartEnabled}" /> 
+                            seconds.
+                        </TextBlock>
+                        <CheckBox Name="PurgeCheck" IsChecked="{Binding PurgeEnabled}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" />
+                        <TextBlock TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Label>Purge bin data older than</Label>
+                    <xctk:DecimalUpDown x:Name="PurgeValue" Maximum="30" Minimum="0" IsEnabled="{Binding PurgeEnabled}" Value="{Binding PurgeDays}" />
+                    <Label>days.</Label>
+                        </TextBlock>
+                    </Grid>
+                    <Separator VerticalAlignment="Stretch" />
+                    <Button x:Name="SaveSettingsButton" Click="SaveSettingsButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Save" Width="70" Margin="2,5" IsEnabled="{Binding PendingNormalChanges}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Login" Width="300" VerticalAlignment="Top">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="c:ExtendedLabel">
+                                <Setter Property="Height" Value="28" />
+                            </Style>
+                            <Style TargetType="c:StateAwareTextBox">
+                                <Setter Property="Height" Value="24" />
+                            </Style>
+                            <Style TargetType="PasswordBox">
+                                <Setter Property="Height" Value="24" />
+                            </Style>
+                        </Grid.Resources>
+                        <c:ExtendedLabel GridPos="0,0" x:Name="CornerStoneLabel">Cornerstone Username</c:ExtendedLabel>
+                        <c:StateAwareTextBox GridPos="1,0" x:Name="CornerStoneUsernameText" Label="{x:Reference CornerStoneLabel}" Text="{Binding CornerStoneUsername, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <c:ExtendedLabel GridPos="0,1" x:Name="CornerStonePasswordLabel">Cornerstone Password</c:ExtendedLabel>
+                        <PasswordBox x:Name="CornerStonePasswordText" Grid.Column="1" Grid.Row="1" PasswordChanged="CornerStonePasswordText_PasswordChanged" />
+
+                        <c:ExtendedLabel GridPos="0,2" x:Name="UheaaLabel">Uheaa Username</c:ExtendedLabel>
+                        <c:StateAwareTextBox GridPos="1,2" x:Name="UheaaUsernameText" Label="{x:Reference UheaaLabel}" Text="{Binding UheaaUsername, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <c:ExtendedLabel GridPos="0,3" x:Name="UheaaPasswordLabel">Uheaa Password</c:ExtendedLabel>
+                        <PasswordBox x:Name="UheaaPasswordText" Grid.Column="1" Grid.Row="3" PasswordChanged="UheaaPasswordText_PasswordChanged" />
+                    </Grid>
+                    <Separator />
+                    <c:ExtendedButton Click="SaveLoginButton_Click" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Save" Width="70" x:Name="SaveLoginButton" IsEnabled="{Binding PendingLoginChanges}" Margin="0,5" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <Grid>
+            <Button x:Name="CancelButton" Content="Cancel" ToolTip="Revert all unsaved changed." HorizontalAlignment="Right" Margin="5,5,90,5" Width="70" Click="CancelButton_Click" />
+            <Button x:Name="OKButton" Content="OK" ToolTip="Use values exactly as they are entered.  Unsaved changes will still be used, but won't be saved." HorizontalAlignment="Right" Margin="5" Width="70" Click="OKButton_Click" />
+        </Grid>
+    </StackPanel>
+</Window>

@@ -1,0 +1,52 @@
+﻿@model RoleDetailedModel
+@{
+    string header = null;
+    string title = null;
+    string submit = null;
+    string action = null;
+    if (!Model.RoleId.HasValue)
+    {
+        header = "Add New Role";
+        title = "New Role";
+        submit = "Add New Role";
+        action = "SaveRole";
+    }
+    else
+    {
+        header = "Manage Role";
+        title = "Manage Role";
+        submit = "Save Changes";
+        action = "SaveRole";
+    }
+    ViewBag.Title = title;
+}
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#user-count").click(function () {
+                $("#user-details").show();
+                $(this).hide();
+            });
+        });
+    </script>
+}
+@if (Model.RoleId.HasValue)
+{
+    @Html.ActionLink("Retire this Role", "Retire", new { id = Model.RoleId }, new { id = "top-right-button" })
+}
+<h2>@header</h2>
+@using (Html.BeginForm(action, "Roles"))
+{
+    @Html.HiddenFor(o => o.RoleId)
+
+    @Html.LabelFor(o => o.ActiveDirectoryRoleName)
+    @Html.DropDownListFor(o => o.ActiveDirectoryRoleName, Model.AvailableGroupNames.Select(g => new SelectListItem() { Text = g, Value = g }))
+    <br />
+    @Html.LabelFor(o => o.Notes)
+    @Html.TextAreaFor(o => o.Notes, new { cols = 60, rows = 8 })
+
+    <br />
+    @Html.Partial("_ControllerAccessEditor", Model.ControllerAccess)
+    <br />
+    <input type="submit" value="@submit" />
+}

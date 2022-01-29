@@ -1,0 +1,48 @@
+/*use c:\windows\sysWOW64\odbcad32.exe to set up System DSN to BSYS (Name: BSYS; Server: NOCHOUSE; default database: BSYS)*/
+
+
+PROC SQL;
+	CONNECT TO ODBC (DATASRC='BSYS');
+	CREATE TABLE MAILBOXES AS
+		SELECT * 
+		FROM CONNECTION TO ODBC 
+			(
+				SELECT
+					MB.Mailbox,
+					MB.UserID
+				FROM
+					SYSA_REF_UserID_PagecenterMailBoxes MB
+					LEFT JOIN SYSA_LST_UserIDInfo UI
+						ON MB.UserID = UI.UserID
+						AND UI.[Date Access Removed] IS NULL
+				WHERE
+					UI.UserID IS NOT NULL		
+				ORDER BY 
+					MB.Mailbox
+			)
+	;
+	DISCONNECT FROM ODBC;
+QUIT;
+
+DATA MLBXS (KEEP=CSVLIST);
+	SET MAILBOXES;
+	BY MAILBOX;
+	LENGTH CSVLIST $ 1000;
+	RETAIN CSVLIST;
+
+	IF FIRST.MAILBOX THEN CSVLIST=CATX(',',MAILBOX,USERID);
+	ELSE CSVLIST=CATX(',',CSVLIST,USERID);
+	IF LAST.MAILBOX;
+RUN;
+
+
+DATA _NULL_;
+	SET MLBXS ;
+	FILE 'T:\MAILBOXES.CSV' DROPOVER LRECL=32767;
+	PUT CSVLIST;
+RUN;
+
+
+
+
+

@@ -1,0 +1,26 @@
+﻿
+CREATE PROCEDURE [dbo].[LT_TSUSBAENDSKP_Borrower]
+ @AccountNumber VARCHAR(10)
+
+AS
+
+SELECT  
+		RTRIM(PD10.DM_PRS_1) + ' ' + RTRIM(PD10.DM_PRS_LST) [BorrName],
+		PD30.DF_PRS_ID [ID], PD30.DX_STR_ADR_1 [BorrAddress1], PD30.DX_STR_ADR_2 [BorrAddress2], PD30.DC_FGN_CNY [BorrCountry],
+		PD30.DM_CT [BorrCity], PD30.DC_DOM_ST [BorrSt], PD30.DF_ZIP_CDE [BorrZip], 
+		RTRIM(PD42.DN_DOM_PHN_ARA) + '-' + RTRIM(PD42.DN_DOM_PHN_XCH) + '-' + RTRIM(PD42.DN_DOM_PHN_LCL) [BorrPhone]
+  FROM  
+		PD30_PRS_ADR PD30
+	INNER JOIN 
+		PD10_PRS_NME PD10 ON PD10.DF_SPE_ACC_ID = @AccountNumber AND PD10.DF_PRS_ID = PD30.DF_PRS_ID
+	LEFT JOIN
+		PD42_PRS_PHN PD42 ON PD42.DF_PRS_ID = PD30.DF_PRS_ID
+ WHERE  
+		PD30.DI_VLD_ADR = 'Y'
+	AND PD42.DI_PHN_VLD = 'Y'
+
+IF @@rowcount = 0
+	BEGIN
+		DECLARE @sprocname VARCHAR(MAX) = OBJECT_NAME(@@procid)
+		RAISERROR('No data returned for Acct# %s. (%s)',16,2, @accountnumber, @sprocname)
+	END

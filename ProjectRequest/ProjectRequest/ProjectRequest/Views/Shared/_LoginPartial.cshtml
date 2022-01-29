@@ -1,0 +1,9 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.Label("Hello " + User.Identity.GetUserName() + "!", htmlAttributes: new {  @class = "navbar-item" })
+        </li>
+    </ul>
+}

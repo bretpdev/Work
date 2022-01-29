@@ -1,0 +1,1760 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="2/6/2017 2:18:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LPP-2541"
+  DTS:CreatorName="UHEAA\jryan"
+  DTS:Description="DTS Wizard-generated package"
+  DTS:DTSID="{8AC40789-EC62-40DA-9F49-603EFBE74DC0}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="13.0.1601.5"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="Package1"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{E805FA49-46C0-4466-83E3-6D20BAB9CAC8}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D655C538-1328-4C3D-861A-1FFE90E60749}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=OPSDEV;Initial Catalog=CLS;Provider=SQLNCLI11;Integrated Security=SSPI;Auto Translate=false;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{A19D0303-E88E-485F-B737-AA3F8E5518B3}"
+      DTS:ObjectName="SourceConnectionFlatFile">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="FixedWidth"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="T:\SCHIDS.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="2"
+              DTS:MaximumWidth="2"
+              DTS:DataType="129"
+              DTS:ObjectName="RecordType"
+              DTS:DTSID="{98C0044F-667E-4115-AAC9-AAA389A2544C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="8"
+              DTS:MaximumWidth="8"
+              DTS:DataType="129"
+              DTS:ObjectName="OpeId"
+              DTS:DTSID="{C338F179-97A8-4F47-80E7-840B4E1230A3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="1"
+              DTS:MaximumWidth="1"
+              DTS:DataType="129"
+              DTS:ObjectName="ChangeIndicator"
+              DTS:DTSID="{525BC79D-FA5F-464F-8A95-202FA3B6740C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="9"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:ObjectName="TinCurrent"
+              DTS:DTSID="{07046160-243A-45F7-BFFA-6DF3D7174775}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="9"
+              DTS:MaximumWidth="9"
+              DTS:DataType="129"
+              DTS:ObjectName="TinPrevious"
+              DTS:DTSID="{2284CE23-023C-4F61-9B4D-2D2AFB53ABFF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="CmoGdunsNbrCurrent"
+              DTS:DTSID="{A39A0B81-5F9C-491B-BF68-F89BB81767A3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="CmoGdunsNbrPrevious"
+              DTS:DTSID="{5A340D73-9D2C-450C-BEA5-D341789B21DF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="PellGdunsNbrCurrent"
+              DTS:DTSID="{C7A7CF48-A310-4113-8E49-4E6E55D85E4C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="PellGdunsNbrPrevious"
+              DTS:DTSID="{A4AC0004-36F8-4CCE-99EB-700AF6335BBD}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="20"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:ObjectName="Filler1"
+              DTS:DTSID="{A27B428F-E8E1-484D-8108-9E377ACC1D6C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpGdunsNbrCurrent"
+              DTS:DTSID="{EB76F75A-42BC-4987-94B7-5A71D6423FAA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpGdunsNbrPrevious"
+              DTS:DTSID="{BFCA25FE-E0D9-456D-B1B3-757647767AFC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="20"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:ObjectName="Filler2"
+              DTS:DTSID="{8A8514D4-4705-401D-B62B-ACD908C78337}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="CampusBasedGdunsNbrCurrent"
+              DTS:DTSID="{FC434376-CD4C-49D1-A68A-13CE9ED39DEC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="10"
+              DTS:MaximumWidth="10"
+              DTS:DataType="129"
+              DTS:ObjectName="CampusBasedGdunsNbrPrevious"
+              DTS:DTSID="{810FA616-BB97-437D-BC1A-8272E7DA518C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="PellIdCurrent"
+              DTS:DTSID="{BBB8F00D-BBD1-4DB6-BC1D-447B83F6B3E7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="PellIdPrevious"
+              DTS:DTSID="{5A083DDD-326F-48CA-AE77-F3BE0EE0F3C3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelIdCurrent"
+              DTS:DTSID="{FCFCDB0F-62D3-433A-A22A-CC3D2F53406F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="FfelIdPrevious"
+              DTS:DTSID="{CF39AEC8-218E-4BAD-A7C1-F268B35CB905}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpIdCurrent"
+              DTS:DTSID="{5D2D7E78-ACF0-40FC-A184-A8AB01BC77A4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpIdPrevious"
+              DTS:DTSID="{12A1C183-FA2A-4B1E-9588-F4427E33C487}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="CampusBasedIdCurrent"
+              DTS:DTSID="{81AA58B9-53F3-4E7C-A741-9D04EFD29F08}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="CampusBasedIdPrevious"
+              DTS:DTSID="{24489984-48C0-4EDD-8315-23649012A72A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="FedSchlCdCurrent"
+              DTS:DTSID="{A1DC8829-1E99-4387-AE6B-4B9672EF14BE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="6"
+              DTS:MaximumWidth="6"
+              DTS:DataType="129"
+              DTS:ObjectName="FedSchlCdPrevious"
+              DTS:DTSID="{3F0D1E37-E136-4336-B16E-959870631F0D}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="4"
+              DTS:MaximumWidth="4"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpSeqNbrCurrent"
+              DTS:DTSID="{43ABF801-263A-432A-A916-0F01A969E648}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="4"
+              DTS:MaximumWidth="4"
+              DTS:DataType="129"
+              DTS:ObjectName="FdslpSeqNbrPrevious"
+              DTS:DTSID="{DC164CD9-344D-46AB-8E22-30E3ABF74CE9}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnDelimiter=""
+              DTS:ColumnWidth="239"
+              DTS:MaximumWidth="239"
+              DTS:DataType="129"
+              DTS:ObjectName="Filler"
+              DTS:DTSID="{7B23F444-9E1F-41DE-A0A1-B1ADD3030A68}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{FDB8474F-6BD4-48CA-8761-D3D07D08A4D2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task 1\Destination - SCHIDS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Destination - SCHIDS"
+              usesDispositions="true"
+              validateExternalMetadata="False"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[peps].[SCHIDS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Destination - SCHIDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[RecordType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="RecordType"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[RecordType]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[RecordType]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[OpeId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="OpeId"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[OpeId]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[OpeId]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[ChangeIndicator]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="ChangeIndicator"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[ChangeIndicator]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[TinCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="TinCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[TinCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[TinCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[TinPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="TinPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[TinPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[TinPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[CmoGdunsNbrCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="CmoGdunsNbrCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CmoGdunsNbrCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CmoGdunsNbrCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[CmoGdunsNbrPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="CmoGdunsNbrPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CmoGdunsNbrPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CmoGdunsNbrPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[PellGdunsNbrCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PellGdunsNbrCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellGdunsNbrCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellGdunsNbrCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[PellGdunsNbrPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="PellGdunsNbrPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellGdunsNbrPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellGdunsNbrPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[Filler1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Filler1"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[Filler1]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler1]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FdslpGdunsNbrCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="FdslpGdunsNbrCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpGdunsNbrCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpGdunsNbrCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FdslpGdunsNbrPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="FdslpGdunsNbrPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpGdunsNbrPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpGdunsNbrPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[Filler2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Filler2"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[Filler2]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler2]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[CampusBasedGdunsNbrCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="CampusBasedGdunsNbrCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedGdunsNbrCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedGdunsNbrCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[CampusBasedGdunsNbrPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="CampusBasedGdunsNbrPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedGdunsNbrPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedGdunsNbrPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[PellIdCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="PellIdCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellIdCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellIdCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[PellIdPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="PellIdPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellIdPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellIdPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FfelIdCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="FfelIdCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FfelIdCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FfelIdCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FfelIdPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="FfelIdPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FfelIdPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FfelIdPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FdslpIdCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="FdslpIdCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpIdCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpIdCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FdslpIdPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="FdslpIdPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpIdPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpIdPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[CampusBasedIdCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="CampusBasedIdCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedIdCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedIdCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[CampusBasedIdPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="CampusBasedIdPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedIdPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedIdPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FedSchlCdCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="FedSchlCdCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FedSchlCdCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FedSchlCdCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FedSchlCdPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="6"
+                      cachedName="FedSchlCdPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FedSchlCdPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FedSchlCdPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FdslpSeqNbrCurrent]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="FdslpSeqNbrCurrent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpSeqNbrCurrent]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpSeqNbrCurrent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[FdslpSeqNbrPrevious]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="FdslpSeqNbrPrevious"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpSeqNbrPrevious]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpSeqNbrPrevious]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].Columns[Filler]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="239"
+                      cachedName="Filler"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[Filler]"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="OpeId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ChangeIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[TinCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="TinCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[TinPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="TinPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CmoGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CmoGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CmoGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CmoGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PellGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PellGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[Filler1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Filler1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FdslpGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FdslpGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[Filler2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Filler2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CampusBasedGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CampusBasedGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="PellIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[PellIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="PellIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FfelIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FfelIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FfelIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FfelIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FdslpIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FdslpIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CampusBasedIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[CampusBasedIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CampusBasedIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FedSchlCdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FedSchlCdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FedSchlCdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FedSchlCdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpSeqNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="FdslpSeqNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[FdslpSeqNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="FdslpSeqNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input].ExternalColumns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      length="239"
+                      name="Filler" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Destination - SCHIDS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - SCHIDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Destination - SCHIDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Destination - SCHIDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task 1\Source - SCHIDS_txt"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Source - SCHIDS_txt"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  connectionManagerRefId="Package.ConnectionManagers[SourceConnectionFlatFile]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[RecordType]"
+                      length="2"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[RecordType]"
+                      name="RecordType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[OpeId]"
+                      length="8"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[OpeId]"
+                      name="OpeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[ChangeIndicator]"
+                      length="1"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[ChangeIndicator]"
+                      name="ChangeIndicator"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[TinCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[TinCurrent]"
+                      length="9"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[TinCurrent]"
+                      name="TinCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[TinPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[TinPrevious]"
+                      length="9"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[TinPrevious]"
+                      name="TinPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CmoGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CmoGdunsNbrCurrent]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CmoGdunsNbrCurrent]"
+                      name="CmoGdunsNbrCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CmoGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CmoGdunsNbrPrevious]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CmoGdunsNbrPrevious]"
+                      name="CmoGdunsNbrPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellGdunsNbrCurrent]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellGdunsNbrCurrent]"
+                      name="PellGdunsNbrCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellGdunsNbrPrevious]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellGdunsNbrPrevious]"
+                      name="PellGdunsNbrPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[Filler1]"
+                      length="20"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler1]"
+                      name="Filler1"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpGdunsNbrCurrent]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpGdunsNbrCurrent]"
+                      name="FdslpGdunsNbrCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpGdunsNbrPrevious]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpGdunsNbrPrevious]"
+                      name="FdslpGdunsNbrPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[Filler2]"
+                      length="20"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler2]"
+                      name="Filler2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedGdunsNbrCurrent]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedGdunsNbrCurrent]"
+                      name="CampusBasedGdunsNbrCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedGdunsNbrPrevious]"
+                      length="10"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedGdunsNbrPrevious]"
+                      name="CampusBasedGdunsNbrPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellIdCurrent]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellIdCurrent]"
+                      name="PellIdCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellIdPrevious]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[PellIdPrevious]"
+                      name="PellIdPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FfelIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FfelIdCurrent]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FfelIdCurrent]"
+                      name="FfelIdCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FfelIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FfelIdPrevious]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FfelIdPrevious]"
+                      name="FfelIdPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpIdCurrent]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpIdCurrent]"
+                      name="FdslpIdCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpIdPrevious]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpIdPrevious]"
+                      name="FdslpIdPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedIdCurrent]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedIdCurrent]"
+                      name="CampusBasedIdCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedIdPrevious]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[CampusBasedIdPrevious]"
+                      name="CampusBasedIdPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FedSchlCdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FedSchlCdCurrent]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FedSchlCdCurrent]"
+                      name="FedSchlCdCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FedSchlCdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FedSchlCdPrevious]"
+                      length="6"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FedSchlCdPrevious]"
+                      name="FedSchlCdPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpSeqNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpSeqNbrCurrent]"
+                      length="4"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpSeqNbrCurrent]"
+                      name="FdslpSeqNbrCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpSeqNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpSeqNbrPrevious]"
+                      length="4"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[FdslpSeqNbrPrevious]"
+                      name="FdslpSeqNbrPrevious"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[Filler]"
+                      length="239"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].Columns[Filler]"
+                      name="Filler"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[RecordType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="RecordType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[OpeId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="OpeId" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[ChangeIndicator]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="ChangeIndicator" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[TinCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="TinCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[TinPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="TinPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CmoGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CmoGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CmoGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CmoGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PellGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="PellGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[Filler1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Filler1" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FdslpGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FdslpGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[Filler2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Filler2" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedGdunsNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CampusBasedGdunsNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedGdunsNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="CampusBasedGdunsNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="PellIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[PellIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="PellIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FfelIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FfelIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FfelIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FfelIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FdslpIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FdslpIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedIdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CampusBasedIdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[CampusBasedIdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="CampusBasedIdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FedSchlCdCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FedSchlCdCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FedSchlCdPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="6"
+                      name="FedSchlCdPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpSeqNbrCurrent]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="FdslpSeqNbrCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[FdslpSeqNbrPrevious]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="FdslpSeqNbrPrevious" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output].ExternalColumns[Filler]"
+                      codePage="1252"
+                      dataType="str"
+                      length="239"
+                      name="Filler" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+              endId="Package\Data Flow Task 1\Destination - SCHIDS.Inputs[Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Data Flow Task 1\Source - SCHIDS_txt.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{35925374-7A09-44FB-9D99-24DA0C44FBFC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D655C538-1328-4C3D-861A-1FFE90E60749}"
+          SQLTask:SqlStatementSource="DELETE FROM &#xA;&#x9;[CLS].[peps].[SCHIDS]&#xA;WHERE&#xA;&#x9;ChangeIndicator = 'N'" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{9960A324-ECCD-4DC6-AA6D-7C314A8471F0}"
+      DTS:From="Package\Data Flow Task 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Execute SQL Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="162,42"
+          Id="Package\Data Flow Task 1"
+          TopLeft="20.5,107.5" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="18.5,230.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="101.25,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81"
+              Start="0,0"
+              End="0,73.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,73.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\Data Flow Task 1\Source - SCHIDS_txt"
+          TopLeft="6.50000000000001,5.5" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\Data Flow Task 1\Destination - SCHIDS"
+          TopLeft="5.50000000000001,107.5" />
+        <EdgeLayout
+          Id="Package\Data Flow Task 1.Paths[Flat File Source Output]"
+          TopLeft="96,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

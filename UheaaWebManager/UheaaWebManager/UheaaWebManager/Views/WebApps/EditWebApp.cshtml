@@ -1,0 +1,73 @@
+﻿@*@model RoleDetailedModel
+@{
+    string header = null;
+    string title = null;
+    string submit = null;
+    string action = null;
+    if (!Model.RoleId.HasValue)
+    {
+        header = "Add New Role";
+        title = "New Role";
+        submit = "Add New Role";
+        action = "SaveRole";
+    }
+    else
+    {
+        header = "Manage Role";
+        title = "Manage Role";
+        submit = "Save Changes";
+        action = "SaveRole";
+    }
+    ViewBag.Title = title;
+}
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $("#user-count").click(function () {
+                $("#user-details").show();
+                $(this).hide();
+            });
+        });
+    </script>
+}
+@if (Model.RoleId.HasValue)
+{
+    @Html.ActionLink("Retire this Role", "Retire", new { id = Model.RoleId }, new { id = "top-right-button" })
+}
+<h2>@header</h2>
+@using (Html.BeginForm(action, "Roles"))
+{
+    @Html.HiddenFor(o => o.RoleId)
+
+    @Html.LabelFor(o => o.Name)
+    @Html.TextBoxFor(o => o.Name)
+    <br />
+    @Html.LabelFor(o => o.Notes)
+    @Html.TextAreaFor(o => o.Notes, new { cols = 60, rows = 8 })
+    <br />
+    if (Model.RoleId.HasValue)
+    {
+        <label>Users</label>
+        if (Model.Users.Any())
+        {
+            <div style="display: inline-block;">
+                <strong id="user-count" class="fake-link">@Model.Users.Count (Click to Show)</strong>
+                <div id="user-details" style="display: none;">
+                    @foreach (var user in Model.Users)
+                    {
+                        <a href="/UserTokens/@user.UserTokenId">@user.AssociatedWindowsUserName</a><br />
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <span>(None)</span>
+        }
+    }
+
+    <br />
+    @Html.Partial("_ControllerAccessEditor", Model.ControllerAccess)
+    <br />
+    <input type="submit" value="@submit" />
+}*@

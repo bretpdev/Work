@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[ZDEL_LN54_LON_BBS] (
+    [BF_SSN]             VARCHAR (9) NOT NULL,
+    [LN_SEQ]             SMALLINT    NOT NULL,
+    [PM_BBS_PGM]         VARCHAR (3) NOT NULL,
+    [PN_BBS_PGM_SEQ]     SMALLINT    NOT NULL,
+    [LN_LON_BBS_PGM_SEQ] SMALLINT    NOT NULL
+);
+

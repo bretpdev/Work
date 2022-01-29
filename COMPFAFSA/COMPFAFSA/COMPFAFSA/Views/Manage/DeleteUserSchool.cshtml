@@ -1,0 +1,39 @@
+﻿@model COMPFAFSA.Models.UserSchool
+
+@{
+    ViewBag.Title = "DeleteUserSchool";
+}
+
+<body>
+    <div class="body-content-margins">
+        <h2>Delete User School</h2>
+
+        <h3>Are you sure you want to delete this user's assignment to the following school?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.School)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.School)
+                </dd>
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.SchoolId)
+
+                <div class="form-actions no-color col-md-offset-1 col-md-10">
+                    <input type="submit" value="Delete" class="btn btn-default" />
+                </div>
+            }
+        </div>
+        <div class="col-md-12 padding-extra-tb">
+            @Html.ActionLink("Back to List of Schools", "ManageUserSchools", new { id = Model.UserId })
+        </div>
+    </div>
+</body>

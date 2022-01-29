@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>MauiDUDE</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{6e1c95d1-727c-4ccb-b7d9-3fbc55211cc2}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>MauiDUDE</RootNamespace>
+    <AssemblyName>MauiDUDE</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="faq\" />
+    <Folder Include="faq\Tables\" />
+    <Folder Include="feedback\" />
+    <Folder Include="feedback\Tables\" />
+    <Folder Include="calls\" />
+    <Folder Include="calls\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="faq\Stored Procedures\" />
+    <Folder Include="feedback\Stored Procedures\" />
+    <Folder Include="calls\Stored Procedures\" />
+    <Folder Include="faq\User Defined Types\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\CallCat_Categories.sql" />
+    <Build Include="dbo\Tables\CallCat_CatReasonREF.sql" />
+    <Build Include="dbo\Tables\LMContactScript.sql" />
+    <Build Include="dbo\Tables\ContactCode.sql" />
+    <Build Include="faq\Tables\PendingQuestions.sql" />
+    <Build Include="faq\Tables\QuestionPortfolios.sql" />
+    <Build Include="faq\Tables\Portfolios.sql" />
+    <Build Include="faq\Tables\Questions.sql" />
+    <Build Include="faq\Tables\QuestionGroups.sql" />
+    <Build Include="feedback\Tables\FeedbackSubmissions.sql" />
+    <Build Include="calls\Tables\CallRecords.sql" />
+    <Build Include="calls\Tables\Categories.sql" />
+    <Build Include="calls\Tables\Reasons.sql" />
+    <Build Include="faq\Tables\RecordedQuestions.sql" />
+    <Build Include="dbo\Tables\HomePageScriptsAndServices.sql" />
+    <Build Include="dbo\Tables\EmailTB.sql" />
+    <Build Include="dbo\Tables\Countries.sql" />
+    <Build Include="dbo\Tables\GroupTB.sql" />
+    <Build Include="dbo\Tables\QuestionTB.sql" />
+    <Build Include="dbo\Tables\SpecialCommentsTB.sql" />
+    <Build Include="dbo\Tables\CallCat_Data.sql" />
+    <Build Include="dbo\Tables\BinAndQueueXRef.sql" />
+    <Build Include="dbo\Tables\Bins.sql" />
+    <Build Include="dbo\Tables\BUAndBinXRef.sql" />
+    <Build Include="dbo\Tables\BUAndQDeptXRef.sql" />
+    <Build Include="dbo\Tables\BUSessionXRef.sql" />
+    <Build Include="dbo\Tables\BusinessUnits.sql" />
+    <Build Include="dbo\Tables\QDepts.sql" />
+    <Build Include="dbo\Tables\MenuOptionsScriptsAndServices.sql" />
+    <Build Include="Security\Staff.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS_1.sql" />
+    <Build Include="Security\Imaging Users.sql" />
+    <Build Include="Security\UHEAA_Imaging Users.sql" />
+    <Build Include="Security\UHEAA_bpehrson.sql" />
+    <Build Include="Security\UHEAA_dbarton.sql" />
+    <Build Include="Security\UHEAA_developers.sql" />
+    <Build Include="Security\UHEAA_developers_1.sql" />
+    <Build Include="Security\!UHEAASSRS.sql" />
+    <Build Include="Security\!UHEAASSRS_1.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - MauiDude RO.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - MauiDude RO_1.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers_1.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - All Databases RW.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - All Databases RW_1.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - Developers Mixed _R W dbexecutor_.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - Developers Mixed _R W dbexecutor__1.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - All Databases RO.sql" />
+    <Build Include="Security\UHEAA_SQL - NOCHOUSE - All Databases RO_1.sql" />
+    <Build Include="Security\uheaa_uheaausers.sql" />
+    <Build Include="Security\UHEAA_UHEAAUsers_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Stored Procedures\spMD_GetOneLINKBorrowerLevelData.sql" />
+    <Build Include="faq\Stored Procedures\QuestionUpdate.sql" />
+    <Build Include="faq\Stored Procedures\QuestionsSearch.sql" />
+    <Build Include="faq\Stored Procedures\QuestionInsert.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupUpdate.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupsSelectAll.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupInsert.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupDelete.sql" />
+    <Build Include="faq\Stored Procedures\QuestionDelete.sql" />
+    <Build Include="faq\Stored Procedures\PortfolioUpdate.sql" />
+    <Build Include="faq\Stored Procedures\PortfoliosSelectByQuestion.sql" />
+    <Build Include="faq\Stored Procedures\PortfoliosSelectAll.sql" />
+    <Build Include="faq\Stored Procedures\PortfolioInsert.sql" />
+    <Build Include="faq\Stored Procedures\PortfolioDelete.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionWithdraw.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionsSelectPending.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionsSelectByUser.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionReject.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionInsert.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionApprove.sql" />
+    <Build Include="feedback\Stored Procedures\FeedbackSubmissionInsert.sql" />
+    <Build Include="feedback\Stored Procedures\FeedbackSubmissionsSelectPending.sql" />
+    <Build Include="feedback\Stored Procedures\FeedbackSubmissionProcess.sql" />
+    <Build Include="dbo\Stored Procedures\GetLettersForHomePage.sql" />
+    <Build Include="calls\Stored Procedures\GetAllEnabledReasons.sql" />
+    <Build Include="calls\Stored Procedures\RecordCall.sql" />
+    <Build Include="faq\Stored Procedures\RecordQuestion.sql" />
+    <Build Include="dbo\Stored Procedures\spCallCategorizationInsert.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\GetCountries.sql" />
+    <Build Include="dbo\Stored Procedures\spGetQueueInfoForBin.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="faq\User Defined Types\PortfolioIds.sql" />
+    <Build Include="Security\calls.sql" />
+    <Build Include="Security\faq.sql" />
+    <Build Include="Security\feedback.sql" />
+    <Build Include="Security\Imaging Users_1.sql" />
+    <Build Include="Security\Staff_1.sql" />
+    <Build Include="dbo\Stored Procedures\GetCallCategorizationCategories.sql" />
+    <Build Include="dbo\Stored Procedures\GetCallCategorizationReasonsForCat.sql" />
+    <Build Include="dbo\Stored Procedures\GetACPSelectionByDescription.sql" />
+    <Build Include="dbo\Stored Procedures\GetACPSelection.sql" />
+    <Build Include="dbo\Stored Procedures\GetScriptAndServicesMenuOptions_1.sql" />
+  </ItemGroup>
+</Project>

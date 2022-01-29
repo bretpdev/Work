@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Regents.master.cs" Inherits="RegentsApp.Regents" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Regents Scholarship Online Application :: UHEAA</title>
+    <link rel="Shortcut Icon" href="favicon.ico" />
+    <link href="RegentsStyle.css" rel="Stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="nifty.js">
+    </script>
+
+    <script type="text/javascript">
+        window.onload=function(){
+            if(!NiftyCheck())
+                return;
+            Rounded("div#MainContainer","Transparent","White","large");
+            DisableBackButton();
+        }
+        function DisableBackButton() {
+            window.history.forward();
+        }
+        setTimeout("DisableBackButton", 0);
+        
+        window.onunload=function() {
+            DisableBackButton();
+        }
+        
+    </script>
+
+</head>
+<body runat="server" id="MasterBody">
+    <form id="RegentsForm" runat="server" style="text-align: center;">
+    <div id="MainContainer">
+        <div id="container">
+            <div id="headNav">
+            </div>
+            <img runat="server" id="mainImg" src="~/Resources/USHE-Logo-CMYK.jpg" alt="Utah System of Higher Education"
+                style="width: 350px;" />
+            <div>
+                <asp:ScriptManager ID="RegentsScriptManager" runat="server">
+                </asp:ScriptManager>
+                <asp:ContentPlaceHolder ID="regentsPlaceHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <br />
+            <hr style="width: 800px;" />
+            <div id="footer">
+                For help contact us at 801-321-7294 or toll free at 877-336-7378. Customer Service
+                hours are Monday through Thursday 8 a.m. to 8 p.m. and Friday 8 a.m. to 5 p.m. MT
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [UHEAA\SystemAnalysts]
+    FROM WINDOWS WITH DEFAULT_LANGUAGE = [us_english];
+

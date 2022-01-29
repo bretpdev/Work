@@ -1,0 +1,8 @@
+﻿CREATE TABLE [rcemailpul].[UnsubscribedEmails]
+(
+	[UnsubscribedEmailId] INT NOT NULL PRIMARY KEY IDENTITY,
+	[EmailAddress] VARCHAR(320) NOT NULL,
+	[Source] VARCHAR(20) NOT NULL,
+	[AddedAt] DATETIME DEFAULT GETDATE() NOT NULL,
+	[AddedBy] VARCHAR(50) DEFAULT SYSTEM_USER NOT NULL
+)

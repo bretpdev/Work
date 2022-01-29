@@ -1,0 +1,47 @@
+﻿CREATE TABLE [dbo].[AY10_BR_LON_ATY] (
+    [BF_SSN]             CHAR (9)      NOT NULL,
+    [LN_ATY_SEQ]         INT           NOT NULL,
+    [LD_ATY_RSP]         DATE          NULL,
+    [LT_ATY_RSP]         TIME (0)      NULL,
+    [LF_ATY_RCP]         CHAR (9)      NULL,
+    [LD_ATY_REQ_RCV]     DATE          NOT NULL,
+    [LD_REQ_RSP_ATY_PRF] DATE          NULL,
+    [LF_USR_REQ_ATY]     VARCHAR (8)   NOT NULL,
+    [LC_PRD_CAL]         VARCHAR (6)   NOT NULL,
+    [LF_PRF_BY]          VARCHAR (8)   NOT NULL,
+    [LC_STA_ACTY10]      CHAR (1)      NOT NULL,
+    [LD_STA_ACTY10]      DATE          NOT NULL,
+    [LI_ATY_MKP_GRC]     CHAR (1)      NOT NULL,
+    [LC_ATY_RCP]         CHAR (2)      NOT NULL,
+    [LF_LST_DTS_AY10]    DATETIME2 (7) NOT NULL,
+    [LC_ATY_RGD_TO]      CHAR (1)      NOT NULL,
+    [LF_ATY_RGD_TO]      VARCHAR (9)   NULL,
+    [PF_RSP_ACT]         VARCHAR (5)   NULL,
+    [PF_REQ_ACT]         VARCHAR (5)   NOT NULL,
+    [LF_COR_DOC]         VARCHAR (17)  NULL,
+    [LD_COR_RCV_SNT]     DATE          NULL,
+    [LC_COR_IN_OUT]      CHAR (1)      NULL,
+    [AN_SEQ]             SMALLINT      NULL,
+    [IC_LON_PGM]         VARCHAR (6)   NULL,
+    [AN_LC_APL_SEQ]      SMALLINT      NULL,
+    CONSTRAINT [PK_AY10_BR_LON_ATY_1] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_ATY_SEQ] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_LFATYRCP_LCSTAACTY10_PFRSPACT]
+    ON [dbo].[AY10_BR_LON_ATY]([LF_ATY_RCP] ASC, [LC_STA_ACTY10] ASC, [PF_RSP_ACT] ASC)
+    INCLUDE([LD_ATY_RSP]);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_LCSTAACTY10_PFRSPACT]
+    ON [dbo].[AY10_BR_LON_ATY]([LC_STA_ACTY10] ASC, [PF_RSP_ACT] ASC)
+    INCLUDE([LD_ATY_RSP], [LF_ATY_RCP]);
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_BF_SSN_PF_REQ_ACT]
+    ON [dbo].[AY10_BR_LON_ATY]([BF_SSN] ASC, [PF_REQ_ACT] ASC)
+    INCLUDE([LN_ATY_SEQ]);
+

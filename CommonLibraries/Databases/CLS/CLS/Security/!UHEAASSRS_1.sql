@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [!UHEAASSRS]
+    WITH PASSWORD = N'aeyhsffkjdUmeownavyyguvXmsFT7_&#$!~<9q^}zaTlezvh', SID = 0xF7E90C0D31EA3249BAD9DE0020FC42FD, DEFAULT_LANGUAGE = [us_english];
+

@@ -1,0 +1,20 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Estimates]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       unnamed constraint on [dbo].[Estimates] (Default Constraint)
+     Table rebuild
+       [dbo].[Estimates] (Table)
+     Refresh
+       [dbo].[GetEmployeeEstimate] (Procedure)
+       [dbo].[InsertEstimate] (Procedure)
+
+** Supporting actions

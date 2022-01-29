@@ -1,0 +1,40 @@
+﻿@model PriorityRequestsModel
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+
+<script type="text/javascript">
+    initialRequestData = @(Html.Raw(Json.Encode(Model.Requests)));
+    initialCourtData = @(Html.Raw(Json.Encode(Model.CourtRequests ?? new List<PriorityRequest>())));
+    $(function () {
+        HandlebarsIntl.registerWith(Handlebars);
+        template = Handlebars.compile($("#request-template").html());
+        headerTemplate = Handlebars.compile($('#table-header-template').html());
+        court = new CourtHelper(initialCourtData, headerTemplate, template);
+        init(initialRequestData);
+    });
+
+    function init(requestData) {
+        var table = $("#request-table");
+        //table.find(":not(.table-header)").remove();
+
+        table.append(headerTemplate());
+        if (requestData.length > 0)
+            requestData.forEach(function (request) {
+                table.append(template(request));
+            });
+        else {
+            table.find('tr:gt(0)').remove();
+            table.find('th').html("No Open Requests Available");
+        }
+
+        court.init();
+    }
+
+</script>
+<table id="court-table" class="request-table">
+    <tr class="header table-header"><th colspan="20">My Court - @Model.UserFullName</th></tr>
+</table>
+<table id="request-table" class="request-table">
+    <tr class="header table-header"><th colspan="20">Open Requests</th></tr>
+</table>

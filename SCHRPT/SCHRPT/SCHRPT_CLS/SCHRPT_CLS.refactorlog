@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="4633472b-7f42-4779-bc4e-72bacef94223" ChangeDateTime="04/24/2018 17:02:55">
+    <Property Name="ElementName" Value="[schrpt].[Schools].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[Schools]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SchoolId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="91231b79-3e73-44ff-b8a3-d05344c2d6cb" ChangeDateTime="04/24/2018 17:24:00">
+    <Property Name="ElementName" Value="[schrpt].[Companies].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[Companies]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CompanyId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="57b95134-e085-4dc3-a9d1-f78a14c1ab4d" ChangeDateTime="04/24/2018 17:50:30">
+    <Property Name="ElementName" Value="[schrpt].[ReportTypes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[ReportTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ReportTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1c8618b0-fd0f-491a-aa17-451831cede69" ChangeDateTime="04/24/2018 18:19:56">
+    <Property Name="ElementName" Value="[schrpt].[Recipients].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[Recipients]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RecipientId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4b50d023-732d-4864-b006-c537140ab531" ChangeDateTime="05/07/2018 14:25:10">
+    <Property Name="ElementName" Value="[schrpt].[SchoolEmailHistory].[SchoolEmailHistoryID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[SchoolEmailHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SchoolEmailHistoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="660296cb-9e7e-4381-b281-d3e5f2c24863" ChangeDateTime="05/07/2018 14:25:19">
+    <Property Name="ElementName" Value="[schrpt].[SchoolEmailHistory].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[SchoolEmailHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SchoolEmailHistoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1fc26425-caba-4749-babe-6d08d5a9c12a" ChangeDateTime="05/07/2018 14:25:24">
+    <Property Name="ElementName" Value="[schrpt].[SchoolEmailHistory].[SchoolEmailHistoryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[SchoolEmailHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="a" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a3c9d42b-79f3-441a-9bf3-df0140fdd8dc" ChangeDateTime="05/07/2018 14:25:56">
+    <Property Name="ElementName" Value="[schrpt].[SchoolEmailHistory].[a]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[schrpt].[SchoolEmailHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SchoolRecipientId" />
+  </Operation>
+</Operations>

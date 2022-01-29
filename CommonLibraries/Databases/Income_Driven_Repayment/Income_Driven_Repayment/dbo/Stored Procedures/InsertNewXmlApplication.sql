@@ -1,0 +1,57 @@
+﻿CREATE PROCEDURE [dbo].[InsertNewXmlApplication]
+	@ApplicationId CHAR(10) = NULL,
+	@RepaymentPlanTypeRequested INT,
+	@JointRepaymentPlanRequestIndicator BIT,
+	@RepaymentPlanReasonId INT,
+	@TaxYear VARCHAR(4) = NULL,
+	@FilingStatusId INT = NULL,
+	@AdjustedGrossIncome VARCHAR(20) = NULL,
+	@AgiReflectsCurrentIncome VARCHAR(20) = NULL,
+	@TaxesFiledFlag BIT,
+	@CurrentDefermentForbearanceId INT,
+	@NumberChildren VARCHAR(3),
+	@NumberDependents VARCHAR(3),
+	@MaritalStatus INT,
+	@PublicServiceEmployment BIT,
+	@ReducedPaymentForbearance DECIMAL(14,2),
+	@SpouseId INT,
+	@FamilySize INT,
+	@IncludeSpouse BIT,
+	@SupportingDocumentationRequired BIT,
+	@LowestPlan BIT
+AS
+	INSERT INTO dbo.Applications(e_application_id, spouse_id, application_source_id, repayment_plan_status_id, filing_status_id, tax_year, taxes_filed_flag, 
+	joint_repayment_plan_request_indicator, adjusted_grose_income, agi_reflects_current_income, repayment_plan_reason_id, updated_at, created_at, updated_by, created_by,
+	Active, number_children, number_dependents, current_def_forb_id, public_service_employment, reduced_payment_forbearance, marital_status_id, repayment_plan_type_requested_id, 
+	family_size, IncludeSpouseInFamilySize, due_date_requested, supporting_documentation_required, borrower_selected_lowest_plan)
+	SELECT
+		@ApplicationId,
+		case when @SpouseId = 0 THEN NULL ELSE @SpouseId END,
+		2, --electronic
+		6, --pending
+		@FilingStatusId,
+		@TaxYear,
+		@TaxesFiledFlag,
+		@JointRepaymentPlanRequestIndicator,
+		@AdjustedGrossIncome,
+		@AgiReflectsCurrentIncome,
+		@RepaymentPlanReasonId,
+		GETDATE(),
+		GETDATE(),
+		'IDRXMLDATA',
+		'IDRXMLDATA',
+		1,
+		@NumberChildren,
+		@NumberDependents,
+		@CurrentDefermentForbearanceId,
+		@PublicServiceEmployment,
+		@ReducedPaymentForbearance,
+		@MaritalStatus,
+		@RepaymentPlanTypeRequested,
+		@FamilySize,
+		@IncludeSpouse,
+		'',
+		@SupportingDocumentationRequired,
+		@LowestPlan
+
+SELECT CAST(SCOPE_IDENTITY() AS INT)

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>UDW</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{3b5a771c-4ab7-4b64-91f5-33dca7b9de43}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>UDW</RootNamespace>
+    <AssemblyName>UDW</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="UheInvMet\" />
+    <Folder Include="UheInvMet\Tables\" />
+    <Folder Include="calc\" />
+    <Folder Include="calc\Tables\" />
+    <Folder Include="UheInvMet\Views\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\Form Fields" />
+    <Folder Include="dbo\Stored Procedures\Loan Detail" />
+    <Folder Include="dbo\Stored Procedures\Processing" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\WQ21_TSK_QUE_HST.sql" />
+    <Build Include="dbo\Tables\WQ20_TSK_QUE.sql" />
+    <Build Include="dbo\Tables\WQ10_TSK_QUE_DFN.sql" />
+    <Build Include="dbo\Tables\SD10_STU_SPR.sql" />
+    <Build Include="dbo\Tables\SC25_SCH_DPT.sql" />
+    <Build Include="dbo\Tables\SC22_SCH_STA_TRK.sql" />
+    <Build Include="dbo\Tables\SC10_SCH_DMO.sql" />
+    <Build Include="dbo\Tables\RS10_BR_RPD.sql" />
+    <Build Include="dbo\Tables\RS05_IBR_RPS.sql" />
+    <Build Include="dbo\Tables\RP30_EFT_RIR_PAR.sql" />
+    <Build Include="dbo\Tables\RP05_BBS_DFR_FOR.sql" />
+    <Build Include="dbo\Tables\RP04_BBS_TIR_OVR.sql" />
+    <Build Include="dbo\Tables\RP02_BBS_PGM_TIR.sql" />
+    <Build Include="dbo\Tables\RP01_BBS_PGM_PAR.sql" />
+    <Build Include="dbo\Tables\RM40_RMT_LON_TGT.sql" />
+    <Build Include="dbo\Tables\RM31_BR_RMT_PST.sql" />
+    <Build Include="dbo\Tables\RM10_RMT_BCH.sql" />
+    <Build Include="dbo\Tables\RM03_ONL_PAY.sql" />
+    <Build Include="dbo\Tables\RF10_RFR.sql" />
+    <Build Include="dbo\Tables\PI10_PID_CHG_LOG.sql" />
+    <Build Include="dbo\Tables\PH05_CNC_EML.sql" />
+    <Build Include="dbo\Tables\PH01_SUPER_ID.sql" />
+    <Build Include="dbo\Tables\PD55_PRS_PND_DMO.sql" />
+    <Build Include="dbo\Tables\PD42_PRS_PHN.sql" />
+    <Build Include="dbo\Tables\PD41_PHN_HST.sql" />
+    <Build Include="dbo\Tables\PD40_SKP_DTL.sql" />
+    <Build Include="dbo\Tables\PD32_PRS_ADR_EML.sql" />
+    <Build Include="dbo\Tables\PD31_PRS_INA.sql" />
+    <Build Include="dbo\Tables\PD30_PRS_ADR.sql" />
+    <Build Include="dbo\Tables\PD27_PRS_SKP_PRC.sql" />
+    <Build Include="dbo\Tables\PD26_PRS_SKP_PRC.sql" />
+    <Build Include="dbo\Tables\PD24_PRS_BKR.sql" />
+    <Build Include="dbo\Tables\PD23_GTR_DSA.sql" />
+    <Build Include="dbo\Tables\PD22_PRS_DSA.sql" />
+    <Build Include="dbo\Tables\PD21_GTR_DTH.sql" />
+    <Build Include="dbo\Tables\PD20_PRS_DTH.sql" />
+    <Build Include="dbo\Tables\PD11_PRS_NME_HST.sql" />
+    <Build Include="dbo\Tables\PD10_PRS_NME.sql" />
+    <Build Include="dbo\Tables\MR01_MGT_RPT_LON.sql" />
+    <Build Include="dbo\Tables\LT20_LTR_REQ_PRC.sql" />
+    <Build Include="dbo\Tables\LR25_LDR_DPT.sql" />
+    <Build Include="dbo\Tables\LR10_LDR_DMO.sql" />
+    <Build Include="dbo\Tables\LN94_LON_PAY_FAT.sql" />
+    <Build Include="dbo\Tables\LN90_FIN_ATY.sql" />
+    <Build Include="dbo\Tables\LN85_LON_ATY.sql" />
+    <Build Include="dbo\Tables\LN83_EFT_TO_LON.sql" />
+    <Build Include="dbo\Tables\LN80_LON_BIL_CRF.sql" />
+    <Build Include="dbo\Tables\LN75_BIL_LON_FAT.sql" />
+    <Build Include="dbo\Tables\LN72_INT_RTE_HST.sql" />
+    <Build Include="dbo\Tables\LN66_LON_RPS_SPF.sql" />
+    <Build Include="dbo\Tables\LN65_LON_RPS.sql" />
+    <Build Include="dbo\Tables\LN60_BR_FOR_APV.sql" />
+    <Build Include="dbo\Tables\LN59_CRB_DFR_FOR.sql" />
+    <Build Include="dbo\Tables\LN57_LON_BBT_FAT.sql" />
+    <Build Include="dbo\Tables\LN56_LON_CRB_RPT.sql" />
+    <Build Include="dbo\Tables\LN55_LON_BBS_TIR.sql" />
+    <Build Include="dbo\Tables\LN54_LON_BBS.sql" />
+    <Build Include="dbo\Tables\LN53_CRB_FIN.sql" />
+    <Build Include="dbo\Tables\LN52_CRB_SUP_DAT.sql" />
+    <Build Include="dbo\Tables\LN50_BR_DFR_APV.sql" />
+    <Build Include="dbo\Tables\LN41_LON_CRB_RPT.sql" />
+    <Build Include="dbo\Tables\LN40_LON_CLM_PCL.sql" />
+    <Build Include="dbo\Tables\LN38_CU_STA_HST.sql" />
+    <Build Include="dbo\Tables\LN35_LON_OWN.sql" />
+    <Build Include="dbo\Tables\LN34_CU_RTT_HST.sql" />
+    <Build Include="dbo\Tables\LN33_LON_CU_INF.sql" />
+    <Build Include="dbo\Tables\LN20_EDS.sql" />
+    <Build Include="dbo\Tables\LN16_LON_DLQ_HST.sql" />
+    <Build Include="dbo\Tables\LN15_DSB.sql" />
+    <Build Include="dbo\Tables\LN13_LON_STU_OSD.sql" />
+    <Build Include="dbo\Tables\LN10_LON_EOM.sql" />
+    <Build Include="dbo\Tables\LN10_LON.sql" />
+    <Build Include="dbo\Tables\LN09_RPD_PIO_CVN.sql" />
+    <Build Include="dbo\Tables\GU10_GTR.sql" />
+    <Build Include="dbo\Tables\GR10_RPT_LON_APL.sql" />
+    <Build Include="dbo\Tables\FormatTranslation.sql" />
+    <Build Include="dbo\Tables\FB10_BR_FOR_REQ.sql" />
+    <Build Include="dbo\Tables\DW01_DW_CLC_CLU.sql" />
+    <Build Include="dbo\Tables\DT01_LN41_LON_CRB.sql" />
+    <Build Include="dbo\Tables\DF10_BR_DFR_REQ.sql" />
+    <Build Include="dbo\Tables\CL10_CLM_PCL.sql" />
+    <Build Include="dbo\Tables\BR30_BR_EFT.sql" />
+    <Build Include="dbo\Tables\BL10_BR_BIL.sql" />
+    <Build Include="dbo\Tables\AY20_ATY_TXT.sql" />
+    <Build Include="dbo\Tables\AY10_BR_LON_ATY.sql" />
+    <Build Include="dbo\Tables\AP37_APL_FIN.sql" />
+    <Build Include="dbo\Tables\AP35_APL_CRD.sql" />
+    <Build Include="dbo\Tables\AP34_APL_RSD.sql" />
+    <Build Include="dbo\Tables\AP33_LO_APL_DTL.sql" />
+    <Build Include="dbo\Tables\AP17_LO_APL_ERR.sql" />
+    <Build Include="dbo\Tables\AP03_MASTER_APL.sql" />
+    <Build Include="dbo\Tables\AD20_PCV_ATY_ADJ.sql" />
+    <Build Include="dbo\Tables\AC11_ACT_REQ_LTR.sql" />
+    <Build Include="dbo\Tables\AC10_ACT_REQ.sql" />
+    <Build Include="UheInvMet\Tables\Monthly_LoanLevel.sql" />
+    <Build Include="calc\Tables\RepaymentSchedules.sql" />
+    <None Include="UheInvMet\Views\Monthly_BorrowerLevel.sql" />
+    <None Include="UheInvMet\Views\Monthly_PerformanceCategory.sql" />
+    <None Include="UheInvMet\Views\Monthly_BasePopulation.sql" />
+    <None Include="UheInvMet\Views\Monthly_Military.sql" />
+    <Build Include="Security\UheInvMet.sql" />
+    <Build Include="Security\calc.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\GetAllUnprocessedLt20Records.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\InactivateLetter.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\InactivateLetters.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LoanDetail_Defer.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LoanDetail_Defer_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LoanDetail_Forb.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LoanDetail_Forb_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LoanDetail_Payoff.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LoanDetail1.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LoanDetail2.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\LT_Header_Footer.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\LT_Header_Footer_Reference.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BIBR45_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BIDRPS_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BFRPA_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BEFSKP_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BNDSKP_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BSCRAE_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US09B10CP_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US09B10P_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US09BFDCI_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US09BFDCP_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US09BFDLP_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US10BTREFC_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US11BISF_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US13B9COSI_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US13B9CSG3_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\MarkLT20EcorrCreated.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\MarkLT20LetterPrinted.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\AddCoborrowerRecords.sql" />
+    <Build Include="dbo\Tables\LT20_LTR_REQ_PRC_Coborrower.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BIDABR_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US10BTCUR_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US10OTCUR1_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US10OTCUR2_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US10OTCUR3_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US10OTCUR4_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BIDAED_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BTRT4_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\spGetAccountNumberFromSsn.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\IncrementProcessingAttempts.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BCAP_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BCTDRN_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BIBRXP_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BFADJ_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BFAPRL_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US06BFNBIL_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BIDRFG_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BIDRFP_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06BIDRFS_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US06CTQRT_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US09B110CP_FormFields.sql" />
+    <Build Include="dbo\Stored Procedures\Loan Detail\LT_US09B110CP_Loans.sql" />
+    <Build Include="dbo\Stored Procedures\Processing\GetLT20RecordSequences.sql" />
+    <Build Include="dbo\Stored Procedures\Form Fields\LT_US09B60DEL_FormFields.sql" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,1 @@
+EXEC CDW..RefreshTableWithValidation 'LN60_BR_FOR_APV','LF_LST_DTS_LN60'

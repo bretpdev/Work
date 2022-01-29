@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="MonthEnd" targetNamespace="http://www.tempuri.org/MonthEnd.xsd" xmlns:mstns="http://www.tempuri.org/MonthEnd.xsd" xmlns="http://www.tempuri.org/MonthEnd.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:element name="MonthEnd" msdata:IsDataSet="true">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="Master">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CreationTimeDateStamp" type="xs:dateTime" />
+              <xs:element name="Recipient" type="xs:string" />
+              <xs:element name="Subject" type="xs:string" minOccurs="0" />
+              <xs:element name="T1" type="xs:dateTime" />
+              <xs:element name="T2" type="xs:dateTime" />
+              <xs:element name="T3" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

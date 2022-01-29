@@ -1,0 +1,45 @@
+﻿CREATE ROLE [Staff]
+    AUTHORIZATION [dbo];
+
+
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\BatchScripts];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - OPSDEV - All Databases RO];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - OPSDEV - Developers DBOwner Access];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SQL - OPSDEV - All Databases RW];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\!UHEAASSRS];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\UHEAAUsers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\CornerStoneUsers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\SystemAnalysts];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\Developers];
+
+
+GO
+ALTER ROLE [Staff] ADD MEMBER [UHEAA\OcheUsers];
+

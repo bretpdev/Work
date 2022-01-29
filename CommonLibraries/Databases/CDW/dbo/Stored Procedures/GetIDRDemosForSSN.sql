@@ -1,0 +1,15 @@
+﻿CREATE PROCEDURE [dbo].[GetIDRDemosForSSN]
+	@SSN CHAR(9)
+AS
+	SELECT
+		BF_SSN,
+		DF_SPE_ACC_ID,
+		DM_PRS_1,
+		DM_PRS_LST,
+		DM_PRS_MID
+	FROM
+		CDW..PD10_Borrower 
+	WHERE
+		BF_SSN = @SSN
+
+RETURN 0

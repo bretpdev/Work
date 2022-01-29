@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7211ABC4-E643-4762-AB90-53AB53BD745D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MDIntermediary</RootNamespace>
+    <AssemblyName>MDIntermediary</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Interop.Reflection">
+      <HintPath>..\..\..\CommonLibraries\Dependencies\Interop.Reflection.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ACP\AcpClasses.cs" />
+    <Compile Include="ACP\AcpResponse\AcpBankruptcyInfo.cs" />
+    <Compile Include="ACP\AcpResponse\AcpDeceasedInfo.cs" />
+    <Compile Include="ACP\AcpResponse\AcpEntryInfo.cs" />
+    <Compile Include="ACP\AcpEnums.cs" />
+    <Compile Include="ACP\AcpProcessor.cs" />
+    <Compile Include="ACP\AcpResponse\AcpQueueInfo.cs" />
+    <Compile Include="ACP\AcpResponse\AcpRecipientInfo.cs" />
+    <Compile Include="ACP\AcpResponse\AcpSelectionResult.cs" />
+    <Compile Include="ACP\ActivityCommentHelper.cs" />
+    <Compile Include="ACP\AcpResponse\AcpResponses.cs" />
+    <Compile Include="ACP\Reference.cs" />
+    <Compile Include="Calls\CallCategorizationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calls\CallCategorizationControl.Designer.cs">
+      <DependentUpon>CallCategorizationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calls\CallReason.cs" />
+    <Compile Include="Calls\CallRecord.cs" />
+    <Compile Include="Calls\CallsHelper.cs" />
+    <Compile Include="Demographics\AlternateAddress.cs" />
+    <Compile Include="Calls\IBorrower.cs" />
+    <Compile Include="Demographics\AcpRecipientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Demographics\AcpRecipientForm.Designer.cs">
+      <DependentUpon>AcpRecipientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\ActivityCommentSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\ActivityCommentSelection.Designer.cs">
+      <DependentUpon>ActivityCommentSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\AlternateAddressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Demographics\AlternateAddressForm.Designer.cs">
+      <DependentUpon>AlternateAddressForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\BorrowerInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\BorrowerInfoControl.Designer.cs">
+      <DependentUpon>BorrowerInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\Classes\BindManager.cs" />
+    <Compile Include="Demographics\Classes\BoundControl.cs" />
+    <Compile Include="Demographics\Classes\DemographicVerifications.cs" />
+    <Compile Include="Demographics\Classes\MDBorrowerDemographics.cs" />
+    <Compile Include="Demographics\Classes\YNCheckButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Demographics\Country.cs" />
+    <Compile Include="Demographics\MdLetterFormatCycleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Demographics\MdLettersHelper.cs" />
+    <Compile Include="Demographics\PhoneBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Demographics\VerificationState.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\VerificationState.designer.cs">
+      <DependentUpon>VerificationState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\Enums\VerificationSelection.cs" />
+    <Compile Include="IDRCounter\IDRCounter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IDRCounter\IDRCounter.Designer.cs">
+      <DependentUpon>IDRCounter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IDRCounter\IDRCounterDataAccess.cs" />
+    <Compile Include="IDRCounter\IDRCountRecord.cs" />
+    <Compile Include="PendingNoCalls\PendingNoCallsDataAccess.cs" />
+    <Compile Include="PendingNoCalls\PendingNoCallsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PendingNoCalls\PendingNoCallsForm.Designer.cs">
+      <DependentUpon>PendingNoCallsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PromiseToPay\PromiseToPay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PromiseToPay\PromiseToPay.Designer.cs">
+      <DependentUpon>PromiseToPay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PromiseToPay\PromiseToPayHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="notes.txt" />
+    <None Include="Resources\waveicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MDLetters\MDLetters.csproj">
+      <Project>{5cef4acf-5ed8-4fe5-9810-43eee4505b7c}</Project>
+      <Name>MDLetters</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Calls\CallCategorizationControl.resx">
+      <DependentUpon>CallCategorizationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\AcpRecipientForm.resx">
+      <DependentUpon>AcpRecipientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\ActivityCommentSelection.resx">
+      <DependentUpon>ActivityCommentSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\AlternateAddressForm.resx">
+      <DependentUpon>AlternateAddressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\BorrowerInfoControl.resx">
+      <DependentUpon>BorrowerInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\VerificationState.resx">
+      <DependentUpon>VerificationState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IDRCounter\IDRCounter.resx">
+      <DependentUpon>IDRCounter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PendingNoCalls\PendingNoCallsForm.resx">
+      <DependentUpon>PendingNoCallsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PromiseToPay\PromiseToPay.resx">
+      <DependentUpon>PromiseToPay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

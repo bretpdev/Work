@@ -1,0 +1,274 @@
+﻿----/*
+----Post-Deployment Script Template							
+------------------------------------------------------------------------------------------
+---- This file contains SQL statements that will be appended to the build script.		
+---- Use SQLCMD syntax to include a file in the post-deployment script.			
+---- Example:      :r .\myfile.sql								
+---- Use SQLCMD syntax to reference a variable in the post-deployment script.		
+---- Example:      :setvar TableName MyTable							
+----               SELECT * FROM [$(TableName)]					
+------------------------------------------------------------------------------------------
+----*/
+
+--DELETE FROM acurintc.ProcessQueue
+--DELETE FROM acurintc.QueueInfo
+--DELETE FROM acurintc.Parsers
+--DELETE FROM acurintc.Processors
+--DELETE FROM acurintc.RejectActions
+--DELETE FROM acurintc.RejectReasons
+--DELETE FROM acurintc.DemographicsSources
+--DELETE FROM acurintc.SystemSources
+
+--DECLARE @CompassCommaParser INT = 1, @CompassPdemParser INT = 2, @OneLinkCommaParser INT = 3, @OneLinkPdemParser INT = 4, @OneLinkPostOfficeCommaParser INT = 5, 
+--        @AccurintParser INT = 6, @PostOfficeParser INT = 7
+--INSERT INTO acurintc.Parsers (ParserId, Name)
+--VALUES
+--(@CompassCommaParser, 'CompassComma'),
+--(@CompassPdemParser, 'CompassPdem'),
+--(@OneLinkCommaParser, 'OneLinkComma'),
+--(@OneLinkPdemParser, 'OneLinkPdem'),
+--(@OneLinkPostOfficeCommaParser, 'OneLinkPostOfficeComma'),
+--(@AccurintParser, 'Accurint'),
+--(@PostOfficeParser, 'PostOffice')
+
+--DECLARE @BorrowerProcessor INT = 1, @CompareProcessor INT = 2, @PdemProcessor INT = 3, @DudeProcessor INT = 4
+--INSERT INTO acurintc.Processors (ProcessorId, Name)
+--VALUES 
+--(@BorrowerProcessor, 'Borrower'),
+--(@CompareProcessor, 'Compare'),
+--(@PdemProcessor, 'Pdem'),
+--(@DudeProcessor, 'Dude')
+
+--INSERT INTO acurintc.QueueInfo ([Queue], Subqueue, DemographicsReviewQueue, ForeignReviewQueue, ParserId, ProcessorId)
+--VALUES
+--('1E','01', 'MUBFD', 'MUBFD', @CompassPdemParser, @PdemProcessor),
+--('LX', '01', 'PFBUD', 'PFBUD', @CompassCommaParser, @CompareProcessor)
+----('ACURINTC', 'SKP', 'DEMOREVW', 'ACRTNFRN', @AccurintParser, @CompareProcessor),
+----('DBADPO', 'SKP', 'DEMORVW2', 'FRGNDEMO', @PostOfficeParser, @CompareProcessor),
+----('DEMOUPDT', 'ALL', 'DEMORVW2', 'FRGNDEMO', @OneLinkCommaParser, @BorrowerProcessor),
+----('DO', '01', 'MUBFD', 'MUBFD', @CompassCommaParser, @BorrowerProcessor),
+----('PDEMREVW', 'SKP', 'DEMORVW2', 'FRGNDEMO', @OneLinkPdemParser, @PdemProcessor),
+----('PENDPDEM', 'ALL', 'DEMORVW2', 'FRGNDEMO', @OneLinkPdemParser, @PdemProcessor),
+----('SKIPCHNG', 'SKP', 'DEMORVW2', 'FRGNDEMO', @OneLinkPdemParser, @PdemProcessor),
+----('SRMNOADD', 'ALL', 'DEMORVW2', 'FRGNDEMO', @OneLinkPostOfficeCommaParser, @CompareProcessor),
+----('XDEMOE', 'ALL', 'DEMORVW2', 'FRGNDEMO', @OneLinkCommaParser, @DudeProcessor),
+----('XDEMOG', 'ALL', 'DEMORVW2', 'FRGNDEMO', @OneLinkCommaParser, @DudeProcessor)
+
+--DECLARE @AccurintDemo INT = 1, @AutopayDemo INT = 2, @CompassPendingPdemDemo INT = 3, @DudeDemo INT = 4, @EmailDemo INT = 5, @OnelinkPendingPdemDemo INT = 6,
+--        @PostOfficeDemo INT = 7, @SkipChangePendingPdemDemo INT = 8, @CompassAccurintDemo INT = 9
+--INSERT INTO acurintc.DemographicsSources (DemographicsSourceId, Name)
+--VALUES
+--(@AccurintDemo, 'Accurint'),
+--(@AutopayDemo, 'Autopay'),
+--(@CompassPendingPdemDemo, 'COMPASS Pending PDEM'),
+--(@DudeDemo, 'DUDE'),
+--(@EmailDemo, 'Email'),
+--(@OnelinkPendingPdemDemo, 'OneLINK Pending PDEM'),
+--(@PostOfficeDemo, 'Post Office'),
+--(@SkipChangePendingPdemDemo, 'SKIPCHNG Pending PDEM'),
+--(@CompassAccurintDemo, 'Accurint Compass')
+
+--DECLARE @AccurintSys INT = 1, @AutopaySys INT = 2, @CompassSys INT = 3, @CompassEmailSys INT = 4, @CreditBureauSys INT = 5, @DudeSys INT = 6, 
+--        @NonCreditBureauSys INT = 7, @OnelinkEmailSys INT = 8, @PostOfficeSys INT = 9
+--INSERT INTO acurintc.SystemSources (SystemSourceId, Name, LocateType, OneLinkSourceCode, CompassSourceCode, ActivityType, ContactType)
+--VALUES
+--(@AccurintSys, 'Accurint', 'BFA', '5', '24', 'AM', '10'),
+--(@AutopaySys, 'Autopay', 'BLT', 'C', '32', 'EM', '04'),
+--(@CompassSys, 'COMPASS', 'SRV', 'E', '56', 'AM', '10'),
+--(@CompassEmailSys, 'COMPASS Email', 'EML', 'C', '32', 'FO', '04'),
+--(@CreditBureauSys, 'Credit Bureau', 'CRR', '3', '56', 'AM', '10'),
+--(@DudeSys, 'DUDE', 'SRV', 'E', '56', 'AM', 'LS'),
+--(@NonCreditBureauSys, 'Non CB', 'SRV', 'E', '56', 'AM', '10'),
+--(@OnelinkEmailSys, 'OneLINK Email', 'EML', 'C', '32', 'EM', '04'),
+--(@PostOfficeSys, 'Post Office', 'POO', '2', '25', 'ET', '90')
+
+
+--DECLARE @InvalidAddressHistoryReject INT = 1, @SameAddressReject INT = 2, @InvalidDemographicsReject INT = 3, @WrongForwardingReject INT = 4, @NoPdemReject INT = 5, @NoneReject INT = 6,
+--        @BlockedPhoneReject INT = 7, @InvalidPhoneHistoryReject INT = 8, @SamePhoneReject INT = 9, @NoStreetReject INT = 10, @ForeignDemographicsReject INT = 11,
+--		@IncompleteAddressReject INT = 12, @IncompletePhoneReject INT = 13, @InvalidAddressReturnReject INT = 14, @InvalidPhoneReturnReject INT = 15, @ValidCurrentAddress INT = 16, 
+--		@ValidCurrentPhones INT = 17, @PhoneTooLongReject INT = 18
+--INSERT INTO acurintc.RejectReasons (RejectReasonId, RejectReason)
+--VALUES
+--(@InvalidAddressHistoryReject, 'Address invalid in history'),
+--(@SameAddressReject, 'Address same as on file'),
+--(@InvalidDemographicsReject, 'demographics is invalid'),
+--(@WrongForwardingReject, 'Forwarding address does not belong to UHEAA borrower'),
+--(@NoPdemReject, 'No pending PDEM records to review'),
+--(@NoneReject, 'None'),
+--(@BlockedPhoneReject, 'Phone number blocked by parameter card'),
+--(@InvalidPhoneHistoryReject, 'Phone number invalid in history'),
+--(@SamePhoneReject, 'Phone number same as on file'),
+--(@NoStreetReject, 'Return address without street'),
+--(@ForeignDemographicsReject, 'Return foreign demographics'),
+--(@IncompleteAddressReject, 'Return incomplete address'),
+--(@IncompletePhoneReject, 'Return incomplete phone number'),
+--(@InvalidAddressReturnReject, 'Return invalid address'),
+--(@InvalidPhoneReturnReject, 'Return invalid phone number'),
+--(@ValidCurrentAddress, 'Current address is valid'),
+--(@ValidCurrentPhones, 'Current phones are all valid'),
+--(@PhoneTooLongReject, 'Phone number is greater than 10 characters')
+
+
+--INSERT INTO acurintc.RejectActions (ActionCodeAddress, ActionCodePhone, ActionCodeEmail, DemographicsSourceId, RejectReasonId)
+--VALUES
+--('KUBHL', NULL, NULL, @AccurintDemo, @InvalidAddressHistoryReject),
+--('KUBHL', NULL, NULL, @AccurintDemo, @SameAddressReject),
+--('KUBHL', 'KUBTL', NULL, @AccurintDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @AccurintDemo, @WrongForwardingReject),
+--(NULL, NULL, NULL, @AccurintDemo, @NoPdemReject),
+--('KSBHL', 'KSBTL', NULL, @AccurintDemo, @NoneReject),
+--(NULL, 'KUBTL', NULL, @AccurintDemo, @BlockedPhoneReject),
+--(NULL, 'KUBTL', NULL, @AccurintDemo, @InvalidPhoneHistoryReject),
+--(NULL, 'KUBTL', NULL, @AccurintDemo, @SamePhoneReject),
+--('KUBHL', NULL, NULL, @AccurintDemo, @NoStreetReject),
+--('KUBHF', 'KUBTF', NULL, @AccurintDemo, @ForeignDemographicsReject),
+--('KUBHL', NULL, NULL, @AccurintDemo, @IncompleteAddressReject),
+--(NULL, 'KUBTL', NULL, @AccurintDemo, @IncompletePhoneReject),
+--('KUBHL', NULL, NULL, @AccurintDemo, @InvalidAddressReturnReject),
+--(NULL, 'KUBTL', NULL, @AccurintDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @AccurintDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @AccurintDemo, @ValidCurrentPhones),
+--(NULL, 'KUBTL', NULL, @AccurintDemo, @PhoneTooLongReject),
+--(NULL, NULL, NULL, @CompassAccurintDemo, @SameAddressReject),
+--('PFBUD', 'PFBUD', 'PFBUD', @CompassAccurintDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @CompassAccurintDemo, @WrongForwardingReject),
+--(NULL, NULL, NULL, @CompassAccurintDemo, @NoPdemReject),
+--('PFBUD', 'PFBUD', 'PFBUD', @CompassAccurintDemo, @NoneReject),
+--(NULL, 'PFBUD', NULL, @CompassAccurintDemo, @BlockedPhoneReject),
+--(NULL, NULL, NULL, @CompassAccurintDemo, @InvalidPhoneHistoryReject),
+--(NULL, NULL, NULL, @CompassAccurintDemo, @SamePhoneReject),
+--('PFBUD', NULL, NULL, @CompassAccurintDemo, @NoStreetReject),
+--('KULSF', 'KULSF', 'KULSF', @CompassAccurintDemo, @ForeignDemographicsReject),
+--('PFBUD', NULL, NULL, @CompassAccurintDemo, @IncompleteAddressReject),
+--(NULL, 'PFBUD', NULL, @CompassAccurintDemo, @IncompletePhoneReject),
+--('PFBUD', NULL, NULL, @CompassAccurintDemo, @InvalidAddressReturnReject),
+--(NULL, 'PFBUD', NULL, @CompassAccurintDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @CompassAccurintDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @CompassAccurintDemo, @ValidCurrentPhones),
+--(NULL, NULL, NULL, @CompassAccurintDemo, @PhoneTooLongReject),
+--('PFBUD', NULL, NULL, @AutopayDemo, @InvalidAddressHistoryReject),
+--(NULL, NULL, NULL, @AutopayDemo, @SameAddressReject),
+--('PFBUD', 'PFBUD', 'PFBUD', @AutopayDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @AutopayDemo, @WrongForwardingReject),
+--(NULL, NULL, NULL, @AutopayDemo, @NoPdemReject),
+--('PFBUD', 'PFBUD', 'PFBUD', @AutopayDemo, @NoneReject),
+--(NULL, 'PFBUD', NULL, @AutopayDemo, @BlockedPhoneReject),
+--(NULL, NULL, NULL, @AutopayDemo, @InvalidPhoneHistoryReject),
+--(NULL, 'PFBUD', NULL, @AutopayDemo, @SamePhoneReject),
+--('PFBUD', NULL, NULL, @AutopayDemo, @NoStreetReject),
+--('KULSF', 'KULSF', 'KULSF', @AutopayDemo, @ForeignDemographicsReject),
+--('PFBUD', NULL, NULL, @AutopayDemo, @IncompleteAddressReject),
+--(NULL, 'PFBUD', NULL, @AutopayDemo, @IncompletePhoneReject),
+--('PFBUD', NULL, NULL, @AutopayDemo, @InvalidAddressReturnReject),
+--(NULL, 'PFBUD', NULL, @AutopayDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @AutopayDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @AutopayDemo, @ValidCurrentPhones),
+--(NULL, 'PFBUD', NULL, @AutopayDemo, @PhoneTooLongReject),
+--('KUBPC', NULL, NULL, @CompassPendingPdemDemo, @InvalidAddressHistoryReject),
+--('KUBPP', NULL, NULL, @CompassPendingPdemDemo, @SameAddressReject),
+--('KUBPP', 'KUBPP', NULL, @CompassPendingPdemDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @CompassPendingPdemDemo, @WrongForwardingReject),
+--(NULL, NULL, NULL, @CompassPendingPdemDemo, @NoPdemReject),
+--('KSBPP', 'KSBPP', NULL, @CompassPendingPdemDemo, @NoneReject),
+--(NULL, 'KUBPP', NULL, @CompassPendingPdemDemo, @BlockedPhoneReject),
+--(NULL, 'KUBPP', NULL, @CompassPendingPdemDemo, @InvalidPhoneHistoryReject),
+--(NULL, 'KUBPP', NULL, @CompassPendingPdemDemo, @SamePhoneReject),
+--('KUBPP', NULL, NULL, @CompassPendingPdemDemo, @NoStreetReject),
+--('KUBPF', 'KUBPF', NULL, @CompassPendingPdemDemo, @ForeignDemographicsReject),
+--('KUBPP', NULL, NULL, @CompassPendingPdemDemo, @IncompleteAddressReject),
+--(NULL, 'KUBPP', NULL, @CompassPendingPdemDemo, @IncompletePhoneReject),
+--('KUBPP', NULL, NULL, @CompassPendingPdemDemo, @InvalidAddressReturnReject),
+--(NULL, 'KUBPP', NULL, @CompassPendingPdemDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @CompassPendingPdemDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @CompassPendingPdemDemo, @ValidCurrentPhones),
+--(NULL, 'KUBPP', NULL, @CompassPendingPdemDemo, @PhoneTooLongReject),
+--(NULL, NULL, NULL, @DUDEDemo, @InvalidAddressHistoryReject),
+--('MXADD', NULL, 'MXADD', @DUDEDemo, @SameAddressReject),
+--('MXADD', 'MXADD', 'MXADD', @DUDEDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @DUDEDemo, @WrongForwardingReject),
+--(NULL, NULL, NULL, @DUDEDemo, @NoPdemReject),
+--('MXADD', 'MXADD', 'MXADD', @DUDEDemo, @NoneReject),
+--(NULL, 'MXADD', NULL, @DUDEDemo, @BlockedPhoneReject),
+--(NULL, NULL, NULL, @DUDEDemo, @InvalidPhoneHistoryReject),
+--(NULL, 'MXADD', NULL, @DUDEDemo, @SamePhoneReject),
+--('MXADD', NULL, NULL, @DUDEDemo, @NoStreetReject),
+--('MXADD', 'MXADD', 'MXADD', @DUDEDemo, @ForeignDemographicsReject),
+--('MXADD', NULL, 'MXADD', @DUDEDemo, @IncompleteAddressReject),
+--(NULL, 'MXADD', NULL, @DUDEDemo, @IncompletePhoneReject),
+--('MXADD', NULL, 'MXADD', @DUDEDemo, @InvalidAddressReturnReject),
+--(NULL, 'MXADD', NULL, @DUDEDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @DUDEDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @DUDEDemo, @ValidCurrentPhones),
+--(NULL, NULL, NULL, @DUDEDemo, @PhoneTooLongReject),
+--(NULL, NULL, NULL, @EmailDemo, @InvalidAddressHistoryReject),
+--(NULL, NULL, NULL, @EmailDemo, @SameAddressReject),
+--('MEOUD', 'MEOUD', 'MEOUD', @EmailDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @EmailDemo, @WrongForwardingReject),
+--(NULL, NULL, NULL, @EmailDemo, @NoPdemReject),
+--('MEOUD', 'MEOUD', 'MEOUD', @EmailDemo, @NoneReject),
+--(NULL, 'MEOUD', NULL, @EmailDemo, @BlockedPhoneReject),
+--(NULL, NULL, NULL, @EmailDemo, @InvalidPhoneHistoryReject),
+--(NULL, NULL, NULL, @EmailDemo, @SamePhoneReject),
+--('MEOUD', NULL, NULL, @EmailDemo, @NoStreetReject),
+--('KULSF', 'KULSF', 'KULSF', @EmailDemo, @ForeignDemographicsReject),
+--('MEOUD', NULL, NULL, @EmailDemo, @IncompleteAddressReject),
+--(NULL, 'MEOUD', NULL, @EmailDemo, @IncompletePhoneReject),
+--('MEOUD', NULL, NULL, @EmailDemo, @InvalidAddressReturnReject),
+--(NULL, 'MEOUD', NULL, @EmailDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @EmailDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @EmailDemo, @ValidCurrentPhones),
+--(NULL, NULL, NULL, @EmailDemo, @PhoneTooLongReject),
+--('KUBPC', NULL, NULL, @OnelinkPendingPdemDemo, @InvalidAddressHistoryReject),
+--('KUBPP', NULL, NULL, @OnelinkPendingPdemDemo, @SameAddressReject),
+--('KUBPP', NULL, NULL, @OnelinkPendingPdemDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @OnelinkPendingPdemDemo, @WrongForwardingReject),
+--('KUBPP', 'KUBPP', NULL, @OnelinkPendingPdemDemo, @NoPdemReject),
+--('KSBPP', 'KSBPP', NULL, @OnelinkPendingPdemDemo, @NoneReject),
+--(NULL, 'KUBPP', NULL, @OnelinkPendingPdemDemo, @BlockedPhoneReject),
+--(NULL, 'KUBPP', NULL, @OnelinkPendingPdemDemo, @InvalidPhoneHistoryReject),
+--(NULL, 'KUBPP', NULL, @OnelinkPendingPdemDemo, @SamePhoneReject),
+--('KUBPP', NULL, NULL, @OnelinkPendingPdemDemo, @NoStreetReject),
+--('KUBPF', 'KUBPF', NULL, @OnelinkPendingPdemDemo, @ForeignDemographicsReject),
+--('KUBPP', NULL, NULL, @OnelinkPendingPdemDemo, @IncompleteAddressReject),
+--(NULL, 'KUBPP', NULL, @OnelinkPendingPdemDemo, @IncompletePhoneReject),
+--('KUBPP', NULL, NULL, @OnelinkPendingPdemDemo, @InvalidAddressReturnReject),
+--(NULL, 'KUBPP', NULL, @OnelinkPendingPdemDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @OnelinkPendingPdemDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @OnelinkPendingPdemDemo, @ValidCurrentPhones),
+--(NULL, NULL, NULL, @OnelinkPendingPdemDemo, @PhoneTooLongReject),
+--('KULSK', NULL, NULL, @PostOfficeDemo, @InvalidAddressHistoryReject),
+--('KULSK', NULL, NULL, @PostOfficeDemo, @SameAddressReject),
+--('KULSK', 'KULSK', NULL, @PostOfficeDemo, @InvalidDemographicsReject),
+--('KULSK', NULL, NULL, @PostOfficeDemo, @WrongForwardingReject),
+--(NULL, NULL, NULL, @PostOfficeDemo, @NoPdemReject),
+--('KSLSK', NULL, NULL, @PostOfficeDemo, @NoneReject),
+--(NULL, NULL, NULL, @PostOfficeDemo, @BlockedPhoneReject),
+--(NULL, NULL, NULL, @PostOfficeDemo, @InvalidPhoneHistoryReject),
+--(NULL, NULL, NULL, @PostOfficeDemo, @SamePhoneReject),
+--('KULSK', NULL, NULL, @PostOfficeDemo, @NoStreetReject),
+--('KULSF', 'KULSF', NULL, @PostOfficeDemo, @ForeignDemographicsReject),
+--('KULSK', NULL, NULL, @PostOfficeDemo, @IncompleteAddressReject),
+--(NULL, NULL, NULL, @PostOfficeDemo, @IncompletePhoneReject),
+--('KULSK', NULL, NULL, @PostOfficeDemo, @InvalidAddressReturnReject),
+--(NULL, NULL, NULL, @PostOfficeDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @PostOfficeDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @PostOfficeDemo, @ValidCurrentPhones),
+--(NULL, NULL, NULL, @PostOfficeDemo, @PhoneTooLongReject),
+--('KUPEN', NULL, NULL, @SkipChangePendingPdemDemo, @InvalidAddressHistoryReject),
+--('KUPEN', NULL, NULL, @SkipChangePendingPdemDemo, @SameAddressReject),
+--('KUPEN', 'KUPEN', NULL, @SkipChangePendingPdemDemo, @InvalidDemographicsReject),
+--(NULL, NULL, NULL, @SkipChangePendingPdemDemo, @WrongForwardingReject),
+--('KUBPP', 'KUBPP', NULL, @SkipChangePendingPdemDemo, @NoPdemReject),
+--('KSPEN', 'KSPEN', NULL, @SkipChangePendingPdemDemo, @NoneReject),
+--(NULL, 'KUPEN', NULL, @SkipChangePendingPdemDemo, @BlockedPhoneReject),
+--(NULL, 'KUPEN', NULL, @SkipChangePendingPdemDemo, @InvalidPhoneHistoryReject),
+--(NULL, 'KUPEN', NULL, @SkipChangePendingPdemDemo, @SamePhoneReject),
+--('KUPEN', NULL, NULL, @SkipChangePendingPdemDemo, @NoStreetReject),
+--('KUBPF', 'KUBPF', NULL, @SkipChangePendingPdemDemo, @ForeignDemographicsReject),
+--('KUPEN', NULL, NULL, @SkipChangePendingPdemDemo, @IncompleteAddressReject),
+--(NULL, 'KUPEN', NULL, @SkipChangePendingPdemDemo, @IncompletePhoneReject),
+--('KUPEN', NULL, NULL, @SkipChangePendingPdemDemo, @InvalidAddressReturnReject),
+--(NULL, 'KUPEN', NULL, @SkipChangePendingPdemDemo, @InvalidPhoneReturnReject),
+--('KUBPP', NULL, NULL, @SkipChangePendingPdemDemo, @ValidCurrentAddress),
+--(NULL, 'KUBPP', NULL, @SkipChangePendingPdemDemo, @ValidCurrentPhones),
+--(NULL, NULL, NULL, @SkipChangePendingPdemDemo, @PhoneTooLongReject)

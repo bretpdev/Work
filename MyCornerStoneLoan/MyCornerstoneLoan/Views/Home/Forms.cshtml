@@ -1,0 +1,122 @@
+﻿@model List<MyCornerstoneLoan.Models.FormGroup>
+
+@{
+	ViewBag.Title = "Forms";
+}
+
+@section Meta  {
+	<meta name="description" content="CornerStone has the forms you need to care for your student loans. Find the form you need below and if you have questions, please call us." />
+}
+
+<h1>Forms</h1>
+
+<p>
+	There are several types of forms available to you during the repayment of your student loans. 
+    For quicker processing times, we would recommend that you complete your form online. 
+    If you cannot complete your form online, please print your form and return it to the mailing address shown below. 
+    As always, if you have any questions or need assistance completing your form, please call in and speak with a customer service representative. 
+</p>
+<p>
+    CornerStone Education Loan Service<br />
+    PO Box 145122<br />
+    Salt Lake City, UT 84114-5122
+</p>
+<div class="alert alert-warning">
+	All forms are PDF format. You need a PDF reader to read them. You can download Adobe Reader for free by clicking the link below.<br />
+	<a target="_blank" href="http://www.adobe.com/go/getreader"><img src="@Url.Content("~/images/get_adobe_reader.png")" alt="Download Adobe Reader" /></a>
+	<a rel="external" target="_blank" href="http://www.adobe.com/go/getreader" class="ui-helper-hidden-accessible">Get Adobe Reader</a>
+</div>
+
+@foreach (var group in Model)
+{
+	<div class="panel panel-default forms" id="@group.Name.Replace(" ", "")" tabindex="-1">
+		<div class="panel-heading">
+			<strong>@group.Name</strong>
+		</div>
+		<table class="table" title="@group.Name">
+			<tr>
+				<th id="@(group.Id)name">Name</th>
+				<th id="@(group.Id)en" class="en">English</th>
+				<th id="@(group.Id)es" class="es">Spanish</th>
+				<th id="@(group.Id)exp" class="exp">Explanation</th>
+			</tr>
+			@foreach (var form in group.Forms)
+			{
+				<tr>
+					<td headers="@(group.Id)name">
+						@form.Name
+					</td>
+					@if (!String.IsNullOrWhiteSpace(form.EnglishSpanishOverride))
+					{
+						<td headers="@(group.Id)en" colspan="2">@Html.Raw(form.EnglishSpanishOverride)</td>
+					}
+					else
+					{
+						<td headers="@(group.Id)en">
+							@if (!String.IsNullOrWhiteSpace(form.EnglishLink))
+                            {
+                                string url = form.EnglishLink;
+                                if (!url.StartsWith("http"))
+                                {
+                                    url = @Url.Content("~/") + url;
+                                }
+								<a href="@url" title="Download English @form.Name" target="_blank">Download</a>
+							}
+						</td>
+						<td headers="@(group.Id)es">
+							@if (!String.IsNullOrWhiteSpace(form.SpanishLink))
+                            {
+                                string url = form.SpanishLink;
+                                if (!url.StartsWith("http"))
+                                {
+                                    url = @Url.Content("~/") + url;
+                                }
+								<a href="@url" title="Download Español @form.Name" target="_blank">Download</a>
+							}
+						</td>
+					}
+					<td headers="@(group.Id)exp">
+						@if (!String.IsNullOrWhiteSpace(form.ExplanationLink))
+						{
+							<a data-toggle="modal" href="#" data-href="@Url.Content("~/explanations")/@form.ExplanationLink" data-name="@form.Name" data-target="#modal" class="explanation" title="Explanation @form.Name">Explanation</a>
+						}
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+}
+
+
+<div class="modal fade" id="modal" role="dialog" onfocus="$(this).find('button').focus();">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h2 class="modal-title" id="modal-title">Form</h2>
+			</div>
+			<div class="modal-body" id="modal-body">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	(function () {
+		var isOpen = false;
+		$(document)
+			.on('click', function (e) {
+				var $el = $(e.target);
+				if ($el.is('.explanation')) {
+					isOpen = true;
+					$('#modal-title').html($el.data('name'));
+					$('#modal-body').load($el.data('href'));
+				}
+			})
+			.on('keydown', function (e) {
+				if (e.keyCode === 9 && isOpen) {
+					$('#modal').modal('hide');
+				}
+			});
+	})();
+</script>

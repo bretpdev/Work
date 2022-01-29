@@ -1,0 +1,26 @@
+SELECT 
+	*
+FROM OPENQUERY
+(
+	DUSTER,
+	'
+		SELECT 
+			*
+		FROM
+			OLWHRM1.TX10_FAT_RUL_CRF
+	'
+)
+
+
+SELECT 
+	*
+FROM OPENQUERY
+(
+	DUSTER,
+	'
+		SELECT 
+			*
+		FROM
+			OLWHRM1.MR69_TAX_YR_FRM
+	'
+)

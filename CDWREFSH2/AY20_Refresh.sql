@@ -1,0 +1,1 @@
+EXEC CDW..RefreshTableWithValidation 'AY20_ATY_TXT', 'LF_LST_DTS_AY20'

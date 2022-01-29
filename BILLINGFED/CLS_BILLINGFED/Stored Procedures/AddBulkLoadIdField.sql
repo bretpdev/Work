@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE billing.[AddBulkLoadIdField]
+AS
+ALTER TABLE billing.[_BulkLoad]
+ADD BulkLoadId BIGINT PRIMARY KEY IDENTITY(1,1)
+RETURN 0

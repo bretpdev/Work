@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Uheaa.Common;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Uheaa.Common.DataAccess;
+using Uheaa.Common.ProcessLogger;
+
+namespace IDRRPTFED
+{
+    static class Program
+    {
+        public static string ScriptId
+        {
+            get
+            {
+                return "IDRRPTFED";
+            }
+        }
+
+        public static bool Legacy { get; set; }
+
+        public static bool UserMode { get; set; } = false;
+        public static bool RunByDateRangeMode { get; set; } = false;
+        public static bool SpecifyAppIdsInCommandLineMode { get; set; } = false;
+        public static bool SpecifyAppIdsInFileMode { get; set; } = false;
+        public static ProcessLogData LogData { get; set; }
+        [STAThread]
+        static int Main(string[] args)
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            UserMode = args.Length > 2;
+            string fileName = "";
+
+            //TODO: Talk to Evan about whether I should switch to KVP args for this since it is custom args, or if I am fine to keep it as-is.
+            if (UserMode && args[2].ToUpper() == "BYDATE")
+                RunByDateRangeMode = true;
+            else if (UserMode && args[2].ToUpper() == "BYAPP")
+                SpecifyAppIdsInCommandLineMode = true;
+            else if (UserMode && args[2].ToUpper() == "BYFILE")
+            {
+                SpecifyAppIdsInFileMode = true;
+                fileName = args[3];
+            }
+            else if (UserMode) //If none of the expected test arguments are passed
+            {
+                string argumentsErrorMessage = string.Format("The arguments should be mode region test-run-type\n   Mode options: \"dev\"/\"live\"\n   Region options: \"uheaa\"/\"cornerstone\"/\"legacy\"\n   Test-run-type options: \"bydate\"/\"byapp\"/\"byfile\"\n       ---\"bydate\" runs the script and outputs reports for a selected date range. No additional arguments needed.\n       ---\"byapp\" allows you to input one or more application ids in the arguments. List the application ids after \"byapp\" in the commandline arguments.\n       ---\"byfile\" allows you to have a file that lists application ids. List the file location in the arguments after byfile.");
+                Console.WriteLine(argumentsErrorMessage);
+                Dialog.Error.Ok(argumentsErrorMessage);
+                return 1;
+            }
+
+            if (!DataAccessHelper.StandardArgsCheck(args, ScriptId, UserMode))
+                return 1;
+
+            Legacy = args[1].ToUpper() == "LEGACY";
+
+
+            if (!DataAccessHelper.CheckSprocAccess(Assembly.GetExecutingAssembly(), UserMode))
+                return 1;
+
+            DataAccessHelper.CurrentRegion = DataAccessHelper.Region.CornerStone;
+            LogData = ProcessLogger.RegisterApplication(ScriptId, AppDomain.CurrentDomain, Assembly.GetExecutingAssembly(), UserMode);
+            var lda = new LogDataAccess(DataAccessHelper.CurrentMode, LogData.ProcessLogId, false, false);
+            DataAccess da = new DataAccess(Legacy, lda);
+
+            int returnVal;
+
+            if (!SpecifyAppIdsInCommandLineMode && !SpecifyAppIdsInFileMode)
+                returnVal = new IdrNsldsReportGeneration(da).Run(); //Regular date selection run
+            else if (SpecifyAppIdsInCommandLineMode)
+                returnVal = new IdrNsldsReportGeneration(da).Run(args);  //Run with passed in app IDs in command line args
+            else
+                returnVal = new IdrNsldsReportGeneration(da).Run(fileName);  //Run with passed in file that contains app IDs
+
+
+            ProcessLogger.LogEnd(LogData.ProcessLogId);
+            return returnVal;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[GENR_LST_UTSchools] (
+    [UTSchoolID] VARCHAR (8) NOT NULL,
+    CONSTRAINT [PK_GEN_LIST_UTSchools] PRIMARY KEY CLUSTERED ([UTSchoolID] ASC)
+);
+

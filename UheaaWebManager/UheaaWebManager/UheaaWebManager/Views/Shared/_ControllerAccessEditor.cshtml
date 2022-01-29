@@ -1,0 +1,27 @@
+﻿@model List<ControllerAccessModel>
+<section>
+    <h3>Manage Access</h3>
+    <table class="list-table" style="width: inherit">
+        <tr>
+            <th>Controller</th>
+            <th>Action</th>
+            <th>Access</th>
+        </tr>
+        @{
+            int accessIndex = -1;
+            foreach (var access in Model)
+            {
+                accessIndex++;
+                <tr>
+                    <td>
+                        @access.ControllerName
+                        <input type="hidden" name="ControllerAccess[@accessIndex].ControllerActionId" value="@access.ControllerActionId" />
+                    </td>
+                    <td>@access.ActionName</td>
+                    <td><input name="ControllerAccess[@accessIndex].HasAccess" type="checkbox" @Html.Raw(access.HasAccess ? "checked value=\"true\"" : "") /></td>
+                </tr>
+            }
+        }
+    </table>
+</section>
+

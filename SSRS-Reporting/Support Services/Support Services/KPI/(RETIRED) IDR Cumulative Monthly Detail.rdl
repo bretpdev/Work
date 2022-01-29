@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>11.34375in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.28646in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Detail">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Detail.Value</Value>
+                              <Style>
+                                <FontSize>12pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Detail</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>White</Color>
+                          <Style>None</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>CumulativeMonthlyDetail</DataSetName>
+        <Height>0.28646in</Height>
+        <Width>11.34375in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>2.60639in</Height>
+    <Style />
+  </Body>
+  <Width>11.44792in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="uheaasqldb">
+      <DataSourceReference>uheaasqldb</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>5172d690-4d6d-4bea-ad84-852764e22ac8</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="CumulativeMonthlyDetail">
+      <Query>
+        <DataSourceName>uheaasqldb</DataSourceName>
+        <CommandText>
+DECLARE @ReportStartDate DATE = '2016-04-09' -- FSA Reporting Start Date
+DECLARE @StartDate DATE = DATEADD(m, DATEDIFF(m, 0, GETDATE()) - 1, 0) -- first day of previous month
+DECLARE @EndDate DATE = DATEADD(MONTH, ((YEAR(@StartDate) - 1900) * 12) + MONTH(@StartDate), -1) -- last day of previous month
+
+
+-- Create a table to hold LN65 and RS10 data
+DECLARE @LEGEND TABLE
+(
+	LegendID INT IDENTITY(1,1),
+	BF_SSN CHAR(9),
+	LD_CRT_LON65 DATETIME,
+	LC_STA_LON65 CHAR(1),
+	LC_STA_RPST10 CHAR(1),
+	LC_TYP_SCH_DIS CHAR(2),
+	DisclosureOrder INT,
+	ReverseDisclosureOrder INT,
+	HasPriorIDR BIT DEFAULT(0)
+)
+
+
+-- Populate with LN65 and LN10 data
+INSERT INTO 
+	@LEGEND
+SELECT
+	BF_SSN,
+	LD_CRT_LON65,
+	LC_STA_LON65,
+	LC_STA_RPST10,
+	LC_TYP_SCH_DIS,
+	DisclosureOrder,
+	ReverseDisclosureOrder,
+	0 -- default, updated later
+FROM
+	OPENQUERY
+	(  -- borrowers who have ever been on an IDR plan
+		LEGEND,
+		'
+			SELECT DISTINCT
+				LN65.BF_SSN,
+				LN65.LD_CRT_LON65,
+				LN65.LC_STA_LON65,
+				RS10.LC_STA_RPST10,
+				LN65.LC_TYP_SCH_DIS,
+				ROW_NUMBER() OVER (PARTITION BY RS10.BF_SSN ORDER BY LN65.LD_CRT_LON65, LN65.LC_STA_LON65, LN65.LN_RPS_SEQ DESC) AS DisclosureOrder,
+				ROW_NUMBER() OVER (PARTITION BY RS10.BF_SSN ORDER BY LN65.LD_CRT_LON65 DESC, LN65.LC_STA_LON65 DESC, LN65.LN_RPS_SEQ) AS ReverseDisclosureOrder
+			FROM
+				PKUB.LN65_LON_RPS LN65
+				INNER JOIN PKUB.RS10_BR_RPD RS10 ON RS10.BF_SSN = LN65.BF_SSN AND RS10.LN_RPS_SEQ = LN65.LN_RPS_SEQ
+			WHERE
+				LN65.LC_TYP_SCH_DIS IN (''AG'',''CA'',''CP'',''CQ'',''C1'',''C2'',''C3'',''IA'',''IB'',''IL'',''IP'',''I3'',''I5'')
+			ORDER BY
+				LN65.BF_SSN,
+				DisclosureOrder
+		'
+	) L 
+WHERE
+	L.DisclosureOrder = 1 
+	OR 
+	L.ReverseDisclosureOrder = 1 -- Only include the first disclosure or the most recent disclosure by disclosure date	
+
+
+-- Mark accounts with IDR plan prior to FSA reporting start date 3/1/2016
+UPDATE
+	L
+SET
+	HasPriorIDR = 1	
+FROM
+	@LEGEND L
+	INNER JOIN 
+	(
+		SELECT
+			BF_SSN
+		FROM
+			@LEGEND
+		GROUP BY
+			BF_SSN
+		HAVING
+			MIN(LD_CRT_LON65) &lt; @ReportStartDate
+	) P ON P.BF_SSN = L.BF_SSN
+
+
+-- create a table to hold SSN for borrowers that are applying for the first time during the reporting period
+DECLARE @FirstBorrowerApplications TABLE
+(
+	SSN CHAR(9),
+	min_CreatedAt DATE
+)
+
+
+-- insert SSN for borrowers that are applying for the first time during the reporting period
+INSERT INTO @FirstBorrowerApplications
+(
+	SSN,
+	min_CreatedAt
+)
+SELECT
+	B.SSN,
+	MIN(A.created_at) min_CreatedAt
+FROM
+	Income_Driven_Repayment.dbo.Borrowers B
+	INNER JOIN
+	(
+		SELECT DISTINCT
+			borrower_id,
+			application_id
+		FROM
+			Income_Driven_Repayment.dbo.Loans
+	) Ln ON Ln.borrower_id = B.borrower_id
+	INNER JOIN Income_Driven_Repayment.dbo.Applications A ON A.application_id = Ln.application_id
+WHERE
+	A.Active = 1
+GROUP BY
+	B.SSN
+	
+
+-- Final R3 data
+SELECT DISTINCT
+	RIGHT('00000000' + CAST(ROW_NUMBER() OVER (ORDER BY R3.application_id) -1 /* start at 00000000 */ as VARCHAR(16)), 8) -- RowCounter
+	+ R3.SSN
+	+ R3.ApplicationSource
+	+ R3.AppicationReceived
+	+ R3.AppicationReviewed
+	+ R3.InitialReviewResult
+	+ COALESCE(R3.CurrentlyOnIDR, 'N')
+	+ COALESCE(R3.CurrentIDRPlan, '0')
+	+ COALESCE(R3.IntialIDRDate, '00000000')
+	+ CASE 
+		WHEN RTRIM(R3.e_application_id) != '' THEN R3.e_application_id
+		ELSE
+			'P502M' + CASE LEN(R3.application_id) 
+				WHEN 4 THEN 'A'
+				WHEN 5 THEN CHAR(65 + LEFT(R3.application_id, 1)) 
+				WHEN 6 THEN CHAR(65 + LEFT(R3.application_id, 2)) 
+		END	+ REPLACE(STR(R3.application_id % 10000, 4), SPACE(1), '0') 
+	END [Detail]
+FROM
+	(	
+		SELECT DISTINCT
+			A.application_id,
+			A.e_application_id,
+			A.SSN,
+			MAX(CASE ASRC.application_source_id WHEN 1 THEN '02' WHEN 2 THEN '01' ELSE '04' END) [ApplicationSource], -- 1/02 is paper; 2/01 is electronic/COD (for reporting); else/04 is other
+			MAX(REPLACE(CONVERT(VARCHAR(10), A.received_date, 110),'-', '')) [AppicationReceived],
+			MAX(REPLACE(CONVERT(VARCHAR(10), A.created_at, 110),'-', '')) [AppicationReviewed],
+			MAX(CASE 
+				WHEN A.status_id = 1 THEN '01' -- Approved/Placed on IDR Plan
+				WHEN A.status_id = 3 THEN '02' -- Denied/Rejected
+				WHEN A.status_id = 6 AND A.substatus_id IN ('30', '35') THEN '03' -- Pending/Not Enough Info;
+				ELSE '04' -- All Other
+			END) [InitialReviewResult],
+			MAX(CASE WHEN L.ReverseDisclosureOrder = 1 AND L.LC_STA_LON65 = 'A' AND L.LC_STA_RPST10 = 'A' 
+				THEN 
+					'Y' 
+				ELSE 
+					NULL 
+			END) [CurrentlyOnIDR],
+			MAX(CASE 
+				WHEN L.ReverseDisclosureOrder = 1 AND L.LC_STA_LON65 = 'A' AND L.LC_STA_RPST10 = 'A'
+				THEN
+					CASE  -- return value must be a character data type
+						WHEN L.LC_TYP_SCH_DIS IN ('CQ','C1', 'C2', 'C3') THEN '1' -- ICR Plan (any)
+						WHEN L.LC_TYP_SCH_DIS IN ('IB', 'I3') THEN '2' --IBR Plan (PFH Payment)
+						WHEN L.LC_TYP_SCH_DIS IN ('IB', 'I3') THEN '3' --IBR Plan (Not PFH Payment)
+						WHEN L.LC_TYP_SCH_DIS IN ('CA', 'CP', 'I5') THEN '4' --PAYE
+						WHEN L.LC_TYP_SCH_DIS = 'I5' THEN '5' --REPAYE
+						ELSE '6' --OTHER IDR plan
+					END
+				WHEN L.ReverseDisclosureOrder = 1 AND L.LC_STA_LON65 != 'A' AND L.LC_STA_RPST10 != 'A' 
+					THEN '0' -- Not on IDR plan
+				ELSE NULL
+			END) [CurrentIDRPlan],
+			MIN(REPLACE(CONVERT(VARCHAR(10), L.LD_CRT_LON65, 110),'-', '')) [IntialIDRDate]
+		FROM
+			@FirstBorrowerApplications FBA
+			INNER JOIN( 
+				SELECT
+					B.SSN,
+					A.application_id,
+					A.e_application_id,
+					A.repayment_plan_status_id [status_id],
+					A.application_source_id,
+					A.created_at,
+					A.received_date,
+					ROW_NUMBER() OVER (PARTITION BY B.SSN ORDER BY A.created_at) [ApplicationOrder],
+					RPTS.repayment_plan_type_substatus_id [substatus_id]
+				FROM
+					Income_Driven_Repayment.dbo.Borrowers B
+					INNER JOIN
+					(
+						SELECT DISTINCT
+							borrower_id,
+							application_id
+						FROM
+							Income_Driven_Repayment.dbo.Loans
+					) Ln ON Ln.borrower_id = B.borrower_id
+					INNER JOIN Income_Driven_Repayment.dbo.Applications A ON A.application_id = Ln.application_id
+					INNER JOIN Income_Driven_Repayment.dbo.Repayment_Plan_Selected RPS ON RPS.application_id = A.application_id
+					INNER JOIN Income_Driven_Repayment.dbo.Repayment_Plan_Type_Status_History RPTSH ON RPTSH.repayment_plan_type_id = RPS.repayment_plan_type_id
+					INNER JOIN Income_Driven_Repayment.dbo.Repayment_Plan_Type_Substatus RPTS ON RPTS.repayment_plan_type_substatus_id = RPTSH.repayment_plan_type_status_mapping_id
+			) A ON A.SSN = FBA.SSN AND A.ApplicationOrder = 1
+			INNER JOIN Income_Driven_Repayment.dbo.Application_Source ASRC ON ASRC.application_source_id = A.application_source_id
+			INNER JOIN Income_Driven_Repayment.dbo.BE_Data_History BEDH on BEDH.application_id = A.application_id
+			LEFT JOIN @LEGEND L ON L.BF_SSN = FBA.SSN
+		WHERE
+			CAST(FBA.min_CreatedAt AS DATE) BETWEEN @ReportStartDate AND @EndDate -- FSA reporting start date; Applications should be reported on in the month they are intitally reviewed (not necessarily received).
+			AND
+			( -- exclude those that have been on and IDR plan prior to the reporting start date
+				L.HasPriorIDR = 0
+				OR
+				L.HasPriorIDR IS NULL
+			)
+		GROUP BY
+			A.SSN,
+			A.application_id,
+			A.e_application_id
+	) R3</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Detail">
+          <DataField>Detail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>02819e6c-8ea7-44ac-bf4c-0840b8788290</rd:ReportID>
+</Report>

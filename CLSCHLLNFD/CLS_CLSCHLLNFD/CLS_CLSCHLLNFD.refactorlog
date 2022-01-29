@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f324101b-7fd9-470f-ad69-4dea259cb6cd" ChangeDateTime="01/15/2019 18:45:22">
+    <Property Name="ElementName" Value="[clschllnfd].[SchoolClosureData].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[clschllnfd].[SchoolClosureData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SchoolClosureDataId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="abaed269-b4d8-4ddb-a788-2bc6e50b2f73" ChangeDateTime="01/15/2019 18:48:09">
+    <Property Name="ElementName" Value="[clschllnfd].[SchoolClosureData].[ProcessedOn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[clschllnfd].[SchoolClosureData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6e37f847-5e9b-446c-9f20-430a87b5a198" ChangeDateTime="01/16/2019 22:21:58">
+    <Property Name="ElementName" Value="[clschllnfd].[SchoolClosureData].[BorrowerSsn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[clschllnfd].[SchoolClosureData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BF_SSN" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b75fc151-d671-41d1-82e4-406b0e243c6e" ChangeDateTime="01/16/2019 22:24:24">
+    <Property Name="ElementName" Value="[clschllnfd].[SchoolClosureData].[BF_SSN]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[clschllnfd].[SchoolClosureData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BorrowerSsn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1acdbcef-ffed-4908-a1e5-b10e7cb2745a" ChangeDateTime="11/05/2019 16:31:30">
+    <Property Name="ElementName" Value="[clschllnfd].[_ErrorLogs].[LoanSeq]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[clschllnfd].[_ErrorLogs]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AccountNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a7152d69-f21c-47ae-b297-f2cbe9f27556" ChangeDateTime="11/12/2019 16:03:33">
+    <Property Name="ElementName" Value="[clschllnfd].[UpdateErrorLogArcAddProcessingId]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[clschllnfd]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[UpdateErrorLogArcAddId]" />
+  </Operation>
+</Operations>

@@ -1,0 +1,89 @@
+USE CDW
+GO
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.QuickBorrowerSearch') AND type IN ( N'P', N'PC' ))
+BEGIN
+	DROP PROCEDURE dbo.QuickBorrowerSearch
+END
+GO
+CREATE PROCEDURE QuickBorrowerSearch
+	@FirstName VARCHAR(13) = '',
+	@LastName VARCHAR(23) = ''
+AS
+BEGIN
+	SELECT
+		PD10.DF_PRS_ID AS SSN, 
+		MAX(LTRIM(RTRIM(PD10.DM_PRS_1))) AS FirstName, 
+		MAX(LTRIM(RTRIM(PD10.DM_PRS_LST))) AS LastName, 
+		MAX(LTRIM(RTRIM(PD10.DM_PRS_MID))) AS MiddleInitial,  
+		MAX(PD10.DD_BRT) AS DOB, 
+		MAX(PD30.DX_STR_ADR_1) AS Address1, 
+		MAX(PD30.DX_STR_ADR_2) AS Address2, 
+		MAX(PD30.DM_CT) AS City,
+		MAX(PD30.DC_DOM_ST) AS StateCode, 
+		MAX(PD30.DF_ZIP_CDE) AS Zip
+	 FROM
+		PD10_PRS_NME PD10
+		LEFT JOIN PD30_PRS_ADR PD30 
+			ON PD10.DF_PRS_ID = PD30.DF_PRS_ID
+		LEFT JOIN PD32_PRS_ADR_EML PD32 
+			ON PD32.DF_PRS_ID = PD10.DF_PRS_ID
+	 WHERE 
+		(PD10.DM_PRS_1 LIKE @FirstName + '%')
+		AND
+		(PD10.DM_PRS_LST like @LastName + '%')
+		AND
+		(SUBSTRING(PD10.DF_PRS_ID, 0, 1) != 'P')
+	 GROUP BY
+		PD10.DF_PRS_ID
+END
+
+GO
+
+GRANT EXECUTE on QuickBorrowerSearch to db_executor
+
+GO
+
+USE UDW
+GO
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.QuickBorrowerSearch') AND type IN ( N'P', N'PC' ))
+BEGIN
+	DROP PROCEDURE dbo.QuickBorrowerSearch
+END
+GO
+CREATE PROCEDURE dbo.QuickBorrowerSearch
+	@FirstName VARCHAR(13) = '',
+	@LastName VARCHAR(23) = ''
+AS
+BEGIN
+	SELECT
+		PD10.DF_PRS_ID AS SSN, 
+		MAX(LTRIM(RTRIM(PD10.DM_PRS_1))) AS FirstName, 
+		MAX(LTRIM(RTRIM(PD10.DM_PRS_LST))) AS LastName, 
+		MAX(LTRIM(RTRIM(PD10.DM_PRS_MID))) AS MiddleInitial,  
+		MAX(PD10.DD_BRT) AS DOB, 
+		MAX(PD30.DX_STR_ADR_1) AS Address1, 
+		MAX(PD30.DX_STR_ADR_2) AS Address2, 
+		MAX(PD30.DM_CT) AS City,
+		MAX(PD30.DC_DOM_ST) AS StateCode, 
+		MAX(PD30.DF_ZIP_CDE) AS Zip
+	 FROM
+		PD10_PRS_NME PD10
+		LEFT JOIN PD30_PRS_ADR PD30 
+			ON PD10.DF_PRS_ID = PD30.DF_PRS_ID
+		LEFT JOIN PD32_PRS_ADR_EML PD32 
+			ON PD32.DF_PRS_ID = PD10.DF_PRS_ID
+	 WHERE 
+		(PD10.DM_PRS_1 LIKE @FirstName + '%')
+		AND
+		(PD10.DM_PRS_LST like @LastName + '%')
+		AND
+		(SUBSTRING(PD10.DF_PRS_ID, 0, 1) != 'P')
+	 GROUP BY
+		PD10.DF_PRS_ID
+END
+
+GO
+
+GRANT EXECUTE on QuickBorrowerSearch to db_executor
+
+GO

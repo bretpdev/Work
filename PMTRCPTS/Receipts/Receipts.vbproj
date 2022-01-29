@@ -1,0 +1,410 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B24CC25-C83D-463B-94D5-A8E5ED4A649F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>PLANE.ICO</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Receipts</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>Receipts</RootNamespace>
+    <StartupObject>Receipts.PaymentReceipts</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>0.0</OldToolsVersion>
+    <PublishUrl>http://localhost/Receipts/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Receipts.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>Receipts.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032</NoWarn>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Office">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>1</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <COMReference Include="Reflection">
+      <Guid>{ECF246D9-E871-11D2-8CC2-00C04F72C0ED}</Guid>
+      <VersionMajor>14</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>1033</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CRLGPAndLPPPayments.vb">
+      <DependentUpon>CRLGPAndLPPPayments.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="CRUESPPayments.vb">
+      <DependentUpon>CRUESPPayments.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="CRVoids.vb">
+      <DependentUpon>CRVoids.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="CurrencyTextboxColumn.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DSLGPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSLGPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralStuff.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LivDSLGPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LivDSLGPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LivDSLGPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LivDSLGPVoids.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LIVDSLPPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LIVDSLPPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LivDSLPPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LivDSLPPVoids.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LivDSTILPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LivDSTILPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LivDSTILPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LivDSTILPVoids.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LivDSUESPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LivDSUESPVoids.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LivUESPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LivUESPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentReceipts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Please Wait.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rptCRUESPPayments.vb">
+      <DependentUpon>rptCRUESPPayments.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="rptPaymentReceipts.vb">
+      <DependentUpon>rptPaymentReceipts.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="TstDSLGPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TstDSLGPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TstDSLGPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TstDSLGPVoids.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TstDSLPPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TstDSLPPVoids.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TstDSTILPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TstDSTILPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TstDSTILPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TstDSTILPVoids.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TstDSUESPPayments.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TstDSUESPPayments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TstDSUESPVoids.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TstDSUESPVoids.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CRLGPAndLPPPayments.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRLGPAndLPPPayments.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRUESPPayments.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRUESPPayments.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CRVoids.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CRVoids.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentReceipts.resx">
+      <DependentUpon>PaymentReceipts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Please Wait.resx">
+      <DependentUpon>Please Wait.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptCRUESPPayments.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCRUESPPayments.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptPaymentReceipts.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPaymentReceipts.vb</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="DSLGPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSLGPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LivDSLGPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LivDSLGPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LivDSLGPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LivDSLGPVoids.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LIVDSLPPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LIVDSLPPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LivDSLPPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LivDSLPPVoids.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LivDSTILPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LivDSTILPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LivDSTILPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LivDSTILPVoids.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LivDSUESPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LivDSUESPVoids.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="LivUESPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LivUESPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="PLANE.ICO" />
+    <Content Include="TstDSLGPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TstDSLGPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="TstDSLGPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TstDSLGPVoids.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="TstDSLPPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TstDSLPPVoids.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="TstDSTILPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TstDSTILPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="TstDSTILPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TstDSTILPVoids.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="TstDSUESPPayments.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TstDSUESPPayments.Designer.vb</LastGenOutput>
+    </Content>
+    <Content Include="TstDSUESPVoids.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TstDSUESPVoids.Designer.vb</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

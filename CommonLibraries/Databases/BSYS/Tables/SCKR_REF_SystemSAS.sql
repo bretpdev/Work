@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[SCKR_REF_SystemSAS] (
+    [Program] NVARCHAR (100) NOT NULL,
+    [System]  NVARCHAR (50)  NOT NULL,
+    CONSTRAINT [PK_refSystemSAS] PRIMARY KEY CLUSTERED ([Program] ASC, [System] ASC) WITH (FILLFACTOR = 90)
+);
+

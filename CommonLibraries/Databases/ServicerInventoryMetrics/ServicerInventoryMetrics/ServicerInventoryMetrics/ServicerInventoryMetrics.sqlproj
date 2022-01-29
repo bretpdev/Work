@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ServicerInventoryMetrics</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{8d8c14cc-3a83-49b0-9fa7-82bd060b23c3}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ServicerInventoryMetrics</RootNamespace>
+    <AssemblyName>ServicerInventoryMetrics</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Security\" />
+    <Folder Include="Functions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Forbearance.sql" />
+    <Build Include="Tables\Deferment.sql" />
+    <Build Include="Tables\IDR.sql" />
+    <Build Include="Tables\BankruptcyNotice.sql" />
+    <Build Include="Tables\BankruptcyProofOfClaim.sql" />
+    <Build Include="Tables\DeathDischarge.sql" />
+    <Build Include="Tables\ClosedSchoolApp.sql" />
+    <Build Include="Tables\BorrowerMail.sql" />
+    <Build Include="Tables\ServicerMetrics.sql" />
+    <Build Include="Tables\MetricsSummary.sql" />
+    <Build Include="Tables\ServicerCategory.sql" />
+    <Build Include="Tables\DeathDischargeFSA.sql" />
+    <Build Include="Tables\ClosedSchoolFSA.sql" />
+    <Build Include="Tables\Aging360AtServicer.sql" />
+    <Build Include="Tables\Aging360SentToDMCS.sql" />
+    <Build Include="Tables\Aging360NotAcceptedByDMCS.sql" />
+    <Build Include="Tables\LockboxPaymentPosting.sql" />
+    <Build Include="Tables\IpacPaymentPosting.sql" />
+    <Build Include="Tables\PayGovPaymentPosting.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Stored Procedures\GetServicerCategories.sql" />
+    <Build Include="Tables\AccessGroups.sql" />
+    <Build Include="Tables\AllowedUsers.sql" />
+    <Build Include="Tables\AccessGroupMetricMapping.sql" />
+    <Build Include="Tables\AllowedUserAccessGroupMapping.sql" />
+    <Build Include="Stored Procedures\GetMetricDataForUser.sql" />
+    <Build Include="Stored Procedures\GetMeticsForCategory.sql" />
+    <Build Include="Tables\CreditBalance.sql" />
+    <Build Include="Functions\GetBusinessDays.sql" />
+    <Build Include="Stored Procedures\InsertCreditBalance.sql" />
+    <Build Include="Stored Procedures\UpdateExistingRecord.sql" />
+    <Build Include="Stored Procedures\InsertMetricSummaryData.sql" />
+    <Build Include="Stored Procedures\GetCurrentUser.sql" />
+    <Build Include="Stored Procedures\AddUser.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ServicerInventoryMetrics.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\OPSDEV.publish.xml" />
+  </ItemGroup>
+</Project>

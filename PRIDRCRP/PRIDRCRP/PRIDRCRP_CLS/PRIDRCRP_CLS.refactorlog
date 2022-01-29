@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="d6d9a64b-db4f-432f-b5cb-76130fb2e46f" ChangeDateTime="07/17/2019 18:31:43">
+    <Property Name="ElementName" Value="[pridrcrp].[MonetaryHistory].[LoanSequence]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[pridrcrp].[MonetaryHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LoanNum" />
+  </Operation>
+</Operations>

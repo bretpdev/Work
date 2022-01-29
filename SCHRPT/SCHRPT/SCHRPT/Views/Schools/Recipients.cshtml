@@ -1,0 +1,43 @@
+﻿@model SchoolWithRecipients
+@{
+    ViewBag.Title = "Manage School Recipients";
+    int recipCount = -1;
+}
+
+<h2>
+    Manage Recipients<br />
+    @Model.School.Name
+</h2>
+
+@using (Html.BeginForm())
+{
+<table>
+    <tr>
+        <th>Recipient</th>
+        <th>Email</th>
+        <th>Company</th>
+        <th>Report</th>
+    </tr>
+    @foreach (var recipient in Model.Recipients)
+    {
+        recipCount++;
+        <tr>
+            <td>@recipient.RecipientName</td>
+            <td>@recipient.RecipientEmail</td>
+            <td>@recipient.RecipientCompanyName</td>
+            <td>
+                <input type="hidden" name="recipients[@recipCount].RecipientId" value="@recipient.RecipientId" />
+                <select name="recipients[@(recipCount)].ReportTypeId">
+                    <option>No Subscription</option>
+                    @foreach (var report in Model.ReportTypes)
+                    {
+                        string selected = recipient.ReportTypeId == report.ReportTypeId ? "selected" : "";
+                    <option @selected value="@report.ReportTypeId">@report.StoredProcedureName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+    }
+</table>
+<input type="submit" value="Save Subscription Changes" />
+}

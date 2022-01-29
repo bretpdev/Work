@@ -1,0 +1,352 @@
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORT2 "&RPTLIB/ULWM36.LWM36R2";
+FILENAME REPORT3 "&RPTLIB/ULWM36.LWM36R3";
+FILENAME REPORT4 "&RPTLIB/ULWM36.LWM36R4";
+FILENAME REPORT5 "&RPTLIB/ULWM36.LWM36R5";
+FILENAME REPORT6 "&RPTLIB/ULWM36.LWM36R6";
+FILENAME REPORT7 "&RPTLIB/ULWM36.LWM36R7";
+FILENAME REPORTZ "&RPTLIB/ULWM36.LWM36RZ";
+OPTIONS SYMBOLGEN NOCENTER NODATE NONUMBER LS=132;
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+
+%macro sqlcheck ;
+  %if  &sqlxrc ne 0  %then  %do  ;
+    data _null_  ;
+            file reportz notitles  ;
+            put @01 " ********************************************************************* "
+              / @01 " ****  The SQL code above has experienced an error.               **** "
+              / @01 " ****  The SAS should be reviewed.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  The SQL error code is  &sqlxrc  and the SQL error message  **** "
+              / @01 " ****  &sqlxmsg   **** "
+              / @01 " ********************************************************************* "
+            ;
+         run  ;
+  %end  ;
+%mend  ;
+
+
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DEMO AS
+SELECT *
+FROM CONNECTION TO DB2 (
+
+SELECT DISTINCT DC01.BF_SSN AS SSN
+	,PD01.DF_SPE_ACC_ID
+	,PD01.DM_PRS_1
+	,PD01.DM_PRS_LST
+	,PD01.DX_STR_ADR_1
+	,PD01.DX_STR_ADR_2
+	,PD01.DM_CT
+	,PD01.DC_DOM_ST
+	,PD01.DF_ZIP
+	,PD01.DM_FGN_CNY
+
+	,SUM(DC01.LA_CLM_PRI 
+		+DC01.LA_CLM_INT
+		-DC01.LA_PRI_COL
+		+DC01.LA_INT_ACR
+		+DC02.LA_CLM_INT_ACR
+		-DC01.LA_INT_COL)					
+		 + SUM (DC01.LA_LEG_CST_ACR
+		-DC01.LA_LEG_CST_COL
+		+DC01.LA_OTH_CHR_ACR
+		-DC01.LA_OTH_CHR_COL
+		+DC01.LA_COL_CST_ACR
+		-DC01.LA_COL_CST_COL)
+		+SUM(DC02.LA_CLM_PRJ_COL_CST) AS TOT_PAYOFF
+
+	,PD01.DC_DOM_ST AS STATE_IND
+	,'MA2329' AS COST_CENTER_CODE
+
+	,DAYS(CURRENT DATE) AS CDAY
+	,V1.MARK as MV1
+	,V1.BD_ATY_PRF_DAYS AS DV1
+	,V2.MARK as MV2
+	,V2.BD_ATY_PRF_DAYS AS DV2
+	,V3.MARK as MV3
+	,V3.BD_ATY_PRF_DAYS AS DV3
+	,V4.MARK as MV4
+	,V4.BD_ATY_PRF_DAYS AS DV4
+	,V5.MARK as MV5
+	,V5.BD_ATY_PRF_DAYS AS DV5
+	,V6.MARK as MV6
+	,V6.BD_ATY_PRF_DAYS AS DV6
+	,PD01.DC_ADR
+FROM	OLWHRM1.DC01_LON_CLM_INF DC01
+INNER JOIN OLWHRM1.DC02_BAL_INT DC02
+	ON DC01.AF_APL_ID = DC02.AF_APL_ID
+	AND DC01.AF_APL_ID_SFX = DC02.AF_APL_ID_SFX
+	AND DC01.LF_CRT_DTS_DC10 = DC02.LF_CRT_DTS_DC10
+INNER JOIN OLWHRM1.PD01_PDM_INF PD01
+	ON PD01.DF_PRS_ID = DC01.BF_SSN
+	AND PD01.DI_PHN_VLD = 'N'
+	AND PD01.DI_ALT_PHN_VLD = 'N'
+	AND PD01.DI_VLD_ADR = 'Y'
+	AND PD01.DC_ADR = 'L'
+LEFT OUTER JOIN (SELECT DF_PRS_ID, DAYS(MAX(BD_ATY_PRF)) AS BD_ATY_PRF_DAYS, 'X' AS MARK
+				FROM OLWHRM1.AY01_BR_ATY 
+				WHERE PF_ACT = 'DLIV6'
+				GROUP BY DF_PRS_ID
+				) V6
+	ON V6.DF_PRS_ID = DC01.BF_SSN
+LEFT OUTER JOIN (SELECT DF_PRS_ID, DAYS(MAX(BD_ATY_PRF)) AS BD_ATY_PRF_DAYS, 'X' AS MARK
+				FROM OLWHRM1.AY01_BR_ATY 
+				WHERE PF_ACT = 'DLIV1'
+				GROUP BY DF_PRS_ID
+				) V1
+	ON V1.DF_PRS_ID = DC01.BF_SSN
+LEFT OUTER JOIN (SELECT DF_PRS_ID, DAYS(MAX(BD_ATY_PRF)) AS BD_ATY_PRF_DAYS, 'X' AS MARK
+				FROM OLWHRM1.AY01_BR_ATY 
+				WHERE PF_ACT = 'DLIV2'
+				GROUP BY DF_PRS_ID
+				) V2
+	ON V2.DF_PRS_ID = DC01.BF_SSN
+LEFT OUTER JOIN (SELECT DF_PRS_ID, DAYS(MAX(BD_ATY_PRF)) AS BD_ATY_PRF_DAYS, 'X' AS MARK
+				FROM OLWHRM1.AY01_BR_ATY 
+				WHERE PF_ACT = 'DLIV3'
+				GROUP BY DF_PRS_ID
+				) V3
+	ON V3.DF_PRS_ID = DC01.BF_SSN
+LEFT OUTER JOIN (SELECT DF_PRS_ID, DAYS(MAX(BD_ATY_PRF)) AS BD_ATY_PRF_DAYS, 'X' AS MARK
+				FROM OLWHRM1.AY01_BR_ATY 
+				WHERE PF_ACT = 'DLIV4'
+				GROUP BY DF_PRS_ID
+				) V4
+	ON V4.DF_PRS_ID = DC01.BF_SSN
+LEFT OUTER JOIN (SELECT DF_PRS_ID, DAYS(MAX(BD_ATY_PRF)) AS BD_ATY_PRF_DAYS, 'X' AS MARK
+				FROM OLWHRM1.AY01_BR_ATY 
+				WHERE PF_ACT = 'DLIV5'
+				GROUP BY DF_PRS_ID
+				) V5
+	ON V5.DF_PRS_ID = DC01.BF_SSN
+
+
+WHERE DC01.LC_STA_DC10 = '03'
+AND DC01.LC_AUX_STA = ''
+AND DC01.LD_CLM_ASN_DOE IS NULL
+AND DC01.LC_PCL_REA IN ('DF', 'DQ', 'DB')
+
+
+GROUP BY DC01.BF_SSN 
+	,PD01.DF_SPE_ACC_ID
+	,PD01.DM_PRS_1
+	,PD01.DM_PRS_LST
+	,PD01.DX_STR_ADR_1
+	,PD01.DX_STR_ADR_2
+	,PD01.DM_CT
+	,PD01.DC_DOM_ST
+	,PD01.DF_ZIP
+	,PD01.DM_FGN_CNY
+	,V1.MARK 
+	,V1.BD_ATY_PRF_DAYS 
+	,V2.MARK 
+	,V2.BD_ATY_PRF_DAYS 
+	,V3.MARK 
+	,V3.BD_ATY_PRF_DAYS 
+	,V4.MARK 
+	,V4.BD_ATY_PRF_DAYS 
+	,V5.MARK 
+	,V5.BD_ATY_PRF_DAYS 
+	,V6.MARK 
+	,V6.BD_ATY_PRF_DAYS 
+	,PD01.DC_ADR
+
+FOR READ ONLY WITH UR
+);
+DISCONNECT FROM DB2;
+
+/*%put  sqlxrc= >>> &sqlxrc <<< ||| sqlxmsg= >>> &sqlxmsg >>> ;  ** includes error messages to SAS log  ;*/
+/*%sqlcheck;*/
+/*quit;*/
+
+ENDRSUBMIT;
+
+DATA DEMO; SET WORKLOCL.DEMO; RUN;
+PROC SORT DATA=DEMO; BY SSN; RUN;
+DATA DEMO;
+SET DEMO;
+WHERE TOT_PAYOFF >= 25;
+IF DC_DOM_ST = 'FC' THEN DO;
+	DC_DOM_ST = '';
+	STATE_IND = DC_DOM_ST;
+END;
+RUN;
+
+/*REPORT 1 CRITERIA*/
+/*---------------------------------------------------------------------*/
+DATA TEMP1 (DROP=CDAY MV1 MV2 MV3 MV4 MV5 MV6 DV1 DV2 DV3 DV4 DV5 DV6);
+SET DEMO;
+RUN;
+/*EXCLUDE*/
+DATA EXCLUDE (DROP=CDAY MV1 MV2 MV3 MV4 MV5 MV6 DV1 DV2 DV3 DV4 DV5 DV6);
+SET DEMO;
+WHERE MV1 = 'X' AND DV1 > (CDAY - 365);
+RUN;
+
+DATA R2;
+MERGE TEMP1 (IN=A) EXCLUDE (IN=B); 
+BY SSN;
+IF A AND NOT B THEN OUTPUT R2;
+ELSE DELETE;
+RUN;
+/*---------------------------------------------------------------------*/
+
+%MACRO MK_R(TBL,REQ,EXCL);
+/*---------------------------------------------------------------------*/
+/*REPORT CRITERIA*/
+DATA TEMP1 (DROP=CDAY MV1 MV2 MV3 MV4 MV5 MV6 DV1 DV2 DV3 DV4 DV5 DV6);
+SET DEMO;
+WHERE MV&REQ = 'X' AND DV&REQ > (CDAY - 365); 
+RUN;
+/*EXCLUDE*/
+DATA EXCLUDE (DROP=CDAY MV1 MV2 MV3 MV4 MV5 MV6 DV1 DV2 DV3 DV4 DV5 DV6);
+SET DEMO;
+WHERE MV&EXCL = 'X' AND DV&EXCL > (CDAY - 365);
+RUN;
+
+DATA &TBL;
+MERGE TEMP1 (IN=A) EXCLUDE (IN=B); 
+BY SSN;
+IF A AND NOT B THEN OUTPUT &TBL;
+ELSE DELETE;
+RUN;
+/*---------------------------------------------------------------------*/
+%MEND MK_R;
+
+%MK_R(R3,1,2);
+%MK_R(R4,2,3);
+%MK_R(R5,3,4);
+%MK_R(R6,4,5);
+%MK_R(R7,5,6);
+
+*CALCULATE KEYLINE;
+%MACRO KEY_CLC(TBL);
+DATA &TBL (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I 
+	CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+SET &TBL;
+KEYSSN = TRANSLATE(SSN,'MYLAUGHTER','0987654321');
+MODAY = PUT(DATE(),MMDDYYN4.);
+KEYLINE = "P"||KEYSSN||MODAY||DC_ADR;
+CHKDIG = 0;
+LENGTH DIG $2.;
+DO I = 1 TO LENGTH(KEYLINE);
+	IF I/2 NE ROUND(I/2,1) 
+		THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+	ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+	IF SUBSTR(DIG,1,1) = " " 
+		THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+		ELSE DO;
+			CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+			CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+			IF CHK1 + CHK2 >= 10
+				THEN DO;
+					CHK3 = PUT(CHK1 + CHK2,2.);
+					CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+					CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+				END;
+			CHKDIG = CHKDIG + CHK1 + CHK2;
+		END;
+END;
+CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+CHECK = PUT(CHKDIGIT,1.);
+ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+%MEND KEY_CLC;
+%KEY_CLC(R2);
+%KEY_CLC(R3);
+%KEY_CLC(R4);
+%KEY_CLC(R5);
+%KEY_CLC(R6);
+%KEY_CLC(R7);
+
+
+%MACRO PRINTOT(RPNO);
+PROC SORT DATA=R&RPNO;
+BY DC_DOM_ST;
+RUN;
+
+data _null_;
+set  WORK.R&RPNO;
+file REPORT&RPNO delimiter=',' DSD DROPOVER lrecl=32767;
+   format SSN $9. ;
+   format DF_SPE_ACC_ID $10. ;
+   format DM_PRS_1 $12. ;
+   format DM_PRS_LST $35. ;
+   format DX_STR_ADR_1 $35. ;
+   format DX_STR_ADR_2 $35. ;
+   format DM_CT $30. ;
+   format DC_DOM_ST $2. ;
+   format DF_ZIP $14. ;
+   format DM_FGN_CNY $25. ;
+   format TOT_PAYOFF dollar12.2 ;
+   format STATE_IND $2. ;
+   format COST_CENTER_CODE $6. ;
+   format ACSKEY $18. ;
+if _n_ = 1 then        /* write column names */
+ do;
+   put
+   'SSN'
+   ','
+   'DF_SPE_ACC_ID'
+   ','
+   'DM_PRS_1'
+   ','
+   'DM_PRS_LST'
+   ','
+   'DX_STR_ADR_1'
+   ','
+   'DX_STR_ADR_2'
+   ','
+   'DM_CT'
+   ','
+   'DC_DOM_ST'
+   ','
+   'DF_ZIP'
+   ','
+   'DM_FGN_CNY'
+   ','
+   'TOT_PAYOFF'
+   ','
+   'ACSKEY'
+   ','
+   'STATE_IND'
+   ','
+   'COST_CENTER_CODE'
+   ;
+ end;
+ do;
+   EFIOUT + 1;
+   put SSN $ @;
+   put DF_SPE_ACC_ID $ @;
+   put DM_PRS_1 $ @;
+   put DM_PRS_LST $ @;
+   put DX_STR_ADR_1 $ @;
+   put DX_STR_ADR_2 $ @;
+   put DM_CT $ @;
+   put DC_DOM_ST $ @;
+   put DF_ZIP $ @;
+   put DM_FGN_CNY $ @;
+   put TOT_PAYOFF @;
+   put ACSKEY $ @;
+   put STATE_IND $ @;
+   put COST_CENTER_CODE $;
+   ;
+ end;
+run;
+%MEND PRINTOT;
+%PRINTOT(2);
+%PRINTOT(3);
+%PRINTOT(4);
+%PRINTOT(5);
+%PRINTOT(6);
+%PRINTOT(7);
+/*PROC EXPORT DATA=DEMO*/
+/*            OUTFILE= "T:\SAS\DEMO.xls" */
+/*            DBMS=EXCEL2000 REPLACE;*/
+/*RUN;*/

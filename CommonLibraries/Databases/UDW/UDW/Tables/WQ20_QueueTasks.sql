@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[WQ20_QueueTasks]
+(
+	[DF_SPE_ACC_ID] INT NOT NULL PRIMARY KEY
+)

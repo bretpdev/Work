@@ -1,0 +1,18 @@
+SELECT
+	*
+FROM
+	OPENQUERY(DUSTER,
+		'
+			SELECT DISTINCT
+				WF_QUE,
+				WF_SUB_QUE,
+				WN_CTL_TSK,
+				PF_REQ_ACT
+			FROM
+				OLWHRM1.WQ20_TSK_QUE
+			WHERE
+				WF_QUE = ''99''
+				AND WX_MSG_1_TSK LIKE ''%05982%''
+				AND WC_STA_WQUE20 NOT IN (''X'', ''C'')	
+		'
+	)

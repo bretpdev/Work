@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[LTDB_LST_Letterhead] (
+    [Unit] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_SCKR_DAT_Letterhead] PRIMARY KEY CLUSTERED ([Unit] ASC)
+);
+

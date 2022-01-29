@@ -1,0 +1,1950 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CentralTrackingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CentralTrackingModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="CentralTrackingModel.Store.__RefactorLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AttributeAllowedValues" EntityType="CentralTrackingModel.Store.AttributeAllowedValues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AttributeAllowedValuesHistory" EntityType="CentralTrackingModel.Store.AttributeAllowedValuesHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AttributeDataTypes" EntityType="CentralTrackingModel.Store.AttributeDataTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Attributes" EntityType="CentralTrackingModel.Store.Attributes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AttributeSelectionTypes" EntityType="CentralTrackingModel.Store.AttributeSelectionTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Entities" EntityType="CentralTrackingModel.Store.Entities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityAttributeValues" EntityType="CentralTrackingModel.Store.EntityAttributeValues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityAttributeValuesHistory" EntityType="CentralTrackingModel.Store.EntityAttributeValuesHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityTypeAttributeAllowedValues" EntityType="CentralTrackingModel.Store.EntityTypeAttributeAllowedValues" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityTypeAttributeAllowedValuesHistory" EntityType="CentralTrackingModel.Store.EntityTypeAttributeAllowedValuesHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityTypeAttributes" EntityType="CentralTrackingModel.Store.EntityTypeAttributes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EntityTypes" EntityType="CentralTrackingModel.Store.EntityTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HistoryStatusTypes" EntityType="CentralTrackingModel.Store.HistoryStatusTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PermissionTypes" EntityType="CentralTrackingModel.Store.PermissionTypes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoleAttributePermissions" EntityType="CentralTrackingModel.Store.RoleAttributePermissions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Values" EntityType="CentralTrackingModel.Store.Values" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AttributeAllowedValues_Attributes" Association="CentralTrackingModel.Store.FK_AttributeAllowedValues_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="AttributeAllowedValues" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValues_Entities" Association="CentralTrackingModel.Store.FK_AttributeAllowedValues_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="AttributeAllowedValues" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValues_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_AttributeAllowedValues_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="AttributeAllowedValues" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValues_Values" Association="CentralTrackingModel.Store.FK_AttributeAllowedValues_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="AttributeAllowedValues" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Attributes" Association="CentralTrackingModel.Store.FK_AttributeAllowedValuesHistory_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Entities" Association="CentralTrackingModel.Store.FK_AttributeAllowedValuesHistory_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_AttributeAllowedValuesHistory_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Values" Association="CentralTrackingModel.Store.FK_AttributeAllowedValuesHistory_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_AttributeDataTypes" Association="CentralTrackingModel.Store.FK_Attributes_AttributeDataTypes">
+            <End Role="AttributeDataTypes" EntitySet="AttributeDataTypes" />
+            <End Role="Attributes" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_AttributeSelectionTypes" Association="CentralTrackingModel.Store.FK_Attributes_AttributeSelectionTypes">
+            <End Role="AttributeSelectionTypes" EntitySet="AttributeSelectionTypes" />
+            <End Role="Attributes" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_Entities" Association="CentralTrackingModel.Store.FK_Attributes_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="Attributes" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_Attributes_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="Attributes" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeSelectionTypes_Entities" Association="CentralTrackingModel.Store.FK_AttributeSelectionTypes_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="AttributeSelectionTypes" EntitySet="AttributeSelectionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeSelectionTypes_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_AttributeSelectionTypes_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="AttributeSelectionTypes" EntitySet="AttributeSelectionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entities_Entities_InactivatedBy" Association="CentralTrackingModel.Store.FK_Entities_Entities_InactivatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="Entities1" EntitySet="Entities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entities_EntityTypes" Association="CentralTrackingModel.Store.FK_Entities_EntityTypes">
+            <End Role="EntityTypes" EntitySet="EntityTypes" />
+            <End Role="Entities" EntitySet="Entities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Attributes" Association="CentralTrackingModel.Store.FK_EntityAttributeValues_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="EntityAttributeValues" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Entities" Association="CentralTrackingModel.Store.FK_EntityAttributeValues_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityAttributeValues" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_EntityAttributeValues_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityAttributeValues" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Values" Association="CentralTrackingModel.Store.FK_EntityAttributeValues_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="EntityAttributeValues" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Attributes" Association="CentralTrackingModel.Store.FK_EntityAttributeValuesHistory_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Entities" Association="CentralTrackingModel.Store.FK_EntityAttributeValuesHistory_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_EntityAttributeValuesHistory_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_HistoryStatusTypes" Association="CentralTrackingModel.Store.FK_EntityAttributeValuesHistory_HistoryStatusTypes">
+            <End Role="HistoryStatusTypes" EntitySet="HistoryStatusTypes" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Values" Association="CentralTrackingModel.Store.FK_EntityAttributeValuesHistory_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_Attributes" Association="CentralTrackingModel.Store.FK_EntityTypeAttributes_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="EntityTypeAttributes" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_Entities" Association="CentralTrackingModel.Store.FK_EntityTypeAttributes_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityTypeAttributes" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_EntityTypeAttributes_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityTypeAttributes" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_EntityTypes" Association="CentralTrackingModel.Store.FK_EntityTypeAttributes_EntityTypes">
+            <End Role="EntityTypes" EntitySet="EntityTypes" />
+            <End Role="EntityTypeAttributes" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypes_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_EntityTypes_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityTypes" EntitySet="EntityTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypes_Entities_InactivatedBy" Association="CentralTrackingModel.Store.FK_EntityTypes_Entities_InactivatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="EntityTypes" EntitySet="EntityTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionTypes_Entities" Association="CentralTrackingModel.Store.FK_PermissionTypes_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="PermissionTypes" EntitySet="PermissionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionTypes_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_PermissionTypes_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="PermissionTypes" EntitySet="PermissionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_Attributes" Association="CentralTrackingModel.Store.FK_RoleAttributePermissions_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="RoleAttributePermissions" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_Entities" Association="CentralTrackingModel.Store.FK_RoleAttributePermissions_Entities">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="RoleAttributePermissions" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_Entities_CreatedBy" Association="CentralTrackingModel.Store.FK_RoleAttributePermissions_Entities_CreatedBy">
+            <End Role="Entities" EntitySet="Entities" />
+            <End Role="RoleAttributePermissions" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_PermissionTypes" Association="CentralTrackingModel.Store.FK_RoleAttributePermissions_PermissionTypes">
+            <End Role="PermissionTypes" EntitySet="PermissionTypes" />
+            <End Role="RoleAttributePermissions" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AttributeAllowedValues">
+          <Key>
+            <PropertyRef Name="AttributeAllowedValueId" />
+          </Key>
+          <Property Name="AttributeAllowedValueId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="ValueId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="AttributeAllowedValuesHistory">
+          <Key>
+            <PropertyRef Name="AttributeAllowedValuesHistoryId" />
+          </Key>
+          <Property Name="AttributeAllowedValuesHistoryId" Type="int" Nullable="false" />
+          <Property Name="AttributeAllowedValueId" Type="int" Nullable="false" />
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="ValueId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Action" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AttributeDataTypes">
+          <Key>
+            <PropertyRef Name="AttributeDataTypeId" />
+          </Key>
+          <Property Name="AttributeDataTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeDataTypeDescription" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Attributes">
+          <Key>
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Name="AttributeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeDescription" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="AttributeLongDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="AttributeDataTypeId" Type="int" Nullable="false" />
+          <Property Name="AttributeSelectionTypeId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="AttributeSelectionTypes">
+          <Key>
+            <PropertyRef Name="AttributeSelectionTypeId" />
+          </Key>
+          <Property Name="AttributeSelectionTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeSelectionTypeDescription" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Entities">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Name="EntityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="int" Nullable="false" />
+          <Property Name="EntityName" Type="varchar" MaxLength="256" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="EntityAttributeValues">
+          <Key>
+            <PropertyRef Name="EntityAttributeValueId" />
+          </Key>
+          <Property Name="EntityAttributeValueId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="ValueId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntityAttributeValuesHistory">
+          <Key>
+            <PropertyRef Name="EntityAttributeValuesHistoryId" />
+          </Key>
+          <Property Name="EntityAttributeValuesHistoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityAttributeValueId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="int" Nullable="false" />
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="ValueId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="HistoryStatusTypeId" Type="int" Nullable="false" />
+          <Property Name="HistoryStatusDate" Type="datetime" Nullable="false" />
+          <Property Name="HistoryStatusCreatedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntityTypeAttributeAllowedValues">
+          <Key>
+            <PropertyRef Name="EntityTypeAttributeAllowedValuesId" />
+          </Key>
+          <Property Name="EntityTypeAttributeAllowedValuesId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeAttributeId" Type="int" Nullable="false" />
+          <Property Name="ValueId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntityTypeAttributeAllowedValuesHistory">
+          <Key>
+            <PropertyRef Name="EntityTypeAttributeAllowedValuesHistoryId" />
+          </Key>
+          <Property Name="EntityTypeAttributeAllowedValuesHistoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeAttributeId" Type="int" Nullable="false" />
+          <Property Name="ValueId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="HistoryStatusTypeId" Type="int" Nullable="false" />
+          <Property Name="HistoryStatusDate" Type="datetime" Nullable="false" />
+          <Property Name="HistoryStatusCreatedBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntityTypeAttributes">
+          <Key>
+            <PropertyRef Name="EntityTypeAttributeId" />
+          </Key>
+          <Property Name="EntityTypeAttributeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="int" Nullable="false" />
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="EntityTypes">
+          <Key>
+            <PropertyRef Name="EntityTypeId" />
+          </Key>
+          <Property Name="EntityTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeDescription" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="HistoryStatusTypes">
+          <Key>
+            <PropertyRef Name="HistoryStatusTypeId" />
+          </Key>
+          <Property Name="HistoryStatusTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HistoryStatusTypeDescription" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PermissionTypes">
+          <Key>
+            <PropertyRef Name="PermissionTypeId" />
+          </Key>
+          <Property Name="PermissionTypeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionTypeDescription" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="RoleAttributePermissions">
+          <Key>
+            <PropertyRef Name="RoleAttributePermissionId" />
+          </Key>
+          <Property Name="RoleAttributePermissionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="PermissionTypeId" Type="int" Nullable="false" />
+          <Property Name="CreatedAt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="InactivatedAt" Type="datetime" />
+          <Property Name="InactivatedBy" Type="int" />
+          <Property Name="Active" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Values">
+          <Key>
+            <PropertyRef Name="ValueId" />
+          </Key>
+          <Property Name="ValueId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StringValue" Type="varchar" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AttributeAllowedValues_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="1" />
+          <End Role="AttributeAllowedValues" Type="CentralTrackingModel.Store.AttributeAllowedValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValues">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValues_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="AttributeAllowedValues" Type="CentralTrackingModel.Store.AttributeAllowedValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValues">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValues_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="AttributeAllowedValues" Type="CentralTrackingModel.Store.AttributeAllowedValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValues">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValues_Values">
+          <End Role="Values" Type="CentralTrackingModel.Store.Values" Multiplicity="1" />
+          <End Role="AttributeAllowedValues" Type="CentralTrackingModel.Store.AttributeAllowedValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValues">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="1" />
+          <End Role="AttributeAllowedValuesHistory" Type="CentralTrackingModel.Store.AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="AttributeAllowedValuesHistory" Type="CentralTrackingModel.Store.AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="AttributeAllowedValuesHistory" Type="CentralTrackingModel.Store.AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Values">
+          <End Role="Values" Type="CentralTrackingModel.Store.Values" Multiplicity="1" />
+          <End Role="AttributeAllowedValuesHistory" Type="CentralTrackingModel.Store.AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_AttributeDataTypes">
+          <End Role="AttributeDataTypes" Type="CentralTrackingModel.Store.AttributeDataTypes" Multiplicity="1" />
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttributeDataTypes">
+              <PropertyRef Name="AttributeDataTypeId" />
+            </Principal>
+            <Dependent Role="Attributes">
+              <PropertyRef Name="AttributeDataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_AttributeSelectionTypes">
+          <End Role="AttributeSelectionTypes" Type="CentralTrackingModel.Store.AttributeSelectionTypes" Multiplicity="1" />
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttributeSelectionTypes">
+              <PropertyRef Name="AttributeSelectionTypeId" />
+            </Principal>
+            <Dependent Role="Attributes">
+              <PropertyRef Name="AttributeSelectionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="Attributes">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="Attributes">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeSelectionTypes_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="AttributeSelectionTypes" Type="CentralTrackingModel.Store.AttributeSelectionTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeSelectionTypes">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeSelectionTypes_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="AttributeSelectionTypes" Type="CentralTrackingModel.Store.AttributeSelectionTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeSelectionTypes">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entities_Entities_InactivatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="Entities1" Type="CentralTrackingModel.Store.Entities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="Entities1">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entities_EntityTypes">
+          <End Role="EntityTypes" Type="CentralTrackingModel.Store.EntityTypes" Multiplicity="1" />
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntityTypes">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="Entities">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="1" />
+          <End Role="EntityAttributeValues" Type="CentralTrackingModel.Store.EntityAttributeValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValues">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="EntityAttributeValues" Type="CentralTrackingModel.Store.EntityAttributeValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValues">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="EntityAttributeValues" Type="CentralTrackingModel.Store.EntityAttributeValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValues">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Values">
+          <End Role="Values" Type="CentralTrackingModel.Store.Values" Multiplicity="1" />
+          <End Role="EntityAttributeValues" Type="CentralTrackingModel.Store.EntityAttributeValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValues">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.Store.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.Store.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.Store.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_HistoryStatusTypes">
+          <End Role="HistoryStatusTypes" Type="CentralTrackingModel.Store.HistoryStatusTypes" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.Store.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoryStatusTypes">
+              <PropertyRef Name="HistoryStatusTypeId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="HistoryStatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Values">
+          <End Role="Values" Type="CentralTrackingModel.Store.Values" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.Store.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="1" />
+          <End Role="EntityTypeAttributes" Type="CentralTrackingModel.Store.EntityTypeAttributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttributes">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="EntityTypeAttributes" Type="CentralTrackingModel.Store.EntityTypeAttributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttributes">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="EntityTypeAttributes" Type="CentralTrackingModel.Store.EntityTypeAttributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttributes">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_EntityTypes">
+          <End Role="EntityTypes" Type="CentralTrackingModel.Store.EntityTypes" Multiplicity="1" />
+          <End Role="EntityTypeAttributes" Type="CentralTrackingModel.Store.EntityTypeAttributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntityTypes">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttributes">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypes_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="EntityTypes" Type="CentralTrackingModel.Store.EntityTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityTypes">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypes_Entities_InactivatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="EntityTypes" Type="CentralTrackingModel.Store.EntityTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityTypes">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionTypes_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="PermissionTypes" Type="CentralTrackingModel.Store.PermissionTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="PermissionTypes">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionTypes_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="PermissionTypes" Type="CentralTrackingModel.Store.PermissionTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="PermissionTypes">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Store.Attributes" Multiplicity="1" />
+          <End Role="RoleAttributePermissions" Type="CentralTrackingModel.Store.RoleAttributePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermissions">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_Entities">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="0..1" />
+          <End Role="RoleAttributePermissions" Type="CentralTrackingModel.Store.RoleAttributePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermissions">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_Entities_CreatedBy">
+          <End Role="Entities" Type="CentralTrackingModel.Store.Entities" Multiplicity="1" />
+          <End Role="RoleAttributePermissions" Type="CentralTrackingModel.Store.RoleAttributePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entities">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermissions">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_PermissionTypes">
+          <End Role="PermissionTypes" Type="CentralTrackingModel.Store.PermissionTypes" Multiplicity="1" />
+          <End Role="RoleAttributePermissions" Type="CentralTrackingModel.Store.RoleAttributePermissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionTypes">
+              <PropertyRef Name="PermissionTypeId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermissions">
+              <PropertyRef Name="PermissionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CentralTrackingModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CentralTrackingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="CentralTrackingModel.C__RefactorLog" />
+          <EntitySet Name="AttributeAllowedValues" EntityType="CentralTrackingModel.AttributeAllowedValue" />
+          <EntitySet Name="AttributeAllowedValuesHistories" EntityType="CentralTrackingModel.AttributeAllowedValuesHistory" />
+          <EntitySet Name="AttributeDataTypes" EntityType="CentralTrackingModel.AttributeDataType" />
+          <EntitySet Name="Attributes" EntityType="CentralTrackingModel.Attribute" />
+          <EntitySet Name="AttributeSelectionTypes" EntityType="CentralTrackingModel.AttributeSelectionType" />
+          <EntitySet Name="EntityAttributeValues" EntityType="CentralTrackingModel.EntityAttributeValue" />
+          <EntitySet Name="EntityAttributeValuesHistories" EntityType="CentralTrackingModel.EntityAttributeValuesHistory" />
+          <EntitySet Name="EntityTypeAttributes" EntityType="CentralTrackingModel.EntityTypeAttribute" />
+          <EntitySet Name="EntityTypes" EntityType="CentralTrackingModel.EntityType" />
+          <EntitySet Name="HistoryStatusTypes" EntityType="CentralTrackingModel.HistoryStatusType" />
+          <EntitySet Name="PermissionTypes" EntityType="CentralTrackingModel.PermissionType" />
+          <EntitySet Name="RoleAttributePermissions" EntityType="CentralTrackingModel.RoleAttributePermission" />
+          <EntitySet Name="Values" EntityType="CentralTrackingModel.Value" />
+          <AssociationSet Name="FK_AttributeAllowedValues_Attributes" Association="CentralTrackingModel.FK_AttributeAllowedValues_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="AttributeAllowedValues" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValues_Values" Association="CentralTrackingModel.FK_AttributeAllowedValues_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="AttributeAllowedValues" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Attributes" Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Values" Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_AttributeDataTypes" Association="CentralTrackingModel.FK_Attributes_AttributeDataTypes">
+            <End Role="AttributeDataTypes" EntitySet="AttributeDataTypes" />
+            <End Role="Attributes" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_AttributeSelectionTypes" Association="CentralTrackingModel.FK_Attributes_AttributeSelectionTypes">
+            <End Role="AttributeSelectionTypes" EntitySet="AttributeSelectionTypes" />
+            <End Role="Attributes" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Attributes" Association="CentralTrackingModel.FK_EntityAttributeValues_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="EntityAttributeValues" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Attributes" Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_Attributes" Association="CentralTrackingModel.FK_EntityTypeAttributes_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="EntityTypeAttributes" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_Attributes" Association="CentralTrackingModel.FK_RoleAttributePermissions_Attributes">
+            <End Role="Attributes" EntitySet="Attributes" />
+            <End Role="RoleAttributePermissions" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Values" Association="CentralTrackingModel.FK_EntityAttributeValues_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="EntityAttributeValues" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_HistoryStatusTypes" Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_HistoryStatusTypes">
+            <End Role="HistoryStatusTypes" EntitySet="HistoryStatusTypes" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Values" Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Values">
+            <End Role="Values" EntitySet="Values" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_EntityTypes" Association="CentralTrackingModel.FK_EntityTypeAttributes_EntityTypes">
+            <End Role="EntityTypes" EntitySet="EntityTypes" />
+            <End Role="EntityTypeAttributes" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_PermissionTypes" Association="CentralTrackingModel.FK_RoleAttributePermissions_PermissionTypes">
+            <End Role="PermissionTypes" EntitySet="PermissionTypes" />
+            <End Role="RoleAttributePermissions" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+          <EntitySet Name="EntityTypeAttributeAllowedValues" EntityType="CentralTrackingModel.EntityTypeAttributeAllowedValue" />
+          <EntitySet Name="EntityTypeAttributeAllowedValuesHistories" EntityType="CentralTrackingModel.EntityTypeAttributeAllowedValuesHistory" />
+          <EntitySet Name="Entities" EntityType="CentralTrackingModel.Entity" />
+          <AssociationSet Name="FK_AttributeAllowedValues_Entities" Association="CentralTrackingModel.FK_AttributeAllowedValues_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="AttributeAllowedValue" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValues_Entities_CreatedBy" Association="CentralTrackingModel.FK_AttributeAllowedValues_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="AttributeAllowedValue" EntitySet="AttributeAllowedValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Entities" Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeAllowedValuesHistory_Entities_CreatedBy" Association="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="AttributeAllowedValuesHistory" EntitySet="AttributeAllowedValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_Entities" Association="CentralTrackingModel.FK_Attributes_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Attribute" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attributes_Entities_CreatedBy" Association="CentralTrackingModel.FK_Attributes_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Attribute" EntitySet="Attributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeSelectionTypes_Entities" Association="CentralTrackingModel.FK_AttributeSelectionTypes_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="AttributeSelectionType" EntitySet="AttributeSelectionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AttributeSelectionTypes_Entities_CreatedBy" Association="CentralTrackingModel.FK_AttributeSelectionTypes_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="AttributeSelectionType" EntitySet="AttributeSelectionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entities_Entities_InactivatedBy" Association="CentralTrackingModel.FK_Entities_Entities_InactivatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="Entity1" EntitySet="Entities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entities_EntityTypes" Association="CentralTrackingModel.FK_Entities_EntityTypes">
+            <End Role="EntityType" EntitySet="EntityTypes" />
+            <End Role="Entity" EntitySet="Entities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Entities" Association="CentralTrackingModel.FK_EntityAttributeValues_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityAttributeValue" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValues_Entities_CreatedBy" Association="CentralTrackingModel.FK_EntityAttributeValues_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityAttributeValue" EntitySet="EntityAttributeValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Entities" Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityAttributeValuesHistory_Entities_CreatedBy" Association="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityAttributeValuesHistory" EntitySet="EntityAttributeValuesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_Entities" Association="CentralTrackingModel.FK_EntityTypeAttributes_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityTypeAttribute" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypeAttributes_Entities_CreatedBy" Association="CentralTrackingModel.FK_EntityTypeAttributes_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityTypeAttribute" EntitySet="EntityTypeAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypes_Entities_CreatedBy" Association="CentralTrackingModel.FK_EntityTypes_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityType" EntitySet="EntityTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EntityTypes_Entities_InactivatedBy" Association="CentralTrackingModel.FK_EntityTypes_Entities_InactivatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="EntityType" EntitySet="EntityTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionTypes_Entities" Association="CentralTrackingModel.FK_PermissionTypes_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="PermissionType" EntitySet="PermissionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PermissionTypes_Entities_CreatedBy" Association="CentralTrackingModel.FK_PermissionTypes_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="PermissionType" EntitySet="PermissionTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_Entities" Association="CentralTrackingModel.FK_RoleAttributePermissions_Entities">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="RoleAttributePermission" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleAttributePermissions_Entities_CreatedBy" Association="CentralTrackingModel.FK_RoleAttributePermissions_Entities_CreatedBy">
+            <End Role="Entity" EntitySet="Entities" />
+            <End Role="RoleAttributePermission" EntitySet="RoleAttributePermissions" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AttributeAllowedValue">
+          <Key>
+            <PropertyRef Name="AttributeAllowedValueId" />
+          </Key>
+          <Property Name="AttributeAllowedValueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeId" Type="Int32" Nullable="false" />
+          <Property Name="ValueId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Attribute" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Attributes" FromRole="AttributeAllowedValues" ToRole="Attributes" />
+          <NavigationProperty Name="Value" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Values" FromRole="AttributeAllowedValues" ToRole="Values" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Entities" FromRole="AttributeAllowedValue" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Entities_CreatedBy" FromRole="AttributeAllowedValue" ToRole="Entity" />
+          </EntityType>
+        <EntityType Name="AttributeAllowedValuesHistory">
+          <Key>
+            <PropertyRef Name="AttributeAllowedValuesHistoryId" />
+          </Key>
+          <Property Name="AttributeAllowedValuesHistoryId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeAllowedValueId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeId" Type="Int32" Nullable="false" />
+          <Property Name="ValueId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <NavigationProperty Name="Attribute" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Attributes" FromRole="AttributeAllowedValuesHistory" ToRole="Attributes" />
+          <NavigationProperty Name="Value" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Values" FromRole="AttributeAllowedValuesHistory" ToRole="Values" />
+          <Property Type="Int32" Name="Action" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities" FromRole="AttributeAllowedValuesHistory" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities_CreatedBy" FromRole="AttributeAllowedValuesHistory" ToRole="Entity" />
+          </EntityType>
+        <EntityType Name="AttributeDataType">
+          <Key>
+            <PropertyRef Name="AttributeDataTypeId" />
+          </Key>
+          <Property Name="AttributeDataTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeDataTypeDescription" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <Property Name="InternalActive" Type="Boolean" annotation:StoreGeneratedPattern="Computed" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Private" />
+          <NavigationProperty Name="Attributes" Relationship="CentralTrackingModel.FK_Attributes_AttributeDataTypes" FromRole="AttributeDataTypes" ToRole="Attributes" />
+        </EntityType>
+        <EntityType Name="Attribute">
+          <Key>
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Name="AttributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttributeDescription" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="AttributeDataTypeId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeSelectionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <NavigationProperty Name="AttributeAllowedValues" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Attributes" FromRole="Attributes" ToRole="AttributeAllowedValues" />
+          <NavigationProperty Name="AttributeAllowedValuesHistories" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Attributes" FromRole="Attributes" ToRole="AttributeAllowedValuesHistory" />
+          <NavigationProperty Name="AttributeDataType" Relationship="CentralTrackingModel.FK_Attributes_AttributeDataTypes" FromRole="Attributes" ToRole="AttributeDataTypes" />
+          <NavigationProperty Name="AttributeSelectionType" Relationship="CentralTrackingModel.FK_Attributes_AttributeSelectionTypes" FromRole="Attributes" ToRole="AttributeSelectionTypes" />
+          <NavigationProperty Name="EntityAttributeValues" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Attributes" FromRole="Attributes" ToRole="EntityAttributeValues" />
+          <NavigationProperty Name="EntityAttributeValuesHistories" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Attributes" FromRole="Attributes" ToRole="EntityAttributeValuesHistory" />
+          <NavigationProperty Name="EntityTypeAttributes" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_Attributes" FromRole="Attributes" ToRole="EntityTypeAttributes" />
+          <NavigationProperty Name="RoleAttributePermissions" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_Attributes" FromRole="Attributes" ToRole="RoleAttributePermissions" />
+          <Property Type="String" Name="AttributeLongDescription" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_Attributes_Entities" FromRole="Attribute" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_Attributes_Entities_CreatedBy" FromRole="Attribute" ToRole="Entity" />
+          <Property Type="Boolean" Name="InternalActive" annotation:StoreGeneratedPattern="Computed" />
+          </EntityType>
+        <EntityType Name="AttributeSelectionType">
+          <Key>
+            <PropertyRef Name="AttributeSelectionTypeId" />
+          </Key>
+          <Property Name="AttributeSelectionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AttributeSelectionTypeDescription" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <Property Name="InternalActive" Type="Boolean" annotation:StoreGeneratedPattern="Computed" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Private" />
+          <NavigationProperty Name="Attributes" Relationship="CentralTrackingModel.FK_Attributes_AttributeSelectionTypes" FromRole="AttributeSelectionTypes" ToRole="Attributes" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_AttributeSelectionTypes_Entities" FromRole="AttributeSelectionType" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_AttributeSelectionTypes_Entities_CreatedBy" FromRole="AttributeSelectionType" ToRole="Entity" />
+          </EntityType>
+        <EntityType Name="EntityAttributeValue">
+          <Key>
+            <PropertyRef Name="EntityAttributeValueId" />
+          </Key>
+          <Property Name="EntityAttributeValueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeId" Type="Int32" Nullable="false" />
+          <Property Name="ValueId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Attribute" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Attributes" FromRole="EntityAttributeValues" ToRole="Attributes" />
+          <NavigationProperty Name="Value" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Values" FromRole="EntityAttributeValues" ToRole="Values" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Entities" FromRole="EntityAttributeValue" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Entities_CreatedBy" FromRole="EntityAttributeValue" ToRole="Entity" />
+        </EntityType>
+        <EntityType Name="EntityAttributeValuesHistory">
+          <Key>
+            <PropertyRef Name="EntityAttributeValuesHistoryId" />
+          </Key>
+          <Property Name="EntityAttributeValuesHistoryId" Type="Int32" Nullable="false" />
+          <Property Name="EntityAttributeValueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeId" Type="Int32" Nullable="false" />
+          <Property Name="ValueId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="HistoryStatusTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Attribute" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Attributes" FromRole="EntityAttributeValuesHistory" ToRole="Attributes" />
+          <NavigationProperty Name="HistoryStatusType" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_HistoryStatusTypes" FromRole="EntityAttributeValuesHistory" ToRole="HistoryStatusTypes" />
+          <NavigationProperty Name="Value" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Values" FromRole="EntityAttributeValuesHistory" ToRole="Values" />
+          <Property Type="DateTime" Name="HistoryStatusDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="HistoryStatusCreatedBy" Nullable="false" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities" FromRole="EntityAttributeValuesHistory" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities_CreatedBy" FromRole="EntityAttributeValuesHistory" ToRole="Entity" />
+        </EntityType>
+        <EntityType Name="EntityTypeAttribute">
+          <Key>
+            <PropertyRef Name="EntityTypeAttributeId" />
+          </Key>
+          <Property Name="EntityTypeAttributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <NavigationProperty Name="Attribute" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_Attributes" FromRole="EntityTypeAttributes" ToRole="Attributes" />
+          <NavigationProperty Name="EntityType" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_EntityTypes" FromRole="EntityTypeAttributes" ToRole="EntityTypes" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_Entities" FromRole="EntityTypeAttribute" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_Entities_CreatedBy" FromRole="EntityTypeAttribute" ToRole="Entity" />
+          <Property Type="Boolean" Name="InternalActive" annotation:StoreGeneratedPattern="Computed" />
+          </EntityType>
+        <EntityType Name="EntityType">
+          <Key>
+            <PropertyRef Name="EntityTypeId" />
+          </Key>
+          <Property Name="EntityTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityTypeDescription" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <Property Name="InternalActive" Type="Boolean" annotation:StoreGeneratedPattern="Computed" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="EntityTypeAttributes" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_EntityTypes" FromRole="EntityTypes" ToRole="EntityTypeAttributes" />
+          <NavigationProperty Name="Entities" Relationship="CentralTrackingModel.FK_Entities_EntityTypes" FromRole="EntityType" ToRole="Entity" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_EntityTypes_Entities_CreatedBy" FromRole="EntityType" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_EntityTypes_Entities_InactivatedBy" FromRole="EntityType" ToRole="Entity" />
+          </EntityType>
+        <EntityType Name="HistoryStatusType">
+          <Key>
+            <PropertyRef Name="HistoryStatusTypeId" />
+          </Key>
+          <Property Name="HistoryStatusTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="EntityAttributeValuesHistories" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_HistoryStatusTypes" FromRole="HistoryStatusTypes" ToRole="EntityAttributeValuesHistory" />
+          <Property Type="String" Name="HistoryStatusTypeDescription" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PermissionType">
+          <Key>
+            <PropertyRef Name="PermissionTypeId" />
+          </Key>
+          <Property Name="PermissionTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissionTypeDescription" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="RoleAttributePermissions" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_PermissionTypes" FromRole="PermissionTypes" ToRole="RoleAttributePermissions" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_PermissionTypes_Entities" FromRole="PermissionType" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_PermissionTypes_Entities_CreatedBy" FromRole="PermissionType" ToRole="Entity" />
+          </EntityType>
+        <EntityType Name="RoleAttributePermission">
+          <Key>
+            <PropertyRef Name="RoleAttributePermissionId" />
+          </Key>
+          <Property Name="RoleAttributePermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeId" Type="Int32" Nullable="false" />
+          <Property Name="PermissionTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="InactivatedAt" Type="DateTime" Precision="3" />
+          <Property Name="InactivatedBy" Type="Int32" />
+          <Property Name="Active" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Attribute" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_Attributes" FromRole="RoleAttributePermissions" ToRole="Attributes" />
+          <NavigationProperty Name="PermissionType" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_PermissionTypes" FromRole="RoleAttributePermissions" ToRole="PermissionTypes" />
+          <NavigationProperty Name="Entity" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_Entities" FromRole="RoleAttributePermission" ToRole="Entity" />
+          <NavigationProperty Name="Entity1" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_Entities_CreatedBy" FromRole="RoleAttributePermission" ToRole="Entity" />
+          </EntityType>
+        <EntityType Name="Value">
+          <Key>
+            <PropertyRef Name="ValueId" />
+          </Key>
+          <Property Name="ValueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StringValue" Type="String" MaxLength="8000" Unicode="false" FixedLength="false" annotation:StoreGeneratedPattern="None" Nullable="false" />
+          <NavigationProperty Name="AttributeAllowedValues" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Values" FromRole="Values" ToRole="AttributeAllowedValues" />
+          <NavigationProperty Name="AttributeAllowedValuesHistories" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Values" FromRole="Values" ToRole="AttributeAllowedValuesHistory" />
+          <NavigationProperty Name="EntityAttributeValues" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Values" FromRole="Values" ToRole="EntityAttributeValues" />
+          <NavigationProperty Name="EntityAttributeValuesHistories" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Values" FromRole="Values" ToRole="EntityAttributeValuesHistory" />
+        </EntityType>
+        <Association Name="FK_AttributeAllowedValues_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="1" />
+          <End Role="AttributeAllowedValues" Type="CentralTrackingModel.AttributeAllowedValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValues">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValues_Values">
+          <End Role="Values" Type="CentralTrackingModel.Value" Multiplicity="1" />
+          <End Role="AttributeAllowedValues" Type="CentralTrackingModel.AttributeAllowedValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValues">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="1" />
+          <End Role="AttributeAllowedValuesHistory" Type="CentralTrackingModel.AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Values">
+          <End Role="Values" Type="CentralTrackingModel.Value" Multiplicity="1" />
+          <End Role="AttributeAllowedValuesHistory" Type="CentralTrackingModel.AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_AttributeDataTypes">
+          <End Role="AttributeDataTypes" Type="CentralTrackingModel.AttributeDataType" Multiplicity="1" />
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttributeDataTypes">
+              <PropertyRef Name="AttributeDataTypeId" />
+            </Principal>
+            <Dependent Role="Attributes">
+              <PropertyRef Name="AttributeDataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_AttributeSelectionTypes">
+          <End Role="AttributeSelectionTypes" Type="CentralTrackingModel.AttributeSelectionType" Multiplicity="1" />
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttributeSelectionTypes">
+              <PropertyRef Name="AttributeSelectionTypeId" />
+            </Principal>
+            <Dependent Role="Attributes">
+              <PropertyRef Name="AttributeSelectionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="1" />
+          <End Role="EntityAttributeValues" Type="CentralTrackingModel.EntityAttributeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValues">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="1" />
+          <End Role="EntityTypeAttributes" Type="CentralTrackingModel.EntityTypeAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttributes">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_Attributes">
+          <End Role="Attributes" Type="CentralTrackingModel.Attribute" Multiplicity="1" />
+          <End Role="RoleAttributePermissions" Type="CentralTrackingModel.RoleAttributePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermissions">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Values">
+          <End Role="Values" Type="CentralTrackingModel.Value" Multiplicity="1" />
+          <End Role="EntityAttributeValues" Type="CentralTrackingModel.EntityAttributeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValues">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_HistoryStatusTypes">
+          <End Role="HistoryStatusTypes" Type="CentralTrackingModel.HistoryStatusType" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HistoryStatusTypes">
+              <PropertyRef Name="HistoryStatusTypeId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="HistoryStatusTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Values">
+          <End Role="Values" Type="CentralTrackingModel.Value" Multiplicity="1" />
+          <End Role="EntityAttributeValuesHistory" Type="CentralTrackingModel.EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Values">
+              <PropertyRef Name="ValueId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="ValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_EntityTypes">
+          <End Role="EntityTypes" Type="CentralTrackingModel.EntityType" Multiplicity="1" />
+          <End Role="EntityTypeAttributes" Type="CentralTrackingModel.EntityTypeAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntityTypes">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttributes">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_PermissionTypes">
+          <End Role="PermissionTypes" Type="CentralTrackingModel.PermissionType" Multiplicity="1" />
+          <End Role="RoleAttributePermissions" Type="CentralTrackingModel.RoleAttributePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PermissionTypes">
+              <PropertyRef Name="PermissionTypeId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermissions">
+              <PropertyRef Name="PermissionTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EntityTypeAttributeAllowedValue">
+          <Key>
+            <PropertyRef Name="EntityTypeAttributeAllowedValuesId" />
+          </Key>
+          <Property Type="Int32" Name="EntityTypeAttributeAllowedValuesId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EntityTypeAttributeId" Nullable="false" />
+          <Property Type="Int32" Name="ValueId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EntityTypeAttributeAllowedValuesHistory">
+          <Key>
+            <PropertyRef Name="EntityTypeAttributeAllowedValuesHistoryId" />
+          </Key>
+          <Property Type="Int32" Name="EntityTypeAttributeAllowedValuesHistoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EntityTypeAttributeId" Nullable="false" />
+          <Property Type="Int32" Name="ValueId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="false" />
+          <Property Type="Int32" Name="HistoryStatusTypeId" Nullable="false" />
+          <Property Type="DateTime" Name="HistoryStatusDate" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="HistoryStatusCreatedBy" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entity">
+          <Key>
+            <PropertyRef Name="EntityId" />
+          </Key>
+          <Property Type="Int32" Name="EntityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EntityTypeId" Nullable="false" />
+          <Property Type="String" Name="EntityName" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedAt" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="CreatedBy" Nullable="false" />
+          <Property Type="DateTime" Name="InactivatedAt" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="Int32" Name="InactivatedBy" />
+          <Property Type="Boolean" Name="InternalActive" annotation:StoreGeneratedPattern="Computed" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <NavigationProperty Name="AttributeAllowedValues" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Entities" FromRole="Entity" ToRole="AttributeAllowedValue" />
+          <NavigationProperty Name="AttributeAllowedValues1" Relationship="CentralTrackingModel.FK_AttributeAllowedValues_Entities_CreatedBy" FromRole="Entity" ToRole="AttributeAllowedValue" />
+          <NavigationProperty Name="AttributeAllowedValuesHistories" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities" FromRole="Entity" ToRole="AttributeAllowedValuesHistory" />
+          <NavigationProperty Name="AttributeAllowedValuesHistories1" Relationship="CentralTrackingModel.FK_AttributeAllowedValuesHistory_Entities_CreatedBy" FromRole="Entity" ToRole="AttributeAllowedValuesHistory" />
+          <NavigationProperty Name="Attributes" Relationship="CentralTrackingModel.FK_Attributes_Entities" FromRole="Entity" ToRole="Attribute" />
+          <NavigationProperty Name="Attributes1" Relationship="CentralTrackingModel.FK_Attributes_Entities_CreatedBy" FromRole="Entity" ToRole="Attribute" />
+          <NavigationProperty Name="AttributeSelectionTypes" Relationship="CentralTrackingModel.FK_AttributeSelectionTypes_Entities" FromRole="Entity" ToRole="AttributeSelectionType" />
+          <NavigationProperty Name="AttributeSelectionTypes1" Relationship="CentralTrackingModel.FK_AttributeSelectionTypes_Entities_CreatedBy" FromRole="Entity" ToRole="AttributeSelectionType" />
+          <NavigationProperty Name="Entities11" Relationship="CentralTrackingModel.FK_Entities_Entities_InactivatedBy" FromRole="Entity" ToRole="Entity1" />
+          <NavigationProperty Name="Entity2" Relationship="CentralTrackingModel.FK_Entities_Entities_InactivatedBy" FromRole="Entity1" ToRole="Entity" />
+          <NavigationProperty Name="EntityType" Relationship="CentralTrackingModel.FK_Entities_EntityTypes" FromRole="Entity" ToRole="EntityType" />
+          <NavigationProperty Name="EntityAttributeValues" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Entities" FromRole="Entity" ToRole="EntityAttributeValue" />
+          <NavigationProperty Name="EntityAttributeValues1" Relationship="CentralTrackingModel.FK_EntityAttributeValues_Entities_CreatedBy" FromRole="Entity" ToRole="EntityAttributeValue" />
+          <NavigationProperty Name="EntityAttributeValuesHistories" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities" FromRole="Entity" ToRole="EntityAttributeValuesHistory" />
+          <NavigationProperty Name="EntityAttributeValuesHistories1" Relationship="CentralTrackingModel.FK_EntityAttributeValuesHistory_Entities_CreatedBy" FromRole="Entity" ToRole="EntityAttributeValuesHistory" />
+          <NavigationProperty Name="EntityTypeAttributes" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_Entities" FromRole="Entity" ToRole="EntityTypeAttribute" />
+          <NavigationProperty Name="EntityTypeAttributes1" Relationship="CentralTrackingModel.FK_EntityTypeAttributes_Entities_CreatedBy" FromRole="Entity" ToRole="EntityTypeAttribute" />
+          <NavigationProperty Name="EntityTypes" Relationship="CentralTrackingModel.FK_EntityTypes_Entities_CreatedBy" FromRole="Entity" ToRole="EntityType" />
+          <NavigationProperty Name="EntityTypes1" Relationship="CentralTrackingModel.FK_EntityTypes_Entities_InactivatedBy" FromRole="Entity" ToRole="EntityType" />
+          <NavigationProperty Name="PermissionTypes" Relationship="CentralTrackingModel.FK_PermissionTypes_Entities" FromRole="Entity" ToRole="PermissionType" />
+          <NavigationProperty Name="PermissionTypes1" Relationship="CentralTrackingModel.FK_PermissionTypes_Entities_CreatedBy" FromRole="Entity" ToRole="PermissionType" />
+          <NavigationProperty Name="RoleAttributePermissions" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_Entities" FromRole="Entity" ToRole="RoleAttributePermission" />
+          <NavigationProperty Name="RoleAttributePermissions1" Relationship="CentralTrackingModel.FK_RoleAttributePermissions_Entities_CreatedBy" FromRole="Entity" ToRole="RoleAttributePermission" />
+          </EntityType>
+        <Association Name="FK_AttributeAllowedValues_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.AttributeAllowedValue" Role="AttributeAllowedValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValue">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValues_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.AttributeAllowedValue" Role="AttributeAllowedValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValue">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.AttributeAllowedValuesHistory" Role="AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeAllowedValuesHistory_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.AttributeAllowedValuesHistory" Role="AttributeAllowedValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeAllowedValuesHistory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.Attribute" Role="Attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="Attribute">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attributes_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.Attribute" Role="Attribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="Attribute">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeSelectionTypes_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.AttributeSelectionType" Role="AttributeSelectionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeSelectionType">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AttributeSelectionTypes_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.AttributeSelectionType" Role="AttributeSelectionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="AttributeSelectionType">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entities_Entities_InactivatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.Entity" Role="Entity1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="Entity1">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entities_EntityTypes">
+          <End Type="CentralTrackingModel.EntityType" Role="EntityType" Multiplicity="1" />
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EntityType">
+              <PropertyRef Name="EntityTypeId" />
+            </Principal>
+            <Dependent Role="Entity">
+              <PropertyRef Name="EntityTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.EntityAttributeValue" Role="EntityAttributeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValue">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValues_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.EntityAttributeValue" Role="EntityAttributeValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValue">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.EntityAttributeValuesHistory" Role="EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityAttributeValuesHistory_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.EntityAttributeValuesHistory" Role="EntityAttributeValuesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityAttributeValuesHistory">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.EntityTypeAttribute" Role="EntityTypeAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttribute">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypeAttributes_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.EntityTypeAttribute" Role="EntityTypeAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityTypeAttribute">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypes_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.EntityType" Role="EntityType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityType">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EntityTypes_Entities_InactivatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.EntityType" Role="EntityType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="EntityType">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionTypes_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.PermissionType" Role="PermissionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="PermissionType">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PermissionTypes_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.PermissionType" Role="PermissionType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="PermissionType">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_Entities">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="0..1" />
+          <End Type="CentralTrackingModel.RoleAttributePermission" Role="RoleAttributePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermission">
+              <PropertyRef Name="InactivatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleAttributePermissions_Entities_CreatedBy">
+          <End Type="CentralTrackingModel.Entity" Role="Entity" Multiplicity="1" />
+          <End Type="CentralTrackingModel.RoleAttributePermission" Role="RoleAttributePermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entity">
+              <PropertyRef Name="EntityId" />
+            </Principal>
+            <Dependent Role="RoleAttributePermission">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CentralTrackingModelStoreContainer" CdmEntityContainer="CentralTrackingEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="CentralTrackingModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeAllowedValues">
+            <EntityTypeMapping TypeName="CentralTrackingModel.AttributeAllowedValue">
+              <MappingFragment StoreEntitySet="AttributeAllowedValues">
+                <ScalarProperty Name="AttributeAllowedValueId" ColumnName="AttributeAllowedValueId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeAllowedValuesHistories">
+            <EntityTypeMapping TypeName="CentralTrackingModel.AttributeAllowedValuesHistory">
+              <MappingFragment StoreEntitySet="AttributeAllowedValuesHistory">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="AttributeAllowedValuesHistoryId" ColumnName="AttributeAllowedValuesHistoryId" />
+                <ScalarProperty Name="AttributeAllowedValueId" ColumnName="AttributeAllowedValueId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeDataTypes">
+            <EntityTypeMapping TypeName="CentralTrackingModel.AttributeDataType">
+              <MappingFragment StoreEntitySet="AttributeDataTypes">
+                <ScalarProperty Name="AttributeDataTypeId" ColumnName="AttributeDataTypeId" />
+                <ScalarProperty Name="AttributeDataTypeDescription" ColumnName="AttributeDataTypeDescription" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+                <ScalarProperty Name="InternalActive" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attributes">
+            <EntityTypeMapping TypeName="CentralTrackingModel.Attribute">
+              <MappingFragment StoreEntitySet="Attributes">
+                <ScalarProperty Name="InternalActive" ColumnName="Active" />
+                <ScalarProperty Name="AttributeLongDescription" ColumnName="AttributeLongDescription" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="AttributeDescription" ColumnName="AttributeDescription" />
+                <ScalarProperty Name="AttributeDataTypeId" ColumnName="AttributeDataTypeId" />
+                <ScalarProperty Name="AttributeSelectionTypeId" ColumnName="AttributeSelectionTypeId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttributeSelectionTypes">
+            <EntityTypeMapping TypeName="CentralTrackingModel.AttributeSelectionType">
+              <MappingFragment StoreEntitySet="AttributeSelectionTypes">
+                <ScalarProperty Name="AttributeSelectionTypeDescription" ColumnName="AttributeSelectionTypeDescription" />
+                <ScalarProperty Name="AttributeSelectionTypeId" ColumnName="AttributeSelectionTypeId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+                <ScalarProperty Name="InternalActive" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityAttributeValues">
+            <EntityTypeMapping TypeName="CentralTrackingModel.EntityAttributeValue">
+              <MappingFragment StoreEntitySet="EntityAttributeValues">
+                <ScalarProperty Name="EntityAttributeValueId" ColumnName="EntityAttributeValueId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityAttributeValuesHistories">
+            <EntityTypeMapping TypeName="CentralTrackingModel.EntityAttributeValuesHistory">
+              <MappingFragment StoreEntitySet="EntityAttributeValuesHistory">
+                <ScalarProperty Name="HistoryStatusCreatedBy" ColumnName="HistoryStatusCreatedBy" />
+                <ScalarProperty Name="HistoryStatusDate" ColumnName="HistoryStatusDate" />
+                <ScalarProperty Name="EntityAttributeValuesHistoryId" ColumnName="EntityAttributeValuesHistoryId" />
+                <ScalarProperty Name="EntityAttributeValueId" ColumnName="EntityAttributeValueId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="HistoryStatusTypeId" ColumnName="HistoryStatusTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityTypeAttributes">
+            <EntityTypeMapping TypeName="CentralTrackingModel.EntityTypeAttribute">
+              <MappingFragment StoreEntitySet="EntityTypeAttributes">
+                <ScalarProperty Name="InternalActive" ColumnName="Active" />
+                <ScalarProperty Name="EntityTypeAttributeId" ColumnName="EntityTypeAttributeId" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityTypes">
+            <EntityTypeMapping TypeName="CentralTrackingModel.EntityType">
+              <MappingFragment StoreEntitySet="EntityTypes">
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="EntityTypeDescription" ColumnName="EntityTypeDescription" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+                <ScalarProperty Name="InternalActive" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryStatusTypes">
+            <EntityTypeMapping TypeName="CentralTrackingModel.HistoryStatusType">
+              <MappingFragment StoreEntitySet="HistoryStatusTypes">
+                <ScalarProperty Name="HistoryStatusTypeDescription" ColumnName="HistoryStatusTypeDescription" />
+                <ScalarProperty Name="HistoryStatusTypeId" ColumnName="HistoryStatusTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PermissionTypes">
+            <EntityTypeMapping TypeName="CentralTrackingModel.PermissionType">
+              <MappingFragment StoreEntitySet="PermissionTypes">
+                <ScalarProperty Name="PermissionTypeId" ColumnName="PermissionTypeId" />
+                <ScalarProperty Name="PermissionTypeDescription" ColumnName="PermissionTypeDescription" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleAttributePermissions">
+            <EntityTypeMapping TypeName="CentralTrackingModel.RoleAttributePermission">
+              <MappingFragment StoreEntitySet="RoleAttributePermissions">
+                <ScalarProperty Name="RoleAttributePermissionId" ColumnName="RoleAttributePermissionId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="PermissionTypeId" ColumnName="PermissionTypeId" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Values">
+            <EntityTypeMapping TypeName="CentralTrackingModel.Value">
+              <MappingFragment StoreEntitySet="Values">
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="StringValue" ColumnName="StringValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityTypeAttributeAllowedValues">
+            <EntityTypeMapping TypeName="CentralTrackingModel.EntityTypeAttributeAllowedValue">
+              <MappingFragment StoreEntitySet="EntityTypeAttributeAllowedValues">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="EntityTypeAttributeId" ColumnName="EntityTypeAttributeId" />
+                <ScalarProperty Name="EntityTypeAttributeAllowedValuesId" ColumnName="EntityTypeAttributeAllowedValuesId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EntityTypeAttributeAllowedValuesHistories">
+            <EntityTypeMapping TypeName="CentralTrackingModel.EntityTypeAttributeAllowedValuesHistory">
+              <MappingFragment StoreEntitySet="EntityTypeAttributeAllowedValuesHistory">
+                <ScalarProperty Name="HistoryStatusCreatedBy" ColumnName="HistoryStatusCreatedBy" />
+                <ScalarProperty Name="HistoryStatusDate" ColumnName="HistoryStatusDate" />
+                <ScalarProperty Name="HistoryStatusTypeId" ColumnName="HistoryStatusTypeId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="ValueId" ColumnName="ValueId" />
+                <ScalarProperty Name="EntityTypeAttributeId" ColumnName="EntityTypeAttributeId" />
+                <ScalarProperty Name="EntityTypeAttributeAllowedValuesHistoryId" ColumnName="EntityTypeAttributeAllowedValuesHistoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entities">
+            <EntityTypeMapping TypeName="CentralTrackingModel.Entity">
+              <MappingFragment StoreEntitySet="Entities">
+                <ScalarProperty Name="InternalActive" ColumnName="Active" />
+                <ScalarProperty Name="InactivatedBy" ColumnName="InactivatedBy" />
+                <ScalarProperty Name="InactivatedAt" ColumnName="InactivatedAt" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="EntityTypeId" ColumnName="EntityTypeId" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

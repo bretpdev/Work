@@ -1,0 +1,348 @@
+1                                        The SAS System          14:45 Tuesday, February 7, 2017
+
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M1) 
+      Licensed to UNIVERSITY OF UTAH - ADMIN, Site 70162560.
+NOTE: This session is executing on the W32_7PRO  platform.
+
+
+
+NOTE: Updated analytical products:
+      
+      SAS/STAT 13.1
+      SAS/ETS 13.1
+      SAS/OR 13.1
+      SAS/IML 13.1
+      SAS/QC 13.1
+
+NOTE: Additional host information:
+
+ W32_7PRO WIN 6.1.7601 Service Pack 1 Workstation
+
+NOTE: SAS initialization used:
+      real time           11.46 seconds
+      cpu time            0.17 seconds
+      
+1          /*TEST*/
+2          /*%LET TESTMSG = - THIS IS A TEST;
+3          %LET RPTLIB = T:\SAS;
+4          %LET LOGLIB = Y:\Batch\Logs;
+5          %LET CODELIB = Y:\Codebase\SAS\CDW;
+6          %LET ODBCFILE = BSYS_TEST;
+7          %LET DB = CDW_test;
+8          %LET ODBCFILE_CSYS = CSYSTest;*/
+9          
+10         /*LIVE*/
+11         %LET TESTMSG = - THIS IS LIVE;
+12         %LET RPTLIB = Z:\Batch\FTP;
+13         %LET LOGLIB = Z:\Batch\Logs;
+14         %LET CODELIB = Z:\Codebase\SAS\CDW;
+15         %LET ODBCFILE = BSYS;
+16         %LET DB = CDW;
+17         %LET ODBCFILE_CSYS = CSYS;
+18         
+19         %INCLUDE "&CODELIB\UTNWDW1 CDW DAILY UPDATE.FOLDER AND DATABASE.SAS"  ;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+NOTE: Libref DB was successfully assigned as follows: 
+      Engine:        ODBC 
+2                                        The SAS System          14:45 Tuesday, February 7, 2017
+
+      Physical Name: 
+
+NOTE: Table WORK.TEST created, with 4 rows and 2 columns.
+
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.00 seconds
+      
+
+
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+NOTE: Format $AACERR has been output.
+NOTE: Format $AUXSTA has been output.
+NOTE: Format $BILMTD has been output.
+NOTE: Format $DEFSTA has been output.
+NOTE: Format $FATRAN has been output.
+NOTE: Format $FORSTA has been output.
+NOTE: Format $LNPROG has been output.
+NOTE: Format $LONSTA has been output.
+NOTE: Format $REVREA has been output.
+NOTE: Format $RFRTYP has been output.
+NOTE: Format $SCHTYP has been output.
+NOTE: Format $SCLTYP has been output.
+NOTE: Format $STACRB has been output.
+NOTE: Format $FMTNAME has been output.
+
+NOTE: PROCEDURE FORMAT used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+      
+NOTE: There were 1091 observations read from the data set DB.FORMATTRANSLATION.
+
+364        %FILECHECK(39);
+MPRINT(FILECHECK):   FILENAME REPORT39 "Z:\Batch\FTP/UNWDW1.NWDW1R39.*";
+"File 39 was missing"
+MPRINT(FILECHECK):   DATA _NULL_;
+MPRINT(FILECHECK):   FILE ERRMESS subject="CDW Error - Missing File- THIS IS LIVE";
+MPRINT(FILECHECK):   PUT "The CDW Update Process was Aborted for Report 39!";
+MPRINT(FILECHECK):   PUT "The file was missing!";
+MPRINT(FILECHECK):   RUN;
+
+NOTE: The file ERRMESS is:
+      E-Mail Access Device
+
+Message sent
+      To:          ("ebarnes@UTAHSBR.EDU" "sshelp@UTAHSBR.EDU" ) 
+      Cc:          
+      Bcc:         
+3                                        The SAS System          14:45 Tuesday, February 7, 2017
+
+      Subject:     CDW Error - Missing File- THIS IS LIVE
+      Attachments: 
+NOTE: 2 records were written to the file ERRMESS.
+      The minimum record length was 21.
+      The maximum record length was 49.
+NOTE: DATA statement used (Total process time):
+      real time           7.25 seconds
+      cpu time            0.29 seconds
+      
+
+365        
+366        options mprint;
+367        
+368        DATA DFR_LTR(drop=trunc);
+369        	INFILE REPORT39 DSD DLM = ',' FIRSTOBS=1 MISSOVER end = eof LRECL = 32767;
+370        	INPUT
+371        		DF_SPE_ACC_ID :$10.
+372        		LN_SEQ :6.
+373        		LF_DFR_CTL_NUM :$3.
+374        		LN_DFR_OCC_SEQ :6.
+375        		LC_DFR_TYP :$2.
+376        		LD_DFR_INF_CER :DATE9.
+377        		LD_CRT_REQ_DFR :DATE9.
+378        		LC_DFR_STA :$1.
+379        		LC_STA_DFR10 :$1.
+380        		LD_STA_DFR10 :DATE9.
+381        		LF_LST_DTS_DF10 :DATETIME25.3
+382        		LD_DFR_BEG :DATE9.
+383        		LD_DFR_END :DATE9.
+384        		LC_STA_LON50 :$1.
+385        		LC_LON_LEV_DFR_CAP :$1.
+386        		LF_LST_DTS_LN50 :DATETIME25.3
+387        		LD_STA_LON50 :DATE9.
+388        		LD_DFR_APL :DATE9.
+389        	;
+390        	%TRUNCAT(39);
+MPRINT(TRUNCAT):   retain trunc 0;
+MPRINT(TRUNCAT):   if df_spe_acc_id = '-Begin-' then do;
+MPRINT(TRUNCAT):   if trunc = 0 then do;
+MPRINT(TRUNCAT):   trunc = 1;
+MPRINT(TRUNCAT):   delete;
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   else do;
+MPRINT(TRUNCAT):   call symput('ERROR',"39");
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   delete;
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   else if df_spe_acc_id = '-End-' then do;
+MPRINT(TRUNCAT):   if trunc = 1 then trunc = 0;
+MPRINT(TRUNCAT):   else do;
+MPRINT(TRUNCAT):   call symput('ERROR',"39");
+MPRINT(TRUNCAT):   end;
+4                                        The SAS System          14:45 Tuesday, February 7, 2017
+
+MPRINT(TRUNCAT):   delete;
+MPRINT(TRUNCAT):   end;
+MPRINT(TRUNCAT):   if eof and df_spe_acc_id ^= '-End-' then do;
+MPRINT(TRUNCAT):   call symput('ERROR',"39");
+MPRINT(TRUNCAT):   end;
+391        RUN;
+
+ERROR: Physical file does not exist, Z:\Batch\FTP\UNWDW1.NWDW1R39.*.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: SAS set option OBS=0 and will continue to check statements. 
+      This might cause NOTE: No observations in data set.
+WARNING: The data set WORK.DFR_LTR may be incomplete.  When this step was stopped there were 0 
+         observations and 18 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+392        
+393        /*convert SAS dates to SQL Server datetime*/
+394        DATA DFR_LTR;
+395        	SET DFR_LTR;
+396        	LD_DFR_INF_CER = LD_DFR_INF_CER*86400;
+397        	LD_CRT_REQ_DFR = LD_CRT_REQ_DFR*86400;
+398        	LD_STA_DFR10 = LD_STA_DFR10*86400;
+399        	LD_DFR_BEG = LD_DFR_BEG*86400;
+400        	LD_DFR_END = LD_DFR_END*86400;
+401        	LD_STA_LON50 = LD_STA_LON50*86400;
+402        	LD_DFR_APL = LD_DFR_APL*86400;
+403        RUN;
+
+NOTE: The data set WORK.DFR_LTR has 0 observations and 18 variables.
+WARNING: Data set WORK.DFR_LTR was not replaced because this step was stopped.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+404        
+405        %COPYERROR;
+406        
+407        %ENCHILADA
+408        	(
+409        		DFR_LTR,
+410        		DF10_DefermentLetter,
+411        		DF_SPE_ACC_ID
+412        		LN_SEQ
+413        		LF_DFR_CTL_NUM
+414        		LN_DFR_OCC_SEQ,
+415        		LC_DFR_TYP
+416        		LD_DFR_INF_CER
+417        		LD_CRT_REQ_DFR
+5                                        The SAS System          14:45 Tuesday, February 7, 2017
+
+418        		LC_DFR_STA
+419        		LC_STA_DFR10
+420        		LD_STA_DFR10
+421        		LF_LST_DTS_DF10
+422        		LD_DFR_BEG
+423        		LD_DFR_END
+424        		LC_STA_LON50
+425        		LC_LON_LEV_DFR_CAP
+426        		LF_LST_DTS_LN50
+427        		LD_STA_LON50
+428        		LD_DFR_APL,
+429        /*		no filter*/
+430        	);
+MPRINT(ENCHILADA):   data _null_;
+MPRINT(ENCHILADA):   i = 1;
+MPRINT(ENCHILADA):   do until (pri = '');
+MPRINT(ENCHILADA):   pri = scan("LC_DFR_TYP   LD_DFR_INF_CER   LD_CRT_REQ_DFR   LC_DFR_STA   
+LC_STA_DFR10   LD_STA_DFR10   LF_LST_DTS_DF10   LD_DFR_BEG   LD_DFR_END   LC_STA_LON50   
+LC_LON_LEV_DFR_CAP   LF_LST_DTS_LN50   LD_STA_LON50   LD_DFR_APL",i);
+MPRINT(ENCHILADA):   if pri = '' then call symput('attr_ct',i-1);
+MPRINT(ENCHILADA):   i + 1;
+MPRINT(ENCHILADA):   end;
+MPRINT(ENCHILADA):   i = 1;
+MPRINT(ENCHILADA):   do until (pri = '');
+MPRINT(ENCHILADA):   pri = scan("DF_SPE_ACC_ID   LN_SEQ   LF_DFR_CTL_NUM   LN_DFR_OCC_SEQ",i);
+MPRINT(ENCHILADA):   if pri = '' then call symput('key_ct',i-1);
+MPRINT(ENCHILADA):   i + 1;
+MPRINT(ENCHILADA):   end;
+MPRINT(ENCHILADA):   run;
+
+NOTE: Numeric values have been converted to character values at the places given by: 
+      (Line):(Column).
+      430:109   430:221   
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+WARNING: Apparent symbolic reference ATTR_CT not resolved.
+WARNING: Apparent symbolic reference KEY_CT not resolved.
+&ATTR_CT &KEY_CT
+MPRINT(ENCHILADA):   PROC SQL;
+WARNING: Apparent symbolic reference KEY_CT not resolved.
+ERROR: A character operand was found in the %EVAL function or %IF condition where a numeric 
+       operand is required. The condition was: &key_ct > 1 
+ERROR: The macro ENCHILADA will stop executing.
+MPRINT(ENCHILADA):   CREATE TABLE NO_DELTA AS SELECT DISTINCT A.DF_SPE_ACC_ID
+431        
+432        %FINISH(SOURCE=DF10DefermentLetter);
+NOTE: Line generated by the invoked macro "FINISH".
+432           DATA _NULL_;
+              ____
+6                                        The SAS System          14:45 Tuesday, February 7, 2017
+
+              79
+MPRINT(FINISH):   DATA _NULL_;
+ERROR 79-322: Expecting a FROM.
+
+NOTE: PROC SQL set option NOEXEC and will continue to check the syntax of statements.
+NOTE: Line generated by the invoked macro "FINISH".
+432                         finish = put(time(),time9.);
+                            ______
+                            180
+MPRINT(FINISH):   finish = put(time(),time9.);
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+NOTE: Line generated by the invoked macro "FINISH".
+432                                                       format total time9.;  total = time() -
+                                                                                _____
+                                                                                180
+432      !  "&start"t;  PUT "&SOURCE";  PUT "START = &START ";  PUT "FINISH = " FINISH;  put
+432      ! "TOTAL = " total;  RUN;
+WARNING: This SAS global statement is not supported in PROC SQL. It has been ignored.
+MPRINT(FINISH):   format total time9.;
+MPRINT(FINISH):   total = time() - " 14:45:48"t;
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+NOTE: Line generated by the invoked macro "FINISH".
+432           DATA _NULL_;  finish = put(time(),time9.);  format total time9.;  total = time() -
+432      !  "&start"t;  PUT "&SOURCE";  PUT "START = &START ";  PUT "FINISH = " FINISH;  put
+                        ___
+                        180
+432      ! "TOTAL = " total;  RUN;
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+MPRINT(FINISH):   PUT "DF10DefermentLetter";
+NOTE: Line generated by the invoked macro "FINISH".
+432           DATA _NULL_;  finish = put(time(),time9.);  format total time9.;  total = time() -
+432      !  "&start"t;  PUT "&SOURCE";  PUT "START = &START ";  PUT "FINISH = " FINISH;  put
+                                        ___
+                                        180
+432      ! "TOTAL = " total;  RUN;
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+MPRINT(FINISH):   PUT "START =  14:45:48 ";
+NOTE: Line generated by the invoked macro "FINISH".
+432           DATA _NULL_;  finish = put(time(),time9.);  format total time9.;  total = time() -
+432      !  "&start"t;  PUT "&SOURCE";  PUT "START = &START ";  PUT "FINISH = " FINISH;  put
+                                                                ___
+                                                                180
+432      ! "TOTAL = " total;  RUN;
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+MPRINT(FINISH):   PUT "FINISH = " FINISH;
+NOTE: Line generated by the invoked macro "FINISH".
+432           DATA _NULL_;  finish = put(time(),time9.);  format total time9.;  total = time() -
+7                                        The SAS System          14:45 Tuesday, February 7, 2017
+
+432      !  "&start"t;  PUT "&SOURCE";  PUT "START = &START ";  PUT "FINISH = " FINISH;  put
+                                                                                         ___
+                                                                                         180
+432      ! "TOTAL = " total;  RUN;
+ERROR 180-322: Statement is not valid or it is used out of proper order.
+
+MPRINT(FINISH):   put "TOTAL = " total;
+NOTE: PROC SQL statements are executed immediately; The RUN statement has no effect.
+MPRINT(FINISH):   RUN;
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+ERROR: Errors printed on pages 4,5,6,7.
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           18.89 seconds
+      cpu time            0.57 seconds
+      

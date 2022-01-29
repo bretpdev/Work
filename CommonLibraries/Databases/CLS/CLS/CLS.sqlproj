@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CLS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{3a30c5a3-1a9c-4383-b390-a4e50c938a8a}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CLS</RootNamespace>
+    <AssemblyName>CLS</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <IsChangeTrackingOn>False</IsChangeTrackingOn>
+    <IsChangeTrackingAutoCleanupOn>True</IsChangeTrackingAutoCleanupOn>
+    <ChangeTrackingRetentionPeriod>2</ChangeTrackingRetentionPeriod>
+    <ChangeTrackingRetentionUnit>Days</ChangeTrackingRetentionUnit>
+    <IsEncryptionOn>False</IsEncryptionOn>
+    <IsBrokerPriorityHonored>False</IsBrokerPriorityHonored>
+    <Trustworthy>False</Trustworthy>
+    <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
+    <PageVerify>NONE</PageVerify>
+    <ServiceBrokerOption>DisableBroker</ServiceBrokerOption>
+    <DateCorrelationOptimizationOn>False</DateCorrelationOptimizationOn>
+    <Parameterization>SIMPLE</Parameterization>
+    <AllowSnapshotIsolation>False</AllowSnapshotIsolation>
+    <ReadCommittedSnapshot>False</ReadCommittedSnapshot>
+    <VardecimalStorageFormatOn>True</VardecimalStorageFormatOn>
+    <SupplementalLoggingOn>False</SupplementalLoggingOn>
+    <CompatibilityMode>90</CompatibilityMode>
+    <AnsiNullDefault>True</AnsiNullDefault>
+    <AnsiNulls>True</AnsiNulls>
+    <AnsiPadding>True</AnsiPadding>
+    <AnsiWarnings>True</AnsiWarnings>
+    <ArithAbort>True</ArithAbort>
+    <ConcatNullYieldsNull>True</ConcatNullYieldsNull>
+    <QuotedIdentifier>True</QuotedIdentifier>
+    <NumericRoundAbort>False</NumericRoundAbort>
+    <RecursiveTriggersEnabled>False</RecursiveTriggersEnabled>
+    <DatabaseChaining>False</DatabaseChaining>
+    <DatabaseState>ONLINE</DatabaseState>
+    <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
+    <DefaultCursor>LOCAL</DefaultCursor>
+    <AutoClose>False</AutoClose>
+    <AutoCreateStatistics>True</AutoCreateStatistics>
+    <AutoShrink>False</AutoShrink>
+    <AutoUpdateStatistics>True</AutoUpdateStatistics>
+    <TornPageDetection>False</TornPageDetection>
+    <DatabaseAccess>MULTI_USER</DatabaseAccess>
+    <Recovery>FULL</Recovery>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="log\" />
+    <Folder Include="log\Tables\" />
+    <Folder Include="comment_audit\" />
+    <Folder Include="comment_audit\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="comment_audit\Stored Procedures\" />
+    <Folder Include="log\Stored Procedures\" />
+    <Folder Include="comment_audit\User Defined Types\" />
+    <Folder Include="Functions" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
+    <Folder Include="PublishProfiles" />
+    <Folder Include="User Defined Types" />
+    <Folder Include="print\" />
+    <Folder Include="print\Tables\" />
+    <Folder Include="print\Stored Procedures\" />
+    <Folder Include="Assemblies\" />
+    <Folder Include="scra" />
+    <Folder Include="Noble\" />
+    <Folder Include="Noble\Tables\" />
+    <Folder Include="Noble\Stored Procedures\" />
+    <Folder Include="scra\Store Procedures" />
+    <Folder Include="scra\Tables" />
+    <Folder Include="fp\" />
+    <Folder Include="fp\Tables\" />
+    <Folder Include="fp\Stored Procedures\" />
+    <Folder Include="billing" />
+    <Folder Include="billing\Tables" />
+    <Folder Include="billing\StoredProcedures" />
+    <Folder Include="REPAYE\" />
+    <Folder Include="REPAYE\Tables\" />
+    <Folder Include="quecomplet" />
+    <Folder Include="peps\" />
+    <Folder Include="peps\Tables\" />
+    <Folder Include="peps\Stored Procedures" />
+    <Folder Include="smbalwo" />
+    <Folder Include="billing\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="log\Tables\ProcessLogMessages.sql" />
+    <Build Include="comment_audit\Tables\Agents.sql" />
+    <Build Include="comment_audit\Tables\Agents_History.sql" />
+    <Build Include="comment_audit\Tables\AgentUtIds_History.sql" />
+    <Build Include="comment_audit\Tables\AgentUtIds.sql" />
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers_1.sql" />
+    <Build Include="Security\NSCSQL_1.sql" />
+    <Build Include="Security\NOBLE.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_Developers_1.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts_1.sql" />
+    <Build Include="Security\UHEAA_OcheUsers.sql" />
+    <Build Include="Security\UHEAA_OcheUsers_1.sql" />
+    <Build Include="Security\UHEAA_UHEAAUsers.sql" />
+    <Build Include="Security\UHEAA_UHEAAUsers_1.sql" />
+    <Build Include="Security\UHEAA_BatchScripts.sql" />
+    <Build Include="Security\UHEAA_BatchScripts_1.sql" />
+    <Build Include="Security\SSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS_1.sql" />
+    <Build Include="Security\!UHEAASSRS_1.sql" />
+    <Build Include="Security\testLogin_1.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RW_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="comment_audit\Stored Procedures\DeleteAgent.sql" />
+    <Build Include="comment_audit\Stored Procedures\SaveAgent.sql" />
+    <Build Include="log\Stored Procedures\NotificationInsert.sql" />
+    <Build Include="comment_audit\Stored Procedures\SearchAgents.sql" />
+    <Build Include="comment_audit\Stored Procedures\GetAgentsByFullName.sql" />
+    <Build Include="comment_audit\Stored Procedures\GetAgentsByUtId.sql" />
+    <Build Include="comment_audit\User Defined Types\UtId.sql" />
+    <Build Include="Security\USHE_Financial_Encryption_Certificate.sql" />
+    <Build Include="Security\comment_audit.sql" />
+    <Build Include="Security\log.sql" />
+    <Build Include="Security\USHE_Financial_Data_Key.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Functions\Decryptor.sql" />
+    <Build Include="Functions\SplitString.sql" />
+    <Build Include="Stored Procedures\AddRecordBatchLetter.sql" />
+    <Build Include="Stored Procedures\CheckSprocAccess.sql" />
+    <Build Include="Stored Procedures\DeleteBatchEmailCampaign.sql" />
+    <Build Include="Stored Procedures\GetActiveBatchLetters.sql" />
+    <Build Include="Stored Procedures\GetAllBatchLetters.sql" />
+    <Build Include="Stored Procedures\GetBatchEmailCampaigns.sql" />
+    <Build Include="Stored Procedures\GetBatchLetterRecordForRecovery.sql" />
+    <Build Include="Stored Procedures\InsertNewBatchEmailCampaign.sql" />
+    <Build Include="Stored Procedures\spAddCheckByPhoneEntry.sql" />
+    <Build Include="Stored Procedures\spAddCostCenterPrintingRecord.sql" />
+    <Build Include="Stored Procedures\spBankoAddAdditionalEvents.sql" />
+    <Build Include="Stored Procedures\spBANKOAddBkData.sql" />
+    <Build Include="Stored Procedures\spBANKODeleteErroredRecord.sql" />
+    <Build Include="Stored Procedures\spBankoDeleteErroredRecordAdditionalResponse.sql" />
+    <Build Include="Stored Procedures\spBANKODeleteProcessedRecord.sql" />
+    <Build Include="Stored Procedures\spBANKOGetResponseData.sql" />
+    <Build Include="Stored Procedures\spBillingText.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingCompleted.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingCreateFaxRec.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingCreateLetterRec.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingEojDocumentsErroredToday.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingEojDocumentsPrintedToday.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingEojDocumentsToBePrinted.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingEojFaxesConfirmedToday.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingEojFaxesErroredToday.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingEojFaxesSentToday.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingEojFaxesToBeSent.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingFaxError.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingFaxRecordExists.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingFinalUpdateFaxRecord.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetErrorKey.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetFaxRecords.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingGetLetterRecords.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingLastRunDate.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingLetterError.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingLetterRecordExists.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingMarkFaxErrorAsHandled.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingMarkLetterAsPrinted.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingMarkLetterErrorAsHandled.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingMarkLetterErrorsAsRePrinted.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingOneWeekFaxErrorCount.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingOneWeekLetterErrorCount.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingOutstandingFaxErrors.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingOutstandingLetterErrors.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingSetRightFaxHandle.sql" />
+    <Build Include="Stored Procedures\spCentralizedPrintingUpdateFaxRecord.sql" />
+    <Build Include="Stored Procedures\spCheckByPhoneGetPendingRecords.sql" />
+    <Build Include="Stored Procedures\spCheckByPhoneUpdateProcessedDate.sql" />
+    <Build Include="Stored Procedures\spCreateFsaReportsGetYearToDateNumbers.sql" />
+    <Build Include="Stored Procedures\spCreateFsaReportsUpdateTotals.sql" />
+    <Build Include="Stored Procedures\spDemographicUpdateGetArc.sql" />
+    <Build Include="Stored Procedures\spDemographicUpdateGetComment.sql" />
+    <Build Include="Stored Procedures\spDemographicUpdateGetLocate.sql" />
+    <Build Include="Stored Procedures\spDemographicUpdateGetQueues.sql" />
+    <Build Include="Stored Procedures\spDemographicUpdateGetSourceCode.sql" />
+    <Build Include="Stored Procedures\spDemographicUpdateGetSourceCodes.sql" />
+    <Build Include="Stored Procedures\spDocIdGetDocumentDetails.sql" />
+    <Build Include="Stored Procedures\spDocIdGetProcessingSummary.sql" />
+    <Build Include="Stored Procedures\spDocIdGetProcessingUsers.sql" />
+    <Build Include="Stored Procedures\spDocIdSetProcessed.sql" />
+    <Build Include="Stored Procedures\spDTX7LGetDueDilLetterData.sql" />
+    <Build Include="Stored Procedures\spDTX7LGetExpiredLetterData.sql" />
+    <Build Include="Stored Procedures\spEMCPGetCampaignData.sql" />
+    <Build Include="Stored Procedures\spEMCPGetCampId.sql" />
+    <Build Include="Stored Procedures\spEMCPGetEmailCampaigns.sql" />
+    <Build Include="Stored Procedures\spEMCPGetEmailId.sql" />
+    <Build Include="Stored Procedures\spEMCPSaveSpecialEmailCampaign.sql" />
+    <Build Include="Stored Procedures\spEMCPUpdateEmailId.sql" />
+    <Build Include="Stored Procedures\spEMCPUpdateSpecialEmailCampaign.sql" />
+    <Build Include="Stored Procedures\spGENR_AddCredential.sql" />
+    <Build Include="Stored Procedures\spGENR_GetCredential.sql" />
+    <Build Include="Stored Procedures\spGetAccurintQueueUserIds.sql" />
+    <Build Include="Stored Procedures\spGetConsentArcs.sql" />
+    <Build Include="Stored Procedures\spGetFedLoanTypes.sql" />
+    <Build Include="Stored Procedures\spGetFsaReports.sql" />
+    <Build Include="Stored Procedures\spGetPhoneConsentQueues.sql" />
+    <Build Include="Stored Procedures\spGetQueueBuilderFiles.sql" />
+    <Build Include="Stored Procedures\spIvrGetUnprocessedRequests.sql" />
+    <Build Include="Stored Procedures\spIvrUpdateRequestProcessedStatus.sql" />
+    <Build Include="Stored Procedures\spLocateGetLocateQueues.sql" />
+    <Build Include="Stored Procedures\spLocateGetLocateTypes.sql" />
+    <Build Include="Stored Procedures\spLSLGetArcSearch.sql" />
+    <Build Include="Stored Procedures\spLSLGetCommentInfo.sql" />
+    <Build Include="Stored Procedures\spLSLGetDefForbOptions.sql" />
+    <Build Include="Stored Procedures\spLSLGetLetterChoices.sql" />
+    <Build Include="Stored Procedures\spLSLGetLetterId.sql" />
+    <Build Include="Stored Procedures\spLSLGetLetterInformation.sql" />
+    <Build Include="Stored Procedures\spLSLGetLetterOptions.sql" />
+    <Build Include="Stored Procedures\spLSLGetLetterTypes.sql" />
+    <Build Include="Stored Procedures\spReturnMailAddRecord.sql" />
+    <Build Include="Stored Procedures\spReturnMailDeleteRecord.sql" />
+    <Build Include="Stored Procedures\spReturnMailGetRecords.sql" />
+    <Build Include="Stored Procedures\spSSRS_GetSchoolInfo.sql" />
+    <Build Include="Stored Procedures\UpdateBatchEmail.sql" />
+    <Build Include="Stored Procedures\UpdateBatchLettersFed.sql" />
+    <Build Include="Tables\BankoReceiveAdditionalEvents.sql" />
+    <Build Include="Tables\BankoReceiveResponseOutput.sql" />
+    <Build Include="Tables\BankruptcyReport.sql" />
+    <Build Include="Tables\BatchEmail.sql" />
+    <Build Include="Tables\BatchLettersFed.sql" />
+    <Build Include="Tables\CentralizedPrintingBusinessUnitErrorKey.sql" />
+    <Build Include="Tables\CentralizedPrintingCompletion.sql" />
+    <Build Include="Tables\CentralizedPrintingFax.sql" />
+    <Build Include="Tables\CentralizedPrintingFaxError.sql" />
+    <Build Include="Tables\CentralizedPrintingLetter.sql" />
+    <Build Include="Tables\CentralizedPrintingLetterError.sql" />
+    <Build Include="Tables\CheckByPhone.sql" />
+    <Build Include="Tables\CostCenterPrinting.sql" />
+    <Build Include="Tables\CreateFsaReports.sql" />
+    <Build Include="Tables\DemographicUpdateArc.sql" />
+    <Build Include="Tables\DemographicUpdateQueue.sql" />
+    <Build Include="Tables\DemographicUpdateRejectReason.sql" />
+    <Build Include="Tables\DemographicUpdateSystemCodes.sql" />
+    <Build Include="Tables\DocIdDocument.sql" />
+    <Build Include="Tables\DocIdProcessed.sql" />
+    <Build Include="Tables\DTX7LDueDilLetters.sql" />
+    <Build Include="Tables\DTX7LExpiredLetters.sql" />
+    <Build Include="Tables\DueDateChange.sql" />
+    <Build Include="Tables\EMCP_DAT_EmailCampaigns.sql" />
+    <Build Include="Tables\EMCP_DAT_SPEMLIDs.sql" />
+    <Build Include="Tables\GENR_DAT_Credentials.sql" />
+    <Build Include="Tables\IvrRequestProcessingErrors.sql" />
+    <Build Include="Tables\IvrRequestTracking.sql" />
+    <Build Include="Tables\LoanServicingLetters.sql" />
+    <Build Include="Tables\LocateQueues.sql" />
+    <Build Include="Tables\LocateTypes.sql" />
+    <Build Include="Tables\PaymentHistoryPaymentTypes.sql" />
+    <Build Include="Tables\PaymentHistoryTransactionTypes.sql" />
+    <Build Include="Tables\Phone_Consent_Arcs.sql" />
+    <Build Include="Tables\PhoneConsentUpdate.sql" />
+    <Build Include="Tables\QueueBuilderFile.sql" />
+    <Build Include="Tables\ReturnMail.sql" />
+    <Build Include="Tables\SSRS_DAT_ContactInfo.sql" />
+    <Build Include="comment_audit\Tables\AgentUtIds_2.sql" />
+    <Build Include="comment_audit\Tables\Agents_2.sql" />
+    <Build Include="log\Stored Procedures\NotificationInsert_2.sql" />
+    <Build Include="comment_audit\Stored Procedures\GetAgentsByUtId_2.sql" />
+    <Build Include="comment_audit\Stored Procedures\GetAgentsByFullName_2.sql" />
+    <Build Include="comment_audit\Stored Procedures\DeleteAgent_2.sql" />
+    <Build Include="Stored Procedures\ArcAdd_AddLoanSequenceSelection.sql" />
+    <Build Include="Stored Procedures\ArcAdd_AddRecord.sql" />
+    <Build Include="Stored Procedures\ArcAdd_GetNextArc.sql" />
+    <Build Include="Tables\ArcLoanSequenceSelection.sql" />
+    <Build Include="Tables\ArcType.sql" />
+    <Build Include="Tables\ArcLoanProgramSelection.sql" />
+    <Build Include="Stored Procedures\ArcAdd_AddLoanProgramSelection.sql" />
+    <Build Include="User Defined Types\LoanProgramRecords.sql" />
+    <Build Include="User Defined Types\LoanSequenceRecords.sql" />
+    <Build Include="Stored Procedures\ArcAdd_GetArcTypes.sql" />
+    <Build Include="Stored Procedures\ArcAdd_GetLoanSequenceRecords.sql" />
+    <Build Include="Stored Procedures\ArcAdd_GetLoanProgramRecords.sql" />
+    <Build Include="print\Tables\PrintProcessing.sql" />
+    <Build Include="print\Tables\_BulkLoad.sql" />
+    <Build Include="print\Stored Procedures\LoadData.sql" />
+    <Build Include="Security\print.sql" />
+    <Build Include="print\Stored Procedures\CheckFileProcessed.sql" />
+    <Build Include="print\Stored Procedures\SetEcorrDocumentCreatedAt.sql" />
+    <Build Include="print\Stored Procedures\GetPendingAccountsForScript.sql" />
+    <Build Include="print\Stored Procedures\GetFileNamesForScript.sql" />
+    <Build Include="print\Stored Procedures\SetImagedAt.sql" />
+    <Build Include="print\PrintProcessIdsTable.sql" />
+    <Build Include="Tables\SystemLetterExclusions.sql" />
+    <Build Include="Tables\ArcAddProcessing.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - Developers DBOwner Access.sql" />
+    <Build Include="Security\!UHEAASSRS.sql" />
+    <Build Include="Tables\SystemLetterExclusionReasons.sql" />
+    <Build Include="Stored Procedures\GetArcAddCount.sql" />
+    <Build Include="Stored Procedures\ArcAdd_AddLnSeqRecsFromString.sql" />
+    <Build Include="Stored Procedures\ArcAdd_AddLnProgRecsFromString.sql" />
+    <Build Include="print\Stored Procedures\Delete_BulkLoad.sql" />
+    <Build Include="scra\scra.sql" />
+    <Build Include="Tables\ACHReview.sql" />
+    <Build Include="Stored Procedures\ACHReviewGetAccounts.sql" />
+    <Build Include="Stored Procedures\ACHReviewMarkAccoutProcessed.sql" />
+    <Build Include="Tables\ArcResponseCodes.sql" />
+    <Build Include="Noble\Stored Procedures\InsertNobleContactCalls.sql" />
+    <Build Include="scra\Tables\ActiveDuty.sql" />
+    <Build Include="scra\Tables\Borrowers.sql" />
+    <Build Include="scra\Store Procedures\GetActiveDutyBeginDate.sql" />
+    <Build Include="scra\Store Procedures\GetActiveDutyEndDate.sql" />
+    <Build Include="scra\Store Procedures\GetBorrowerId.sql" />
+    <Build Include="Noble\Tables\CornerStoneContactCalls.sql" />
+    <Build Include="Stored Procedures\GetDueDateChangeRecordCount.sql" />
+    <Build Include="Stored Procedures\GetNextDueDateChangeRecord.sql" />
+    <Build Include="Stored Procedures\MarkDueDateAsProcessed.sql" />
+    <Build Include="Stored Procedures\UpdateDueDateChangeSuccess.sql" />
+    <Build Include="Security\UHEAA_SQL - OPSDEV - All Databases RO.sql" />
+    <Build Include="Security\jryan.sql" />
+    <Build Include="Stored Procedures\PopulateScraTables.sql" />
+    <Build Include="Stored Procedures\SetImagedAt.sql" />
+    <Build Include="Stored Procedures\testTableSproc.sql" />
+    <Build Include="Tables\NTISReturnContactInfo.sql" />
+    <Build Include="Stored Procedures\GetNTISReturnInfo.sql" />
+    <Build Include="Tables\NTISFCFEDRunHistory.sql" />
+    <Build Include="Stored Procedures\GetRunHistoryForNTISFCFED.sql" />
+    <Build Include="Stored Procedures\InsertNTISFCFEDRunRecord.sql" />
+    <Build Include="Tables\DialerCampaigns.sql" />
+    <Build Include="Stored Procedures\GetDialerCampaigns.sql" />
+    <Build Include="fp\Tables\FileProcessing.sql">
+      <AnsiNulls>On</AnsiNulls>
+    </Build>
+    <Build Include="fp\Tables\FileHeaders.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="fp\Tables\DocIds.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="fp\Tables\Arcs.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="fp\Tables\_BulkLoad.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="fp\Tables\ScriptFiles.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="fp\Tables\LineData.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="fp\Tables\Letters.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="fp\Stored Procedures\SetProcessedAt.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\LoadData.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\GetLineDataForAccount.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\Delete_BulkLoad.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="fp\Stored Procedures\CheckFileProcessed.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Security\fp.sql" />
+    <Build Include="fp\Stored Procedures\GetFileNamesForScript.sql" />
+    <Build Include="print\Stored Procedures\GetBulkLoadCount.sql" />
+    <Build Include="fp\Stored Procedures\GetBulkLoadCount.sql" />
+    <Build Include="fp\Stored Procedures\GetAndUpdateUnprocessedRecord.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="scra\Store Procedures\Get0MData.sql" />
+    <Build Include="scra\Tables\BenefitSource.sql" />
+    <Build Include="billing\billing.sql" />
+    <Build Include="billing\Tables\BillData.sql" />
+    <Build Include="billing\Tables\BillingHeader.sql" />
+    <Build Include="billing\Tables\FontType.sql" />
+    <Build Include="billing\Tables\SpecialMessages.sql" />
+    <Build Include="billing\Stored Procedures\AddBulkLoadIdField.sql" />
+    <Build Include="billing\Stored Procedures\CheckFileProcessed.sql" />
+    <Build Include="billing\Stored Procedures\Delete_BulkLoad.sql" />
+    <Build Include="billing\Stored Procedures\GetBillData.sql" />
+    <Build Include="billing\Stored Procedures\GetBulkLoadCount.sql" />
+    <Build Include="billing\Stored Procedures\GetFileNamesForScript.sql" />
+    <Build Include="billing\Stored Procedures\GetFontFromId.sql" />
+    <Build Include="billing\Stored Procedures\GetHeader.sql" />
+    <Build Include="billing\Stored Procedures\GetLineDataForAccount.sql" />
+    <Build Include="billing\Stored Procedures\GetPendingAccountsForScript.sql" />
+    <Build Include="billing\Stored Procedures\GetSpecialMessages.sql" />
+    <Build Include="billing\Stored Procedures\LoadData.sql" />
+    <Build Include="billing\Stored Procedures\SetArcAddedAt.sql" />
+    <Build Include="billing\Stored Procedures\SetEcorrDocumentCreatedAt.sql" />
+    <Build Include="billing\Stored Procedures\SetImagedAt.sql" />
+    <Build Include="billing\Stored Procedures\SetPrintedAt.sql" />
+    <Build Include="REPAYE\Tables\TopDenialReasons.sql" />
+    <Build Include="REPAYE\Tables\ServicerVolume.sql" />
+    <Build Include="Security\REPAYE.sql" />
+    <Build Include="Functions\START_OF_WEEK.sql" />
+    <Build Include="fp\Stored Procedures\GetPendingAccountsForScript.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\OPSInsertARCs.sql" />
+    <Build Include="fp\Tables\EcorrCategories.sql" />
+    <Build Include="fp\Stored Procedures\GetFileHeader.sql" />
+    <Build Include="quecomplet\quecomplet.sql" />
+    <Build Include="quecomplet\Queues.sql" />
+    <Build Include="quecomplet\GetNextQueue.sql" />
+    <Build Include="quecomplet\UpdateProcessedAt.sql" />
+    <Build Include="quecomplet\GetRecordsToProcessCount.sql" />
+    <Build Include="quecomplet\CleanUpRecords.sql" />
+    <Build Include="quecomplet\ActionResponses.sql" />
+    <Build Include="quecomplet\TaskStatuses.sql" />
+    <Build Include="Tables\DTX7LDeletedRecords.sql" />
+    <Build Include="Stored Procedures\DTX7LInsertDeletedRecord.sql" />
+    <Build Include="Stored Procedures\DTX7LMarkRecordProcessed.sql" />
+    <Build Include="peps\Tables\CLOSURE.sql" />
+    <Build Include="peps\Tables\OTHERADD.sql" />
+    <Build Include="peps\Tables\SCHIDS.sql" />
+    <Build Include="peps\Tables\PROGRAM.sql" />
+    <Build Include="peps\Tables\COA.sql" />
+    <Build Include="peps\Tables\DETAIL.sql" />
+    <Build Include="peps\Tables\CONTACT.sql" />
+    <Build Include="Security\peps.sql" />
+    <Build Include="peps\Stored Procedures\GetAffiliationData.sql" />
+    <Build Include="peps\Stored Procedures\GetClosureData.sql" />
+    <Build Include="peps\Stored Procedures\GetContactData.sql" />
+    <Build Include="peps\Stored Procedures\GetDetailData.sql" />
+    <Build Include="peps\Stored Procedures\GetIdentiferData.sql" />
+    <Build Include="peps\Stored Procedures\GetOtherAddressData.sql" />
+    <Build Include="peps\Stored Procedures\GetProgramData.sql" />
+    <Build Include="peps\Stored Procedures\UpdateAffiliationProcessed.sql" />
+    <Build Include="peps\Stored Procedures\UpdateClosureProcessed.sql" />
+    <Build Include="peps\Stored Procedures\UpdateContactProcessed.sql" />
+    <Build Include="peps\Stored Procedures\UpdateDetailProcessed.sql" />
+    <Build Include="peps\Stored Procedures\UpdateIdentifierProcessed.sql" />
+    <Build Include="peps\Stored Procedures\UpdateOtherAddressProcessed.sql" />
+    <Build Include="peps\Stored Procedures\UpdateProgramProcessed.sql" />
+    <Build Include="smbalwo\smbalwo.sql" />
+    <Build Include="smbalwo\LoanWriteOffs.sql" />
+    <Build Include="smbalwo\GetLoansFromWarehouse.sql" />
+    <Build Include="smbalwo\MarkRecordAsProcessed.sql" />
+    <Build Include="smbalwo\GetBorrowersForProcessing.sql" />
+    <Build Include="smbalwo\GetLoansForBorrower.sql" />
+    <Build Include="quecomplet\AddQueue.sql" />
+    <Build Include="Stored Procedures\spCheckByPhone_SetFileName.sql" />
+    <Build Include="Stored Procedures\PopulateScraTables_CR3666.sql" />
+    <Build Include="print\Tables\ArcLoanHeaderMapping.sql" />
+    <Build Include="print\Tables\Arcs.sql" />
+    <Build Include="print\Tables\ArcScriptDataMapping.sql" />
+    <Build Include="print\Tables\BillingFileHeaderData.sql" />
+    <Build Include="print\Tables\Comments.sql" />
+    <Build Include="print\Tables\DocIds.sql" />
+    <Build Include="print\Tables\FileHeaders.sql" />
+    <Build Include="print\Tables\HeaderNames.sql" />
+    <Build Include="print\Tables\Letters.sql" />
+    <Build Include="print\Tables\ScriptData.sql" />
+    <Build Include="print\Stored Procedures\GetAllScriptsForProcessing.sql" />
+    <Build Include="print\Stored Procedures\GetArcData.sql" />
+    <Build Include="print\Stored Procedures\GetBillingLetterIds.sql" />
+    <Build Include="print\Stored Procedures\GetDocIds.sql" />
+    <Build Include="print\Stored Procedures\GetHeadersForArcs.sql" />
+    <Build Include="print\Stored Procedures\GetNextScriptForProcessing.sql" />
+    <Build Include="print\Stored Procedures\InsertPrintData.sql" />
+    <Build Include="print\Stored Procedures\LoadBillingData_1.sql" />
+    <Build Include="print\Stored Procedures\LoadPrintData.sql" />
+    <Build Include="print\Stored Procedures\SetArcAddComplete.sql" />
+    <Build Include="print\Stored Procedures\SetArcAddedAt.sql" />
+    <Build Include="print\Stored Procedures\SetEcorrDocumentCreatedAtWithTable.sql" />
+    <Build Include="print\Stored Procedures\SetImagedAtWithTable.sql" />
+    <Build Include="print\Stored Procedures\SetImagingComplete.sql" />
+    <Build Include="print\Stored Procedures\SetLastProcessed.sql" />
+    <Build Include="print\Stored Procedures\SetPrintedAt.sql" />
+    <Build Include="print\Stored Procedures\SetPrintingComplete.sql" />
+    <Build Include="print\Stored Procedures\SetPrintingCompleteWithTable.sql" />
+    <Build Include="print\Stored Procedures\UpdatePrinted.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PublishProfiles\OPSDEV.publish.xml" />
+    <None Include="Assemblies\CLS.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SplitAndRemoveQuotes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CLS.refactorlog" />
+  </ItemGroup>
+</Project>

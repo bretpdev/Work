@@ -1,0 +1,120 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+LIBNAME  DUSTER  REMOTE  SERVER=DUSTER  SLIBREF=WORK;
+
+FILENAME REPORTZ "&RPTLIB/ULWQ38.LWQ38RZ";
+FILENAME REPORT2 "&RPTLIB/ULWQ38.LWQ38R2";
+
+RSUBMIT;
+/*LIBNAME OLWHRM1 DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=DLGSUTWH);
+	CREATE TABLE LN10 AS
+		SELECT 
+			*
+		FROM 
+			CONNECTION TO DB2 
+				(
+					SELECT
+						BF_SSN,
+						LN_SEQ,
+						LA_CUR_PRI,
+						IC_LON_PGM
+					FROM
+						OLWHRM1.LN10_LON
+					ORDER BY
+						IC_LON_PGM
+				)
+	;
+	DISCONNECT FROM DB2;
+
+	CREATE TABLE PORT AS
+		SELECT
+			COUNT(DISTINCT CATS(BF_SSN,PUT(LN_SEQ,Z3.))) AS LNS,
+			SUM(COALESCE(LA_CUR_PRI,0)) AS PRI,
+			IC_LON_PGM
+		FROM
+			LN10
+		GROUP BY
+			IC_LON_PGM
+	;
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+QUIT;
+
+ENDRSUBMIT;
+DATA PORT; SET DUSTER.PORT; RUN;
+
+PROC PRINTTO PRINT=REPORT2 NEW;
+RUN;
+
+OPTIONS ORIENTATION = PORTRAIT;
+OPTIONS PS=52 LS=96;
+TITLE 'Month End Loan Totals by Loan Program';
+FOOTNOTE1  	"THIS DOCUMENT MAY CONTAIN BORROWERS' SENSITIVE INFORMATION THAT UHEAA HAS PLEDGED TO PROTECT.";
+FOOTNOTE2	'PLEASE TAKE APPROPRIATE PRECAUTIONS TO SAFEGUARD THIS INFORMATION.';
+FOOTNOTE3	;
+FOOTNOTE4   'JOB = UTLWQ38  	 REPORT = ULWQ38.LWQ38R2';
+
+PROC CONTENTS DATA=PORT OUT=EMPTYSET NOPRINT;
+DATA _NULL_;
+	SET EMPTYSET;
+	FILE PRINT;
+
+	IF  NOBS=0 AND _N_ =1 THEN 
+		DO;
+			PUT // 132*'-';
+			PUT      //////
+				@51 '**** NO OBSERVATIONS FOUND ****';
+			PUT //////
+				@57 '-- END OF REPORT --';
+			PUT //////////////
+				@46 "JOB = UTLWQ38  	 REPORT = ULWQ38.LWQ38R2";
+		END;
+	RETURN;
+RUN;
+
+PROC PRINT NOOBS SPLIT='/' DATA=PORT WIDTH=UNIFORM WIDTH=MIN LABEL;
+	FORMAT
+		PRI DOLLAR18.2
+		LNS COMMA8.
+	;
+	VAR 
+		IC_LON_PGM
+		PRI
+		LNS
+	;
+	LABEL
+		IC_LON_PGM = 'Loan Type'
+		PRI = 'Total Principal Balance'
+		LNS = '# Loans'
+	;
+RUN;
+
+PROC PRINTTO;
+RUN;
+
+/*for testing*/
+/*DATA LN10; SET DUSTER.LN10; RUN*/
+/*PROC EXPORT*/
+/*		DATA=LN10*/
+/*		OUTFILE='T:\UTLWQ38 DETAIL.XLSX'*/
+/*		REPLACE;*/
+/*RUN;*/

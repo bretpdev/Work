@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[ZDEL_CL10_CLM_PCL] (
+    [BF_SSN]         VARCHAR (9) NOT NULL,
+    [LN_SEQ_CLM_PCL] SMALLINT    NOT NULL
+);
+

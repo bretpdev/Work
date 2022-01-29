@@ -1,0 +1,13 @@
+﻿GRANT SELECT
+    ON SCHEMA::[INFORMATION_SCHEMA] TO [UHEAA\UHEAAUsers];
+
+
+GO
+GRANT EXECUTE
+    ON SCHEMA::[dbo] TO [testLogin];
+
+
+GO
+GRANT EXECUTE
+    ON SCHEMA::[dbo] TO [db_executor];
+

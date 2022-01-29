@@ -1,0 +1,181 @@
+﻿
+CREATE VIEW [FsaInvMet].Monthly_Military
+
+AS
+
+--Military indicator
+SELECT DISTINCT 
+	LN10.BF_SSN,
+	LN10.LN_SEQ, 
+	1 AS ActiveMilitaryIndicator
+FROM
+	CDW..LN10_LON LN10
+	INNER JOIN CDW..DW01_DW_CLC_CLU DW01
+		ON DW01.BF_SSN = LN10.BF_SSN
+		AND DW01.LN_SEQ = LN10.LN_SEQ
+	LEFT JOIN CDW..LN72_INT_RTE_HST LN72 --Allow for S types as well as M's
+		ON LN72.BF_SSN = LN10.BF_SSN
+		AND LN72.LN_SEQ = LN10.LN_SEQ
+		AND LN72.LC_STA_LON72 = 'A'
+		AND DATEADD(D,-(DAY(GETDATE())),GETDATE()) BETWEEN LN72.LD_ITR_EFF_BEG AND LN72.LD_ITR_EFF_END /*last day prev month*/
+	LEFT JOIN
+	(
+		SELECT DISTINCT
+			DW01.BF_SSN
+		FROM
+			CDW..DW01_DW_CLC_CLU DW01
+			INNER JOIN CDW..LN50_BR_DFR_APV LN50
+				ON DW01.BF_SSN = LN50.BF_SSN
+				AND DW01.LN_SEQ = LN50.LN_SEQ
+				AND LN50.LC_STA_LON50 = 'A'
+				AND DATEADD(D,-(DAY(GETDATE())),GETDATE()) BETWEEN LN50.LD_DFR_BEG AND LN50.LD_DFR_END /*last day prev month*/
+			INNER JOIN CDW..DF10_BR_DFR_REQ DF10
+				ON DW01.BF_SSN = DF10.BF_SSN
+				AND LN50.LF_DFR_CTL_NUM = DF10.LF_DFR_CTL_NUM
+				AND DF10.LC_DFR_STA = 'A'
+				AND DF10.LC_STA_DFR10 = 'A'
+				AND DF10.LC_DFR_TYP IN('38','40')
+		WHERE 
+			DW01.WC_DW_LON_STA = '04'
+	) DefermentDate 
+		ON DefermentDate.BF_SSN = LN10.BF_SSN
+	LEFT JOIN
+    (
+        SELECT
+            LN16.BF_SSN,
+            MAX(LN16.LN_DLQ_MAX) AS LN_DLQ_MAX
+        FROM 
+            CDW..LN16_LON_DLQ_HST LN16
+        WHERE 
+            LN16.LC_STA_LON16 = '1'
+            AND LN16.LN_DLQ_MAX >= 300
+        GROUP BY 
+            LN16.BF_SSN
+    ) LN16
+        ON LN10.BF_SSN = LN16.BF_SSN
+	INNER JOIN 
+	(
+		SELECT 
+			AY10.BF_SSN,
+			COALESCE(MilitaryDates.BEG_DTE_T, LN72.LD_ITR_EFF_BEG, DefermentDate.LD_DFR_BEG) AS BEGIN_DATE,
+			COALESCE(MilitaryDates.END_DTE_T, LN72.LD_ITR_EFF_END, DefermentDate.LD_DFR_END) AS END_DATE,
+			COALESCE(MilitaryDates.END_DTE_T, LN72.LD_ITR_EFF_END, DefermentDate.LD_DFR_END) AS VALID_END_DATE
+		FROM
+			CDW..AY10_BR_LON_ATY AY10
+			INNER JOIN CDW..AY20_ATY_TXT AY20
+				ON AY10.BF_SSN = AY20.BF_SSN
+				AND AY10.LN_ATY_SEQ = AY20.LN_ATY_SEQ
+			INNER JOIN CDW..PD10_PRS_NME PD10
+				ON PD10.DF_PRS_ID = AY10.BF_SSN
+			INNER JOIN
+			(
+				SELECT
+					AY10.BF_SSN,
+					MAX(AY10.LN_ATY_SEQ) AS LN_ATY_SEQ
+				FROM
+					CDW..AY10_BR_LON_ATY AY10
+				WHERE
+					AY10.PF_REQ_ACT = 'ASCRA'
+				GROUP BY
+					AY10.BF_SSN
+			) MaxAscra
+				ON MaxAscra.BF_SSN = AY10.BF_SSN
+				AND MaxAscra.LN_ATY_SEQ = AY10.LN_ATY_SEQ
+			LEFT JOIN 
+			(
+				SELECT
+					AY10.BF_SSN,
+					MAX(AY10.LN_ATY_SEQ) AS LN_ATY_SEQ
+				FROM 
+					CDW..AY10_BR_LON_ATY AY10
+				WHERE 
+					AY10.PF_REQ_ACT = 'ISCRA'
+				GROUP BY 
+					AY10.BF_SSN
+			) MaxIscra --This join is to verify that the borrower has an ASCRA more recently than any ISCRA they might have
+				ON AY10.BF_SSN = MaxIscra.BF_SSN
+			LEFT JOIN CDW..LN72_INT_RTE_HST LN72
+				ON AY10.BF_SSN = LN72.BF_SSN
+				AND DATEADD(D,-(DAY(GETDATE())),GETDATE()) BETWEEN LN72.LD_ITR_EFF_BEG AND LN72.LD_ITR_EFF_END /*last day prev month*/
+				AND LN72.LC_STA_LON72 = 'A'
+				AND LN72.LC_INT_RDC_PGM = 'M'
+			LEFT JOIN
+			(
+				SELECT DISTINCT
+					DW01.BF_SSN,
+					LN50.LD_DFR_BEG,
+					LN50.LD_DFR_END,
+					ROW_NUMBER() OVER (PARTITION BY DW01.BF_SSN ORDER BY PriorityNumber) [DefermentPriority]
+				FROM
+					CDW..DW01_DW_CLC_CLU DW01
+					INNER JOIN CDW..LN50_BR_DFR_APV LN50
+						ON DW01.BF_SSN = LN50.BF_SSN
+						AND DW01.LN_SEQ = LN50.LN_SEQ
+						AND LN50.LC_STA_LON50 = 'A'
+						AND DATEADD(D,-(DAY(GETDATE())),GETDATE()) BETWEEN LN50.LD_DFR_BEG AND LN50.LD_DFR_END /*last day prev month*/
+					INNER JOIN 
+					(
+						SELECT
+							DF10.BF_SSN,
+							DF10.LF_DFR_CTL_NUM,
+							CASE 
+								WHEN DF10.LC_DFR_TYP = '38' THEN 1
+								WHEN DF10.LC_DFR_TYP = '40' THEN 2
+							END [PriorityNumber]
+						FROM
+							CDW..DF10_BR_DFR_REQ DF10
+						WHERE
+							DF10.LC_DFR_STA = 'A'
+							AND DF10.LC_STA_DFR10 = 'A'
+							AND DF10.LC_DFR_TYP IN('38','40')
+					) DF10
+						ON DW01.BF_SSN = DF10.BF_SSN
+						AND LN50.LF_DFR_CTL_NUM = DF10.LF_DFR_CTL_NUM 
+				WHERE 
+					DW01.WC_DW_LON_STA = '04'
+			) DefermentDate 
+				ON DefermentDate.BF_SSN = AY10.BF_SSN
+				AND DefermentDate.DefermentPriority = 1
+			LEFT JOIN
+			(
+				SELECT 
+					B.BorrowerAccountNumber AS DF_SPE_ACC_ID,
+					DTES.BEG_DTE_T,
+					COALESCE(DTES.END_DTE_T,'2099-01-01') AS END_DTE_T
+				FROM
+					CLS.scra.Borrowers B
+					INNER JOIN 
+					(
+						SELECT
+							B.BorrowerAccountNumber,
+							MIN(AD.BeginDate) AS BEG_DTE_T,
+							MAX(AD.EndDate) AS END_DTE_T
+						FROM
+							CLS.scra.Borrowers B
+							INNER JOIN CLS.scra.ActiveDuty AD
+								ON AD.BorrowerId = B.BorrowerId
+						GROUP BY
+							B.BorrowerAccountNumber
+					) DTES
+						ON B.BorrowerAccountNumber = DTES.BorrowerAccountNumber
+			) MilitaryDates
+				ON MilitaryDates.DF_SPE_ACC_ID = PD10.DF_SPE_ACC_ID
+		WHERE
+			AY10.PF_REQ_ACT = 'ASCRA'
+			AND
+			(
+				(MaxAscra.LN_ATY_SEQ > MaxIscra.LN_ATY_SEQ)
+				OR MaxIscra.BF_SSN IS NULL
+			)
+	) RAV --Required Arcs Validated
+		ON RAV.BF_SSN = LN10.BF_SSN
+WHERE
+	(COALESCE(LN10.LA_CUR_PRI,0) + COALESCE(DW01.WA_TOT_BRI_OTS,0)) > 0
+	AND LN10.LC_STA_LON10 = 'R'
+	AND
+	(
+		(LN72.LR_ITR = 0 AND LN72.LC_INT_RDC_PGM = 'S')
+		OR (LN72.LR_ITR <= 6 AND LN72.LC_INT_RDC_PGM = 'M')
+		OR (LN72.LR_ITR <= 6 AND LN10.LD_LON_1_DSB < RAV.BEGIN_DATE AND DATEADD(D,-(DAY(GETDATE())),GETDATE()) <= RAV.VALID_END_DATE) /*last day prev month*/
+		OR DefermentDate.BF_SSN IS NOT NULL
+	)

@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[AP37_APL_FIN] (
+    [AF_APL_ID]          VARCHAR (9)    NOT NULL,
+    [AC_APL_PRS_TYP]     CHAR (1)       NOT NULL,
+    [DF_PRS_ID]          VARCHAR (9)    NOT NULL,
+    [AN_NUM_DEP]         NUMERIC (2)    NULL,
+    [AC_SAL_RTE]         CHAR (1)       NOT NULL,
+    [AA_SAL]             NUMERIC (8, 2) NULL,
+    [AC_ADD_INC_1]       CHAR (1)       NOT NULL,
+    [AA_ADD_INC_1]       NUMERIC (8, 2) NULL,
+    [AX_ADD_INC_SRC_1]   VARCHAR (15)   NOT NULL,
+    [AC_ADD_INC_2]       CHAR (1)       NOT NULL,
+    [AX_ADD_INC_SRC_2]   VARCHAR (15)   NOT NULL,
+    [AA_ADD_INC_2]       NUMERIC (8, 2) NULL,
+    [AC_HSE]             CHAR (1)       NOT NULL,
+    [AA_HSE_PAY]         NUMERIC (8, 2) NULL,
+    [AA_CAR_PAY]         NUMERIC (8, 2) NULL,
+    [AA_HME_EQT_PAY]     NUMERIC (8, 2) NULL,
+    [AA_BNK_LON_PAY]     NUMERIC (8, 2) NULL,
+    [AA_EDU_LON_PAY]     NUMERIC (8, 2) NULL,
+    [AA_CCD_PAY]         NUMERIC (8, 2) NULL,
+    [AA_OTH_DET_PAY]     NUMERIC (8, 2) NULL,
+    [AF_LST_USR_AP37]    VARCHAR (8)    NOT NULL,
+    [AF_LST_DTS_AP37]    DATETIME2 (7)  NOT NULL,
+    [AR_DET_INC_RTO]     NUMERIC (5, 3) NULL,
+    [AA_TOT_RPT_EDU_DET] NUMERIC (9, 2) NULL,
+    CONSTRAINT [PK_AP37_APL_FIN] PRIMARY KEY CLUSTERED ([AF_APL_ID] ASC, [AC_APL_PRS_TYP] ASC, [DF_PRS_ID] ASC) WITH (FILLFACTOR = 95)
+);
+

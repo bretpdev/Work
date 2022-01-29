@@ -1,0 +1,36 @@
+﻿using System;
+using Uheaa.Common.DataAccess;
+using Uheaa.Common.Scripts;
+
+namespace <<NAMESPACE>>
+{
+    public class <<STARTING_CLASS>> : FedBatchScript
+    {
+		//TODO: Modify the following comment to reflect the recovery value(s) being used.
+		//Recovery value is the row index from the SAS DataTable.
+
+		//End-of-job fields are used as both array initializers and dictionary keys, so define them in consts.
+		//TODO: Update the fields to match the spec.
+		private const string EojTotalFromSas = "Total number of records in the SAS file";
+		private const string EojProcessed = "Number of records successfully processed";
+		private const string EojErrorQueue = "Number of records sent to error queue";
+		private const string EojErrorReport = "Number of records sent to error report";
+		private static readonly string[] EojFields = { EojTotalFromSas, EojProcessed, EojErrorQueue, EojErrorReport };
+		
+        public <<STARTING_CLASS>>(ReflectionInterface ri)
+	    : base(ri, DataAccessBase.Region.CornerStone, "<<SCRIPT_ID>>", "ERR_BU35", "EOJ_BU35", EojFields)
+        {
+			
+        }
+
+        public override void Main()
+        {
+			//TODO: Modify the startup message to describe the script's purpose.
+			StartupMessage("This script does something magical and revolutionary. Click OK to continue, or Cancel to quit.");
+			
+			//TODO: Fill in the script logic.
+
+			ProcessingComplete();
+        }
+    }
+}

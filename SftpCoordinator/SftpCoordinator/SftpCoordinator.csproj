@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{03D03C0E-DEFB-41BB-8F3F-F9BDB387A59E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SftpCoordinator</RootNamespace>
+    <AssemblyName>SftpCoordinator</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>X:\PADU\Applications\SftpCoordinator\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\key.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNetZip, Version=1.15.0.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.15.0\lib\net40\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Uheaa.Common">
+      <HintPath>..\..\CommonLibraries\Common\Common\bin\Debug\Uheaa.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Uheaa.Common.DataAccess">
+      <HintPath>..\..\CommonLibraries\Common\DataAccess\bin\Debug\Uheaa.Common.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Uheaa.Common.ProcessLogger">
+      <HintPath>..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\bin\Debug\Uheaa.Common.ProcessLogger.dll</HintPath>
+    </Reference>
+    <Reference Include="Uheaa.Common.WinForms">
+      <HintPath>..\..\CommonLibraries\Common\WinForms\bin\Debug\Uheaa.Common.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WinSCP">
+      <HintPath>..\..\CommonLibraries\Dependencies\WinSCP.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\ActivityLogDetail.cs" />
+    <Compile Include="DataAccess\DataAccess.cs" />
+    <Compile Include="DataAccess\ErrorReport.cs" />
+    <Compile Include="DataAccess\InvalidFile.cs" />
+    <Compile Include="DataAccess\PathType.cs" />
+    <Compile Include="DataAccess\ProjectFileDetail.cs" />
+    <Compile Include="DataAccess\RunHistory.cs" />
+    <Compile Include="DataAccess\RunHistoryDetail.cs" />
+    <Compile Include="Enums\PathTypeId.cs" />
+    <Compile Include="Enums\SettingId.cs" />
+    <Compile Include="Exceptions\DecryptionException.cs" />
+    <Compile Include="Exceptions\EncryptionException.cs" />
+    <Compile Include="Helpers\ArchiveHelper.cs" />
+    <Compile Include="Helpers\Builders.cs" />
+    <Compile Include="Helpers\GenericDirectory.cs" />
+    <Compile Include="Helpers\GenericFile.cs" />
+    <Compile Include="Helpers\FtpHelper.cs" />
+    <Compile Include="Helpers\GenericPath.cs" />
+    <Compile Include="Helpers\Renamer.cs" />
+    <Compile Include="Helpers\SearchPattern.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Processing\Coordinator.cs" />
+    <Compile Include="DataAccess\ActivityLog.cs" />
+    <Compile Include="DataAccess\Project.cs" />
+    <Compile Include="DataAccess\ProjectFile.cs" />
+    <Compile Include="DataAccess\Settings.cs" />
+    <Compile Include="Helpers\CryptographyHelper.cs" />
+    <Compile Include="Processing\FileJobInfo.cs" />
+    <Compile Include="Processing\FileOpResults.cs" />
+    <Compile Include="Processing\ProcessWrapper.cs" />
+    <Compile Include="Processing\Steps\CompressFile.cs" />
+    <Compile Include="Processing\Steps\CopyFileFromTemp.cs" />
+    <Compile Include="Processing\Steps\CopyFileToTemp.cs" />
+    <Compile Include="Processing\Steps\DecryptFile.cs" />
+    <Compile Include="Processing\Steps\EncryptFile.cs" />
+    <Compile Include="Processing\Steps\FileProcessStep.cs" />
+    <Compile Include="Processing\Steps\FixLineEndings.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Components\FormatBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\Components\FormatEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Components\FormatEditor.Designer.cs">
+      <DependentUpon>FormatEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PathTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PathTypesForm.Designer.cs">
+      <DependentUpon>PathTypesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ProjectsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ProjectsForm.Designer.cs">
+      <DependentUpon>ProjectsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ProjectSnapshot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ProjectSnapshot.Designer.cs">
+      <DependentUpon>ProjectSnapshot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RunHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RunHistoryForm.Designer.cs">
+      <DependentUpon>RunHistoryForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\FormatEditor.resx">
+      <DependentUpon>FormatEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PathTypesForm.resx">
+      <DependentUpon>PathTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ProjectsForm.resx">
+      <DependentUpon>ProjectsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ProjectSnapshot.resx">
+      <DependentUpon>ProjectSnapshot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RunHistoryForm.resx">
+      <DependentUpon>RunHistoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="WinSCP.notexe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>move  "$(TargetDir)WinSCP.notexe" "$(TargetDir)WinSCP.exe"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

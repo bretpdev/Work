@@ -1,0 +1,187 @@
+﻿CREATE PROCEDURE [dbo].[LoanDetail_Forb_Delete]
+	@LetterId VARCHAR(10),
+	@BF_SSN  VARCHAR(9),
+	@IsCoborrower BIT = 0,
+	@RN_ATY_SEQ_PRC INT
+AS
+BEGIN
+
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+DECLARE @PF_REQ_ACT VARCHAR(5) = (SELECT AC11.PF_REQ_ACT FROM AC11_ACT_REQ_LTR AC11 WHERE PF_LTR = @LetterId)
+
+IF @IsCoborrower = 0
+	BEGIN
+		SELECT
+			CASE WHEN Forb.LC_FOR_STA = 'D' THEN 'Denied'
+				 WHEN Forb.LC_STA_LON60 = 'I' then 'Delete'
+				 WHEN DATEDIFF(DAY, Forb.LD_CRT_REQ_FOR, Forb.LF_LST_DTS_FB10) = 0 THEN 'Add'
+				 WHEN DATEDIFF(DAY, Forb.LD_CRT_REQ_FOR, Forb.LF_LST_DTS_FB10) != 0 THEN 'Change'
+				 ELSE 'Delete'
+			END AS LetterAction,
+			ISNULL(FTD.Label, Forb.LC_FOR_TYP) AS LetterTypeCode,
+			CONVERT(VARCHAR(10),Forb.LD_FOR_BEG,101) AS BeginDate,
+			CONVERT(VARCHAR(10),Forb.LD_FOR_END,101) AS EndDate,
+			LN10.LN_SEQ,
+			ISNULL(FT.Label, LN10.IC_LON_PGM) AS LoanProgram
+		FROM
+			LN10_LON LN10
+			INNER JOIN
+			(
+				SELECT
+					LN85.BF_SSN,
+					LN85.LN_SEQ
+				FROM
+					LN85_LON_ATY LN85
+					INNER JOIN AY10_BR_LON_ATY AY10
+						ON AY10.BF_SSN = LN85.BF_SSN
+						AND AY10.LN_ATY_SEQ = LN85.LN_ATY_SEQ
+				WHERE   
+					AY10.PF_REQ_ACT = @PF_REQ_ACT
+					AND AY10.BF_SSN = @BF_SSN
+					AND AY10.LN_ATY_SEQ = @RN_ATY_SEQ_PRC
+					--Active flag ignored, as LT20 provides the exact record that is tied to this request
+			)LN85
+				ON LN85.BF_SSN = LN10.BF_SSN
+				AND LN85.LN_SEQ = LN10.LN_SEQ 
+			INNER JOIN
+			(
+				SELECT 
+					FB10.LC_FOR_TYP,
+					LN60.LD_FOR_BEG,
+					LN60.LD_FOR_END,
+					FB10.LD_CRT_REQ_FOR,
+					FB10.LF_LST_DTS_FB10,
+					LC_FOR_STA,
+					LC_STA_LON60,
+					LN60.BF_SSN,
+					LN60.LN_SEQ
+				FROM
+					FB10_BR_FOR_REQ FB10
+					INNER JOIN LN60_BR_FOR_APV LN60
+						ON LN60.BF_SSN = FB10.BF_SSN
+						AND LN60.LF_FOR_CTL_NUM = FB10.LF_FOR_CTL_NUM
+					INNER JOIN 
+					(
+						SELECT
+							MAX(LN60.LD_STA_LON60) AS MaxLN60,
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+						FROM
+							LN60_BR_FOR_APV LN60
+						GROUP BY
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+					) LN60Max
+						ON LN60.BF_SSN = LN60Max.BF_SSN
+						AND LN60.LN_SEQ = LN60Max.LN_SEQ
+						AND LN60Max.MaxLN60 = LN60.LD_STA_LON60
+				WHERE
+					FB10.LC_FOR_STA = 'A'
+			) Forb
+				ON Forb.BF_SSN = LN10.BF_SSN
+				AND Forb.LN_SEQ = LN10.LN_SEQ
+			LEFT JOIN FormatTranslation FTD
+				ON FTD.Start = Forb.LC_FOR_TYP
+				AND FTD.FmtName = '$FORSTA'
+			LEFT JOIN FormatTranslation FT
+				ON FT.Start = LN10.IC_LON_PGM
+				AND FT.FmtName = '$LNPROG'
+		WHERE
+			LN10.BF_SSN = @BF_SSN
+		ORDER BY 
+			LN10.LN_SEQ
+	END
+ELSE
+	BEGIN
+		SELECT
+			CASE WHEN Forb.LC_FOR_STA = 'D' THEN 'Denied'
+				 WHEN Forb.LC_STA_LON60 = 'I' then 'Delete'
+				 WHEN DATEDIFF(DAY, Forb.LD_CRT_REQ_FOR, Forb.LF_LST_DTS_FB10) = 0 THEN 'Add'
+				 WHEN DATEDIFF(DAY, Forb.LD_CRT_REQ_FOR, Forb.LF_LST_DTS_FB10) != 0 THEN 'Change'
+				 ELSE 'Delete'
+			END AS LetterAction,
+			ISNULL(FTD.Label, Forb.LC_FOR_TYP) AS LetterTypeCode,
+			CONVERT(VARCHAR(10),Forb.LD_FOR_BEG,101) AS BeginDate,
+			CONVERT(VARCHAR(10),Forb.LD_FOR_END,101) AS EndDate,
+			LN10.LN_SEQ,
+			ISNULL(FT.Label, LN10.IC_LON_PGM) AS LoanProgram
+		FROM
+			LN10_LON LN10
+			INNER JOIN LN20_EDS LN20
+				ON LN20.BF_SSN = LN10.BF_SSN
+				AND LN20.LN_SEQ = LN10.LN_SEQ
+				AND LN20.LC_STA_LON20 = 'A'
+				AND LN20.LC_EDS_TYP = 'M' --Coborrower
+			INNER JOIN
+			(
+				SELECT
+					LN85.BF_SSN,
+					LN85.LN_SEQ
+				FROM
+					LN85_LON_ATY LN85
+					INNER JOIN AY10_BR_LON_ATY AY10
+						ON AY10.BF_SSN = LN85.BF_SSN
+						AND AY10.LN_ATY_SEQ = LN85.LN_ATY_SEQ
+					INNER JOIN LN20_EDS LN20
+						ON LN20.BF_SSN = LN85.BF_SSN
+						AND LN20.LN_SEQ = LN85.LN_SEQ
+						AND LN20.LC_STA_LON20 = 'A'
+						AND LN20.LC_EDS_TYP = 'M'
+				WHERE   
+					AY10.PF_REQ_ACT = @PF_REQ_ACT
+					AND LN20.LF_EDS = @BF_SSN
+					AND AY10.LN_ATY_SEQ = @RN_ATY_SEQ_PRC
+					--Active flag ignored, as LT20 provides the exact record that is tied to this request
+			)LN85
+				ON LN85.BF_SSN = LN10.BF_SSN
+				AND LN85.LN_SEQ = LN10.LN_SEQ 
+			INNER JOIN
+			(
+				SELECT 
+					FB10.LC_FOR_TYP,
+					LN60.LD_FOR_BEG,
+					LN60.LD_FOR_END,
+					FB10.LD_CRT_REQ_FOR,
+					FB10.LF_LST_DTS_FB10,
+					LC_FOR_STA,
+					LC_STA_LON60,
+					LN60.BF_SSN,
+					LN60.LN_SEQ
+				FROM
+					FB10_BR_FOR_REQ FB10
+					INNER JOIN LN60_BR_FOR_APV LN60
+						ON LN60.BF_SSN = FB10.BF_SSN
+						AND LN60.LF_FOR_CTL_NUM = FB10.LF_FOR_CTL_NUM
+					INNER JOIN 
+					(
+						SELECT
+							MAX(LN60.LD_STA_LON60) AS MaxLN60,
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+						FROM
+							LN60_BR_FOR_APV LN60
+						GROUP BY
+							LN60.BF_SSN,
+							LN60.LN_SEQ
+					) LN60Max
+						ON LN60.BF_SSN = LN60Max.BF_SSN
+						AND LN60.LN_SEQ = LN60Max.LN_SEQ
+						AND LN60Max.MaxLN60 = LN60.LD_STA_LON60
+				WHERE
+					FB10.LC_FOR_STA = 'A'
+			) Forb
+				ON Forb.BF_SSN = LN10.BF_SSN
+				AND Forb.LN_SEQ = LN10.LN_SEQ
+			LEFT JOIN FormatTranslation FTD
+				ON FTD.Start = Forb.LC_FOR_TYP
+				AND FTD.FmtName = '$FORSTA'
+			LEFT JOIN FormatTranslation FT
+				ON FT.Start = LN10.IC_LON_PGM
+				AND FT.FmtName = '$LNPROG'
+		WHERE
+			LN20.LF_EDS = @BF_SSN
+		ORDER BY 
+			LN10.LN_SEQ
+	END
+END

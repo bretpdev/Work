@@ -1,0 +1,33 @@
+﻿CREATE PROCEDURE [dbo].[GetFinalBillRecords]
+
+AS
+	SELECT
+		RN_SEQ_LTR_CRT_PRC AS LetterSeq,
+		LT20.DF_SPE_ACC_ID as AccountNumber,
+		RM_DSC_LTR_PRC as LetterId,
+		RF_SBJ_PRC as Ssn,
+		RX_REQ_ARA_1_PRC as TextArea,
+		RT_RUN_SRT_DTS_PRC as RunTime,
+		CASE
+			WHEN DW01.DF_SPE_ACC_ID IS NULL THEN 0
+			ELSE 1
+		END AS InvalidLoanStatus
+	
+	FROM
+		LT20_LetterRequests LT20
+	LEFT JOIN 
+		(
+			SELECT DISTINCT
+				DF_SPE_ACC_ID
+			FROM
+				DW01_Loan
+			WHERE
+				WC_DW_LON_STA IN ('17','19','21')
+		) DW01
+		ON DW01.DF_SPE_ACC_ID = LT20.DF_SPE_ACC_ID
+	WHERE
+		PrintedAt IS NULL
+		AND InactivatedAt IS NULL
+		AND RM_DSC_LTR_PRC = 'TS06BFNBIL'
+		
+RETURN 0

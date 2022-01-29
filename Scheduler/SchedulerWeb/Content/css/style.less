@@ -1,0 +1,77 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0px;
+}
+#navbar {
+    @height: 35px;
+    height: @height;
+    font-size: @height - 5px;
+    color: #2165af;
+    background-color: #f2f2f2;
+    border-bottom: solid 3px #555;
+    padding-left: 10px;
+    padding-top: 10px;
+    img {
+        height: @height;
+        margin-right: 10px;
+        margin-bottom: -5px;
+    }
+    >div {
+        line-height: @height;
+    }
+}
+.request-table {
+    margin: 10px;
+    border-collapse: collapse;
+    th {
+        background-color: #2165af;
+        color: white;
+        font-size: 20px;
+    }
+    td, th {
+        border: solid 1px black;
+        padding: 5px;
+    }
+    .pty-col { width: 35px; }
+    .type-col { width: 50px; }
+    .id-col { width: 50px; }
+    .name-col { width: 600px; }
+    .status-col { width: 200px; }
+    .updown { width: 40px; }
+    .time-col { width: 70px; }
+}
+
+.updown {
+    display: none;
+    .up, .down {
+        cursor: pointer;
+        height: 20px;
+    }
+    .down {
+        float: right;
+    }
+}
+
+.run-info {
+    display: none;
+    font-size: 16px;
+    float: right;
+    cursor: pointer;
+    span {
+        text-decoration: underline;
+        color: #555;
+        &:hover {
+            color: #808080;
+        }
+    }
+}
+
+.table-header {
+    background-color: #333;
+}
+
+.assign-court {
+    display: none;
+    text-decoration: underline;
+    cursor: pointer;
+}

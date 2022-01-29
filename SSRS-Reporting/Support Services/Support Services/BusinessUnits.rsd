@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description />
+  <DataSet Name="BusinessUnits">
+    <Query>
+      <DataSourceReference>uheaasqldb</DataSourceReference>
+      <CommandText>SELECT
+	CAST(BusinessUnitId AS NVARCHAR) AS BusinessUnitId,
+	BusinessUnitName
+FROM
+	ProcessLogs.dbo.BusinessUnits</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="BusinessUnitId">
+        <DataField>BusinessUnitId</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="BusinessUnitName">
+        <DataField>BusinessUnitName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

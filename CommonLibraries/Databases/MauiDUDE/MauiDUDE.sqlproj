@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>MauiDUDE</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{8333fd7f-215c-49fb-83d5-a1fcc319e56d}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>MauiDUDE</RootNamespace>
+    <AssemblyName>MauiDUDE</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="faq" />
+    <Folder Include="faq\Tables" />
+    <Folder Include="faq\Stored Procedures" />
+    <Folder Include="faq\UDFs" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="feedback" />
+    <Folder Include="feedback\Tables" />
+    <Folder Include="feedback\Stored Procedures" />
+    <Folder Include="CSYS" />
+    <Folder Include="CDW_UDW_ODW" />
+    <Folder Include="role" />
+    <Folder Include="UDW" />
+    <Folder Include="calls" />
+    <Folder Include="calls\Tables" />
+    <Folder Include="calls\Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="faq\Tables\QuestionGroups.sql" />
+    <Build Include="faq\Tables\Questions.sql" />
+    <Build Include="faq\Tables\Portfolios.sql" />
+    <Build Include="faq\faq.sql" />
+    <Build Include="faq\Tables\QuestionPortfolios.sql" />
+    <Build Include="faq\Stored Procedures\PortfoliosSelectAll.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupsSelectAll.sql" />
+    <Build Include="faq\Stored Procedures\QuestionsSearch.sql" />
+    <Build Include="faq\UDFs\PortfolioIds.sql" />
+    <Build Include="faq\Tables\PendingQuestions.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionsSelectPending.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionWithdraw.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionReject.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionApprove.sql" />
+    <Build Include="faq\Stored Procedures\QuestionInsert.sql" />
+    <Build Include="faq\Stored Procedures\QuestionUpdate.sql" />
+    <Build Include="faq\Stored Procedures\PortfoliosSelectByQuestion.sql" />
+    <Build Include="faq\Stored Procedures\QuestionDelete.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupUpdate.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupInsert.sql" />
+    <Build Include="faq\Stored Procedures\QuestionGroupDelete.sql" />
+    <Build Include="faq\Stored Procedures\PortfolioUpdate.sql" />
+    <Build Include="faq\Stored Procedures\PortfolioInsert.sql" />
+    <Build Include="faq\Stored Procedures\PortfolioDelete.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionsSelectByUser.sql" />
+    <Build Include="faq\Stored Procedures\PendingQuestionInsert.sql" />
+    <Build Include="feedback\Tables\FeedbackSubmissions.sql" />
+    <Build Include="feedback\feedback.sql" />
+    <Build Include="feedback\Stored Procedures\FeedbackSubmissionInsert.sql" />
+    <Build Include="feedback\Stored Procedures\FeedbackSubmissionProcess.sql" />
+    <Build Include="feedback\Stored Procedures\FeedbackSubmissionsSelectPending.sql" />
+    <None Include="CDW_UDW_ODW\BorrowersSearch.sql" />
+    <Build Include="role\db_executor.sql" />
+    <None Include="UDW\spMD_GetCallForwardingData.sql" />
+    <None Include="CDW_UDW_ODW\ODW_BorrowersSearch.sql" />
+    <Build Include="calls\Tables\Categories.sql" />
+    <Build Include="calls\Tables\Reasons.sql" />
+    <Build Include="calls\calls.sql" />
+    <Build Include="calls\Tables\CallRecords.sql" />
+    <Build Include="calls\Stored Procedures\GetAllEnabledReasons.sql" />
+    <Build Include="calls\Stored Procedures\RecordCall.sql" />
+    <Build Include="faq\Tables\RecordedQuestions.sql" />
+    <Build Include="faq\Stored Procedures\RecordQuestion.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MauiDUDE.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="StoredProcedures.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\opsdev.publish.xml" />
+    <None Include="CSYS\spMD_UserIsFaqAdmin.sql" />
+    <None Include="Publish Profiles\LocalDb.publish.xml" />
+    <None Include="calls\PopulateCalls.sql" />
+  </ItemGroup>
+</Project>

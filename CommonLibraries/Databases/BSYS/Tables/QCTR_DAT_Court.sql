@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[QCTR_DAT_Court] (
+    [ID]      BIGINT       IDENTITY (1, 1) NOT FOR REPLICATION NOT NULL,
+    [IssueID] INT          NOT NULL,
+    [UserID]  VARCHAR (20) NOT NULL,
+    [Updated] DATETIME     NOT NULL,
+    [Ended]   DATETIME     NULL,
+    CONSTRAINT [PK_QCTR_DAT_Court] PRIMARY KEY CLUSTERED ([ID] ASC) WITH (FILLFACTOR = 90)
+);
+

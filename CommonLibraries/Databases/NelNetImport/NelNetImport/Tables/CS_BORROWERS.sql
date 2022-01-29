@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[CS_BORROWERS] (
+    [SSN] CHAR (9) NULL
+);
+

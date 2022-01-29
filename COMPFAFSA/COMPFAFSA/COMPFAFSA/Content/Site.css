@@ -1,0 +1,644 @@
+﻿/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 200px auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+#timeout {
+}
+
+#timeout-button {
+}
+
+/*Navbar Anchor Tags*/
+#navbar-anchor {
+    color: white;
+}
+
+    #navbar-anchor:link {
+        color: white;
+    }
+
+    #navbar-anchor:visited {
+        color: white;
+    }
+
+    #navbar-anchor:active {
+        color: black !important;
+    }
+
+    #navbar-anchor:hover {
+        background-color: rgba(0, 150, 187);
+        color: white;
+    }
+
+#navbar-anchor-current {
+    color: white;
+}
+
+    #navbar-anchor-current:link {
+        color: white;
+    }
+
+    #navbar-anchor-current:visited {
+        color: #00b5ef;
+    }
+
+    #navbar-anchor-current:active {
+        text-decoration: none;
+    }
+
+    #navbar-anchor-current:hover {
+        text-decoration: none;
+    }
+
+/*Content Anchor Tags*/
+#body-anchor {
+    color: white;
+}
+
+    #body-anchor:link {
+        color: white;
+    }
+
+    #body-anchor:visited {
+        color: white;
+    }
+
+    #body-anchor:active {
+        text-decoration: none;
+    }
+
+    #body-anchor:hover {
+        text-decoration: none;
+        color: #00b5ef;
+    }
+
+#static-body-anchor {
+    color: white;
+}
+
+    #static-body-anchor:link {
+        color: white;
+    }
+
+    #static-body-anchor:visited {
+        color: white;
+    }
+
+    #static-body-anchor:active {
+        text-decoration: none;
+    }
+
+    #static-body-anchor:hover {
+        text-decoration: none;
+    }
+
+#static-anchor:active {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+#static-anchor:hover {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.centered_block a {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.body-content-margins {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.padding-tb {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.padding-extra-tb {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set padding for list items so that a line break appears in them */
+.list-with-linebreak {
+    padding-bottom: 10px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*background images*/
+.login-image {
+    background-image: url(../Images/FAFSA_Login.png);
+    background-size: 70% 100%;
+    background-repeat: no-repeat;
+    min-height: 150px;
+    padding-right: 125px;
+}
+
+.download-encouragement-image {
+    background-image: url(../Images/FAFSA_Download_Encouragement.png);
+    background-size: 70% 100%;
+    background-repeat: no-repeat;
+    min-height: 150px;
+    padding-right: 125px;
+}
+
+.request-data-image {
+    background-image: url(../Images/FAFSA_Request_Data.png);
+    background-size: 70% 100%;
+    background-repeat: no-repeat;
+    min-height: 150px;
+    padding-right: 125px;
+}
+
+.white-border {
+    border-color: white;
+    border: solid;
+    border-width: 1px;
+}
+/*Bootstrap overrides*/
+
+/*Layout parial formatting*/
+.layout-height {
+    min-height: 100px;
+}
+
+.layout-font {
+    font-size: 12px;
+}
+
+    .layout-font ul {
+        font-size: 12px;
+    }
+
+        .layout-font ul li {
+            padding-top: 65px;
+            font-size: 12px;
+        }
+
+.layout-font-large {
+    font-size: 80px;
+    font-weight: 100;
+}
+
+    .layout-font-large a {
+        font-size: 80px;
+        margin-top: 30px;
+        min-height: 70px;
+        font-weight: 100;
+    }
+
+.layout-font-collapse {
+    font-size: 12px;
+}
+
+    .layout-font-collapse ul {
+        font-size: 12px;
+    }
+
+        .layout-font-collapse ul li {
+            padding-top: 65px;
+            font-size: 12px;
+        }
+
+.navbar-background {
+    background-color: #00AFD7;
+}
+
+.icon-size {
+    width: 4vw;
+    max-width: 70px;
+}
+
+.image-size {
+    margin-top: 20px;
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover {
+    background-color: #00b5ef;
+}
+
+/*Common colors for the website*/
+/*Let list elements also have white text*/
+.font-color-white {
+    color: white;
+}
+
+    .font-color-white li {
+        color: white;
+    }
+
+        .font-color-white li a {
+            color: white;
+        }
+
+.font-color-grey {
+    color: dimgrey;
+}
+
+.font-color-dark-grey {
+    color: #4c4c4c;
+}
+
+.font-color-black {
+    color: black;
+}
+
+.font-color-light-blue {
+    color: #00b5ef;
+}
+
+    .font-color-light-blue li {
+        color: #00b5ef;
+    }
+
+        .font-color-light-blue li a {
+            color: #00b5ef;
+        }
+
+    .font-color-light-blue a {
+        color: #00b5ef;
+    }
+
+.font-color-light-blue-link {
+    color: #00b5ef;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.background-color-light-blue {
+    background-color: #00b5ef;
+}
+
+.background-color-grey {
+    background-color: #323e48;
+}
+
+/*FONT*/
+.centered {
+    text-align: center;
+}
+
+.font-small {
+    font-size: 12px;
+}
+
+    .font-small p {
+        font-size: 12px;
+    }
+
+a.font-color-white {
+    color: white;
+}
+
+    a.font-color-white:active {
+        color: white;
+    }
+
+    a.font-color-white:link {
+        color: white;
+    }
+
+    a.font-color-white:visited {
+        color: #00b5ef;
+    }
+
+/*FONTS*/
+@font-face {
+    font-family: 'OpenSans';
+    src: url(../fonts/OpenSans-Regular.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 100;
+}
+
+* {
+    font-family: OpenSans;
+    font-weight: 100;
+}
+
+/*MOBILE FORMATS*/
+@media (max-width: 1199px) {
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+        .navbar-collapse.collapse {
+            display: none !important;
+        }
+
+    .navbar-nav {
+        float: none !important;
+        margin: 7.5px -15px;
+    }
+
+        .navbar-nav > li {
+            float: none;
+        }
+
+            .navbar-nav > li > a {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 20px;
+                text-align: left;
+            }
+
+    .nav-pad {
+        padding-left: 5px;
+    }
+
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+
+    .navbar-top {
+        margin-bottom: 0;
+    }
+
+    .collapsing {
+        overflow: hidden !important;
+    }
+
+    .jumbotron-background {
+        height: 215px;
+        max-height: 600px;
+        width: 100vw;
+        max-width: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(../Images/Homepage_Background.png);
+        background-size: 100% 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+        .jumbotron-background h1 {
+            margin-top: 5px;
+        }
+
+    .jumbotron-text {
+        font-size: 40px;
+        margin-right: 0px;
+        padding-right: 40px;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-top: 10px;
+        text-align: right;
+        line-height: 30px;
+    }
+
+    .layout-font {
+        font-size: 12px;
+    }
+
+        .layout-font ul {
+            font-size: 12px;
+        }
+
+            .layout-font ul li {
+                padding-top: 0px;
+                font-size: 12px;
+                padding-left: 10px;
+            }
+
+    .educator_blurb {
+        padding-bottom: 40px;
+        padding-bottom: 20px;
+        margin: 5em;
+    }
+}
+
+@media (min-width: 0px) {
+    #content-wrapper {
+        padding-bottom: 200px;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 100px;
+        width: 100vw;
+        max-width: 100%;
+        background-color: #323e48;
+        margin-right: 0;
+        margin-left: 0;
+        padding-bottom: 0;
+    }
+
+    .body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        background-size: 100% 265px;
+        background-repeat: no-repeat;
+        background-position-y: 100px;
+    }
+
+    .jumbotron-background {
+        height: 215px;
+        max-height: 600px;
+        width: 100vw;
+        max-width: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(../Images/Homepage_Background.png);
+        background-size: 100% 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+        .jumbotron-background h1 {
+            margin-top: 5px;
+        }
+
+    .jumbotron-text {
+        font-size: 20px;
+        margin-right: 0px;
+        padding-right: 1em;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-top: 10px;
+        text-align: right;
+        line-height: 30px;
+    }
+
+    .educator_blurb {
+        padding-bottom: 40px;
+        padding-bottom: 20px;
+        margin: 5em;
+    }
+
+    .nav-pad {
+        padding-left: 10px;
+        justify-content: left;
+    }
+
+    .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .navbar-top {
+        margin-bottom: 0;
+    }
+
+    .navbar-font {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 992px) {
+    #content-wrapper {
+        padding-bottom: 200px;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        height: 100px;
+        width: 100vw;
+        max-width: 100%;
+        left: 0;
+        background-color: #323e48;
+        margin-right: 0;
+        margin-left: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .body {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        background-size: 100% 450px;
+        background-repeat: no-repeat;
+        background-position-y: 100px;
+    }
+
+    .jumbotron-background {
+        height: 400px;
+        max-height: 600px;
+        width: 100vw;
+        max-width: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url(../Images/Homepage_Background.png);
+        background-size: 100% 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .educator_blurb {
+        padding-bottom: 40px;
+        padding-bottom: 20px;
+        margin: 5em;
+    }
+
+    .logo-image {
+        width: 280px;
+        height: 75px;
+        padding-left: 0px;
+        margin-left: 0px;
+        padding-top: 15px;
+    }
+
+    .nav-pad {
+        padding-left: 10px;
+    }
+
+    .footer-copyright {
+        margin-right: 2em;
+        padding-right: 0px;
+    }
+
+    .jumbotron-text {
+        font-size: 40px;
+        margin-right: 0px;
+        padding-right: 5em;
+        margin-left: 0px;
+        padding-left: 0px;
+        padding-top: 10px;
+        text-align: right;
+        line-height: 50px;
+    }
+
+    .login-link {
+        padding-top: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-left: 0px;
+    }
+
+    .homepage-navbar-left {
+        margin-left: 0px;
+        padding-left: 15px;
+        text-align: left;
+        padding-top: 30px;
+        font-size: 50px;
+    }
+
+    .homepage-navbar-right {
+        margin-right: 10px;
+    }
+
+    .navbar-top {
+        margin-bottom: 0;
+    }
+
+    .navbar-font {
+        font-size: 22px;
+    }
+}

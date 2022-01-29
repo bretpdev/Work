@@ -1,0 +1,140 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/UNWO18.NWO18RZ";
+FILENAME REPORT2 "&RPTLIB/UNWO18.NWO18R2";
+FILENAME REPORT3 "&RPTLIB/UNWO18.NWO18R3";
+FILENAME REPORT4 "&RPTLIB/UNWO18.NWO18R4";
+FILENAME REPORT5 "&RPTLIB/UNWO18.NWO18R5";
+FILENAME REPORT6 "&RPTLIB/UNWO18.NWO18R6";
+
+
+LIBNAME  LEGEND  REMOTE  SERVER=LEGEND SLIBREF=work  ;
+RSUBMIT LEGEND;
+/*%let DB = DNFPRQUT;  *This is test;*/
+/*%let DB = DNFPRUUT;  *This is VUK3 test;*/
+%let DB = DNFPUTDL;  *This is live;
+
+LIBNAME PKUB DB2 DATABASE=&DB OWNER=PKUB;
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=&DB);
+
+	CREATE TABLE O18 AS
+		SELECT	
+			DF_SPE_ACC_ID,
+			DM_PRS_LST,
+			QUEUE,
+			LN_DLQ_MAX,
+			CASE
+				WHEN QUEUE IN ('S401','1P01') THEN 'R2'
+				WHEN QUEUE IN ('VRFB','VBFB','SF01') THEN 'R3'
+				WHEN QUEUE IN ('AW01','ATPD') THEN 'R4'
+				WHEN QUEUE IN ('2A01') THEN 'R5'
+				WHEN QUEUE IN ('8701','DUDT','2501','1501','PRDF','V801','WR01','2301') THEN 'R6'
+			END AS FILE
+		FROM	
+			CONNECTION TO DB2 
+				(
+					SELECT DISTINCT
+						PD10.DF_SPE_ACC_ID,
+						PD10.DM_PRS_LST,
+						WQ20.WF_QUE || WQ20.WF_SUB_QUE AS QUEUE,
+						LN16.LN_DLQ_MAX
+					FROM
+						PKUB.PD10_PRS_NME PD10
+						JOIN PKUB.LN10_LON LN10
+							ON PD10.DF_PRS_ID = LN10.BF_SSN
+						JOIN PKUB.LN16_LON_DLQ_HST LN16
+							ON LN10.BF_SSN = LN16.BF_SSN
+							AND LN10.LN_SEQ = LN16.LN_SEQ
+							AND LN16.LC_STA_LON16 = '1'  				
+							AND LN16.LN_DLQ_MAX BETWEEN 1 AND 359
+						JOIN PKUB.WQ20_TSK_QUE WQ20
+							ON LN10.BF_SSN = WQ20.BF_SSN
+							AND WQ20.WC_STA_WQUE20 NOT IN ('C','X')	
+					WHERE
+						LN10.LC_STA_LON10 = 'R'
+						AND LN10.LA_CUR_PRI > 0
+					ORDER BY
+						LN16.LN_DLQ_MAX
+
+					FOR READ ONLY WITH UR
+				)
+		WHERE
+			QUEUE IN ('S401','1P01','VRFB','VBFB','SF01','AW01','ATPD','2A01','8701','DUDT','2501','1501','PRDF','V801','WR01','2301')
+	;
+
+	DISCONNECT FROM DB2;
+
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+QUIT;
+
+ENDRSUBMIT;
+
+DATA O18; SET LEGEND.O18; RUN;
+
+OPTIONS ORIENTATION=LANDSCAPE PS=39 LS=127;
+FOOTNOTE1  	"THIS DOCUMENT MAY CONTAIN BORROWERS' SENSITIVE INFORMATION THAT UHEAA HAS PLEDGED TO PROTECT.";
+FOOTNOTE2	'PLEASE TAKE APPROPRIATE PRECAUTIONS TO SAFEGUARD THIS INFORMATION.';
+FOOTNOTE3	;
+
+
+%MACRO PRINTFILE(FILENO,TITLE);
+	PROC PRINTTO PRINT=REPORT&FILENO NEW; RUN;
+
+	TITLE 		&TITLE;
+	FOOTNOTE4   "JOB = UTNWO18  	 REPORT = UNWO18.NWO18R&FILENO";
+
+	PROC PRINT 
+			NOOBS SPLIT = '/' 
+			DATA = O18 
+			WIDTH = UNIFORM 
+			WIDTH = MIN 
+			LABEL;
+
+		WHERE FILE = "R&FILENO";
+
+		FORMAT
+			DF_SPE_ACC_ID $10.
+		;
+
+		VAR 
+			DF_SPE_ACC_ID
+			DM_PRS_LST
+			QUEUE
+			LN_DLQ_MAX
+		;
+
+		LABEL
+			DF_SPE_ACC_ID = 'Account Number'
+			DM_PRS_LST = 'Last Name'
+			QUEUE = 'Queue'
+			LN_DLQ_MAX = 'Days Delinquent'
+		;
+	RUN;
+
+	PROC PRINTTO; RUN;
+%MEND PRINTFILE;
+
+%PRINTFILE(2,Deferments 1 – 359 Days Delinquent);
+%PRINTFILE(3,Forbearances 1 – 359 Days Delinquent);
+%PRINTFILE(4,Autopay/ACH 1 – 359 Days Delinquent);
+%PRINTFILE(5,Income-Driven Repayment 1 – 359 Days Delinquent);
+%PRINTFILE(6,Other Reasons 1 – 359 Days Delinquent);

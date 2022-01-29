@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="626ce6ba-5d2e-4105-894a-33c5b707e7d4" ChangeDateTime="04/23/2020 20:35:28">
+    <Property Name="ElementName" Value="[tilpcrost].[ProcessingData].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[tilpcrost].[ProcessingData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessingDataId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="619e7191-2f42-42fc-8a18-1cbac6942342" ChangeDateTime="04/23/2020 20:35:52">
+    <Property Name="ElementName" Value="[tilpcrost].[ProcessingData].[ProcessingDataId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[tilpcrost].[ProcessingData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AccountsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0dd0f02b-fb6a-42c2-a09f-89bec153c29f" ChangeDateTime="04/23/2020 20:37:34">
+    <Property Name="ElementName" Value="[tilpcrost].[Accounts].[DeleteAt]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[tilpcrost].[Accounts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeletedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="60525b29-70bf-4927-b6f1-b46ab0ac6c89" ChangeDateTime="04/29/2020 16:57:30">
+    <Property Name="ElementName" Value="[tilpcrost].[Accounts].[Processed]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[tilpcrost].[Accounts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b0f48649-eaf4-4225-a025-6bcc4af65886" ChangeDateTime="04/29/2020 17:09:57">
+    <Property Name="ElementName" Value="[tilpcrost].[Accounts].[Sequence]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[tilpcrost].[Accounts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LoanSequence" />
+  </Operation>
+</Operations>

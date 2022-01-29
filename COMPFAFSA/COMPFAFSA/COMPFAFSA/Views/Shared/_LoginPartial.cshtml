@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right homepage-navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+<ul class="nav navbar-nav">
+    <li>
+        @{
+            string displayName = User.Identity.GetUserName().Split('@').First();
+            displayName = displayName.Length > 15 ? displayName.Substring(0, Math.Min(displayName.Length, 12)) + "..." : displayName.Substring(0, Math.Min(displayName.Length, 15));
+        }
+        @Html.ActionLink("Hi, " + displayName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "navbar-font", id = "navbar-anchor", @style = ViewBag.NavHighlight == "UserManage" ? "padding-left: 10px; color: black;" : "padding-left: 10px;" })
+    </li>
+    @if ((bool?)Session["Admin"] == true)
+    {
+        <li>@Html.ActionLink("Admin", "ManageUsers", "Manage", new { area = "" }, htmlAttributes: new { @class = "navbar-font", id = "navbar-anchor", @style = ViewBag.NavHighlight == "Admin" ? "padding-left: 10px; color: black;" : "padding-left: 10px;" })</li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Secure", "Index", "Secure", new { area = "" }, htmlAttributes: new { @class = "navbar-font", id = "navbar-anchor", @style = ViewBag.NavHighlight == "Secure" ? "padding-left: 10px; color: black;" : "padding-left: 10px;" })</li>
+    }
+    <li><a class="navbar-font" id="navbar-anchor" href="javascript:document.getElementById('logoutForm').submit()" style="padding-left: 10px;">Log off</a></li>
+</ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-font">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink",  @class = "font-color-light-blue"})</li>*@
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "navbar-font", id = "navbar-anchor", @style = ViewBag.NavHighlight == "Login" ? "padding-left: 10px; color: black;" : "padding-left: 10px;" })</li>
+    </ul>
+}

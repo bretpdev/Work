@@ -1,0 +1,70 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension=".cs" #>
+<#@ parameter name="ClassName" type="System.string" #>
+<#@ parameter name="SheetName" type="System.string" #>
+<#@ assembly name="$(SolutionDir)DataMapParser\bin\Debug\DataMapParser.exe" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="DataMapParser" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SERF_File_Generator
+{
+	public class <#= ClassName #> : SerfFileBase
+	{
+        [Ignore]
+        public int <#=ClassName#>Id { get; set; }
+
+<#
+		ParseResults results = DataMapParser.Parser.Parse(Host.ResolvePath("..\\DataMap\\SERF Data Map.xlsx"), SheetName);
+		this.PushIndent("		");
+		foreach (var record in results.Records)
+		{
+			OutputProperty(record);
+        }
+		this.ClearIndent();
+		foreach (ParseResults sub in results.SubResults)
+		{#>
+		[Occurs(<#= sub.Occurs #>), LinePos(<#= -sub.PositionModifier #>)]
+		public List<<#= sub.ResultName #>> ListOf<#= sub.ResultName #> { get; set; }
+		public class <#= sub.ResultName #>
+		{
+<#			this.PushIndent("			");
+			foreach (var record in sub.Records)
+			{
+				OutputProperty(record);
+			}
+			this.ClearIndent();#>
+		}
+<#		}#>
+	}
+}
+<#+
+	void OutputProperty(DataMapRecord record)
+	{
+		List<string> attributes = new List<string>();
+		if (record.FormatCode != null)
+		{
+			attributes.Add("FormatCode(\"" + record.FormatCode + "\")");
+			attributes.Add("Length(" + (record.FormatLength + record.V9Length) + ")");
+		}
+		if (record.Required)
+			attributes.Add("Required");
+
+		string posAttr = "LinePos(" + record.Position + ")";
+		attributes.Add(posAttr);
+
+		if (attributes.Count > 0)
+		{
+			string attr = "[" + string.Join(", ", attributes.ToArray()) + "]";
+			this.WriteLine(attr);
+		}
+		this.WriteLine("public string " + record.FieldName + " { get; set; }");
+		this.WriteLine(""); //empty line
+	}
+#>

@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CSYS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{ce227e88-7ca9-4eb1-a99e-ba9188bec2a7}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CSYS</RootNamespace>
+    <AssemblyName>CSYS</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Roles" />
+    <Folder Include="Stored Procedures\" />
+    <Folder Include="Tables\" />
+    <Folder Include="Noble\" />
+    <Folder Include="Noble\Tables\" />
+    <Folder Include="Noble\Stored Procedures\" />
+    <Folder Include="Security\" />
+    <Folder Include="Functions\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Security\db_executor.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers.sql" />
+    <Build Include="Security\UHEAA_CornerStoneUsers_1.sql" />
+    <Build Include="Security\UHEAA_UHEAAUsers.sql" />
+    <Build Include="Security\UHEAA_Developers.sql" />
+    <Build Include="Security\UHEAA_Developers_1.sql" />
+    <Build Include="Security\UHEAA_SystemAnalysts.sql" />
+    <Build Include="Security\UHEAA_kferre.sql" />
+    <Build Include="Security\UHEAA_BatchScripts.sql" />
+    <Build Include="Security\UHEAA_BatchScripts_1.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS.sql" />
+    <Build Include="Security\UHEAA_!UHEAASSRS_1.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="Security\USHE_Financial_Encryption_Certificate.sql" />
+    <Build Include="Security\USHE_Financial_Data_Key.sql" />
+    <Build Include="Functions\Decryptor.sql" />
+    <Build Include="Stored Procedures\CheckSprocAccess.sql" />
+    <Build Include="Stored Procedures\GetForeignCodes.sql" />
+    <Build Include="Stored Procedures\GetFormAndPathForLetterId.sql" />
+    <Build Include="Stored Procedures\MdUserIsFaqUser.sql" />
+    <Build Include="Stored Procedures\ACDC_CheckIfRoleHasAccess.sql" />
+    <Build Include="Stored Procedures\ACDC_GetRoleNames.sql" />
+    <Build Include="Stored Procedures\ACDC_GetSquid.sql" />
+    <Build Include="Stored Procedures\ACDC_GetUserAssignedRole.sql" />
+    <Build Include="Stored Procedures\spFILE_GetFilesToMove.sql" />
+    <Build Include="Stored Procedures\spFILE_UpdateLastProcessed.sql" />
+    <Build Include="Stored Procedures\spFLOW_AddFlow.sql" />
+    <Build Include="Stored Procedures\spFLOW_AddStepToFlow.sql" />
+    <Build Include="Stored Procedures\spFLOW_ChangeFlow.sql" />
+    <Build Include="Stored Procedures\spFLOW_ChangeFlowSequenceNumber.sql" />
+    <Build Include="Stored Procedures\spFLOW_CheckForExistenceOfFlow.sql" />
+    <Build Include="Stored Procedures\spFLOW_DeleteFlowStep.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetAccessKeys.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetCalculationID.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetDataValidation.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetFinalStatusForFlowStep.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetFlows.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetFlowsForSpecifiedSystem.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetFlowStepsForUser.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetInterfaces.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetMaxSequenceNumber.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetSpecifiedFlow.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetStatus.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetStatusForFlowStep.sql" />
+    <Build Include="Stored Procedures\spFLOW_GetStepsForFlow.sql" />
+    <Build Include="Stored Procedures\spFLOW_StepCountForFlow.sql" />
+    <Build Include="Stored Procedures\spFLOW_UpdateFlowStep.sql" />
+    <Build Include="Stored Procedures\spGENR_AddCredential.sql" />
+    <Build Include="Stored Procedures\spGENR_CheckForInvalidValues.sql" />
+    <Build Include="Stored Procedures\spGENR_GetAddressSourceCodeForDescription.sql" />
+    <Build Include="Stored Procedures\spGENR_GetAddressSourceDescriptions.sql" />
+    <Build Include="Stored Procedures\spGENR_GetBusinessFunctions.sql" />
+    <Build Include="Stored Procedures\spGENR_GetBusinessUnit.sql" />
+    <Build Include="Stored Procedures\spGENR_GetBusinessUnitAgents.sql" />
+    <Build Include="Stored Procedures\spGENR_GetBusinessUnitId.sql" />
+    <Build Include="Stored Procedures\spGENR_GetBusinessUnits.sql" />
+    <Build Include="Stored Procedures\spGENR_GetCommonExceptionCourt.sql" />
+    <Build Include="Stored Procedures\spGENR_GetCountryCodeForName.sql" />
+    <Build Include="Stored Procedures\spGENR_GetCountryNameForCode.sql" />
+    <Build Include="Stored Procedures\spGENR_GetCountryNames.sql" />
+    <Build Include="Stored Procedures\spGENR_GetCredential.sql" />
+    <Build Include="Stored Procedures\spGENR_GetDomesticIndicator.sql" />
+    <Build Include="Stored Procedures\spGENR_GetFileSystemObject.sql" />
+    <Build Include="Stored Procedures\spGENR_GetPhoneExtension.sql" />
+    <Build Include="Stored Procedures\spGENR_GetPriorityEmail.sql" />
+    <Build Include="Stored Procedures\spGENR_GetRelationshipCodeForDescription.sql" />
+    <Build Include="Stored Procedures\spGENR_GetRelationshipDescriptionForCode.sql" />
+    <Build Include="Stored Procedures\spGENR_GetRelationshipDescriptions.sql" />
+    <Build Include="Stored Procedures\spGENR_GetStateCodes.sql" />
+    <Build Include="Stored Procedures\spGENR_GetStateNameForStateCode.sql" />
+    <Build Include="Stored Procedures\spGENR_GetSuffixes.sql" />
+    <Build Include="Stored Procedures\spGENR_GetSystemList.sql" />
+    <Build Include="Stored Procedures\spGENR_GetUserBusinessUnit.sql" />
+    <Build Include="Stored Procedures\spGENR_GetUserData.sql" />
+    <Build Include="Stored Procedures\spGENR_GetUserID.sql" />
+    <Build Include="Stored Procedures\spGENR_InactivateUser.sql" />
+    <Build Include="Stored Procedures\spGENR_InsertUser.sql" />
+    <Build Include="Stored Procedures\spGetACDC_Applications.sql" />
+    <Build Include="Stored Procedures\spGetACDC_Arguments.sql" />
+    <Build Include="Stored Procedures\spGetACDC_AssociatedFiles.sql" />
+    <Build Include="Stored Procedures\spGetLoanPrograms.sql" />
+    <Build Include="Stored Procedures\spGetManagersUtId.sql" />
+    <Build Include="Stored Procedures\spGetStateNameFromStateCode.sql" />
+    <Build Include="Stored Procedures\spGetTcpaArcs.sql" />
+    <Build Include="Stored Procedures\spGetUserActiveUsers.sql" />
+    <Build Include="Stored Procedures\spGetUserIdAndFullName.sql" />
+    <Build Include="Stored Procedures\spLSLGetSpousalConsolLoanTypes.sql" />
+    <Build Include="Stored Procedures\spMD_UserIsFaqAdmin.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetCategoryOptions.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetManager.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetManagerEmail.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetPriority.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="Stored Procedures\spNDHP_GetStatus.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetTicketType.sql" />
+    <Build Include="Stored Procedures\spNDHP_GetUrgencyOptions.sql" />
+    <Build Include="Stored Procedures\spSYSA_AddKey.sql" />
+    <Build Include="Stored Procedures\spSYSA_AddKeyToRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_CheckForKey.sql" />
+    <Build Include="Stored Procedures\spSYSA_CheckIfRoleHasAccess.sql" />
+    <Build Include="Stored Procedures\spSYSA_CheckRoleExistence.sql" />
+    <Build Include="Stored Procedures\spSYSA_DeleteKey.sql" />
+    <Build Include="Stored Procedures\spSYSA_DeleteRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_GatherKeyDataBasedOffFilterCriteria.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetApplicationKeyHistory.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetApplicationKeys.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetApplicationKeysByType.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetCurrentEmployees.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetDateRoleWasDeleted.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetEmailForKey.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetInactiveKeysForRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetKeyID.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetKeysAssignedToRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetRoleAssignedKeys.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetRoleHistory.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetRoles.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetRolesForKey.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetSplunkEventIDs.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetSqlUsers.sql" />
+    <Build Include="Stored Procedures\spSYSA_GetUsersByBusinessUnitId.sql" />
+    <Build Include="Stored Procedures\spSYSA_InsertRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_IsRoleNameInactive.sql" />
+    <Build Include="Stored Procedures\spSYSA_RemoveKeyFromRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_UpdateRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_UpdateUser.sql" />
+    <Build Include="Stored Procedures\spSYSA_UpdateUserRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_UserAccessForApplication.sql" />
+    <Build Include="Stored Procedures\spSYSA_UserHasUserKey.sql" />
+    <Build Include="Stored Procedures\spUpdateEfsTempKey.sql" />
+    <Build Include="Stored Procedures\spUserHasAccessKey.sql" />
+    <Build Include="Tables\APPLICATION_ARGUMENTS.sql" />
+    <Build Include="Tables\APPLICATIONS.sql" />
+    <Build Include="Tables\ARGUMENTS.sql" />
+    <Build Include="Tables\ASSOCIATED_FILES.sql" />
+    <Build Include="Tables\COST_DAT_AgentWeights.sql" />
+    <Build Include="Tables\COST_DAT_BatchScriptWeights.sql" />
+    <Build Include="Tables\COST_DAT_BusinessUnitCostCenters.sql" />
+    <Build Include="Tables\COST_DAT_CostCenters.sql" />
+    <Build Include="Tables\COST_DAT_MailCodeCostCenters.sql" />
+    <Build Include="Tables\COST_DAT_TimeTracking.sql" />
+    <Build Include="Tables\COST_DAT_TimeTracking_DEV.sql" />
+    <Build Include="Tables\COST_TMP_BatchScriptTimeTracking.sql" />
+    <Build Include="Tables\FILE_DAT_FilesToMove.sql" />
+    <Build Include="Tables\FILE_DAT_WhenToCheck.sql" />
+    <Build Include="Tables\FILE_TYPE.sql" />
+    <Build Include="Tables\FLOW_DAT_Flow.sql" />
+    <Build Include="Tables\FLOW_DAT_FlowStep.sql" />
+    <Build Include="Tables\FLOW_LST_DataValidator.sql" />
+    <Build Include="Tables\FLOW_LST_Interface.sql" />
+    <Build Include="Tables\FLOW_LST_StaffCalculationID.sql" />
+    <Build Include="Tables\ForeignCodesAndCountries.sql" />
+    <Build Include="Tables\GENR_DAT_CommonExceptionCourt.sql" />
+    <Build Include="Tables\GENR_DAT_Credentials.sql" />
+    <Build Include="Tables\GENR_DAT_EnterpriseFileSystem.sql" />
+    <Build Include="Tables\GENR_DAT_InvalidValues.sql" />
+    <Build Include="Tables\GENR_LST_AddressSources.sql" />
+    <Build Include="Tables\GENR_LST_BusinessFunctions.sql" />
+    <Build Include="Tables\GENR_LST_BusinessUnits.sql" />
+    <Build Include="Tables\GENR_LST_Countries.sql" />
+    <Build Include="Tables\GENR_LST_Loan_Program.sql" />
+    <Build Include="Tables\GENR_LST_Priorities.sql" />
+    <Build Include="Tables\GENR_LST_PriorityCatgrys.sql" />
+    <Build Include="Tables\GENR_LST_PriorityEmailRecipient.sql" />
+    <Build Include="Tables\GENR_LST_PriorityUrgencies.sql" />
+    <Build Include="Tables\GENR_LST_Relationships.sql" />
+    <Build Include="Tables\GENR_LST_States.sql" />
+    <Build Include="Tables\GENR_LST_Suffixes.sql" />
+    <Build Include="Tables\GENR_LST_System.sql" />
+    <Build Include="Tables\GENR_REF_PriorityCatgryOps.sql" />
+    <Build Include="Tables\GENR_REF_PriorityUrgencyOps.sql" />
+    <Build Include="Tables\LetterFormMapping.sql" />
+    <Build Include="Tables\LSL_LST_SpousalConsolLoans.sql" />
+    <Build Include="Tables\PaymentRoutingDirectory.sql" />
+    <Build Include="Tables\SYSA_DAT_RoleKeyAssignment.sql" />
+    <Build Include="Tables\SYSA_DAT_UserKeyAssignment.sql" />
+    <Build Include="Tables\SYSA_DAT_Users.sql" />
+    <Build Include="Tables\SYSA_LST_Role.sql" />
+    <Build Include="Tables\SYSA_LST_SplunkEventID.sql" />
+    <Build Include="Tables\SYSA_LST_UserKeys.sql" />
+    <Build Include="Tables\SYSA_LST_UserKeyTypes.sql" />
+    <Build Include="Stored Procedures\MABC_GetSqlUsers.sql" />
+    <Build Include="Stored Procedures\GetUsersRole.sql" />
+    <Build Include="Stored Procedures\spSYSA_CheckUserAccessByKey.sql" />
+    <Build Include="Stored Procedures\GetAESIdFromWindowsUserName.sql" />
+    <Build Include="Stored Procedures\InsertFormInformation.sql" />
+    <Build Include="Stored Procedures\DeleteFormFromLetter.sql" />
+    <Build Include="Tables\Region.sql" />
+    <Build Include="Tables\CallCampaigns.sql" />
+    <Build Include="Stored Procedures\GetCallCampaigns.sql" />
+    <Build Include="Stored Procedures\Get_BU_Manager.sql" />
+    <Build Include="Tables\DialerResponseCodeMapping.sql" />
+    <Build Include="Stored Procedures\GetArcAndCommentForResultCode.sql" />
+    <Build Include="Noble\Tables\ContactCampaigns.sql" />
+    <Build Include="Noble\Tables\Groups.sql" />
+    <Build Include="Noble\Stored Procedures\GetAgentName.sql" />
+    <Build Include="Noble\Stored Procedures\GetAgentOtherId.sql" />
+    <Build Include="Noble\Stored Procedures\AddCampaign.sql" />
+    <Build Include="Noble\Stored Procedures\UpdateCampaign.sql" />
+    <Build Include="Noble\Stored Procedures\GetCampaignName.sql" />
+    <Build Include="Noble\Stored Procedures\GetCallType.sql" />
+    <Build Include="Noble\Stored Procedures\GetInvalidateFlag.sql" />
+    <Build Include="Noble\Stored Procedures\GetActiveFlag.sql" />
+    <Build Include="Noble\Stored Procedures\GetGroups.sql" />
+    <Build Include="Noble\Stored Procedures\GetContactCampaigns.sql" />
+    <Build Include="Noble\Stored Procedures\GetContactCampaignId.sql" />
+    <Build Include="Noble\Stored Procedures\GetUsernameList.sql" />
+    <Build Include="Noble\Stored Procedures\InsertUsername.sql" />
+    <Build Include="Security\Noble.sql" />
+    <Build Include="Tables\PhoneDueDiligenceArcs.sql" />
+    <Build Include="Stored Procedures\GetPhoneDueDiligenceArcs.sql" />
+    <Build Include="Stored Procedures\GetAllUsers.sql" />
+    <Build Include="Tables\OnelinkDialerResponseMapping.sql" />
+    <Build Include="Stored Procedures\GetOnelinkActionCodeForDispositionCode.sql" />
+    <Build Include="Tables\ReturnMailReasons.sql" />
+    <Build Include="Stored Procedures\GetReturnMailReasons.sql" />
+    <Build Include="Stored Procedures\GetFFELLoanPgms.sql" />
+    <Build Include="Stored Procedures\GetNSLDSLoanPgms.sql" />
+    <Build Include="Tables\SYSA_Ivr.sql" />
+    <Build Include="Stored Procedures\CheckUsersRoleForIvr.sql" />
+    <Build Include="Stored Procedures\GetLoanPgmType.sql" />
+    <Build Include="Noble\Tables\UserList.sql" />
+    <Build Include="dbo\Tables\COST_DAT_TIMETRACKING_XXX.sql" />
+    <Build Include="dbo\Tables\COST_DAT_TimeTracking_Trial_Run.sql" />
+    <Build Include="dbo\Tables\COST_DAT_TimeTracking_errors.sql" />
+    <Build Include="dbo\Tables\COST_DAT_TimeTracking_backup2016oct13.sql" />
+    <Build Include="dbo\Tables\COST_DAT_BatchScriptTimeTrackingAverage.sql" />
+    <Build Include="dbo\Tables\AccurintQueues.sql" />
+    <Build Include="dbo\Stored Procedures\ThrowError.sql" />
+    <Build Include="dbo\Stored Procedures\spGetAccurintFedQueues.sql" />
+    <Build Include="dbo\Stored Procedures\spACDC_GetUserAssignedRole.sql" />
+    <Build Include="dbo\Stored Procedures\spACDC_GetSquid.sql" />
+    <Build Include="dbo\Stored Procedures\spACDC_GetRoleNames.sql" />
+    <Build Include="dbo\Stored Procedures\spACDC_CheckIfRoleHasAccess.sql" />
+    <Build Include="dbo\Stored Procedures\CheckLoanPgm.sql" />
+    <Build Include="dbo\Stored Procedures\CheckIfRoleHasAccess.sql" />
+    <Build Include="Security\Staff.sql" />
+    <Build Include="Security\Permissions.sql" />
+    <Build Include="Tables\PovertyGuidelines.sql" />
+    <Build Include="Stored Procedures\GetPovertyIncome.sql" />
+    <Build Include="Stored Procedures\GetFedLoansForSchoolUpdate.sql" />
+    <Build Include="Stored Procedures\GetStateOptions.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\opsdev.publish.xml" />
+    <None Include="CSYS.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment1.sql" />
+  </ItemGroup>
+</Project>

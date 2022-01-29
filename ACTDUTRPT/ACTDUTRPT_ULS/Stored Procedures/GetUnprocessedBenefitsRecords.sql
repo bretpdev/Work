@@ -1,0 +1,54 @@
+﻿CREATE PROCEDURE [scra].[GetUnprocessedBenefitsRecords]
+AS
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+SELECT DISTINCT
+	ADR.ActiveDutyReportingId,
+	PD10.DF_SPE_ACC_ID AS AccountNumber,
+	ADR.BorrSSN,
+	NULL AS EndrAccountNumber,
+	NULL AS EndrSSN,
+	ADR.TXCXBegin,
+	ADR.TXCXEnd,
+	ADR.TXCXType,
+	ADR.ServiceComponent,
+	ADR.TXCXUpdated
+FROM
+	ULS.scra.ActiveDutyReporting ADR
+	INNER JOIN UDW..PD10_PRS_NME PD10
+		ON PD10.DF_PRS_ID = ADR.BorrSSN
+WHERE
+	ADR.DeletedAt IS NULL
+	AND ADR.DeletedBy IS NULL
+	AND ADR.TXCXUpdated IS NULL
+	AND ADR.ErroredAt IS NULL
+	AND ADR.EndrSSN IS NULL
+
+UNION ALL
+
+SELECT DISTINCT
+	ADR.ActiveDutyReportingId,
+	PD10.DF_SPE_ACC_ID AS AccountNumber,
+	ADR.BorrSSN,
+	PD10E.DF_SPE_ACC_ID AS EndrAccountNumber,
+	ADR.EndrSSN,
+	ADR.TXCXBegin,
+	ADR.TXCXEnd,
+	ADR.TXCXType,
+	ADR.ServiceComponent,
+	ADR.TXCXUpdated
+FROM
+	ULS.scra.ActiveDutyReporting ADR
+	INNER JOIN UDW..PD10_PRS_NME PD10
+		ON PD10.DF_PRS_ID = ADR.BorrSSN
+	INNER JOIN UDW..PD10_PRS_NME PD10E
+		ON PD10E.DF_PRS_ID = ADR.EndrSSN
+WHERE
+	ADR.DeletedAt IS NULL
+	AND ADR.DeletedBy IS NULL
+	AND ADR.TXCXUpdated IS NULL
+	AND ADR.ErroredAt IS NULL
+	AND ADR.EndrSSN IS NOT NULL
+	AND ADR.IsEndorser = 1
+
+RETURN 0

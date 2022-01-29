@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>--@AesUserId parameter for SSRS run on NOCHOUSE:
+SELECT DISTINCT
+	U.AesUserId AS AesUserId_R2
+FROM
+	CSYS..SYSA_DAT_Users U
+	INNER JOIN CSYS..SYSA_LST_Role R
+		ON U.Role = R.RoleID
+WHERE
+	R.RoleID != 5 --ROLE - Operations - Supervisor
+	AND U.[Status] = 'Active'
+	AND U.AesUserId IS NOT NULL
+	AND LTRIM(U.AesUserId) != ''
+	AND U.AesUserId LIKE 'UT%'
+;</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="AesUserId_R2">
+        <DataField>AesUserId_R2</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

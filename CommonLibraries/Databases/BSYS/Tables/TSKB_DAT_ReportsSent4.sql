@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[TSKB_DAT_ReportsSent4] (
+    [ReportSent4] DATETIME NOT NULL,
+    CONSTRAINT [PK_TSKB_DAT_ReportsSent4] PRIMARY KEY CLUSTERED ([ReportSent4] ASC)
+);
+

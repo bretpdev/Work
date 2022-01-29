@@ -1,0 +1,81 @@
+/*	Select Chapter 7 and 13 bankruptcies if the account is in an 01 bankruptcy
+	status, and the filing date is prior to October 7, 1998, and
+	if no action code of DBKRW exists indicating a review in the last 30 days.  
+	Queue will be used to review for discharge or dismissal.  MC  */
+
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;
+%LET RPTLIB = %SYSGET(reportdir);
+FILENAME REPORT2 "&RPTLIB/ULWBK4.LWBK4R2";*/
+
+libname  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=work  ;
+RSUBMIT ;
+OPTIONS		NOCENTER DATE NUMBER LS=136  ;
+PROC SQL  ;
+CONNECT TO DB2 (DATABASE=dlgsutwh);
+CREATE TABLE DEAND AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT		integer(a.BF_SSN)			AS 	SSN
+			,b.LC_BKR_CHP				AS  CHAPCODE
+			,b.LC_BKR_STA				AS  STATUS
+			,b.LD_BKR_FIL				AS  FILEDT
+			,B.LF_BKR_DKT
+			,C.MAXREVIEW
+FROM OLWHRM1.DC01_LON_CLM_INF a 
+inner join OLWHRM1.DC18_BKR b
+	on	 a.AF_APL_ID = b.AF_APL_ID
+	and  a.AF_APL_ID_SFX = b.AF_APL_ID_SFX
+	AND  b.LC_BKR_CHP in ('04','01')		/*CHAPTER 7 and 13 ACCTS ONLY*/
+	AND  b.LC_BKR_STA in ('01')				/*OPEN ACCTS ONLY*/
+	and  b.LD_BKR_FIL < '10-07-1998'
+LEFT OUTER JOIN
+	(SELECT	 max(BD_ATY_PRF)		AS MAXREVIEW
+	,DF_PRS_ID
+	from OLWHRM1.AY01_BR_ATY
+	where PF_ACT in ('DBKRW','BXMIS')
+	group by DF_PRS_ID 
+	)C
+	ON A.BF_SSN = C.DF_PRS_ID
+WHERE not exists 
+	(select 	*
+	from 	OLWHRM1.AY01_BR_ATY		c
+	where 	c.DF_PRS_ID = a.BF_SSN
+	and	c.PF_ACT in ('DBKRW','BXMIS')
+	and	days(current date) - days(c.BD_ATY_PRF) < 31
+	)
+AND A.LC_STA_DC10 = '03'
+);
+DISCONNECT FROM DB2;
+QUIT  ;
+
+PROC SORT data=DEAND NODUPKEY;
+BY SSN;
+DATA DEAND;
+SET DEAND;
+IF CHAPCODE = '01' THEN CHAPCODE = '07';
+ELSE IF CHAPCODE = '04' THEN CHAPCODE = '13';
+RUN;
+
+endrsubmit  ;
+DATA DEAND;
+SET WORKLOCL.DEAND;
+RUN;
+
+DATA _NULL_;
+CALL SYMPUT('RUNDATE',PUT(INTNX('DAY',TODAY(),0,'beginning'), MMDDYY10.));
+RUN;
+
+/*PROC PRINTTO PRINT=REPORT2;
+RUN;*/
+OPTIONS	CENTER NODATE NUMBER PAGENO=1 LS=90  ;
+PROC PRINT SPLIT='/' DATA = DEAND n='Total number of accounts = ' NOOBS;
+var SSN FILEDT CHAPCODE STATUS MAXREVIEW LF_BKR_DKT;
+format  FILEDT MMDDYY10. MAXREVIEW MMDDYY10. SSN SSN11.;
+title1 "PRE-OCTOBER 1998 BANKRUPTCIES";
+title2 "RUN DATE = &RUNDATE";
+label	MAXREVIEW = 'LAST REVIEW DATE' FILEDT = 'FILING DATE' 
+		CHAPCODE = 'CHAPTER' STATUS = 'STATUS' LF_BKR_DKT="DOCKET #";
+where STATUS IN ('01') AND CHAPCODE IN ('07','13');
+FOOTNOTE  'JOB = UTLWBK4     REPORT = ULWBK4.LWBK4R2';
+RUN;
+

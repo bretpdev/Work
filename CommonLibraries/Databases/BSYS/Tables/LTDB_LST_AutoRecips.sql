@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[LTDB_LST_AutoRecips] (
+    [Agent] NVARCHAR (50) NOT NULL,
+    CONSTRAINT [PK_LTDB_LST_AutoRecips] PRIMARY KEY CLUSTERED ([Agent] ASC) WITH (FILLFACTOR = 90)
+);
+

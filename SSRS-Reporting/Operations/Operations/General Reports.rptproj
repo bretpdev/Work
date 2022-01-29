@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <FullPath>Debug</FullPath>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorLevel>2</ErrorLevel>
+    <OverwriteDatasets>False</OverwriteDatasets>
+    <OverwriteDataSources>False</OverwriteDataSources>
+    <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+    <Platform>Win32</Platform>
+    <TargetReportFolder>Testing/</TargetReportFolder>
+    <TargetDatasetFolder>Datasets</TargetDatasetFolder>
+    <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
+    <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
+    <TargetServerURL>https://uheaassrs.uheaa.org/reportserver/</TargetServerURL>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'DebugLocal' ">
+    <FullPath>DebugLocal</FullPath>
+    <OutputPath>bin\DebugLocal</OutputPath>
+    <ErrorLevel>2</ErrorLevel>
+    <OverwriteDatasets>False</OverwriteDatasets>
+    <OverwriteDataSources>False</OverwriteDataSources>
+    <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+    <Platform>Win32</Platform>
+    <TargetReportFolder>Testing/Operations</TargetReportFolder>
+    <TargetDatasetFolder>Datasets</TargetDatasetFolder>
+    <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
+    <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
+    <TargetServerURL>https://uheaassrs.uheaa.org/reportserver/</TargetServerURL>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <FullPath>Release</FullPath>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorLevel>2</ErrorLevel>
+    <OverwriteDatasets>False</OverwriteDatasets>
+    <OverwriteDataSources>False</OverwriteDataSources>
+    <TargetServerVersion>SSRS2016</TargetServerVersion>
+    <Platform>Win32</Platform>
+    <TargetReportFolder>Operations</TargetReportFolder>
+    <TargetDatasetFolder>Datasets</TargetDatasetFolder>
+    <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
+    <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
+    <TargetServerURL>https://uheaassrs.uheaa.org/reportserver</TargetServerURL>
+  </PropertyGroup>
+  <PropertyGroup>
+    <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkZGwzMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAiIHhtbG5zOmRkbDMwMF8zMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAvMzAwIiB4bWxuczpkZGw0MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAiIHhtbG5zOmRkbDQwMF80MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAvNDAwIiB4bWxuczpkZGw1MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAiIHhtbG5zOmRkbDUwMF81MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAvNTAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD5mYWxzZTwvRW5hYmxlZD4NCiAgPFByb2plY3ROYW1lPjwvUHJvamVjdE5hbWU+DQogIDxBdXhQYXRoPjwvQXV4UGF0aD4NCiAgPExvY2FsUGF0aD48L0xvY2FsUGF0aD4NCiAgPFByb3ZpZGVyPjwvUHJvdmlkZXI+DQo8L1NvdXJjZUNvbnRyb2xJbmZvPg==</State>
+    <DataSources>@(DataSource)</DataSources>
+    <DataSets>@(DataSet)</DataSets>
+    <Reports>@(Report)</Reports>
+  </PropertyGroup>
+  <ItemGroup>
+    <DataSet Include="MonthName_Year.rsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <DataSource Include="nochouse.rds" />
+    <DataSource Include="opsdev.rds" />
+    <DataSource Include="uheaasqldb.rds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Report Include="(RETIRED) Alleged Death FED.rdl" />
+    <Report Include="(RETIRED) Approved IBR_ICR_PAYE_REPAYE Borrowers - Fed.rdl" />
+    <Report Include="(RETIRED) Batch ESP Task Stats.rdl" />
+    <Report Include="(RETIRED) Borrower Defense Borrowers In Repayment.rdl" />
+    <Report Include="(RETIRED) Borrower Defense Payments Received Fed.rdl" />
+    <Report Include="(RETIRED) Borrower Defense Report Fed.rdl" />
+    <Report Include="(RETIRED) COD Monthly Disbursement.rdl" />
+    <Report Include="(RETIRED) Consolidation Loans Disbursed Historical  FED.rdl" />
+    <Report Include="(RETIRED) Consolidation Loans Disbursed Monthly  FED.rdl" />
+    <Report Include="(RETIRED) Consolidation Loans with Align Forbearance.rdl" />
+    <Report Include="(RETIRED) CornerStone Alternate Format Report.rdl" />
+    <Report Include="(RETIRED) Cornerstone Re-disclosure of Loans not PIF at End of Term.rdl" />
+    <Report Include="(RETIRED) CornerStone Unfulfilled Alternate Format Requests.rdl" />
+    <Report Include="(RETIRED) Debt ID Review FED.rdl" />
+    <Report Include="(RETIRED) DMCSADJCS.rdl" />
+    <Report Include="(RETIRED) ESP Delinquency Queue Report - FED.rdl" />
+    <Report Include="(RETIRED) ESP RB-DR Queue Killer - FED.rdl" />
+    <Report Include="(RETIRED) Exit Counseling Repayment Schedules Bypassed - FED.rdl" />
+    <Report Include="(RETIRED) FSA Complaint Tracking.rdl" />
+    <Report Include="(RETIRED) FSA Re-disclosure of Loans not PIF at End of Term.rdl" />
+    <Report Include="(RETIRED) Loans Over 360 Days Delinquent - FED.rdl" />
+    <Report Include="(RETIRED) Monthly IDR Tracking FED.rdl" />
+    <Report Include="(RETIRED) Names with a Suffix FED.rdl" />
+    <Report Include="(RETIRED) OneLINK References With Foreign Address.rdl" />
+    <Report Include="(RETIRED) OperationsDailyTaskProcessingCornerstone.rdl" />
+    <Report Include="(RETIRED) Post-Enrollment Deferments PLUS Loans - FED.rdl" />
+    <Report Include="(RETIRED) Quarterly NSLDS Cohort Default Rate - FED.rdl" />
+    <Report Include="(RETIRED) Skip Borrower Demographics Report.rdl" />
+    <Report Include="(RETIRED) Small Balance Writeoff FED.rdl" />
+    <Report Include="(RETIRED) TeacherLoanForgivenessFED.rdl" />
+    <Report Include="(RETIRED) TeacherLoanForgivenessFED.rdl" />
+    <Report Include="(RETIRED) TeacherLoanForgivenessFED.rdl" />
+    <Report Include="(RETIRED) TeacherLoanForgivenessFED.rdl" />
+    <Report Include="(RETIRED) TeacherLoanForgivenessFSAFED.rdl" />
+    <Report Include="(RETIRED) TeacherLoanForgivenessFSAFED.rdl" />
+    <Report Include="(RETIRED) Telephone Payments and Requests FED.rdl" />
+    <Report Include="(RETIRED) Telephone Payments and Requests FED.rdl" />
+    <Report Include="(RETIRED) Telephone Payments and Requests FED.rdl" />
+    <Report Include="(RETIRED) Web Portal Stats FED.rdl" />
+    <Report Include="(RETIRED)CR 5505 Administrative Forbearance - FED.rdl" />
+    <Report Include="(RETIRED)Forms Received Day 1-360 plus FED.rdl" />
+    <Report Include="(RETIRED)FSA CR 3666 Wave 1.rdl" />
+    <Report Include="(RETIRED)Incoming Consolidation Loans FED.rdl" />
+    <Report Include="(RETIRED)MauiDUDE Calls from Letters FED.rdl" />
+    <Report Include="(RETIRED)Repayment Schedule Types Weekly Details - CornerStone.rdl" />
+    <Report Include="(RETIRED)SCRA Fed - Borrower Count Comparison.rdl" />
+    <Report Include="(RETIRED)SCRA Fed - Extra Borrowers Received.rdl" />
+    <Report Include="(RETIRED)SCRA Fed - Queue Task Detail.rdl" />
+    <Report Include="(RETIRED)SCRA Fed - Unresolved No Return Data Records.rdl" />
+    <Report Include="Accounts Regulatory Report FED.rdl" />
+    <Report Include="Agent Daily Task Processing - Onelink.rdl" />
+    <Report Include="Agent Daily Task Processing.rdl" />
+    <Report Include="Ask Dude Group Search Detail.rdl" />
+    <Report Include="Ask Dude Group Search.rdl" />
+    <Report Include="Ask Dude Question Log.rdl" />
+    <Report Include="Ask Dude.rdl" />
+    <Report Include="Borrower Watch List.rdl" />
+    <Report Include="Call Categorization.rdl" />
+    <Report Include="Cancel Compass Queues.rdl" />
+    <Report Include="Chapter 13 Bankruptcy - Trustee Not Paying.rdl" />
+    <Report Include="Completed EVCs.rdl" />
+    <Report Include="Delinquencies - Commercial.rdl" />
+    <Report Include="Disaster Forbearance Report FED.rdl" />
+    <Report Include="Disaster Forbearance Totals UHEAA.rdl" />
+    <Report Include="DPA Posting.rdl" />
+    <Report Include="Email Volume Lookup.rdl" />
+    <Report Include="Email Volume.rdl" />
+    <Report Include="Final Bill Notification - UH.rdl" />
+    <Report Include="IDR Counter - FED.rdl" />
+    <Report Include="IDR Counter Months In Repayment- FED.rdl" />
+    <Report Include="Incident Reporting Cancellations.rdl" />
+    <Report Include="Internal Complaint Tracking.rdl" />
+    <Report Include="Letter Volume Lookup.rdl" />
+    <Report Include="Letter Volume UHEAA.rdl" />
+    <Report Include="Loan Payment History.rdl" />
+    <Report Include="Loan Servicing Delinquency Borrowers Dev.rdl" />
+    <Report Include="Loan Servicing Delinquency Borrowers.rdl" />
+    <Report Include="MauiDUDE Call Categories - INSC.rdl" />
+    <Report Include="MauiDUDE Calls from Letters.rdl" />
+    <Report Include="Monitor End Of Job.rdl" />
+    <Report Include="Monthly Claims Filed Details.rdl" />
+    <Report Include="Monthly Claims Filed Totals.rdl" />
+    <Report Include="Names with a Suffix.rdl" />
+    <Report Include="NH - Closed Tickets.rdl" />
+    <Report Include="Onelink Borrower ED Populations.rdl" />
+    <Report Include="Onelink DC Loan Volume and Balance.rdl" />
+    <Report Include="OneLink Payment Reversal.rdl" />
+    <Report Include="OneLink Total Volume of Voluntary Payments.rdl" />
+    <Report Include="OperationsDailyTaskProcessingUheaa.rdl" />
+    <Report Include="OperationsWeeklyTaskProcessing.rdl" />
+    <Report Include="Outstanding Delinquency Tasks.rdl" />
+    <Report Include="Payment Due Dates FED.rdl" />
+    <Report Include="Payment Processing Statistics UHEAA.rdl" />
+    <Report Include="Pending Ask Dude Questions.rdl" />
+    <Report Include="Portfolio Counts.rdl" />
+    <Report Include="Post Loan Rehab Report UHEAA.rdl" />
+    <Report Include="Publishing Report.rdl" />
+    <Report Include="QSTATSEXTR Get Report Data.rdl" />
+    <Report Include="Queue Stats Fed Queue Data.rdl" />
+    <Report Include="Queue Stats Fed User Data.rdl" />
+    <Report Include="Queue Stats Report Detail.rdl" />
+    <Report Include="Queue Stats Report Summary.rdl" />
+    <Report Include="Reduced Payment Forbearances.rdl" />
+    <Report Include="Repayment Schedule Types Weekly Details - UHEAA.rdl" />
+    <Report Include="Repayment Schedule Types Weekly Summary.rdl" />
+    <Report Include="SAS Status History Log.rdl" />
+    <Report Include="SCRA UHEAA - Borrower Count Comparison.rdl" />
+    <Report Include="SCRA UHEAA - Extra Borrowers Received.rdl" />
+    <Report Include="SCRA UHEAA - Queue Task Detail.rdl" />
+    <Report Include="SCRA UHEAA - Unresolved No Return Data Records.rdl" />
+    <Report Include="Script Status History Log.rdl" />
+    <Report Include="Skip Borrowers Demographics Report - UHEAA.rdl" />
+    <Report Include="Small Balance Writeoff UHEAA.rdl" />
+    <Report Include="Telephone Payments and Requests .rdl" />
+    <Report Include="Text Message Deliveries.rdl" />
+    <Report Include="Twice Disbursed NSLDS Reporting - FED.rdl" />
+    <Report Include="UHEAA E-Corr Monthly Stats.rdl" />
+    <Report Include="UHEAA IBR Stratification.rdl" />
+    <Report Include="Web Portal Stats.rdl" />
+    <Report Include="WQ20 and WQ70 Data Dump.rdl" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
+</Project>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="OPSWebEntry.Last7"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Last7" Height="300" Width="600" Loaded="Last7_Loaded">
+    <ListView x:Name="Results">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
+                <GridViewColumn Header="SSN" DisplayMemberBinding="{Binding Path=SSN}" />
+                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
+                <GridViewColumn Header="DOB" DisplayMemberBinding="{Binding Path=DOB}" />
+                <GridViewColumn Header="ABA" DisplayMemberBinding="{Binding Path=ABA}" />
+                <GridViewColumn Header="BankAccountNumber" DisplayMemberBinding="{Binding Path=BankAccountNumber}" />
+                <GridViewColumn Header="AccountType" DisplayMemberBinding="{Binding Path=AccountType}" />
+                <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Path=Amount}" />
+                <GridViewColumn Header="EffectiveDate" DisplayMemberBinding="{Binding Path=EffectiveDate}" />
+                <GridViewColumn Header="AccountHolderName" DisplayMemberBinding="{Binding Path=AccountHolderName}" />
+            </GridView>
+        </ListView.View>
+    </ListView>
+
+</Window>

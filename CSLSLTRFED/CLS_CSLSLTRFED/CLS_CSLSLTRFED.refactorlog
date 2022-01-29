@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="b5d28d97-5e51-4826-9c6c-0185764ab71f" ChangeDateTime="08/13/2019 16:59:22">
+    <Property Name="ElementName" Value="[dbo].[FormFields].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[FormFields]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FormFieldsId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="93af48c3-8fc9-4851-b333-00c875f9c2b7" ChangeDateTime="08/13/2019 19:00:55">
+    <Property Name="ElementName" Value="[cslsltrfed].[LoanServicingLetters].[TermDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[cslsltrfed].[LoanServicingLetters]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LoanTermEndDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="519ca4e5-dc43-4c49-90c1-a20f690cc1b8" ChangeDateTime="09/30/2019 15:58:23">
+    <Property Name="ElementName" Value="[cslsltrfed].[LoanServicingLetters].[SendToEndorser]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[cslsltrfed].[LoanServicingLetters]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DeathLetter" />
+  </Operation>
+</Operations>

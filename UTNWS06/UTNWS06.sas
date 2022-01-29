@@ -1,0 +1,266 @@
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=PKUB;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/UNWS06.NWS06RZ";
+FILENAME REPORT2 "&RPTLIB/UNWS06.NWS06R2";
+FILENAME REPORT3 "&RPTLIB/UNWS06.NWS06R3";
+FILENAME REPORT4 "&RPTLIB/UNWS06.NWS06R4";
+
+LIBNAME  WORKLOCL  REMOTE  SERVER=LEGEND  SLIBREF=WORK;
+RSUBMIT;
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=DNFPUTDL);
+
+	CREATE TABLE DLQBKT AS
+		SELECT
+			*
+		FROM
+			CONNECTION TO DB2 
+				(
+					SELECT 
+						C.DF_SPE_ACC_ID
+						,A.LN_SEQ
+						,A.LN_DLQ_MAX 
+						,B.LA_CUR_PRI
+					FROM
+						PKUB.LN16_LON_DLQ_HST A
+						INNER JOIN PKUB.LN10_LON B
+							ON A.BF_SSN = B.BF_SSN
+							AND A.LN_SEQ = B.LN_SEQ
+						INNER JOIN PKUB.PD10_PRS_NME C
+							ON A.BF_SSN = C.DF_PRS_ID
+						INNER JOIN PKUB.DW01_DW_CLC_CLU DW01
+							ON A.BF_SSN = DW01.BF_SSN
+							AND A.LN_SEQ = DW01.LN_SEQ
+							AND DW01.WC_DW_LON_STA NOT IN ('21', '20', '17', '16', '22', '12', '19', '18')
+					WHERE		
+						LC_STA_LON16 = '1'
+						AND DAYS(LD_DLQ_MAX) = DAYS(CURRENT DATE) - 1
+						AND B.LA_CUR_PRI > 0
+						AND B.LC_STA_LON10 = 'R'
+					UNION
+					SELECT 
+						C.DF_SPE_ACC_ID
+						,A.LN_SEQ
+						,DAYS(CURRENT DATE) - DAYS(A.LD_DLQ_OCC) AS LN_DLQ_MAX
+						,B.LA_CUR_PRI
+					FROM
+						PKUB.LN16_LON_DLQ_HST A
+						INNER JOIN PKUB.LN10_LON B
+							ON A.BF_SSN = B.BF_SSN
+							AND A.LN_SEQ = B.LN_SEQ
+						INNER JOIN PKUB.PD10_PRS_NME C
+							ON A.BF_SSN = C.DF_PRS_ID
+						INNER JOIN PKUB.DW01_DW_CLC_CLU DW01
+							ON A.BF_SSN = DW01.BF_SSN
+							AND A.LN_SEQ = DW01.LN_SEQ
+							AND DW01.WC_DW_LON_STA NOT IN ('21', '20', '17', '16', '22', '12', '19', '18')
+					WHERE 
+						B.LC_SST_LON10 = '5'
+						AND A.LC_STA_LON16 = '1'
+						AND B.LA_CUR_PRI > 0
+						AND B.LC_STA_LON10 = 'D'
+
+					FOR READ ONLY WITH UR
+				)
+	;
+
+	DISCONNECT FROM DB2;
+
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+QUIT;
+
+ENDRSUBMIT;
+
+DATA DLQBKT; SET WORKLOCL.DLQBKT; RUN;
+
+/*'determine delinquency periods and buckets*/
+DATA DLQBKT;
+	SET DLQBKT;
+	WHERE LN_DLQ_MAX >= 15;
+	LENGTH PERIOD $ 11.;
+	IF LN_DLQ_MAX > 359 THEN DO;
+		BUCKET = 12;
+		PERIOD = ' 360+';
+	END;
+	ELSE DO;
+		IF LN_DLQ_MAX <= 30 THEN DO;
+			BUCKET = 0 ;
+			PERIOD = '  15 - 30';
+		END;
+		ELSE DO;
+			BUCKET = INT((LN_DLQ_MAX-1)/30) ;
+			PERIOD = PUT((BUCKET*30)+1, 4.0) || ' - ' || PUT(LEFT(BUCKET*30 + 30), 4.0);
+		END;
+
+	END;
+RUN;
+
+PROC SQL;
+/*	data set for borrower count report*/
+	CREATE TABLE BRWDLQBKT AS
+		SELECT DISTINCT
+			DF_SPE_ACC_ID,
+			LN_DLQ_MAX,
+			PERIOD,
+			BUCKET
+		FROM
+			DLQBKT
+	;
+
+/*	loan counts for summary report*/
+	CREATE TABLE LN_CNT AS
+		SELECT 
+			PERIOD, 
+			COUNT(*) AS NUM_LOANS LABEL='TOTAL NUMBER OF LOANS',
+			SUM(LA_CUR_PRI) AS LA_CUR_PRI LABEL='TOTAL AMOUNT'
+		FROM
+			DLQBKT
+		GROUP BY 
+			PERIOD,
+			BUCKET
+		ORDER BY 
+			BUCKET
+	;
+
+/*	borrower counts for summary report*/
+	CREATE TABLE BRW_CNT AS
+		SELECT
+			PERIOD,
+			COUNT(DISTINCT DF_SPE_ACC_ID) AS NUM_BRWS LABEL='TOTAL NUMBER OF BORROWERS'
+		FROM
+			DLQBKT
+		GROUP BY
+			PERIOD
+	;
+
+/*	combine data sets to create data for summary report*/
+	CREATE TABLE DLQ_REPORT AS
+		SELECT
+			LNS.PERIOD,
+			LNS.NUM_LOANS,
+			BRWS.NUM_BRWS,
+			LA_CUR_PRI
+		FROM
+			LN_CNT LNS
+			JOIN BRW_CNT BRWS
+				ON LNS.PERIOD = BRWS.PERIOD
+	;
+QUIT;
+
+DATA _NULL_;
+	CALL SYMPUT('TODAYS',PUT(TODAY(),WEEKDATE31.));
+RUN;
+
+
+/*R2 summary report*/
+PROC PRINTTO PRINT=REPORT2 NEW; RUN;
+TITLE 'FEDERAL BORROWER DELINQUENCY SUMMARY REPORT';
+TITLE2	&TODAYS;
+
+PROC PRINT NOOBS SPLIT='/' DATA=DLQ_REPORT WIDTH=UNIFORM WIDTH=MIN LABEL;
+	FORMAT 
+		NUM_LOANS COMMA8. 
+		LA_CUR_PRI DOLLAR18.2
+	;
+	VAR 
+		PERIOD 
+		NUM_LOANS 
+		NUM_BRWS 
+		LA_CUR_PRI
+	;
+	LABEL 
+		PERIOD = 'Days Delinquent'
+		NUM_LOANS = 'Total Number of Loans'
+		NUM_BRWS = 'Total Number of Borrowers'
+		LA_CUR_PRI = 'Total Amount of Loans'
+	;
+RUN;
+
+PROC PRINTTO; RUN;
+
+
+/*R3 loan counts*/
+PROC FREQ DATA=DLQBKT NOPRINT; 
+	TABLE LN_DLQ_MAX / OUT=LN_COUNTS;
+RUN;
+
+DATA _NULL_;
+	SET		WORK.LN_COUNTS;
+	FILE
+		REPORT3
+		DELIMITER = ','
+		DSD
+		DROPOVER
+		LRECL = 32767
+	;
+
+	IF _N_ = 1 THEN
+		DO;
+			PUT	
+				'LN_DLQ_MAX'
+				','
+				'COUNT'
+				','
+				'PERCENT'
+			;
+		END;
+
+	DO;
+		PUT LN_DLQ_MAX @;
+		PUT COUNT  @;
+		PUT PERCENT;
+		;
+	END;
+RUN;
+
+/*R4 borrower counts*/
+PROC FREQ DATA=BRWDLQBKT NOPRINT; 
+	TABLE LN_DLQ_MAX / OUT=BRW_COUNTS;
+RUN;
+
+DATA _NULL_;
+	SET		WORK.BRW_COUNTS;
+	FILE
+		REPORT4
+		DELIMITER = ','
+		DSD
+		DROPOVER
+		LRECL = 32767
+	;
+
+	IF _N_ = 1 THEN
+		DO;
+			PUT	
+				'LN_DLQ_MAX'
+				','
+				'COUNT'
+				','
+				'PERCENT'
+			;
+		END;
+
+	DO;
+		PUT LN_DLQ_MAX @;
+		PUT COUNT  @;
+		PUT PERCENT;
+		;
+	END;
+RUN;

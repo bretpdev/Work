@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[PD20_PRS_DTH] (
+    [DF_PRS_ID]       CHAR (9)      NOT NULL,
+    [DD_DTH_NTF]      DATE          NOT NULL,
+    [DD_DTH]          DATE          NULL,
+    [DM_DTH_CT]       VARCHAR (20)  NOT NULL,
+    [DM_DTH_CTY]      VARCHAR (15)  NOT NULL,
+    [DC_DTH_ST]       CHAR (2)      NOT NULL,
+    [DF_SUR_PRS_ID]   CHAR (9)      NULL,
+    [DM_DTH_FGN_CNY]  VARCHAR (15)  NOT NULL,
+    [PF_LST_DTS_PD20] DATETIME2 (7) NOT NULL,
+    [IF_IST]          CHAR (8)      NULL,
+    CONSTRAINT [PK_PD20_PRS_DTH] PRIMARY KEY CLUSTERED ([DF_PRS_ID] ASC, [DD_DTH_NTF] ASC) WITH (FILLFACTOR = 95)
+);
+

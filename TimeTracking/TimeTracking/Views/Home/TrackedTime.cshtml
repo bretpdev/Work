@@ -1,0 +1,162 @@
+﻿@model  TrackedTime
+@{
+    ViewBag.Title = ViewBag.Message;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="../../Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.1/jquery.timepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.8.1/jquery.timepicker.min.css" type="text/css" />
+
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                dateFormat: 'mm/dd/yy',
+                changemonth: true,
+                changeyear: true,
+                maxDate: '0'
+            });
+            $('.datepicker').val('');
+            $('#ticketerror').hide();
+            $('.timepicker').timepicker({
+                showMeridian: true,
+                dateFormat: 'h:mm:ss'
+            });
+            $('.timepicker').val('');
+        });
+
+        $(function () {
+            $('#ticketid').focusout(function () {
+                $.ajax({
+                    url: '/Home/GetRequestNumbers',
+                    data: 'type=' + $('#@(Html.IdFor(r => r.Data.Systems))').val()
+                        + '&number=' + $(this).val(),
+                    method: 'POST',
+                    success: function (data) {
+                        $('#ticketid').val(data);
+                        if (data == '')
+                            $('#ticketerror').show();
+                        else
+                            $('#ticketerror').hide();
+                    },
+                    failure: function (response) {
+                        alert('Failure ' + response.responseText);
+                    },
+                    error: function (response) {
+                        alert('Error ' + response.responseText);
+                    }
+                });
+            });
+        });
+
+        $('#startdate').change(function () {
+            $('#enddate').datepicker('option', 'minDate', new Date($('#startdate').val()));
+        });
+
+        $('#enddate').change(function () {
+            $('#startdate').datepicker('option', 'maxDate', new Date($('#enddate').val()))
+        });
+
+        $('#starttime').change(function () {
+            alert(new Date($(this).timepicker().getTime()));
+            $('#endtime').timepicker('option', 'minDateTime', new Date($(this).timepicker('getTime').getTime()));
+        });
+
+        $('#clear').click(function () {
+            $('#Data_Systems').val("");
+            $('#ticketid').val("");
+            $('#startdate').val("");
+            $('#starttime').val("");
+            $('#enddate').val("");
+            $('#endtime').val("");
+        });
+    </script>
+}
+
+<h2>Add Record</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+
+    <br />
+    <br />
+
+    <table>
+        <tr>
+            <td>
+                <label>System</label>
+            </td>
+        </tr>
+        <tr style="width:15%;">
+            <td>
+                @Html.DropDownListFor(m => m.Data.Systems, ((List<SystemTypes>)Model.Data.Systems).Select(m => new SelectListItem { Text = m.SystemType, Value = m.SystemType }), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Data.Systems, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Request Number</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(m => m.Data.CurrentTime.TicketID, new { @class = "form-control", @id = "ticketid" })
+                <label id="ticketerror" class="text-danger">The entered ticket number is not a valid number for the system.</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Start Date:</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Data.CurrentTime.StartTime.Date, new { htmlAttributes = new { @class = "datepicker form-control", @id = "startdate" } })
+                @Html.ValidationMessageFor(model => model.Data.CurrentTime.StartTime, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Start Time:</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Data.CurrentTime.StartTime.TimeOfDay, new { htmlAttributes = new { @class = "timepicker form-control", @id = "starttime" } })
+                @Html.ValidationMessageFor(model => model.Data.CurrentTime.StartTime, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>End Date:</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Data.CurrentTime.EndTime, new { htmlAttributes = new { @class = "datepicker form-control", @id = "enddate" } })
+                @Html.ValidationMessageFor(model => model.Data.CurrentTime.EndTime, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>End Time:</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.EditorFor(model => model.Data.CurrentTime.EndTime, new { htmlAttributes = new { @class = "timepicker form-control", @id = "endtime" } })
+                @Html.ValidationMessageFor(model => model.Data.CurrentTime.EndTime, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <input type="button" id="clear" value="Clear" class="btn btn-light" />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+}

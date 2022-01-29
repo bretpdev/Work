@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8B0AF75-4A08-4332-B386-FF5531B10FB7}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>SP</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>SP</RootNamespace>
+    <StartupObject>SP.%28None%29</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>Windows</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>http://localhost/SP/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>SP.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>SP.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>42016,42017,42018,42019,42032,42353,42354,42355</NoWarn>
+    <DebugType>none</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\..\Q\Q.vbproj">
+      <Project>{5db905eb-0bf7-4e95-8a46-0b7e76ee807d}</Project>
+      <Name>Q</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ForbReq\ForbReq.vbproj">
+      <Name>ForbReq</Name>
+      <Project>{D75A6A2B-F5C2-4314-A1F5-A137BF150B14}</Project>
+      <Package>{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\MDAskDUDE\MDAskDUDE.vbproj">
+      <Name>MDAskDUDE</Name>
+      <Project>{0CBA2942-C8FB-479D-A3BD-F947E0657EB7}</Project>
+      <Package>{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</Package>
+    </ProjectReference>
+    <COMReference Include="AxShockwaveFlashObjects">
+      <Guid>{D27CDB6B-AE6D-11CF-96B8-444553540000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.PowerPoint">
+      <Guid>{91493440-5A91-11CF-8700-00AA0060263B}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="OSSMTP">
+      <Guid>{AA987BF8-E849-4996-9335-413DF4A8158A}</Guid>
+      <VersionMajor>18</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Reflection">
+      <Guid>{ECF246D9-E871-11D2-8CC2-00C04F72C0ED}</Guid>
+      <VersionMajor>14</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>1033</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="ShockwaveFlashObjects">
+      <Guid>{D27CDB6B-AE6D-11CF-96B8-444553540000}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+    </COMReference>
+    <COMReference Include="VBA">
+      <Guid>{000204EF-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>6</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>9</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BinsFunctionality\ABin.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityComments.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BinsFunctionality\Bins.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Borrower.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BorrowerLite.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CallCategorization\CallCategorizationCommentOnly.Designer.vb">
+      <DependentUpon>CallCategorizationCommentOnly.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CallCategorization\CallCategorizationCommentOnly.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CallCategorization\CallCategorizationEntry.vb" />
+    <Compile Include="ClassACHInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Demographics\Address.Designer.vb">
+      <DependentUpon>Address.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\Address.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\AltAddress.Designer.vb">
+      <DependentUpon>AltAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\AltAddress.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\CheckboxIndicatorsForDemographicPart.Designer.vb">
+      <DependentUpon>CheckboxIndicatorsForDemographicPart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\CheckboxIndicatorsForDemographicPart.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\COMPASSDemographics.vb" />
+    <Compile Include="Demographics\CompassDemographicsForDisplayOnly.Designer.vb">
+      <DependentUpon>CompassDemographicsForDisplayOnly.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\CompassDemographicsForDisplayOnly.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DataAccess.vb" />
+    <Compile Include="Demographics\Demographics.vb" />
+    <Compile Include="Demographics\frmAltAddress.Designer.vb">
+      <DependentUpon>frmAltAddress.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\frmAltAddress.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Demographics\LCODemographics.vb" />
+    <Compile Include="Demographics\OLD_Demographics.vb" />
+    <Compile Include="Demographics\DemographicsForUpdate.Designer.vb">
+      <DependentUpon>DemographicsForUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\DemographicsForUpdate.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\IndicatorsForDemographicPart.vb" />
+    <Compile Include="Demographics\OneLINKDemographics.vb" />
+    <Compile Include="Demographics\Phone.Designer.vb">
+      <DependentUpon>Phone.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\Phone.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\SystemDemographicsForDisplayOnly.Designer.vb">
+      <DependentUpon>SystemDemographicsForDisplayOnly.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\SystemDemographicsForDisplayOnly.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Demographics\UpdateDemoCompassIndicators.vb" />
+    <Compile Include="Demographics\UpdateDemoSystemIndicators.vb" />
+    <Compile Include="frm411.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CallCategorization\frmBrowserWindow.Designer.vb">
+      <DependentUpon>frmBrowserWindow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CallCategorization\frmBrowserWindow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CallCategorization\frmGenericCallCategorization.Designer.vb">
+      <DependentUpon>frmGenericCallCategorization.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CallCategorization\frmGenericCallCategorization.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiscInfoForms\frmAboutDUDE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BinsFunctionality\frmBins.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangeDueDate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeferForbHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Demographics\frmDemographics.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmailComments.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Demographics\OneLINKDemographicsForDisplayOnly.Designer.vb">
+      <DependentUpon>OneLINKDemographicsForDisplayOnly.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Demographics\OneLINKDemographicsForDisplayOnly.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScriptsAndServices\HomePageEnabled\frmGenericScriptAndServicesEnabled.Designer.vb">
+      <DependentUpon>frmGenericScriptAndServicesEnabled.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ScriptsAndServices\HomePageEnabled\frmGenericScriptAndServicesEnabled.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGetActionCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiscInfoForms\frmHawaiianDictionary.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiscInfoForms\frmHygiene.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUDEMessageBoxes\frmKnarlyDUDE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGenericFrmWToolBar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNoteDUDE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiscInfoForms\frmProcessing.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReQueue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScriptsAndServices\Original\frmScriptsAndServices.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScriptsAndServices\Original\frmScriptsAndServicesDeferForbHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpecialComments.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTraining.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MiscInfoForms\frmUnderConstruct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUDEMessageBoxes\frmWhoaDUDE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhoAmI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUDEMessageBoxes\frmWipeOut.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DUDEMessageBoxes\frmYesNo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PublicVarsAndMethods.vb" />
+    <Compile Include="ScriptsAndServices\HomePageEnabled\ScriptAndServiceMenuItem.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Temp.Designer.vb">
+      <DependentUpon>Temp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Temp.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInfo.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="BinsFunctionality\ABin.resx">
+      <DependentUpon>ABin.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CallCategorization\CallCategorizationCommentOnly.resx">
+      <DependentUpon>CallCategorizationCommentOnly.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\Address.resx">
+      <DependentUpon>Address.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\AltAddress.resx">
+      <DependentUpon>AltAddress.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\CheckboxIndicatorsForDemographicPart.resx">
+      <DependentUpon>CheckboxIndicatorsForDemographicPart.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\CompassDemographicsForDisplayOnly.resx">
+      <DependentUpon>CompassDemographicsForDisplayOnly.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\DemographicsForUpdate.resx">
+      <DependentUpon>DemographicsForUpdate.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\frmAltAddress.resx">
+      <DependentUpon>frmAltAddress.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\Phone.resx">
+      <DependentUpon>Phone.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\SystemDemographicsForDisplayOnly.resx">
+      <DependentUpon>SystemDemographicsForDisplayOnly.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm411.resx">
+      <DependentUpon>frm411.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CallCategorization\frmBrowserWindow.resx">
+      <DependentUpon>frmBrowserWindow.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CallCategorization\frmGenericCallCategorization.resx">
+      <DependentUpon>frmGenericCallCategorization.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscInfoForms\frmAboutDUDE.resx">
+      <DependentUpon>frmAboutDUDE.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BinsFunctionality\frmBins.resx">
+      <DependentUpon>frmBins.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChangeDueDate.resx">
+      <DependentUpon>frmChangeDueDate.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeferForbHistory.resx">
+      <DependentUpon>frmDeferForbHistory.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\frmDemographics.resx">
+      <DependentUpon>frmDemographics.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmailComments.resx">
+      <DependentUpon>frmEmailComments.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Demographics\OneLINKDemographicsForDisplayOnly.resx">
+      <DependentUpon>OneLINKDemographicsForDisplayOnly.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptsAndServices\HomePageEnabled\frmGenericScriptAndServicesEnabled.resx">
+      <DependentUpon>frmGenericScriptAndServicesEnabled.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGetActionCode.resx">
+      <DependentUpon>frmGetActionCode.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscInfoForms\frmHawaiianDictionary.resx">
+      <DependentUpon>frmHawaiianDictionary.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscInfoForms\frmHygiene.resx">
+      <DependentUpon>frmHygiene.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUDEMessageBoxes\frmKnarlyDUDE.resx">
+      <DependentUpon>frmKnarlyDUDE.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGenericFrmWToolBar.resx">
+      <DependentUpon>frmGenericFrmWToolBar.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNoteDUDE.resx">
+      <DependentUpon>frmNoteDUDE.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscInfoForms\frmProcessing.resx">
+      <DependentUpon>frmProcessing.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReQueue.resx">
+      <DependentUpon>frmReQueue.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptsAndServices\Original\frmScriptsAndServices.resx">
+      <DependentUpon>frmScriptsAndServices.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScriptsAndServices\Original\frmScriptsAndServicesDeferForbHistory.resx">
+      <DependentUpon>frmScriptsAndServicesDeferForbHistory.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpecialComments.resx">
+      <DependentUpon>frmSpecialComments.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTraining.resx">
+      <DependentUpon>frmTraining.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiscInfoForms\frmUnderConstruct.resx">
+      <DependentUpon>frmUnderConstruct.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUDEMessageBoxes\frmWhoaDUDE.resx">
+      <DependentUpon>frmWhoaDUDE.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWhoAmI.resx">
+      <DependentUpon>frmWhoAmI.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUDEMessageBoxes\frmWipeOut.resx">
+      <DependentUpon>frmWipeOut.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DUDEMessageBoxes\frmYesNo.resx">
+      <DependentUpon>frmYesNo.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MauiDUDERes.resX">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Temp.resx">
+      <DependentUpon>Temp.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\DataSources\CallCategorizationEntry.datasource" />
+    <None Include="My Project\DataSources\Demographics.datasource" />
+    <None Include="My Project\DataSources\IndicatorsForDemographicPart.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

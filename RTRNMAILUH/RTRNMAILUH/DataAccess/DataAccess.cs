@@ -1,0 +1,131 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+using Uheaa.Common.DataAccess;
+using Uheaa.Common.ProcessLogger;
+using Uheaa.Common.Scripts;
+using static Uheaa.Common.DataAccess.DataAccessHelper.Database;
+
+namespace RTRNMAILUH
+{
+    public class DataAccess
+    {
+        public LogDataAccess LDA { get; set; }
+        ProcessLogRun LogRun { get; set; }
+
+        public DataAccess(ProcessLogRun logRun)
+        {
+            LogRun = logRun;
+            LDA = logRun.LDA;
+        }
+
+        [UsesSproc(Uls, "rtrnmailuh.GetRecordsToProcess")]
+        public List<BarcodeData> GetRecordsToProcess() => LDA.ExecuteList<BarcodeData>("rtrnmailuh.GetRecordsToProcess", Uls).Result;
+
+        /// <summary>
+        /// Gets the demographic information that matches the System Borrower Demographics object
+        /// </summary>
+        [UsesSproc(Udw, "GetSystemBorrowerDemographics")]
+        public SystemBorrowerDemographics GetDemos(string accountIdentifier) => LDA.ExecuteSingle<SystemBorrowerDemographics>("GetSystemBorrowerDemographics", Udw,
+                SP("AccountIdentifier", accountIdentifier)).Result;
+
+        /// <summary>
+        /// Checks if the borrower is in California and returns the email information to add them to the Email Batch Script if they are
+        /// </summary>
+        [UsesSproc(Udw, "rtrnmailuh.GetCaliforniaBorForEnd")]
+        [UsesSproc(Udw, "rtrnmailuh.GetCaliforniaBorrower")]
+        [UsesSproc(Udw, "rtrnmailuh.GetCaliforniaEndForBor")]
+        [UsesSproc(Udw, "rtrnmailuh.GetCaliforniaEndorser")]
+        public List<BorrowerEmailData> GetCAEmailData(string accountIdentifier)
+        {
+            List<BorrowerEmailData> emailData = new List<BorrowerEmailData>();
+
+            //Assume the accountNumber belongs to a borrower
+            emailData = LDA.ExecuteList<BorrowerEmailData>("rtrnmailuh.GetCaliforniaBorrower", Udw,
+                SP("AccountIdentifier", accountIdentifier)).Result;
+
+            //If the accountNumber belongs to an endorser
+            if (emailData == null || emailData.Count == 0)
+            {
+                emailData = LDA.ExecuteList<BorrowerEmailData>("rtrnmailuh.GetCaliforniaBorForEnd", Udw,
+                    SP("AccountIdentifier", accountIdentifier)).Result;
+
+                emailData.AddRange(LDA.ExecuteList<BorrowerEmailData>("rtrnmailuh.GetCaliforniaEndorser", Udw,
+                    SP("AccountIdentifier", accountIdentifier)).Result);
+            }
+
+            //If the account number was indeed the borrower's
+            else
+            {
+                emailData.AddRange(LDA.ExecuteList<BorrowerEmailData>("rtrnmailuh.GetCaliforniaEndForBor", Udw,
+                    SP("AccountIdentifier", accountIdentifier)).Result);
+            }
+
+            return new List<BorrowerEmailData>(emailData.Where(b => b.State == "CA"));
+        }
+
+        /// <summary>
+        /// Sets the record to processed in the BD
+        /// </summary>
+        [UsesSproc(Uls, "rtrnmailuh.MarkBarcodeRecordCompleted")]
+        public void SetProcessed(int barcodeDataId) => LDA.Execute("rtrnmailuh.MarkBarcodeRecordCompleted", Uls,
+            SP("BarcodeDataId", barcodeDataId));
+
+        /// <summary>
+        /// Inserts the Email Batch Script record for the California borrower
+        /// </summary>
+        [UsesSproc(Uls, "rtrnmailuh.GetCampaignIdFromHtml")]
+        [UsesSproc(Uls, "emailbatch.LoadSingleRecord")]
+        public bool InsertEmailBatch(BorrowerEmailData eData, bool isEndorser, string accountNumber)
+        {
+            try
+            {
+                int id = LDA.ExecuteSingle<int>("rtrnmailuh.GetCampaignIdFromHtml", Uls,
+                    SP("HtmlFile", "CARTMAILUH.html"),
+                    SP("IsEndorser", isEndorser)).Result;
+
+                LDA.Execute("emailbatch.LoadSingleRecord", Uls,
+                    SP("EmailCampaignId", id),
+                    SP("AccountNumber", accountNumber),
+                    SP("EmailData", eData.EmailData),
+                    SP("ArcNeeded", !isEndorser));
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string message = $"There was an error adding the California borrower record to the Email Batch table for {(isEndorser ? "Endorser:" : "Borrower:")} {eData.AccountNumber}. A comment will not be added to the ArcAddProcessing table.; Error: {ex.Message}";
+                LogRun.AddNotification(message, NotificationType.ErrorReport, NotificationSeverityType.Warning, ex);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Inserts the ArcAddProcessingId for the BarcodeData record
+        /// </summary>
+        [UsesSproc(Uls, "rtrnmailuh.InsertArcAddId")]
+        public void InsertArcAddId(int barcodeDataId, int arcAddProcessingId)
+        {
+            LDA.Execute("rtrnmailuh.InsertArcAddId", Uls,
+                SP("BarcodeDataId", barcodeDataId),
+                SP("ArcAddProcessingId", arcAddProcessingId));
+        }
+
+        /// <summary>
+        /// Gets the Business Unit number by searching for Document Services then
+        /// gets the BU Manager email address
+        /// </summary>
+        [UsesSproc(Csys, "spGENR_GetBusinessUnitId")]
+        [UsesSproc(Csys, "spNDHP_GetManagerEmail")]
+        public string GetDocServicesManagerEmail()
+        {
+            int BuId = LDA.ExecuteSingle<int>("spGENR_GetBusinessUnitId", Csys,
+                SP("BU", "Document Services")).Result;
+            string userName = LDA.ExecuteSingle<string>("spNDHP_GetManagerEmail", Csys,
+                SP("BusinessUnit", BuId)).Result;
+            return userName + "@utahsbr.edu";
+        }
+
+        private SqlParameter SP(string name, object value) => SqlParams.Single(name, value);
+    }
+}

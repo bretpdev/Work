@@ -1,0 +1,18 @@
+﻿CREATE PROCEDURE [achsetup].[GetBorrowerEndorserSsns]
+	@Ssn CHAR(9)
+AS
+	DECLARE @Server NVARCHAR(MAX) = CASE WHEN @@ServerName = 'UHEAASQLDB' THEN 'DUSTER' ELSE 'QADBD004' END
+	DECLARE @HasEndorser BIT = 0
+
+	SELECT DISTINCT
+		LF_EDS
+	FROM
+		LN20_EDS
+	WHERE
+		BF_SSN = @Ssn 
+	AND
+		BF_SSN <> LF_EDS
+	AND
+		LC_STA_LON20 = 'A'
+
+RETURN 0

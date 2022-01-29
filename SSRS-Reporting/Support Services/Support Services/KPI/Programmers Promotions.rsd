@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>SELECT DISTINCT
+	ALLPOP.Email
+FROM
+	(
+		SELECT
+			--SR.[Request],
+			--SR.Script AS [Job],
+			--S.ID,
+			--'SCRIPT' AS [TYPE],
+			--PRO.PROGRAMMER,
+			--CAST(SR.StatusDate AS DATE) AS StatusDate,
+			SDU.EMail
+		FROM 
+			[BSYS].[dbo].[SCKR_DAT_ScriptRequests] SR
+			INNER JOIN BSYS..SCKR_DAT_Scripts S
+				ON S.Script = SR.Script
+			INNER JOIN
+			(
+				select 
+					p.REQUEST,
+					P.Programmer 
+				from 
+					[BSYS].[dbo].[SCKR_REF_Programmer] p
+					inner join
+					(
+						SELECT  
+							REQUEST,    
+							MAX([Begin]) as beginDate
+						FROM 
+							[BSYS].[dbo].[SCKR_REF_Programmer] m
+						GROUP BY 
+							Request
+					) m
+						on m.Request = p.Request
+						and m.beginDate = p.[Begin]
+				WHERE P.Class = 'SCR'
+			) PRO
+				ON PRO.Request = SR.Request		
+			LEFT JOIN CSYS..SYSA_DAT_Users SDU
+				ON PRO.Programmer = CONCAT(SDU.FirstName, ' ' , SDU.LastName)
+		WHERE 
+			CurrentStatus = 'Complete' 
+			AND StatusDate BETWEEN CAST(DATEADD(day, -9, GETDATE()) AS DATE) AND CAST(GETDATE() AS DATE)
+
+		UNION ALL
+
+		SELECT 
+			--SR.[Request],
+			--SR.Job,
+			--S.ID,
+			--'SAS' AS [TYPE],
+			--PRO.PROGRAMMER,
+			--CAST(SR.StatusDate AS DATE) AS StatusDate,
+			SDU.EMail     
+		FROM 
+			[BSYS].[dbo].SCKR_DAT_SASRequests SR
+			INNER JOIN BSYS..SCKR_DAT_SAS S
+				ON S.Job = SR.Job
+			INNER JOIN
+			(
+				select 
+					p.REQUEST,
+					P.Programmer 
+				from 
+					[BSYS].[dbo].[SCKR_REF_Programmer] p
+					inner join
+					(
+						SELECT  
+							REQUEST,    
+							MAX([Begin]) as beginDate
+						FROM 
+							[BSYS].[dbo].[SCKR_REF_Programmer] m
+
+						GROUP BY 
+							Request
+					) m
+						on m.Request = p.Request
+						and m.beginDate = p.[Begin]
+				WHERE P.Class = 'SAS'
+			) PRO
+				ON PRO.Request = SR.Request
+			LEFT JOIN CSYS..SYSA_DAT_Users SDU
+				ON PRO.Programmer = CONCAT(SDU.FirstName, ' ' , SDU.LastName)
+		WHERE 
+			CurrentStatus = 'Complete' 
+			AND StatusDate BETWEEN CAST(DATEADD(day, -9, GETDATE()) AS DATE) AND CAST(GETDATE() AS DATE)
+	) ALLPOP</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Email">
+        <DataField>Email</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

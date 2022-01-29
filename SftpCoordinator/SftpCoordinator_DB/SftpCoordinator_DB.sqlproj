@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SftpCoordinator_DB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{0aebbf0b-5fa4-4de2-81ae-8d3291745907}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SftpCoordinator_DB</RootNamespace>
+    <AssemblyName>SftpCoordinator_DB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Views" />
+    <Folder Include="Functions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\ActivityLog.sql" />
+    <Build Include="Stored Procedures\DeletePathType.sql" />
+    <Build Include="Stored Procedures\DeleteProject.sql" />
+    <Build Include="Stored Procedures\DeleteProjectFile.sql" />
+    <Build Include="Stored Procedures\GetActivityLogsDetailed.sql" />
+    <Build Include="Stored Procedures\GetAllPathTypes.sql" />
+    <Build Include="Stored Procedures\GetAllProjects.sql" />
+    <Build Include="Stored Procedures\GetLastRunHistory.sql" />
+    <Build Include="Stored Procedures\GetProjectFilesByProjectId.sql" />
+    <Build Include="Stored Procedures\GetProjectFilesDetailed.sql" />
+    <Build Include="Stored Procedures\GetRunHistoryDetailed.sql" />
+    <Build Include="Stored Procedures\GetSettings.sql" />
+    <Build Include="Stored Procedures\InsertActivityLog.sql" />
+    <Build Include="Stored Procedures\InsertInvalidFile.sql" />
+    <Build Include="Stored Procedures\InsertPathType.sql" />
+    <Build Include="Stored Procedures\InsertProject.sql" />
+    <Build Include="Stored Procedures\InsertProjectFile.sql" />
+    <Build Include="Stored Procedures\InsertRunHistory.sql" />
+    <Build Include="Stored Procedures\RunHistoryDelete.sql" />
+    <Build Include="Stored Procedures\RunHistoryGetAll.sql" />
+    <Build Include="Stored Procedures\SpecifySetting.sql" />
+    <Build Include="Stored Procedures\UpdatePathType.sql" />
+    <Build Include="Stored Procedures\UpdateProject.sql" />
+    <Build Include="Stored Procedures\UpdateProjectFile.sql" />
+    <Build Include="Stored Procedures\UpdateRunHistoryMarkAsEnded.sql" />
+    <Build Include="Stored Procedures\UpdateSetting.sql" />
+    <Build Include="Views\RunHistoryDetailed.sql" />
+    <Build Include="Functions\YNI.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\InvalidFiles.sql" />
+    <Build Include="Tables\PathTypes.sql" />
+    <Build Include="Tables\ProjectFiles.sql" />
+    <Build Include="Tables\Projects.sql" />
+    <Build Include="Tables\RunHistory.sql" />
+    <Build Include="Tables\Settings.sql" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SftpCoordinator</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{29fdc404-a997-4359-95f7-42ea89249a96}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SftpCoordinator</RootNamespace>
+    <AssemblyName>SftpCoordinator</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+    <GenerateCreateScript>True</GenerateCreateScript>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables\" />
+    <Folder Include="Views" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Publish Profiles" />
+    <Folder Include="Functions" />
+    <Folder Include="Stored Procedures\Projects" />
+    <Folder Include="Stored Procedures\ProjectFiles" />
+    <Folder Include="Stored Procedures\Settings" />
+    <Folder Include="Stored Procedures\RunHistory" />
+    <Folder Include="Stored Procedures\ActivityLogs" />
+    <Folder Include="Stored Procedures\InvalidFiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\ActivityLog.sql" />
+    <Build Include="Tables\Projects.sql" />
+    <Build Include="Tables\ProjectFiles.sql" />
+    <Build Include="Tables\RunHistory.sql" />
+    <Build Include="Views\RunHistoryDetailed.sql" />
+    <Build Include="Tables\Settings.sql" />
+    <Build Include="Tables\InvalidFiles.sql" />
+    <Build Include="Tables\PathTypes.sql" />
+    <Build Include="Functions\YNI.sql" />
+    <PostDeploy Include="PostDeployment.sql" />
+    <Build Include="Stored Procedures\Projects\UpdateProject.sql" />
+    <Build Include="Stored Procedures\Projects\DeleteProject.sql" />
+    <Build Include="Stored Procedures\Projects\InsertProject.sql" />
+    <Build Include="Stored Procedures\ProjectFiles\UpdateProjectFile.sql" />
+    <Build Include="Stored Procedures\ProjectFiles\GetProjectFilesByProjectId.sql" />
+    <Build Include="Stored Procedures\ProjectFiles\GetProjectFilesDetailed.sql" />
+    <Build Include="Stored Procedures\Projects\GetAllProjects.sql" />
+    <Build Include="Stored Procedures\Settings\GetSettings.sql" />
+    <Build Include="Stored Procedures\Settings\UpdateSetting.sql" />
+    <Build Include="Stored Procedures\RunHistory\GetRunHistoryDetailed.sql" />
+    <Build Include="Stored Procedures\RunHistory\GetLastRunHistory.sql" />
+    <Build Include="Stored Procedures\RunHistory\InsertRunHistory.sql" />
+    <Build Include="Stored Procedures\RunHistory\UpdateRunHistoryMarkAsEnded.sql" />
+    <Build Include="Stored Procedures\ActivityLogs\GetActivityLogsDetailed.sql" />
+    <Build Include="Stored Procedures\ActivityLogs\InsertActivityLog.sql" />
+    <Build Include="Stored Procedures\InvalidFiles\InsertInvalidFile.sql" />
+    <Build Include="Stored Procedures\ProjectFiles\InsertProjectFile.sql" />
+    <Build Include="Stored Procedures\ProjectFiles\DeleteProjectFile.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SftpCoordinator.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish Profiles\opsdev.SftpCoordinator.publish.xml" />
+    <None Include="Publish Profiles\nochousetest.SftpCoordinator.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="PreDeployment.sql" />
+  </ItemGroup>
+</Project>

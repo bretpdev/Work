@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="4feba28c-6f18-43ef-9865-d107a9014bb2" ChangeDateTime="10/27/2021 16:19:05">
+    <Property Name="ElementName" Value="[payhistlpp].[CurrentSsns].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[CurrentSsns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Ssn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bdd8d9b2-b952-4922-9cb3-283f1fa882ad" ChangeDateTime="10/27/2021 19:22:18">
+    <Property Name="ElementName" Value="[payhistlpp].[CurrentSsns].[Ssn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[CurrentSsns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BF_SSN" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="83ecff4e-3b08-4939-8b8e-9cbf43531ab0" ChangeDateTime="10/27/2021 19:31:48">
+    <Property Name="ElementName" Value="[payhistlpp].[CurrentSsns].[Processed]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[CurrentSsns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessedaT" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="259fbe60-a16e-4973-8a25-b6196b6d406b" ChangeDateTime="10/27/2021 19:31:53">
+    <Property Name="ElementName" Value="[payhistlpp].[CurrentSsns].[ProcessedaT]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[CurrentSsns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessedAt" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="86d127eb-6737-466a-b819-fe6940cb2225" ChangeDateTime="10/27/2021 19:33:50">
+    <Property Name="ElementName" Value="[payhistlpp].[CurrentSsns].[BF_SSN]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[CurrentSsns]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Ssn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4e50896c-8e78-4590-ac08-077f8ef4832f" ChangeDateTime="10/27/2021 19:36:06">
+    <Property Name="ElementName" Value="[payhistlpp].[Run].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[Run]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RunId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="33feb2cb-f4ff-4756-a9d4-45751fef0bec" ChangeDateTime="10/27/2021 21:31:10">
+    <Property Name="ElementName" Value="[payhistlpp].[UserAccess].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[UserAccess]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserAccessId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ebd47c9d-f21e-4fe8-92a8-d4a25eeea45f" ChangeDateTime="10/27/2021 21:50:09">
+    <Property Name="ElementName" Value="[payhistlpp].[Run].[RunBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[Run]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserAccessId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="da2fa658-eb46-4b1c-9d51-93b7465209f5" ChangeDateTime="11/04/2021 20:12:40">
+    <Property Name="ElementName" Value="[payhistlpp].[Accounts].[AccountId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[payhistlpp].[Accounts]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AccountsId" />
+  </Operation>
+</Operations>

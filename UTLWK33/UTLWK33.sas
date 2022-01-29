@@ -1,0 +1,260 @@
+/*UTLWK33 - Letter to No Phone Borrowers*/
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/ULWK33.LWK33RZ";
+FILENAME REPORT2 "&RPTLIB/ULWK33.LWK33R2";
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+%macro sqlcheck ;
+  %if  &sqlxrc ne 0  %then  %do  ;
+    data _null_  ;
+            file reportz notitles  ;
+            put @01 " ********************************************************************* "
+              / @01 " ****  The SQL code above has experienced an error.               **** "
+              / @01 " ****  The SAS should be reviewed.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  The SQL error code is  &sqlxrc  and the SQL error message  **** "
+              / @01 " ****  &sqlxmsg   **** "
+              / @01 " ********************************************************************* "
+            ;
+         run  ;
+  %end  ;
+%mend  ;
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE DAT AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT A.DF_PRS_ID 
+	,A.DC_ADR
+	,A.DF_SPE_ACC_ID 
+	,A.DM_PRS_1 
+	,A.DM_PRS_LST 
+	,A.DX_STR_ADR_1 
+	,A.DX_STR_ADR_2 
+	,A.DM_CT 
+	,A.DC_DOM_ST 
+	,A.DF_ZIP AS ZIP
+	,A.DM_FGN_CNY 
+	,C.AF_CUR_LON_OPS_LDR 
+	,A.DI_VLD_ADR
+	,D.CO_DC_ADR
+	,D.CO_DX_STR_ADR_1
+	,D.CO_DX_STR_ADR_2
+	,D.CO_DM_CT
+	,D.CO_DC_DOM_ST
+	,D.CO_DF_ZIP_CDE
+	,D.CO_DM_FGN_CNY
+	,D.CO_DI_VLD_ADR
+FROM OLWHRM1.PD01_PDM_INF A
+INNER JOIN OLWHRM1.GA01_APP B
+	ON A.DF_PRS_ID = B.DF_PRS_ID_BR
+INNER JOIN OLWHRM1.GA10_LON_APP C
+	ON B.AF_APL_ID = C.AF_APL_ID
+LEFT OUTER JOIN (
+	SELECT DISTINCT
+		A1.DF_PRS_ID 
+		,B1.DC_ADR AS CO_DC_ADR
+		,A1.DM_PRS_1 AS CO_DM_PRS_1
+		,A1.DM_PRS_LST AS CO_DM_PRS_LST
+		,B1.DX_STR_ADR_1 AS CO_DX_STR_ADR_1
+		,B1.DX_STR_ADR_2 AS CO_DX_STR_ADR_2
+		,B1.DM_CT AS CO_DM_CT
+		,B1.DC_DOM_ST AS CO_DC_DOM_ST
+		,B1.DF_ZIP_CDE AS CO_DF_ZIP_CDE
+		,B1.DM_FGN_CNY AS CO_DM_FGN_CNY
+		,B1.DI_VLD_ADR AS CO_DI_VLD_ADR
+	FROM OLWHRM1.PD10_PRS_NME A1
+	INNER JOIN OLWHRM1.PD30_PRS_ADR B1
+		ON A1.DF_PRS_ID = B1.DF_PRS_ID
+	INNER JOIN OLWHRM1.PD42_PRS_PHN C1
+		ON B1.DF_PRS_ID = C1.DF_PRS_ID
+	WHERE C1.DN_DOM_PHN_XCH ='555'
+		AND C1.DN_DOM_PHN_LCL = '1212'
+		AND C1.DI_PHN_VLD = 'N'
+		AND B1.DC_ADR = 'L'
+	) D
+	ON A.DF_PRS_ID = D.DF_PRS_ID
+WHERE A.DN_PHN LIKE '%5551212%'
+	AND A.DI_PHN_VLD = 'N'
+	AND A.DC_SKP_TRC_STA = 'R'
+	AND A.DC_ADR = 'L'
+	AND (A.DI_VLD_ADR <> 'N' OR D.CO_DI_VLD_ADR <> 'N')
+FOR READ ONLY WITH UR
+);
+DISCONNECT FROM DB2;
+/*%put  sqlxrc= >>> &sqlxrc <<< ||| sqlxmsg= >>> &sqlxmsg >>> ;  ** includes error messages to SAS log  ;*/
+/*%sqlcheck;*/
+/*quit;*/
+ENDRSUBMIT;
+DATA DAT;
+	SET WORKLOCL.DAT;
+RUN;
+/*DETERMINE WHICH SYSTEM INFORMATION TO USE*/
+DATA DAT (DROP=CO_DC_ADR CO_DX_STR_ADR_1 CO_DX_STR_ADR_2 CO_DM_CT CO_DC_DOM_ST 
+			CO_DF_ZIP_CDE CO_DM_FGN_CNY CO_DI_VLD_ADR);
+	SET DAT;
+	IF DI_VLD_ADR = 'Y' THEN DO;
+		DC_ADR = DC_ADR;
+		DX_STR_ADR_1 = DX_STR_ADR_1;
+		DX_STR_ADR_2 = DX_STR_ADR_2;
+		DM_CT = DM_CT;
+		DC_DOM_ST = DC_DOM_ST;
+		ZIP = ZIP ;
+		DM_FGN_CNY = DM_FGN_CNY;
+		DI_VLD_ADR = DI_VLD_ADR;
+	END;
+	ELSE DO;
+		DC_ADR = CO_DC_ADR;
+		DX_STR_ADR_1 = CO_DX_STR_ADR_1;
+		DX_STR_ADR_2 = CO_DX_STR_ADR_2;
+		DM_CT = CO_DM_CT;
+		DC_DOM_ST = CO_DC_DOM_ST;
+		ZIP = CO_DF_ZIP_CDE;
+		DM_FGN_CNY = CO_DM_FGN_CNY;
+		DI_VLD_ADR = CO_DI_VLD_ADR;
+	END;
+RUN;
+PROC SQL;
+	CREATE TABLE FINAL AS 
+		SELECT DISTINCT A.DF_SPE_ACC_ID
+			,A.DF_PRS_ID
+			,A.DM_PRS_1
+			,A.DM_PRS_LST 
+			,A.DC_ADR 
+			,A.DX_STR_ADR_1
+			,A.DX_STR_ADR_2
+			,A.DM_CT
+			,A.DC_DOM_ST 
+			,A.ZIP 
+			,A.DM_FGN_CNY
+			,A.DI_VLD_ADR
+			,CASE 
+				WHEN B.OB IS NULL THEN 'MA2327'
+				WHEN B.OB IS NOT NULL AND C.OC IS NULL THEN 'MA2324'
+				WHEN B.OB IS NOT NULL AND C.OC IS NOT NULL THEN 'MA2324'
+			 END AS COST_CENTER_CODE
+			,CASE 
+				WHEN DM_FGN_CNY ^= '' THEN 1
+				ELSE 2
+			 END AS SVAR
+		FROM DAT A
+		LEFT OUTER JOIN (
+			SELECT DISTINCT 
+				DF_PRS_ID
+				,AF_CUR_LON_OPS_LDR AS OB
+			FROM DAT 
+			WHERE AF_CUR_LON_OPS_LDR = '828476'	
+			) B
+			ON A.DF_PRS_ID = B.DF_PRS_ID
+		LEFT OUTER JOIN (
+			SELECT DISTINCT 
+				DF_PRS_ID
+				,AF_CUR_LON_OPS_LDR AS OC
+			FROM DAT 
+			WHERE AF_CUR_LON_OPS_LDR ^= '828476'	
+			) C
+			ON A.DF_PRS_ID = C.DF_PRS_ID
+	;
+QUIT;
+PROC SORT DATA=FINAL NODUPKEY;
+	BY DF_PRS_ID;
+RUN;
+PROC SORT DATA=FINAL;
+	BY COST_CENTER_CODE SVAR DC_DOM_ST DF_PRS_ID;
+RUN;
+*CALCULATE KEYLINE;
+DATA FINAL (DROP = KEYSSN MODAY KEYLINE CHKDIG DIG I 
+	CHKDIG CHK1 CHK2 CHK3 CHKDIGIT CHECK);
+SET FINAL;
+KEYSSN = TRANSLATE(DF_PRS_ID,'MYLAUGHTER','0987654321');
+MODAY = PUT(DATE(),MMDDYYN4.);
+KEYLINE = "P"||KEYSSN||MODAY||DC_ADR;
+CHKDIG = 0;
+LENGTH DIG $2.;
+DO I = 1 TO LENGTH(KEYLINE);
+	IF I/2 NE ROUND(I/2,1) 
+		THEN DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4) * 2, 2.);
+	ELSE DIG = PUT(INPUT(SUBSTR(KEYLINE,I,1),BITS4.4), 2.);
+	IF SUBSTR(DIG,1,1) = " " 
+		THEN CHKDIG = CHKDIG + INPUT(SUBSTR(DIG,2,1),1.);
+		ELSE DO;
+			CHK1 = INPUT(SUBSTR(DIG,1,1),1.);
+			CHK2 = INPUT(SUBSTR(DIG,2,1),1.);
+			IF CHK1 + CHK2 >= 10
+				THEN DO;
+					CHK3 = PUT(CHK1 + CHK2,2.);
+					CHK1 = INPUT(SUBSTR(CHK3,1,1),1.);
+					CHK2 = INPUT(SUBSTR(CHK3,2,1),1.);
+				END;
+			CHKDIG = CHKDIG + CHK1 + CHK2;
+		END;
+END;
+CHKDIGIT = 10 - INPUT(SUBSTR((RIGHT(PUT(CHKDIG,3.))),3,1),3.);
+IF CHKDIGIT = 10 THEN CHKDIGIT = 0;
+CHECK = PUT(CHKDIGIT,1.);
+ACSKEY = "#"||KEYLINE||CHECK||"#";
+RUN;
+DATA _NULL_;
+SET  FINAL;
+FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+   FORMAT DF_PRS_ID $9.;
+   FORMAT DF_SPE_ACC_ID $10.;
+   FORMAT DM_PRS_1 $12.;
+   FORMAT DM_PRS_LST $35.;
+   FORMAT DX_STR_ADR_1 $35.;
+   FORMAT DX_STR_ADR_2 $35.;
+   FORMAT DM_CT $30.;
+   FORMAT DC_DOM_ST $2.;
+   FORMAT ZIP $14.;
+   FORMAT DM_FGN_CNY $25.;
+   FORMAT ACSKEY $18.;
+   FORMAT COST_CENTER_CODE $6.;
+IF _N_ = 1 THEN        /* write column names */
+ DO;
+   PUT
+   'SSN'
+   ','
+   'DF_SPE_ACC_ID'
+   ','
+   'DM_PRS_1'
+   ','
+   'DM_PRS_LST'
+   ','
+   'DX_STR_ADR_1'
+   ','
+   'DX_STR_ADR_2'
+   ','
+   'DM_CT'
+   ','
+   'DC_DOM_ST'
+   ','
+   'ZIP'
+   ','
+   'DM_FGN_CNY'
+   ','
+   'KEYLINE'
+   ','
+   'DC_DOM_ST'
+   ','
+   'COST_CENTER_CODE'
+   ;
+ END;
+ DO;
+   PUT DF_PRS_ID $ @;
+   PUT DF_SPE_ACC_ID $ @;
+   PUT DM_PRS_1 $ @;
+   PUT DM_PRS_LST $ @;
+   PUT DX_STR_ADR_1 @;
+   PUT DX_STR_ADR_2 @;
+   PUT DM_CT @;
+   PUT DC_DOM_ST @;
+   PUT ZIP @;
+   PUT DM_FGN_CNY @;
+   PUT ACSKEY @;
+   PUT DC_DOM_ST @;
+   PUT COST_CENTER_CODE $ ;
+   ;
+ END;
+RUN;

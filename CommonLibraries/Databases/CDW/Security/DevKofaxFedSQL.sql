@@ -1,0 +1,2 @@
+﻿CREATE USER [DevKofaxFedSQL] FOR LOGIN [DevKofaxFedSQL];
+

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>
+DECLARE @EMPLOYEE_HIERARCHY TABLE
+(
+	hierarchy_id int identity,
+	employee_id int null,
+	first_name varchar(30) not null,
+	last_name varchar(30) not null,
+	manager_employee_id int null,
+	nest_level int null,
+	left_value int not null,
+	right_value int not null
+)
+
+INSERT INTO @EMPLOYEE_HIERARCHY
+(
+	first_name,
+	last_name,
+	left_value,
+	right_value
+)
+VALUES
+	('Debbie', 'Phillips', 1, 40),
+	('Eric', 'Barnes', 2, 25),
+	('Melanie', 'Garfield', 3, 14),
+	('Colton', 'McComb', 4, 5),
+	('Devin', 'Pili', 6, 7),
+	('Jessica', 'Hanson', 8, 9),
+	('Jesse', 'Gutierrez', 10, 11),
+	('Riley', 'Bigelow', 12, 13),
+	('Evan', 'Walker', 15, 16),
+	('Bret', 'Pehrson', 17, 18),
+	('Jarom', 'Ryan', 19, 20),
+	('Joshua', 'Wright', 21, 22),
+	('J Refugio', 'Nolasco', 23, 24),
+	('Wendy', 'Hack', 26, 27),
+	('Jeremy', 'Blair', 28, 29),
+	('David','Halladay', 30, 31),
+	('Candice', 'Cole', 32, 33),
+	('Seth', 'Pratt', 34, 35),
+	('Adam', 'Isom', 36, 37),
+	('Alyssa', 'Despain', 38, 39)
+
+-- Set employee_id	
+UPDATE 
+	@EMPLOYEE_HIERARCHY
+SET 
+	employee_id =  SDU.SqlUserId
+FROM
+	[CSYS].dbo.SYSA_DAT_USERS SDU
+	INNER JOIN @EMPLOYEE_HIERARCHY EH on EH.first_name = SDU.FirstName and EH.last_name = SDU.LastName
+
+-- Set next_level
+UPDATE 
+	EH
+SET 
+	nest_level = ISNULL(NL.nest_level, 0)
+FROM
+	@EMPLOYEE_HIERARCHY EH 
+	LEFT JOIN
+		(
+			SELECT DISTINCT
+				COUNT(MGR.first_name) OVER (PARTITION BY EMP.first_name) [nest_level],
+				EMP.employee_id
+			FROM 
+				@EMPLOYEE_HIERARCHY EMP
+				INNER JOIN @EMPLOYEE_HIERARCHY MGR on EMP.left_value BETWEEN MGR.left_value and MGR.right_value and EMP.left_value != MGR.left_value
+		) NL ON NL.employee_id = EH.employee_id
+
+-- Set manager_employee_id
+UPDATE
+	EH
+SET
+	EH.manager_employee_id = EH2.employee_id
+FROM
+	@EMPLOYEE_HIERARCHY EH
+	INNER JOIN
+		(
+			SELECT DISTINCT
+				MAX(MGR.nest_level) OVER (PARTITION BY EMP.employee_id) mgr_nest_level,
+				EMP.left_value,
+				EMP.employee_id
+			FROM 
+				@EMPLOYEE_HIERARCHY EMP
+				INNER JOIN @EMPLOYEE_HIERARCHY MGR on EMP.left_value BETWEEN MGR.left_value and MGR.right_value and EMP.left_value != MGR.left_value
+		) EMP ON EMP.employee_id = EH.employee_id
+	INNER JOIN @EMPLOYEE_HIERARCHY EH2 ON EMP.left_value BETWEEN EH2.left_value and EH2.right_value and EH2.left_value != EMP.left_value and EH2.nest_level = EMP.mgr_nest_level
+
+SELECT 
+	employee_id, 
+	last_name + ', ' + first_name [full_name] 
+FROM 
+	@EMPLOYEE_HIERARCHY 
+WHERE 
+	left_value + 1 != right_value</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="employee_id">
+        <DataField>employee_id</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="full_name">
+        <DataField>full_name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

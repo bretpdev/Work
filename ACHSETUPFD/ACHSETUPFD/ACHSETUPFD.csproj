@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36218940-BD91-412D-B5EE-D4894507AD00}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ACHSETUPFD</RootNamespace>
+    <AssemblyName>ACHSETUPFD</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Y:\Codebase\Scripts\ACHSETUPFD\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BranchProcessingClasses\AddBranchProcessor.cs" />
+    <Compile Include="BranchProcessingClasses\BaseBranchProcessor.cs" />
+    <Compile Include="BranchProcessingClasses\ChangeBranchAddRemoveProcesor.cs" />
+    <Compile Include="BranchProcessingClasses\ChangeBranchChangeExistingProcessor.cs" />
+    <Compile Include="BranchProcessingClasses\ChangeBranchProcessor.cs" />
+    <Compile Include="BranchProcessingClasses\MissingInformationBranchProcessor.cs" />
+    <Compile Include="BranchProcessingClasses\RemoveBranchProcessor.cs" />
+    <Compile Include="BranchProcessingClasses\SuspendBranchProcessor.cs" />
+    <Compile Include="CompassAchSetupFed.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="DataClasses\ACHRecord.cs" />
+    <Compile Include="DataClasses\ActiveACHRecordFoundOption.cs" />
+    <Compile Include="DataClasses\ARCTracker.cs" />
+    <Compile Include="DataClasses\ChangeData.cs" />
+    <Compile Include="DataClasses\ChangeMenuOptions.cs" />
+    <Compile Include="DataClasses\CoborrowerDemographics.cs" />
+    <Compile Include="DataClasses\EndorserRecord.cs" />
+    <Compile Include="DataClasses\LetterSelection.cs" />
+    <Compile Include="DataClasses\Loan.cs" />
+    <Compile Include="DataClasses\NextPaymentDueDate.cs">
+    </Compile>
+    <Compile Include="DataClasses\OPSEntry.cs" />
+    <Compile Include="DataClasses\SuspendOptions.cs" />
+    <Compile Include="DataClasses\TD22CommentData.cs" />
+    <Compile Include="DataClasses\UserProvidedMainMenuData.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="LetterDataFormatter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recovery\InformationForRecoveryNotProvidedException.cs" />
+    <Compile Include="Recovery\RecoveryData.cs" />
+    <Compile Include="Recovery\RecoveryProcessor.cs" />
+    <Compile Include="UserInterfaceComponents\AccountHolderDemosDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\AccountHolderDemosDialog.designer.cs">
+      <DependentUpon>AccountHolderDemosDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ActiveAchOptionsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ActiveAchOptionsDialog.designer.cs">
+      <DependentUpon>ActiveAchOptionsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\AddInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\AddInfoDialog.designer.cs">
+      <DependentUpon>AddInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ChangeInfoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ChangeInfoDialog.designer.cs">
+      <DependentUpon>ChangeInfoDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ChangeLoansDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ChangeLoansDialog.designer.cs">
+      <DependentUpon>ChangeLoansDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ChangeMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\ChangeMenu.designer.cs">
+      <DependentUpon>ChangeMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\DenialReasonDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\DenialReasonDialog.designer.cs">
+      <DependentUpon>DenialReasonDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\LetterMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\LetterMenu.designer.cs">
+      <DependentUpon>LetterMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\MainMenu.designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\PaymentDueDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\PaymentDueDate.Designer.cs">
+      <DependentUpon>PaymentDueDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\SelectEndorser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\SelectEndorser.Designer.cs">
+      <DependentUpon>SelectEndorser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\SuspendMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterfaceComponents\SuspendMenu.designer.cs">
+      <DependentUpon>SuspendMenu.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserInterfaceComponents\AccountHolderDemosDialog.resx">
+      <DependentUpon>AccountHolderDemosDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\ActiveAchOptionsDialog.resx">
+      <DependentUpon>ActiveAchOptionsDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\AddInfoDialog.resx">
+      <DependentUpon>AddInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\ChangeInfoDialog.resx">
+      <DependentUpon>ChangeInfoDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\ChangeLoansDialog.resx">
+      <DependentUpon>ChangeLoansDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\ChangeMenu.resx">
+      <DependentUpon>ChangeMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\DenialReasonDialog.resx">
+      <DependentUpon>DenialReasonDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\LetterMenu.resx">
+      <DependentUpon>LetterMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\PaymentDueDate.resx">
+      <DependentUpon>PaymentDueDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\SelectEndorser.resx">
+      <DependentUpon>SelectEndorser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserInterfaceComponents\SuspendMenu.resx">
+      <DependentUpon>SuspendMenu.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\NextPaymentDueDate.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\DocumentProcessing\DocumentProcessing\Uheaa.Common.DocumentProcessing\Uheaa.Common.DocumentProcessing.csproj">
+      <Project>{dde98b0a-849d-4565-b67b-254f03a15cf4}</Project>
+      <Name>Uheaa.Common.DocumentProcessing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\ProcessLogger\ProcessLogger\Uheaa.Common.ProcessLogger.csproj">
+      <Project>{0eec6608-8f88-4faa-a7eb-7ae65f14f643}</Project>
+      <Name>Uheaa.Common.ProcessLogger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\Scripts\Uheaa.Common.Scripts.csproj">
+      <Project>{30101894-a61f-4137-a6be-45fb55d231e0}</Project>
+      <Name>Uheaa.Common.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CommonLibraries\Common\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9C5232EF-657C-4BCE-8B89-63B99383C604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

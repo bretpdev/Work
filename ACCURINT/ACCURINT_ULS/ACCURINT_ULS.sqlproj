@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ACCURINT_ULS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{f9d07ddc-b12f-4e52-82bd-507882547df1}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath />
+    <RootNamespace>ACCURINT_ULS</RootNamespace>
+    <AssemblyName>ACCURINT_ULS</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Uheaa" />
+    <Folder Include="Uheaa\Stored Procedures" />
+    <Folder Include="Uheaa\Tables" />
+    <Folder Include="OneLINK" />
+    <Folder Include="OneLINK\Tables" />
+    <Folder Include="OneLINK\Stored Procedures" />
+    <Folder Include="Both Regions" />
+    <Folder Include="Both Regions\Tables" />
+    <Folder Include="Both Regions\Stored Procedures" />
+    <Folder Include="Both Regions\Stored Procedures\Logging Run" />
+    <Folder Include="Both Regions\Stored Procedures\Loading Work" />
+    <Folder Include="Both Regions\Stored Procedures\Processing Resonse Files" />
+    <Folder Include="Both Regions\Stored Procedures\Logging Demos" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="accurint.sql" />
+    <Build Include="Uheaa\Stored Procedures\UH_GetUnprocessedRecords.sql" />
+    <Build Include="Uheaa\Stored Procedures\UH_SetAddedToRequestFile.sql" />
+    <Build Include="Uheaa\Stored Procedures\UH_SetDeleted.sql" />
+    <Build Include="Uheaa\Stored Procedures\UH_SetRequestArcId.sql" />
+    <Build Include="Uheaa\Stored Procedures\UH_SetResponseAddressArcId.sql" />
+    <Build Include="Uheaa\Stored Procedures\UH_SetTaskCompleted.sql" />
+    <Build Include="Uheaa\Tables\DemosProcessingQueue_UH.sql" />
+    <Build Include="OneLINK\Tables\DemosProcessingQueue_OL.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_GetUnprocessedRecords.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_SetAddedToRequestFile.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_SetRequestCommentAdded.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_SetDeleted.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_SetPhoneTaskQueueId.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_SetTaskCompleted.sql" />
+    <Build Include="Both Regions\Tables\RunLogger.sql" />
+    <Build Include="Both Regions\Tables\ResponseFileProcessingQueue.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\SetRequestFileInfo.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\SetRequestFileUploaded.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\SetResponseFilesDownloaded.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\SetResponseFilesProcessed.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\GetRunInfo.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\GetRecordsSentCount.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\CreateNewRun.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\DeleteRun.sql" />
+    <Build Include="Both Regions\Stored Procedures\Loading Work\AddNewWork.sql" />
+    <Build Include="Both Regions\Stored Procedures\Processing Resonse Files\AddNewResponseFile.sql" />
+    <Build Include="Both Regions\Stored Procedures\Processing Resonse Files\GetResponseFiles.sql" />
+    <Build Include="Both Regions\Stored Procedures\Processing Resonse Files\SetResponseFileProcessed.sql" />
+    <Build Include="Both Regions\Stored Procedures\Processing Resonse Files\SetArchivedResponseFileName.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_SetAddressTaskQueueId.sql" />
+    <Build Include="Uheaa\Stored Procedures\UH_SetResponsePhoneArcId.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Run\UpdateRecordsReceivedCount.sql" />
+    <Build Include="Both Regions\Tables\DemoLogs.sql" />
+    <Build Include="Both Regions\Tables\Regions.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Demos\AddSentDemos.sql" />
+    <Build Include="Both Regions\Stored Procedures\Logging Demos\AddReceivedDemos.sql" />
+    <Build Include="OneLINK\Stored Procedures\OL_AddSpecialRequestDemoRecord.sql" />
+  </ItemGroup>
+</Project>

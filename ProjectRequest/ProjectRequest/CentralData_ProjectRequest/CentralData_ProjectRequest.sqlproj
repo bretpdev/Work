@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CentralData_ProjectRequest</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{f036b6ca-e86d-488d-a197-670ae678504b}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath />
+    <RootNamespace>CentralData_ProjectRequest</RootNamespace>
+    <AssemblyName>CentralData_ProjectRequest</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Schemas" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Projects.sql" />
+    <Build Include="Schemas\projectrequest.sql" />
+    <Build Include="Tables\BusinessUnits.sql" />
+    <Build Include="Tables\Scores.sql" />
+    <Build Include="Tables\ScoreTypes.sql" />
+    <Build Include="Stored Procedures\InsertProjectRequest.sql" />
+    <Build Include="Stored Procedures\GetProductPrioritization.sql" />
+    <Build Include="Stored Procedures\GetProject.sql" />
+    <Build Include="Stored Procedures\UpdateProjectRequest.sql" />
+    <Build Include="Stored Procedures\GetScoreOverview.sql" />
+    <Build Include="Stored Procedures\InsertScore.sql" />
+    <Build Include="Stored Procedures\GetScore.sql" />
+    <Build Include="Tables\Roles.sql" />
+    <Build Include="Tables\Permissions.sql" />
+    <Build Include="Stored Procedures\GetRolePermissions.sql" />
+    <Build Include="Tables\NotificationRecipients.sql" />
+    <Build Include="Stored Procedures\GetNotificationRecipients.sql" />
+    <Build Include="Stored Procedures\GetScoreType.sql" />
+    <Build Include="Stored Procedures\ArchiveProject.sql" />
+    <Build Include="Stored Procedures\GetAllActiveProjects.sql" />
+    <Build Include="Stored Procedures\GetDepartments.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CentralData_ProjectRequest.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CentralData_ProjectRequest.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CentralData_ProjectRequest.publish.xml" />
+  </ItemGroup>
+</Project>

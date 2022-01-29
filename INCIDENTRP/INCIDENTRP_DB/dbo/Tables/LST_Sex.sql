@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[LST_Sex] (
+    [Sex] VARCHAR (10) NOT NULL,
+    CONSTRAINT [PK_LST_Sex] PRIMARY KEY CLUSTERED ([Sex] ASC)
+);
+

@@ -1,0 +1,32 @@
+﻿@model DashboardModel
+@{
+    ViewBag.Title = "Uheaa Web Manager";
+}
+<section id="dash-left">
+    <h2>Manage</h2>
+    <ul>
+        <li>
+            <a href="/Roles">Manage User Roles (@Model.RoleCount)</a>
+        </li>
+        <li>
+            <a href="/WebApps">Manage Web Apps (@Model.WebAppCount)</a>
+        </li>
+        <li>
+            <a href="/ApiTokens">Manage Contractors (@Model.ApiTokenCount)</a>
+        </li>
+    </ul>
+</section>
+<section id="dash-right">
+    <h2>View</h2>
+    <ul>
+        <li>
+            <a href="/Roles/Retired">View Retired Roles (@Model.ExpiredRoleCount)</a>
+        </li>
+        <li>
+            <a href="/WebApps/Retired">View Retired Web Apps (@Model.ExpiredWebAppCount)</a>
+        </li>
+        <li>
+            <a href="/ApiTokens/Retired">View Retired Contractors (@Model.ExpiredApiTokenCount)</a>
+        </li>
+    </ul>
+</section>

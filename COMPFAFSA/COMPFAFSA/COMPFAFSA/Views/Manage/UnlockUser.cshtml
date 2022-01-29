@@ -1,0 +1,46 @@
+﻿@model COMPFAFSA.Models.UnlockUser
+
+@{
+    ViewBag.Title = "UnlockUser";
+}
+
+<body>
+    <div class="body-content-margins">
+        <h2>Unlock User</h2>
+
+        <h3>Are you sure you want to unlock this?</h3>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmailAddress)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.EmailAddress)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.UserId)
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Unlock" class="btn btn-default" /> |
+                    @Html.ActionLink("Back to Manage Users", "ManageUsers")
+                </div>
+            }
+        </div>
+    </div>
+</body>

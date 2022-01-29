@@ -1,0 +1,18 @@
+﻿CREATE PROCEDURE dbo.spPRNT_UpdateFaxRec 
+
+@SeqNum			BIGINT
+
+AS
+
+
+
+IF (SELECT COUNT(*) FROM dbo.PRNT_DAT_FaxingErrors WHERE FaxSeqNum = @SeqNum) > 0
+BEGIN
+	--IF FAX FAILED BECAUSE THE DOC WASN'T OUT ON THE NETWORK
+	UPDATE PRNT_DAT_Fax SET FaxDate = GETDATE(), FaxConfirmationDate = GETDATE(), FinalStatus = 'NO DOC FOUND' WHERE SeqNum = @SeqNum
+END
+ELSE
+BEGIN
+	--IF FAX WAS INITIATED
+	UPDATE PRNT_DAT_Fax SET FaxDate = GETDATE() WHERE SeqNum = @SeqNum
+END

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="445dff02-f631-486e-ab4d-a8c483c92f19" ChangeDateTime="06/21/2018 18:56:08">
+    <Property Name="ElementName" Value="[print].[ScriptData].[DoNotProcessCoBorrower]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[print].[ScriptData]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CheckForCoBorrower" />
+  </Operation>
+</Operations>

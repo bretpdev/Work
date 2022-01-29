@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ACDC.ACDCLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Height="86" Width="230" MaxWidth="230">
+    <Grid Height="78">
+        <Label Name="label1" HorizontalAlignment="Left" Width="75" Height="23" VerticalAlignment="Top" Foreground="White">
+            <Label.BitmapEffect>
+                <DropShadowBitmapEffect />
+            </Label.BitmapEffect> User Name:</Label>
+        <Label Height="23" HorizontalAlignment="Left" Margin="0,24,0,0" Name="label2" VerticalAlignment="Top" Width="75" Foreground="White">
+            <Label.BitmapEffect>
+                <DropShadowBitmapEffect />
+            </Label.BitmapEffect> Password:</Label>
+        <TextBox Height="23" Margin="108,0,2,0" Name="txtUserName" VerticalAlignment="Top" VerticalContentAlignment="Center" TabIndex="0">
+            <TextBox.BitmapEffect>
+                <DropShadowBitmapEffect />
+            </TextBox.BitmapEffect>
+        </TextBox>
+        <Button Height="23" Margin="77,0,78,1" Name="btnLogin" VerticalAlignment="Bottom" Background="Transparent" Foreground="White" Click="btnLogin_Click" IsDefault="True">
+            <Button.BitmapEffect>
+                <DropShadowBitmapEffect />
+            </Button.BitmapEffect> Login</Button>
+        <PasswordBox Margin="108,24,2,30" Name="txtPassword" VerticalContentAlignment="Center" TabIndex="2">
+            <PasswordBox.BitmapEffect>
+                <DropShadowBitmapEffect />
+            </PasswordBox.BitmapEffect>
+        </PasswordBox>
+    </Grid>
+</UserControl>

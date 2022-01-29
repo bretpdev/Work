@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @FileVersioner.GenerateStylesheetLink("~/Content/Site.css")
+    @FileVersioner.GenerateScriptLink("~/Content/Main.js")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <header>
+        <a href="/" title="Home">
+            <h1>API Access Manager</h1>
+        </a>
+    </header>
+    @if (ViewBag.Breadcrumbs.Any())
+    {
+        <nav>
+            <ul id="breadcrumbs">
+                @foreach (var crumb in ViewBag.Breadcrumbs)
+                {
+                    <li><a href="@crumb.Url" title="@crumb.Text">@crumb.Text</a> \</li>
+                }
+            </ul>
+        </nav>
+    }
+    @if (Session.PendingMessages.AnyThisRequest(Request))
+    {
+        <article id="messages">
+            @foreach (var message in Session.PendingMessages.TakeAllThisRequest(Request))
+            {
+                <section class="message-@(message.IsError ? "error" : "informational")">@message.Content</section>
+            }
+        </article>
+    }
+    @RenderBody()
+</body>
+</html>

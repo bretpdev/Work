@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>
+SELECT DISTINCT
+	REPLACE(REPLACE(REPLACE(Court, 'J. ', ''), 'J ', ''), ' iv', '') [Court]
+FROM
+	BSYS.dbo.SCKR_DAT_ScriptRequests SR
+WHERE
+	SR.CurrentStatus not in ('Complete', 'Withdrawn', 'Draft')
+	AND
+	Court IS NOT NULL
+	AND
+	Court != ''
+
+UNION
+
+SELECT DISTINCT
+	REPLACE(REPLACE(REPLACE(Court, 'J. ', ''), 'J ', ''), ' iv', '') [Court]
+FROM
+	BSYS.dbo.SCKR_DAT_SASRequests SR
+WHERE
+	Court IS NOT NULL
+	AND
+	Court != ''
+	AND
+	SR.CurrentStatus not in ('Complete', 'Withdrawn', 'Draft')
+
+UNION
+
+SELECT DISTINCT
+	REPLACE(REPLACE(REPLACE(Court, 'J. ', ''), 'J ', ''), ' iv', '') [Court]
+FROM
+	BSYS.dbo.[LTDB_DAT_Requests] LT
+WHERE
+	LT.CurrentStatus not in ('Complete', 'Withdrawn', 'Draft')
+	AND
+	Court IS NOT NULL
+	AND
+	Court != ''
+
+
+UNION
+
+SELECT DISTINCT
+	REPLACE(REPLACE(REPLACE(SDU.FirstName + ' ' + SDU.LastName, 'J. ', ''), 'J ', ''), ' iv', '') [Court]
+FROM
+	[NeedHelpUheaa].dbo.DAT_Ticket T
+	INNER JOIN [NeedHelpUheaa].dbo.DAT_TicketsAssociatedUserID as TAU on TAU.Ticket = T.Ticket
+	INNER JOIN [CSYS].dbo.SYSA_DAT_USERS SDU on SDU.SqlUserId = TAU.SqlUserId
+WHERE
+	TAU.[Role] = 'court'
+	AND
+	T.[Status] not in ('Withdrew', 'Withdrawn', 'Verified', 'Resolved', 'Completed', 'Complete', 'Complete And Verified')</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="Court">
+        <DataField>Court</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

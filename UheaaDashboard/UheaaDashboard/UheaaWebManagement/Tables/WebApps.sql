@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dashboard].[WebApps]
+(
+	[WebAppId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Title] VARCHAR(50) NOT NULL, 
+    [Url] VARCHAR(256) NOT NULL, 
+    [IconBytes] VARBINARY(MAX) NOT NULL, 
+    [AddedAt] DATETIME NOT NULL DEFAULT getdate(), 
+    [AddedBy] VARCHAR(50) NOT NULL DEFAULT SYSTEM_USER
+)

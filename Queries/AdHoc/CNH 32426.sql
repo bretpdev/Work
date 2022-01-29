@@ -1,0 +1,2 @@
+select * from openquery(duster, 'select wf_que from OLWHRMX.WQXX_TSK_QUE_DFN where wf_usr_own_que = ''UTXXXXX''')
+select * from openquery(legend, 'select wf_que from PKUB.WQXX_TSK_QUE_DFN where wf_usr_own_que = ''UTXXXXX''')

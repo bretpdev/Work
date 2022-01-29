@@ -1,0 +1,88 @@
+﻿body {
+  font-family: Arial, sans-serif;
+  margin: 0px;
+}
+#navbar {
+  height: 35px;
+  font-size: 30px;
+  color: #2165af;
+  background-color: #f2f2f2;
+  border-bottom: solid 3px #555;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+#navbar img {
+  height: 35px;
+  margin-right: 10px;
+  margin-bottom: -5px;
+}
+#navbar > div {
+  line-height: 35px;
+}
+.request-table {
+  margin: 10px;
+  border-collapse: collapse;
+}
+.request-table th {
+  background-color: #2165af;
+  color: white;
+  font-size: 20px;
+}
+.request-table td,
+.request-table th {
+  border: solid 1px black;
+  padding: 5px;
+}
+.request-table .pty-col {
+  width: 35px;
+}
+.request-table .type-col {
+  width: 50px;
+}
+.request-table .id-col {
+  width: 50px;
+}
+.request-table .name-col {
+  width: 600px;
+}
+.request-table .status-col {
+  width: 200px;
+}
+.request-table .updown {
+  width: 40px;
+}
+.request-table .time-col {
+  width: 70px;
+}
+.updown {
+  display: none;
+}
+.updown .up,
+.updown .down {
+  cursor: pointer;
+  height: 20px;
+}
+.updown .down {
+  float: right;
+}
+.run-info {
+  display: none;
+  font-size: 16px;
+  float: right;
+  cursor: pointer;
+}
+.run-info span {
+  text-decoration: underline;
+  color: #555;
+}
+.run-info span:hover {
+  color: #808080;
+}
+.table-header {
+  background-color: #333;
+}
+.assign-court {
+  display: none;
+  text-decoration: underline;
+  cursor: pointer;
+}

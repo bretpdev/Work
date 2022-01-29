@@ -1,0 +1,23 @@
+﻿<#@ template language="C#" hostspecific="True" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Runtime.Remoting.Messaging" #>
+<#@ import namespace="Microsoft.VisualStudio.TextTemplating" #>
+<#
+  string className = "RepaymentData";
+  string sheetName = "Repayment Data";
+#>
+<#
+  string templateFile = this.Host.ResolvePath("SerfClassGenerator.tt");
+  string templateContent = File.ReadAllText(templateFile);
+
+  CallContext.LogicalSetData("ClassName", className);
+  CallContext.LogicalSetData("SheetName", sheetName);
+
+  Engine engine = new Engine();
+  string generatedContent = engine.ProcessTemplate(templateContent, this.Host);
+
+  CallContext.FreeNamedDataSlot("ClassName");
+  CallContext.FreeNamedDataSlot("SheetName");
+
+  this.Write(generatedContent);
+#>

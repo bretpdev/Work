@@ -1,0 +1,112 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS ;
+FILENAME REPORTZ "&RPTLIB/ULWC06.LWC06RZ";
+FILENAME REPORT2 "&RPTLIB/ULWC06.LWC06R2";
+FILENAME REPORT3 "&RPTLIB/ULWC06.LWC06R3";
+FILENAME REPORT4 "&RPTLIB/ULWC06.LWC06R4";
+FILENAME REPORT5 "&RPTLIB/ULWC06.LWC06R5";
+FILENAME REPORT6 "&RPTLIB/ULWC06.LWC06R6";
+OPTIONS SYMBOLGEN;
+LIBNAME  WORKLOCL  REMOTE  SERVER=DUSTER  SLIBREF=WORK;
+
+RSUBMIT;
+/*LIBNAME OLWHRM1 DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=DLGSUTWH);
+
+	CREATE TABLE DEMO AS
+		SELECT *
+		FROM CONNECTION TO DB2 
+			(
+				SELECT 
+					A.LD_AUX_STA_UPD
+					,C.DF_SPE_ACC_ID
+					,C.DM_PRS_1
+					,C.DM_PRS_LST
+					,LC_REA_CLM_ASN_DOE
+					,A.AF_APL_ID || A.AF_APL_ID_SFX AS UID
+					,A.LD_CLM_ASN_DOE
+					,A.LD_LDR_POF
+				FROM
+					OLWHRM1.PD01_PDM_INF C	
+					INNER JOIN OLWHRM1.DC01_LON_CLM_INF A
+						ON A.BF_SSN = C.DF_PRS_ID
+					LEFT OUTER JOIN OLWHRM1.DC11_LON_FAT B
+						ON A.AF_APL_ID = B.AF_APL_ID
+						AND A.AF_APL_ID_SFX = B.AF_APL_ID_SFX
+						AND A.LF_CRT_DTS_DC10 = B.LF_CRT_DTS_DC10
+					/*	The requirements and spec say: exclude any accounts where the review results field in LP2Q is populated with VA or VP*/
+					/*	This has been translated as: DC11.lc_tyx_typ in ('VA','VP'), neither of which have ever occurred.  */
+						AND B.LC_TRX_TYP = 'AD'
+				WHERE 
+					A.LC_REA_CLM_ASN_DOE IN (' ','21','22','23','26')
+					AND A.LC_AUX_STA = '03'
+					AND A.LD_AUX_STA_UPD > '10/31/2002'
+					AND B.AF_APL_ID IS NULL
+
+					FOR READ ONLY WITH UR
+			)
+	;
+
+	DISCONNECT FROM DB2;
+
+	/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+	/*%SQLCHECK;*/
+
+ENDRSUBMIT;
+
+DATA DEMO; SET WORKLOCL.DEMO; RUN;
+
+PROC SORT DATA=DEMO;
+	BY LD_AUX_STA_UPD DF_SPE_ACC_ID;
+RUN;
+
+OPTIONS ORIENTATION = LANDSCAPE;
+OPTIONS PS=39 LS=127;
+
+TITLE1 "DISABILITY STATUS REPORT";
+%MACRO OUT(R,FILTER,TIT);
+	PROC PRINTTO PRINT=REPORT&R NEW;
+	RUN;
+
+	TITLE2 &TIT;
+	PROC PRINT DATA=DEMO LABEL;
+	FORMAT DM_PRS_LST $15. LD_AUX_STA_UPD LD_CLM_ASN_DOE LD_LDR_POF MMDDYY10.;
+	WHERE LC_REA_CLM_ASN_DOE = &FILTER;
+	VAR LD_AUX_STA_UPD DF_SPE_ACC_ID DM_PRS_1 DM_PRS_LST UID LD_CLM_ASN_DOE LD_LDR_POF;
+	LABEL 
+		LD_AUX_STA_UPD = 'DETERMINATION DATE'
+		DF_SPE_ACC_ID = 'ACCOUNT NUMBER'
+		DM_PRS_1 = 'FIRST'
+		DM_PRS_LST = 'LAST'
+		UID = 'UNIQUE ID'
+		LD_CLM_ASN_DOE = 'TRANSFER STATUS DATE'
+		LD_LDR_POF = 'LENDER PAYOFF DATE';
+	RUN;
+%MEND;
+
+%OUT(2,'','DISABILITIES NOT ASSIGNED');
+%OUT(3,'21','PENDING TPD ASSIGNMENT');
+%OUT(4,'22','RETURNED PRELIMINARY DISCHARGE');
+%OUT(5,'23','TPD ASSIGNED');
+%OUT(6,'26','CONDITIONAL DISCHARGE');
+
+PROC PRINTTO; 
+RUN;

@@ -1,0 +1,14 @@
+SELECT
+	TOP XXXX *
+FROM
+	OPENQUERY
+	(LEGEND,
+		'
+			SELECT
+				*
+			FROM
+				PKUB.WQXX_TSK_QUE_HST
+			WHERE
+				WD_INI_TSK = ''XX/XX/XXXX''
+		'
+	)

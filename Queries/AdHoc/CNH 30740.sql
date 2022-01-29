@@ -1,0 +1,19 @@
+SELECT
+	*
+FROM
+	OPENQUERY
+	(
+		LEGEND,
+		'
+			SELECT
+				*
+			FROM
+				PKUB.FSXX_DL_LON FSXX
+			WHERE
+				FSXX.LC_LON_ICR_RPY_TYP IS NOT NULL
+				AND
+				FSXX.LC_LON_ICR_RPY_TYP != ''''
+				AND
+				FSXX.LD_LON_ICR_ENT IS NULL
+		'
+	)

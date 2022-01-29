@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="c8f17f28-ce10-435d-b6ae-f86001360293" ChangeDateTime="09/23/2020 17:42:51">
+    <Property Name="ElementName" Value="[espqueues].[ProcessingQueue].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[espqueues].[ProcessingQueue]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProcessingQueueId" />
+  </Operation>
+</Operations>

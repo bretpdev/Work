@@ -1,0 +1,21 @@
+﻿@*@model List<RoleSimpleModel>
+@{
+    ViewBag.Title = "Retired Roles";
+}
+
+<h2>Retired Roles</h2>
+<table class="list-table">
+    <tr>
+        <th>Name</th>
+        <th style="width:99%;">Notes</th>
+        <th>Controllers</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr data-href="/Roles/@item.RoleId">
+            <td class="nowrap">@item.Name</td>
+            <td>@item.Notes</td>
+            <td class="number-cell">@item.RoleControllerCount</td>
+        </tr>
+    }
+</table>*@

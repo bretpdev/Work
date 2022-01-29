@@ -1,0 +1,2 @@
+# SKIPACTS
+Skip Activites

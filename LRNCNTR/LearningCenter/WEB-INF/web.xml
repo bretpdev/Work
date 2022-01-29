@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	      version="2.5">
+	      
+
+    <!-- General description of your web application -->
+
+    <display-name>Learning Center</display-name>
+    <description>
+      This is version 1.0 of an application to perform
+      a wild and wonderful task, based on servlets and
+      JSP pages.
+	  It was written by Daren Beattie (dbeattie@utahsbr.edu)
+	  and Trent Packer (tpacker@utahsbr.edu), who
+	  should be contacted for more information.
+    </description>
+
+
+    <!-- Define the default session timeout for your application,
+         in minutes.  From a servlet or JSP page, you can modify
+         the timeout for a particular session dynamically by using
+         HttpSession.getMaxInactiveInterval(). -->
+
+    <session-config>
+      <session-timeout>30</session-timeout>
+    </session-config>
+
+	<!-- Error handler -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/ErrorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/ErrorPage.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/ErrorPage.jsp</location>
+	</error-page>
+
+	<!-- Database connection -->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.sql.dataSource</param-name>
+		<param-value>
+			jdbc:sqlserver://NOCHOUSE:1433;DatabaseName=BSYS,com.microsoft.sqlserver.jdbc.SQLServerDriver,bsweb,ProcAuto!
+		</param-value>
+	</context-param>
+	
+	<!-- Testmode  (True/False)-->
+	<context-param>
+		<param-name>TestMode</param-name>
+		<param-value>False</param-value>
+	</context-param>
+
+</web-app>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>ULS_ACHRIRDF</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{1f8c85c8-6346-4de9-ba09-19e39c22178c}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>ULS_ACHRIRDF</RootNamespace>
+    <AssemblyName>ULS_ACHRIRDF</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Schemas" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="User-Defined Table Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas\achrirdf.sql" />
+    <Build Include="Tables\ProcessQueue.sql" />
+    <Build Include="Stored Procedures\AddNewWorkToQueue.sql" />
+    <Build Include="Stored Procedures\MarkQueueAsProcessed.sql" />
+    <Build Include="Stored Procedures\GetPendingQueueWork.sql" />
+    <Build Include="Stored Procedures\BorrowerHasUnprocessedRIRAJ.sql" />
+    <Build Include="Stored Procedures\GetACHPeriods.sql" />
+    <Build Include="Stored Procedures\GetDefForPeriods.sql" />
+    <Build Include="User-Defined Table Types\Population.sql" />
+    <Build Include="Tables\ACH_PERIOD.sql" />
+    <Build Include="Tables\DF_PERIOD.sql" />
+    <Build Include="Tables\LN50_Population.sql" />
+    <Build Include="Tables\LN60_Population.sql" />
+    <Build Include="Tables\LN83_Population.sql" />
+    <Build Include="Tables\D_PERIOD.sql" />
+    <Build Include="Tables\F_PERIOD.sql" />
+    <Build Include="Stored Procedures\GetDefPeriods.sql" />
+    <Build Include="Stored Procedures\GetForPeriods.sql" />
+    <Build Include="Tables\LN72_PERIOD.sql" />
+    <Build Include="Tables\LN72_Population.sql" />
+    <Build Include="Stored Procedures\GetLN72Periods.sql" />
+    <Build Include="Stored Procedures\CheckExistingArc.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="ULS_ACHRIRDF.refactorlog" />
+  </ItemGroup>
+</Project>

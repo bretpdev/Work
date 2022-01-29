@@ -1,0 +1,114 @@
+﻿<ops:TitleWindow x:Class="OPSWebEntry.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ops="clr-namespace:OPSWebEntry"
+        Title="OPS Web Entry" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize" Closing="MainWindow_Closing" StateChanged="MainWindow_StateChanged">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="24" />
+        </Style>
+        <Style x:Key="YesNo" TargetType="{x:Type ToggleButton}">
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter Property="Content" Value="Yes" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="false">
+                    <Setter Property="Content" Value="No" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <Menu IsMainMenu="True" x:Name="TestMenu">
+            <MenuItem Header="_Test">
+                <MenuItem Header="Add New Payment" Click="AddPayment_Click" />
+                <MenuItem Header="Manual Processing" Click="ManualProcessing_Click" />
+                <MenuItem Header="Last 7 Days Unencrypted" Click="Last7_Click" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ops:ExtendedGroupBox Header="Status" GridPos="0,0" VerticalContentAlignment="Center">
+                <ops:OPSStatus x:Name="CurrentStatus" VerticalAlignment="Center"></ops:OPSStatus>
+            </ops:ExtendedGroupBox>
+            <ops:ExtendedGroupBox Header="Settings" Margin="5" GridPos="1,0">
+                <StackPanel>
+                    <Grid Name="SettingsBox">
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type ops:StateAwareTextBox}">
+                                <Setter Property="Margin" Value="4" />
+                                <Setter Property="Width" Value="150" />
+                            </Style>
+                            <Style TargetType="{x:Type PasswordBox}">
+                                <Setter Property="Margin" Value="4" />
+                                <Setter Property="Width" Value="150" />
+                            </Style>
+                            <Style x:Key="YesNo" TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource YesNo}">
+                                <Setter Property="Margin" Value="5,2,0,2" />
+                                <Setter Property="Width" Value="80" />
+                                <Setter Property="Height" Value="24" />
+                                <Setter Property="HorizontalAlignment" Value="Left" />
+                            </Style>
+                            <Style TargetType="{x:Type ops:ExtendedLabel}">
+                                <Setter Property="HorizontalContentAlignment" Value="Right" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ops:ExtendedLabel GridPos="0,0" x:Name="UsernameLabel" ToolTip="Your OneLINK Username (ut*****)">OneLINK Username</ops:ExtendedLabel>
+                        <ops:StateAwareTextBox GridPos="1:2,0" x:Name="UsernameText" Label="{x:Reference UsernameLabel}" ValueChanged="Settings_ValueChanged" />
+
+                        <ops:ExtendedLabel GridPos="0,1" x:Name="PasswordLabel" ToolTip="Your OneLINK Password">Password</ops:ExtendedLabel>
+                        <PasswordBox Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" x:Name="Password" PasswordChanged="Password_PasswordChanged" />
+
+                        <!--<ops:ExtendedLabel GridPos="0,2" x:Name="AutoStartLabel" Width="130" ToolTip="Enable this option to have OPS Web Entry automatically start and begin processing in the background when Windows starts.">
+                        Automatic Startup</ops:ExtendedLabel>
+                    <ops:StateAwareToggleButton Style="{StaticResource YesNo}" GridPos="1,2" x:Name="AutoStartButton" Label="{x:Reference AutoStartLabel}" ValueChanged="Settings_ValueChanged" />-->
+
+                        <ops:ExtendedLabel GridPos="0,3" x:Name="TrayNotificationLabel" ToolTip="Displays tray notifications for successful and failed payments.">Tray Notifications</ops:ExtendedLabel>
+                        <ops:StateAwareToggleButton Style="{StaticResource YesNo}" GridPos="1,3" x:Name="TrayNotificationButton" Label="{x:Reference TrayNotificationLabel}" ValueChanged="Settings_ValueChanged" />
+
+                        <ops:ExtendedLabel GridPos="0,4" x:Name="TrayMinimizeLabel" ToolTip="Automatically hide the application in the tray when minimized.">Minimize to tray</ops:ExtendedLabel>
+                        <ops:StateAwareToggleButton Style="{StaticResource YesNo}" x:Name="TrayMinimizeButton" GridPos="1,4" Label="{x:Reference TrayMinimizeLabel}" ValueChanged="Settings_ValueChanged" />
+                    </Grid>
+                    <Separator />
+                    <Grid Name="SaveSettingsBox" IsEnabled="False">
+                        <Button Width="100" HorizontalAlignment="Left" Margin="0,2,0,2" Name="SettingsCancelButton" Click="SettingsCancelButton_Click">Cancel</Button>
+                        <Button Width="100" HorizontalAlignment="Right" Margin="0,2,0,0" Name="SettingsSaveButton" Click="SettingsSaveButton_Click" VerticalAlignment="Top">Save Settings</Button>
+                    </Grid>
+                </StackPanel>
+            </ops:ExtendedGroupBox>
+            <ops:ExtendedGroupBox Header="ActivityLog" GridPos="0:2,1">
+                <ListBox x:Name="ActivityLogList" Height="200">
+                    <ListBox.Resources>
+                        <ops:LogItemForegroundConverter x:Key="converter" />
+                    </ListBox.Resources>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Foreground" Value="{Binding Severity, Converter={StaticResource converter}}" />
+                            <Setter Property="Content" Value="{Binding Path=Display}" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </ops:ExtendedGroupBox>
+        </Grid>
+    </StackPanel>
+</ops:TitleWindow>

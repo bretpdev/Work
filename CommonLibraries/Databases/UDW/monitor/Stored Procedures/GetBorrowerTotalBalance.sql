@@ -1,0 +1,12 @@
+﻿CREATE PROCEDURE [monitor].[GetBorrowerTotalBalance]
+	@Ssn CHAR(9)
+AS
+
+SELECT
+	ISNULL(SUM(LN10.LA_CUR_PRI), 0)
+FROM 
+	LN10_LON LN10
+WHERE
+	LN10.BF_SSN = @Ssn
+
+RETURN 0

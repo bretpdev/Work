@@ -1,0 +1,1056 @@
+﻿@model ProjectData
+@{
+    ViewBag.Title = "Uheaa Loan Servicing Letters";
+}
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+    <script type="text/javascript">
+        // Hide everything on load
+
+        window.onload = function () {
+            $('#optionsLbl').hide();
+            $('#optionsDrop').hide();
+            $('#btnSubmit').hide();
+            $('#dataForm').hide();
+            $('#manualLbl').hide();
+            $('#manualDrop').hide();
+            $('#choice1Lbl').hide();
+            $('#choice1Drop').hide();
+            $('#choice2Lbl').hide();
+            $('#choice2Drop').hide();
+            $('#choice3Lbl').hide();
+            $('#choice3Drop').hide();
+            $('#choice4Lbl').hide();
+            $('#choice4Drop').hide();
+            $('#choice5Lbl').hide();
+            $('#choice5Drop').hide();
+            $('#dataForm').hide();
+            $('#dischargeSection').hide();
+            $('#schoolNameSection').hide();
+            $('#lastDateSection').hide();
+            $('#schoolClosureSection').hide();
+            $('#defForbSection').hide();
+            $('#defForbDateSection').hide();
+            $('#loanTermEndDateSection').hide();
+            $('#manualDenialSection').hide();
+            $('#beginYearSection').hide();
+            $('#accountSection').hide();
+            $('#btnSubmit').hide();
+            $('#Borrower').hide();
+            $('label[for=Count]').empty();
+        };
+
+
+        // Letter Types
+        $(function () { //Clears all drop downs and reloads the Letter Options
+            $('#@(Html.IdFor(o => o.LetterTypes))').change(function () {
+                $.ajax({
+                    url: '/Home/GetLetterOptions/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var manual = $('#@(Html.IdFor(o => o.ManualLetters))');
+                        manual.empty();
+                        var options = $('#@(Html.IdFor(o => o.LetterOptions))');
+                        options.empty();
+                        var choice1 = $('#@(Html.IdFor(o => o.LetterChoices1))');
+                        choice1.empty();
+                        var choice2 = $('#@(Html.IdFor(o => o.LetterChoices2))');
+                        choice2.empty();
+                        var choice3 = $('#@(Html.IdFor(o => o.LetterChoices3))');
+                        choice3.empty();
+                        var choice4 = $('#@(Html.IdFor(o => o.LetterChoices4))');
+                        choice4.empty();
+                        var choice5 = $('#@(Html.IdFor(o => o.LetterChoices5))');
+                        choice5.empty();
+                        //Reload data in next drop down
+                        $.each(data, function (index, obj) {
+                            options.append('<option>' + obj + '</option>');
+                        });
+                        //Check if selection made and hide/show next option
+                        if ($('#@(Html.IdFor(t => t.LetterTypes))').val() == "") {
+                            $('#optionsLbl').hide();
+                            $('#optionsDrop').hide();
+                        }
+                        else {
+                            $('#optionsLbl').show();
+                            $('#optionsDrop').show();
+                        }
+                        $('#dataForm').hide();
+                        $('#manualLbl').hide();
+                        $('#manualDrop').hide();
+                        $('#choice1Lbl').hide();
+                        $('#choice1Drop').hide();
+                        $('#choice2Lbl').hide();
+                        $('#choice2Drop').hide();
+                        $('#choice3Lbl').hide();
+                        $('#choice3Drop').hide();
+                        $('#choice4Lbl').hide();
+                        $('#choice4Drop').hide();
+                        $('#choice5Lbl').hide();
+                        $('#choice5Drop').hide();
+                        $('#dataForm').hide();
+                        $('#dischargeSection').hide();
+                        $('#schoolNameSection').hide();
+                        $('#lastDateSection').hide();
+                        $('#schoolClosureSection').hide();
+                        $('#defForbSection').hide();
+                        $('#defForbDateSection').hide();
+                        $('#loanTermEndDateSection').hide();
+                        $('#manualDenialSection').hide();
+                        $('#beginYearSection').hide();
+                        $('#accountSection').hide();
+                        $('#btnSubmit').hide();
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Letter Options. Please contact System Support');
+                    }
+                });
+            })
+        });
+
+
+        // Letter Options
+        $(function () { //Retrieves the Manual Letters Drop Down items
+            $('#@(Html.IdFor(o => o.LetterOptions))').change(function () {
+                $.ajax({
+                    url: '/Home/GetManualLetters/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var manual = $('#@(Html.IdFor(o => o.ManualLetters))')
+                        manual.empty();
+                        //Reload data in next drop down
+                        $.each(data, function (index, obj) {
+                            manual.append('<option>' + obj + '</option>');
+                        });
+                        //Check if selection made and hide/show next option
+                        $('#btnSubmit').hide();
+                        $('#dataForm').hide();
+                        $('#accountSection').hide();
+                        if ($('#@(Html.IdFor(o => o.LetterOptions))').val() == "") {
+                            $('#manualLbl').hide();
+                            $('#manualDrop').hide();
+                            $('#choice1Lbl').hide();
+                            $('#choice1Drop').hide();
+                            $('#choice2Lbl').hide();
+                            $('#choice2Drop').hide();
+                            $('#choice3Lbl').hide();
+                            $('#choice3Drop').hide();
+                            $('#choice4Lbl').hide();
+                            $('#choice4Drop').hide();
+                            $('#choice5Lbl').hide();
+                            $('#choice5Drop').hide();
+                            $('#dataForm').hide();
+                            $('#dischargeSection').hide();
+                            $('#schoolNameSection').hide();
+                            $('#lastDateSection').hide();
+                            $('#schoolClosureSection').hide();
+                            $('#defForbSection').hide();
+                            $('#defForbDateSection').hide();
+                            $('#loanTermEndDateSection').hide();
+                            $('#manualDenialSection').hide();
+                            $('#beginYearSection').hide();
+                        }
+                        else {
+                            $('#manualLbl').show();
+                            $('#manualDrop').show();
+                            $('#choice1Lbl').show();
+                            $('#choice1Drop').show();
+                            $('#choice2Lbl').hide();
+                            $('#choice2Drop').hide();
+                            $('#choice3Lbl').hide();
+                            $('#choice3Drop').hide();
+                            $('#choice4Lbl').hide();
+                            $('#choice4Drop').hide();
+                            $('#choice5Lbl').hide();
+                            $('#choice5Drop').hide();
+                            $('#dataForm').hide();
+                            $('#dischargeSection').hide();
+                            $('#schoolNameSection').hide();
+                            $('#lastDateSection').hide();
+                            $('#schoolClosureSection').hide();
+                            $('#defForbSection').hide();
+                            $('#defForbDateSection').hide();
+                            $('#loanTermEndDateSection').hide();
+                            $('#manualDenialSection').hide();
+                            $('#beginYearSection').hide();
+                        }
+                        if ($('#@(Html.IdFor(m => m.ManualLetters))').length = 0) {
+                            $('#manualLbl').hide();
+                            $('#manualDrop').hide();
+                        }
+
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Manual Letters. Please contact System Support');
+                    }
+                });
+            })
+        });
+        $(function () { //Retrieves the Choice 1 Drop Down items
+            $('#@(Html.IdFor(o => o.LetterOptions))').change(function () {
+                $.ajax({
+                    url: '/Home/GetLetterChoices1/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var choice1 = $('#@(Html.IdFor(o => o.LetterChoices1))');
+                        choice1.empty();
+                        var choice2 = $('#@(Html.IdFor(o => o.LetterChoices2))');
+                        choice2.empty();
+                        var choice3 = $('#@(Html.IdFor(o => o.LetterChoices3))');
+                        choice3.empty();
+                        var choice4 = $('#@(Html.IdFor(o => o.LetterChoices4))');
+                        choice4.empty();
+                        var choice5 = $('#@(Html.IdFor(o => o.LetterChoices5))');
+                        choice5.empty();
+                        //Reload data in next drop down
+                        $.each(data, function (index, obj) {
+                            choice1.append('<option>' + obj + '</option>');
+                        });
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Letter Choices. Plase contact System Support');
+                    }
+                });
+            })
+        });
+
+
+        // Manual Letters
+        $(function () { //Clears all letter choices and only allows manual letter
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/GetLetterChoices1/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var choice1 = $('#@(Html.IdFor(o => o.LetterChoices1))');
+                        choice1.empty();
+                        var choice2 = $('#@(Html.IdFor(o => o.LetterChoices2))');
+                        choice2.empty();
+                        var choice3 = $('#@(Html.IdFor(o => o.LetterChoices3))');
+                        choice3.empty();
+                        var choice4 = $('#@(Html.IdFor(o => o.LetterChoices4))');
+                        choice4.empty();
+                        var choice5 = $('#@(Html.IdFor(o => o.LetterChoices5))');
+                        choice5.empty();
+                        //Check if selection made and hide/show next option
+                        if ($('#@(Html.IdFor(o => o.ManualLetters))').val() == "") {
+                            $('#choice1Lbl').show();
+                            $('#choice1Drop').show();
+                            $('#dataForm').hide();
+                            $('#accountSection').hide();
+                            $.each(data, function (index, obj) {
+                                choice1.append('<option>' + obj + '</option>');
+                            });
+                        }
+                        else {
+                            $('#choice1Lbl').hide();
+                            $('#choice1Drop').hide();
+                            $('#dataForm').show();
+                            $('#accountSection').show();
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Letter Choices. Plase contact System Support');
+
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualDischarge/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#dischargeSection').show();
+                        else
+                            $('#dischargeSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualSchoolName/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#schoolNameSection').show();
+                        else
+                            $('#schoolNameSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualSchoolClosure/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#schoolClosureSection').show();
+                            $('#SchoolClosure').val('');
+                        }
+                        else
+                            $('#schoolClosureSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualLastDate/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#lastDateSection').show();
+                            $('#LastDate').val('');
+                        }
+                        else
+                            $('#lastDateSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualDefForb/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        var discharge = $('#defForbSection'); if (result.returnValue)
+                            $('#defForbSection').show();
+                        else
+                            $('#defForbSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualDefForbDate/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#defForbDateSection').show();
+                            $('DefForbDate').val('');
+                        }
+                        else
+                            $('#defForbDateSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualLoanTerm/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#loanTermEndDateSection').show();
+                            $('#LoanTermEndDate').val('');
+                        }
+                        else
+                            $('#loanTermEndDateSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualMDenial/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#manualDenialSection').show();
+                        else
+                            $('#manualDenialSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.ManualLetters))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualSchoolYear/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&letterName=' + $('#@(Html.IdFor(o => o.ManualLetters))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#schoolYearSection').show();
+                        else
+                            $('#schoolYearSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+
+
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckDischarge/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#dischargeSection').show();
+                        else
+                            $('#dischargeSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckSchoolName/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#schoolNameSection').show();
+                        else
+                            $('#schoolNameSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckSchoolClosure/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#schoolClosureSection').show();
+                            $('#SchoolClosure').val('');
+                        }
+                        else
+                            $('#schoolClosureSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckLastDate/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#lastDateSection').show();
+                            $('#LastDate').val('');
+                        }
+                        else
+                            $('#lastDateSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckDefForb/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#defForbSection').show();
+                        else
+                            $('#defForbSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckDefForbDate/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#defForbDateSection').show();
+                            $('#DefForbDate').val('');
+                        }
+                        else
+                            $('#defForbDateSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckLoanTerm/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue) {
+                            $('#loanTermEndDateSection').show();
+                            $('#LoanTermEndDate').val('');
+                        }
+                        else
+                            $('#loanTermEndDateSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckManualDenial/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#manualDenialSection').show();
+                        else
+                            $('#manualDenialSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        $(function () { //Checks the letter to see if it needs a discharge amount
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/CheckSchoolYear/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (result) {
+                        if (result.returnValue)
+                            $('#schoolYearSection').show();
+                        else
+                            $('#schoolYearSection').hide();
+                    },
+                    error: function (request, status, error) {
+                        //should do something on error
+                    }
+                });
+            })
+        });
+        // Letter Choices 1
+        $(function () { //Clears letter choices 2-5 and loads letter choice 1
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                $.ajax({
+                    url: '/Home/GetLetterChoices2/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice1=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var choice2 = $('#@(Html.IdFor(o => o.LetterChoices2))');
+                        choice2.empty();
+                        var choice3 = $('#@(Html.IdFor(o => o.LetterChoices3))');
+                        choice3.empty();
+                        var choice4 = $('#@(Html.IdFor(o => o.LetterChoices4))');
+                        choice4.empty();
+                        var choice5 = $('#@(Html.IdFor(o => o.LetterChoices5))');
+                        choice5.empty();
+                        //Reload data in next drop down
+                        $.each(data, function (index, obj) {
+                            choice2.append('<option>' + obj + '</option>');
+                        });
+
+                        $('#choice3Lbl').hide();
+                        $('#choice3Drop').hide();
+                        if ($('#choice3Drop').val() != '')
+                            $('#choice3Drop').empty();
+                        $('#choice4Lbl').hide();
+                        $('#choice4Drop').hide();
+                        if ($('#choice4Drop').val() != '')
+                            $('#choice4Drop').empty();
+                        $('#choice5Lbl').hide();
+                        $('#choice5Drop').hide();
+                        if ($('#choice5Drop').val() != '')
+                            $('#choice5Drop').empty();
+
+                        //Check if selection made and hide/show next option
+                        if ($('#@(Html.IdFor(o => o.LetterChoices1))').val() == "") {
+                            $('#manualLbl').show();
+                            $('#manualDrop').show();
+                            $('#choice2Lbl').hide();
+                            $('#choice2Drop').hide();
+                            $('#dataForm').hide();
+                            $('#accountSection').hide();
+                        }
+                        else {
+                            $('#manualLbl').hide();
+                            $('#manualDrop').hide();
+                            $('#choice2Lbl').show();
+                            $('#choice2Drop').show();
+                            $('#dataForm').show();
+                            $('#accountSection').show();
+                        }
+                        if ($('#@(Html.IdFor(o => o.AccountIdentifier))').val().length > 8)
+                            $('#btnSubmit').show();
+                        else
+                            $('#btnSubmit').hide();
+
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Letter Choices. Plase contact System Support');
+                    }
+                });
+            })
+        });
+        $(function () {
+            $('#@(Html.IdFor(o => o.LetterChoices1))').change(function () {
+                var length = $('#LetterChoices1').val().length;
+                var newMax = 1216 - length;
+                var manLength = $('#ManualDenialReason').val().length;
+                $('label[for=Count]').text(manLength.toString() + '/' + newMax.toString());
+                $('#ManualDenialReason').attr('maxLength', newMax);
+            })
+        });
+
+
+        // Letter Choices 2
+        $(function () { //Clears letter choices 3-5 and loads letter choice 3
+            $('#@(Html.IdFor(o => o.LetterChoices2))').change(function () {
+                $.ajax({
+                    url: '/Home/GetLetterChoices3/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice1=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val()
+                        + '&choice2=' + $('#@(Html.IdFor(o => o.LetterChoices2))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var choice3 = $('#@(Html.IdFor(o => o.LetterChoices3))');
+                        choice3.empty();
+                        var choice4 = $('#@(Html.IdFor(o => o.LetterChoices4))');
+                        choice4.empty();
+                        var choice5 = $('#@(Html.IdFor(o => o.LetterChoices5))');
+                        choice5.empty();
+                        //Reload data in next drop down
+                        $.each(data, function (index, obj) {
+                            choice3.append('<option>' + obj + '</option>');
+                        });
+                        //Check if selection made and hide/show next option
+                        $('#choice4Lbl').hide();
+                        $('#choice4Drop').hide();
+                        if ($('#choice4Drop').val() != '')
+                            $('#choice4Drop').empty();
+                        $('#choice5Lbl').hide();
+                        $('#choice5Drop').hide();
+                        if ($('#choice5Drop').val() != '')
+                            $('#choice5Drop').empty();
+
+                        if ($('#@(Html.IdFor(o => o.LetterChoices2))').val() == "") {
+                            $('#choice3Lbl').hide();
+                            $('#choice3Drop').hide();
+                            choice3.empty();
+                        }
+                        else {
+                            $('#choice3Lbl').show();
+                            $('#choice3Drop').show();
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Letter Choices. Plase contact System Support');
+                    }
+                });
+            })
+        });
+        $(function () {
+            $('#@(Html.IdFor(o => o.LetterChoices2))').change(function () {
+                var length = $('#LetterChoices1').val().length;
+                if ($('#LetterChoices2').val() != '')
+                    length = length + $('#LetterChoices2').val().length;
+                var newMax = 1216 - length;
+                var manLength = $('#ManualDenialReason').val().length;
+                $('label[for=Count]').text(manLength.toString() + '/' + newMax.toString());
+                $('#ManualDenialReason').attr('maxLength', newMax);
+            })
+        });
+
+
+
+        // Letter Choices 3
+        $(function () { //Clears letter choices 4-5 and loads letter choice 4
+            $('#@(Html.IdFor(o => o.LetterChoices3))').change(function () {
+                $.ajax({
+                    url: '/Home/GetLetterChoices4/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice1=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val()
+                        + '&choice2=' + $('#@(Html.IdFor(o => o.LetterChoices2))').val()
+                        + '&choice3=' + $('#@(Html.IdFor(o => o.LetterChoices3))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var choice4 = $('#@(Html.IdFor(o => o.LetterChoices4))');
+                        choice4.empty();
+                        var choice5 = $('#@(Html.IdFor(o => o.LetterChoices5))');
+                        choice5.empty();
+                        //Reload data in next drop down
+                        $.each(data, function (index, obj) {
+                            choice4.append('<option>' + obj + '</option>');
+                        });
+                        //Check if selection made and hide/show next option
+                        $('#choice5Lbl').hide();
+                        $('#choice5Drop').hide();
+                        if ($('#choice5Drop').val() != '')
+                            $('#choice5Drop').empty();
+
+
+                        if ($('#@(Html.IdFor(o => o.LetterChoices3))').val() == "") {
+                            $('#choice4Lbl').hide();
+                            $('#choice4Drop').hide();
+                            choice4.empty();
+                        }
+                        else {
+                            $('#choice4Lbl').show();
+                            $('#choice4Drop').show();
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Letter Choices. Plase contact System Support');
+                    }
+                });
+            })
+        });
+        $(function () {
+            $('#@(Html.IdFor(o => o.LetterChoices3))').change(function () {
+                var length = $('#LetterChoices1').val().length;
+                if ($('#LetterChoices2').val() != '')
+                    length = length + $('#LetterChoices2').val().length;
+                if ($('#LetterChoices3').val() != '')
+                    length = length + $('#LetterChoices3').val().length;
+                var newMax = 1216 - length;
+                var manLength = $('#ManualDenialReason').val().length;
+                $('label[for=Count]').text(manLength.toString() + '/' + newMax.toString());
+                $('#ManualDenialReason').attr('maxLength', newMax);
+            })
+        });
+
+
+
+        // Letter Choices 4
+        $(function () { //Clears letter choice 5 and reloads it
+            $('#@(Html.IdFor(o => o.LetterChoices4))').change(function () {
+                $.ajax({
+                    url: '/Home/GetLetterChoices5/',
+                    data: 'type=' + $('#@(Html.IdFor(o => o.LetterTypes))').val()
+                        + '&option=' + $('#@(Html.IdFor(o => o.LetterOptions))').val()
+                        + '&choice1=' + $('#@(Html.IdFor(o => o.LetterChoices1))').val()
+                        + '&choice2=' + $('#@(Html.IdFor(o => o.LetterChoices2))').val()
+                        + '&choice3=' + $('#@(Html.IdFor(o => o.LetterChoices3))').val()
+                        + '&choice4=' + $('#@(Html.IdFor(o => o.LetterChoices4))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        //Clear the controls
+                        var choice5 = $('#@(Html.IdFor(o => o.LetterChoices5))');
+                        choice5.empty();
+                        //Reload data in next drop down
+                        $.each(data, function (index, obj) {
+                            choice5.append('<option>' + obj + '</option>');
+                        });
+                        //Check if selection made and hide/show next option
+                        if ($('#@(Html.IdFor(o => o.LetterChoices4))').val() == "") {
+                            $('#choice5Lbl').hide();
+                            $('#choice5Drop').hide();
+                            choice5.empty();
+                        }
+                        else {
+                            if ($('#@(Html.IdFor(r => r.ManualDenialReason))').val() == "") {
+                                $('#choice5Lbl').show();
+                                $('#choice5Drop').show();
+                            }
+                            else {
+                                $('#choice5Lbl').hide();
+                                $('#choice5Drop').hide();
+                            }
+                        }
+
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting Letter Choices. Plase contact System Support');
+                    }
+                });
+            })
+        });
+        $(function () {
+            $('#@(Html.IdFor(o => o.LetterChoices4))').change(function () {
+                var length = $('#LetterChoices1').val().length;
+                if ($('#LetterChoices2').val() != '')
+                    length = length + $('#LetterChoices2').val().length;
+                if ($('#LetterChoices3').val() != '')
+                    length = length + $('#LetterChoices3').val().length;
+                if ($('#LetterChoices4').val() != '')
+                    length = length + $('#LetterChoices4').val().length;
+                var newMax = 1216 - length;
+                var manLength = $('#ManualDenialReason').val().length;
+                $('label[for=Count]').text(manLength.toString() + '/' + newMax.toString());
+                $('#ManualDenialReason').attr('maxLength', newMax);
+            })
+        });
+
+
+
+        // Letter Choices 5
+        $(function () { //If 5 choices are made, turn off the manual denial reason
+            $('#@(Html.IdFor(o => o.LetterChoices5))').change(function () {
+                $.ajax({
+                    success: function (data) {
+                        if ($('#@(Html.IdFor(o => o.LetterChoices5))').val() == "")
+                            $('#manualDenialSection').show();
+                        else
+                            $('#manualDenialSection').hide();
+                    },
+                    error: function (request, status, error) {
+                    }
+                });
+            })
+        });
+
+
+
+        // Manual Denial Reason
+        $(function () {
+            $('#@(Html.IdFor(m => m.ManualDenialReason))').keyup(function () {
+                if ($('#@(Html.IdFor(m => m.ManualDenialReason))').val() == "" && ($('#@(Html.IdFor(l => l.LetterChoices4))').has('option').length > 0 && $('#@(Html.IdFor(l => l.LetterChoices4))').val() != "")) {
+                    $('#choice5Lbl').show();
+                    $('#choice5Drop').show();
+                }
+                else {
+                    $('#choice5Lbl').hide();
+                    $('#choice5Drop').hide();
+                }
+            })
+        });
+        $(function () {
+            $('#@(Html.IdFor(m => m.ManualDenialReason))').keyup(function () {
+                var length = $('#LetterChoices1').val().length;
+                if ($('#LetterChoices2').val() != '')
+                    length = length + $('#LetterChoices2').val().length;
+                if ($('#LetterChoices3 option').length > 0 && $('#LetterChoices3').val() != '')
+                    length = length + $('#LetterChoices3').val().length;
+                if ($('#LetterChoices4 option').length > 0 && $('#LetterChoices4').val() != '')
+                    length = length + $('#LetterChoices4').val().length;
+                var newMax = (1216 - parseInt(length));
+                var manLength = $('#ManualDenialReason').val().length;
+                $('label[for=Count]').text(manLength.toString() + '/' + newMax.toString());
+            })
+        });
+
+
+
+        // Account Identifier
+        $(function () {
+            $('#@(Html.IdFor(o => o.AccountIdentifier))').keyup(function () {
+                $.ajax({
+                    url: '/Home/GetBorrowerDemo/',
+                    data: 'account=' + $('#@(Html.IdFor(o => o.AccountIdentifier))').val(),
+                    method: 'POST',
+                    success: function (data) {
+                        if (data.returnValue != '') {
+                            var fields = data.returnValue.split(';');
+                            $('label[for=BorrowerName]').text(fields[0]);
+                            $('label[for=Address1]').empty();
+                            $('label[for=Address1]').text(fields[1]);
+                            $('label[for=Address2]').empty();
+                            $('label[for=Address2]').text(fields[3]);
+                            $('label[for=CityStateZip]').empty();
+                            $('label[for=CityStateZip]').text(fields[2]);
+                            if (fields[0] != '') {
+                                $('#Borrower').show();
+                                $('#btnSubmit').show();
+                            }
+                            if (data.returnValue == "Borrower Not Found")
+                                $('#btnSubmit').hide();
+                        }
+                        else {
+                            $('#Borrower').hide();
+                            $('#btnSubmit').hide();
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert('Error getting borrower demographcs. Please contact System Support');
+                    }
+                });
+            })
+        });
+
+
+        // Ingore validation on hidden fields
+        $.validator.setDefaults({
+            ignore: ':hidden, [readonly=readonly]'
+        });
+    </script>
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @id = "myForm" }))
+{
+    @Html.AntiForgeryToken()
+    <table>
+        <tr><td>@Html.Label("Letter Type:")</td></tr>
+        <tr><td>@Html.DropDownListFor(m => m.LetterTypes, new SelectList(Model.LetterTypes), "", new { style = "width: 250px" })</td></tr>
+        <tr id="optionsLbl"><td>@Html.Label("Letter Options:")</td></tr>
+        <tr id="optionsDrop"><td>@Html.DropDownListFor(m => m.LetterOptions, new SelectList(Model.LetterOptions), new { style = "width: 250px" })</td></tr>
+        <tr id="manualLbl"><td>@Html.Label("Manual Letter: ")</td></tr>
+        <tr id="manualDrop"><td>@Html.DropDownListFor(m => m.ManualLetters, new SelectList(Model.ManualLetters), new { style = "width: 250px" })</td></tr>
+        <tr id="choice1Lbl"><td>@Html.Label("Letter Choice 1:")</td></tr>
+        <tr id="choice1Drop"><td>@Html.DropDownListFor(m => m.LetterChoices1, new SelectList(Model.LetterChoices1), new { style = "width: 85%" })</td></tr>
+        <tr id="choice2Lbl"><td>@Html.Label("Letter Choice 2:")</td></tr>
+        <tr id="choice2Drop"><td>@Html.DropDownListFor(m => m.LetterChoices2, new SelectList(Model.LetterChoices2), new { style = "width: 85%" })</td></tr>
+        <tr id="choice3Lbl"><td>@Html.Label("Letter Choice 3:")</td></tr>
+        <tr id="choice3Drop"><td>@Html.DropDownListFor(m => m.LetterChoices3, new SelectList(Model.LetterChoices3), new { style = "width: 85%" })</td></tr>
+        <tr id="choice4Lbl"><td>@Html.Label("Letter Choice 4:")</td></tr>
+        <tr id="choice4Drop"><td>@Html.DropDownListFor(m => m.LetterChoices4, new SelectList(Model.LetterChoices4), new { style = "width: 85%" })</td></tr>
+        <tr id="choice5Lbl"><td>@Html.Label("Letter Choice 5:")</td></tr>
+        <tr id="choice5Drop"><td>@Html.DropDownListFor(m => m.LetterChoices5, new SelectList(Model.LetterChoices5), new { style = "width: 85%" })</td></tr>
+    </table>
+    <br /><br />
+    <table id="dataForm" class="forminput">
+        <tr id="dischargeSection"><td align="right" class="leftside"><p>Amount Approved for Discharge:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.DischargeAmount, new { @maxlength = "10", style = "width:80px;", Value = $"{Model.DischargeAmount:C}" }) @Html.ValidationMessageFor(m => m.DischargeAmount, null, new { @style = "color:red" })</td></tr>
+        <tr id="schoolNameSection"><td align="right" class="leftside"><p>Enter School Name:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.SchoolName) @Html.ValidationMessageFor(m => m.SchoolName, null, new { @style = "color:red" })</td></tr>
+        <tr id="lastDateSection"><td align="right" class="leftside"><p>Last Date of Attendance:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.LastDate, Model.LastDate.ToShortDateString()) @Html.ValidationMessageFor(m => m.LastDate, null, new { @style = "color:red" })</td></tr>
+        <tr id="schoolClosureSection"><td align="right" class="leftside"><p>School Closure Date:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.SchoolClosure, Model.SchoolClosure.ToShortDateString()) @Html.ValidationMessageFor(m => m.SchoolClosure, null, new { @style = "color:red" })</td></tr>
+        <tr id="defForbSection"><td align="right" class="leftside"><p>Deferment/Forbearance Type:</p></td><td align="left" class="rightside">@Html.DropDownListFor(m => m.DefForb, new SelectList(Model.DefForb), "") @Html.ValidationMessageFor(m => m.DefForb, null, new { @style = "color:red" })</td></tr>
+        <tr id="defForbDateSection"><td align="right" class="leftside"><p>Deferment/Forbearance End Date:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.DefForbDate, Model.DefForbDate.ToShortDateString()) @Html.ValidationMessageFor(m => m.DefForbDate, null, new { @style = "color:red" })</td></tr>
+        <tr id="loanTermEndDateSection"><td align="right" class="leftside"><p>Select a Loan Term End Date:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.LoanTermEndDate, Model.LoanTermEndDate.ToShortDateString()) @Html.ValidationMessageFor(m => m.LoanTermEndDate, null, new { @style = "color:red" })</td></tr>
+        <tr id="manualDenialSection"><td align="right" class="leftside"><p>Manual Denial Reason:</p></td><td align="left" class="rightside">@Html.TextAreaFor(m => m.ManualDenialReason, new { @maxlength = "1216" }) @Html.ValidationMessageFor(m => m.ManualDenialReason, null, new { @style = "color:red" })@Html.Label("Count")</td></tr>
+        <tr id="schoolYearSection"><td align="right" class="leftside"><p>Enter the year the school will appear on the Low Income Directory:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.BeginYear, new { @maxlength = "4", style = "width:40px;" }) - @Html.TextBoxFor(m => m.EndYear, new { @maxlength = "4", style = "width:40px;" }) @Html.ValidationMessageFor(m => m.BeginYear, null, new { @style = "color:red" }) @Html.ValidationMessageFor(m => m.EndYear, null, new { @style = "color:red" })</td></tr>
+        <tr id="accountSection"><td align="right" class="leftside"><p>SSN/Account Number:</p></td><td align="left" class="rightside">@Html.TextBoxFor(m => m.AccountIdentifier, new { @maxlength = "10", @minlength = "9" }) @Html.ValidationMessageFor(m => m.AccountIdentifier, null, new { @style = "color:red" })</td></tr>
+    </table>
+    @Html.ValidationSummary("", new { @style = "color:red" })
+
+    <div id="Borrower">
+        <strong>
+            @Html.Label("BorrowerName")<br />
+            @Html.Label("Address1")<br />
+            @Html.Label("Address2")<br />
+            @Html.Label("CityStateZip")
+        </strong>
+    </div><br />
+    <input type="submit" value="Process" id="btnSubmit" />
+}

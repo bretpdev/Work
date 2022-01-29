@@ -1,0 +1,46 @@
+﻿@model PriorityRequestsModel
+@{
+    Layout = "~/Views/Master.cshtml";
+}
+
+<script type="text/javascript">
+    initialPendingData = @(Html.Raw(Json.Encode(Model.Requests)));
+    initialCompletedData = @(Html.Raw(Json.Encode(Model.CourtRequests ?? new List<PriorityRequest>())));
+    $(function () {
+        HandlebarsIntl.registerWith(Handlebars);
+        template = Handlebars.compile($("#request-template").html());
+        headerTemplate = Handlebars.compile($('#table-header-template').html());
+        init(initialPendingData, initialCompletedData);
+    });
+
+    function init(pendingData, completedData) {
+        var pendingTable = $("#pending-table");
+        pendingTable.append(headerTemplate());
+        if (pendingData.length > 0)
+            pendingData.forEach(function (request) {
+                pendingTable.append(template(request));
+            });
+        else {
+            pendingTable.find('tr:gt(0)').remove();
+            pendingTable.find('th').html("No Completed Estimates Available");
+        }
+
+        //var completedTable = $("#completed-table");
+        //completedTable.append(headerTemplate());
+        //if (completedData.length > 0)
+        //    completedData.forEach(function (request) {
+        //        completedTable.append(template(request));
+        //    });
+        //else {
+        //    completedTable.find('tr:gt(0)').remove();
+        //    completedTable.find('th').html("No Pending Estimates Available");
+        //}
+    }
+
+</script>
+<table id="pending-table" class="request-table">
+    <tr class="header table-header"><th colspan="20">Pending Estimates</th></tr>
+</table>
+<table id="completed-table" class="request-table">
+    <tr class="header table-header"><th colspan="20">Completed Estimates</th></tr>
+</table>

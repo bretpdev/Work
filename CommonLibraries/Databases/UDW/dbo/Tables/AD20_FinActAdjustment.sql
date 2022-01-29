@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[AD20_FinActAdjustment] (
+    [DF_SPE_ACC_ID]      VARCHAR (10) NOT NULL,
+    [LD_FAT_ADJ_REQ]     DATETIME     NULL,
+    [LN_SEQ_FAT_ADJ_REQ] INT          NULL,
+    [LC_TYP_FAT_ADJ_REQ] VARCHAR (2)  DEFAULT (' ') NULL,
+    [LC_STA_FAT_ADJ_REQ] CHAR (1)     DEFAULT (' ') NULL
+);
+

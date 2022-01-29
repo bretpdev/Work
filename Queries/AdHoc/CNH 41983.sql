@@ -1,0 +1,1 @@
+select * from openquery(legend, 'select BF_SSN, LN_SEQ, LD_RPT_CRB, LC_RPT_STA_CRB, LC_TRM_FRQ_RPT, LC_PRV_MTH_PAY_HST, LC_SPC_CMT from pkub.LNXX_LON_CRB_RPT where ld_rpt_crb = ''XXXX-XX-XX''')

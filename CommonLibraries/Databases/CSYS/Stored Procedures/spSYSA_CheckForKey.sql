@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[spSYSA_CheckForKey]
+	@Key	VARCHAR(100)
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT COUNT(*) 
+	FROM SYSA_LST_UserKeys 
+	WHERE UserKey = @Key
+END

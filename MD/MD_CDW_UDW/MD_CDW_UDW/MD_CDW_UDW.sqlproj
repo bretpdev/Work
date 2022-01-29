@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>MD_CDW_UDW</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{c2090975-2da1-4d6c-887a-13012bb85303}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>MD_CDW_UDW</RootNamespace>
+    <AssemblyName>MD_CDW_UDW</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="alerts" />
+    <Folder Include="alerts\Schemas" />
+    <Folder Include="alerts\Stored Procedures" />
+    <Folder Include="alerts\Tables" />
+    <Folder Include="altaddress" />
+    <Folder Include="altaddress\Schemas" />
+    <Folder Include="altaddress\Stored Procedures" />
+    <Folder Include="altaddress\Tables" />
+    <Folder Include="pendingnocalls" />
+    <Folder Include="Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="alerts\Schemas\alerts.sql" />
+    <Build Include="alerts\Stored Procedures\GetManualBorrowerAlerts.sql" />
+    <Build Include="alerts\Tables\ManualBorrowerAlertMessages.sql" />
+    <Build Include="alerts\Tables\ManualBorrowerAlerts.sql" />
+    <Build Include="altaddress\Schemas\altaddress.sql" />
+    <Build Include="altaddress\Stored Procedures\AddAltAddress.sql" />
+    <Build Include="altaddress\Stored Procedures\DeleteAltAddress.sql" />
+    <Build Include="altaddress\Stored Procedures\GetAltAddresses.sql" />
+    <Build Include="altaddress\Stored Procedures\UpdateAltAddress.sql" />
+    <Build Include="altaddress\Tables\AlternateAddresses.sql" />
+    <Build Include="pendingnocalls\BorrowerCallSuspensionInsert.sql" />
+    <Build Include="pendingnocalls\BorrowerCallSuspensions.sql" />
+    <Build Include="pendingnocalls\GetNextEligibleCallSuspensionDate.sql" />
+    <Build Include="pendingnocalls\pendingnocalls.sql" />
+    <Build Include="Stored Procedures\BorrowerSelect_Demographics.sql" />
+    <Build Include="Stored Procedures\BorrowerSelect_Info.sql" />
+    <Build Include="Stored Procedures\BorrowerSelectByAccountIdentifier.sql" />
+    <Build Include="Stored Procedures\BorrowersSearch.sql" />
+    <Build Include="Stored Procedures\spMD_BorrowerHasEndorsers.sql" />
+    <Build Include="Stored Procedures\spMD_Get20DayLetterDates.sql" />
+    <Build Include="Stored Procedures\spMD_Get411_DeleteThisOne.sql" />
+    <Build Include="Stored Procedures\spMD_GetACHData.sql" />
+    <Build Include="Stored Procedures\spMD_GetACHLoanLevelData.sql" />
+    <Build Include="Stored Procedures\spMD_GetBillingData.sql" />
+    <Build Include="Stored Procedures\spMD_GetBillingTypeData.sql" />
+    <Build Include="Stored Procedures\spMD_GetCallForwardingData.sql" />
+    <Build Include="Stored Procedures\spMD_GetCompassBorrowerLevelData.sql" />
+    <Build Include="Stored Procedures\spMD_GetCompassLoanData_UDW.sql" />
+    <Build Include="Stored Procedures\spMD_GetDefermentAndForbearenceData.sql" />
+    <Build Include="Stored Procedures\spMD_GetDemographicData.sql" />
+    <Build Include="Stored Procedures\spMD_GetFinancialTransactions.sql" />
+    <Build Include="Stored Procedures\spMD_GetOneLINKBorrowerLevelData.sql" />
+    <Build Include="Stored Procedures\spMD_GetReferenceActivityHistory.sql" />
+    <Build Include="Stored Procedures\spMD_GetReferenceData.sql" />
+    <Build Include="Stored Procedures\spMD_GetRPSTypeData.sql" />
+    <Build Include="Stored Procedures\spMD_HasAnticipatedDisbursement.sql" />
+    <Build Include="Stored Procedures\spMD_HasAP03Record.sql" />
+    <Build Include="Stored Procedures\GetLoanRirInt.sql" />
+    <Build Include="Stored Procedures\GetLoanRirType.sql" />
+    <Build Include="Stored Procedures\GetLoanRirCount.sql" />
+    <Build Include="Stored Procedures\spMD_GetCompassLoanData_CDW.sql" />
+  </ItemGroup>
+</Project>

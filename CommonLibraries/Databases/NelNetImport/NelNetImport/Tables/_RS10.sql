@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[_RS10] (
+    [BF_SSN]              NVARCHAR (255) NULL,
+    [LN_RPS_SEQ]          FLOAT (53)     NULL,
+    [LC_STA_RPST10]       NVARCHAR (255) NULL,
+    [OLD_LD_RPS_1_PAY_DU] DATETIME       NULL,
+    [NEW_LD_RPS_1_PAY_DU] DATETIME       NULL,
+    [OLD_LC_RPD_DIS]      NVARCHAR (255) NULL,
+    [NEW_LC_RPD_DIS]      NVARCHAR (255) NULL,
+    [OLD_LD_SNT_RPD_DIS]  DATETIME       NULL,
+    [NEW_LD_SNT_RPD_DIS]  DATETIME       NULL
+);
+

@@ -1,0 +1,15 @@
+﻿@model COMPFAFSA.Models.User
+
+@{
+    ViewBag.Title = "DeleteUserSchoolSuccess";
+}
+
+<body>
+    <div class="body-content-margins">
+        <h2>Successfully deleted school from user.</h2><br />
+
+        <div>
+            @Html.ActionLink("Back to List of Schools", "ManageUserSchools", new { id = Model.UserId })
+        </div>
+    </div>
+</body>

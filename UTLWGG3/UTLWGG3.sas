@@ -1,0 +1,318 @@
+/*
+MONTHLY AWG AND LEGAL GARNISHMENT PAYMENT TOTALS
+
+This report lists monthly garnishment totals by garnishment type (AWG or Legal)
+with a grand total.
+
+*/
+
+/*LIBNAME DLGSUTWH DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;
+%LET RPTLIB = %SYSGET(reportdir);
+FILENAME REPORT2 "&RPTLIB/ULWGG3.LWGG3R2";*/
+
+LIBNAME  WORKLOCL  REMOTE  SERVER=CYPRUS  SLIBREF=WORK;
+RSUBMIT;
+OPTIONS MPRINT SYMBOLGEN;
+DATA _NULL_;
+	YBEGDATE = PUT(INTNX('YEAR',TODAY()-7,0), YYMMDD10.);	/*RESOLVES TO 1ST OF CURRENT YEAR AS OF 7 DAYS AGO*/
+	 CALL SYMPUT('YBEGIN',"'"||YBEGDATE||"'");
+RUN;
+/*<1->
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE GPGRN AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	SUM(D.la_trx)				AS GP,
+	A.BC_LEG_ACT_REC_TYP 		AS GARN_TYPE,
+	MONTH(D.ld_trx_eff)			AS MONTH
+	
+FROM 	OLWHRM1.LA10_LEG_ACT A INNER JOIN 
+		OLWHRM1.LA12_LEG_ACT_LON B ON
+			A.BC_WDR_REA = '' AND
+			A.BC_INA_REA = '' AND
+			A.df_prs_id_br = B.df_prs_id_br AND
+			A.bf_crt_dts_la10 = B.bf_crt_dts_la10 INNER JOIN
+		OLWHRM1.DC01_LON_CLM_INF C ON
+			B.af_apl_id = C.af_apl_id AND
+			B.af_apl_id_sfx = C.af_apl_id_sfx AND
+			C.lc_sta_dc10 = '03' AND
+			(C.ld_clm_asn_doe IS NULL OR
+			C.ld_clm_asn_doe = '2001-05-31' OR
+			C.ld_clm_asn_doe = '2001-06-01') INNER JOIN
+		OLWHRM1.DC11_LON_FAT D ON
+			C.af_apl_id = D.af_apl_id AND
+			C.af_apl_id_sfx = D.af_apl_id_sfx AND
+			D.lc_trx_typ ='GP' AND
+			D.ld_trx_eff >= &YBEGIN
+GROUP BY A.BC_LEG_ACT_REC_TYP, MONTH(D.ld_trx_eff)
+);
+DISCONNECT FROM DB2;
+
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE EPGRN AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	SUM(D.la_trx)				AS EP,
+	A.BC_LEG_ACT_REC_TYP 		AS GARN_TYPE,
+	MONTH(D.ld_trx_eff)		    AS MONTH
+	
+FROM 	OLWHRM1.LA10_LEG_ACT A INNER JOIN 
+		OLWHRM1.LA12_LEG_ACT_LON B ON
+			A.BC_WDR_REA = '' AND
+			A.BC_INA_REA = '' AND
+			A.df_prs_id_br = B.df_prs_id_br AND
+			A.bf_crt_dts_la10 = B.bf_crt_dts_la10 INNER JOIN
+		OLWHRM1.DC01_LON_CLM_INF C ON
+			B.af_apl_id = C.af_apl_id AND
+			B.af_apl_id_sfx = C.af_apl_id_sfx AND
+			C.lc_sta_dc10 = '03' AND
+			(C.ld_clm_asn_doe IS NULL OR
+			C.ld_clm_asn_doe = '2001-05-31' OR
+			C.ld_clm_asn_doe = '2001-06-01') INNER JOIN
+		OLWHRM1.DC11_LON_FAT D ON
+			C.af_apl_id = D.af_apl_id AND
+			C.af_apl_id_sfx = D.af_apl_id_sfx AND
+			D.lc_trx_typ ='EP' AND
+			D.ld_trx_eff >= &YBEGIN
+GROUP BY A.BC_LEG_ACT_REC_TYP, MONTH(D.ld_trx_eff)
+);
+DISCONNECT FROM DB2;
+
+PROC SQL;
+CREATE TABLE GRNPMT AS
+SELECT	A.GP + B.EP	AS TOTAL,
+		A.GP,
+		B.EP,
+		A.GARN_TYPE,
+		A.MONTH
+FROM	GPGRN A FULL OUTER JOIN 
+		EPGRN B ON
+			A.GARN_TYPE = B.GARN_TYPE AND
+			A.MONTH = B.MONTH
+ORDER BY MONTH, GARN_TYPE;
+RUN;
+
+ENDRSUBMIT;
+DATA _NULL_;
+	 EFFYR = PUT(INTNX('MONTH',TODAY(),-1), YEAR4.);
+     CALL SYMPUT('EFFDATE',EFFYR);
+RUN;
+PROC FORMAT;
+     VALUE $GRNTYP	'1'='AWG'
+	 				'2'='LEGAL';
+	
+PROC PRINTTO PRINT=REPORT2;
+RUN;
+
+OPTIONS CENTER PAGENO=1 LS=80;
+PROC PRINT NOOBS SPLIT='/' DATA=WORKLOCL.GRNPMT WIDTH=MIN;
+BY MONTH;
+SUM GP EP TOTAL;
+VAR GARN_TYPE GP EP TOTAL;
+LABEL GARN_TYPE = "GARNISHMENT TYPE";
+FORMAT	GP DOLLAR13. EP DOLLAR13. TOTAL DOLLAR13. GARN_TYPE $GRNTYP.;
+TITLE1 'MONTHLY AWG AND LEGAL GARNISHMENT PAYMENT TOTALS';
+TITLE2 &EFFDATE;
+FOOTNOTE 'JOB = UTLWGG3     REPORT = ULWGG3.LWGG3R2';
+RUN;
+</1>*/
+*<1->;
+PROC SQL;
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE GPLGL AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	D.la_trx						AS GP,
+	'LEGAL'					 		AS GARN_TYPE,
+	D.ld_trx_eff					AS EFF_DATE,
+	MONTH(D.ld_trx_eff)				AS MONTH,
+	A.df_prs_id_br					AS SSN,
+	B.af_apl_id||B.af_apl_id_sfx	AS CLID,
+	C.lc_sta_dc10					AS DC10_STA
+	
+FROM 	OLWHRM1.LA10_LEG_ACT A INNER JOIN 
+		OLWHRM1.LA12_LEG_ACT_LON B ON
+			A.BC_LEG_ACT_REC_TYP = '2' AND
+			A.df_prs_id_br = B.df_prs_id_br AND
+			A.bf_crt_dts_la10 = B.bf_crt_dts_la10 INNER JOIN
+		OLWHRM1.DC01_LON_CLM_INF C ON
+			B.af_apl_id = C.af_apl_id AND
+			B.af_apl_id_sfx = C.af_apl_id_sfx AND
+			C.lc_sta_dc10 IN ('03','04') INNER JOIN
+		OLWHRM1.DC11_LON_FAT D ON
+			C.af_apl_id = D.af_apl_id AND
+			C.af_apl_id_sfx = D.af_apl_id_sfx AND
+			D.lc_trx_typ ='GP' AND
+			D.ld_trx_eff >= &YBEGIN
+);
+DISCONNECT FROM DB2;
+
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE GPAWG AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	D.la_trx						AS GP,
+	'AWG'					 		AS GARN_TYPE,
+	D.ld_trx_eff					AS EFF_DATE,
+	MONTH(D.ld_trx_eff)				AS MONTH,
+	A.df_prs_id_br					AS SSN,
+	B.af_apl_id||B.af_apl_id_sfx	AS CLID,
+	C.lc_sta_dc10					AS DC10_STA	
+FROM 	OLWHRM1.LA10_LEG_ACT A INNER JOIN 
+		OLWHRM1.LA12_LEG_ACT_LON B ON
+			A.BC_LEG_ACT_REC_TYP = '1' AND
+			A.df_prs_id_br = B.df_prs_id_br AND
+			A.bf_crt_dts_la10 = B.bf_crt_dts_la10 INNER JOIN
+		OLWHRM1.DC01_LON_CLM_INF C ON
+			B.af_apl_id = C.af_apl_id AND
+			B.af_apl_id_sfx = C.af_apl_id_sfx AND
+			C.lc_sta_dc10 IN ('03','04') INNER JOIN
+		OLWHRM1.DC11_LON_FAT D ON
+			C.af_apl_id = D.af_apl_id AND
+			C.af_apl_id_sfx = D.af_apl_id_sfx AND
+			D.lc_trx_typ ='GP' AND
+			D.ld_trx_eff >= &YBEGIN AND
+			D.LC_REV_IND_TYP = ''
+);
+DISCONNECT FROM DB2;
+
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE EPLGL AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	D.la_trx						AS EP,
+	'LEGAL'					 		AS GARN_TYPE,
+	D.ld_trx_eff					AS EFF_DATE,
+	MONTH(D.ld_trx_eff)				AS MONTH,
+	A.df_prs_id_br					AS SSN,
+	B.af_apl_id||B.af_apl_id_sfx	AS CLID,
+	C.lc_sta_dc10					AS DC10_STA
+	
+FROM 	OLWHRM1.LA10_LEG_ACT A INNER JOIN 
+		OLWHRM1.LA12_LEG_ACT_LON B ON
+			A.BC_LEG_ACT_REC_TYP = '2' AND
+			A.df_prs_id_br = B.df_prs_id_br AND
+			A.bf_crt_dts_la10 = B.bf_crt_dts_la10 INNER JOIN
+		OLWHRM1.DC01_LON_CLM_INF C ON
+			B.af_apl_id = C.af_apl_id AND
+			B.af_apl_id_sfx = C.af_apl_id_sfx AND
+			C.lc_sta_dc10 IN ('03','04') INNER JOIN
+		OLWHRM1.DC11_LON_FAT D ON
+			C.af_apl_id = D.af_apl_id AND
+			C.af_apl_id_sfx = D.af_apl_id_sfx AND
+			D.lc_trx_typ ='EP' AND
+			D.ld_trx_eff >= &YBEGIN
+);
+DISCONNECT FROM DB2;
+
+CONNECT TO DB2 (DATABASE=DLGSUTWH);
+CREATE TABLE EPAWG AS
+SELECT *
+FROM CONNECTION TO DB2 (
+SELECT DISTINCT
+	D.la_trx						AS EP,
+	'AWG'					 		AS GARN_TYPE,
+	D.ld_trx_eff					AS EFF_DATE,
+	MONTH(D.ld_trx_eff)				AS MONTH,
+	A.df_prs_id_br					AS SSN,
+	B.af_apl_id||B.af_apl_id_sfx	AS CLID,
+	C.lc_sta_dc10					AS DC10_STA
+	
+FROM 	OLWHRM1.LA10_LEG_ACT A INNER JOIN 
+		OLWHRM1.LA12_LEG_ACT_LON B ON
+			A.BC_LEG_ACT_REC_TYP = '1' AND
+			A.df_prs_id_br = B.df_prs_id_br AND
+			A.bf_crt_dts_la10 = B.bf_crt_dts_la10 INNER JOIN
+		OLWHRM1.DC01_LON_CLM_INF C ON
+			B.af_apl_id = C.af_apl_id AND
+			B.af_apl_id_sfx = C.af_apl_id_sfx AND
+			C.lc_sta_dc10 IN ('03','04') INNER JOIN
+		OLWHRM1.DC11_LON_FAT D ON
+			C.af_apl_id = D.af_apl_id AND
+			C.af_apl_id_sfx = D.af_apl_id_sfx AND
+			D.lc_trx_typ ='EP' AND
+			D.ld_trx_eff >= &YBEGIN
+);
+
+DISCONNECT FROM DB2;
+
+PROC SQL;
+CREATE TABLE GPLGL1 AS
+SELECT 
+	SUM(GP)		AS GP,
+	GARN_TYPE,
+	MONTH
+FROM GPLGL
+GROUP BY GARN_TYPE, MONTH;
+
+PROC SQL;
+CREATE TABLE EPLGL1 AS
+SELECT 
+	SUM(EP)		AS EP,
+	GARN_TYPE,
+	MONTH
+FROM EPLGL
+GROUP BY GARN_TYPE, MONTH;
+
+PROC SQL;
+CREATE TABLE GPAWG1 AS
+SELECT 
+	SUM(GP)		AS GP,
+	GARN_TYPE,
+	MONTH
+FROM GPAWG
+GROUP BY GARN_TYPE, MONTH;
+
+PROC SQL;
+CREATE TABLE EPAWG1 AS
+SELECT 
+	SUM(EP)		AS EP,
+	GARN_TYPE,
+	MONTH
+FROM EPAWG
+GROUP BY GARN_TYPE, MONTH;
+QUIT;
+
+DATA ALL;
+	MERGE GPLGL1 EPLGL1 GPAWG1 EPAWG1;
+	BY MONTH GARN_TYPE;
+RUN;
+
+DATA ALL;
+	SET ALL;
+	TOTAL = EP + GP;
+RUN;
+
+ENDRSUBMIT;
+
+DATA ALL;
+	SET WORKLOCL.ALL;
+RUN;
+
+DATA _NULL_;
+	 EFFYR = PUT(INTNX('MONTH',TODAY(),-1), YEAR4.);
+     CALL SYMPUT('EFFDATE',EFFYR);
+RUN;
+	
+/*PROC PRINTTO PRINT=REPORT2;
+RUN;*/
+OPTIONS CENTER PAGENO=1 LS=80;
+PROC PRINT NOOBS SPLIT='/' DATA=ALL WIDTH=MIN;
+BY MONTH;
+SUM GP EP TOTAL;
+VAR GARN_TYPE GP EP TOTAL;
+LABEL GARN_TYPE = "GARNISHMENT TYPE";
+FORMAT	GP DOLLAR13. EP DOLLAR13. TOTAL DOLLAR13.;
+TITLE1 'AWG AND LEGAL GARNISHMENT PAYMENTS BY MONTH';
+TITLE2 "FOR THE YEAR &EFFDATE";
+FOOTNOTE 'JOB = UTLWGG3     REPORT = ULWGG3.LWGG3R2';
+RUN;
+*</1>;
+
+/*<1> sr219, jd, 01/29/03

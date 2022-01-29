@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>HumanResources</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{735465e9-84c6-4312-be8d-3975e1c606a7}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>HumanResources</RootNamespace>
+    <AssemblyName>HumanResources</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Schemas" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="User Defined Table Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Schemas\hrbridge.sql" />
+    <Build Include="Tables\Allocations_BambooHR.sql" />
+    <Build Include="Tables\JobCodes_BambooHR.sql" />
+    <Build Include="Tables\Parking_BambooHR.sql" />
+    <Build Include="Tables\FTE_BambooHR.sql" />
+    <Build Include="Tables\Compensation_BambooHR.sql" />
+    <Build Include="Tables\Employees_BambooHR.sql" />
+    <Build Include="Tables\EmployeeCustomFields.sql" />
+    <Build Include="Tables\Keys.sql" />
+    <Build Include="Tables\Destinations.sql" />
+    <Build Include="Tables\JobInfo.sql" />
+    <Build Include="Tables\EmploymentStatus.sql" />
+    <Build Include="User Defined Table Types\CompensationRecord_BambooHR.sql" />
+    <Build Include="User Defined Table Types\Employee_BambooHR.sql" />
+    <Build Include="User Defined Table Types\AllocationRecord_BambooHR.sql" />
+    <Build Include="User Defined Table Types\FTERecord_BambooHR.sql" />
+    <Build Include="User Defined Table Types\JobCode_BambooHR.sql" />
+    <Build Include="User Defined Table Types\ParkingRecord_BambooHR.sql" />
+    <Build Include="User Defined Table Types\EmployeeCustomField.sql" />
+    <Build Include="User Defined Table Types\JobInfo_BambooHR.sql" />
+    <Build Include="User Defined Table Types\EmploymentStatus_BambooHR.sql" />
+    <Build Include="Stored Procedures\UpdateCompensation.sql" />
+    <Build Include="Stored Procedures\GetCompensation.sql" />
+    <Build Include="Stored Procedures\GetDestinations.sql" />
+    <Build Include="Stored Procedures\GetEmployees.sql" />
+    <Build Include="Stored Procedures\GetKey.sql" />
+    <Build Include="Stored Procedures\GetMaxCompensationUpdated.sql" />
+    <Build Include="Stored Procedures\GetMaxAllocationUpdated.sql" />
+    <Build Include="Stored Procedures\GetMaxFTEUpdated.sql" />
+    <Build Include="Stored Procedures\GetMaxJobCodeUpdated.sql" />
+    <Build Include="Stored Procedures\GetMaxParkingUpdated.sql" />
+    <Build Include="Stored Procedures\UpdateAllocation.sql" />
+    <Build Include="Stored Procedures\UpdateEmployees.sql" />
+    <Build Include="Stored Procedures\UpdateEmployeeCompleted.sql" />
+    <Build Include="Stored Procedures\UpdateFTE.sql" />
+    <Build Include="Stored Procedures\UpdateJobCodes.sql" />
+    <Build Include="Stored Procedures\UpdateParking.sql" />
+    <Build Include="Stored Procedures\UpdateEmployeeCustomFields.sql" />
+    <Build Include="Stored Procedures\UpdateJobInfo.sql" />
+    <Build Include="Stored Procedures\GetMaxJobInfoUpdated.sql" />
+    <Build Include="Stored Procedures\UpdateEmploymentStatus.sql" />
+    <Build Include="Stored Procedures\GetMaxEmploymentStatusUpdated.sql" />
+    <Build Include="Stored Procedures\UpdateNewHires.sql" />
+    <Build Include="Tables\EmployeeCustomReport.sql" />
+    <Build Include="Stored Procedures\UpdateEmployeeCustomReport.sql" />
+    <Build Include="User Defined Table Types\CustomReport.sql" />
+    <Build Include="Stored Procedures\GetEmployeeNameFromId.sql" />
+    <Build Include="Tables\BridgeBlacklist.sql" />
+    <Build Include="Stored Procedures\GetBlacklist.sql" />
+  </ItemGroup>
+</Project>

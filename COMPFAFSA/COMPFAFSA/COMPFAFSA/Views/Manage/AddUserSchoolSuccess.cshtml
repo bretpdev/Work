@@ -1,0 +1,18 @@
+﻿@model COMPFAFSA.Models.User
+
+@{
+    ViewBag.Title = "AddUserSchoolSuccess";
+}
+
+<body>
+    <div class="body-content-margins">
+        <h2>Successfully added school to user.</h2><br />
+
+        <div>
+            @Html.ActionLink("Back to List of Schools", "ManageUserSchools", new { id = Model.UserId })
+        </div><br />
+        <div>
+            @Html.ActionLink("Add Another School", "AddUserSchool", new { userId = Model.UserId })
+        </div>
+    </div>
+</body>

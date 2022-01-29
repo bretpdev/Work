@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>print</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{bde9d8be-9fce-4265-8f6e-e00da5da4ddb}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>print</RootNamespace>
+    <AssemblyName>print</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="print\" />
+    <Folder Include="print\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="print\Stored Procedures\" />
+    <Folder Include="print\User Defined Types\" />
+    <Folder Include="dbo\Tables\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\Functions\SplitAndRemoveQuotes.sql" />
+    <Build Include="print\Tables\_BulkLoad.sql" />
+    <Build Include="print\Tables\PrintProcessing.sql" />
+    <Build Include="print\Stored Procedures\SetImagedAt.sql" />
+    <Build Include="print\Stored Procedures\Delete_BulkLoad.sql" />
+    <Build Include="print\Stored Procedures\SetEcorrDocumentCreatedAt.sql" />
+    <Build Include="print\Stored Procedures\GetBulkLoadCount.sql" />
+    <Build Include="print\Stored Procedures\GetPendingAccountsForScript.sql" />
+    <Build Include="print\Stored Procedures\GetFileNamesForScript.sql" />
+    <Build Include="print\Stored Procedures\CheckFileProcessed.sql" />
+    <Build Include="print\User Defined Types\PrintProcessIdsTable.sql" />
+    <Build Include="Security\print.sql" />
+    <Build Include="print\Tables\ScriptData.sql" />
+    <Build Include="print\Tables\Letters.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\HeaderNames.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\FileHeaders.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\DocIds.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\Comments.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\BillingFileHeaderData.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\ArcScriptDataMapping.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\Arcs.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Tables\ArcLoanHeaderMapping.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Stored Procedures\UpdatePrinted.sql" />
+    <Build Include="print\Stored Procedures\SetPrintingCompleteWithTable.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\SetPrintingComplete.sql" />
+    <Build Include="print\Stored Procedures\SetLastProcessed.sql" />
+    <Build Include="print\Stored Procedures\SetImagingComplete.sql" />
+    <Build Include="print\Stored Procedures\SetImagedAtWithTable.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\SetEcorrDocumentCreatedAtWithTable.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\SetArcAddComplete.sql" />
+    <Build Include="print\Stored Procedures\LoadPrintData.sql" />
+    <Build Include="print\Stored Procedures\InsertPrintData.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\GetNextScriptForProcessing.sql" />
+    <Build Include="print\Stored Procedures\GetHeadersForArcs.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\GetDocIds.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\GetBillingLetterIds.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\GetArcData.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\GetAllScriptsForProcessing.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\User Defined Types\ProcessedScriptDataIds.sql" />
+    <Build Include="print\Tables\PrintProcessingCoBorrower.sql" />
+    <Build Include="print\Tables\HeaderReplacementCoBorrower.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
+    <Build Include="print\Stored Procedures\SetPrintingCompleteCoBorrower.sql" />
+    <Build Include="print\Stored Procedures\SetImagedAtCoBorrower.sql" />
+    <Build Include="print\Stored Procedures\SetCoBorrowerEcorrDocumentCreatedAt.sql" />
+    <Build Include="print\Stored Procedures\InsertPrintProcessingRecordCoBwr.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="print\Stored Procedures\GetInternalNames.sql" />
+    <Build Include="print\Stored Procedures\GetCoBorrowersForBorrower.sql" />
+    <Build Include="dbo\Tables\ArcType.sql" />
+    <Build Include="dbo\Tables\ArcResponseCodes.sql" />
+    <Build Include="dbo\Tables\ArcAddProcessing.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="print.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CLS">
+      <HintPath>Assemblies\CLS.dll</HintPath>
+      <SqlAssemblyName>CLS</SqlAssemblyName>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+      <SqlOwnerName>dbo</SqlOwnerName>
+      <SqlPermissionSet>SAFE</SqlPermissionSet>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="print\Stored Procedures\GetPendingCoBorrowerAccountsForScript.sql" />
+    <Build Include="print\Stored Procedures\InsertPrintProcessingRecord.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="print.refactorlog" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,219 @@
+﻿@{
+    var bannerHelper = new BannerHelper(Server);
+    string bannerMessage = bannerHelper.GetCurrentBannerText();
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126479163-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-126479163-1');
+    </script>
+    <script type="application/ld+json">
+    {
+        "@@context": "http://schema.org",
+        "@@type": "Organization",
+        "url": "https://mycornerstoneloan.org",
+        "logo": "https://mycornerstoneloan.org/Images/emailCSLogo.png",
+        "contactPoint": [{
+            "@@type": "ContactPoint",
+            "telephone": "+1-800-663-1662",
+            "contactType": "customer service",
+            "areaServed": ["US"],
+            "availableLanguage": ["English", "Spanish"],
+            "contactOption": "TollFree"
+        }]
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="cache-control" content="no-store" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <title>Cornerstone @ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/theme.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    @RenderSection("Meta", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <a href="#main-content" id="main-content-link">Skip to main page content.</a>
+        <div class="navbar-container">
+            @if (!string.IsNullOrEmpty(bannerMessage))
+            {
+                <div class="banner">@Html.Raw(bannerMessage)</div>}
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="Toggle Menu">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a style="margin-right: 40px;" href="@Url.Content("~")"><img src="@Url.Content("~/images/cs_logo_horizontal.png")" alt="CornerStone Education Loan Services by uheaa" title="CornerStone Education Loan Services by uheaa"></a>
+                <a class="login-button" href="https://myaccount.mycornerstoneloan.org/accountAccess/index.cfm" title="Sign In"><img src="~/images/Sign-In-Button.png" alt="Sign Into Account Access" /></a>
+                <a href="https://myaccount.mycornerstoneloan.org/authentication/personalInfo.html" title="Create Account"><img src="~/images/Blue-Button-Up.png" alt="Create Online Account" /></a>
+                <form class="searchform" id="searchform" action="https://www.google.com/cse">
+                    <input type="hidden" name="cx" value="008972629095798926605:djyo1qhyn9u" aria-hidden="true">
+                    <input type="hidden" name="ie" value="UTF-8" aria-hidden="true">
+                    <div class="input-group">
+                        <input name="q" id="searchfield" type="text" class="form-control placeholder" title="Enter your search criteria" onkeypress="if (event.keyCode == 13) { $('#searchform').submit(); return false; }" placeholder="Search Cornerstone">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit" title="Search Submit">Search</button>
+                        </span>
+                    </div>
+                    <div class="text-right">
+                        Questions? Please Call: <strong>1-800-663-1662</strong>
+                    </div>
+                </form>
+                <div>
+                    <span class="blueheading">CornerStone is a Department of Education approved Federal loan servicer.</span>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl">Account Access</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Borrowers <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Payment Information</li>
+                        <li><a href="@Url.Content("~/Payments/AutoPay")">Automatic Payments</a></li>
+                        <li><a href="@Url.Content("~/Payments/Bills")">Billing</a></li>
+                        <li><a href="@Url.Content("~/Payments/Payoff")">Loan Payoff</a></li>
+                        <li><a href="@Url.Content("~/Payments")">Payments</a></li>
+                        <li><a href="@Url.Content("~/Payments/RepaymentPlans")">Repayment Plans</a></li>
+                        <li><a href="@Url.Content("~/Payments/HowArePaymentsApplied")">How Are Payments Applied?</a></li>
+                        <li class="dropdown-header">
+                            <hr />Manage Your Account
+                        </li>
+                        <li><a href="@Url.Content("~/Account/BorrowerBenefits")">Borrower Benefits</a></li>
+                        <li><a href="@Url.Content("~/Account/Delinquency")">Delinquency &amp; Default</a></li>
+                        <li><a href="@Url.Content("~/Account/DueDate")">Due Date Changes</a></li>
+                        <li><a href="@Url.Content("~/Account/IDRInfo")">Income-Driven Repayment</a></li>
+                        <li><a href="@Url.Content("~/Account/LoanVerification")">Loan Verification</a></li>
+                        <li><a href="@Url.Content("~/Account/Consolidation")">Consolidation</a></li>
+                        <li><a href="@Url.Content("~/Account/PostponePayments")">Postpone Payments</a></li>
+                        <li><a href="@Url.Content("~/Account/ThirdPartyAuth")">Third Party Authorization</a></li>
+                        <li><a href="@Url.Content("~/Account/AlternativeFormat")">Alternative Format</a></li>
+                        <li><a href="@Url.Content("~/Account/LoanStatement")">Loan Statement</a></li>
+                        <li><a href="@Url.Content("~/Repaye")">REPAYE FAQ</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Armed Forces Members <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Content("~/ServiceMembers/Benefits")">Benefits</a></li>
+                        <li><a href="@Url.Content("~/ServiceMembers/Deferment")">Military Deferment</a></li>
+                        <li><a href="@Url.Content("~/ServiceMembers/PostDeferment")">Post-Active Duty Deferment</a></li>
+                        <li><a href="@Url.Content("~/ServiceMembers/Resources")">Resources</a></li>
+                        <li><a href="@Url.Content("~/ServiceMembers/SCRA")">Servicemembers Civil Relief Act (SCRA)</a></li>
+                        <li><a href="@Url.Content("~/ServiceMembers/Tips")">Tips</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Schools <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">Manage Delinquency</li>
+                        <li><a href="@Url.Content("~/Schools/DelinquencyManagement")">Default Prevention</a></li>
+                        <li><a href="@Url.Content("~/Schools/Plan")">Plan</a></li>
+                        <li><a href="@Url.Content("~/Schools/Communicate")">Communicate</a></li>
+                        <li><a href="@Url.Content("~/Schools/Track")">Track Results</a></li>
+                        <li class="dropdown-header">
+                            <hr />School Community
+                        </li>
+                        <li><a href="@Url.Content("~/Schools/Publications")">School Resources</a></li>
+                        <li><a rel="external" target="_blank" href="https://nsldsFAP.ed.gov/">NSLDS</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Financial Literacy <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a rel="external" target="_blank" href="http://mycornerstone.practicalmoneyskills.com/personalfinance/savingspending/budgeting/">Budget</a></li>
+                        <li><a href="@Url.Content("~/Calculators")">Calculators</a></li>
+                        <li><a rel="external" target="_blank" href="http://mycornerstone.practicalmoneyskills.com/personalfinance/creditdebt/">Credit</a></li>
+                        <li><a rel="external" target="_blank" href="http://www.mycornerstone.practicalmoneyskills.com/personalfinance/lifeevents/college/">Education</a></li>
+                        <li><a rel="external" target="_blank" href="http://mycornerstone.practicalmoneyskills.com/personalfinance/">Financial Literacy</a></li>
+                        <li><a rel="external" target="_blank" href="http://mycornerstone.practicalmoneyskills.com/games/">Games</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Forms <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Content("~/Home/Forms")">All Forms</a></li>
+                        <li><a href="@Url.Content("~/Home/Forms")#AccountForms">Account Forms</a></li>
+                        <li><a href="@Url.Content("~/Home/Forms")#ConsolidationForms">Consolidation Forms</a></li>
+                        <li><a href="@Url.Content("~/Home/Forms")#DefermentForms">Deferment Forms</a></li>
+                        <li><a href="@Url.Content("~/Home/Forms")#ForbearanceForms">Forbearance Forms</a></li>
+                        <li><a href="@Url.Content("~/Home/Forms")#ForgivenessandDischargeForms">Forgiveness and Discharge Forms</a></li>
+                        <li><a href="@Url.Content("~/Home/Forms")#PaymentForms">Payment Forms</a></li>
+                        <li><a href="@Url.Content("~/Home/Forms")#OtherForms">Other Forms</a></li>
+                    </ul>
+                </li>
+                <li><a href="@Url.Content("~/AboutUs")">About Us</a></li>
+            </ul>
+        </div>
+
+    </nav>
+
+    <section class="container body-content" role="main">
+        <a name="main-content" tabindex="-1"></a>
+        @RenderBody()
+        <hr />
+    </section>
+
+    <footer class="panel-footer">
+        <div class="row">
+            <div class="col-sm-6">
+                &copy; @DateTime.Now.Year Utah Higher Education Assistance Authority. All rights reserved.
+                <p>
+                    Current and prospective borrowers are entitled to receive any student loan related communication or document in an accessible, alternative format. Borrowers interested in receiving student aid forms, student loan statements, notices, written communications, and publications in alternative formats should contact us directly at (800) 663-1662 or by email at <a href="mailto:CustomerService@MyCornerStoneLoan.org" title="customerservice@mycornerstoneloan.org">CustomerService@MyCornerStoneLoan.org</a>. CornerStone offers various alternative formats such as Braille, large print, audio CD, and digital navigable formats supported by computers and digital talking-book players, delivered through data CD, email, or other electronic means.
+                </p>
+            </div>
+            <div class="col-sm-6 text-right">
+                <a href="@Url.Content("~/FAQ")">FAQ</a> |
+                <a href="@Url.Content("~/Jobs")">Jobs</a> |
+                <a href="@Url.Content("~/ContactUs")">Contact Us</a> |
+                <a href="@Url.Content("~/Terms")">Terms</a> |
+                <a href="@Url.Content("~/Navigation")">Sitemap</a> |
+                <a href="@Url.Content("~/Privacy")">PRIVACY</a> |
+                <a href="http://www.nmlsconsumeraccess.org/" title="Nationwide Multistate Licensing System Consumer Access Website">Nationwide Multistate Licensing System Consumer Access # 1510465</a>
+            </div>
+            <div class="col-md-12 adobe-reader">
+                <em><a href="http://get.adobe.com/reader" rel="external" target="_blank">Download Adobe Reader</a></em>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26853678-1']);
+        _gaq.push(['_setDomainName', 'mycornerstoneloan.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://ssl') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        function trackOutboundLink(link, category, action) {
+            try {
+                _gaq.push(['_trackEvent', category, action]);
+            } catch (err) { }
+            setTimeout(function () {
+                document.location.href = link.href;
+            }, 100);
+        }
+    </script>
+
+</body>
+</html>

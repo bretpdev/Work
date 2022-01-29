@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="UHEAAOperationsTrackingSystems.master.cs"
+    Inherits="UHEAAOperationsTrackingSystems.UHEAAOperationsTrackingSystems" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
+<%@ Register Assembly="UHEAAOperationsTrackingSystems" Namespace="UHEAAOperationsTrackingSystems.Shared.CustomControls"
+    TagPrefix="cc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <!--Style information for the master page look and feel is dynamically added when the page is render.   See BaseContentPage, Look and LookCoordinator classes for details. -->
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script type="text/javascript">
+    function MagicalOpenNewWindow(page){
+        window.open(page);
+    }
+    </script>
+
+    <title></title>
+</head>
+<body>
+    <div class="HeaderDiv">
+        <table style="width: 100%;">
+            <tr>
+                <td class="HeaderLogo">
+                </td>
+                <td class="HeaderTitleText">
+                    <%= TitleText %>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <form id="form1" runat="server">
+    <div class="MainBodyDiv">
+        <asp:ToolkitScriptManager ID="SphinxToolkitManager" runat="server">
+        </asp:ToolkitScriptManager>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <asp:UpdatePanel runat="server">
+        <ContentTemplate>
+            <div class="SystemLinkDiv" style="text-align: center; vertical-align: middle;">
+                <cc1:ExtendedLinkButton ID="lnkQuickSystemAccess" runat="server" CssClass="AppButton"
+                    UHEAASystem="AccessTracking" UHEAAAccessKey="Add And Modify User Access" OnClientClick="javascript: MagicalOpenNewWindow('/SystemAccess/Access.aspx');"><img src="../Shared/Images/SystemAccessLogoSmall.gif" alt="System Access" /></cc1:ExtendedLinkButton>
+                <cc1:ExtendedLinkButton ID="lnkQuickFlows" runat="server" CssClass="AppButton" UHEAASystem="ACDC Flows"
+                    UHEAAAccessKey="Portal Access" OnClientClick="javascript: MagicalOpenNewWindow('/FlowControl/FlowControl.aspx');"><img src="../Shared/Images/FlowControlLogoSmall.gif" alt="ACDC Flows" /></cc1:ExtendedLinkButton>
+                <cc1:ExtendedLinkButton ID="lnkQuickNeedHelp" runat="server" CssClass="AppButton"
+                    UHEAASystem="AccessTracking" UHEAAAccessKey="Add And Modify User Access" OnClientClick="javascript: MagicalOpenNewWindow('/NeedHelpApplication/NeedHelp.aspx');"><img src="../Shared/Images/NeedHelpLogoSmall.gif" alt="Need Help" /></cc1:ExtendedLinkButton>
+                <asp:LinkButton ID="lnkUheaaUniversity" runat="server" CssClass="AppButton" OnClientClick="window.open('http://10.10.10.88');"><img src="../Shared/Images/UHEAAUniversitySmallIcon.gif" alt="Uheaa University" /></asp:LinkButton>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    </form>
+</body>
+</html>

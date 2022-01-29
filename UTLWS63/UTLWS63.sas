@@ -1,0 +1,162 @@
+/*%LET RPTLIB = %SYSGET(reportdir);*/
+%LET RPTLIB = T:\SAS;
+FILENAME REPORTZ "&RPTLIB/ULWS63.LWS63RZ";
+FILENAME REPORT2 "&RPTLIB/ULWS63.LWS63R2";
+FILENAME REPORT3 "&RPTLIB/ULWS63.LWS63R3";
+LIBNAME  DUSTER  REMOTE  SERVER=DUSTER  SLIBREF=WORK;
+RSUBMIT;
+/*LIBNAME OLWHRM1 DB2 DATABASE=DLGSUTWH OWNER=OLWHRM1;*/
+
+%MACRO SQLCHECK ;
+  %IF  &SQLXRC NE 0  %THEN  %DO  ;
+    DATA _NULL_  ;
+            FILE REPORTZ NOTITLES  ;
+            PUT @01 " ********************************************************************* "
+              / @01 " ****  THE SQL CODE ABOVE HAS EXPERIENCED AN ERROR.               **** "
+              / @01 " ****  THE SAS SHOULD BE REVIEWED.                                **** "       
+              / @01 " ********************************************************************* "
+              / @01 " ****  THE SQL ERROR CODE IS  &SQLXRC  AND THE SQL ERROR MESSAGE  **** "
+              / @01 " ****  &SQLXMSG   **** "
+              / @01 " ********************************************************************* "
+            ;
+         RUN  ;
+  %END  ;
+%MEND  ;
+
+PROC SQL;
+	CONNECT TO DB2 (DATABASE=DLGSUTWH);
+
+	CREATE TABLE BRWS AS
+		SELECT	
+			*
+		FROM
+			CONNECTION TO DB2
+				(
+					SELECT DISTINCT
+						PD10.DF_SPE_ACC_ID,
+						WB24.DF_USR_SSN
+					FROM	
+						OLWHRM1.WB24_CSM_USR_ACC WB24
+						JOIN OLWHRM1.PD10_PRS_NME PD10
+							ON WB24.DF_USR_SSN = PD10.DF_PRS_ID
+						JOIN OLWHRM1.LN10_LON LN10
+							ON WB24.DF_USR_SSN = LN10.BF_SSN
+						LEFT JOIN (
+									SELECT A.BF_SSN
+									FROM OLWHRM1.AY10_BR_LON_ATY A
+									WHERE A.LC_STA_ACTY10 = 'A'
+									AND A.PF_REQ_ACT = 'PHNUP'
+									) AY10
+							ON WB24.DF_USR_SSN = AY10.BF_SSN
+					WHERE
+						WB24.DF_CRT_DTS_WB24 > DATE(DAYS(CURRENT_DATE) - 7) 
+						AND LN10.LC_STA_LON10 = 'R'
+						AND LN10.LA_CUR_PRI > 0
+						AND AY10.BF_SSN IS NULL
+
+					FOR READ ONLY WITH UR
+				)
+	;
+
+	CREATE TABLE ALL_ENDS AS
+		SELECT	
+			*
+		FROM
+			CONNECTION TO DB2
+				(
+					SELECT DISTINCT
+						PD10.DF_SPE_ACC_ID,
+						PD10E.DF_SPE_ACC_ID AS END_DF_SPE_ACC_ID,
+						LN20.BF_SSN,
+						LN20.LF_EDS,
+						LN20.LN_SEQ
+					FROM	
+						OLWHRM1.WB24_CSM_USR_ACC WB24
+						JOIN OLWHRM1.LN20_EDS LN20
+							ON WB24.DF_USR_SSN = LN20.LF_EDS
+						JOIN OLWHRM1.PD10_PRS_NME PD10
+							ON LN20.BF_SSN = PD10.DF_PRS_ID
+						JOIN OLWHRM1.PD10_PRS_NME PD10E
+							ON LN20.LF_EDS = PD10E.DF_PRS_ID
+						LEFT JOIN (
+									SELECT A.BF_SSN
+									FROM OLWHRM1.AY10_BR_LON_ATY A
+									WHERE A.LC_STA_ACTY10 = 'A'
+									AND A.PF_REQ_ACT = 'EWEBC'
+									) AY10
+							ON LN20.BF_SSN = AY10.BF_SSN
+					WHERE
+						WB24.DF_CRT_DTS_WB24 > DATE(DAYS(CURRENT_DATE) - 7)
+						AND AY10.BF_SSN IS NULL
+
+					FOR READ ONLY WITH UR
+				)
+	;
+
+
+
+	DISCONNECT FROM DB2;
+	
+/*%PUT  SQLXRC= >>> &SQLXRC <<< ||| SQLXMSG= >>> &SQLXMSG >>> ;  ** INCLUDES ERROR MESSAGES TO SAS LOG  ;*/
+/*%SQLCHECK;*/
+QUIT;
+
+ENDRSUBMIT;
+
+DATA BRWS; SET DUSTER.BRWS; RUN;
+DATA ALL_ENDS; SET DUSTER.ALL_ENDS; RUN;
+
+PROC SQL;
+	CREATE TABLE ENDS AS
+		SELECT
+			A.DF_SPE_ACC_ID,
+			A.END_DF_SPE_ACC_ID,
+			A.BF_SSN,
+			A.LF_EDS,
+			A.LN_SEQ
+		FROM
+			ALL_ENDS A
+			LEFT JOIN BRWS B
+				ON A.LF_EDS = B.DF_USR_SSN
+		WHERE
+			B.DF_USR_SSN IS NULL
+		ORDER BY 
+			DF_SPE_ACC_ID,
+			BF_SSN,
+			LF_EDS,
+			LN_SEQ
+	;
+QUIT;
+
+DATA ENDS (DROP=LN_SEQ);
+	SET ENDS END=LAST;
+	LENGTH SEQLIST $200. ;
+	BY DF_SPE_ACC_ID END_DF_SPE_ACC_ID BF_SSN LF_EDS LN_SEQ;
+	RETAIN SEQLIST;
+
+	IF FIRST.DF_SPE_ACC_ID THEN 
+		DO;
+			SEQLIST = LEFT(PUT(LN_SEQ,2.));
+		END;
+	ELSE IF FIRST.LN_SEQ THEN
+		DO;
+			SEQLIST = CATX(',',TRIM(SEQLIST),LEFT(PUT(LN_SEQ,2.)));
+		END;
+
+	IF LAST.DF_SPE_ACC_ID THEN OUTPUT;
+RUN;
+
+/*export to queue builder (fed) file*/
+DATA _NULL_;
+	SET BRWS ;
+	FILE REPORT2 DELIMITER=',' DSD DROPOVER LRECL=32767;
+	PUT DF_SPE_ACC_ID 'PHNUP,,,,,,,ALL,Phone consent received per online terms and conditions' ;
+RUN;
+
+DATA _NULL_;
+	SET ENDS ;
+	FILE REPORT3 DELIMITER=',' DSD DROPOVER LRECL=32767;
+	COMMENT = 'Phone consent received per online terms and conditions END ' || END_DF_SPE_ACC_ID;
+	PUT DF_SPE_ACC_ID 'EWEBC,,,,' BF_SSN 'E,' LF_EDS SEQLIST COMMENT;
+RUN;
+

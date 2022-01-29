@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>nochouse</DataSourceReference>
+      <CommandText>;WITH CTE1 AS (
+	SELECT 
+		TT.SqlUserID
+		,CONVERT(DATE,TT.StartTime) AS _Date
+	FROM 
+		[Reporting].[dbo].[TimeTracking] TT
+		INNER JOIN [CSYS].[dbo].[SYSA_DAT_Users] SDU
+			ON TT.SqlUserID = SDU.SqlUserId
+	WHERE
+		DATEDIFF(MINUTE,TT.StartTime, TT.EndTime)/60 &gt; 4
+		AND CONVERT(DATE, TT.StartTime) &gt; '2017-04-01'
+	GROUP BY
+		TT.SqlUserID
+		,TT.StartTime
+),
+CTE2 AS (
+	SELECT 
+		TT.SqlUserID
+		,TT.TicketID
+		,CASE
+			WHEN TT.Region = 'uheaa'
+			THEN CONCAT('UNH ',TT.TicketID)
+			WHEN TT.Region = 'cornerstone'
+			THEN CONCAT('CNH ',TT.TicketID)
+			ELSE ''
+		END AS Ticket
+		,CONVERT(DATE,TT.StartTime) AS _Date
+		,TT.StartTime
+		,TT.EndTime
+		,SDU.FirstName + ' ' + SDU.LastName AS Name
+		,SDU.EMail
+		,DATEDIFF(MINUTE,TT.StartTime, TT.EndTime)/60 AS Hours
+		,(DATEDIFF(MINUTE,TT.StartTime, TT.EndTime)/60.0 - DATEDIFF(MINUTE,TT.StartTime, TT.EndTime)/60)*60 AS Minutes
+	FROM 
+		[Reporting].[dbo].[TimeTracking] TT
+		INNER JOIN [CSYS].[dbo].[SYSA_DAT_Users] SDU
+			ON TT.SqlUserID = SDU.SqlUserId
+	WHERE
+		DATEDIFF(MINUTE,TT.StartTime, TT.EndTime)/60 &gt; 4
+		AND CONVERT(DATE, TT.StartTime) &gt; '2016-12-31'
+)
+SELECT DISTINCT
+	CTE2.EMail
+FROM 
+	CTE1
+	INNER JOIN CTE2
+		ON CTE1.SqlUserID = CTE2.SqlUserID
+		AND CTE1._Date = CTE2._Date
+GROUP BY 
+	CTE2.EMail
+	,CTE2._Date
+HAVING 
+	Count(CTE1._Date) &gt; 1</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="EMail">
+        <DataField>EMail</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

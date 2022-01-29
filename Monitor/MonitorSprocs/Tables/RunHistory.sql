@@ -1,0 +1,7 @@
+﻿CREATE TABLE [monitor].[RunHistory]
+(
+	[RunHistoryId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [StartedAt] DATETIME NOT NULL DEFAULT GETDATE(), 
+    [EndedAt] DATETIME NULL, 
+    [RunBy] VARCHAR(50) NULL DEFAULT SYSTEM_USER
+)

@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[GENR_LST_Errors] (
+    [ErrShort] NVARCHAR (15)  NOT NULL,
+    [ErrLong]  NVARCHAR (255) NULL,
+    CONSTRAINT [PK_COMN_LST_Errors] PRIMARY KEY CLUSTERED ([ErrShort] ASC)
+);
+

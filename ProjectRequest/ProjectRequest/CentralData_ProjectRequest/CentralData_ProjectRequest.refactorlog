@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="7cbfdd22-5b49-46ce-b1b7-241ae04139c8" ChangeDateTime="04/07/2021 15:12:21">
+    <Property Name="ElementName" Value="[projectrequest].[Permissions].[Delete]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[projectrequest].[Permissions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Archive" />
+  </Operation>
+</Operations>

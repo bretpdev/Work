@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>NSLDSCONSO_CLS</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{47657f2d-8124-4b4e-93e9-f9d881571627}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql110DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>NSLDSCONSO_CLS</RootNamespace>
+    <AssemblyName>NSLDSCONSO_CLS</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Tables" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Types" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="nsldsconso.sql" />
+    <Build Include="Tables\DataLoadRuns.sql" />
+    <Build Include="Tables\Borrowers.sql" />
+    <Build Include="Stored Procedures\CleanAndReseedTables.sql" />
+    <Build Include="Stored Procedures\EndDataLoadRun.sql" />
+    <Build Include="Stored Procedures\GetMostRecentDataLoadRun.sql" />
+    <Build Include="Stored Procedures\RecoveryMigration.sql" />
+    <Build Include="Stored Procedures\StartDataLoadRun.sql" />
+    <Build Include="Tables\BorrowerConsolidationLoans.sql" />
+    <Build Include="Tables\BorrowerUnderlyingLoans.sql" />
+    <Build Include="Tables\BorrowerUnderlyingLoanFunding.sql" />
+    <Build Include="Types\BorrowerConsolidationLoansTT.sql" />
+    <Build Include="Types\BorrowerUnderlyingLoansTT.sql" />
+    <Build Include="Types\BorrowerUnderlyingLoanFundingTT.sql" />
+    <Build Include="Stored Procedures\InsertBorrower.sql" />
+    <Build Include="Stored Procedures\UpdateBorrowerLoans.sql" />
+    <Build Include="Stored Procedures\GetBorrowersToReport.sql" />
+    <Build Include="Types\BorrowerUnderlyingLoansUpdateTT.sql" />
+    <Build Include="Stored Procedures\GetBorrowerDetails.sql" />
+    <Build Include="Stored Procedures\GetAllReportedNsldsLabels.sql" />
+    <Build Include="Stored Procedures\MarkBorrowerAsReported.sql" />
+    <Build Include="Stored Procedures\GetBorrowersWithUnmappedLoans.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NSLDSCONSO_CLS.publish.xml" />
+  </ItemGroup>
+</Project>

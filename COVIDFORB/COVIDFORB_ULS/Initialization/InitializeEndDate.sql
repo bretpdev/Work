@@ -1,0 +1,2 @@
+﻿INSERT INTO covidforb.EndDate(EndDate,CARESStartDate)
+VALUES(CAST('09/30/2021' AS DATE),CAST('03/13/2020' AS DATE))

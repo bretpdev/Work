@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[ZDEL_RF10_RFR] (
+    [BF_SSN]     VARCHAR (9) NOT NULL,
+    [BN_SEQ_RFR] SMALLINT    NOT NULL
+);
+

@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[LN13_LON_STU_OSD] (
+    [BF_SSN]             CHAR (9)        NOT NULL,
+    [LN_SEQ]             SMALLINT        NOT NULL,
+    [LF_STU_SSN]         CHAR (9)        NOT NULL,
+    [LN_STU_SPR_SEQ]     SMALLINT        NOT NULL,
+    [LF_LST_DTS_LN13]    DATETIME2 (7)   NOT NULL,
+    [LC_STA_LON13]       CHAR (1)        NOT NULL,
+    [LD_END_GRC_PRD_ALI] DATE            NULL,
+    [LD_STA_LN13]        DATE            NULL,
+    [LF_CRT_DTS_LN13]    DATETIME2 (7)   NOT NULL,
+    [LA_PT_IBL_CHR]      NUMERIC (12, 2) NULL,
+    CONSTRAINT [PK_LN13_LON_STU_OSD] PRIMARY KEY CLUSTERED ([BF_SSN] ASC, [LN_SEQ] ASC, [LF_STU_SSN] ASC, [LN_STU_SPR_SEQ] ASC, [LF_CRT_DTS_LN13] ASC) WITH (FILLFACTOR = 95)
+);
+

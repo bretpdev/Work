@@ -1,0 +1,31 @@
+﻿@model IEnumerable<School>
+@{
+    ViewBag.Title = "Schools";
+}
+@helper SchoolLink(School school, string text, bool isNumeric) {
+string cssClass = isNumeric ? "number-cell" : "";
+    <td class="@cssClass">
+        <a href="/Schools/@school.SchoolId" title="@school.Name">
+            @text
+        </a>
+    </td>
+}
+@Html.ActionLink("[Add New School +]", "Add", new { }, new { id = "top-right-button" })
+<h2>Schools (@Model.Count() total)</h2>
+<table class="list-table">
+    <tr>
+        <th>School</th>
+        <th>Code</th>
+        <th>Branch</th>
+        <th>Recip.</th>
+    </tr>
+@foreach (var school in Model)
+{
+    <tr>
+        @SchoolLink(school, school.Name, false)
+        @SchoolLink(school, school.SchoolCode, true)
+        @SchoolLink(school, school.BranchCode, true)
+        @SchoolLink(school, school.RecipientCount.ToString(), true)
+    </tr>
+}
+</table>

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegentsApplicationDownload", "RegentsApplicationDownload\RegentsApplicationDownload.csproj", "{0FE73388-8719-4634-BCE3-9C1CC6EA30F3}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "RegentsScholarshipBackEnd", "..\RegentsScholarship\Trunk\RegentsScholarshipBackEnd\RegentsScholarshipBackEnd.vbproj", "{543CF1E5-1469-4739-953E-95F6D4178DD0}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Q", "..\..\..\C#Scripts\Q\Q.vbproj", "{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0FE73388-8719-4634-BCE3-9C1CC6EA30F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE73388-8719-4634-BCE3-9C1CC6EA30F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FE73388-8719-4634-BCE3-9C1CC6EA30F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FE73388-8719-4634-BCE3-9C1CC6EA30F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543CF1E5-1469-4739-953E-95F6D4178DD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543CF1E5-1469-4739-953E-95F6D4178DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543CF1E5-1469-4739-953E-95F6D4178DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543CF1E5-1469-4739-953E-95F6D4178DD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB905EB-0BF7-4E95-8A46-0B7E76EE807D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

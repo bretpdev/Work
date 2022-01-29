@@ -1,0 +1,101 @@
+﻿@{
+	ViewBag.Title = "Payments";
+}
+
+@section Meta {
+	<meta name="description" content="CornerStone offers many ways to make your payments including automatic payments, online payments, free phone payments and payments through the mail." />
+}
+
+<h1>Making Payments</h1>
+
+<p>
+	It's just one of those facts, you take out a loan then you have to repay it through
+	monthly payments. At CornerStone, we want to make it as easy as possible for you
+	to take care of your student loan debt. That's why we offer several ways to make
+	payments.
+</p>
+
+<h2>Online Payments</h2>
+
+<p>There are a lot of reasons to make payments online.</p>
+
+<ul>
+	<li>You can make payments anytime;</li>
+	<li>You can schedule payments before they're due; and</li>
+	<li>You can save your bank account information online to make payments faster later.</li>
+</ul>
+
+<p>Here are the steps to make a <strong>one-time</strong> payment online.</p>
+
+<ol>
+	<li>Sign into <a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" onclick="trackOutboundLink(this, 'Outbound Links', '@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl'); return false;">Account Access</a></li>
+	<li>Click "Make a Payment,"</li>
+	<li>Enter your payment information,</li>
+	<li>Click the "Make a Payment" button.</li>
+</ol>
+
+<p>
+	As mentioned above, this is a <em>one-time</em> payment. Keep reading for more about automatic payments.
+</p>
+
+<h2>Automatic Payments</h2>
+<p>
+	Benefits of autopay include a <strong>0.25% decrease</strong> in your interest rate
+	as long as you're enrolled. Your payment will be deducted from your account each
+	month automatically, maybe even while you're asleep. <a href="@Url.Content("~/Payments/AutoPay")" title="Auto Pay">
+	For more information on autopay and how to apply click here</a>.
+</p>
+
+<h2>Pay by Phone</h2>
+<p>
+	This is the option you should choose if you like talking to one of our friendly
+	customer service agents or our friendly customer service phone system. Here's how
+	to do it:
+</p>
+<ul>
+	<li>Call 1-800-663-1662 anytime,</li>
+	<li>Schedule the payment to be withdrawn when you have the funds (up to 60 days in advance),</li>
+	<li>Make sure to have your account number and date of birth ready to speed up the process,</li>
+	<li>Your payment will be deducted within 24 - 48 hours after you call.</li>
+</ul>
+
+<h2>Pay by Mail</h2>
+<p>If you would like to send a check or money order, please follow these instructions.</p>
+<ul>
+	<li>
+		Make your check or money order payable to CornerStone Education Loan Services, then
+		send it to:
+		<address style="padding: 10px 0 10px 0;">
+			<strong>
+				U.S. Department of Education<br />
+				CornerStone Education Loan Services
+			</strong><br />
+			P.O. Box 105189<br />
+			Atlanta, GA 30348-5189.
+		</address>
+	</li>
+	<li>
+		Make sure to mail your payment with enough time to make sure we get it before your
+		due date. Usually about 5 - 7 days before your due date leaves enough time.
+	</li>
+	<li>
+		Include your account number on your check. If you're a co-signer or endorser, include
+		the borrower's account number.
+	</li>
+</ul>
+
+<h2>Payment Application</h2>
+<p>
+Payments are typically applied first to fees (if applicable), then to outstanding accrued interest, and then to the principal balance. 
+If you have had a recent disbursement, any payment made within 120 days of the disbursement date is considered a cancellation of a debt and applied directly to the principal balance.  After the 120 days has passed payments are applied as described previously.
+However, payments made under an Income-Based Repayment plan are applied first to outstanding accrued interest, then to fees (if applicable), 
+and then to the principal balance.
+</p>
+
+<h2>Interest Only Payments</h2>
+<p>You can proactively reduce the amount of money you'll pay on your student loans by making interest-only payments while you're in school. 
+Be advised, if you have had a recent disbursement, any payment made within 120 days of the disbursement date is considered a cancellation of a debt and applied directly to the principal balance.  After the 120 days has passed payments are applied to the outstanding interest first. 
+There are no prepayment penalties on federal student loans and any amount you pay while you're in school will help reduce the amount of interest that's capitalized (added to the principal balance) 
+once you go into repayment. Paying interest can also help you get into the habit of repaying your loans when you leave school. You can make interest-only payments by creating an account in 
+<a href="@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl" onclick="trackOutboundLink(this, 'Outbound Links', '@MyCornerstoneLoan.UrlHelpers.AccountAccessUrl'); return false;">Account Access</a> 
+and going to the Payments section to make a payment.</p>

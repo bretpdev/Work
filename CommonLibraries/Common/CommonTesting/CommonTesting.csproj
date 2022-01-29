@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{322B2BB5-ED57-4CEC-BF89-EC765400472F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CommonTesting</RootNamespace>
+    <AssemblyName>CommonTesting</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AlphaForms">
+      <HintPath>..\..\Dependencies\AlphaForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoFontTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoFontTest.Designer.cs">
+      <DependentUpon>AutoFontTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckButtonTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CheckButtonTest.Designer.cs">
+      <DependentUpon>CheckButtonTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CycleButtonTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CycleButtonTest.Designer.cs">
+      <DependentUpon>CycleButtonTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DialogTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogTest.Designer.cs">
+      <DependentUpon>DialogTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Encryption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Encryption.Designer.cs">
+      <DependentUpon>Encryption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormatLabelTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormatLabelTest.Designer.cs">
+      <DependentUpon>FormatLabelTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuilderAnnotationTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuilderAnnotationTest.Designer.cs">
+      <DependentUpon>FormBuilderAnnotationTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidationTest.Designer.cs">
+      <DependentUpon>ValidationTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AutoFontTest.resx">
+      <DependentUpon>AutoFontTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckButtonTest.resx">
+      <DependentUpon>CheckButtonTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CycleButtonTest.resx">
+      <DependentUpon>CycleButtonTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogTest.resx">
+      <DependentUpon>DialogTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Encryption.resx">
+      <DependentUpon>Encryption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormatLabelTest.resx">
+      <DependentUpon>FormatLabelTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuilderAnnotationTest.resx">
+      <DependentUpon>FormBuilderAnnotationTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidationTest.resx">
+      <DependentUpon>ValidationTest.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Uheaa.Common.csproj">
+      <Project>{d39ccbc4-f262-4225-ae0c-925553dea372}</Project>
+      <Name>Uheaa.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\Uheaa.Common.DataAccess.csproj">
+      <Project>{6fd27ed5-786d-4f03-8cb9-ddfdec5c5192}</Project>
+      <Name>Uheaa.Common.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinForms\Uheaa.Common.WinForms.csproj">
+      <Project>{9c5232ef-657c-4bce-8b89-63b99383c604}</Project>
+      <Name>Uheaa.Common.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

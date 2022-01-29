@@ -1,0 +1,29 @@
+﻿CREATE PROCEDURE [duedtecng].[GetAvailableWork]
+AS
+	
+	SELECT
+		DDC.DueDateChangeId, DDC.Ssn, DDC.AccountNumber, DDC.DueDate, 
+		SUM(LN10.LA_CUR_PRI) TotalBalance, MAX(LN10.LD_LON_1_DSB) FirstDisbursement,
+		SUM((LN10.LA_CUR_PRI * LN72.LR_ITR)) / 100 / 12 MonthlyInterest
+	FROM
+		duedtecng.DueDateChange DDC
+		LEFT JOIN CDW..LN10_LON LN10 ON LN10.BF_SSN = DDC.Ssn
+		LEFT JOIN CDW..LN72_INT_RTE_HST LN72 ON 
+			LN72.BF_SSN = LN10.BF_SSN 
+			AND LN72.LN_SEQ = LN10.LN_SEQ
+			AND LN72.LC_STA_LON72 = 'A'
+			AND GETDATE() BETWEEN LN72.LD_ITR_EFF_BEG AND LN72.LD_ITR_EFF_END
+	WHERE
+		ProcessedAt IS NULL
+		AND
+		DeletedAt IS NULL
+		AND
+		LN10.LC_STA_LON10 = 'R'
+		AND
+		LN10.LA_CUR_PRI > 0
+	GROUP BY
+		DDC.DueDateChangeId, DDC.Ssn, DDC.AccountNumber, DDC.DueDate
+	ORDER BY
+		DueDateChangeId
+
+RETURN 0

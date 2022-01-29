@@ -1,0 +1,27 @@
+﻿
+CREATE PROCEDURE [docid].[CaseNumberSearch]
+	@CaseNumber varchar(12)
+AS
+
+DECLARE @DVAL DATE = DATEADD(YEAR, -10, GETDATE());
+
+DECLARE @IsFederal BIT = NULL
+IF DB_NAME() = 'CDW'
+	SET @IsFederal = 1
+IF DB_NAME() = 'UDW'
+	SET @IsFederal = 0
+
+SELECT DISTINCT
+	PD10.DF_PRS_ID [AccountIdentifier]
+	,RTRIM(PD10.DM_PRS_1) + ' ' + RTRIM(PD10.DM_PRS_LST) [Name],
+	@IsFederal IsFederal
+FROM
+	PD24_PRS_BKR PD24
+	INNER JOIN PD10_PRS_NME PD10
+		ON PD24.DF_PRS_ID = PD10.DF_PRS_ID
+WHERE 
+	PD24.DD_BKR_FIL > @DVAL
+	AND
+	REPLACE(RTRIM(PD24.DF_COU_DKT), '-', '') = REPLACE(RTRIM(@CaseNumber), '-', '')
+
+RETURN 0;
